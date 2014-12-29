@@ -7,10 +7,22 @@ module.exports = (grunt) ->
 		clean:
 			temp:['temp']
 			doc: ['doc']
-			dest: ['dest']
+			dist: ['dist']
 			
 		copy:
 			html:
-				src: 'src/**/*.html'
+				cwd: 'src'
+				src: '**/*.html'
 				dest: 'dist'
 				expand: true
+		coffee:
+			compile:
+				options:
+					bare:true
+				cwd: 'src'
+				src: ['**/*.coffee']
+				dest: 'dist'
+				expand: true
+				ext: '.js'
+			
+		
