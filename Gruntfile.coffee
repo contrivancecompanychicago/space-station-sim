@@ -37,6 +37,8 @@ module.exports = (grunt) ->
 				path: 'file:///G:/Projects/space-station-sim/dist/index.html'
 				app: 'Chrome'
 		coffeeify: 
+			options:
+				debug: true
 			game:
 				src: 'src/main.coffee'
 				dest: 'dist/main.js'
