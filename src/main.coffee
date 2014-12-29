@@ -1,9 +1,6 @@
 Game = require './game.coffee'
 
-console.log "hello world"
+window.onload = ->
+	window.game = new Game document.getElementById 'container'
 
-console.log Game.name
 
-game = new Game()
-
-console.log game.name
