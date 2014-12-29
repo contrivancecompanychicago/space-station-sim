@@ -6,7 +6,6 @@ module.exports = (grunt) ->
 		pkg: require './package.json'
 		clean:
 			temp:['temp']
-			doc: ['doc']
 			dist: ['dist']
 			
 		copy:
@@ -24,5 +23,25 @@ module.exports = (grunt) ->
 				dest: 'dist'
 				expand: true
 				ext: '.js'
-			
-		
+		watch:
+			all: 
+				files: [
+					'Gruntfile.coffee'
+					'src/**/*.*'
+					]
+				tasks: ['build']
+				options:
+					livereload: true
+		open:
+			chrome: 
+				path: 'file:///G:/Projects/space-station-sim/dist/index.html'
+				app: 'Chrome'
+		coffeeify: 
+			game:
+				src: 'src/main.coffee'
+				dest: 'dist/main.js'
+
+
+
+	grunt.registerTask 'default', ['build', 'watch']
+	grunt.registerTask 'build', ['clean', 'copy', 'coffeeify']
