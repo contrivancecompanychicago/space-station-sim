@@ -6,6 +6,8 @@ Grid = require '../grid.coffee'
 view = _.template('<div class="block" />');
 
 class GridBlock
+	width: 10
+	height: 10
 
 	constructor: (@x, @y, @container) ->
 		# console.log @x, @y
@@ -13,7 +15,7 @@ class GridBlock
 		# console.log @$el
 		console.log $(@container).append @$el
 		@element = Imagine @$el[0]
-		@element.move @x, @y
+		@element.move @x*@width, @y*@height
 
 
 

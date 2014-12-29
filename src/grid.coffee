@@ -2,8 +2,6 @@ $ = require 'jquery-browserify'
 Block = require './grid/block.coffee'
 
 class Grid
-	width: 10
-	height: 10
 
 	constructor: (@width, @height, @container)->
 
