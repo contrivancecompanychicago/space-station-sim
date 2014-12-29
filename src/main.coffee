@@ -1,6 +1,7 @@
+imagine = require '../bower_components/imagine/imagine.js'
 Game = require './game.coffee'
 
 window.onload = ->
-	window.game = new Game document.getElementById 'container'
+	window.game = imagine new Game document.getElementById 'container'
 
 

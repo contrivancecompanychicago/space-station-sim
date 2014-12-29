@@ -1,12 +1,16 @@
-imagine = require '../bower_components/imagine/imagine.js'
-jq = require 'jquery-browserify'
+Imagine = require '../bower_components/imagine/imagine.js'
+$ = require 'jquery-browserify'
+
+Grid = require './grid.coffee'
+
+gamedata = require './gamedata.coffee'
+
 
 class Game
 	name: "spacesim"
-	constructor: (@container)->
-		console.log @container
-		
-		
+	constructor: (container)->
+		Game.container = container
+		Imagine new Grid 10, 10, container
 
 
 

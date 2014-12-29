@@ -39,11 +39,20 @@ module.exports = (grunt) ->
 		coffeeify: 
 			options:
 				debug: true
+				alias: 
+					'jquery-browserify': 'jquery'
+				# aliases: [
+				# 	'jquery-browserify:jquery'
+				# ]
 			game:
 				src: 'src/main.coffee'
 				dest: 'dist/main.js'
+		sass:
+			compile:
+				src: 'src/**/*.sass'
+				dest: 'dist/style.css'
 
 
 
 	grunt.registerTask 'default', ['build', 'watch']
-	grunt.registerTask 'build', ['clean', 'copy', 'coffeeify']
+	grunt.registerTask 'build', ['clean', 'copy', 'coffeeify', 'sass']
