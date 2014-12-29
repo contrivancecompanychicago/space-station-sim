@@ -1,0 +1,26 @@
+{
+  "name": "space-station-sim",
+  "version": "0.0.0",
+  "homepage": "https://github.com/digijin/space-station-sim",
+  "authors": [
+    "James Smith <james@digijin.com>"
+  ],
+  "description": "space station simulation game",
+  "main": "Gruntfile",
+  "keywords": [
+    "game"
+  ],
+  "license": "GNU GPL",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "imagine": "*"
+  }
+}
