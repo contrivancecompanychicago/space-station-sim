@@ -2,5 +2,13 @@
 class GameData
 	constructor: ->
 
+	grid:
+		width: 20
+		height:20
+		block:
+			width: 32
+			height: 32
 
-return new GameData()
+
+
+module.exports = new GameData()

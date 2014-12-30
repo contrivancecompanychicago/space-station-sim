@@ -1,5 +1,5 @@
 $ = require 'jquery-browserify'
-Block = require './grid/block.coffee'
+Block = require './block.coffee'
 
 view = require './grid.html.js'
 

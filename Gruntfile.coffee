@@ -71,7 +71,7 @@ module.exports = (grunt) ->
 				destCss: 'temp/sprite.css'
 				cssOpts:
 					cssSelector: (item) ->
-						console.log item
+						# console.log item
 						# item.name = "spr_"  + item.name
 						item.name = '.' + item.source_image
 							.replace(/\//g, '_')
@@ -103,7 +103,7 @@ module.exports = (grunt) ->
 
 		mapping.forEach (map)->
 			content = "_ = require('underscore'); module.exports = _.template('"
-			# console.log map
+			console.log map
 			map.src.forEach (filepath) ->
 				content += grunt.file.read(filepath).replace /'/g, '\\\''
 			content += "');"

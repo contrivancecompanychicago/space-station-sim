@@ -1,16 +1,18 @@
 $ = require 'jquery-browserify'
 _ = require 'underscore'
 Imagine = require '../../bower_components/imagine/imagine.js'
-Grid = require '../grid.coffee'
+Grid = require './grid.coffee'
 
 # view = _.template('<div class="block" />');
 # view = require './blockTemplate.js'
 view = require './block.html.js'
 # console.log test()
 
+gamedata = require '../gamedata.coffee'
+
 class GridBlock
-	width: 32
-	height: 32
+	width: gamedata.grid.block.width
+	height: gamedata.grid.block.height
 
 	constructor: (@x, @y, @container) ->
 		# console.log @x, @y
@@ -18,10 +20,9 @@ class GridBlock
 		# console.log @$el
 		$(@container).append @$el
 		@element = Imagine @$el[0]
-		@element.move @x*@width, @y*@height
+		@element.setPosition @x*@width, @y*@height
 
 		@$el.click ->
-			console.log "yesy"
 			$(@).addClass 'grid_block_plain'
 
 
