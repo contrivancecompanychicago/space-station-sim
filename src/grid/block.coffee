@@ -6,8 +6,8 @@ Grid = require '../grid.coffee'
 view = _.template('<div class="block" />');
 
 class GridBlock
-	width: 20
-	height: 20
+	width: 32
+	height: 32
 
 	constructor: (@x, @y, @container) ->
 		# console.log @x, @y

@@ -1,3 +1,5 @@
+path = require 'path'
+
 module.exports = (grunt) ->
 
 	require('matchdep').filterDev('grunt-*').forEach grunt.loadNpmTasks
@@ -55,4 +57,27 @@ module.exports = (grunt) ->
 
 
 	grunt.registerTask 'default', ['build', 'watch']
-	grunt.registerTask 'build', ['clean', 'copy', 'coffeeify', 'sass']
+	grunt.registerTask 'build', ['clean', 'copy', 'coffeeify', 'sass', 'templatify']
+
+	grunt.registerTask 'templatify', ->
+
+		done = this.async()
+
+		cwd = 'src'
+		src = ['**/*.html', '!index.html']
+		dest = 'temp'
+		ext = '.js'
+		expand = true
+		rename = (dest, src, op) ->
+			newdest = src.substr(0, src.length - op.ext.length) + 'Template' + op.ext
+			path.join dest, newdest
+
+		mapping = grunt.file.expandMapping src, dest, {cwd, ext, rename}
+
+		mapping.forEach (map)->
+			content = "_ = require('underscore'); module.exports = _.template('"
+			# console.log map
+			map.src.forEach (filepath) ->
+				content += grunt.file.read(filepath).replace /'/g, '\\\''
+			content += "');"
+			grunt.file.write map.dest, content
