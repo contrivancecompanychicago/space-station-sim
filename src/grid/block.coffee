@@ -20,6 +20,10 @@ class GridBlock
 		@element = Imagine @$el[0]
 		@element.move @x*@width, @y*@height
 
+		@$el.click ->
+			console.log "yesy"
+			$(@).addClass 'grid_block_plain'
+
 
 
 module.exports = GridBlock

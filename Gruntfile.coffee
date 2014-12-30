@@ -21,6 +21,13 @@ module.exports = (grunt) ->
 				src: '**/*.coffee'
 				dest: 'temp'
 				expand: true
+			sprites:
+				src: 'temp/sprites.png'
+				dest: 'dist/sprites.png'
+		concat:
+			css:
+				src: ['temp/**/*.css']
+				dest: 'dist/style.css'
 		coffee:
 			compile:
 				options:
@@ -53,8 +60,10 @@ module.exports = (grunt) ->
 				dest: 'dist/main.js'
 		sass:
 			compile:
-				src: ['src/**/*.sass', 'temp/**/*.sass']
-				dest: 'dist/style.css'
+				expand: true
+				src: ['src/**/*.sass']
+				dest: 'temp'
+				ext: '.css'
 		sprite:
 			all: 
 				src: 'src/**/*.png'
@@ -75,7 +84,7 @@ module.exports = (grunt) ->
 
 
 	grunt.registerTask 'default', ['build', 'watch']
-	grunt.registerTask 'build', ['copy', 'templatify', 'sprite', 'sass', 'coffeeify']
+	grunt.registerTask 'build', ['copy:coffee', 'templatify', 'sprite', 'sass', 'coffeeify', 'copy:html', 'concat:css', 'copy:sprites']
 
 	grunt.registerTask 'templatify', ->
 
