@@ -9,10 +9,12 @@ class Grid
 	name: 'grid'
 
 	selectionStart = null
+	selectionType = null
 	blockOver = null
 
 	state = 
 		selection: null
+		mapdata:[]
 
 	blocks = {}
 	constructor: (@width, @height, @container)->
@@ -36,6 +38,24 @@ class Grid
 
 			# console.log state.selection
 			@react.setState state
+	processSelection: ->
+		for x in [state.selection.l..state.selection.r]
+			for y in [state.selection.t..state.selection.b]
+				# console.log x, y
+
+				unless state.mapdata[x]
+					state.mapdata[x] = []
+
+				switch selectionType
+					when 0
+						state.mapdata[x][y] = 'plain'
+					when 2
+						state.mapdata[x][y] = null
+				# console.log state
+
+		state.selection = null
+		@react.setState state
+
 	start: ->
 
 		props =
@@ -45,10 +65,15 @@ class Grid
 					selectionStart = 
 						x: block.props.x
 						y: block.props.y
-					# blockOver = selectionStart
-					@calcSelection()
+					selectionType = e.button
+					
+					if selectionType is 1 #middle mouse
+						selectionStart = null
+					else
+						@calcSelection()
 				onMouseUp: (block, e) =>
 					selectionStart = null
+					@processSelection()
 				onMouseOver: (block, e) =>
 					blockOver = 
 						x: block.props.x

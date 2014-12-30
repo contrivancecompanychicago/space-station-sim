@@ -13,8 +13,12 @@ module.exports = React.createClass
 					s = @state.selection
 					if (s.l<=w) and (s.r>=w) and (s.t<=h) and (s.b>=h)
 						selected = true
+				mapdata = ''
+				if @state?.mapdata?[w]?[h]
+					mapdata = @state.mapdata[w][h]
 
 				block = <Block fns={@props.fns} 
+					mapdata={mapdata}
 					selected={selected}
 					key={w+"-"+h} 
 					x={w} y={h} />

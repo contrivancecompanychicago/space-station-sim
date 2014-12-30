@@ -13,7 +13,12 @@ module.exports = React.createClass
 		classes = ['block']
 		if @props.selected
 			classes.push 'selected'
+		if @props.mapdata
+			classes.push 'grid_block_' + @props.mapdata
+
 		classes = classes.join ' '
+
+
 		style = 
 			left: @props.x * gamedata.grid.block.width
 			top: @props.y * gamedata.grid.block.height
