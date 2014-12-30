@@ -4,6 +4,12 @@ Block = require './block.coffee'
 view = require './grid.html.js'
 
 class Grid
+	name: 'grid'
+
+	blockDown: null
+	blockMouseDown: (block)->
+		console.log block
+
 
 	constructor: (@width, @height, @container)->
 		@el = $(view())[0]

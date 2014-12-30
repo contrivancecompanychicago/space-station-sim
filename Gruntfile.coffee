@@ -84,7 +84,7 @@ module.exports = (grunt) ->
 
 
 	grunt.registerTask 'default', ['build', 'watch']
-	grunt.registerTask 'build', ['copy:coffee', 'templatify', 'sprite', 'sass', 'coffeeify', 'copy:html', 'concat:css', 'copy:sprites']
+	grunt.registerTask 'build', ['clean', 'copy:coffee', 'templatify', 'sprite', 'sass', 'coffeeify', 'copy:html', 'concat:css', 'copy:sprites']
 
 	grunt.registerTask 'templatify', ->
 
@@ -103,7 +103,7 @@ module.exports = (grunt) ->
 
 		mapping.forEach (map)->
 			content = "_ = require('underscore'); module.exports = _.template('"
-			console.log map
+			# console.log map
 			map.src.forEach (filepath) ->
 				content += grunt.file.read(filepath).replace /'/g, '\\\''
 			content += "');"
