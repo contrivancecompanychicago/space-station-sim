@@ -56,6 +56,8 @@ class Grid
 		state.selection = null
 		@react.setState state
 
+		localStorage.setItem 'state', JSON.stringify state
+
 	start: ->
 
 		props =
@@ -83,6 +85,8 @@ class Grid
 
 
 		@react = React.render(React.createElement(GridView, props), @container);
+		state = JSON.parse localStorage.getItem 'state'
+		@react.setState state
 
 	# update: ->
 	# 	coms = Imagine.getComponents 'person'
