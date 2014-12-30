@@ -7,7 +7,7 @@ module.exports = (grunt) ->
 	grunt.initConfig
 		pkg: require './package.json'
 		clean:
-			temp:['temp']
+			build:['temp']
 			dist: ['dist']
 			
 		copy:
@@ -64,6 +64,15 @@ module.exports = (grunt) ->
 				src: ['src/**/*.sass']
 				dest: 'temp'
 				ext: '.css'
+		cjsx:
+			options:
+				bare: true
+			compile:
+				cwd: 'src'
+				src: ['**/*.cjsx']
+				dest: 'temp'
+				expand: true
+				ext: '.cjsx.js'
 		sprite:
 			all: 
 				src: 'src/**/*.png'
@@ -84,7 +93,18 @@ module.exports = (grunt) ->
 
 
 	grunt.registerTask 'default', ['build', 'watch']
-	grunt.registerTask 'build', ['clean', 'copy:coffee', 'templatify', 'sprite', 'sass', 'coffeeify', 'copy:html', 'concat:css', 'copy:sprites']
+	grunt.registerTask 'build', [
+		'clean'
+		'copy:html'
+		'copy:coffee'
+		'cjsx'
+		'templatify'
+		'sprite'
+		'sass'
+		'concat:css'
+		'copy:sprites'
+		'coffeeify'
+	]
 
 	grunt.registerTask 'templatify', ->
 
