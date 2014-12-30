@@ -8,19 +8,57 @@ GridView = require './grid.cjsx.js'
 class Grid
 	name: 'grid'
 
-	blockDown: null
-	blockMouseDown: (block)->
-		blockDown = block
+	selectionStart = null
+	blockOver = null
 
+	state = 
+		selection: null
 
+	blocks = {}
 	constructor: (@width, @height, @container)->
-		# @el = $(view())[0]
-		# $(@container).append @el
 
+	calcSelection: ->
+		if selectionStart
+			state.selection = {}
+			if selectionStart.x > blockOver.x
+				state.selection.l = blockOver.x
+				state.selection.r = selectionStart.x
+			else
+				state.selection.l = selectionStart.x
+				state.selection.r = blockOver.x
+
+			if selectionStart.y > blockOver.y
+				state.selection.t = blockOver.y
+				state.selection.b = selectionStart.y
+			else
+				state.selection.t = selectionStart.y
+				state.selection.b = blockOver.y
+
+			# console.log state.selection
+			@react.setState state
 	start: ->
-		# @generate()
 
-		@game = React.render(React.createElement(GridView, gamedata.grid), @container);
+		props =
+			fns: 
+				onMouseDown: (block, e) =>
+					# console.log selectionStart
+					selectionStart = 
+						x: block.props.x
+						y: block.props.y
+					# blockOver = selectionStart
+					@calcSelection()
+				onMouseUp: (block, e) =>
+					selectionStart = null
+				onMouseOver: (block, e) =>
+					blockOver = 
+						x: block.props.x
+						y: block.props.y
+					@calcSelection()
+
+
+
+		@react = React.render(React.createElement(GridView, props), @container);
+
 	# update: ->
 	# 	coms = Imagine.getComponents 'person'
 	# 	data = coms.map (com) -> com.data

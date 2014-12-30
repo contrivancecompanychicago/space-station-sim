@@ -1,16 +1,26 @@
 React = require 'react'
 Block = require './block.cjsx.js'
-
+gamedata = require '../gamedata.coffee'
 module.exports = React.createClass
 	render: ->
 		blocks = []
-		console.log @props
-		for w in [1..@props.width]
-			for h in [1..@props.height]
-				console.log "yolo"
-				block = <Block x={w} y={h} />
+		# console.log @props
+		for w in [1..gamedata.grid.width]
+			for h in [1..gamedata.grid.height]
+				# @props.onMouseDown()
+				selected = false
+				if @state?.selection
+					s = @state.selection
+					if (s.l<=w) and (s.r>=w) and (s.t<=h) and (s.b>=h)
+						selected = true
+
+				block = <Block fns={@props.fns} 
+					selected={selected}
+					key={w+"-"+h} 
+					x={w} y={h} />
+
 				blocks.push block
-		# 			<Block />
+
 		<div className="grid">
 			{blocks}
 		</div>
