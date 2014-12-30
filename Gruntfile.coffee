@@ -13,8 +13,13 @@ module.exports = (grunt) ->
 		copy:
 			html:
 				cwd: 'src'
-				src: '**/*.html'
+				src: 'index.html'
 				dest: 'dist'
+				expand: true
+			coffee:
+				cwd: 'src'
+				src: '**/*.coffee'
+				dest: 'temp'
 				expand: true
 		coffee:
 			compile:
@@ -41,13 +46,10 @@ module.exports = (grunt) ->
 		coffeeify: 
 			options:
 				debug: true
-				alias: 
-					'jquery-browserify': 'jquery'
-				# aliases: [
-				# 	'jquery-browserify:jquery'
-				# ]
+				# alias: 
+				# 	'jquery-browserify': 'jquery'
 			game:
-				src: 'src/main.coffee'
+				src: 'temp/main.coffee'
 				dest: 'dist/main.js'
 		sass:
 			compile:
@@ -57,22 +59,22 @@ module.exports = (grunt) ->
 
 
 	grunt.registerTask 'default', ['build', 'watch']
-	grunt.registerTask 'build', ['clean', 'copy', 'coffeeify', 'sass', 'templatify']
+	grunt.registerTask 'build', ['clean', 'copy', 'templatify', 'coffeeify', 'sass']
 
 	grunt.registerTask 'templatify', ->
 
-		done = this.async()
+		# done = this.async()
 
 		cwd = 'src'
 		src = ['**/*.html', '!index.html']
 		dest = 'temp'
-		ext = '.js'
+		ext = '.html.js'
 		expand = true
-		rename = (dest, src, op) ->
-			newdest = src.substr(0, src.length - op.ext.length) + 'Template' + op.ext
-			path.join dest, newdest
+		# rename = (dest, src, op) ->
+		# 	newdest = src.substr(0, src.length - op.ext.length) + 'Template' + op.ext
+		# 	path.join dest, newdest
 
-		mapping = grunt.file.expandMapping src, dest, {cwd, ext, rename}
+		mapping = grunt.file.expandMapping src, dest, {cwd, ext}
 
 		mapping.forEach (map)->
 			content = "_ = require('underscore'); module.exports = _.template('"

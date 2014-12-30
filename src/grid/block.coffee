@@ -3,7 +3,10 @@ _ = require 'underscore'
 Imagine = require '../../bower_components/imagine/imagine.js'
 Grid = require '../grid.coffee'
 
-view = _.template('<div class="block" />');
+# view = _.template('<div class="block" />');
+# view = require './blockTemplate.js'
+view = require './block.html.js'
+# console.log test()
 
 class GridBlock
 	width: 32
@@ -13,7 +16,7 @@ class GridBlock
 		# console.log @x, @y
 		@$el = $ view()
 		# console.log @$el
-		console.log $(@container).append @$el
+		$(@container).append @$el
 		@element = Imagine @$el[0]
 		@element.move @x*@width, @y*@height
 
