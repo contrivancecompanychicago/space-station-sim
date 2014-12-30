@@ -53,13 +53,29 @@ module.exports = (grunt) ->
 				dest: 'dist/main.js'
 		sass:
 			compile:
-				src: 'src/**/*.sass'
+				src: ['src/**/*.sass', 'temp/**/*.sass']
 				dest: 'dist/style.css'
+		sprite:
+			all: 
+				src: 'src/**/*.png'
+				dest: 'temp/sprites.png'
+				destCss: 'temp/sprite.css'
+				cssOpts:
+					cssSelector: (item) ->
+						console.log item
+						# item.name = "spr_"  + item.name
+						item.name = '.' + item.source_image
+							.replace(/\//g, '_')
+							.substr(0, item.source_image.length - 4)
+							.substr 4
+				# cssVarMap: (sprite) ->
+				# 	console.log sprite
+				# 	sprite.name = 'sprite_' + sprite.name
 
 
 
 	grunt.registerTask 'default', ['build', 'watch']
-	grunt.registerTask 'build', ['clean', 'copy', 'templatify', 'coffeeify', 'sass']
+	grunt.registerTask 'build', ['copy', 'templatify', 'sprite', 'sass', 'coffeeify']
 
 	grunt.registerTask 'templatify', ->
 
