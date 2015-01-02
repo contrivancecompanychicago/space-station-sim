@@ -1,4 +1,5 @@
 states = 
+	blank: undefined
 	selecting: 0
 	moving: 1
 	deselecting: 2
@@ -13,27 +14,53 @@ class Input
 		# 	console.log "onmouseenter"
 		# onmouseleave: (e) ->
 		# 	console.log "onmouseleave"
-		# onmousemove: (e) ->
-		# 	console.log "onmousemove"
+		onmousemove: (e) =>
+			# console.log "onmousemove"
+			moveMouse e
 		# onmouseout: (e) ->
 		# 	console.log "onmouseout"
 		# onmouseover: (e) ->
 		# 	console.log "onmouseover"
-		# onmouseup: (e) ->
-		# 	console.log "onmouseup"
+		onmouseup: (e) =>
+			disengageMouse e
 		# onmousewheel: (e) ->
 		# 	console.log "onmousewheel"
 
+	startEvent = null
+
+	lastMouse = null
+	setLastMouse = (e) ->
+		lastMouse = 
+			x: e.x
+			y: e.y
+
+	getMouseDelta = (e)->
+		# console.log lastMouse.x, e.x
+		if lastMouse
+			x: lastMouse.x - e.x
+			y: lastMouse.y - e.y
+		else
+			{x:0, y:0} #init
+
+
 	engageMouse = (e) ->
+		setLastMouse e
 		console.log e
 		# if e.button is 1
 		# 	state = states.moving
-		state = e.button
+		startEvent = e
+		@state = e.button
 
-	disengageMouse: (e) ->
-		state = null
+	disengageMouse = (e) ->
+		@state = states.blank
 
-	state: null
+	moveMouse = (e) ->
+		# console.log @state
+		delta = getMouseDelta e
+		console.log delta
+		setLastMouse e
+
+	state: states.blank
 
 	constructor: (@container) ->
 		console.log "input"
@@ -41,6 +68,13 @@ class Input
 		for key, val of @fns
 			# console.log 
 			@container[key] = val
+
+
+	update: ->
+
+		# switch @state
+		# 	when states.moving
+
 
 
 	# fns: 

@@ -15,7 +15,7 @@ class window.Game
 		@container = container
 		@canvas = document.createElement 'canvas'
 
-		@constructor.input = new Input @canvas
+		@constructor.input = Imagine new Input @canvas
 		@constructor.state = new State()
 		
 
