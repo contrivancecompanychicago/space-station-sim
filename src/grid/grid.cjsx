@@ -2,9 +2,9 @@ React = require 'react'
 Block = require './block.cjsx.js'
 gamedata = require '../gamedata.coffee'
 module.exports = React.createClass
-	getInitialState: ->
+	# getInitialState: ->
 		# console.log "swag"
-		JSON.parse localStorage.getItem 'state'
+		# JSON.parse localStorage.getItem 'state'
 	render: ->
 		blocks = []
 		# console.log @props

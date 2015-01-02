@@ -1,4 +1,11 @@
-space-station-sim
-=================
+# space sim
 
-game
+ * Game
+  * character
+   * layer
+   * person
+     * robot
+  * Item
+   * Layer
+  * grid
+   * block
