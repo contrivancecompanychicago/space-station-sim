@@ -1,6 +1,12 @@
 config = require '../config.coffee'
 class Grid
 
+	gbw = config.grid.block.width
+	gbh = config.grid.block.height
+
+	cw = config.canvas.width
+	ch = config.canvas.height
+
 	offset: 
 		x: 0
 		y: 0
@@ -16,15 +22,25 @@ class Grid
 
 	# looks at @offset, @scale and config.grid.block to output a list of blocks that are on screen
 	blocksToRender: ->
+		tl = {x: 0, y: 0}
+		br = 
+			x: Math.floor(cw/gbw) - 1
+			y: Math.floor(ch/gbh) - 1
+
+		# console.log gbw, cw, gbw/cw
+		console.log br
+		out = []
+		for x in [tl.x..br.x]
+			for y in [tl.y..br.y]
+				out.push {x, y}
+		out
 
 	# tries to render the block in Game.state.gridData['_'+x+'_'+y]
-	renderBlock: (x, y) ->
-		gbw = config.grid.block.width
-		gbh = config.grid.block.height
+	renderBlock: (block) ->
 
 		offset = 
-			x: (@offset.x + (gbw*x)) * @scale
-			y: (@offset.y + (gbh*x)) * @scale
+			x: (@offset.x + (gbw*block.x)) * @scale
+			y: (@offset.y + (gbh*block.y)) * @scale
 
 		@context.rect offset.x, offset.y, gbw * @scale, gbh * @scale
 		@context.stroke()
@@ -33,9 +49,10 @@ class Grid
 	#starts mega draw call
 	draw: ->
 		@clear()
-
-		@renderBlock(1, 1)
-		@renderBlock(2, 2)
+		blocks = @blocksToRender()
+		# console.log blocks
+		for block in blocks
+			@renderBlock block
 
 
 
