@@ -63,8 +63,8 @@ class Input
 			when states.moving
 				# console.log startEvent
 				# console.log delta
-				Game.state.view.offset.x += delta.x
-				Game.state.view.offset.y += delta.y
+				Game.state.view.offset.x -= delta.x
+				Game.state.view.offset.y -= delta.y
 				Game.render()
 
 		setLastMouse e
