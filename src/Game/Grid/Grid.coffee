@@ -14,11 +14,14 @@ class Grid
 	constructor: (@canvas) ->
 		# console.log Game.state
 		@context = @canvas.getContext('2d');
-		@draw()
+		@render()
 
-
+	# wipes canvas
 	clear: ->
-		@context.clearRect 0, 0, config.canvas.width, config.canvas.height
+		# console.log "asd"
+		# console.log @context
+		# console.log cw, ch
+		@context.clearRect 0, 0, cw, ch
 
 	# looks at @offset, @scale and config.grid.block to output a list of blocks that are on screen
 	blocksToRender: ->
@@ -34,6 +37,7 @@ class Grid
 			for y in [tl.y..br.y]
 				out.push {x, y}
 		out
+		[{x:2, y:2}]
 
 	# tries to render the block in Game.state.gridData['_'+x+'_'+y]
 	renderBlock: (block) ->
@@ -47,7 +51,7 @@ class Grid
 
 
 	#starts mega draw call
-	draw: ->
+	render: ->
 		@clear()
 		blocks = @blocksToRender()
 		# console.log blocks

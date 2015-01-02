@@ -1,5 +1,5 @@
 states = 
-	blank: undefined
+	blank: -1
 	selecting: 0
 	moving: 1
 	deselecting: 2
@@ -45,7 +45,7 @@ class Input
 
 	engageMouse = (e) ->
 		setLastMouse e
-		console.log e
+		# console.log e
 		# if e.button is 1
 		# 	state = states.moving
 		startEvent = e
@@ -57,14 +57,23 @@ class Input
 	moveMouse = (e) ->
 		# console.log @state
 		delta = getMouseDelta e
-		console.log delta
+		# console.log delta
+
+		switch @state
+			when states.moving
+				# console.log startEvent
+				# console.log delta
+				Game.state.view.offset.x += delta.x
+				Game.state.view.offset.y += delta.y
+				Game.render()
+
 		setLastMouse e
 
 	state: states.blank
 
 	constructor: (@container) ->
-		console.log "input"
-		console.log @fns
+		# console.log "input"
+		# console.log @fns
 		for key, val of @fns
 			# console.log 
 			@container[key] = val

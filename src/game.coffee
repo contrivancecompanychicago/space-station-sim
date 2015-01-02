@@ -24,7 +24,11 @@ class window.Game
 
 
 		$(container).append @canvas
-		Imagine new Grid @canvas
+		@constructor.grid = Imagine new Grid @canvas
+
+
+	@render: =>
+		@grid.render()
 
 
 
