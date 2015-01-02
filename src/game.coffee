@@ -2,15 +2,21 @@ Imagine = require '../bower_components/imagine/imagine.js'
 $ = require 'jquery-browserify'
 
 Grid = require './Game/Grid/Grid.coffee'
+Input = require './Game/Input.coffee'
 
 config = require './Game/config.coffee'
 _ = require 'underscore'
 
-class Game
+class window.Game
 	name: "spacesim"
+	# @state: 'no'
 	constructor: (container)->
-		Game.container = container
+		# @constructor.state = "yes"
+		@container = container
 		@canvas = document.createElement 'canvas'
+
+		@constructor.input = new Input @canvas
+		
 
 		_.extend @canvas, config.canvas
 		_.extend @canvas.style, config.canvas.style
@@ -23,4 +29,4 @@ class Game
 
 
 
-module.exports = Game
+module.exports = window.Game

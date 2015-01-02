@@ -1,5 +1,8 @@
-Game = require '../../Game.coffee'
-class Game.Grid
-	constructor: (@canvas) ->
 
-module.exports = Game.Grid
+class Grid
+
+	
+	constructor: (@canvas) ->
+		# console.log Game.state
+
+module.exports = Grid
