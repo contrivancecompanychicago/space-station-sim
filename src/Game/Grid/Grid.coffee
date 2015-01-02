@@ -28,7 +28,7 @@ class Grid
 			y: Math.floor(ch/gbh) - 1
 
 		# console.log gbw, cw, gbw/cw
-		console.log br
+		# console.log br
 		out = []
 		for x in [tl.x..br.x]
 			for y in [tl.y..br.y]
@@ -39,8 +39,8 @@ class Grid
 	renderBlock: (block) ->
 
 		offset = 
-			x: (@offset.x + (gbw*block.x)) * @scale
-			y: (@offset.y + (gbh*block.y)) * @scale
+			x: (Game.state.view.offset.x + (gbw*block.x)) * @scale
+			y: (Game.state.view.offset.y + (gbh*block.y)) * @scale
 
 		@context.rect offset.x, offset.y, gbw * @scale, gbh * @scale
 		@context.stroke()

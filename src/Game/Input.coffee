@@ -1,7 +1,14 @@
+states = 
+	selecting: 0
+	moving: 1
+	deselecting: 2
+
+
+
 class Input
 	fns:
-		onmousedown: (e) ->
-			console.log e
+		onmousedown: (e) =>
+			engageMouse e
 		# onmouseenter: (e) ->
 		# 	console.log "onmouseenter"
 		# onmouseleave: (e) ->
@@ -17,6 +24,16 @@ class Input
 		# onmousewheel: (e) ->
 		# 	console.log "onmousewheel"
 
+	engageMouse = (e) ->
+		console.log e
+		# if e.button is 1
+		# 	state = states.moving
+		state = e.button
+
+	disengageMouse: (e) ->
+		state = null
+
+	state: null
 
 	constructor: (@container) ->
 		console.log "input"
