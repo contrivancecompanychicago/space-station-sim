@@ -1,6 +1,5 @@
 
-class State
-
+module.exports = 
 	view:
 		_scale: 
 			max: 2
@@ -13,5 +12,3 @@ class State
 	gridData: { g1_1: {type:'plain'}, g3_4: {type:'wall'}}
 	itemData: {}
 	characterData: {}
-
-module.exports = State

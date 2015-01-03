@@ -78,7 +78,8 @@ class Input
 
 			# Game.render()
 		Game.grid.selection = null
-		Game.grid.requireRender()
+		# Game.grid.requireRender()
+		Game.render 'grid'
 		@state = states.blank
 
 	moveMouse = (e) =>

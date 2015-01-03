@@ -1,9 +1,8 @@
 Imagine = require '../bower_components/imagine/imagine.js'
 $ = require 'jquery-browserify'
-State = require './Game/State.coffee'
 Grid = require './Game/Grid/Grid.coffee'
 Input = require './Game/Input.coffee'
-
+Storage = require './Game/Storage.coffee'
 config = require './Game/config.coffee'
 _ = require 'underscore'
 
@@ -16,7 +15,12 @@ class window.Game
 		@canvas = document.createElement 'canvas'
 
 		@constructor.input = Imagine new Input @canvas
-		@constructor.state = new State()
+		loaded = Storage.get()
+		if loaded
+			@constructor.state = JSON.parse Storage.get()
+		else
+			@constructor.state = require './Game/State.coffee'
+
 		
 
 		_.extend @canvas, config.canvas
@@ -29,6 +33,7 @@ class window.Game
 
 	@render: =>
 		@grid.requireRender()
+		Storage.set()
 
 
 
