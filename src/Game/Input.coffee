@@ -44,7 +44,7 @@ class Input
 			{x:0, y:0} #init
 
 
-	engageMouse = (e) ->
+	engageMouse = (e) =>
 		setLastMouse e
 		# console.log e
 		# if e.button is 1
@@ -52,21 +52,29 @@ class Input
 		startEvent = e
 		@state = e.button
 
-	disengageMouse = (e) ->
-
+	disengageMouse = (e) =>
+		# console.log @
 		if @state is states.selecting
-			pos = Game.grid.blockAtPoint e
-			Game.grid.addBlock 'wall', pos
+			sel = calcSelection()
+			console.log sel
+			for x in [sel.l..sel.r]
+				for y in [sel.t..sel.b]
+					# pos = Game.grid.blockAtPoint e
+					Game.grid.addBlock 'wall', {x, y}
+
 			Game.render()
 
 		@state = states.blank
 
-	moveMouse = (e) ->
+	moveMouse = (e) =>
 		# console.log @state
 		delta = getMouseDelta e
 		# console.log delta
 
 		switch @state
+			when states.selecting
+				# console.log @
+				Game.grid.selection = calcSelection()
 			when states.moving
 				# console.log startEvent
 				# console.log delta
@@ -77,6 +85,26 @@ class Input
 		setLastMouse e
 
 	state: states.blank
+
+	calcSelection = ->
+		# console.log startEvent, lastMouse
+		pt1 = Game.grid.blockAtPoint startEvent
+		pt2 = Game.grid.blockAtPoint lastMouse
+		selection = {}
+		if pt1.x > pt2.x
+			selection.l = pt2.x
+			selection.r = pt1.x
+		else
+			selection.l = pt1.x
+			selection.r = pt2.x
+
+		if pt1.y > pt2.y
+			selection.t = pt2.y
+			selection.b = pt1.y
+		else
+			selection.t = pt1.y
+			selection.b = pt2.y
+		selection
 
 	constructor: (@container) ->
 		# console.log "input"
@@ -92,27 +120,6 @@ class Input
 		# 	when states.moving
 
 
-
-	# fns: 
-	# 	onMouseDown: (block, e) =>
-	# 		# console.log selectionStart
-	# 		selectionStart = 
-	# 			x: block.props.x
-	# 			y: block.props.y
-	# 		selectionType = e.button
-			
-	# 		if selectionType is 1 #middle mouse
-	# 			selectionStart = null
-	# 		else
-	# 			@calcSelection()
-	# 	onMouseUp: (block, e) =>
-	# 		selectionStart = null
-	# 		@processSelection()
-	# 	onMouseOver: (block, e) =>
-	# 		blockOver = 
-	# 			x: block.props.x
-	# 			y: block.props.y
-	# 		@calcSelection()
 
 
 module.exports = Input
