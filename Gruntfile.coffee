@@ -100,16 +100,7 @@ module.exports = (grunt) ->
 				# 	sprite.name = 'sprite_' + sprite.name
 		concurrent:
 			build: 
-				tasks:[
-					'copy:html'
-					'copy:coffee'
-					'cjsx'
-					'templatify'
-					'sprite'
-					'sass'
-					'copy:sprites'
-					'image-javascriptify'
-					]
+				tasks:[]
 				options:
 					limit: 4
 
@@ -119,7 +110,13 @@ module.exports = (grunt) ->
 	grunt.registerTask 'default', ['build', 'watch']
 	grunt.registerTask 'build', [
 		'clean'
-		'concurrent:build'
+		'copy:html'
+		'copy:coffee'
+		'templatify'
+		'sass'
+		'copy:sprites'
+		'image-javascriptify'
+
 		'concat:css'
 		'coffeeify'
 	]
