@@ -130,11 +130,14 @@ module.exports = (grunt) ->
 			files[map.dest] = output.toString 'base64'
 		# console.log files
 
-		output = 'module.exports = \r\n'#+JSON.stringify files
+		output = 'out = {}\r\n'#+JSON.stringify files
 		for key of files
 			grunt.verbose.write key
 			val = files[key]
-			output += "\t'"+key+"': document.createElement('img').src = 'data:image/png;base64,"+val+"'"
+			output += "img = document.createElement('img')\r\n"
+			output += "img.src = 'data:image/png;base64,"+val+"'\r\n"
+			output += "out['"+key+"'] = img\r\n"
+		output += 'module?.exports = out\r\n'
 
 		outPath = 'temp/images.coffee'
 		grunt.file.write outPath, output
