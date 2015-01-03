@@ -18,18 +18,20 @@ class Grid
 
 	# wipes canvas
 	clear: ->
-		console.log "clear"
-		console.log @context
-		console.log cw, ch
+		# console.log "clear"
+		# console.log @context
+		# console.log cw, ch
 		@context.closePath()
 		@context.clearRect 0, 0, cw, ch
 
 	# looks at @offset, @scale and config.grid.block to output a list of blocks that are on screen
 	blocksToRender: ->
-		tl = {x: 0, y: 0}
+		tl = 
+			x: Math.ceil((-Game.state.view.offset.x)/gbh)
+			y: Math.ceil((-Game.state.view.offset.y)/gbh)
 		br = 
-			x: Math.floor(cw/gbw) - 1
-			y: Math.floor(ch/gbh) - 1
+			y: Math.floor((ch - Game.state.view.offset.y)/gbh) - 1
+			x: Math.floor((cw - Game.state.view.offset.x)/gbw) - 1
 
 		# console.log gbw, cw, gbw/cw
 		# console.log br
@@ -50,6 +52,11 @@ class Grid
 
 		@context.strokeStyle = "#ff0000"
 		@context.strokeRect offset.x, offset.y, gbw * @scale, gbh * @scale
+
+		# debug
+		@context.font = '10px verdana'
+		@context.fillText block.x+','+block.y, offset.x, offset.y+10
+
 		# @context.rect offset.x, offset.y, gbw * @scale, gbh * @scale
 		# @context.stroke()
 
