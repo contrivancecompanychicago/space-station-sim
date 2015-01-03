@@ -6,6 +6,8 @@ Storage = require './Game/Storage.coffee'
 config = require './Game/config.coffee'
 _ = require 'underscore'
 
+UI = require './Game/UI/Layer.coffee'
+
 class window.Game
 	name: "spacesim"
 	# @state: 'no'
@@ -29,6 +31,13 @@ class window.Game
 
 		$(container).append @canvas
 		@constructor.grid = Imagine new Grid @canvas
+
+		# UI
+		div = document.createElement 'div'
+		div.id = "ui"
+		$(container).append div
+		@constructor.ui = new UI div
+
 
 
 	@render: =>

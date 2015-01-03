@@ -36,7 +36,8 @@ class Grid
 
 	blockToString = (pos) ->
 		'g'+pos.x+'_'+pos.y
-	addBlock: (type, pos) ->
+	addBlock: (pos) ->
+		type = Game.ui.blockSelector.state.selected
 		Game.state.gridData[blockToString(pos)] =
 			type: type
 	removeBlock: (pos) ->

@@ -71,7 +71,7 @@ class Input
 				for y in [sel.t..sel.b]
 					# pos = Game.grid.blockAtPoint e
 					if @state is states.selecting
-						Game.grid.addBlock 'wall', {x, y}
+						Game.grid.addBlock {x, y}
 					if @state is states.deselecting
 						Game.grid.removeBlock {x, y}
 

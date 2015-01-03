@@ -160,9 +160,9 @@ module.exports = (grunt) ->
 		mapping = grunt.file.expandMapping src, dest, {cwd, ext}
 
 		mapping.forEach (map)->
-			content = "_ = require('underscore'); module.exports = _.template('"
+			content = "_ = require('underscore');\r\nmodule.exports = _.template('"
 			# console.log map
 			map.src.forEach (filepath) ->
-				content += grunt.file.read(filepath).replace /'/g, '\\\''
+				content += grunt.file.read(filepath).replace(/'/g, '\\\'').replace(/\r/g, '').replace(/\n/g, '')
 			content += "');"
 			grunt.file.write map.dest, content
