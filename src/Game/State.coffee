@@ -2,6 +2,10 @@
 class State
 
 	view:
+		_scale: 
+			max: 2
+			min: 0.5
+			step: 0.25
 		scale: 1
 		offset:
 			x: 0

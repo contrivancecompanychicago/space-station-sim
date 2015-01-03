@@ -48,12 +48,16 @@ class Grid
 
 	# looks at @offset, @scale and config.grid.block to output a list of blocks that are on screen
 	blocksToRender: ->
-		tl = 
-			x: Math.ceil((-Game.state.view.offset.x)/gbh) - 1
-			y: Math.ceil((-Game.state.view.offset.y)/gbh) - 1
-		br = 
-			y: Math.floor((ch - Game.state.view.offset.y)/gbh)
-			x: Math.floor((cw - Game.state.view.offset.x)/gbw)
+		# tl = 
+		# 	x: Math.ceil((-Game.state.view.offset.x)/(gbh)) - 1
+		# 	y: Math.ceil((-Game.state.view.offset.y)/(gbw)) - 1
+		# br = 
+		# 	x: Math.floor(((cw - Game.state.view.offset.x*(1 / Game.state.view.scale)) / (gbw))*(1 / Game.state.view.scale))
+		# 	y: Math.floor(((ch - Game.state.view.offset.y*(1 / Game.state.view.scale)) / (gbh))*(1 / Game.state.view.scale))
+
+		# console.log br, @blockAtPoint {x:cw-30, y:ch-30}
+		tl = @blockAtPoint {x:0, y:0}
+		br = @blockAtPoint {x:cw, y:ch}
 
 		# console.log gbw, cw, gbw/cw
 		# console.log br
@@ -78,7 +82,7 @@ class Grid
 		@resetContextStyle()
 
 		# console.log "render Block"
-		console.log Game.state.view.scale
+		# console.log Game.state.view.scale
 		offset = 
 			x: (Game.state.view.offset.x + (gbw*block.x)) * Game.state.view.scale
 			y: (Game.state.view.offset.y + (gbh*block.y)) * Game.state.view.scale

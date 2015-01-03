@@ -25,8 +25,16 @@ class Input
 		onmouseup: (e) =>
 			disengageMouse e
 		onmousewheel: (e) ->
-			console.log e
-			Game.state.view.scale -= e.wheelDelta / 1000
+			# console.log e
+			# Game.state.view.scale -= e.wheelDelta / 1000
+			if e.wheelDelta > 0
+				if Game.state.view.scale < Game.state.view._scale.max
+					Game.state.view.scale += Game.state.view._scale.step
+			else
+				if Game.state.view.scale > Game.state.view._scale.min
+					Game.state.view.scale -= Game.state.view._scale.step
+
+			console.log "new scale ", Game.state.view.scale
 			Game.render()
 
 	startEvent = null
