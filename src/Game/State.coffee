@@ -3,10 +3,10 @@ class State
 
 	view:
 		offset:
-			x: 5
-			y: 15
-	gridData = {}
-	itemData = {}
-	characterData = {}
+			x: 0
+			y: 0
+	gridData: { g1_1: {type:'plain'}}
+	itemData: {}
+	characterData: {}
 
 module.exports = State

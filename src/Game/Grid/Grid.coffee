@@ -1,4 +1,6 @@
 config = require '../config.coffee'
+Block = require './Block/Block.coffee'
+
 class Grid
 
 	gbw = config.grid.block.width
@@ -42,28 +44,38 @@ class Grid
 		out
 		# [{x:2, y:2}]
 
+	resetContextStyle: ->
+		@context.fillStyle = "black"
+		# @context.strokeStyle = "black"
+
+
 	# tries to render the block in Game.state.gridData['_'+x+'_'+y]
 	renderBlock: (block) ->
-		console.log "render Block"
+
+		@resetContextStyle()
+
+		# console.log "render Block"
 		offset = 
 			x: (Game.state.view.offset.x + (gbw*block.x)) * @scale
 			y: (Game.state.view.offset.y + (gbh*block.y)) * @scale
 
+		# console.log Game.state
+		data = Game.state.gridData['g'+block.x+'_'+block.y]
+		if data
+			type = Block[data.type]
+			type.render @context, offset, data
 
-		@context.strokeStyle = "#ff0000"
-		@context.strokeRect offset.x, offset.y, gbw * @scale, gbh * @scale
 
 		# debug
+		@context.strokeStyle = "grey"
+		@context.strokeRect offset.x, offset.y, gbw * @scale, gbh * @scale
+
 		@context.font = '10px verdana'
 		@context.fillText block.x+','+block.y, offset.x, offset.y+10
 
-		# @context.rect offset.x, offset.y, gbw * @scale, gbh * @scale
-		# @context.stroke()
-
-
 	#starts mega draw call
 	render: ->
-		console.log "render grid"
+		# console.log "render grid"
 		@clear()
 		blocks = @blocksToRender()
 		# console.log blocks
