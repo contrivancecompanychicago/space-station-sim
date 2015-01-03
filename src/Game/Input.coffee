@@ -11,8 +11,6 @@ class Input
 		onmousedown: (e) =>
 			engageMouse e
 			# console.log e
-			pos = Game.grid.blockAtPoint e
-			Game.grid.addBlock 'wall', pos
 		# onmouseenter: (e) ->
 		# 	console.log "onmouseenter"
 		# onmouseleave: (e) ->
@@ -55,6 +53,12 @@ class Input
 		@state = e.button
 
 	disengageMouse = (e) ->
+
+		if @state is states.selecting
+			pos = Game.grid.blockAtPoint e
+			Game.grid.addBlock 'wall', pos
+			Game.render()
+
 		@state = states.blank
 
 	moveMouse = (e) ->
