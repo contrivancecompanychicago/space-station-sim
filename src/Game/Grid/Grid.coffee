@@ -19,6 +19,15 @@ class Grid
 		@render()
 
 
+	requireRender: ->
+		@willRender = true
+
+	update: ->
+		if @willRender
+			@render()
+			@willRender = false
+
+
 	blockAtPoint: (point)->
 		# console.log "looking up block"
 		x: Math.floor (point.x - Game.state.view.offset.x) / gbw
@@ -40,11 +49,11 @@ class Grid
 	# looks at @offset, @scale and config.grid.block to output a list of blocks that are on screen
 	blocksToRender: ->
 		tl = 
-			x: Math.ceil((-Game.state.view.offset.x)/gbh)
-			y: Math.ceil((-Game.state.view.offset.y)/gbh)
+			x: Math.ceil((-Game.state.view.offset.x)/gbh) - 1
+			y: Math.ceil((-Game.state.view.offset.y)/gbh) - 1
 		br = 
-			y: Math.floor((ch - Game.state.view.offset.y)/gbh) - 1
-			x: Math.floor((cw - Game.state.view.offset.x)/gbw) - 1
+			y: Math.floor((ch - Game.state.view.offset.y)/gbh)
+			x: Math.floor((cw - Game.state.view.offset.x)/gbw)
 
 		# console.log gbw, cw, gbw/cw
 		# console.log br
@@ -63,6 +72,12 @@ class Grid
 	# tries to render the block in Game.state.gridData['_'+x+'_'+y]
 	renderBlock: (block) ->
 
+		# console.log @selection
+		if @selection
+			s = @selection
+			if (s.l<=block.x) and (s.r>=block.x) and (s.t<=block.y) and (s.b>=block.y)
+				selected = true
+
 		@resetContextStyle()
 
 		# console.log "render Block"
@@ -76,14 +91,16 @@ class Grid
 			type = Block[data.type]
 			type.render @context, offset, data
 
+		if selected
+			@context.strokeStyle = "grey"
+			@context.strokeRect offset.x, offset.y, gbw * @scale, gbh * @scale
 
 		# debug
 		@resetContextStyle()
-		@context.strokeStyle = "grey"
-		@context.strokeRect offset.x, offset.y, gbw * @scale, gbh * @scale
-
-		@context.font = '10px verdana'
-		@context.fillText block.x+','+block.y, offset.x, offset.y+10
+		if config.grid.debugText
+			@context.fillStyle = "grey"
+			@context.font = '10px verdana'
+			@context.fillText block.x+','+block.y, offset.x, offset.y+10
 
 	#starts mega draw call
 	render: ->

@@ -56,14 +56,15 @@ class Input
 		# console.log @
 		if @state is states.selecting
 			sel = calcSelection()
-			console.log sel
+			# console.log sel
 			for x in [sel.l..sel.r]
 				for y in [sel.t..sel.b]
 					# pos = Game.grid.blockAtPoint e
 					Game.grid.addBlock 'wall', {x, y}
 
-			Game.render()
-
+			# Game.render()
+		Game.grid.selection = null
+		Game.grid.requireRender()
 		@state = states.blank
 
 	moveMouse = (e) =>
@@ -75,6 +76,7 @@ class Input
 			when states.selecting
 				# console.log @
 				Game.grid.selection = calcSelection()
+				Game.render()
 			when states.moving
 				# console.log startEvent
 				# console.log delta

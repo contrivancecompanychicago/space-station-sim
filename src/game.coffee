@@ -28,7 +28,7 @@ class window.Game
 
 
 	@render: =>
-		@grid.render()
+		@grid.requireRender()
 
 
 

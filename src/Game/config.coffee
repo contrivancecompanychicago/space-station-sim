@@ -1,5 +1,6 @@
 module.exports = 	
 	grid:
+		debugtext: false
 		width: 20
 		height:20
 		block:
@@ -9,7 +10,11 @@ module.exports =
 		width: 640
 		height: 480
 		style:
-			position: "absolute"
-			border: "1px solid black"
+			# position: "absolute"
+			border: "1px solid white"
+			# 'margin-left': 'auto'
+			# 'margin-right': 'auto'
+			# 'left': '0'
+			# 'right': '0'
 	storage:
 		name: 'state'
