@@ -42,6 +42,7 @@
     "grunt-spritesmith": "^3.5.0",
     "grunt-contrib-concat": "^0.5.0",
     "react": "^0.12.2",
-    "grunt-base64": "^0.1.0"
+    "grunt-base64": "^0.1.0",
+    "grunt-timer": "^0.5.8"
   }
 }

@@ -1,6 +1,8 @@
 path = require 'path'
 
 module.exports = (grunt) ->
+	timer = require "grunt-timer"
+	timer.init grunt
 
 	require('matchdep').filterDev('grunt-*').forEach grunt.loadNpmTasks
 
@@ -96,21 +98,29 @@ module.exports = (grunt) ->
 				# cssVarMap: (sprite) ->
 				# 	console.log sprite
 				# 	sprite.name = 'sprite_' + sprite.name
+		concurrent:
+			build: 
+				tasks:[
+					'copy:html'
+					'copy:coffee'
+					'cjsx'
+					'templatify'
+					'sprite'
+					'sass'
+					'copy:sprites'
+					'image-javascriptify'
+					]
+				options:
+					limit: 4
+
 
 
 
 	grunt.registerTask 'default', ['build', 'watch']
 	grunt.registerTask 'build', [
 		'clean'
-		'copy:html'
-		'copy:coffee'
-		'cjsx'
-		'templatify'
-		'sprite'
-		'sass'
+		'concurrent:build'
 		'concat:css'
-		'copy:sprites'
-		'image-javascriptify'
 		'coffeeify'
 	]
 
