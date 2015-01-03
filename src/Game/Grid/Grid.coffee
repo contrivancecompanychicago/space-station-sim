@@ -47,9 +47,6 @@ class Grid
 
 	# wipes canvas
 	clear: ->
-		# console.log "clear"
-		# console.log @context
-		# console.log cw, ch
 		@context.closePath()
 		@context.clearRect 0, 0, cw, ch
 

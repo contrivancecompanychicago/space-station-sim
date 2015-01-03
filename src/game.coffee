@@ -38,7 +38,7 @@ class window.Game
 		_.extend canvas, config.canvas
 		_.extend canvas.style, config.canvas.style
 		$(container).append canvas
-		@constructor.character = new CharacterLayer canvas
+		@constructor.character = Imagine new CharacterLayer canvas
 
 		# UI
 		div = document.createElement 'div'
