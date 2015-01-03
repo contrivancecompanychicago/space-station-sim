@@ -6,5 +6,5 @@ module.exports =
 	isWall: true
 	render: (context, offset, data) ->
 		context.fillStyle = "red"
-		context.fillRect offset.x, offset.y, gbw, gbh
+		context.fillRect offset.x, offset.y, gbw * Game.state.view.scale, gbh * Game.state.view.scale
 		

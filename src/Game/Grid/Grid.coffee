@@ -27,16 +27,14 @@ class Grid
 			@render()
 			@willRender = false
 
-
 	blockAtPoint: (point)->
 		# console.log "looking up block"
-		x: Math.floor (point.x - Game.state.view.offset.x) / gbw
-		y: Math.floor (point.y - Game.state.view.offset.y) / gbh
+		x: Math.floor (point.x - Game.state.view.offset.x) / (gbw * Game.state.view.scale)
+		y: Math.floor (point.y - Game.state.view.offset.y) / (gbh * Game.state.view.scale)
 
 	addBlock: (type, position) ->
 		Game.state.gridData['g'+position.x+'_'+position.y] =
 			type: type
-
 
 	# wipes canvas
 	clear: ->
@@ -68,11 +66,8 @@ class Grid
 		@context.fillStyle = "black"
 		# @context.strokeStyle = "black"
 
-
 	# tries to render the block in Game.state.gridData['_'+x+'_'+y]
 	renderBlock: (block) ->
-
-		# console.log @selection
 		if @selection
 			s = @selection
 			if (s.l<=block.x) and (s.r>=block.x) and (s.t<=block.y) and (s.b>=block.y)
@@ -81,9 +76,10 @@ class Grid
 		@resetContextStyle()
 
 		# console.log "render Block"
+		console.log Game.state.view.scale
 		offset = 
-			x: (Game.state.view.offset.x + (gbw*block.x)) * @scale
-			y: (Game.state.view.offset.y + (gbh*block.y)) * @scale
+			x: (Game.state.view.offset.x + (gbw*block.x)) * Game.state.view.scale
+			y: (Game.state.view.offset.y + (gbh*block.y)) * Game.state.view.scale
 
 		# console.log Game.state
 		data = Game.state.gridData['g'+block.x+'_'+block.y]
@@ -92,8 +88,10 @@ class Grid
 			type.render @context, offset, data
 
 		if selected
+			@context.strokeStyle = "green"
+		else
 			@context.strokeStyle = "grey"
-			@context.strokeRect offset.x, offset.y, gbw * @scale, gbh * @scale
+		@context.strokeRect offset.x, offset.y, gbw * Game.state.view.scale, gbh * Game.state.view.scale
 
 		# debug
 		@resetContextStyle()

@@ -6,4 +6,4 @@ module.exports =
 		# console.log "plain"
 
 		context.fillStyle = "blue"
-		context.fillRect offset.x, offset.y, gbw, gbh
+		context.fillRect offset.x, offset.y, gbw * Game.state.view.scale, gbh * Game.state.view.scale

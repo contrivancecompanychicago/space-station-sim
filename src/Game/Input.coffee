@@ -24,8 +24,10 @@ class Input
 		# 	console.log "onmouseover"
 		onmouseup: (e) =>
 			disengageMouse e
-		# onmousewheel: (e) ->
-		# 	console.log "onmousewheel"
+		onmousewheel: (e) ->
+			console.log e
+			Game.state.view.scale -= e.wheelDelta / 1000
+			Game.render()
 
 	startEvent = null
 

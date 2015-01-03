@@ -2,6 +2,7 @@
 class State
 
 	view:
+		scale: 1
 		offset:
 			x: 0
 			y: 0
