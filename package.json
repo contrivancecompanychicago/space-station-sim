@@ -41,6 +41,7 @@
     "grunt-contrib-sass": "^0.8.1",
     "grunt-spritesmith": "^3.5.0",
     "grunt-contrib-concat": "^0.5.0",
-    "react": "^0.12.2"
+    "react": "^0.12.2",
+    "grunt-base64": "^0.1.0"
   }
 }

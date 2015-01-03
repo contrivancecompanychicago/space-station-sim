@@ -10,6 +10,13 @@ module.exports = (grunt) ->
 			build:['temp']
 			dist: ['dist']
 			
+		base64:
+			images:
+				cwd: 'src'
+				src: '**/*.png'
+				expand: true
+				dest: 'temp'
+				ext: '.b64'
 		copy:
 			html:
 				cwd: 'src'
@@ -103,8 +110,36 @@ module.exports = (grunt) ->
 		'sass'
 		'concat:css'
 		'copy:sprites'
+		'image-javascriptify'
 		'coffeeify'
 	]
+
+	grunt.registerTask 'image-javascriptify', ->
+		cwd = 'src'
+		src =  ['**/*.png']
+		expand = false
+		dest = ''
+
+		mapping = grunt.file.expandMapping src, dest, {cwd}
+		files = {}
+		test = null
+		mapping.forEach (map)->
+			buffers = map.src.map (path) ->
+				grunt.file.read path, {encoding:null}
+			output = Buffer.concat buffers
+			files[map.dest] = output.toString 'base64'
+		# console.log files
+
+		output = 'module.exports = \r\n'#+JSON.stringify files
+		for key of files
+			grunt.verbose.write key
+			val = files[key]
+			output += "\t'"+key+"': document.createElement('img').src = 'data:image/png;base64,"+val+"'"
+
+		outPath = 'temp/images.coffee'
+		grunt.file.write outPath, output
+		grunt.log.writeln outPath + " written"
+
 
 	grunt.registerTask 'templatify', ->
 
