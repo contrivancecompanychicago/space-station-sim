@@ -6,8 +6,8 @@ module.exports =
 			width: 32
 			height: 32
 	canvas:
-		width: 330
-		height: 240
+		width: 640
+		height: 480
 		style:
 			position: "absolute"
 			border: "1px solid black"

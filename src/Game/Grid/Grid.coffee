@@ -9,14 +9,25 @@ class Grid
 	cw = config.canvas.width
 	ch = config.canvas.height
 
-	offset: 
-		x: 0
-		y: 0
+	# offset: 
+	# 	x: 0
+	# 	y: 0
 	scale: 1
 	constructor: (@canvas) ->
 		# console.log Game.state
 		@context = @canvas.getContext('2d');
 		@render()
+
+
+	blockAtPoint: (point)->
+		# console.log "looking up block"
+		x: Math.floor (point.x - Game.state.view.offset.x) / gbw
+		y: Math.floor (point.y - Game.state.view.offset.y) / gbh
+
+	addBlock: (type, position) ->
+		Game.state.gridData['g'+position.x+'_'+position.y] =
+			type: type
+
 
 	# wipes canvas
 	clear: ->
@@ -67,6 +78,7 @@ class Grid
 
 
 		# debug
+		@resetContextStyle()
 		@context.strokeStyle = "grey"
 		@context.strokeRect offset.x, offset.y, gbw * @scale, gbh * @scale
 

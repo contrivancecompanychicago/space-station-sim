@@ -5,7 +5,7 @@ class State
 		offset:
 			x: 0
 			y: 0
-	gridData: { g1_1: {type:'plain'}}
+	gridData: { g1_1: {type:'plain'}, g3_4: {type:'wall'}}
 	itemData: {}
 	characterData: {}
 

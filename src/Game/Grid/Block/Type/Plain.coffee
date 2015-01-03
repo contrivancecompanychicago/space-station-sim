@@ -7,5 +7,3 @@ module.exports =
 
 		context.fillStyle = "blue"
 		context.fillRect offset.x, offset.y, gbw, gbh
-
-		context

@@ -10,6 +10,9 @@ class Input
 	fns:
 		onmousedown: (e) =>
 			engageMouse e
+			# console.log e
+			pos = Game.grid.blockAtPoint e
+			Game.grid.addBlock 'wall', pos
 		# onmouseenter: (e) ->
 		# 	console.log "onmouseenter"
 		# onmouseleave: (e) ->
