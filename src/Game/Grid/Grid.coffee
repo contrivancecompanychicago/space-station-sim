@@ -29,8 +29,10 @@ class Grid
 
 	blockAtPoint: (point)->
 		# console.log "looking up block"
-		x: Math.floor (point.x - Game.state.view.offset.x) / (gbw * Game.state.view.scale)
-		y: Math.floor (point.y - Game.state.view.offset.y) / (gbh * Game.state.view.scale)
+		# x: Math.floor (point.x - Game.state.view.offset.x) / (gbw * Game.state.view.scale)
+		# y: Math.floor (point.y - Game.state.view.offset.y) / (gbh * Game.state.view.scale)
+		x: Math.floor ((point.x / Game.state.view.scale) - Game.state.view.offset.x) / gbw
+		y: Math.floor ((point.y / Game.state.view.scale) - Game.state.view.offset.y) / gbh
 
 	addBlock: (type, position) ->
 		Game.state.gridData['g'+position.x+'_'+position.y] =
@@ -81,6 +83,11 @@ class Grid
 			x: (Game.state.view.offset.x + (gbw*block.x)) * Game.state.view.scale
 			y: (Game.state.view.offset.y + (gbh*block.y)) * Game.state.view.scale
 
+		# out = (off + (wide*x))*scale
+		# solve for x
+		# out/scale = off + (wide*x)
+		# (out/scale) - off = wide*x
+		# ((out/scale) - off)/wide = x
 		# console.log Game.state
 		data = Game.state.gridData['g'+block.x+'_'+block.y]
 		if data
