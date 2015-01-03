@@ -34,7 +34,7 @@ class Input
 				if Game.state.view.scale > Game.state.view._scale.min
 					Game.state.view.scale -= Game.state.view._scale.step
 
-			console.log "new scale ", Game.state.view.scale
+			# console.log "new scale ", Game.state.view.scale
 			Game.render()
 
 	startEvent = null
@@ -64,13 +64,17 @@ class Input
 
 	disengageMouse = (e) =>
 		# console.log @
-		if @state is states.selecting
+		if (@state is states.selecting) or (@state is states.deselecting)
 			sel = calcSelection()
 			# console.log sel
 			for x in [sel.l..sel.r]
 				for y in [sel.t..sel.b]
 					# pos = Game.grid.blockAtPoint e
-					Game.grid.addBlock 'wall', {x, y}
+					if @state is states.selecting
+						Game.grid.addBlock 'wall', {x, y}
+					if @state is states.deselecting
+						Game.grid.removeBlock {x, y}
+
 
 			# Game.render()
 		Game.grid.selection = null
@@ -84,7 +88,9 @@ class Input
 
 		switch @state
 			when states.selecting
-				# console.log @
+				Game.grid.selection = calcSelection()
+				Game.render()
+			when states.deselecting
 				Game.grid.selection = calcSelection()
 				Game.render()
 			when states.moving

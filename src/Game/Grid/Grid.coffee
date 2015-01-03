@@ -34,9 +34,14 @@ class Grid
 		x: Math.floor ((point.x / Game.state.view.scale) - Game.state.view.offset.x) / gbw
 		y: Math.floor ((point.y / Game.state.view.scale) - Game.state.view.offset.y) / gbh
 
-	addBlock: (type, position) ->
-		Game.state.gridData['g'+position.x+'_'+position.y] =
+	blockToString = (pos) ->
+		'g'+pos.x+'_'+pos.y
+	addBlock: (type, pos) ->
+		Game.state.gridData[blockToString(pos)] =
 			type: type
+	removeBlock: (pos) ->
+		Game.state.gridData[blockToString(pos)] = null
+
 
 	# wipes canvas
 	clear: ->

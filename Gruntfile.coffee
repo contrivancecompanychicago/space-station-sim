@@ -139,7 +139,7 @@ module.exports = (grunt) ->
 			output += "out['"+key+"'] = img\r\n"
 		output += 'module?.exports = out\r\n'
 
-		outPath = 'temp/images.coffee'
+		outPath = 'temp/Game/images.coffee'
 		grunt.file.write outPath, output
 		grunt.log.writeln outPath + " written"
 
