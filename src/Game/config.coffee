@@ -10,7 +10,7 @@ module.exports =
 		width: 1200
 		height: 480
 		style:
-			# position: "absolute"
+			position: "absolute"
 			border: "1px solid white"
 			# 'margin-left': 'auto'
 			# 'margin-right': 'auto'

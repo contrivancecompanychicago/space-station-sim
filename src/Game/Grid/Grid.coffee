@@ -15,7 +15,7 @@ class Grid
 	scale: 1
 	constructor: (@canvas) ->
 		# console.log Game.state
-		@context = @canvas.getContext('2d');
+		@context = @canvas.getContext('2d')
 		@render()
 
 
@@ -29,10 +29,11 @@ class Grid
 
 	blockAtPoint: (point)->
 		# console.log "looking up block"
+		point = Game.globalToLocal point
 		# x: Math.floor (point.x - Game.state.view.offset.x) / (gbw * Game.state.view.scale)
 		# y: Math.floor (point.y - Game.state.view.offset.y) / (gbh * Game.state.view.scale)
-		x: Math.floor ((point.x / Game.state.view.scale) - Game.state.view.offset.x) / gbw
-		y: Math.floor ((point.y / Game.state.view.scale) - Game.state.view.offset.y) / gbh
+		x: Math.floor point.x / gbw
+		y: Math.floor point.y / gbh
 
 	blockToString = (pos) ->
 		'g'+pos.x+'_'+pos.y
@@ -89,9 +90,12 @@ class Grid
 
 		# console.log "render Block"
 		# console.log Game.state.view.scale
-		offset = 
-			x: (Game.state.view.offset.x + (gbw*block.x)) * Game.state.view.scale
-			y: (Game.state.view.offset.y + (gbh*block.y)) * Game.state.view.scale
+		# offset = 
+		# 	x: (Game.state.view.offset.x + (gbw*block.x)) * Game.state.view.scale
+		# 	y: (Game.state.view.offset.y + (gbh*block.y)) * Game.state.view.scale
+		offset = Game.localToGlobal 
+			x: gbw * block.x
+			y: gbh * block.y
 
 		# out = (off + (wide*x))*scale
 		# solve for x
