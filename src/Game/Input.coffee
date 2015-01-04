@@ -1,4 +1,5 @@
 Imagine = require '../../bower_components/imagine/imagine.js'
+Vic = require 'victor'
 
 states = 
 	blank: -1
@@ -25,6 +26,9 @@ class Input
 		onmouseup: (e) =>
 			disengageMouse e
 		onmousewheel: (e) ->
+			# console.log e
+			startMouse = Vic.fromObject Game.globalToLocal {x: e.x, y: e.y}
+			# console.log startMouse
 			if e.wheelDelta > 0
 				if Game.state.view.scale < Game.state.view._scale.max
 					Game.state.view.scale += Game.state.view._scale.step
@@ -33,6 +37,16 @@ class Input
 					Game.state.view.scale -= Game.state.view._scale.step
 
 			# console.log "new scale ", Game.state.view.scale
+			endMouse = Vic.fromObject Game.globalToLocal {x: e.x, y: e.y}
+			# console.log endMouse
+			offset = Vic.fromObject Game.state.view.offset
+
+			diff = endMouse.subtract startMouse
+			offset.add diff
+
+			Game.state.view.offset = offset
+
+			
 			Imagine.notify 'viewStateChanged'
 
 	startEvent = null

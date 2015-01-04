@@ -53,12 +53,11 @@ class Grid
 		# console.log arr
 		
 		pathData = {
-			blocks
 			arr
 			minx
 			miny
-			maxx
-			maxy
+			# maxx
+			# maxy
 			}
 
 	path: (start, end) ->
