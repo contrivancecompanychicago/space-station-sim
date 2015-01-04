@@ -26,7 +26,10 @@ class Character
 		len = diff.length()
 		dir = diff.norm()
 		# console.log vec
-		@pos.add dir #.multiply Imagine.time.deltaTime
+		m = Imagine.time.deltaTime * @speed
+		dir.multiply(new vic(m,m))
+		# console.log dir
+		@pos.add dir
 		if len < 2
 			@setTarget()
 
