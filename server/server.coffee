@@ -6,4 +6,7 @@ app = express()
 
 app.use(express.static(__dirname + '/../dist/'));
 
-app.listen process.env.port or 31337
+port = process.env.port or 31337
+
+console.log "trying to bind to", port
+app.listen port
