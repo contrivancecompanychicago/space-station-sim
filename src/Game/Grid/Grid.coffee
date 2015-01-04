@@ -4,7 +4,7 @@ _ = require 'underscore'
 astar = require 'javascript-astar'
 class Grid
 
-	arrayify: ->
+	path: (start, end) ->
 		minx = Infinity
 		miny = Infinity
 		maxx = -Infinity
@@ -40,7 +40,21 @@ class Grid
 				weight = 0
 			arr[block.x-minx][block.y-miny] = weight
 
-		console.log arr
+		# console.log arr
+		graph = new astar.Graph arr
+
+		console.log start, end
+
+		start = graph.grid[start.x-minx][start.y-miny]
+		end = graph.grid[end.x-minx][end.y-miny]
+		result = astar.astar.search graph, start, end
+
+		# console.log result
+
+		# reapply the mins
+		result.map (res) ->
+			x: res.x+minx
+			y: res.y+miny
 
 
 

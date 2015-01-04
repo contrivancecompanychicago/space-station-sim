@@ -7,7 +7,8 @@ class Character
 	name: 'character'
 	speed: 50
 	constructor: (data) ->
-		Game.grid.arrayify()
+		path = Game.grid.path(Game.grid.randomBlock(), Game.grid.randomBlock())
+		console.log path
 		@block = Game.grid.randomBlock()
 		# console.log Game.grid.adjacentBlocks @block
 		# @pos = new vic(20, 20)
