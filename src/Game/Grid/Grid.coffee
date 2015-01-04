@@ -1,7 +1,48 @@
 config = require '../config.coffee'
 Block = require './Block/Block.coffee'
-
+_ = require 'underscore'
+astar = require 'javascript-astar'
 class Grid
+
+	arrayify: ->
+		minx = Infinity
+		miny = Infinity
+		maxx = -Infinity
+		maxy = -Infinity
+
+		keys = _.keys Game.state.gridData
+		# gather data
+		blocks = keys.map (key) =>
+			block = @stringToBlock key
+			block.data = Game.state.gridData[key]
+			block.type = Block[block.data.type]
+			if block.x < minx then minx = block.x
+			if block.y < miny then miny = block.y
+			if block.x > maxx then maxx = block.x
+			if block.y > maxy then maxy = block.y
+			block
+
+		# console.log minx, miny, maxx, maxy
+
+		# make array
+		arr = []
+		for x in [minx..maxx]
+			arr2 = []
+			for y in [miny..maxy]
+				arr2.push 0
+			arr.push arr2
+		# console.log arr
+
+		# populate array
+		blocks.forEach (block) ->
+			weight = 1
+			if block.type.isWall
+				weight = 0
+			arr[block.x-minx][block.y-miny] = weight
+
+		console.log arr
+
+
 
 	gbw = config.grid.block.width
 	gbh = config.grid.block.height
