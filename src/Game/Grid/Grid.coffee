@@ -43,21 +43,21 @@ class Grid
 		# console.log arr
 		graph = new astar.Graph arr
 
-		console.log start, end
+		# console.log start, end
 
 		start = graph.grid[start.x-minx][start.y-miny]
 		end = graph.grid[end.x-minx][end.y-miny]
 		result = astar.astar.search graph, start, end
 
-		console.log result
+		# console.log result
 
 		# reapply the mins
 		path = result.map (res) ->
 			x: res.x+minx
 			y: res.y+miny
 
-		console.log path
-		
+		# console.log path
+
 		path
 
 
@@ -106,6 +106,8 @@ class Grid
 	randomBlock: ->
 		keys = _.keys Game.state.gridData
 		key = keys[Math.floor(Math.random()*keys.length)]; #random key
+		if Block[Game.state.gridData[key].type].isWall
+			return @randomBlock() # try again
 		@stringToBlock key
 
 	addBlock: (pos) ->
