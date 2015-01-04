@@ -8,7 +8,9 @@ class CharacterLayer
 	constructor: (@canvas) ->
 		# console.log 'layer'
 		@context = @canvas.getContext '2d'
-		new Character()
+		for [0..0]
+			@addCharacter()
+		@willRender = true
 		@render()
 
 	# wipes canvas
@@ -22,16 +24,13 @@ class CharacterLayer
 
 	render: ->
 		@clear()
-		console.log Imagine.getComponents 'character'
-		console.log 'last array shouldnt be empty'
-		console.log Imagine.objects
-
-		@renderChar
-			x: 10
-			y: 20
+		chars = Imagine.getComponents 'character'
+		chars.forEach (char) =>
+			@renderChar char.pos
 
 	renderChar: (data) ->
 		pos = Game.localToGlobal data
+		@context.fillStyle = 'green'
 		@context.fillRect pos.x, pos.y, 10, 10
 
 	requireRender: ->
@@ -40,6 +39,6 @@ class CharacterLayer
 	update: ->
 		if @willRender
 			@render()
-			@willRender = false
+			# @willRender = false
 
 module.exports = CharacterLayer

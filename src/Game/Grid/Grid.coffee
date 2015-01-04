@@ -37,6 +37,10 @@ class Grid
 
 	blockToString = (pos) ->
 		'g'+pos.x+'_'+pos.y
+	stringToBlock: (str) ->
+		ar = str.substr(1).split '_'
+		return {x: ar[0], y: ar[1]}
+
 	addBlock: (pos) ->
 		type = Game.ui.blockSelector.state.selected
 		Game.state.gridData[blockToString(pos)] =
@@ -77,6 +81,10 @@ class Grid
 		# @context.strokeStyle = "black"
 
 	# tries to render the block in Game.state.gridData['_'+x+'_'+y]
+	blockPosition: (block) ->
+		Game.localToGlobal 
+			x: gbw * block.x
+			y: gbh * block.y
 	renderBlock: (block) ->
 		if @selection
 			s = @selection
@@ -85,14 +93,7 @@ class Grid
 
 		@resetContextStyle()
 
-		# console.log "render Block"
-		# console.log Game.state.view.scale
-		# offset = 
-		# 	x: (Game.state.view.offset.x + (gbw*block.x)) * Game.state.view.scale
-		# 	y: (Game.state.view.offset.y + (gbh*block.y)) * Game.state.view.scale
-		offset = Game.localToGlobal 
-			x: gbw * block.x
-			y: gbh * block.y
+		offset = @blockPosition block
 
 		# out = (off + (wide*x))*scale
 		# solve for x
