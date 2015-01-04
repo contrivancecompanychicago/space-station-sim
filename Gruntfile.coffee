@@ -109,6 +109,15 @@ module.exports = (grunt) ->
 				options:
 					limit: 4
 
+		"bower-install-simple":
+			"prod": 
+				options: 
+					production: true
+			"dev": 
+				options: 
+					production: false
+			
+
 
 
 
@@ -180,5 +189,8 @@ module.exports = (grunt) ->
 			grunt.file.write map.dest, content
 
 
-	grunt.registerTask 'server', ->
+	grunt.registerTask 'server', ['bower-install-simple', 'build', 'startServer']
+
+
+	grunt.registerTask 'startServer', ->
 		console.log "hi im a server"

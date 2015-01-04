@@ -8,7 +8,8 @@
     "postinstall": "grunt server"
   },
   "bin": {
-    "grunt": "./node_modules/grunt-cli/bin/grunt"
+    "grunt": "./node_modules/grunt-cli/bin/grunt",
+    "bower": "./node_modules/bower/bin/bower"
   },
   "repository": {
     "type": "git",
@@ -25,8 +26,7 @@
     "url": "https://github.com/digijin/space-station-sim/issues"
   },
   "homepage": "https://github.com/digijin/space-station-sim",
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
     "grunt": "^0.4.5",
     "grunt-concurrent": "^1.0.0",
@@ -52,6 +52,8 @@
     "grunt-timer": "^0.5.8",
     "victor": "^0.2.6",
     "astar": "git+https://git@github.com/bgrins/javascript-astar.git",
-    "grunt-cli": "^0.1.13"
+    "grunt-cli": "^0.1.13",
+    "bower": "^1.3.12",
+    "grunt-bower-install-simple": "^1.1.0"
   }
 }
