@@ -2,7 +2,12 @@ config = require '../config.coffee'
 Block = require './Block/Block.coffee'
 _ = require 'underscore'
 astar = require 'javascript-astar'
+Imagine = require '../../../bower_components/imagine/imagine.js'
 class Grid
+	viewStateChanged: =>
+		@requireRender()
+	gridStateChanged: =>
+		@requireRender()
 
 	path: (start, end) ->
 		minx = Infinity
@@ -150,25 +155,15 @@ class Grid
 
 	# looks at @offset, @scale and config.grid.block to output a list of blocks that are on screen
 	blocksToRender: ->
-		# tl = 
-		# 	x: Math.ceil((-Game.state.view.offset.x)/(gbh)) - 1
-		# 	y: Math.ceil((-Game.state.view.offset.y)/(gbw)) - 1
-		# br = 
-		# 	x: Math.floor(((cw - Game.state.view.offset.x*(1 / Game.state.view.scale)) / (gbw))*(1 / Game.state.view.scale))
-		# 	y: Math.floor(((ch - Game.state.view.offset.y*(1 / Game.state.view.scale)) / (gbh))*(1 / Game.state.view.scale))
 
-		# console.log br, @blockAtPoint {x:cw-30, y:ch-30}
 		tl = @blockAtPoint {x:0, y:0}
 		br = @blockAtPoint {x:cw, y:ch}
 
-		# console.log gbw, cw, gbw/cw
-		# console.log br
 		out = []
 		for x in [tl.x..br.x]
 			for y in [tl.y..br.y]
 				out.push {x, y}
 		out
-		# [{x:2, y:2}]
 
 	resetContextStyle: ->
 		@context.fillStyle = "black"
@@ -194,7 +189,7 @@ class Grid
 		# out/scale = off + (wide*x)
 		# (out/scale) - off = wide*x
 		# ((out/scale) - off)/wide = x
-		# console.log Game.state
+
 		data = Game.state.gridData['g'+block.x+'_'+block.y]
 		if data
 			type = Block[data.type]

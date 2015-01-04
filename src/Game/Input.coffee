@@ -1,3 +1,5 @@
+Imagine = require '../../bower_components/imagine/imagine.js'
+
 states = 
 	blank: -1
 	selecting: 0
@@ -35,7 +37,8 @@ class Input
 					Game.state.view.scale -= Game.state.view._scale.step
 
 			# console.log "new scale ", Game.state.view.scale
-			Game.render()
+			Imagine.notify 'viewStateChanged'
+			# Game.render()
 
 	startEvent = null
 
@@ -79,7 +82,8 @@ class Input
 			# Game.render()
 		Game.grid.selection = null
 		# Game.grid.requireRender()
-		Game.render 'grid'
+		Imagine.notify 'gridStateChanged'
+		# Game.render 'grid'
 		@state = states.blank
 
 	moveMouse = (e) =>
@@ -90,16 +94,19 @@ class Input
 		switch @state
 			when states.selecting
 				Game.grid.selection = calcSelection()
-				Game.render()
+				# Game.render()
+				Imagine.notify 'gridStateChanged'
 			when states.deselecting
 				Game.grid.selection = calcSelection()
-				Game.render()
+				# Game.render()
+				Imagine.notify 'gridStateChanged'
 			when states.moving
 				# console.log startEvent
 				# console.log delta
 				Game.state.view.offset.x -= delta.x
 				Game.state.view.offset.y -= delta.y
-				Game.render()
+				# Game.render()
+				Imagine.notify 'viewStateChanged'
 
 		setLastMouse e
 
