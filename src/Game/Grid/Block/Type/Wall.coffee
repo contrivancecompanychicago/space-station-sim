@@ -9,7 +9,7 @@ module.exports =
 		# context.fillStyle = "red"
 		# context.fillRect offset.x, offset.y, gbw * Game.state.view.scale, gbh * Game.state.view.scale
 
-		image = images['grid/block/plain.png']
+		image = images['Game/Grid/Block/Type/plain.png']
 
 		# context.drawImage image, offset.x, offset.y
 

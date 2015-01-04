@@ -5,8 +5,10 @@ astar = require 'javascript-astar'
 Imagine = require '../../../bower_components/imagine/imagine.js'
 class Grid
 	viewStateChanged: =>
+		Game.save()
 		@requireRender()
 	gridStateChanged: =>
+		Game.save()
 		@calcPathData()
 		@requireRender()
 
