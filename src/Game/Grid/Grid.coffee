@@ -41,12 +41,17 @@ class Grid
 		ar = str.substr(1).split '_'
 		return {x: ar[0], y: ar[1]}
 
+	randomBlock: ->
+		keys = _.keys Game.state.gridData
+		key = keys[Math.floor(Math.random()*keys.length)]; #random key
+		@stringToBlock key
+
 	addBlock: (pos) ->
 		type = Game.ui.blockSelector.state.selected
 		Game.state.gridData[blockToString(pos)] =
 			type: type
 	removeBlock: (pos) ->
-		Game.state.gridData[blockToString(pos)] = null
+		delete Game.state.gridData[blockToString(pos)]
 
 
 	# wipes canvas

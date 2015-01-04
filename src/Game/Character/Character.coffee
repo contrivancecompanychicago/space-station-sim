@@ -1,18 +1,21 @@
 vic = require 'victor'
 _ = require 'underscore'
+config = require '../config.coffee'
 
 class Character
 	name: 'character'
 	constructor: (data) ->
-		keys = _.keys Game.state.gridData
-		key = keys[Math.floor(Math.random()*keys.length)]; #random key
-		@block = Game.grid.stringToBlock key
+		
+		@block = Game.grid.randomBlock()
 
 		@pos = new vic(20, 20)
 		@setTarget()
 
 	setTarget: ->
-		@target = new vic(Math.random() * 300, Math.random() * 300)
+		# @target = new vic(Math.random() * 300, Math.random() * 300)
+
+		@block = Game.grid.randomBlock()
+		@target = new vic(@block.x* config.grid.block.width, @block.y * config.grid.block.height)
 		
 
 	update: ->
