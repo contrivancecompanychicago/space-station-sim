@@ -4,7 +4,7 @@ module.exports = (grunt) ->
 	timer = require "grunt-timer"
 	timer.init grunt
 
-	require('matchdep').filterDev('grunt-*').forEach grunt.loadNpmTasks
+	require('matchdep').filter('grunt-*').forEach grunt.loadNpmTasks
 
 	grunt.initConfig
 		pkg: require './package.json'
@@ -178,3 +178,7 @@ module.exports = (grunt) ->
 				content += grunt.file.read(filepath).replace(/'/g, '\\\'').replace(/\r/g, '').replace(/\n/g, '')
 			content += "');"
 			grunt.file.write map.dest, content
+
+
+	grunt.registerTask 'server', ->
+		console.log "hi im a server"
