@@ -12,6 +12,11 @@ module.exports = (grunt) ->
 			build:['temp']
 			dist: ['dist']
 			
+
+		uglify: 
+			main:
+				src: 'dist/main.js'
+				dest: 'dist/main.min.js'
 		base64:
 			images:
 				cwd: 'src'
