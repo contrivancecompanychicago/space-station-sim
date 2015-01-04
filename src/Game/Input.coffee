@@ -12,13 +12,11 @@ class Input
 	fns:
 		onmousedown: (e) =>
 			engageMouse e
-			# console.log e
 		# onmouseenter: (e) ->
 		# 	console.log "onmouseenter"
 		# onmouseleave: (e) ->
 		# 	console.log "onmouseleave"
 		onmousemove: (e) =>
-			# console.log "onmousemove"
 			moveMouse e
 		# onmouseout: (e) ->
 		# 	console.log "onmouseout"
@@ -27,8 +25,6 @@ class Input
 		onmouseup: (e) =>
 			disengageMouse e
 		onmousewheel: (e) ->
-			# console.log e
-			# Game.state.view.scale -= e.wheelDelta / 1000
 			if e.wheelDelta > 0
 				if Game.state.view.scale < Game.state.view._scale.max
 					Game.state.view.scale += Game.state.view._scale.step
@@ -38,7 +34,6 @@ class Input
 
 			# console.log "new scale ", Game.state.view.scale
 			Imagine.notify 'viewStateChanged'
-			# Game.render()
 
 	startEvent = null
 
@@ -49,7 +44,6 @@ class Input
 			y: e.y
 
 	getMouseDelta = (e)->
-		# console.log lastMouse.x, e.x
 		if lastMouse
 			x: lastMouse.x - e.x
 			y: lastMouse.y - e.y
@@ -59,61 +53,41 @@ class Input
 
 	engageMouse = (e) =>
 		setLastMouse e
-		# console.log e
-		# if e.button is 1
-		# 	state = states.moving
 		startEvent = e
 		@state = e.button
 
 	disengageMouse = (e) =>
-		# console.log @
 		if (@state is states.selecting) or (@state is states.deselecting)
 			sel = calcSelection()
-			# console.log sel
 			for x in [sel.l..sel.r]
 				for y in [sel.t..sel.b]
-					# pos = Game.grid.blockAtPoint e
 					if @state is states.selecting
 						Game.grid.addBlock {x, y}
 					if @state is states.deselecting
 						Game.grid.removeBlock {x, y}
 
 
-			# Game.render()
 		Game.grid.selection = null
-		# Game.grid.requireRender()
 		Imagine.notify 'gridStateChanged'
-		# Game.render 'grid'
 		@state = states.blank
 
 	moveMouse = (e) =>
-		# console.log @state
 		delta = getMouseDelta e
-		# console.log delta
-
 		switch @state
 			when states.selecting
 				Game.grid.selection = calcSelection()
-				# Game.render()
 				Imagine.notify 'gridStateChanged'
 			when states.deselecting
 				Game.grid.selection = calcSelection()
-				# Game.render()
 				Imagine.notify 'gridStateChanged'
 			when states.moving
-				# console.log startEvent
-				# console.log delta
 				Game.state.view.offset.x -= delta.x
 				Game.state.view.offset.y -= delta.y
-				# Game.render()
 				Imagine.notify 'viewStateChanged'
-
 		setLastMouse e
-
 	state: states.blank
 
 	calcSelection = ->
-		# console.log startEvent, lastMouse
 		pt1 = Game.grid.blockAtPoint startEvent
 		pt2 = Game.grid.blockAtPoint lastMouse
 		selection = {}
@@ -133,10 +107,7 @@ class Input
 		selection
 
 	constructor: (@container) ->
-		# console.log "input"
-		# console.log @fns
 		for key, val of @fns
-			# console.log 
 			@container[key] = val
 
 
