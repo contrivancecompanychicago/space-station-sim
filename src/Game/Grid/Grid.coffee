@@ -33,11 +33,28 @@ class Grid
 
 		# console.log minx, miny, maxx, maxy
 
+		# make array
+		arr = []
+		for x in [minx..maxx]
+			arr2 = []
+			for y in [miny..maxy]
+				arr2.push 0
+			arr.push arr2
+		# console.log arr
+
+		# populate array
+		blocks.forEach (block) ->
+			weight = 1
+			if block.type.isWall
+				weight = 0
+			arr[block.x-minx][block.y-miny] = weight
+		# console.log start, end
 
 		# console.log arr
 		
 		pathData = {
 			blocks
+			arr
 			minx
 			miny
 			maxx
@@ -49,23 +66,7 @@ class Grid
 		# @calcPathData()
 
 
-		# make array
-		arr = []
-		for x in [pathData.minx..pathData.maxx]
-			arr2 = []
-			for y in [pathData.miny..pathData.maxy]
-				arr2.push 0
-			arr.push arr2
-		# console.log arr
-
-		# populate array
-		pathData.blocks.forEach (block) ->
-			weight = 1
-			if block.type.isWall
-				weight = 0
-			arr[block.x-pathData.minx][block.y-pathData.miny] = weight
-		# console.log start, end
-		pathData.graph = new astar.Graph arr
+		pathData.graph = new astar.Graph pathData.arr
 
 		start = pathData.graph.grid[start.x-pathData.minx][start.y-pathData.miny]
 		end = pathData.graph.grid[end.x-pathData.minx][end.y-pathData.miny]
