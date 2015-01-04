@@ -35,11 +35,14 @@ class Grid
 		x: Math.floor point.x / gbw
 		y: Math.floor point.y / gbh
 
-	blockToString = (pos) ->
+	blockToString: (pos) ->
 		'g'+pos.x+'_'+pos.y
 	stringToBlock: (str) ->
 		ar = str.substr(1).split '_'
-		return {x: ar[0], y: ar[1]}
+		out = {x: parseInt(ar[0]), y: parseInt(ar[1])}
+		# debugger
+		out 
+
 
 	randomBlock: ->
 		keys = _.keys Game.state.gridData
@@ -48,10 +51,33 @@ class Grid
 
 	addBlock: (pos) ->
 		type = Game.ui.blockSelector.state.selected
-		Game.state.gridData[blockToString(pos)] =
+		Game.state.gridData[@blockToString(pos)] =
 			type: type
 	removeBlock: (pos) ->
-		delete Game.state.gridData[blockToString(pos)]
+		delete Game.state.gridData[@blockToString(pos)]
+
+	# returns adjacent block data
+	adjacentBlocks: (block) ->
+		# debugger
+		combos = [
+			{x: -1, y:0}
+			{x: 1, y:0}
+			{x: 0, y:-1}
+			{x: 0, y:1}
+			]
+		out = []
+		combos.forEach (combo) =>
+			bl = 
+				x: block.x + combo.x
+				y: block.y + combo.y
+			key = @blockToString bl
+			val = Game.state.gridData[key]
+			if val
+				bl.data = val
+				out.push bl
+		out
+
+
 
 
 	# wipes canvas

@@ -7,6 +7,7 @@ class Character
 	constructor: (data) ->
 		
 		@block = Game.grid.randomBlock()
+		console.log Game.grid.adjacentBlocks @block
 
 		@pos = new vic(20, 20)
 		@setTarget()
