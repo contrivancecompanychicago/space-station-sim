@@ -1,21 +1,23 @@
 vic = require 'victor'
 _ = require 'underscore'
 config = require '../config.coffee'
+Imagine = require '../../../bower_components/imagine/imagine.js'
 
 class Character
 	name: 'character'
+	speed: 50
 	constructor: (data) ->
 		
 		@block = Game.grid.randomBlock()
-		console.log Game.grid.adjacentBlocks @block
-
-		@pos = new vic(20, 20)
+		# console.log Game.grid.adjacentBlocks @block
+		# @pos = new vic(20, 20)
 		@setTarget()
+		@pos = @target.clone()
 
 	setTarget: ->
 		# @target = new vic(Math.random() * 300, Math.random() * 300)
-
-		@block = Game.grid.randomBlock()
+		adj = Game.grid.adjacentBlocks @block
+		@block = adj[Math.floor(Math.random()*adj.length)]
 		@target = new vic(@block.x* config.grid.block.width, @block.y * config.grid.block.height)
 		
 
@@ -24,7 +26,7 @@ class Character
 		len = diff.length()
 		dir = diff.norm()
 		# console.log vec
-		@pos.add dir
+		@pos.add dir #.multiply Imagine.time.deltaTime
 		if len < 2
 			@setTarget()
 

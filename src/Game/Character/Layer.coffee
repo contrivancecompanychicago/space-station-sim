@@ -8,7 +8,7 @@ class CharacterLayer
 	constructor: (@canvas) ->
 		# console.log 'layer'
 		@context = @canvas.getContext '2d'
-		for [0..0]
+		for [0..10]
 			@addCharacter()
 		@willRender = true
 		@render()
