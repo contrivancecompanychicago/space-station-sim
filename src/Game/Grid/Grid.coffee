@@ -73,8 +73,10 @@ class Grid
 			key = @blockToString bl
 			val = Game.state.gridData[key]
 			if val
-				bl.data = val
-				out.push bl
+				type = Block[val.type]
+				unless type.isWall
+					bl.data = val
+					out.push bl
 		out
 
 

@@ -30,7 +30,7 @@ class Character
 		dir.multiply(new vic(m,m))
 		# console.log dir
 		@pos.add dir
-		if len < 2
+		if len < 10
 			@setTarget()
 
 
