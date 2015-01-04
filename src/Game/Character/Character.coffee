@@ -23,12 +23,13 @@ class Character
 	getBlockPosition: (block) ->
 		# debugger
 		# console.log block
-		new vic(block.x* config.grid.block.width, block.y * config.grid.block.height)
+		pos = new vic(block.x* config.grid.block.width, block.y * config.grid.block.height)
+		pos.add new vic(Math.random()*20, Math.random()*20)
 
 	setTarget: ->
-		destination = Game.grid.randomBlock() 
+		@destination = Game.grid.randomBlock() 
 		if @path.length is 0
-			@setPath destination
+			@setPath @destination
 		unless @path.length is 0 #double check
 			@block = @path.shift()
 			@target = @getBlockPosition @block
@@ -39,15 +40,18 @@ class Character
 		
 
 	update: ->
-		diff = @target.clone().subtract(@pos)
-		len = diff.length()
-		dir = diff.norm()
-		# console.log vec
-		m = Imagine.time.deltaTime * @speed
-		dir.multiply(new vic(m,m))
-		# console.log dir
-		@pos.add dir
-		if len < 10
+		if @target
+			diff = @target.clone().subtract(@pos)
+			len = diff.length()
+			dir = diff.norm()
+			# console.log vec
+			m = Imagine.time.deltaTime * @speed
+			dir.multiply(new vic(m,m))
+			# console.log dir
+			@pos.add dir
+			if len < 10
+				@setTarget()
+		else
 			@setTarget()
 
 

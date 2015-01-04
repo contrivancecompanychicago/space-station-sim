@@ -9,6 +9,11 @@ module.exports =
 		offset:
 			x: 0
 			y: 0
-	gridData: { g1_1: {type:'plain'}, g3_4: {type:'wall'}}
+	gridData: { 
+		g5_5: {type:'plain'}
+		g5_6: {type:'plain'}
+		g6_5: {type:'plain'}
+		g6_6: {type:'plain'}
+		}
 	itemData: {}
 	characterData: {}
