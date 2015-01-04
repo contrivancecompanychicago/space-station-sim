@@ -132,7 +132,7 @@ module.exports = (grunt) ->
 		'image-javascriptify'
 
 		'concat:css'
-		'testHeroku'
+		# 'testHeroku'
 		'coffeeify'
 	]
 
