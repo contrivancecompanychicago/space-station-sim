@@ -7,9 +7,11 @@ class Grid
 	viewStateChanged: =>
 		@requireRender()
 	gridStateChanged: =>
+		@calcPathData()
 		@requireRender()
 
-	path: (start, end) ->
+	pathData = null
+	calcPathData: ->
 		minx = Infinity
 		miny = Infinity
 		maxx = -Infinity
@@ -29,37 +31,50 @@ class Grid
 
 		# console.log minx, miny, maxx, maxy
 
+
+		# console.log arr
+		
+		pathData = {
+			blocks
+			minx
+			miny
+			maxx
+			maxy
+			}
+
+	path: (start, end) ->
+		# unless pathData
+		# @calcPathData()
+
+
 		# make array
 		arr = []
-		for x in [minx..maxx]
+		for x in [pathData.minx..pathData.maxx]
 			arr2 = []
-			for y in [miny..maxy]
+			for y in [pathData.miny..pathData.maxy]
 				arr2.push 0
 			arr.push arr2
 		# console.log arr
 
 		# populate array
-		blocks.forEach (block) ->
+		pathData.blocks.forEach (block) ->
 			weight = 1
 			if block.type.isWall
 				weight = 0
-			arr[block.x-minx][block.y-miny] = weight
-
-		# console.log arr
-		graph = new astar.Graph arr
-
+			arr[block.x-pathData.minx][block.y-pathData.miny] = weight
 		# console.log start, end
+		pathData.graph = new astar.Graph arr
 
-		start = graph.grid[start.x-minx][start.y-miny]
-		end = graph.grid[end.x-minx][end.y-miny]
-		result = astar.astar.search graph, start, end
+		start = pathData.graph.grid[start.x-pathData.minx][start.y-pathData.miny]
+		end = pathData.graph.grid[end.x-pathData.minx][end.y-pathData.miny]
+		result = astar.astar.search pathData.graph, start, end
 
 		# console.log result
 
 		# reapply the mins
 		path = result.map (res) ->
-			x: res.x+minx
-			y: res.y+miny
+			x: res.x+pathData.minx
+			y: res.y+pathData.miny
 
 		# console.log path
 
@@ -80,6 +95,7 @@ class Grid
 	constructor: (@canvas) ->
 		# console.log Game.state
 		@context = @canvas.getContext('2d')
+		@calcPathData()
 		@render()
 
 
