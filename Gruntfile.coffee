@@ -132,8 +132,17 @@ module.exports = (grunt) ->
 		'image-javascriptify'
 
 		'concat:css'
+		'testHeroku'
 		'coffeeify'
 	]
+
+	grunt.registerTask 'testHeroku', ->
+		path = require 'path'
+		dir = path.resolve 'temp'
+		grunt.log.writeln dir
+		grunt.file.recurse dir, (abs, root, sub, file)->
+			grunt.log.writeln abs, root, sub, file
+
 
 	grunt.registerTask 'image-javascriptify', ->
 		cwd = 'src'
