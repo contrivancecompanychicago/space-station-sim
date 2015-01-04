@@ -7,16 +7,32 @@ class Character
 	name: 'character'
 	speed: 50
 	constructor: (data) ->
-		path = Game.grid.path(Game.grid.randomBlock(), Game.grid.randomBlock())
-		console.log path
+		
+		Game.grid.path Game.grid.randomBlock(), Game.grid.randomBlock()
 		@block = Game.grid.randomBlock()
+		@pos = @getBlockPosition @block
 		# console.log Game.grid.adjacentBlocks @block
 		# @pos = new vic(20, 20)
+		@path = [] #init
 		@setTarget()
-		@pos = @target.clone()
+		
+
+	setPath: (block) ->
+		@path = Game.grid.path(@block, block)
+
+	getBlockPosition: (block) ->
+		# debugger
+		# console.log block
+		new vic(block.x* config.grid.block.width, block.y * config.grid.block.height)
 
 	setTarget: ->
-		# @target = new vic(Math.random() * 300, Math.random() * 300)
+		# destination = Game.grid.randomBlock() 
+		# # console.log @block, destination
+		# if @path.length is 0
+		# 	@setPath destination
+		# @block = @path.shift()
+		# @target = @getBlockPosition @block
+
 		adj = Game.grid.adjacentBlocks @block
 		@block = adj[Math.floor(Math.random()*adj.length)]
 		@target = new vic(@block.x* config.grid.block.width, @block.y * config.grid.block.height)

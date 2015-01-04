@@ -49,12 +49,16 @@ class Grid
 		end = graph.grid[end.x-minx][end.y-miny]
 		result = astar.astar.search graph, start, end
 
-		# console.log result
+		console.log result
 
 		# reapply the mins
-		result.map (res) ->
+		path = result.map (res) ->
 			x: res.x+minx
 			y: res.y+miny
+
+		console.log path
+		
+		path
 
 
 
