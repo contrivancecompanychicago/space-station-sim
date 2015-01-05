@@ -10,46 +10,50 @@ class Character
 
 	constructor: (data) ->
 		
-		# Game.grid.path Game.grid.randomBlock(), Game.grid.randomBlock()
 		@block = Game.grid.randomBlock()
 		@pos = @getBlockPosition @block
-		# console.log Game.grid.adjacentBlocks @block
-		# @pos = new vic(20, 20)
-		@setPath Game.grid.randomBlock() 
-		@setTarget()
-		@action = 'walk'
+
+		@whatToDoNext()
+		# @setPath Game.grid.randomBlock() 
+		# @setTarget()
+		# @action = 'walk'
 		
 
 	setPath: (block) ->
 		@path = Game.grid.path(@block, block)
 
 	getBlockPosition: (block) ->
-		# debugger
-		# console.log block
 		pos = new vic(block.x* config.grid.block.width, block.y * config.grid.block.height)
 		pos.add new vic(Math.random()*20, Math.random()*20)
 
 	setTarget: ->
-		@destination = Game.grid.randomBlock() 
+
 		if @path.length is 0
-			@setPath @destination
-		unless @path.length is 0 #double check
+			@target = null
+			@whatToDoNext()
+		else
 			@block = @path.shift()
 			@target = @getBlockPosition @block
+			
 
-		# adj = Game.grid.adjacentBlocks @block
-		# @block = adj[Math.floor(Math.random()*adj.length)]
-		# @target = new vic(@block.x* config.grid.block.width, @block.y * config.grid.block.height)
 		
 	whatToDoNext: ->
-		setAction 'walk'
+		# console.log "what next"
+		# @debug = true
+		if Math.random() > 0.5
+			@setAction 'walk'
+		else
+			@setAction 'wait'
 
 	setAction: (@action) ->
 		# @actions[@action].start()
+		# debugger
+		# console.log 'do', @action
 		switch @action
 			when 'walk'
 				@destination = Game.grid.randomBlock()
 				@setPath @destination
+				@setTarget()
 			when 'wait'
 				@waitTime = Math.random() * 5
 
@@ -58,6 +62,8 @@ class Character
 
 
 	update: ->
+		# if @debug
+		# 	debugger
 		switch @action
 			when 'walk'
 				if @target
@@ -72,10 +78,10 @@ class Character
 					if len < 10
 						@setTarget()
 				else
-					@setTarget()
+					@whatToDoNext()
 			when 'wait'
-				waitTime -= Imagine.time.deltaTime
-				if waitTime < 0
+				@waitTime -= Imagine.time.deltaTime
+				if @waitTime < 0
 					@whatToDoNext()
 
 
