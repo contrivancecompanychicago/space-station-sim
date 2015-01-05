@@ -9,9 +9,8 @@ class Grid
 	constructor: (@canvas) ->
 		# console.log Game.state
 		@context = @canvas.getContext('2d')
-		@calcPathData()
+		@calcData()
 		@render()
-		@calcRoomData()
 
 
 	viewStateChanged: =>
@@ -20,10 +19,14 @@ class Grid
 
 	gridStateChanged: =>
 		Game.save()
-		@calcPathData()
+		@calcData()
 		@requireRender()
 
 	pathData = null
+
+	calcData: ->
+		@calcPathData()
+		@calcRoomData()
 
 	calcRoomData: ->
 		combos = [
@@ -55,7 +58,7 @@ class Grid
 					room.blocks.push check
 				rooms.push room
 			@rooms[key] = rooms
-		console.log @rooms
+		# console.log @rooms
 			
 
 

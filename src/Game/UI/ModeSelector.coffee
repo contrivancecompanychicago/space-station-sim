@@ -2,7 +2,7 @@ view = require './ModeSelector.html.js'
 
 class ModeSelector
 	state:
-		selected: 'select'
+		selected: 'block'
 	constructor: (@container) ->
 		@render()
 	render: ->
