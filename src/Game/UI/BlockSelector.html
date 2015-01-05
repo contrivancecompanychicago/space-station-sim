@@ -1,6 +1,11 @@
 <div id="blockSelector">
 	Block Selector<hr />
-	<button value="plain">plain</button>
-	<button value="wall">wall</button>
-	<button value="dock">dock</button>
+	<%
+	types = ['plain', 'wall', 'dock', 'room'];
+	types.forEach(function(type){
+		%>
+		<button value="<%= type %>"><%= type %></button>
+		<%
+		});
+	%>
 </div>

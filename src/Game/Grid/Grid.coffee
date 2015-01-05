@@ -135,8 +135,12 @@ class Grid
 
 	addBlock: (pos) ->
 		type = Game.ui.blockSelector.state.selected
-		Game.state.gridData[@blockToString(pos)] =
-			type: type
+		obj = {type: type}
+		if type is 'room'
+			obj = {type: 'plain', room: 'test'}
+
+		Game.state.gridData[@blockToString(pos)] = obj
+			
 	removeBlock: (pos) ->
 		delete Game.state.gridData[@blockToString(pos)]
 
@@ -184,6 +188,7 @@ class Grid
 		out
 
 	resetContextStyle: ->
+		@context.lineWidth = 1
 		@context.fillStyle = "black"
 		# @context.strokeStyle = "black"
 
@@ -212,11 +217,17 @@ class Grid
 		if data
 			type = Block[data.type]
 			type.render @context, offset, data
+			room = data.room
+			if room
+				@context.fillStyle = "rgba(100,100,255,0.1)"
+				@context.fillRect offset.x, offset.y, gbw * Game.state.view.scale, gbh * Game.state.view.scale
+
 
 		if selected
+			@context.lineWidth = 3
 			@context.strokeStyle = "green"
 		else
-			@context.strokeStyle = "grey"
+			@context.strokeStyle = "rgba(100,100,100,0.2)"
 		@context.strokeRect offset.x, offset.y, gbw * Game.state.view.scale, gbh * Game.state.view.scale
 
 		# debug
