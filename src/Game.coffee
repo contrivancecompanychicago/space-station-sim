@@ -17,8 +17,6 @@ class window.Game
 		@container = container
 
 
-		@constructor.input = Imagine new Input @container
-
 		loaded = Storage.get()
 		if loaded
 			@constructor.state = JSON.parse Storage.get()
@@ -39,6 +37,9 @@ class window.Game
 		_.extend canvas.style, config.canvas.style
 		$(container).append canvas
 		@constructor.character = Imagine new CharacterLayer canvas
+
+
+		@constructor.input = Imagine new Input canvas
 
 		# UI
 		div = document.createElement 'div'
