@@ -1,19 +1,62 @@
-config = require '../config.coffee'
-Block = require './Block/Block.coffee'
 _ = require 'underscore'
 astar = require 'javascript-astar'
+Block = require './Block/Block.coffee'
+config = require '../config.coffee'
 Imagine = require '../../../bower_components/imagine/imagine.js'
 RoomTypes = require './Room/Types.coffee'
 class Grid
+
+	constructor: (@canvas) ->
+		# console.log Game.state
+		@context = @canvas.getContext('2d')
+		@calcPathData()
+		@render()
+		@calcRoomData()
+
+
 	viewStateChanged: =>
 		Game.save()
 		@requireRender()
+
 	gridStateChanged: =>
 		Game.save()
 		@calcPathData()
 		@requireRender()
 
 	pathData = null
+
+	calcRoomData: ->
+		combos = [
+			{x:0, y:1}
+			{x:1, y:0}
+			{x:0, y:-1}
+			{x:-1, y:0}
+		]
+		blocks = @blocksWithRoom 'shop'
+		# console.log blocks
+		rooms = []
+		while blocks.length > 0
+			#start a new room
+			# console.log "new room"
+			room = {blocks:[]}
+			blocksToCheck = [blocks.shift()]
+			while blocksToCheck.length > 0
+				check = blocksToCheck.shift()
+				# console.log 'checking', check
+				blocks.forEach (block) ->
+					match = false
+					combos.forEach (combo) ->
+						if (check.x is block.x + combo.x) and (check.y is block.y + combo.y) # is neighbour
+							match = true
+						if match
+							blocksToCheck.push block
+				blocks = _.difference blocks, blocksToCheck
+				room.blocks.push check
+			rooms.push room
+			
+		console.log rooms
+
+
 	calcPathData: ->
 		minx = Infinity
 		miny = Infinity
@@ -95,11 +138,7 @@ class Grid
 	# 	x: 0
 	# 	y: 0
 	scale: 1
-	constructor: (@canvas) ->
-		# console.log Game.state
-		@context = @canvas.getContext('2d')
-		@calcPathData()
-		@render()
+
 
 
 	requireRender: ->
@@ -129,6 +168,8 @@ class Grid
 
 	randomBlock: ->
 		keys = _.keys Game.state.gridData
+		if keys.length is 0
+			throw new error 'no block'
 		key = keys[Math.floor(Math.random()*keys.length)]; #random key
 		if Block[Game.state.gridData[key].type].isWall
 			return @randomBlock() # try again

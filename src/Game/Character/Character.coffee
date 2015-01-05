@@ -23,7 +23,8 @@ class Character
 
 	setPathToRoom: (type) ->
 		blocks = Game.grid.blocksWithRoom type
-		@setPath blocks[0]
+		if blocks.length > 0
+			@setPath blocks[0]
 		
 
 	setPath: (block) ->
