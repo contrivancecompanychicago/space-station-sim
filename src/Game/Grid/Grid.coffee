@@ -3,6 +3,7 @@ Block = require './Block/Block.coffee'
 _ = require 'underscore'
 astar = require 'javascript-astar'
 Imagine = require '../../../bower_components/imagine/imagine.js'
+RoomTypes = require './Room/Types.coffee'
 class Grid
 	viewStateChanged: =>
 		Game.save()
@@ -228,7 +229,11 @@ class Grid
 			type.render @context, offset, data
 			room = data.room
 			if room
-				@context.fillStyle = "rgba(100,100,255,0.1)"
+				roomType = RoomTypes[room]
+				if roomType
+					@context.fillStyle = roomType.color
+				else
+					@context.fillStyle = 'red' #danger
 				@context.fillRect offset.x, offset.y, gbw * Game.state.view.scale, gbh * Game.state.view.scale
 
 

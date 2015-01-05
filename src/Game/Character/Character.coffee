@@ -3,9 +3,11 @@ _ = require 'underscore'
 config = require '../config.coffee'
 Imagine = require '../../../bower_components/imagine/imagine.js'
 
+
 class Character
 	name: 'character'
 	speed: 50
+
 	constructor: (data) ->
 		
 		# Game.grid.path Game.grid.randomBlock(), Game.grid.randomBlock()
@@ -15,6 +17,7 @@ class Character
 		# @pos = new vic(20, 20)
 		@setPath Game.grid.randomBlock() 
 		@setTarget()
+		@action = 'walk'
 		
 
 	setPath: (block) ->
@@ -38,21 +41,42 @@ class Character
 		# @block = adj[Math.floor(Math.random()*adj.length)]
 		# @target = new vic(@block.x* config.grid.block.width, @block.y * config.grid.block.height)
 		
+	whatToDoNext: ->
+		setAction 'walk'
+
+	setAction: (@action) ->
+		# @actions[@action].start()
+		switch @action
+			when 'walk'
+				@destination = Game.grid.randomBlock()
+				@setPath @destination
+			when 'wait'
+				@waitTime = Math.random() * 5
+
+
+	actions: ['walk', 'wait']
+
 
 	update: ->
-		if @target
-			diff = @target.clone().subtract(@pos)
-			len = diff.length()
-			dir = diff.norm()
-			# console.log vec
-			m = Imagine.time.deltaTime * @speed
-			dir.multiply(new vic(m,m))
-			# console.log dir
-			@pos.add dir
-			if len < 10
-				@setTarget()
-		else
-			@setTarget()
+		switch @action
+			when 'walk'
+				if @target
+					diff = @target.clone().subtract(@pos)
+					len = diff.length()
+					dir = diff.norm()
+					# console.log vec
+					m = Imagine.time.deltaTime * @speed
+					dir.multiply(new vic(m,m))
+					# console.log dir
+					@pos.add dir
+					if len < 10
+						@setTarget()
+				else
+					@setTarget()
+			when 'wait'
+				waitTime -= Imagine.time.deltaTime
+				if waitTime < 0
+					@whatToDoNext()
 
 
 module.exports = Character

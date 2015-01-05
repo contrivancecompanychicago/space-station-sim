@@ -4,7 +4,6 @@ class ModeSelector
 	state:
 		selected: 'select'
 	constructor: (@container) ->
-		# console.log "init"
 		@render()
 	render: ->
 		@container.innerHTML = view(@state)
