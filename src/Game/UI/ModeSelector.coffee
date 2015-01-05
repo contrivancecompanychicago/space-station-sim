@@ -1,8 +1,8 @@
-view = require './BlockSelector.html.js'
+view = require './ModeSelector.html.js'
 
-class BlockSelector
+class ModeSelector
 	state:
-		selected: 'plain'
+		selected: 'select'
 	constructor: (@container) ->
 		# console.log "init"
 		@container.innerHTML = view(@state)
@@ -11,4 +11,4 @@ class BlockSelector
 
 
 
-module.exports = BlockSelector
+module.exports = ModeSelector

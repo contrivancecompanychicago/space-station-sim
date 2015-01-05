@@ -1,8 +1,8 @@
-view = require './BlockSelector.html.js'
+view = require './RoomSelector.html.js'
 
-class BlockSelector
+class RoomSelector
 	state:
-		selected: 'plain'
+		selected: 'shop'
 	constructor: (@container) ->
 		# console.log "init"
 		@container.innerHTML = view(@state)
@@ -11,4 +11,4 @@ class BlockSelector
 
 
 
-module.exports = BlockSelector
+module.exports = RoomSelector
