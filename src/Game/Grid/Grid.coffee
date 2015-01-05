@@ -32,29 +32,31 @@ class Grid
 			{x:0, y:-1}
 			{x:-1, y:0}
 		]
-		blocks = @blocksWithRoom 'shop'
-		# console.log blocks
-		rooms = []
-		while blocks.length > 0
-			#start a new room
-			# console.log "new room"
-			room = {blocks:[]}
-			blocksToCheck = [blocks.shift()]
-			while blocksToCheck.length > 0
-				check = blocksToCheck.shift()
-				# console.log 'checking', check
-				blocks.forEach (block) ->
-					match = false
-					combos.forEach (combo) ->
-						if (check.x is block.x + combo.x) and (check.y is block.y + combo.y) # is neighbour
-							match = true
+		@rooms = {}
+		for key in  _.keys RoomTypes
+			blocks = @blocksWithRoom key
+			rooms = []
+			while blocks.length > 0
+				#start a new room
+				# console.log "new room"
+				room = {blocks:[]}
+				blocksToCheck = [blocks.shift()]
+				while blocksToCheck.length > 0
+					check = blocksToCheck.shift()
+					# console.log 'checking', check
+					blocks.forEach (block) ->
+						match = false
+						combos.forEach (combo) ->
+							if (check.x is block.x + combo.x) and (check.y is block.y + combo.y) # is neighbour
+								match = true
 						if match
 							blocksToCheck.push block
-				blocks = _.difference blocks, blocksToCheck
-				room.blocks.push check
-			rooms.push room
+					blocks = _.difference blocks, blocksToCheck
+					room.blocks.push check
+				rooms.push room
+			@rooms[key] = rooms
+		console.log @rooms
 			
-		console.log rooms
 
 
 	calcPathData: ->
