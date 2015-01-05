@@ -9,7 +9,6 @@ class Character
 	speed: 50
 
 	constructor: (data) ->
-		
 		@block = Game.grid.randomBlock()
 		@pos = @getBlockPosition @block
 
@@ -17,10 +16,15 @@ class Character
 		# @setPath Game.grid.randomBlock() 
 		# @setTarget()
 		# @action = 'walk'
+
+	setPathToRoom: (type) ->
+		blocks = Game.grid.blocksWithRoom type
+		@setPath blocks[0]
 		
 
 	setPath: (block) ->
 		@path = Game.grid.path(@block, block)
+		@setTarget()
 
 	getBlockPosition: (block) ->
 		pos = new vic(block.x* config.grid.block.width, block.y * config.grid.block.height)
@@ -30,60 +34,73 @@ class Character
 
 		if @path.length is 0
 			@target = null
-			@whatToDoNext()
+			@endAction()
 		else
 			@block = @path.shift()
 			@target = @getBlockPosition @block
 			
 
-		
+	actions: ['walk', 'wait', 'leave']
 	whatToDoNext: ->
 		# console.log "what next"
 		# @debug = true
-		if Math.random() > 0.5
-			@setAction 'walk'
+
+		action = @actions[Math.floor(Math.random() * @actions.length)]
+		console.log action
+		@setAction action
+		# if Math.random() > 0.5
+		# 	@setAction 'walk'
+		# else
+		# 	@setAction 'wait'
+
+
+
+	walkUpdate: ->
+		if @target
+			diff = @target.clone().subtract(@pos)
+			len = diff.length()
+			dir = diff.norm()
+			# console.log vec
+			m = Imagine.time.deltaTime * @speed
+			dir.multiply(new vic(m,m))
+			# console.log dir
+			@pos.add dir
+			if len < 10
+				@setTarget()
 		else
-			@setAction 'wait'
+			@endAction()
+
 
 	setAction: (@action) ->
 		# @actions[@action].start()
-		# debugger
 		# console.log 'do', @action
 		switch @action
 			when 'walk'
 				@destination = Game.grid.randomBlock()
 				@setPath @destination
-				@setTarget()
 			when 'wait'
 				@waitTime = Math.random() * 5
-
-
-	actions: ['walk', 'wait']
-
+			when 'leave'
+				@setPathToRoom 'dock'
 
 	update: ->
-		# if @debug
-		# 	debugger
 		switch @action
 			when 'walk'
-				if @target
-					diff = @target.clone().subtract(@pos)
-					len = diff.length()
-					dir = diff.norm()
-					# console.log vec
-					m = Imagine.time.deltaTime * @speed
-					dir.multiply(new vic(m,m))
-					# console.log dir
-					@pos.add dir
-					if len < 10
-						@setTarget()
-				else
-					@whatToDoNext()
+				@walkUpdate()
+			when 'leave'
+				@walkUpdate()
 			when 'wait'
 				@waitTime -= Imagine.time.deltaTime
 				if @waitTime < 0
-					@whatToDoNext()
+					@endAction()
 
+	endAction: ->
+		console.log 'end', @action
+		switch @action
+			when 'leave'
+				Imagine.destroy @
+
+		@whatToDoNext()
 
 module.exports = Character
 

@@ -100,8 +100,6 @@ class Grid
 		@context = @canvas.getContext('2d')
 		@calcPathData()
 		@render()
-		# debugger
-		console.log @blocksWithRoom 'dock'
 
 
 	requireRender: ->
@@ -187,6 +185,7 @@ class Grid
 		@context.closePath()
 		@context.clearRect 0, 0, cw, ch
 
+	# find all blocks with room type
 	blocksWithRoom: (room)->
 		out = []
 		keys = _.keys Game.state.gridData
