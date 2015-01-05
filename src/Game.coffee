@@ -6,6 +6,8 @@ Storage = require './Game/Storage.coffee'
 config = require './Game/config.coffee'
 _ = require 'underscore'
 
+Character = require './Game/Character/Character.coffee'
+
 UI = require './Game/UI/Layer.coffee'
 CharacterLayer = require './Game/Character/Layer.coffee'
 
@@ -59,6 +61,16 @@ class window.Game
 		# @grid.requireRender()
 		# @character.requireRender()
 		Storage.set()
+
+	update: ->
+		if Math.random() < 0.01
+			blocks = Game.grid.blocksWithRoom 'dock'
+			if blocks.length > 0
+				block = blocks[Math.floor(Math.random()*blocks.length)]
+				Imagine new Character({block})
+
+
+
 
 
 

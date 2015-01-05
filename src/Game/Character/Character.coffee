@@ -9,7 +9,11 @@ class Character
 	speed: 50
 
 	constructor: (data) ->
-		@block = Game.grid.randomBlock()
+		if data?.block
+			@block = data.block
+		else
+			@block = Game.grid.randomBlock()
+
 		@pos = @getBlockPosition @block
 
 		@whatToDoNext()
@@ -40,13 +44,13 @@ class Character
 			@target = @getBlockPosition @block
 			
 
-	actions: ['walk', 'wait', 'leave']
+	actions: ['walk', 'wait', 'leave', 'shop']
 	whatToDoNext: ->
 		# console.log "what next"
 		# @debug = true
 
 		action = @actions[Math.floor(Math.random() * @actions.length)]
-		console.log action
+		# console.log action
 		@setAction action
 		# if Math.random() > 0.5
 		# 	@setAction 'walk'
@@ -82,6 +86,8 @@ class Character
 				@waitTime = Math.random() * 5
 			when 'leave'
 				@setPathToRoom 'dock'
+			when 'shop'
+				@setPathToRoom 'shop'
 
 	update: ->
 		switch @action
@@ -89,13 +95,15 @@ class Character
 				@walkUpdate()
 			when 'leave'
 				@walkUpdate()
+			when 'shop'
+				@walkUpdate()
 			when 'wait'
 				@waitTime -= Imagine.time.deltaTime
 				if @waitTime < 0
 					@endAction()
 
 	endAction: ->
-		console.log 'end', @action
+		# console.log 'end', @action
 		switch @action
 			when 'leave'
 				Imagine.destroy @

@@ -8,3 +8,6 @@ module.exports =
 	storage:
 		name: 'storage'
 		color: 'rgba(0,0,255,0.2)'
+	bar:
+		name: 'bar'
+		color: 'rgba(100, 100, 100, 0.2)'
