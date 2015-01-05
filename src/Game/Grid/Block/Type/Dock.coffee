@@ -1,7 +1,8 @@
 Base = require './Base.coffee'
 
 block = new Base()
-block.isWall = true
+block.isWall = false
 block.render = (context, offset, data) ->
-	@.renderImage 'plain.png', context, offset
+	@.renderImage 'dock.png', context, offset
 module.exports = block
+
