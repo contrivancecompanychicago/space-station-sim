@@ -100,6 +100,8 @@ class Grid
 		@context = @canvas.getContext('2d')
 		@calcPathData()
 		@render()
+		# debugger
+		console.log @blocksWithRoom 'dock'
 
 
 	requireRender: ->
@@ -184,6 +186,17 @@ class Grid
 	clear: ->
 		@context.closePath()
 		@context.clearRect 0, 0, cw, ch
+
+	blocksWithRoom: (room)->
+		out = []
+		keys = _.keys Game.state.gridData
+		# gather data
+		blocks = keys.forEach (key) =>
+			block = @stringToBlock key
+			block.data = Game.state.gridData[key]
+			if block.data.room is room
+				out.push block
+		out
 
 	# looks at @offset, @scale and config.grid.block to output a list of blocks that are on screen
 	blocksToRender: ->
