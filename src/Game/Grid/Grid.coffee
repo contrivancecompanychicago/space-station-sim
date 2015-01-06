@@ -112,6 +112,8 @@ class Grid
 	path: (start, end) ->
 		# unless pathData
 		# @calcPathData()
+		if (start.x is end.x) and (start.y = end.y)
+			return [end]
 
 
 		pathData.graph = new astar.Graph pathData.arr
