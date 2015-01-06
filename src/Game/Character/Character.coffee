@@ -64,24 +64,35 @@ class Character
 			@target = null
 			@endAction()
 		else
+			unless @path
+				debugger
 			@block = @path.shift()
 			@target = @getBlockPosition @block
 			
 
-	actions: ['walk', 'wait', 'leave', 'shop']
+	actions: ['walk', 'wait', 'leave', 'shop', 'bar']
 	whatToDoNext: ->
 		# console.log "what next"
-		# @debug = true
-		# shopPath = @findPathToRoom('shop')
-		# console.log shopPath
+		# debugger
+		# options = []
+		# path = {}
+		# path.shop = @findPathToRoom 'shop'
+		# if path.shop then options.push 'shop'
+		# path.bar = @findPathToRoom 'bar'
+		# if path.bar then options.push 'bar'
+		# path.leave = @findPathToRoom 'dock'
+		# if path.leave then options.push 'leave'
+
+
+		# if options.length is 0
+		# 	options.push 'wait'
+
+		# action = options[Math.floor(Math.random() * @actions.length)]
+		# @setAction action, path[action]
 
 		action = @actions[Math.floor(Math.random() * @actions.length)]
-		# console.log action
 		@setAction action
-		# if Math.random() > 0.5
-		# 	@setAction 'walk'
-		# else
-		# 	@setAction 'wait'
+
 
 
 
@@ -101,7 +112,7 @@ class Character
 			@endAction()
 
 
-	setAction: (@action) ->
+	setAction: (@action, path) ->
 		# @actions[@action].start()
 		# console.log 'do', @action
 		switch @action
@@ -111,11 +122,20 @@ class Character
 			when 'wait'
 				@waitTime = Math.random() * 5
 			when 'leave'
-				@path = @findPathToRoom 'dock'
-				@setTarget()
+				path = @findPathToRoom 'dock'
+				if path
+					@path = path
+					@setTarget()
 			when 'shop'
-				@path = @findPathToRoom 'shop'
-				@setTarget()
+				path = @findPathToRoom 'shop'
+				if path
+					@path = path
+					@setTarget()
+			when 'bar'
+				path = @findPathToRoom 'bar'
+				if path
+					@path = path
+					@setTarget()
 	update: ->
 		switch @action
 			when 'walk'
@@ -123,6 +143,8 @@ class Character
 			when 'leave'
 				@walkUpdate()
 			when 'shop'
+				@walkUpdate()
+			when 'bar'
 				@walkUpdate()
 			when 'wait'
 				@waitTime -= Imagine.time.deltaTime
