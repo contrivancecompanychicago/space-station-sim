@@ -10,6 +10,7 @@ states =
 
 
 class Input
+	# mousePosition: {x:0, y:0}
 	fns:
 		onmousedown: (e) =>
 			engageMouse e
@@ -51,7 +52,7 @@ class Input
 
 	startEvent = null
 
-	lastMouse = null
+	lastMouse = {x:0, y:0}
 	setLastMouse = (e) ->
 		lastMouse = 
 			x: e.x
@@ -86,6 +87,9 @@ class Input
 		@state = states.blank
 
 	moveMouse = (e) =>
+		# console.log @mousePosition
+		# @mousePosition = {x:e.x, y:e.y}
+		# console.log @mousePosition
 		delta = getMouseDelta e
 		switch @state
 			when states.selecting
@@ -124,9 +128,23 @@ class Input
 		for key, val of @fns
 			@container[key] = val
 
+	@objectUnderMouse = null
+	findObjectUnderMouse: ->
+		@objectUnderMouse = null #clear it
+		#get mouse position
+		# console.log lastMouse
+		#search characters
+		chars = Imagine.getComponents 'character'
+		mousePos = Vic.fromObject Game.globalToLocal lastMouse
+		chars.forEach (char) =>
+			if char.pos.clone().subtract(mousePos).length() < 30
+				@objectUnderMouse = char
+				return
+
+
 
 	update: ->
-
+		@findObjectUnderMouse()
 		# switch @state
 		# 	when states.moving
 

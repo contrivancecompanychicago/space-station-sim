@@ -37,7 +37,7 @@ class Character
 				unless @block
 					throw new Error '@block isnt defined'
 				# console.log room
-				block = room.blocks[0]# todo randomise
+				block = room.blocks[Math.floor(room.blocks.length*Math.random())]
 				unless block
 					throw new Error 'block isnt defined'
 				# console.log @block, block

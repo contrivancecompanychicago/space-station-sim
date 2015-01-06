@@ -34,14 +34,13 @@ class window.Game
 
 		# character
 		canvas = document.createElement 'canvas'
+		@constructor.input = Imagine new Input canvas
+
 		canvas.id = "character"
 		_.extend canvas, config.canvas
 		_.extend canvas.style, config.canvas.style
 		$(container).append canvas
 		@constructor.character = Imagine new CharacterLayer canvas
-
-
-		@constructor.input = Imagine new Input canvas
 
 		# UI
 		div = document.createElement 'div'

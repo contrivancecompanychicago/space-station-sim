@@ -28,6 +28,16 @@ class CharacterLayer
 		chars.forEach (char) =>
 			@renderChar char.pos
 
+		if Game.input.objectUnderMouse
+			obj = Game.input.objectUnderMouse
+			@context.fillStyle = "grey"
+			@context.font = 'bold 16px verdana'
+			str = obj.name + ":"
+			str += " action:"+obj.action
+			str += " x:" + Math.floor obj.pos.x
+			str += " y:" + Math.floor obj.pos.y
+			@context.fillText str, 10, ch - 20
+
 	renderChar: (data) ->
 		pos = Game.localToGlobal data
 		@context.fillStyle = 'green'
