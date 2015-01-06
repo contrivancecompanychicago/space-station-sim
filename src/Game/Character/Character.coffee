@@ -73,24 +73,25 @@ class Character
 		
 		# console.log "what next"
 		# debugger
-		# options = []
-		# path = {}
-		# path.shop = @findPathToRoom 'shop'
-		# if path.shop then options.push 'shop'
-		# path.bar = @findPathToRoom 'bar'
-		# if path.bar then options.push 'bar'
-		# path.leave = @findPathToRoom 'dock'
-		# if path.leave then options.push 'leave'
+		options = []
+		path = {}
+		path.shop = @findPathToRoom 'shop'
+		if path.shop then options.push 'shop'
+		path.bar = @findPathToRoom 'bar'
+		if path.bar then options.push 'bar'
+		path.leave = @findPathToRoom 'dock'
+		if path.leave then options.push 'leave'
 
 
-		# if options.length is 0
-		# 	options.push 'wait'
+		if options.length is 0
+			options.push 'walk'
+			options.push 'wait'
 
-		# action = options[Math.floor(Math.random() * @actions.length)]
-		# @setAction action, path[action]
+		action = options[Math.floor(Math.random() * @actions.length)]
+		@setAction action, path[action]
 
-		action = @actions[Math.floor(Math.random() * @actions.length)]
-		@setAction action
+		# action = @actions[Math.floor(Math.random() * @actions.length)]
+		# @setAction action
 
 
 
@@ -119,16 +120,19 @@ class Character
 			when 'wait'
 				@waitTime = Math.random() * 5
 			when 'leave'
-				path = @findPathToRoom 'dock'
+				unless path
+					path = @findPathToRoom 'dock'
 				if path
 					@path = path
 			when 'shop'
-				path = @findPathToRoom 'shop'
+				unless path
+					path = @findPathToRoom 'shop'
 				if path
 					@waitTime = 1
 					@path = path
 			when 'bar'
-				path = @findPathToRoom 'bar'
+				unless path
+					path = @findPathToRoom 'bar'
 				if path
 					@waitTime = 4
 					@path = path
