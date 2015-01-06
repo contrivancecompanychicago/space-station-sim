@@ -26,6 +26,29 @@ class Character
 		if blocks.length > 0
 			@setPath blocks[0]
 		
+	findPathToRoom: (type) ->
+		# console.log "find path to ", type
+		# console.log Game.grid.rooms
+		rooms = Game.grid.rooms[type]
+		finalPath = false
+		pathLen = Infinity
+		if rooms.length > 0
+			rooms.forEach (room) =>
+				unless @block
+					throw new Error '@block isnt defined'
+				# console.log room
+				block = room.blocks[0]# todo randomise
+				unless block
+					throw new Error 'block isnt defined'
+				# console.log @block, block
+				path = Game.grid.path(@block, block)
+				# console.log 'path', path
+				if path.length > 0 
+					if path.length < pathLen
+						pathLen = path.length
+						finalPath = path
+		# console.log "pathing", type, finalPath
+		finalPath
 
 	setPath: (block) ->
 		@path = Game.grid.path(@block, block)
@@ -49,6 +72,8 @@ class Character
 	whatToDoNext: ->
 		# console.log "what next"
 		# @debug = true
+		# shopPath = @findPathToRoom('shop')
+		# console.log shopPath
 
 		action = @actions[Math.floor(Math.random() * @actions.length)]
 		# console.log action
@@ -86,10 +111,11 @@ class Character
 			when 'wait'
 				@waitTime = Math.random() * 5
 			when 'leave'
-				@setPathToRoom 'dock'
+				@path = @findPathToRoom 'dock'
+				@setTarget()
 			when 'shop'
-				@setPathToRoom 'shop'
-
+				@path = @findPathToRoom 'shop'
+				@setTarget()
 	update: ->
 		switch @action
 			when 'walk'
