@@ -1,6 +1,7 @@
 BlockSelector = require './BlockSelector.coffee'
 ModeSelector = require './ModeSelector.coffee'
 RoomSelector = require './RoomSelector.coffee'
+Imagine = require '../../../bower_components/imagine/imagine.js'
 class Layer
 	_modes: ['select', 'block', 'room']#for reference
 	constructor: (@container) ->
@@ -12,8 +13,8 @@ class Layer
 		@container.appendChild blockDiv
 		@container.appendChild roomDiv
 
-		@modeSelector = new ModeSelector modeDiv 
-		@blockSelector = new BlockSelector blockDiv 
-		@roomSelector = new RoomSelector roomDiv 
+		@modeSelector = Imagine new ModeSelector modeDiv 
+		@blockSelector = Imagine new BlockSelector blockDiv 
+		@roomSelector = Imagine new RoomSelector roomDiv 
 
 module.exports = Layer
