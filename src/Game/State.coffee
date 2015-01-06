@@ -1,5 +1,6 @@
 
 module.exports = 
+	timeScale: 1
 	view:
 		_scale: 
 			max: 2

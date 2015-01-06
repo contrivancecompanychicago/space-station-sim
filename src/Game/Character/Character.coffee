@@ -17,9 +17,6 @@ class Character
 		@pos = @getBlockPosition @block
 
 		@whatToDoNext()
-		# @setPath Game.grid.randomBlock() 
-		# @setTarget()
-		# @action = 'walk'
 
 	setPathToRoom: (type) ->
 		blocks = Game.grid.blocksWithRoom type
@@ -27,8 +24,6 @@ class Character
 			@setPath blocks[0]
 		
 	findPathToRoom: (type) ->
-		# console.log "find path to ", type
-		# console.log Game.grid.rooms
 		rooms = Game.grid.rooms[type]
 		finalPath = false
 		pathLen = Infinity
@@ -36,18 +31,14 @@ class Character
 			rooms.forEach (room) =>
 				unless @block
 					throw new Error '@block isnt defined'
-				# console.log room
 				block = room.blocks[Math.floor(room.blocks.length*Math.random())]
 				unless block
 					throw new Error 'block isnt defined'
-				# console.log @block, block
 				path = Game.grid.path(@block, block)
-				# console.log 'path', path
 				if path.length > 0 
 					if path.length < pathLen
 						pathLen = path.length
 						finalPath = path
-		# console.log "pathing", type, finalPath
 		finalPath
 
 	setPath: (block) ->
@@ -60,14 +51,21 @@ class Character
 
 	setTarget: ->
 
-		if @path.length is 0
-			@target = null
-			@endAction()
-		else
-			unless @path
-				debugger
-			@block = @path.shift()
-			@target = @getBlockPosition @block
+		if @path 
+			block = @path.shift()
+			if block
+				@block = block
+				@target = @getBlockPosition @block
+			else
+				@target = null
+			# if @path.length is 0
+			# 	@target = null
+			# 	@endAction()
+			# else
+			# 	unless @path
+			# 		debugger
+			# 	@block = @path.shift()
+			# 	@target = @getBlockPosition @block
 			
 
 	actions: ['walk', 'wait', 'leave', 'shop', 'bar']
@@ -101,20 +99,16 @@ class Character
 			diff = @target.clone().subtract(@pos)
 			len = diff.length()
 			dir = diff.norm()
-			# console.log vec
 			m = Imagine.time.deltaTime * @speed
 			dir.multiply(new vic(m,m))
-			# console.log dir
 			@pos.add dir
 			if len < 10
 				@setTarget()
 		else
-			@endAction()
+			@setTarget()
 
 
 	setAction: (@action, path) ->
-		# @actions[@action].start()
-		# console.log 'do', @action
 		switch @action
 			when 'walk'
 				@destination = Game.grid.randomBlock()
@@ -125,34 +119,35 @@ class Character
 				path = @findPathToRoom 'dock'
 				if path
 					@path = path
-					@setTarget()
 			when 'shop'
 				path = @findPathToRoom 'shop'
 				if path
 					@path = path
-					@setTarget()
 			when 'bar'
 				path = @findPathToRoom 'bar'
 				if path
 					@path = path
-					@setTarget()
 	update: ->
-		switch @action
-			when 'walk'
-				@walkUpdate()
-			when 'leave'
-				@walkUpdate()
-			when 'shop'
-				@walkUpdate()
-			when 'bar'
-				@walkUpdate()
-			when 'wait'
+
+		@walkUpdate()
+		unless @target #still walking
+			if @waitTime # wait around a bit if needed
 				@waitTime -= Imagine.time.deltaTime
 				if @waitTime < 0
 					@endAction()
+			# switch @action
+			# 	when 'walk'
+			# 		@endAction()
+			# 	when 'leave'
+			# 		@endAction()
+			# 	when 'shop'
+			# 		@endAction()
+			# 	when 'bar'
+			# 		@endAction()
+			# 	when 'wait'
+					
 
 	endAction: ->
-		# console.log 'end', @action
 		switch @action
 			when 'leave'
 				Imagine.destroy @
