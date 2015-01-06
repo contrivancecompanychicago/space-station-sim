@@ -70,6 +70,7 @@ class Character
 
 	actions: ['walk', 'wait', 'leave', 'shop', 'bar']
 	whatToDoNext: ->
+		
 		# console.log "what next"
 		# debugger
 		# options = []
@@ -109,6 +110,8 @@ class Character
 
 
 	setAction: (@action, path) ->
+		@waitTime = 0
+		# console.log @, @waitTime
 		switch @action
 			when 'walk'
 				@destination = Game.grid.randomBlock()
@@ -122,29 +125,21 @@ class Character
 			when 'shop'
 				path = @findPathToRoom 'shop'
 				if path
+					@waitTime = 1
 					@path = path
 			when 'bar'
 				path = @findPathToRoom 'bar'
 				if path
+					@waitTime = 4
 					@path = path
 	update: ->
 
 		@walkUpdate()
+		# console.log @target
 		unless @target #still walking
-			if @waitTime # wait around a bit if needed
-				@waitTime -= Imagine.time.deltaTime
-				if @waitTime < 0
-					@endAction()
-			# switch @action
-			# 	when 'walk'
-			# 		@endAction()
-			# 	when 'leave'
-			# 		@endAction()
-			# 	when 'shop'
-			# 		@endAction()
-			# 	when 'bar'
-			# 		@endAction()
-			# 	when 'wait'
+			@waitTime -= Imagine.time.deltaTime
+			if @waitTime < 0
+				@endAction()
 					
 
 	endAction: ->
