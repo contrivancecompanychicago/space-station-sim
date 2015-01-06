@@ -1,13 +1,16 @@
 view = require './ModeSelector.html.js'
 Imagine = require '../../../bower_components/imagine/imagine.js'
 class ModeSelector
+	name: 'UIModeSelector'
 	state:
 		selected: 'block'
 	UIBlockSelected: ->
 		@state.selected = 'block'
+		Imagine.notify 'UIModeSelected'
 		@render()
 	UIRoomSelected: ->
 		@state.selected = 'room'
+		Imagine.notify 'UIModeSelected'
 		@render()
 	constructor: (@container) ->
 		@render()

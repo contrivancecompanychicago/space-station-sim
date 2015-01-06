@@ -183,24 +183,25 @@ class Grid
 		@stringToBlock key
 
 	addBlock: (pos) ->
-		mode = Game.ui.modeSelector.state.selected
+		mode = Game.ui.mode.state.selected
 		switch mode
 			when 'block'
-				type = Game.ui.blockSelector.state.selected
+				type = Game.ui.block.state.selected
 				obj = {type: type}
 				Game.state.gridData[@blockToString(pos)] = obj
 			when 'room'
-				type = Game.ui.roomSelector.state.selected
+				type = Game.ui.room.state.selected
 				obj = {type: 'plain', room:type}
 				Game.state.gridData[@blockToString(pos)] = obj
 			
 	removeBlock: (pos) ->
-		mode = Game.ui.modeSelector.state.selected
+		mode = Game.ui.mode.state.selected
 		switch mode
 			when 'block'
 				delete Game.state.gridData[@blockToString(pos)]
 			when 'room'
-				delete Game.state.gridData[@blockToString(pos)].room
+				if Game.state.gridData[@blockToString(pos)]
+					delete Game.state.gridData[@blockToString(pos)].room
 
 	# returns adjacent block data
 	adjacentBlocks: (block) ->

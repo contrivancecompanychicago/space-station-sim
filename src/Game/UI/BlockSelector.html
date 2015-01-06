@@ -1,4 +1,4 @@
-<div id="blockSelector" class="selector">
+<div id="blockSelector" class="selector<% if(mode.selected == 'block'){ %> selected<% } %>">
 	Block Selector<hr />
 	<%
 	types = ['plain', 'wall'];
@@ -6,7 +6,7 @@
 		%>
 		<button 
 		value="<%= type %>"
-		<% if(selected == type){ %>class="selected"<% } %>
+		<% if(state.selected == type){ %>class="selected"<% } %>
 		><%= type %></button>
 		<%
 		});

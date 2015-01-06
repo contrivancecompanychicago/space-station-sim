@@ -5,9 +5,14 @@ class BlockSelector
 	state:
 		selected: 'plain'
 	constructor: (@container) ->
+		@mode = Imagine.getComponent 'UIModeSelector'
+		@render()
+	UIModeSelected: ->
 		@render()
 	render: ->
-		@container.innerHTML = view(@state)
+		@container.innerHTML = view
+			state: @state
+			mode: @mode.state
 		$(@container).find('button').click (e)=>
 			@state.selected = e.srcElement.value
 			Imagine.notify 'UIBlockSelected'

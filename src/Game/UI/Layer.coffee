@@ -13,8 +13,8 @@ class Layer
 		@container.appendChild blockDiv
 		@container.appendChild roomDiv
 
-		@modeSelector = Imagine new ModeSelector modeDiv 
-		@blockSelector = Imagine new BlockSelector blockDiv 
-		@roomSelector = Imagine new RoomSelector roomDiv 
+		@mode = Imagine new ModeSelector modeDiv 
+		@block = Imagine new BlockSelector blockDiv 
+		@room = Imagine new RoomSelector roomDiv 
 
 module.exports = Layer

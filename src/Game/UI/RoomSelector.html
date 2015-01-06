@@ -1,4 +1,4 @@
-<div id="roomSelector" class="selector">
+<div id="roomSelector" class="selector<% if(mode.selected == 'room'){ %> selected<% } %>">
 	Room Selector<hr />
 	<%
 	types = ['shop', 'dock', 'storage', 'bar'];
@@ -6,7 +6,7 @@
 		%>
 		<button 
 		value="<%= type %>"
-		<% if(selected == type){ %>class="selected"<% } %>
+		<% if(state.selected == type){ %>class="selected"<% } %>
 		><%= type %></button>
 		<%
 		});
