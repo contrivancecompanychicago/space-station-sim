@@ -74,7 +74,6 @@ class Character
 			else
 				@target = null
 	whatToDoNext: ->
-		
 		# console.log "what next"
 		# debugger
 		options = []

@@ -46,7 +46,12 @@ class CharacterLayer
 	renderChar: (data) ->
 		pos = Game.localToGlobal data
 		@context.fillStyle = 'green'
-		@context.fillRect pos.x, pos.y, 10*Game.state.view.scale, 10*Game.state.view.scale
+		# @context.fillRect pos.x, pos.y, 10*Game.state.view.scale, 10*Game.state.view.scale
+
+		@context.beginPath()
+		@context.arc(pos.x, pos.y, 5*Game.state.view.scale, 0, 2 * Math.PI, false);
+		@context.fill()
+		@context.closePath()
 
 	requireRender: ->
 		@willRender = true
