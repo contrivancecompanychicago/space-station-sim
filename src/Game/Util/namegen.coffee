@@ -9,6 +9,7 @@ gen.setList 'last', last
 # console.log first
 
 module.exports = ->
-	f = gen.generate 'first'
-	l = gen.generate 'last'
-	f + ' ' + l
+	[
+		gen.generate 'first'
+		gen.generate 'last'
+	]

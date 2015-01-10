@@ -32,7 +32,7 @@ class CharacterLayer
 			obj = Game.input.objectUnderMouse
 			@context.fillStyle = "grey"
 			@context.font = 'bold 16px verdana'
-			str = obj.name + ":"
+			str = obj.firstname + " " + obj.lastname + ":"
 			str += " action:"+obj.action
 			str += " x:" + Math.floor obj.pos.x
 			str += " y:" + Math.floor obj.pos.y

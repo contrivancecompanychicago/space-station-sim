@@ -1,9 +1,9 @@
-vic = require 'victor'
+
 _ = require 'underscore'
 config = require '../config.coffee'
 Imagine = require '../../../bower_components/imagine/imagine.js'
-
 namegen = require '../Util/namegen.coffee'
+vic = require 'victor'
 
 class Character
 	name: 'character'
@@ -11,8 +11,9 @@ class Character
 
 	constructor: (data) ->
 
-		# console.log namegen()
-
+		[@firstname, @lastname] = namegen()
+		# console.log @firstname, @lastname
+		@makeNeeds()
 		if data?.block
 			@block = data.block
 		else
@@ -21,6 +22,14 @@ class Character
 		@pos = @getBlockPosition @block
 
 		@whatToDoNext()
+
+	makeNeeds: ->
+		@needs =
+			energy: Math.random()
+			fun: Math.random()
+			hunger: Math.random()
+			shop: Math.random()
+
 
 	gridStateChanged: ->
 		@whatToDoNext()
