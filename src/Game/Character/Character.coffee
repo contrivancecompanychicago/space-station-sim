@@ -13,28 +13,30 @@ ActionTypes =
 	leave:
 		room: 'dock'
 	shop:
+		waitTime: 1
 		room: 'shop'
 		need: ['shop']
 	bar:
+		waitTime: 5
 		room: 'bar'
 		need: ['fun']
+	medical:
+		room: 'medical'
+		need: ['medical']
+
 
 class Character
 	name: 'character'
 	speed: 50
 
 	constructor: (data) ->
-
 		[@firstname, @lastname] = namegen()
-		# console.log @firstname, @lastname
 		@makeNeeds()
 		if data?.block
 			@block = data.block
 		else
 			@block = Game.grid.randomBlock()
-
 		@pos = @getBlockPosition @block
-
 		@whatToDoNext()
 
 	makeNeeds: ->
@@ -43,7 +45,7 @@ class Character
 			fun: Math.random()
 			hunger: Math.random()
 			shop: Math.random()
-
+			medical: Math.random()
 
 	gridStateChanged: ->
 		@whatToDoNext()
@@ -80,7 +82,6 @@ class Character
 		pos.add new vic(Math.random()*20, Math.random()*20)
 
 	setTarget: ->
-
 		if @path 
 			block = @path.shift()
 			if block
@@ -88,8 +89,6 @@ class Character
 				@target = @getBlockPosition @block
 			else
 				@target = null
-
-	# actions: ['walk', 'wait', 'leave', 'shop', 'bar']
 	whatToDoNext: ->
 		
 		# console.log "what next"
@@ -104,9 +103,6 @@ class Character
 					path[action.room] = @findPathToRoom action.room
 					if path[action.room] then options.push type
 
-
-
-
 		if options.length is 0
 			path.leave = @findPathToRoom 'dock'
 			if path.leave then options.push 'leave'
@@ -120,8 +116,6 @@ class Character
 
 		action = options[Math.floor(Math.random() * options.length)]
 		@setAction action, path[action]
-
-
 	walkUpdate: ->
 		if @target
 			diff = @target.clone().subtract(@pos)
@@ -166,13 +160,15 @@ class Character
 					
 
 	endAction: ->
+		action = ActionTypes[@action]
+		# console.log action
+		if action.need
+			for need in action.need
+				@needs[need] = 0
+
 		switch @action
 			when 'leave'
 				Imagine.destroy @
-			when 'shop'
-				@needs.shop = 0
-			when 'bar'
-				@needs.fun = 0
 
 		@whatToDoNext()
 
