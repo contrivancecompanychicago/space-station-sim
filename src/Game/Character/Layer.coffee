@@ -37,6 +37,8 @@ class CharacterLayer
 			@context.fillText obj.firstname + " " + obj.lastname, 10, y += 20
 			@context.font = '14px verdana'
 			@context.fillText ActionTypes[obj.action].desc, 10, y += 20
+			@context.fillText "Needs:", 10, y += 20
+
 			# str += " action:"+obj.action
 			# str += " x:" + Math.floor obj.pos.x
 			# str += " y:" + Math.floor obj.pos.y

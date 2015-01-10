@@ -42,7 +42,12 @@ class Grid
 			while blocks.length > 0
 				#start a new room
 				# console.log "new room"
-				room = {blocks:[]}
+				room = 
+					blocks:[]
+					minx: Infinity
+					miny: Infinity
+					maxx: -Infinity
+					maxy: -Infinity
 				blocksToCheck = [blocks.shift()]
 				while blocksToCheck.length > 0
 					check = blocksToCheck.shift()
@@ -55,7 +60,12 @@ class Grid
 						if match
 							blocksToCheck.push block
 					blocks = _.difference blocks, blocksToCheck
+					if check.x < room.minx then room.minx = check.x
+					if check.y < room.miny then room.miny = check.y
+					if check.x > room.maxx then room.maxx = check.x
+					if check.y > room.maxy then room.maxy = check.y
 					room.blocks.push check
+
 				rooms.push room
 			@rooms[key] = rooms
 		# console.log @rooms
@@ -312,6 +322,9 @@ class Grid
 			@context.font = '10px verdana'
 			@context.fillText block.x+','+block.y, offset.x, offset.y+10
 
+		
+
+
 	#starts mega draw call
 	render: ->
 		# console.log "render grid"
@@ -320,6 +333,22 @@ class Grid
 		# console.log blocks
 		for block in blocks
 			@renderBlock block
+
+		@renderRooms()
+
+
+
+	renderRooms: ->
+		# console.log "do me"
+		for type of @rooms
+			roomType = RoomTypes[type]
+			rooms = @rooms[type]
+			# console.log rooms
+			for room in rooms
+				offset = @blockPosition {x: room.minx, y: room.miny}
+				# console.log roomType.name
+				@context.font = '10px verdana'
+				@context.fillText roomType.name, offset.x+5, offset.y+15
 
 
 
