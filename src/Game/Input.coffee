@@ -94,10 +94,12 @@ class Input
 		switch @state
 			when states.selecting
 				Game.grid.selection = calcSelection()
-				Imagine.notify 'gridStateChanged'
+				# Imagine.notify 'gridStateChanged'
+				Game.grid.requireRender()
 			when states.deselecting
 				Game.grid.selection = calcSelection()
-				Imagine.notify 'gridStateChanged'
+				# Imagine.notify 'gridStateChanged'
+				Game.grid.requireRender()
 			when states.moving
 				Game.state.view.offset.x -= delta.x
 				Game.state.view.offset.y -= delta.y

@@ -18,6 +18,9 @@ class Character
 
 		@whatToDoNext()
 
+	gridStateChanged: ->
+		@whatToDoNext()
+
 	setPathToRoom: (type) ->
 		blocks = Game.grid.blocksWithRoom type
 		if blocks.length > 0

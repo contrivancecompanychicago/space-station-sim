@@ -112,7 +112,7 @@ class Grid
 	path: (start, end) ->
 		# unless pathData
 		# @calcPathData()
-		if (start.x is end.x) and (start.y = end.y)
+		if (start.x is end.x) and (start.y is end.y)
 			return [end]
 
 
