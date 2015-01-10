@@ -63,7 +63,8 @@ class Character
 
 	getBlockPosition: (block) ->
 		pos = new vic(block.x* config.grid.block.width, block.y * config.grid.block.height)
-		pos.add new vic(Math.random()*20, Math.random()*20)
+		v = (config.grid.block.width / 4) + (Math.random() * (config.grid.block.width / 2))
+		pos.add new vic(v, v)
 
 	setTarget: ->
 		if @path 
