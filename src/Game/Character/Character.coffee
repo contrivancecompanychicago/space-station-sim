@@ -5,24 +5,8 @@ Imagine = require '../../../bower_components/imagine/imagine.js'
 namegen = require '../Util/namegen.coffee'
 vic = require 'victor'
 
-ActionTypes = 
-	walk:
-		waitTime: 0
-	wait:
-		waitTime: 3
-	leave:
-		room: 'dock'
-	shop:
-		waitTime: 1
-		room: 'shop'
-		need: ['shop']
-	bar:
-		waitTime: 5
-		room: 'bar'
-		need: ['fun']
-	medical:
-		room: 'medical'
-		need: ['medical']
+ActionTypes = require './Action/Types.coffee'
+
 
 
 class Character
@@ -101,7 +85,16 @@ class Character
 				need = @needs[action.need]
 				if need #if needs to go to this room
 					path[action.room] = @findPathToRoom action.room
-					if path[action.room] then options.push type
+					if path[action.room] then options.push {
+						action: type
+						length: path[action.room].length
+						need: need
+					}
+		if options.length #what one do I want the most
+			options.sort (a, b) ->
+				b.need - a.need
+			options = [options[0].action]
+			# debugger
 
 		if options.length is 0
 			path.leave = @findPathToRoom 'dock'

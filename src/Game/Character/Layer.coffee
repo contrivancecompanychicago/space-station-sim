@@ -1,6 +1,7 @@
 config = require '../config.coffee'
 Character = require './Character.coffee'
 Imagine = require '../../../bower_components/imagine/imagine.js'
+ActionTypes = require '../Character/Action/Types.coffee'
 
 class CharacterLayer
 	cw = config.canvas.width
@@ -30,13 +31,17 @@ class CharacterLayer
 
 		if Game.input.objectUnderMouse
 			obj = Game.input.objectUnderMouse
-			@context.fillStyle = "grey"
+			@context.fillStyle = "white"
 			@context.font = 'bold 16px verdana'
-			str = obj.firstname + " " + obj.lastname + ":"
-			str += " action:"+obj.action
-			str += " x:" + Math.floor obj.pos.x
-			str += " y:" + Math.floor obj.pos.y
-			@context.fillText str, 10, ch - 20
+			y = 30
+			@context.fillText obj.firstname + " " + obj.lastname, 10, y += 20
+			@context.font = '14px verdana'
+			@context.fillText ActionTypes[obj.action].desc, 10, y += 20
+			# str += " action:"+obj.action
+			# str += " x:" + Math.floor obj.pos.x
+			# str += " y:" + Math.floor obj.pos.y
+			# # console.log @context.measureText str
+			# @context.fillText str, 10, ch - 20
 
 	renderChar: (data) ->
 		pos = Game.localToGlobal data
