@@ -11,3 +11,6 @@ module.exports =
 	bar:
 		name: 'bar'
 		color: 'rgba(100, 100, 100, 0.2)'
+	medical:
+		name: 'medical'
+		color: 'rgba(100, 255, 100, 0.2)'

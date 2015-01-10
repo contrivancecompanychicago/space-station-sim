@@ -91,12 +91,16 @@ class Character
 		# debugger
 		options = []
 		path = {}
-		path.shop = @findPathToRoom 'shop'
-		if path.shop then options.push 'shop'
-		path.bar = @findPathToRoom 'bar'
-		if path.bar then options.push 'bar'
-		path.leave = @findPathToRoom 'dock'
-		if path.leave then options.push 'leave'
+		if @needs.shop
+			path.shop = @findPathToRoom 'shop'
+			if path.shop then options.push 'shop'
+		if @needs.fun
+			path.bar = @findPathToRoom 'bar'
+			if path.bar then options.push 'bar'
+
+		if options.length is 0
+			path.leave = @findPathToRoom 'dock'
+			if path.leave then options.push 'leave'
 
 
 		if options.length is 0
@@ -166,6 +170,10 @@ class Character
 		switch @action
 			when 'leave'
 				Imagine.destroy @
+			when 'shop'
+				@needs.shop = 0
+			when 'bar'
+				@needs.fun = 0
 
 		@whatToDoNext()
 
