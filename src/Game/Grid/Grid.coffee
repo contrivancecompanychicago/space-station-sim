@@ -4,7 +4,8 @@ BlockTypes = require './Block/Types.coffee'
 config = require '../config.coffee'
 Imagine = require '../../../bower_components/imagine/imagine.js'
 RoomTypes = require './Room/Types.coffee'
-Objects = require './Objects.coffee'
+Item = require './Item.coffee'
+ItemTypes = require './Item/Types.coffee'
 
 class Grid
 
@@ -13,7 +14,7 @@ class Grid
 		
 		# console.log Game.state
 		@context = @canvas.getContext('2d')
-		@objects = new Objects(@context)
+		@item = new Item(@context)
 		@calcData()
 		@render()
 
@@ -293,13 +294,7 @@ class Grid
 
 		offset = @blockPosition block
 
-		# out = (off + (wide*x))*scale
-		# solve for x
-		# out/scale = off + (wide*x)
-		# (out/scale) - off = wide*x
-		# ((out/scale) - off)/wide = x
-
-		data = Game.state.gridData['g'+block.x+'_'+block.y]
+		data = Game.state.gridData[@blockToString block]
 		if data
 			type = BlockTypes[data.type]
 			type.render @context, offset, data
@@ -327,7 +322,14 @@ class Grid
 			@context.font = '10px verdana'
 			@context.fillText block.x+','+block.y, offset.x, offset.y+10
 
-		
+	renderItem: (block) ->
+
+		offset = @blockPosition block
+		data = Game.state.itemData[@blockToString block]
+		if data
+			type = ItemTypes[data.type]
+			type.render @context, offset, data
+
 
 
 	#starts mega draw call
@@ -338,8 +340,11 @@ class Grid
 		# console.log blocks
 		for block in blocks
 			@renderBlock block
+		for block in blocks
+			@renderItem block
 
 		@renderRooms()
+		
 
 
 

@@ -16,5 +16,7 @@ module.exports =
 		g6_5: {type:'plain'}
 		g6_6: {type:'plain'}
 		}
-	itemData: {}
+	itemData: {
+		g5_5: {type:'test'}
+	}
 	characterData: {}
