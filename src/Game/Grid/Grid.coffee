@@ -350,6 +350,7 @@ class Grid
 
 	renderRooms: ->
 		# console.log "do me"
+		@context.fillStyle = 'rgba(0,0,0,0.5)'
 		for type of @rooms
 			roomType = RoomTypes[type]
 			rooms = @rooms[type]
