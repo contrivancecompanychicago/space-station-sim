@@ -25,9 +25,9 @@ class Character
 
 	makeNeeds: ->
 		@needs =
-			energy: Math.random()
+			# energy: Math.random()
 			fun: Math.random()
-			hunger: Math.random()
+			# hunger: Math.random()
 			shop: Math.random()
 			medical: Math.random()
 

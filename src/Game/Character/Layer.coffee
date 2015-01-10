@@ -38,6 +38,20 @@ class CharacterLayer
 			@context.font = '14px verdana'
 			@context.fillText ActionTypes[obj.action].desc, 10, y += 20
 			@context.fillText "Needs:", 10, y += 20
+			@context.font = '10px verdana'
+			# console.log obj
+			for need of obj.needs
+				@context.fillStyle = 'white'
+				@context.fillText need, 10, y += 14
+				@context.fillStyle = 'grey'
+				y += 4
+				@context.fillRect 10, y, 100, 10
+				need = obj.needs[need]
+				r = Math.floor(need * 255)
+				@context.fillStyle = 'rgb(' + r + ',' + (255-r) + ',0)'
+				@context.fillRect 10, y, need * 100, 10
+				 
+				y += 10
 
 			# str += " action:"+obj.action
 			# str += " x:" + Math.floor obj.pos.x
