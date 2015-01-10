@@ -12,6 +12,10 @@ class ModeSelector
 		@state.selected = 'room'
 		Imagine.notify 'UIModeSelected'
 		@render()
+	UIItemSelected: ->
+		@state.selected = 'item'
+		Imagine.notify 'UIModeSelected'
+		@render()
 	constructor: (@container) ->
 		@render()
 	render: ->
