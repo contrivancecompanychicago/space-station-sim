@@ -114,15 +114,12 @@ class Character
 
 		if options.length is 0
 			options.push 'walk'
+			destination = Game.grid.randomBlock()
+			path.walk = Game.grid.path(@block, destination)
 			options.push 'wait'
 
 		action = options[Math.floor(Math.random() * options.length)]
 		@setAction action, path[action]
-
-		# action = @actions[Math.floor(Math.random() * @actions.length)]
-		# @setAction action
-
-
 
 
 	walkUpdate: ->
@@ -141,30 +138,23 @@ class Character
 
 	setAction: (@action, path) ->
 		@waitTime = 0
+		unless path 
+			unless @action is 'wait'
+				debugger
+				throw new Error 'no path'
 		# console.log @, @waitTime
+		action = ActionTypes[@action]
+		if action.waitTime
+			@waitTime = action.waitTime
+
+		if path
+			@path = path
 		switch @action
-			when 'walk'
-				@destination = Game.grid.randomBlock()
-				@setPath @destination
+			# when 'walk'
+			# 	# @destination = Game.grid.randomBlock()
+			# 	# @setPath @destination
 			when 'wait'
-				@waitTime = Math.random() * 5
-			when 'leave'
-				unless path
-					path = @findPathToRoom 'dock'
-				if path
-					@path = path
-			when 'shop'
-				unless path
-					path = @findPathToRoom 'shop'
-				if path
-					@waitTime = 1
-					@path = path
-			when 'bar'
-				unless path
-					path = @findPathToRoom 'bar'
-				if path
-					@waitTime = 4
-					@path = path
+				@waitTime = Math.random() * action.waitTime
 	update: ->
 
 		@walkUpdate()
