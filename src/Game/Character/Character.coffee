@@ -5,6 +5,20 @@ Imagine = require '../../../bower_components/imagine/imagine.js'
 namegen = require '../Util/namegen.coffee'
 vic = require 'victor'
 
+ActionTypes = 
+	walk:
+		waitTime: 0
+	wait:
+		waitTime: 3
+	leave:
+		room: 'dock'
+	shop:
+		room: 'shop'
+		need: ['shop']
+	bar:
+		room: 'bar'
+		need: ['fun']
+
 class Character
 	name: 'character'
 	speed: 50
@@ -74,29 +88,24 @@ class Character
 				@target = @getBlockPosition @block
 			else
 				@target = null
-			# if @path.length is 0
-			# 	@target = null
-			# 	@endAction()
-			# else
-			# 	unless @path
-			# 		debugger
-			# 	@block = @path.shift()
-			# 	@target = @getBlockPosition @block
-			
 
-	actions: ['walk', 'wait', 'leave', 'shop', 'bar']
+	# actions: ['walk', 'wait', 'leave', 'shop', 'bar']
 	whatToDoNext: ->
 		
 		# console.log "what next"
 		# debugger
 		options = []
 		path = {}
-		if @needs.shop
-			path.shop = @findPathToRoom 'shop'
-			if path.shop then options.push 'shop'
-		if @needs.fun
-			path.bar = @findPathToRoom 'bar'
-			if path.bar then options.push 'bar'
+		for type of ActionTypes
+			action = ActionTypes[type]
+			if action.need #only process actions with needs
+				need = @needs[action.need]
+				if need #if needs to go to this room
+					path[action.room] = @findPathToRoom action.room
+					if path[action.room] then options.push type
+
+
+
 
 		if options.length is 0
 			path.leave = @findPathToRoom 'dock'
@@ -107,7 +116,7 @@ class Character
 			options.push 'walk'
 			options.push 'wait'
 
-		action = options[Math.floor(Math.random() * @actions.length)]
+		action = options[Math.floor(Math.random() * options.length)]
 		@setAction action, path[action]
 
 		# action = @actions[Math.floor(Math.random() * @actions.length)]
@@ -121,7 +130,7 @@ class Character
 			diff = @target.clone().subtract(@pos)
 			len = diff.length()
 			dir = diff.norm()
-			m = Imagine.time.deltaTime * @speed
+			m = Imagine.time.deltaTime * @speed * Game.state.timeScale
 			dir.multiply(new vic(m,m))
 			@pos.add dir
 			if len < 10
@@ -161,7 +170,7 @@ class Character
 		@walkUpdate()
 		# console.log @target
 		unless @target #still walking
-			@waitTime -= Imagine.time.deltaTime
+			@waitTime -= Imagine.time.deltaTime * Game.state.timeScale
 			if @waitTime < 0
 				@endAction()
 					

@@ -1,13 +1,13 @@
 <div id="roomSelector" class="selector<% if(mode.selected == 'room'){ %> selected<% } %>">
 	Room Selector<hr />
 	<%
-	types = ['shop', 'dock', 'storage', 'bar'];
+
 	types.forEach(function(type){
 		%>
 		<button 
 		value="<%= type %>"
 		<% if(state.selected == type){ %>class="selected"<% } %>
-		><%= type %></button>
+		><%= type %></button><br />
 		<%
 		});
 	%>

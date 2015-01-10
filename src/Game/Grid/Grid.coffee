@@ -1,6 +1,6 @@
 _ = require 'underscore'
 astar = require 'javascript-astar'
-Block = require './Block/Block.coffee'
+BlockTypes = require './Block/Types.coffee'
 config = require '../config.coffee'
 Imagine = require '../../../bower_components/imagine/imagine.js'
 RoomTypes = require './Room/Types.coffee'
@@ -73,7 +73,7 @@ class Grid
 		blocks = keys.map (key) =>
 			block = @stringToBlock key
 			block.data = Game.state.gridData[key]
-			block.type = Block[block.data.type]
+			block.type = BlockTypes[block.data.type]
 			if block.x < minx then minx = block.x
 			if block.y < miny then miny = block.y
 			if block.x > maxx then maxx = block.x
@@ -178,7 +178,7 @@ class Grid
 		if keys.length is 0
 			throw new error 'no block'
 		key = keys[Math.floor(Math.random()*keys.length)]; #random key
-		if Block[Game.state.gridData[key].type].isWall
+		if BlockTypes[Game.state.gridData[key].type].isWall
 			return @randomBlock() # try again
 		@stringToBlock key
 
@@ -220,7 +220,7 @@ class Grid
 			key = @blockToString bl
 			val = Game.state.gridData[key]
 			if val
-				type = Block[val.type]
+				type = BlockTypes[val.type]
 				unless type.isWall
 					bl.data = val
 					out.push bl
@@ -286,7 +286,7 @@ class Grid
 
 		data = Game.state.gridData['g'+block.x+'_'+block.y]
 		if data
-			type = Block[data.type]
+			type = BlockTypes[data.type]
 			type.render @context, offset, data
 			room = data.room
 			if room
