@@ -1,0 +1,13 @@
+<div id="speedSelector" class="selector">
+	Speed Selector<hr />
+	<%
+	options.forEach(function(type){
+		%>
+		<button 
+		value="<%= type %>"
+		<% if(selected == type){ %>class="selected"<% } %>
+		><%= type %></button>
+		<%
+		});
+	%>
+</div>

@@ -4,11 +4,16 @@ BlockTypes = require './Block/Types.coffee'
 config = require '../config.coffee'
 Imagine = require '../../../bower_components/imagine/imagine.js'
 RoomTypes = require './Room/Types.coffee'
+Objects = require './Objects.coffee'
+
 class Grid
 
 	constructor: (@canvas) ->
+
+		
 		# console.log Game.state
 		@context = @canvas.getContext('2d')
+		@objects = new Objects(@context)
 		@calcData()
 		@render()
 
