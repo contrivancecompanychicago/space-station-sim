@@ -3,12 +3,16 @@ _ = require 'underscore'
 config = require '../config.coffee'
 Imagine = require '../../../bower_components/imagine/imagine.js'
 
+namegen = require '../Util/namegen.coffee'
 
 class Character
 	name: 'character'
 	speed: 50
 
 	constructor: (data) ->
+
+		# console.log namegen()
+
 		if data?.block
 			@block = data.block
 		else
