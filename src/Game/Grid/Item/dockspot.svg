@@ -493,6 +493,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -520,7 +521,9 @@
        sodipodi:rx="58.214287"
        sodipodi:ry="58.214287"
        d="m 116.42857,58.714287 a 58.214287,58.214287 0 1 1 -116.42857,0 58.214287,58.214287 0 1 1 116.42857,0 z"
-       transform="matrix(0.87136141,0,0,0.87136141,13.274317,937.20081)" />
+       transform="matrix(0.87136141,0,0,0.87136141,13.274317,937.20081)"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        sodipodi:type="arc"
        style="fill:none;stroke:#c0c0c0;stroke-width:9.59999999999999960;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;opacity:1;filter:url(#filter4037)"
