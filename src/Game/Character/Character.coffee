@@ -115,8 +115,8 @@ class Character
 			# debugger
 
 		if options.length is 0
-			if @dock
-				path.leave = @findPathToBlock @dock
+			if @data.dock
+				path.leave = @findPathToBlock @data.dock
 				# console.log path.leave
 			unless path.leave	
 				path.leave = @findPathToRoom 'dock'
@@ -200,12 +200,13 @@ class Character
 				# @data.del = "me"
 				# delete @data
 				# console.log @block, @dock
-				if (@block.x is @dock.x) and (@block.y is @dock.y)
-					# leaving at the dock I came from
-					data = Game.state.itemData[Game.grid.blockToString @dock]
-					# console.log data
-					if data?.waitingFor
-						data.waitingFor--
+				if @data.dock
+					if (@block.x is @data.dock.x) and (@block.y is @data.dock.y)
+						# leaving at the dock I came from
+						data = Game.state.itemData[Game.grid.blockToString @data.dock]
+						# console.log data
+						if data?.waitingFor
+							data.waitingFor--
 
 				Imagine.destroy @
 

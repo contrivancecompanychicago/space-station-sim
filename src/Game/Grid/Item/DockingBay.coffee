@@ -42,7 +42,7 @@ Imagine
 							num = 1 + Math.floor(Math.random()*4)
 							for [1..num]
 								char = Imagine new Character({block})
-								char.dock = block
+								char.data.dock = block
 							data.waitingFor = num
 							Imagine.notify 'itemStateChanged'
 
