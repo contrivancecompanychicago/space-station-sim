@@ -152,7 +152,7 @@ class Character
 			when 'wait'
 				@waitTime = Math.random() * action.waitTime
 	update: ->
-
+		action = ActionTypes[@action]
 		@walkUpdate()
 		# console.log @target
 		unless @target #still walking
@@ -176,7 +176,9 @@ class Character
 					# leaving at the dock I came from
 					data = Game.state.itemData[Game.grid.blockToString @dock]
 					# console.log data
-					data.waitingFor--
+					if data?.waitingFor
+						data.waitingFor--
+
 				Imagine.destroy @
 
 		@whatToDoNext()
