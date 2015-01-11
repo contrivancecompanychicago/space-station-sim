@@ -37,7 +37,8 @@ class window.Game
 		@constructor.input = Imagine new Input canvas
 
 		canvas.id = "character"
-		_.extend canvas, config.canvas
+		for attr of config.canvas
+			canvas.setAttribute attr, config.canvas[attr]
 		_.extend canvas.style, config.canvas.style
 		$(container).append canvas
 		@constructor.character = Imagine new CharacterLayer canvas
@@ -45,9 +46,10 @@ class window.Game
 		# UI
 		UIdiv = document.createElement 'div'
 		UIdiv.id = "ui"
+		
+		$(container).append UIdiv
 		@constructor.ui = new UI UIdiv
 
-		$(container).append UIdiv
 
 	@globalToLocal: (point) ->
 		x: ((point.x / Game.state.view.scale) - Game.state.view.offset.x)

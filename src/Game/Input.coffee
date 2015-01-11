@@ -72,6 +72,8 @@ class Input
 		@state = e.button
 
 	disengageMouse = (e) =>
+		Game.grid.selection = null
+
 		if (@state is states.selecting) or (@state is states.deselecting)
 			sel = calcSelection()
 			for x in [sel.l..sel.r]
@@ -80,11 +82,13 @@ class Input
 						Game.grid.addBlock {x, y}
 					if @state is states.deselecting
 						Game.grid.removeBlock {x, y}
+			Imagine.notify 'gridStateChanged'
 
-
-		Game.grid.selection = null
-		Imagine.notify 'gridStateChanged'
+			
 		@state = states.blank
+		
+		
+		
 
 	moveMouse = (e) =>
 		# console.log @mousePosition

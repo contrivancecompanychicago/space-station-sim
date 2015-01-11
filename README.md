@@ -22,3 +22,5 @@ todo:
  * bug: middle click resetting paths
  * make docks work
  * save characters
+ * highlighting
+ * selecting charcters, rooms, items

@@ -18,6 +18,8 @@ class Grid
 		@calcData()
 		@render()
 
+	itemStateChanged: =>
+		@requireRender()
 
 	viewStateChanged: =>
 		Game.save()
@@ -131,7 +133,6 @@ class Grid
 		if (start.x is end.x) and (start.y is end.y)
 			return [end]
 
-
 		pathData.graph = new astar.Graph pathData.arr
 
 		start = pathData.graph.grid[start.x-pathData.minx][start.y-pathData.miny]
@@ -212,6 +213,7 @@ class Grid
 			when 'item'
 				type = Game.ui.item.state.selected
 				obj = {type:type}
+				_.extend obj, ItemTypes[type].defaults
 				Game.state.itemData[@blockToString(pos)] = obj
 			
 	removeBlock: (pos) ->

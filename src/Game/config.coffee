@@ -9,6 +9,7 @@ module.exports =
 	canvas:
 		width: 1200
 		height: 480
+		oncontextmenu: "return false;"
 		style:
 			position: "absolute"
 			border: "1px solid white"

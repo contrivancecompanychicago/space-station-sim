@@ -5,6 +5,8 @@ Imagine = require '../../../../bower_components/imagine/imagine.js'
 item = new Base(2, 2)
 item.defaults = 
 	ship: false
+	waitingFor: 0
+	timeTilDock: 3
 item.render = (context, offset, data) ->
 	@.renderImage 'dockspot.png', context, offset
 	if data.ship
@@ -31,11 +33,13 @@ Imagine
 						data.ship = !data.ship
 						data.timeTilDock = 1 + (5*Math.random())
 						landShip Game.grid.stringToBlock key
-						Imagine.notify 'gridStateChanged'
+						Imagine.notify 'itemStateChanged'
 
 
 
 
 
 landShip = (block) ->
-	Imagine new Character({block})
+	num = 1 + Math.floor(Math.random()*4)
+	for [0..1]
+		Imagine new Character({block})
