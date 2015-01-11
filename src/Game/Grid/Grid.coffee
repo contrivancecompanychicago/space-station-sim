@@ -209,6 +209,9 @@ class Grid
 				type = Game.ui.room.state.selected
 				obj = {type: 'plain', room:type}
 				Game.state.gridData[@blockToString(pos)] = obj
+			when 'item'
+				obj = {type:'test'}
+				Game.state.itemData[@blockToString(pos)] = obj
 			
 	removeBlock: (pos) ->
 		mode = Game.ui.mode.state.selected
@@ -218,6 +221,8 @@ class Grid
 			when 'room'
 				if Game.state.gridData[@blockToString(pos)]
 					delete Game.state.gridData[@blockToString(pos)].room
+			when 'item'
+				delete Game.state.itemData[@blockToString(pos)]
 
 	# returns adjacent block data
 	adjacentBlocks: (block) ->
