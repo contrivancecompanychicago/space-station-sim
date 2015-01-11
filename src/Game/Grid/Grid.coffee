@@ -216,16 +216,19 @@ class Grid
 				obj = {type: 'plain', room:type}
 				Game.state.gridData[@blockToString(pos)] = obj
 			when 'item'
-				type = Game.ui.item.state.selected
-				obj = {type:type}
-				_.extend obj, ItemTypes[type].defaults
-				Game.state.itemData[@blockToString(pos)] = obj
+				block = @blockToString(pos)
+				if Game.state.gridData[block]#check if block exists
+					type = Game.ui.item.state.selected
+					obj = {type:type}
+					_.extend obj, ItemTypes[type].defaults
+					Game.state.itemData[block] = obj
 			
 	removeBlock: (pos) ->
 		mode = Game.ui.mode.state.selected
 		switch mode
 			when 'block'
 				delete Game.state.gridData[@blockToString(pos)]
+				delete Game.state.itemData[@blockToString(pos)]
 			when 'room'
 				if Game.state.gridData[@blockToString(pos)]
 					delete Game.state.gridData[@blockToString(pos)].room
