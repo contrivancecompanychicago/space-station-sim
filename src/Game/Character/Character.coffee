@@ -15,7 +15,7 @@ class Character
 
 	constructor: (params) ->
 		[@firstname, @lastname] = namegen()
-		@makeNeeds()
+		
 		if params?.block
 			@block = params.block
 		else
@@ -30,6 +30,7 @@ class Character
 				firstname: @firstname
 				lastname: @lastname
 			@data = Game.state.characterData.visitor[Game.state.characterData.visitor.length-1]
+			@makeNeeds()
 
 
 
@@ -37,7 +38,7 @@ class Character
 		@whatToDoNext()
 
 	makeNeeds: ->
-		@needs =
+		@data.needs =
 			# energy: Math.random()
 			fun: Math.random()
 			# hunger: Math.random()
@@ -100,7 +101,7 @@ class Character
 		for type of ActionTypes
 			action = ActionTypes[type]
 			if action.need #only process actions with needs
-				need = @needs[action.need]
+				need = @data.needs[action.need[0]]
 				if need #if needs to go to this room
 					path[action.room] = @findPathToRoom action.room
 					if path[action.room] then options.push {
@@ -176,7 +177,7 @@ class Character
 			need = 0
 			if action.need
 				need = action.need.map((need) ->
-					@needs[need] -= 0.1 * Imagine.time.deltaTime * Game.state.timeScale
+					@data.needs[need] -= 0.1 * Imagine.time.deltaTime * Game.state.timeScale
 				, @)
 				.reduce (a,b) ->
 					a+b
@@ -191,7 +192,7 @@ class Character
 		# console.log action
 		if action.need
 			for need in action.need
-				@needs[need] = 0
+				@data.needs[need] = 0
 
 		switch @action
 			when 'leave'
