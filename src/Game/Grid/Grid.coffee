@@ -81,12 +81,17 @@ class Grid
 
 
 	calcPathData: ->
+		keys = _.keys Game.state.gridData
+		if keys.length is 0
+			return 
+			arr: []
+			min: 0
+			max: 0
 		minx = Infinity
 		miny = Infinity
 		maxx = -Infinity
 		maxy = -Infinity
 
-		keys = _.keys Game.state.gridData
 		# gather data
 		blocks = keys.map (key) =>
 			block = @stringToBlock key

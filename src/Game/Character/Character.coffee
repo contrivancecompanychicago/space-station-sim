@@ -14,7 +14,7 @@ class Character
 	speed: 50
 
 	constructor: (params) ->
-		[@firstname, @lastname] = namegen()
+		
 		
 		if params?.block
 			@block = params.block
@@ -26,9 +26,10 @@ class Character
 		if params?.data
 			@data = params.data
 		else
+			[firstname, lastname] = namegen()
 			Game.state.characterData.visitor.push
-				firstname: @firstname
-				lastname: @lastname
+				firstname: firstname
+				lastname: lastname
 			@data = Game.state.characterData.visitor[Game.state.characterData.visitor.length-1]
 			@makeNeeds()
 
@@ -166,7 +167,6 @@ class Character
 			when 'wait'
 				@waitTime = Math.random() * action.waitTime
 	update: ->
-		@data.rand = "1234"
 		action = ActionTypes[@action]
 		@walkUpdate()
 		# console.log @target

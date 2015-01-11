@@ -39,7 +39,7 @@ class CharacterLayer
 			@context.fillStyle = "white"
 			@context.font = 'bold 16px verdana'
 			y = 30
-			@context.fillText obj.firstname + " " + obj.lastname, 10, y += 20
+			@context.fillText obj.data.firstname + " " + obj.data.lastname, 10, y += 20
 			@context.font = '14px verdana'
 			@context.fillText ActionTypes[obj.action].desc, 10, y += 20
 			@context.fillText "Needs:", 10, y += 20
