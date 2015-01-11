@@ -5,6 +5,10 @@ gbh = config.grid.block.height
 
 class Base
 
+	constructor: (@width, @height) ->
+		unless @width then @width = 1
+		unless @height then @height = 1
+
 	imagePath = 'Game/Grid/Item/'
 	renderImage: (image, context, offset) ->
 
@@ -14,8 +18,8 @@ class Base
 		sourceY = 0;
 		sourceWidth = image.width;
 		sourceHeight = image.height;
-		destWidth = gbw * Game.state.view.scale;
-		destHeight = gbh * Game.state.view.scale;
+		destWidth = gbw * Game.state.view.scale * @width;
+		destHeight = gbh * Game.state.view.scale * @height;
 		destX = offset.x
 		destY = offset.y
 		context.drawImage image, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight
