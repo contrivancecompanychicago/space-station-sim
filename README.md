@@ -18,3 +18,4 @@ todo:
  * task queue
  * selective character rendering
  * item block shadows before building
+ * room validation

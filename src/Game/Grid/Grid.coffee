@@ -210,7 +210,8 @@ class Grid
 				obj = {type: 'plain', room:type}
 				Game.state.gridData[@blockToString(pos)] = obj
 			when 'item'
-				obj = {type:'test'}
+				type = Game.ui.item.state.selected
+				obj = {type:type}
 				Game.state.itemData[@blockToString(pos)] = obj
 			
 	removeBlock: (pos) ->

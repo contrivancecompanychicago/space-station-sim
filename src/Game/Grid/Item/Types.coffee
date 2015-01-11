@@ -4,6 +4,7 @@
 
 module.exports = 
 	test: require './Test.coffee'
+	dockingbay: require './DockingBay.coffee'
 	# test: 
 	# 	render: (context, offset, data) ->
 	# 		context.fillStyle = "red"
