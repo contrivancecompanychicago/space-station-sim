@@ -12,6 +12,11 @@ class CharacterLayer
 		# for [0..0]
 		# 	@addCharacter()
 		@willRender = true
+
+		Game.state.characterData.visitor.forEach (data) ->
+			Imagine new Character({data})
+
+		# throw new Error 'LOAD CHAR DATA'
 		@render()
 
 	# wipes canvas
