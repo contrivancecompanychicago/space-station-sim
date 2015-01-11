@@ -53,11 +53,6 @@ class CharacterLayer
 				 
 				y += 10
 
-			# str += " action:"+obj.action
-			# str += " x:" + Math.floor obj.pos.x
-			# str += " y:" + Math.floor obj.pos.y
-			# # console.log @context.measureText str
-			# @context.fillText str, 10, ch - 20
 
 	renderChar: (data) ->
 		pos = Game.localToGlobal data

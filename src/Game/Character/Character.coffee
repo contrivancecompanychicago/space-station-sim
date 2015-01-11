@@ -156,8 +156,19 @@ class Character
 		@walkUpdate()
 		# console.log @target
 		unless @target #still walking
-			@waitTime -= Imagine.time.deltaTime * Game.state.timeScale
-			if @waitTime < 0
+			timediff = Imagine.time.deltaTime * Game.state.timeScale
+			@waitTime -= timediff
+			# debugger
+			need = 0
+			if action.need
+				need = action.need.map((need) ->
+					@needs[need] -= 0.1 * Imagine.time.deltaTime * Game.state.timeScale
+				, @)
+				.reduce (a,b) ->
+					a+b
+			# console.log need
+			
+			if @waitTime < 0 and need < 0
 				@endAction()
 					
 

@@ -140,6 +140,11 @@ class Input
 		#get mouse position
 		# console.log lastMouse
 		#search characters
+		alpha = Game.character.context.getImageData(lastMouse.x, lastMouse.y, 1, 1).data[3]
+		unless alpha
+			# def not over anything
+			return
+
 		chars = Imagine.getComponents 'character'
 		mousePos = Vic.fromObject Game.globalToLocal lastMouse
 		chars.forEach (char) =>
