@@ -6,6 +6,8 @@ module.exports =
 		block:
 			width: 32
 			height: 32
+	character:
+		radius: 10
 	canvas:
 		width: 1200
 		height: 480

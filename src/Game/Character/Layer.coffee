@@ -60,7 +60,7 @@ class CharacterLayer
 		# @context.fillRect pos.x, pos.y, 10*Game.state.view.scale, 10*Game.state.view.scale
 
 		@context.beginPath()
-		@context.arc(pos.x, pos.y, 5*Game.state.view.scale, 0, 2 * Math.PI, false);
+		@context.arc(pos.x, pos.y, config.character.radius*Game.state.view.scale, 0, 2 * Math.PI, false);
 		@context.fill()
 		@context.closePath()
 

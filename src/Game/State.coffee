@@ -19,4 +19,6 @@ module.exports =
 	itemData: {
 		g5_5: {type:'test'}
 	}
-	characterData: {}
+	characterData: {
+		visitor: []
+	}

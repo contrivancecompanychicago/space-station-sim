@@ -13,14 +13,27 @@ class Character
 	name: 'character'
 	speed: 50
 
-	constructor: (data) ->
+	constructor: (params) ->
 		[@firstname, @lastname] = namegen()
 		@makeNeeds()
-		if data?.block
-			@block = data.block
+		if params?.block
+			@block = params.block
 		else
 			@block = Game.grid.randomBlock()
+
 		@pos = @getBlockPosition @block
+
+		if params?.data
+			@data = params.data
+		else
+			Game.state.characterData.visitor.push
+				firstname: @firstname
+				lastname: @lastname
+			@data = Game.state.characterData.visitor[Game.state.characterData.visitor.length-1]
+
+
+
+		
 		@whatToDoNext()
 
 	makeNeeds: ->
@@ -152,6 +165,7 @@ class Character
 			when 'wait'
 				@waitTime = Math.random() * action.waitTime
 	update: ->
+		@data.rand = "1234"
 		action = ActionTypes[@action]
 		@walkUpdate()
 		# console.log @target
@@ -168,7 +182,7 @@ class Character
 					a+b
 			# console.log need
 			
-			if @waitTime < 0 and need < 0
+			if @waitTime <= 0 and need <= 0
 				@endAction()
 					
 
@@ -181,7 +195,10 @@ class Character
 
 		switch @action
 			when 'leave'
-
+				# ind = Game.state.characterData.visitor.indexOf @data
+				Game.state.characterData.visitor = _.without Game.state.characterData.visitor, @data
+				# @data.del = "me"
+				# delete @data
 				# console.log @block, @dock
 				if (@block.x is @dock.x) and (@block.y is @dock.y)
 					# leaving at the dock I came from

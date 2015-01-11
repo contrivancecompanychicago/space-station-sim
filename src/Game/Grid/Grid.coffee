@@ -320,7 +320,7 @@ class Grid
 			@context.lineWidth = 3
 			@context.strokeStyle = "green"
 		else
-			@context.strokeStyle = "rgba(100,100,100,0.2)"
+			@context.strokeStyle = "rgba(100,100,100,0.0)"
 		@context.strokeRect offset.x, offset.y, gbw * Game.state.view.scale, gbh * Game.state.view.scale
 
 		# debug
