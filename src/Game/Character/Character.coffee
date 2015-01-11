@@ -56,6 +56,11 @@ class Character
 						pathLen = path.length
 						finalPath = path
 		finalPath
+	findPathToBlock: (block) ->
+		path = Game.grid.path(@block, block)
+		if path.length is 0
+			return false
+		path
 
 	setPath: (block) ->
 		@path = Game.grid.path(@block, block)
@@ -97,7 +102,11 @@ class Character
 			# debugger
 
 		if options.length is 0
-			path.leave = @findPathToRoom 'dock'
+			if @dock
+				path.leave = @findPathToBlock @dock
+				# console.log path.leave
+			unless path.leave	
+				path.leave = @findPathToRoom 'dock'
 			if path.leave then options.push 'leave'
 
 
@@ -161,6 +170,13 @@ class Character
 
 		switch @action
 			when 'leave'
+
+				# console.log @block, @dock
+				if (@block.x is @dock.x) and (@block.y is @dock.y)
+					# leaving at the dock I came from
+					data = Game.state.itemData[Game.grid.blockToString @dock]
+					# console.log data
+					data.waitingFor--
 				Imagine.destroy @
 
 		@whatToDoNext()

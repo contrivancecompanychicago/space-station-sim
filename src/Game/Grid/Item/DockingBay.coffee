@@ -25,21 +25,29 @@ Imagine
 			for key of Game.state.itemData
 				data = Game.state.itemData[key]
 				if data.type is "dockingbay"
-					# unless data.ship
-					unless data.timeTilDock
-						data.timeTilDock = 1 + (5*Math.random())
-					data.timeTilDock -= Imagine.time.deltaTime * Game.state.timeScale
-					if data.timeTilDock <=0
-						data.ship = !data.ship
-						data.timeTilDock = 1 + (5*Math.random())
-						landShip Game.grid.stringToBlock key
-						Imagine.notify 'itemStateChanged'
+					if data.ship
+						if data.waitingFor <=0 #everyone on board!
+							data.ship = false
+							data.timeTilDock = 4 + (5*Math.random())
+							Imagine.notify 'itemStateChanged'
+					else
+						unless data.timeTilDock
+							data.timeTilDock = 1 + (5*Math.random())
+						data.timeTilDock -= Imagine.time.deltaTime * Game.state.timeScale
+						if data.timeTilDock <=0
+							data.ship = true
+							
+							block = Game.grid.stringToBlock key
+
+							num = 1 + Math.floor(Math.random()*4)
+							for [1..num]
+								char = Imagine new Character({block})
+								char.dock = block
+							data.waitingFor = num
+							Imagine.notify 'itemStateChanged'
 
 
 
 
 
 landShip = (block) ->
-	num = 1 + Math.floor(Math.random()*4)
-	for [0..1]
-		Imagine new Character({block})
