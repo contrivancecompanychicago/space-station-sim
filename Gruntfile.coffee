@@ -67,6 +67,7 @@ module.exports = (grunt) ->
 		coffeeify: 
 			options:
 				debug: true
+				
 				# alias: 
 				# 	'jquery-browserify': 'jquery'
 			game:
