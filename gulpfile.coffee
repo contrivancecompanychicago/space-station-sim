@@ -7,11 +7,14 @@ concat = require 'gulp-concat'
 insert = require 'gulp-insert'
 base64 = require 'gulp-base64'
 coffeeify = require 'gulp-coffeeify'
+livereload = require 'gulp-livereload'
 _ = require 'underscore'
 
 gulp.task 'default', ['build']
 
-gulp.task 'build', [
+gulp.task 'build', ['coffeeify']
+
+gulp.task 'prep', [
 		'clean'
 		'copy-html'
 		'copy-coffee'
@@ -19,11 +22,20 @@ gulp.task 'build', [
 		'sass'
 		'copy-sprites'
 		'img-to-js'
-		'coffeeify'
+		# 'coffeeify'
 	]
 
+gulp.task 'watch', ->
+	livereload.listen()
+	gulp.watch 'gulpfile.coffee', ['livereload']
 
-gulp.task 'coffeeify', ->
+
+gulp.task 'livereload', ->
+	gulp.src 'dist/index.html'
+		.pipe livereload()
+
+
+gulp.task 'coffeeify', ['prep'], ->
 	gulp.src 'temp/main.coffee'
 		.pipe coffeeify()
 		.pipe gulp.dest 'dist'
@@ -37,7 +49,7 @@ gulp.task 'clean', (cb)->
 
 gulp.task 'copy-html', ['clean'], ->
 	gulp.src ['src/index.html']
-		.pipe gulp.dest 'temp'
+		.pipe gulp.dest 'dist'
 
 gulp.task 'copy-coffee', ['clean'], ->
 	gulp.src ['src/**/*.coffee']
