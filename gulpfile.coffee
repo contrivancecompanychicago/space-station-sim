@@ -70,7 +70,7 @@ gulp.task 'test', (opts = {})->
 					alias = path.join base, alias if base
 					alias = alias.replace /\.[^.]+$/, ''
 					aliasMap[alias] = file
-	console.log aliasMap
+	# console.log aliasMap
 	opts.builtins  = _.defaults require('browserify/lib/builtins'), aliasMap
 	data = {}
 	b = browserify(data, opts)
