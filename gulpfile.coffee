@@ -6,6 +6,7 @@ sass = require 'gulp-sass'
 concat = require 'gulp-concat'
 insert = require 'gulp-insert'
 base64 = require 'gulp-base64'
+_ = require 'underscore'
 
 gulp.task 'default', ['build']
 
@@ -79,11 +80,22 @@ gulp.task 'sass', ->
 
 
 gulp.task 'img-to-js', ->
-	gulp.src 'src/**/*.html'
-		.pipe base64string()
-		.pipe insert.prepend 'base64 = "'
-		.pipe insert.append '"\n'
-		.pipe concat('images.js')
+	gulp.src 'src/**/*.png'
+		# .pipe base64string()
+		.pipe through.obj (f,e,done) ->
+			bkslsh = /\\/g
+			path = f.path.substr f.base.length
+			path = path.replace(bkslsh, '/')
+			out = "img = document.createElement('img')\n"
+			out += "img.src = 'data:image/png;base64,"
+			out += f.contents.toString 'base64'
+			out += "'\nout['"+path+"'] = img\n"
+
+			f.contents = new Buffer out
+			this.push f
+			done()
+		.pipe concat('images.coffee')
 		.pipe insert.prepend 'out = {}\n'
-		.pipe gulp.dest 'temp'
+		.pipe insert.append 'module?.exports = out'
+		.pipe gulp.dest 'temp/Game'
 
