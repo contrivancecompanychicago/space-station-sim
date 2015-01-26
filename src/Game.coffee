@@ -18,6 +18,9 @@ class window.Game
 		# @constructor.state = "yes"
 		@container = container
 
+		@container.style.width = config.canvas.width + "px"
+		@container.style.position = "relative"
+
 
 		loaded = Storage.get()
 		if loaded

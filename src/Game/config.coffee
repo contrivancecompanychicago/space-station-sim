@@ -9,7 +9,7 @@ module.exports =
 	character:
 		radius: 10
 	canvas:
-		width: 1200
+		width: 800
 		height: 480
 		oncontextmenu: "return false;"
 		style:
