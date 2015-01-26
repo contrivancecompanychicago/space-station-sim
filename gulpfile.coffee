@@ -43,19 +43,31 @@ gulp.task 'livereload', ->
 gulp.task 'test', ->
 	b = browserify()
 	b.add './src/test.coffee'
+	b.add './src/Game/config.coffee'
+	b.add './src/index.html'
 	b.transform (file) ->
 		# console.log file
 		# console.log file.indexOf '.'
 		ext = file.substr file.indexOf '.'
 		# console.log ext
 		if ext is '.coffee'
-			
 			return through.obj (data,e,done) ->
-				console.log "compile"
+				# console.log "compile"
+				# console.log data.toString()
 				# console.log _.keys f
 				# f.contents = new Buffer coffee.compile f.contents.toString()
 				data = coffee.compile data.toString()
-				console.log data
+				# console.log data
+				this.push data
+				done()
+
+		if ext is '.html'
+			return through.obj (data,e,done) ->
+				pre = "_ = require('underscore');\r\nmodule.exports = _.template('"
+				post = "');"
+				content = data.toString().replace(/'/g, '\\\'').replace(/\r/g, '').replace(/\n/g, '')
+				# f.contents = new Buffer pre+content+post
+				data = pre+content+post
 				this.push data
 				done()
 
