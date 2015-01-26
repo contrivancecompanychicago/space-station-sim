@@ -1,7 +1,8 @@
 gulp = require 'gulp'
 clean = require 'gulp-clean'
-
+rename = require 'gulp-rename'
 through = require 'through2'
+sass = require 'gulp-sass'
 
 gulp.task 'default', ['build']
 
@@ -26,19 +27,24 @@ gulp.task 'templatify', ->
 	gulp.src 'src/**/*.html'
 
 
-Plugin = (f,e,done) ->
-	# console.log f.isBuffer()
-	pre = "_ = require('underscore');\r\nmodule.exports = _.template('"
-	post = "');"
-	content = f.contents.toString().replace(/'/g, '\\\'').replace(/\r/g, '').replace(/\n/g, '')
-	# f.contents = Buffer.concat [pre, f.contents, post]
-	f.contents = new Buffer pre+content+post
-	this.push f
-	done()
-plugin = ->
-	through.obj Plugin
+templatify = ->
+	through.obj (f,e,done) ->
+		pre = "_ = require('underscore');\r\nmodule.exports = _.template('"
+		post = "');"
+		content = f.contents.toString().replace(/'/g, '\\\'').replace(/\r/g, '').replace(/\n/g, '')
+		f.contents = new Buffer pre+content+post
+		this.push f
+		done()
 
-gulp.task 'test', ->
-	gulp.src 'src/index.html'
-	.pipe plugin()
+gulp.task 'templatify', ->
+	gulp.src 'src/**/*.html'
+	.pipe templatify()
+	.pipe rename { extname: '.html.js' }
 	.pipe gulp.dest 'temp'
+
+
+gulp.task 'sass', ->
+	gulp.src 'src/**/*.sass'
+		.pipe sass()
+		.pipe rename {extname: '.css'}
+		.pipe gulp.dest 'temp'
