@@ -6,6 +6,7 @@ sass = require 'gulp-sass'
 concat = require 'gulp-concat'
 insert = require 'gulp-insert'
 base64 = require 'gulp-base64'
+coffeeify = require 'gulp-coffeeify'
 _ = require 'underscore'
 
 gulp.task 'default', ['build']
@@ -18,14 +19,20 @@ gulp.task 'build', [
 		'sass'
 		'copy-sprites'
 		'img-to-js'
-		# 'coffeeify'
+		'coffeeify'
 	]
 
+
+gulp.task 'coffeeify', ->
+	gulp.src 'temp/main.coffee'
+		.pipe coffeeify()
+		.pipe gulp.dest 'dist'
 
 gulp.task 'clean', (cb)->
 	# return gulp.src 'temp'
 	# 	.pipe rimraf()
-	rimraf 'temp', cb
+	rimraf 'temp', ->
+		rimraf 'dist', cb
 
 
 gulp.task 'copy-html', ['clean'], ->
@@ -67,7 +74,7 @@ gulp.task 'templatify', ['clean'], ->
 	.pipe gulp.dest 'temp'
 
 
-gulp.task 'sass', ->
+gulp.task 'sass', ['clean'], ->
 	gulp.src 'src/**/*.sass'
 		.pipe sass()
 		.pipe rename {extname: '.css'}

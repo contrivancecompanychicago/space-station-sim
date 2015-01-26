@@ -68,6 +68,7 @@
     "gulp-base64": "^0.1.2",
     "gulp-insert": "^0.4.0",
     "gulp-rimraf": "^0.1.1",
-    "rimraf": "^2.2.8"
+    "rimraf": "^2.2.8",
+    "gulp-coffeeify": "^0.1.2"
   }
 }
