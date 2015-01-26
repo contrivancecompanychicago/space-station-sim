@@ -10,9 +10,9 @@ coffeeify = require 'gulp-coffeeify'
 livereload = require 'gulp-livereload'
 _ = require 'underscore'
 
-gulp.task 'default', ['build']
+gulp.task 'default', ['build', 'watch']
 
-gulp.task 'build', ['coffeeify']
+gulp.task 'build', ['prep', 'coffeeify']
 
 gulp.task 'prep', [
 		'clean'
@@ -27,7 +27,7 @@ gulp.task 'prep', [
 
 gulp.task 'watch', ->
 	livereload.listen()
-	gulp.watch 'gulpfile.coffee', ['livereload']
+	gulp.watch ['gulpfile.coffee', 'src/**/*.*'], ['build']
 
 
 gulp.task 'livereload', ->
@@ -37,8 +37,23 @@ gulp.task 'livereload', ->
 
 gulp.task 'coffeeify', ['prep'], ->
 	gulp.src 'temp/main.coffee'
-		.pipe coffeeify()
+	# gulp.src 'src/test.coffee'
+		.pipe coffeeify({
+			aliases: [
+				{
+					cwd: 'src'
+					# base: 'Game'
+				}
+				{
+					cwd: 'bower_components'
+					base: 'bower'
+				}
+			]
+			# debug: true
+		})
+		.pipe concat('main.js')
 		.pipe gulp.dest 'dist'
+		.pipe livereload()
 
 gulp.task 'clean', (cb)->
 	# return gulp.src 'temp'
