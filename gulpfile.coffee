@@ -1,5 +1,5 @@
 gulp = require 'gulp'
-clean = require 'gulp-clean'
+rimraf = require 'rimraf'
 rename = require 'gulp-rename'
 through = require 'through2'
 sass = require 'gulp-sass'
@@ -17,34 +17,30 @@ gulp.task 'build', [
 		'templatify'
 		'sass'
 		'copy-sprites'
-		'image-javascriptify'
-
-		'concat:css'
-		# 'testHeroku'
-		'coffeeify'
+		'img-to-js'
+		# 'coffeeify'
 	]
 
 
-gulp.task 'clean', ->
-	console.log "yolo"
-	gulp.src 'temp'
-		.pipe clean()
+gulp.task 'clean', (cb)->
+	# return gulp.src 'temp'
+	# 	.pipe rimraf()
+	rimraf 'temp', cb
 
-gulp.task 'copy-html', ->
+
+gulp.task 'copy-html', ['clean'], ->
 	gulp.src ['src/index.html']
 		.pipe gulp.dest 'temp'
 
-gulp.task 'copy-coffee', ->
+gulp.task 'copy-coffee', ['clean'], ->
 	gulp.src ['src/**/*.coffee']
 		.pipe gulp.dest 'temp'
 
-gulp.task 'copy-sprites', ->
+gulp.task 'copy-sprites', ['clean'], ->
 	gulp.src ['temp/sprites.png']
 		.pipe gulp.dest 'dist/sprites.png'
 
 
-gulp.task 'templatify', ->
-	gulp.src 'src/**/*.html'
 
 
 templatify = ->
@@ -64,7 +60,7 @@ base64string = ->
 		done()
 
 
-gulp.task 'templatify', ->
+gulp.task 'templatify', ['clean'], ->
 	gulp.src 'src/**/*.html'
 	.pipe templatify()
 	.pipe rename { extname: '.html.js' }
@@ -76,10 +72,10 @@ gulp.task 'sass', ->
 		.pipe sass()
 		.pipe rename {extname: '.css'}
 		.pipe concat 'style.css'
-		.pipe gulp.dest 'temp'
+		.pipe gulp.dest 'dist'
 
 
-gulp.task 'img-to-js', ->
+gulp.task 'img-to-js', ['clean'], ->
 	gulp.src 'src/**/*.png'
 		# .pipe base64string()
 		.pipe through.obj (f,e,done) ->
