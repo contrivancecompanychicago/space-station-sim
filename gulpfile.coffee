@@ -15,7 +15,11 @@ coffee = require 'coffee-script'
 merge = require 'gulp-merge'
 
 browserify = require 'browserify'
+gulpbrowserify = require 'gulp-browserify'
 _ = require 'underscore'
+
+bkslsh = /\\/g
+dblbkslsh = /\\\\/g
 
 gulp.task 'default', ['build', 'watch']
 
@@ -40,6 +44,15 @@ gulp.task 'watch', ->
 gulp.task 'livereload', ->
 	gulp.src 'dist/index.html'
 		.pipe livereload()
+
+
+# gulp.task 'testGulpBrowserify', ->
+# 	gulp.src 'src/test.js'
+# 		.pipe gulpbrowserify({
+# 			transform: ['coffeeify'],
+# 			extensions: ['.coffee']
+# 			})
+# 		.pipe gulp.dest 'temp'
 
 
 gulp.task 'test', (opts = {})->
@@ -69,9 +82,15 @@ gulp.task 'test', (opts = {})->
 					alias = path.relative dir, file
 					alias = path.join base, alias if base
 					alias = alias.replace /\.[^.]+$/, ''
+					file = file.replace /\//g, '\\'
+					# console.log alias
+					alias = alias.replace /\\/g, '.'
+					console.log "aliasmap", alias, file
+
 					aliasMap[alias] = file
 	# console.log aliasMap
 	opts.builtins  = _.defaults require('browserify/lib/builtins'), aliasMap
+	# console.log opts.builtins
 	data = {}
 	b = browserify(data, opts)
 	b.add './src/test.coffee'
@@ -204,7 +223,7 @@ gulp.task 'img-to-js', ['clean'], ->
 	gulp.src 'src/**/*.png'
 		# .pipe base64string()
 		.pipe through.obj (f,e,done) ->
-			bkslsh = /\\/g
+			
 			path = f.path.substr f.base.length
 			path = path.replace(bkslsh, '/')
 			out = "img = document.createElement('img')\n"
