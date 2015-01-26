@@ -34,8 +34,10 @@ class CharacterLayer
 		chars.forEach (char) =>
 			@renderChar char.pos
 
-		if Game.input.objectUnderMouse
-			obj = Game.input.objectUnderMouse
+		@renderSelected()
+
+		if @selected
+			obj = @selected
 			@context.fillStyle = "white"
 			@context.font = 'bold 16px verdana'
 			y = 30
@@ -57,6 +59,23 @@ class CharacterLayer
 				@context.fillRect 10, y, need * 100, 10
 				 
 				y += 10
+
+	renderSelected: ->
+		if Game.input.objectUnderMouse
+			@selected = Game.input.objectUnderMouse
+
+		if @selected
+			# console.log @selected.pos
+
+			pos = Game.localToGlobal @selected.pos
+			@context.strokeStyle = 'white'
+			@context.lineWidth = 2
+			# @context.fillRect pos.x, pos.y, 10*Game.state.view.scale, 10*Game.state.view.scale
+
+			@context.beginPath()
+			@context.arc(pos.x, pos.y, config.character.radius*Game.state.view.scale, 0, 2 * Math.PI, false);
+			@context.stroke()
+			@context.closePath()
 
 
 	renderChar: (data) ->
