@@ -4,6 +4,8 @@ rimraf = require 'rimraf'
 rename = require 'gulp-rename'
 through = require 'through2'
 sass = require 'gulp-sass'
+path        = require 'path'
+glob        = require 'glob'
 concat = require 'gulp-concat'
 insert = require 'gulp-insert'
 base64 = require 'gulp-base64'
@@ -40,19 +42,49 @@ gulp.task 'livereload', ->
 		.pipe livereload()
 
 
-gulp.task 'test', ->
-	b = browserify()
+gulp.task 'test', (opts = {})->
+	opts.aliases = [
+		{
+			cwd: 'src'
+			# base: 'Game'
+		}
+		{
+			cwd: 'bower_components'
+			base: 'bower'
+		}
+	]
+	aliasMap = {}
+	if opts.aliases
+		aliases = if _.isArray(opts.aliases) then opts.aliases else [opts.aliases]
+		aliases.forEach (alias)->
+			return unless alias
+			{ cwd, base, file } = alias
+			file = ['**/*.coffee', '**/*.js', '**/*.json', '**/*.cson'] unless _.isArray file
+			file.map (pattern)->
+				return unless cwd
+				dir = cwd
+				dir = path.join(process.cwd(), dir) unless dir.match /^\//
+				pattern = path.join dir, pattern
+				glob.sync(pattern).forEach (file)->
+					alias = path.relative dir, file
+					alias = path.join base, alias if base
+					alias = alias.replace /\.[^.]+$/, ''
+					aliasMap[alias] = file
+	console.log aliasMap
+	opts.builtins  = _.defaults require('browserify/lib/builtins'), aliasMap
+	data = {}
+	b = browserify(data, opts)
 	b.add './src/test.coffee'
-	b.add './src/Game/config.coffee'
-	b.add './src/index.html'
+	# b.add './src/Game/config.coffee'
+	# b.add './src/index.html'
 	b.transform (file) ->
-		# console.log file
+		console.log "looking for transform", file
 		# console.log file.indexOf '.'
 		ext = file.substr file.indexOf '.'
 		# console.log ext
 		if ext is '.coffee'
 			return through.obj (data,e,done) ->
-				# console.log "compile"
+				console.log "compile coffee", file
 				# console.log data.toString()
 				# console.log _.keys f
 				# f.contents = new Buffer coffee.compile f.contents.toString()
@@ -74,7 +106,7 @@ gulp.task 'test', ->
 
 	b.bundle (err, js) ->
 		if err
-			traceError err
+			console.log err
 			return
 		else
 			# js.pipe rename('test.js')
