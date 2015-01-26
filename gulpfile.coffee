@@ -1,3 +1,4 @@
+fs = require 'fs'
 gulp = require 'gulp'
 rimraf = require 'rimraf'
 rename = require 'gulp-rename'
@@ -8,6 +9,10 @@ insert = require 'gulp-insert'
 base64 = require 'gulp-base64'
 coffeeify = require 'gulp-coffeeify'
 livereload = require 'gulp-livereload'
+coffee = require 'coffee-script'
+merge = require 'gulp-merge'
+
+browserify = require 'browserify'
 _ = require 'underscore'
 
 gulp.task 'default', ['build', 'watch']
@@ -33,6 +38,48 @@ gulp.task 'watch', ->
 gulp.task 'livereload', ->
 	gulp.src 'dist/index.html'
 		.pipe livereload()
+
+
+gulp.task 'test', ->
+	b = browserify()
+	b.add './src/test.coffee'
+	b.transform (file) ->
+		# console.log file
+		# console.log file.indexOf '.'
+		ext = file.substr file.indexOf '.'
+		# console.log ext
+		if ext is '.coffee'
+			
+			return through.obj (data,e,done) ->
+				console.log "compile"
+				# console.log _.keys f
+				# f.contents = new Buffer coffee.compile f.contents.toString()
+				data = coffee.compile data.toString()
+				console.log data
+				this.push data
+				done()
+
+
+	b.bundle (err, js) ->
+		if err
+			traceError err
+			return
+		else
+			# js.pipe rename('test.js')
+			# 	.pipe gulp.dest 'temp'
+			fs.writeFile 'temp/test.js', js, (err)-> console.log err
+
+		# .pipe(gulp.dest 'temp')
+	# src = gulp.src 'src/test.coffee'
+	# tpl = gulp.src 'src/**/*.html'
+	# 	.pipe templatify()
+	# 	# .pipe rename { extname: '.html.js' }
+	# merge(src,tpl)
+	# 	.pipe coffeeify()
+	# 	# .pipe rename 'test.js'
+	# 	.pipe concat('testfile.js')
+	# 	.pipe gulp.dest 'temp'
+
 
 
 gulp.task 'coffeeify', ['prep'], ->

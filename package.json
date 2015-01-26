@@ -70,6 +70,9 @@
     "gulp-rimraf": "^0.1.1",
     "rimraf": "^2.2.8",
     "gulp-coffeeify": "^0.1.2",
-    "gulp-livereload": "^3.5.0"
+    "gulp-livereload": "^3.5.0",
+    "grunt-merge": "^0.1.8",
+    "gulp-merge": "^0.1.0",
+    "browserify": "^8.1.1"
   }
 }
