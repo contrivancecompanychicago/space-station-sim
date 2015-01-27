@@ -56,32 +56,22 @@ gulp.task 'livereload', ->
 
 bify = require './tasks/browserify.coffee'
 
-gulp.task 'test', ['prep'], ->
-	gulp.src 'temp/main.coffee'
-		.pipe bify({
-			aliases: [
-				{
-					cwd: 'src'
-					# base: 'Game'
-				}
-				{
-					cwd: 'bower_components'
-					base: 'bower'
-				}
-			]
-			# debug: true
-		})
-		.pipe concat('main.js')
-		.pipe gulp.dest 'dist'
-		.pipe gulp.dest 'temp'
 
 
-
+htmlXform = (data)->
+	content = data.replace(/'/g, '\\\'').replace(/\r/g, '').replace(/\n/g, '')
+	"module.exports = require('underscore').template('" + content + "');"
 
 gulp.task 'coffeeify', ['prep'], ->
-	gulp.src 'temp/main.coffee'
-	# gulp.src 'src/test.coffee'
+	# gulp.src 'temp/main.coffee'
+	gulp.src 'src/test.coffee'
 		.pipe coffeeify({
+			transforms: [
+				{
+					ext: '.html'
+					transform: htmlXform
+				}
+			]
 			aliases: [
 				{
 					cwd: 'src'
