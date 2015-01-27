@@ -54,94 +54,27 @@ gulp.task 'livereload', ->
 # 			})
 # 		.pipe gulp.dest 'temp'
 
+bify = require './tasks/browserify.coffee'
 
-gulp.task 'test', (opts = {})->
-	opts.aliases = [
-		{
-			cwd: 'src'
-			# base: 'Game'
-		}
-		{
-			cwd: 'bower_components'
-			base: 'bower'
-		}
-	]
-	aliasMap = {}
-	if opts.aliases
-		aliases = if _.isArray(opts.aliases) then opts.aliases else [opts.aliases]
-		aliases.forEach (alias)->
-			return unless alias
-			{ cwd, base, file } = alias
-			file = ['**/*.coffee', '**/*.js', '**/*.json', '**/*.cson'] unless _.isArray file
-			file.map (pattern)->
-				return unless cwd
-				dir = cwd
-				dir = path.join(process.cwd(), dir) unless dir.match /^\//
-				pattern = path.join dir, pattern
-				glob.sync(pattern).forEach (file)->
-					alias = path.relative dir, file
-					alias = path.join base, alias if base
-					alias = alias.replace /\.[^.]+$/, ''
-					file = file.replace /\//g, '\\'
-					# console.log alias
-					alias = alias.replace /\\/g, '.'
-					console.log "aliasmap", alias, file
+gulp.task 'test', ['prep'], ->
+	gulp.src 'temp/main.coffee'
+		.pipe bify({
+			aliases: [
+				{
+					cwd: 'src'
+					# base: 'Game'
+				}
+				{
+					cwd: 'bower_components'
+					base: 'bower'
+				}
+			]
+			# debug: true
+		})
+		.pipe concat('main.js')
+		.pipe gulp.dest 'dist'
+		.pipe gulp.dest 'temp'
 
-					aliasMap[alias] = file
-	# console.log aliasMap
-	opts.builtins  = _.defaults require('browserify/lib/builtins'), aliasMap
-	# console.log opts.builtins
-	data = {}
-	b = browserify(data, opts)
-	b.add './src/test.coffee'
-	# b.add './src/Game/config.coffee'
-	# b.add './src/index.html'
-	b.transform (file) ->
-		console.log "looking for transform", file
-		# console.log file.indexOf '.'
-		ext = file.substr file.indexOf '.'
-		# console.log ext
-		if ext is '.coffee'
-			return through.obj (data,e,done) ->
-				console.log "compile coffee", file
-				# console.log data.toString()
-				# console.log _.keys f
-				# f.contents = new Buffer coffee.compile f.contents.toString()
-				data = coffee.compile data.toString()
-				# console.log data
-				this.push data
-				done()
-
-		if ext is '.html'
-			return through.obj (data,e,done) ->
-				pre = "_ = require('underscore');\r\nmodule.exports = _.template('"
-				post = "');"
-				content = data.toString().replace(/'/g, '\\\'').replace(/\r/g, '').replace(/\n/g, '')
-				# f.contents = new Buffer pre+content+post
-				data = pre+content+post
-				this.push data
-				done()
-
-
-	b.bundle (err, js) ->
-		if err
-			console.log err
-			return
-		else
-			# js.pipe rename('test.js')
-			# 	.pipe gulp.dest 'temp'
-			fs.writeFile 'temp/test.js', js, (err)-> console.log err
-
-		# .pipe(gulp.dest 'temp')
-	# src = gulp.src 'src/test.coffee'
-	# tpl = gulp.src 'src/**/*.html'
-	# 	.pipe templatify()
-	# 	# .pipe rename { extname: '.html.js' }
-	# merge(src,tpl)
-	# 	.pipe coffeeify()
-	# 	# .pipe rename 'test.js'
-	# 	.pipe concat('testfile.js')
-	# 	.pipe gulp.dest 'temp'
 
 
 
