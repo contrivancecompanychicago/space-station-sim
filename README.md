@@ -27,3 +27,5 @@ todo:
  * change grunt js imgify to use more than one output
  * beds
  * make helpers
+ * sourcemaps
+ * change bower_components to bower

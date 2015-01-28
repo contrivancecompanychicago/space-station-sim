@@ -13,6 +13,7 @@ coffeeify = require 'gulp-coffeeify'
 livereload = require 'gulp-livereload'
 coffee = require 'coffee-script'
 merge = require 'gulp-merge'
+sourcemaps = require 'gulp-sourcemaps'
 
 browserify = require 'browserify'
 gulpbrowserify = require 'gulp-browserify'
@@ -52,6 +53,7 @@ imgXform = (data, raw) ->
 gulp.task 'coffeeify', ->
 	gulp.src 'src/main.coffee'
 	# gulp.src 'src/test.coffee'
+		# .pipe sourcemaps.init()
 		.pipe coffeeify({
 			transforms: [
 				{
@@ -75,6 +77,7 @@ gulp.task 'coffeeify', ->
 			]
 			# debug: true
 		})
+		# .pipe sourcemaps.write()
 		.pipe concat('main.js')
 		.pipe gulp.dest 'dist'
 		.pipe livereload()
