@@ -45,22 +45,16 @@ gulp.task 'livereload', ->
 	gulp.src 'dist/index.html'
 		.pipe livereload()
 
-
-# gulp.task 'testGulpBrowserify', ->
-# 	gulp.src 'src/test.js'
-# 		.pipe gulpbrowserify({
-# 			transform: ['coffeeify'],
-# 			extensions: ['.coffee']
-# 			})
-# 		.pipe gulp.dest 'temp'
-
-bify = require './tasks/browserify.coffee'
-
-
-
 htmlXform = (data)->
 	content = data.replace(/'/g, '\\\'').replace(/\r/g, '').replace(/\n/g, '')
 	"module.exports = require('underscore').template('" + content + "');"
+imgXform = (data) ->
+	out = "img = document.createElement('img');"
+	out += "img.src = 'data:image/png;base64,"
+	out += new Buffer(data).toString 'base64'
+	# out += "';out['"+path+"'] = img;"
+	out += "';module.exports = img;"\
+	out
 
 gulp.task 'coffeeify', ['prep'], ->
 	# gulp.src 'temp/main.coffee'
@@ -70,6 +64,10 @@ gulp.task 'coffeeify', ['prep'], ->
 				{
 					ext: '.html'
 					transform: htmlXform
+				}
+				{
+					ext: '.png'
+					transform: imgXform
 				}
 			]
 			aliases: [

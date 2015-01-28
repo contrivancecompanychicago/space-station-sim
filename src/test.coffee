@@ -6,3 +6,5 @@ require 'Game\\config'
 # require './Game/config.coffee'
 
 require './index.html'
+
+require './Game/Grid/Block/Type/plain.png'
