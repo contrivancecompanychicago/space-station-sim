@@ -8,9 +8,9 @@
 # 		context.fillRect offset.x, offset.y, gbw * Game.state.view.scale, gbh * Game.state.view.scale
 
 Base = require './Base.coffee'
-
+img = require './wall.png'
 block = new Base()
 block.isWall = true
 block.render = (context, offset, data) ->
-	@.renderImage 'wall.png', context, offset
+	@.renderImage img, context, offset
 module.exports = block

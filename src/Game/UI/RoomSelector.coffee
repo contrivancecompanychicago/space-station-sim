@@ -1,4 +1,4 @@
-view = require './RoomSelector.html.js'
+view = require './RoomSelector.html'
 Imagine = require '../../../bower_components/imagine/imagine.js'
 Types = require '../Grid/Room/Types.coffee'
 _ = require 'underscore'

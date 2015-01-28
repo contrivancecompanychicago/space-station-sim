@@ -26,39 +26,48 @@ gulp.task 'default', ['build', 'watch']
 gulp.task 'build', ['prep', 'coffeeify']
 
 gulp.task 'prep', [
-		'clean'
+		# 'clean'
 		'copy-html'
-		'copy-coffee'
-		'templatify'
+		# 'copy-coffee'
+		# 'templatify'
 		'sass'
-		'copy-sprites'
-		'img-to-js'
+		# 'copy-sprites'
+		# 'img-to-js'
 		# 'coffeeify'
 	]
 
 gulp.task 'watch', ->
 	livereload.listen()
-	gulp.watch ['gulpfile.coffee', 'src/**/*.*'], ['build']
+	gulp.watch ['gulpfile.coffee', 'src/**/*.*'], ['coffeeify']
 
 
 gulp.task 'livereload', ->
 	gulp.src 'dist/index.html'
 		.pipe livereload()
 
+# gulp.task 'test', ->
+# 	raw = fs.readFileSync './src/Game/Grid/Block/Type/plain.png'
+# 	str = String raw
+# 	buff = new Buffer str, 'binary'
+# 	console.log "expect"
+# 	console.log buff.toString('base64').substr 0, 100
+# 	console.log "to be"
+# 	console.log new Buffer(raw).toString('base64').substr 0, 100
+
 htmlXform = (data)->
 	content = data.replace(/'/g, '\\\'').replace(/\r/g, '').replace(/\n/g, '')
 	"module.exports = require('underscore').template('" + content + "');"
-imgXform = (data) ->
+imgXform = (data, raw) ->
 	out = "img = document.createElement('img');"
 	out += "img.src = 'data:image/png;base64,"
-	out += new Buffer(data).toString 'base64'
+	out += new Buffer(raw).toString 'base64'
 	# out += "';out['"+path+"'] = img;"
-	out += "';module.exports = img;"\
+	out += "';module.exports = img;"
 	out
 
-gulp.task 'coffeeify', ['prep'], ->
-	# gulp.src 'temp/main.coffee'
-	gulp.src 'src/test.coffee'
+gulp.task 'coffeeify', ->
+	gulp.src 'src/main.coffee'
+	# gulp.src 'src/test.coffee'
 		.pipe coffeeify({
 			transforms: [
 				{
@@ -89,8 +98,8 @@ gulp.task 'coffeeify', ['prep'], ->
 gulp.task 'clean', (cb)->
 	# return gulp.src 'temp'
 	# 	.pipe rimraf()
-	rimraf 'temp', ->
-		rimraf 'dist', cb
+	# rimraf 'temp', ->
+	rimraf 'dist', cb
 
 
 gulp.task 'copy-html', ['clean'], ->

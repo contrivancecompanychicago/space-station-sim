@@ -1,4 +1,4 @@
-view = require './SpeedSelector.html.js'
+view = require './SpeedSelector.html'
 Imagine = require '../../../bower_components/imagine/imagine.js'
 # Types = require '../Grid/Block/Types.coffee'
 _ = require 'underscore'
