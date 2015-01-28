@@ -18,8 +18,8 @@ class Base
 		destHeight = gbh * Game.state.view.scale;
 		destX = offset.x
 		destY = offset.y
-		console.log image
-		# context.drawImage image, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight
+		# console.log image
+		context.drawImage image, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight
 
 
 module.exports = Base

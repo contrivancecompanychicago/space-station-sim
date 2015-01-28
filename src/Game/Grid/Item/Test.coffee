@@ -1,6 +1,6 @@
 Base = require './Base.coffee'
-
+img = require './test.png'
 item = new Base()
 item.render = (context, offset, data) ->
-	@.renderImage 'test.png', context, offset
+	@.renderImage img, context, offset
 module.exports = item

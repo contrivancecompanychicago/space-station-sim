@@ -2,15 +2,18 @@ Base = require './Base.coffee'
 Character = require '../../Character/Character.coffee'
 Imagine = require '../../../../bower_components/imagine/imagine.js'
 
+img = require './dockspot.png'
+ship = require './ship.png'
+
 item = new Base(2, 2)
 item.defaults = 
 	ship: false
 	waitingFor: 0
 	timeTilDock: 3
 item.render = (context, offset, data) ->
-	@.renderImage 'dockspot.png', context, offset
+	@.renderImage img, context, offset
 	if data.ship
-		@.renderImage 'ship.png', context, offset
+		@.renderImage ship, context, offset
 
 module.exports = item
 
