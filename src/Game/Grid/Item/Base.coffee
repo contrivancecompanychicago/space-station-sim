@@ -1,4 +1,4 @@
-config = require '../../config.coffee'
+config = require 'Game\\config'
 # images = require '../../images.coffee'
 gbw = config.grid.block.width
 gbh = config.grid.block.height

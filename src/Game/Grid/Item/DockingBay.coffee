@@ -31,7 +31,7 @@ Imagine
 					if data.ship
 						if data.waitingFor <=0 #everyone on board!
 							data.ship = false
-							data.timeTilDock = 4 + (5*Math.random())
+							data.timeTilDock = 4 + (50*Math.random())
 							Imagine.notify 'itemStateChanged'
 					else
 						unless data.timeTilDock
