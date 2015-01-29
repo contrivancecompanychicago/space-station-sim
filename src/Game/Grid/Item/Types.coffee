@@ -5,6 +5,7 @@
 module.exports = 
 	test: require './Test.coffee'
 	dockingbay: require './DockingBay.coffee'
+	bed: require './Bed.coffee'
 	# test: 
 	# 	render: (context, offset, data) ->
 	# 		context.fillStyle = "red"
