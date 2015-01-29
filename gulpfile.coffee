@@ -22,7 +22,7 @@ _ = require 'underscore'
 bkslsh = /\\/g
 dblbkslsh = /\\\\/g
 
-gulp.task 'default', ['clean', 'build', 'watch']
+gulp.task 'default', ['build', 'watch']
 
 gulp.task 'build', [
 		'copy-html'
@@ -33,6 +33,7 @@ gulp.task 'build', [
 gulp.task 'watch', ->
 	livereload.listen()
 	gulp.watch ['gulpfile.coffee', 'src/**/*.*'], ['coffeeify']
+	gulp.watch ['src/**/*.sass'], ['sass']
 
 
 gulp.task 'livereload', ->
@@ -85,14 +86,14 @@ gulp.task 'coffeeify', ->
 gulp.task 'clean', (cb)->
 	rimraf 'dist', cb
 
-gulp.task 'sass', ['clean'], ->
+gulp.task 'sass', ->
 	gulp.src 'src/**/*.sass'
 		.pipe sass()
 		.pipe rename {extname: '.css'}
 		.pipe concat 'style.css'
 		.pipe gulp.dest 'dist'
 
-gulp.task 'copy-html', ['clean'], ->
+gulp.task 'copy-html', ->
 	gulp.src ['src/index.html']
 		.pipe gulp.dest 'dist'
 

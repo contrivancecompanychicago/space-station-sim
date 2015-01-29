@@ -22,11 +22,11 @@ class Grid
 		@requireRender()
 
 	viewStateChanged: =>
-		Game.save()
+		# Game.save()
 		@requireRender()
 
 	gridStateChanged: =>
-		Game.save()
+		# Game.save()
 		@calcData()
 		@requireRender()
 
