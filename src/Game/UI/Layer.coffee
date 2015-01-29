@@ -3,7 +3,7 @@ ModeSelector = require './ModeSelector.coffee'
 RoomSelector = require './RoomSelector.coffee'
 SpeedSelector = require './SpeedSelector.coffee'
 ItemSelector = require './ItemSelector.coffee'
-Imagine = require '../../../bower_components/imagine/imagine.js'
+Imagine = require 'bower\\imagine\\imagine'
 class Layer
 	_modes: ['select', 'block', 'room']#for reference
 	constructor: (@container) ->

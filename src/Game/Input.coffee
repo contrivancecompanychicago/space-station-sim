@@ -1,4 +1,4 @@
-Imagine = require '../../bower_components/imagine/imagine.js'
+Imagine = require 'bower\\imagine\\imagine'
 Vic = require 'victor'
 
 states = 

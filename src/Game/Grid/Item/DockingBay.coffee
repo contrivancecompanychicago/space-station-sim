@@ -1,6 +1,6 @@
 Base = require './Base.coffee'
 Character = require '../../Character/Character.coffee'
-Imagine = require '../../../../bower_components/imagine/imagine.js'
+Imagine = require 'bower\\imagine\\imagine'
 
 img = require './dockspot.png'
 ship = require './ship.png'
