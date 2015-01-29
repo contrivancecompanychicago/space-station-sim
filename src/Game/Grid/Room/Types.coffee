@@ -14,6 +14,9 @@ module.exports =
 	medical:
 		name: 'medical'
 		color: 'rgba(100, 255, 100, 0.2)'
+	engineering:
+		name: 'engineering bay'
+		color: 'rgba(255, 255, 100, 0.2)'
 	# research
 	# engineering
 	# security
