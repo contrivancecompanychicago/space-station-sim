@@ -1,11 +1,11 @@
 _ = require 'underscore'
 astar = require 'javascript-astar'
-BlockTypes = require './Block/Types.coffee'
-config = require '../config.coffee'
+BlockTypes = require './Grid/Block/Types.coffee'
+config = require './config.coffee'
 Imagine = require 'bower\\imagine\\imagine'
-RoomTypes = require './Room/Types.coffee'
-Item = require './Item.coffee'
-ItemTypes = require './Item/Types.coffee'
+RoomTypes = require './Grid/Room/Types.coffee'
+Item = require './Grid/Item.coffee'
+ItemTypes = require './Grid/Item/Types.coffee'
 
 class Grid
 

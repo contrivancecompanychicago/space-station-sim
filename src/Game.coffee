@@ -1,6 +1,6 @@
 Imagine = require 'bower\\imagine\\imagine'
 $ = require 'jquery-browserify'
-Grid = require './Game/Grid/Grid.coffee'
+Grid = require './Game/Grid.coffee'
 Input = require './Game/Input.coffee'
 Storage = require './Game/Storage.coffee'
 config = require './Game/config.coffee'
