@@ -6,7 +6,7 @@ Storage = require './Game/Storage.coffee'
 config = require './Game/config.coffee'
 _ = require 'underscore'
 
-Character = require './Game/Character/Character.coffee'
+Character = require './Game/Character.coffee'
 
 UI = require './Game/UI/Layer.coffee'
 CharacterLayer = require './Game/Character/Layer.coffee'

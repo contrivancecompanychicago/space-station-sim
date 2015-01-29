@@ -1,5 +1,5 @@
 Base = require './Base.coffee'
-Character = require '../../Character/Character.coffee'
+Character = require 'Game\\Character'
 Imagine = require 'bower\\imagine\\imagine'
 
 img = require './dockspot.png'
