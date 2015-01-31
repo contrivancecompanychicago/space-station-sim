@@ -1,9 +1,9 @@
-imagine = require 'bower\\imagine\\imagine'
+imagine = require 'bower/imagine/imagine'
 Game = require './Game.coffee'
 # $ = require 'jquery-browserify'
 # images = require './images.coffee'
 
-require 'Game\\config'
+require 'Game/config'
 
 window.onload = ->
 	window.game = imagine new Game document.getElementById 'container'

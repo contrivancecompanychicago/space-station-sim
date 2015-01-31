@@ -1,6 +1,6 @@
 config = require '../config.coffee'
 Character = require '../Character.coffee'
-Imagine = require 'bower\\imagine\\imagine'
+Imagine = require 'bower/imagine/imagine'
 ActionTypes = require '../Character/Action/Types.coffee'
 
 class CharacterLayer

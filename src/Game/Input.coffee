@@ -1,4 +1,4 @@
-Imagine = require 'bower\\imagine\\imagine'
+Imagine = require 'bower/imagine/imagine'
 Vic = require 'victor'
 
 states = 

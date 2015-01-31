@@ -1,5 +1,5 @@
 view = require './ItemSelector.html'
-Imagine = require 'bower\\imagine\\imagine'
+Imagine = require 'bower/imagine/imagine'
 Types = require '../Grid/Item/Types.coffee'
 _ = require 'underscore'
 

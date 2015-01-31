@@ -1,4 +1,4 @@
-Imagine = require 'bower\\imagine\\imagine'
+Imagine = require 'bower/imagine/imagine'
 $ = require 'jquery-browserify'
 Grid = require './Game/Grid.coffee'
 Input = require './Game/Input.coffee'
