@@ -43,7 +43,7 @@ gulp.task 'livereload', ->
 htmlXform = (data)->
 	content = data.replace(/'/g, '\\\'').replace(/\r/g, '').replace(/\n/g, '')
 	"module.exports = require('underscore').template('" + content + "');"
-imgXform = (data, raw) ->
+imgXform = (raw) ->
 	out = "img = document.createElement('img');"
 	out += "img.src = 'data:image/png;base64,"
 	out += new Buffer(raw).toString 'base64'
@@ -63,7 +63,7 @@ gulp.task 'coffeeify', ->
 				}
 				{
 					ext: '.png'
-					transform: imgXform
+					transformRaw: imgXform
 				}
 			]
 			aliases: [
