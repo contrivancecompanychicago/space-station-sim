@@ -17,12 +17,14 @@ sourcemaps = require 'gulp-sourcemaps'
 
 browserify = require 'browserify'
 gulpbrowserify = require 'gulp-browserify'
+bower = require 'gulp-bower'
 _ = require 'underscore'
 
 bkslsh = /\\/g
 dblbkslsh = /\\\\/g
 
 gulp.task 'default', ['build', 'watch']
+gulp.task 'server', ['build']
 
 gulp.task 'build', [
 		'copy-html'
@@ -35,6 +37,10 @@ gulp.task 'watch', ->
 	gulp.watch ['gulpfile.coffee', 'src/**/*.*'], ['coffeeify']
 	gulp.watch ['src/**/*.sass'], ['sass']
 
+
+gulp.task 'bower', ->
+	bower()
+		.pipe gulp.dest 'bower_components'
 
 gulp.task 'livereload', ->
 	gulp.src 'dist/index.html'
@@ -51,7 +57,7 @@ imgXform = (raw) ->
 	out += "';module.exports = img;"
 	out
 
-gulp.task 'coffeeify', ->
+gulp.task 'coffeeify', ['bower'], ->
 	gulp.src 'src/main.coffee'
 	# gulp.src 'src/test.coffee'
 		# .pipe sourcemaps.init()
