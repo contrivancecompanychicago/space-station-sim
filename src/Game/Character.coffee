@@ -45,6 +45,7 @@ class Character
 			# hunger: Math.random()
 			shop: Math.random()
 			medical: Math.random()
+			repair: Math.random()
 
 	gridStateChanged: ->
 		@whatToDoNext()
