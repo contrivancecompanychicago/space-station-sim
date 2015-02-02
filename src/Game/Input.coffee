@@ -105,6 +105,7 @@ class Input
 				# Imagine.notify 'gridStateChanged'
 				Game.grid.requireRender()
 			when states.moving
+				# todo: zoom correct move
 				Game.state.view.offset.x -= delta.x
 				Game.state.view.offset.y -= delta.y
 				Imagine.notify 'viewStateChanged'
