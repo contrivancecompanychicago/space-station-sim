@@ -27,13 +27,13 @@ class Helper
 			when 'block'
 				type = Game.ui.block.state.selected
 				obj = {type: type}
-				Game.state.gridData[helper.blockToString(pos)] = obj
+				Game.state.gridData[@blockToString(pos)] = obj
 			when 'room'
 				type = Game.ui.room.state.selected
 				obj = {type: 'plain', room:type}
-				Game.state.gridData[helper.blockToString(pos)] = obj
+				Game.state.gridData[@blockToString(pos)] = obj
 			when 'item'
-				block = helper.blockToString(pos)
+				block = @blockToString(pos)
 				if Game.state.gridData[block]#check if block exists
 					type = Game.ui.item.state.selected
 					obj = {type:type}
@@ -44,12 +44,12 @@ class Helper
 		mode = Game.ui.mode.state.selected
 		switch mode
 			when 'block'
-				delete Game.state.gridData[helper.blockToString(pos)]
-				delete Game.state.itemData[helper.blockToString(pos)]
+				delete Game.state.gridData[@blockToString(pos)]
+				delete Game.state.itemData[@blockToString(pos)]
 			when 'room'
-				if Game.state.gridData[helper.blockToString(pos)]
-					delete Game.state.gridData[helper.blockToString(pos)].room
+				if Game.state.gridData[@blockToString(pos)]
+					delete Game.state.gridData[@blockToString(pos)].room
 			when 'item'
-				delete Game.state.itemData[helper.blockToString(pos)]
+				delete Game.state.itemData[@blockToString(pos)]
 
 module.exports = Imagine new Helper()
