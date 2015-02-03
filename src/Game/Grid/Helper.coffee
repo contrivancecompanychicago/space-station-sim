@@ -1,11 +1,16 @@
 
 
+config = require 'Game/config'
+
+gbw = config.grid.block.width
+gbh = config.grid.block.height
+
+cw = config.canvas.width
+ch = config.canvas.height
+
 class Helper
 	blockAtPoint: (point)->
-		# console.log "looking up block"
 		point = Game.globalToLocal point
-		# x: Math.floor (point.x - Game.state.view.offset.x) / (gbw * Game.state.view.scale)
-		# y: Math.floor (point.y - Game.state.view.offset.y) / (gbh * Game.state.view.scale)
 		x: Math.floor point.x / gbw
 		y: Math.floor point.y / gbh
 
@@ -16,3 +21,5 @@ class Helper
 		out = {x: parseInt(ar[0]), y: parseInt(ar[1])}
 		# debugger
 		out 
+
+module.exports = new Helper()

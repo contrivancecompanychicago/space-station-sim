@@ -6,7 +6,7 @@ namegen = require './Util/namegen.coffee'
 vic = require 'victor'
 
 ActionTypes = require './Character/Action/Types.coffee'
-
+gridhelper = require 'Game/Grid/Helper'
 
 
 class Character
@@ -205,7 +205,7 @@ class Character
 				if @data.dock
 					if (@block.x is @data.dock.x) and (@block.y is @data.dock.y)
 						# leaving at the dock I came from
-						data = Game.state.itemData[Game.grid.blockToString @data.dock]
+						data = Game.state.itemData[gridhelper.blockToString @data.dock]
 						# console.log data
 						if data?.waitingFor
 							data.waitingFor--

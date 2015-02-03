@@ -6,7 +6,7 @@ Imagine = require 'bower/imagine/imagine'
 RoomTypes = require './Grid/Room/Types.coffee'
 Item = require './Grid/Item.coffee'
 ItemTypes = require './Grid/Item/Types.coffee'
-
+helper = require './Grid/Helper.coffee'
 class Grid
 
 	constructor: (@canvas) ->
@@ -94,7 +94,8 @@ class Grid
 
 		# gather data
 		blocks = keys.map (key) =>
-			block = @stringToBlock key
+			helper = require 'Game/Grid/Helper'
+			block = helper.stringToBlock key
 			block.data = Game.state.gridData[key]
 			block.type = BlockTypes[block.data.type]
 			if block.x < minx then minx = block.x
@@ -178,21 +179,21 @@ class Grid
 			@render()
 			@willRender = false
 
-	blockAtPoint: (point)->
-		# console.log "looking up block"
-		point = Game.globalToLocal point
-		# x: Math.floor (point.x - Game.state.view.offset.x) / (gbw * Game.state.view.scale)
-		# y: Math.floor (point.y - Game.state.view.offset.y) / (gbh * Game.state.view.scale)
-		x: Math.floor point.x / gbw
-		y: Math.floor point.y / gbh
+	# blockAtPoint: (point)->
+	# 	# console.log "looking up block"
+	# 	point = Game.globalToLocal point
+	# 	# x: Math.floor (point.x - Game.state.view.offset.x) / (gbw * Game.state.view.scale)
+	# 	# y: Math.floor (point.y - Game.state.view.offset.y) / (gbh * Game.state.view.scale)
+	# 	x: Math.floor point.x / gbw
+	# 	y: Math.floor point.y / gbh
 
-	blockToString: (pos) ->
-		'g'+pos.x+'_'+pos.y
-	stringToBlock: (str) ->
-		ar = str.substr(1).split '_'
-		out = {x: parseInt(ar[0]), y: parseInt(ar[1])}
-		# debugger
-		out 
+	# blockToString: (pos) ->
+	# 	'g'+pos.x+'_'+pos.y
+	# stringToBlock: (str) ->
+	# 	ar = str.substr(1).split '_'
+	# 	out = {x: parseInt(ar[0]), y: parseInt(ar[1])}
+	# 	# debugger
+	# 	out 
 
 
 	randomBlock: ->
@@ -202,7 +203,7 @@ class Grid
 		key = keys[Math.floor(Math.random()*keys.length)]; #random key
 		if BlockTypes[Game.state.gridData[key].type].isWall
 			return @randomBlock() # try again
-		@stringToBlock key
+		helper.stringToBlock key
 
 	addBlock: (pos) ->
 		mode = Game.ui.mode.state.selected
@@ -210,13 +211,13 @@ class Grid
 			when 'block'
 				type = Game.ui.block.state.selected
 				obj = {type: type}
-				Game.state.gridData[@blockToString(pos)] = obj
+				Game.state.gridData[helper.blockToString(pos)] = obj
 			when 'room'
 				type = Game.ui.room.state.selected
 				obj = {type: 'plain', room:type}
-				Game.state.gridData[@blockToString(pos)] = obj
+				Game.state.gridData[helper.blockToString(pos)] = obj
 			when 'item'
-				block = @blockToString(pos)
+				block = helper.blockToString(pos)
 				if Game.state.gridData[block]#check if block exists
 					type = Game.ui.item.state.selected
 					obj = {type:type}
@@ -227,13 +228,13 @@ class Grid
 		mode = Game.ui.mode.state.selected
 		switch mode
 			when 'block'
-				delete Game.state.gridData[@blockToString(pos)]
-				delete Game.state.itemData[@blockToString(pos)]
+				delete Game.state.gridData[helper.blockToString(pos)]
+				delete Game.state.itemData[helper.blockToString(pos)]
 			when 'room'
-				if Game.state.gridData[@blockToString(pos)]
-					delete Game.state.gridData[@blockToString(pos)].room
+				if Game.state.gridData[helper.blockToString(pos)]
+					delete Game.state.gridData[helper.blockToString(pos)].room
 			when 'item'
-				delete Game.state.itemData[@blockToString(pos)]
+				delete Game.state.itemData[helper.blockToString(pos)]
 
 	# returns adjacent block data
 	adjacentBlocks: (block) ->
@@ -249,7 +250,7 @@ class Grid
 			bl = 
 				x: block.x + combo.x
 				y: block.y + combo.y
-			key = @blockToString bl
+			key = helper.blockToString bl
 			val = Game.state.gridData[key]
 			if val
 				type = BlockTypes[val.type]
@@ -272,7 +273,7 @@ class Grid
 		keys = _.keys Game.state.gridData
 		# gather data
 		blocks = keys.forEach (key) =>
-			block = @stringToBlock key
+			block = helper.stringToBlock key
 			block.data = Game.state.gridData[key]
 			if block.data.room is room
 				out.push block
@@ -281,8 +282,8 @@ class Grid
 	# looks at @offset, @scale and config.grid.block to output a list of blocks that are on screen
 	blocksToRender: ->
 
-		tl = @blockAtPoint {x:0, y:0}
-		br = @blockAtPoint {x:cw, y:ch}
+		tl = helper.blockAtPoint {x:0, y:0}
+		br = helper.blockAtPoint {x:cw, y:ch}
 
 		out = []
 		for x in [tl.x..br.x]
@@ -310,7 +311,7 @@ class Grid
 
 		offset = @blockPosition block
 
-		data = Game.state.gridData[@blockToString block]
+		data = Game.state.gridData[helper.blockToString block]
 		if data
 			type = BlockTypes[data.type]
 			type.render @context, offset, data
@@ -341,7 +342,7 @@ class Grid
 	renderItem: (block) ->
 
 		offset = @blockPosition block
-		data = Game.state.itemData[@blockToString block]
+		data = Game.state.itemData[helper.blockToString block]
 		if data
 			type = ItemTypes[data.type]
 			type.render @context, offset, data

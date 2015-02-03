@@ -1,5 +1,6 @@
 Imagine = require 'bower/imagine/imagine'
 Vic = require 'victor'
+gridhelper = require 'Game/Grid/Helper'
 
 states = 
 	blank: -1
@@ -113,8 +114,8 @@ class Input
 	state: states.blank
 
 	calcSelection = ->
-		pt1 = Game.grid.blockAtPoint startEvent
-		pt2 = Game.grid.blockAtPoint lastMouse
+		pt1 = gridhelper.blockAtPoint startEvent
+		pt2 = gridhelper.blockAtPoint lastMouse
 		selection = {}
 		if pt1.x > pt2.x
 			selection.l = pt2.x
