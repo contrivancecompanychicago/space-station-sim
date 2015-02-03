@@ -66,14 +66,6 @@ class window.Game
 		# @character.requireRender()
 		Storage.set()
 
-	# update: ->
-	# 	if Math.random() < 0.001
-	# 		blocks = Game.grid.blocksWithRoom 'dock'
-	# 		if blocks.length > 0
-	# 			block = blocks[Math.floor(Math.random()*blocks.length)]
-	# 			Imagine new Character({block})
-
-
 
 
 

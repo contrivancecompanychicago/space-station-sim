@@ -80,9 +80,9 @@ class Input
 			for x in [sel.l..sel.r]
 				for y in [sel.t..sel.b]
 					if @state is states.selecting
-						Game.grid.addBlock {x, y}
+						gridhelper.addBlock {x, y}
 					if @state is states.deselecting
-						Game.grid.removeBlock {x, y}
+						gridhelper.removeBlock {x, y}
 			Imagine.notify 'gridStateChanged'
 
 			

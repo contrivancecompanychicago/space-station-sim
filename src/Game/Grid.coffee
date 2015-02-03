@@ -179,21 +179,6 @@ class Grid
 			@render()
 			@willRender = false
 
-	# blockAtPoint: (point)->
-	# 	# console.log "looking up block"
-	# 	point = Game.globalToLocal point
-	# 	# x: Math.floor (point.x - Game.state.view.offset.x) / (gbw * Game.state.view.scale)
-	# 	# y: Math.floor (point.y - Game.state.view.offset.y) / (gbh * Game.state.view.scale)
-	# 	x: Math.floor point.x / gbw
-	# 	y: Math.floor point.y / gbh
-
-	# blockToString: (pos) ->
-	# 	'g'+pos.x+'_'+pos.y
-	# stringToBlock: (str) ->
-	# 	ar = str.substr(1).split '_'
-	# 	out = {x: parseInt(ar[0]), y: parseInt(ar[1])}
-	# 	# debugger
-	# 	out 
 
 
 	randomBlock: ->
@@ -205,36 +190,6 @@ class Grid
 			return @randomBlock() # try again
 		helper.stringToBlock key
 
-	addBlock: (pos) ->
-		mode = Game.ui.mode.state.selected
-		switch mode
-			when 'block'
-				type = Game.ui.block.state.selected
-				obj = {type: type}
-				Game.state.gridData[helper.blockToString(pos)] = obj
-			when 'room'
-				type = Game.ui.room.state.selected
-				obj = {type: 'plain', room:type}
-				Game.state.gridData[helper.blockToString(pos)] = obj
-			when 'item'
-				block = helper.blockToString(pos)
-				if Game.state.gridData[block]#check if block exists
-					type = Game.ui.item.state.selected
-					obj = {type:type}
-					_.extend obj, ItemTypes[type].defaults
-					Game.state.itemData[block] = obj
-			
-	removeBlock: (pos) ->
-		mode = Game.ui.mode.state.selected
-		switch mode
-			when 'block'
-				delete Game.state.gridData[helper.blockToString(pos)]
-				delete Game.state.itemData[helper.blockToString(pos)]
-			when 'room'
-				if Game.state.gridData[helper.blockToString(pos)]
-					delete Game.state.gridData[helper.blockToString(pos)].room
-			when 'item'
-				delete Game.state.itemData[helper.blockToString(pos)]
 
 	# returns adjacent block data
 	adjacentBlocks: (block) ->
@@ -259,14 +214,6 @@ class Grid
 					out.push bl
 		out
 
-
-
-
-	# wipes canvas
-	clear: ->
-		@context.closePath()
-		@context.clearRect 0, 0, cw, ch
-
 	# find all blocks with room type
 	blocksWithRoom: (room)->
 		out = []
@@ -278,6 +225,18 @@ class Grid
 			if block.data.room is room
 				out.push block
 		out
+
+	# wipes canvas
+	clear: ->
+		@context.closePath()
+		@context.clearRect 0, 0, cw, ch
+
+
+	# tries to render the block in Game.state.gridData['_'+x+'_'+y]
+	blockPosition: (block) ->
+		Game.localToGlobal 
+			x: gbw * block.x
+			y: gbh * block.y
 
 	# looks at @offset, @scale and config.grid.block to output a list of blocks that are on screen
 	blocksToRender: ->
@@ -296,11 +255,6 @@ class Grid
 		@context.fillStyle = "black"
 		# @context.strokeStyle = "black"
 
-	# tries to render the block in Game.state.gridData['_'+x+'_'+y]
-	blockPosition: (block) ->
-		Game.localToGlobal 
-			x: gbw * block.x
-			y: gbh * block.y
 	renderBlock: (block) ->
 		if @selection
 			s = @selection
