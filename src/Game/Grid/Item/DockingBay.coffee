@@ -1,6 +1,7 @@
 Base = require './Base.coffee'
 Character = require 'Game/Character'
 Imagine = require 'bower/imagine/imagine'
+gridhelper = require 'Game/Grid/Helper'
 
 img = require './dockspot.png'
 ship = require './ship.png'
@@ -40,7 +41,7 @@ Imagine
 						if data.timeTilDock <=0
 							data.ship = true
 							
-							block = Game.grid.stringToBlock key
+							block = gridhelper.stringToBlock key
 
 							num = 1 + Math.floor(Math.random()*4)
 							for [1..num]
