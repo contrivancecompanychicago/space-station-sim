@@ -19,7 +19,7 @@ class Character
 		if params?.block
 			@block = params.block
 		else
-			@block = Game.grid.randomBlock()
+			@block = gridhelper.randomBlock()
 
 		@pos = @getBlockPosition @block
 
@@ -123,7 +123,7 @@ class Character
 
 		if options.length is 0
 			options.push 'walk'
-			destination = Game.grid.randomBlock()
+			destination = gridhelper.randomBlock()
 			path.walk = Game.grid.path(@block, destination)
 			options.push 'wait'
 
@@ -157,9 +157,6 @@ class Character
 		if path
 			@path = path
 		switch @action
-			# when 'walk'
-			# 	# @destination = Game.grid.randomBlock()
-			# 	# @setPath @destination
 			when 'wait'
 				@waitTime = Math.random() * action.waitTime
 	update: ->

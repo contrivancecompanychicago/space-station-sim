@@ -1,5 +1,6 @@
 Imagine = require 'bower/imagine/imagine'
 config = require 'Game/config'
+_ = require "underscore"
 
 gbw = config.grid.block.width
 gbh = config.grid.block.height
@@ -51,5 +52,39 @@ class Helper
 					delete Game.state.gridData[@blockToString(pos)].room
 			when 'item'
 				delete Game.state.itemData[@blockToString(pos)]
+
+
+	# returns adjacent block data
+	adjacentBlocks: (block) ->
+		# debugger
+		combos = [
+			{x: -1, y:0}
+			{x: 1, y:0}
+			{x: 0, y:-1}
+			{x: 0, y:1}
+			]
+		out = []
+		combos.forEach (combo) =>
+			bl = 
+				x: block.x + combo.x
+				y: block.y + combo.y
+			key = helper.blockToString bl
+			val = Game.state.gridData[key]
+			if val
+				type = BlockTypes[val.type]
+				unless type.isWall
+					bl.data = val
+					out.push bl
+		out
+
+	randomBlock: ->
+		keys = _.keys Game.state.gridData
+		if keys.length is 0
+			throw new error 'no block'
+		key = keys[Math.floor(Math.random()*keys.length)]; #random key
+		# if BlockTypes[Game.state.gridData[key].type].isWall
+		# 	return @randomBlock() # try again
+		@stringToBlock key
+
 
 module.exports = Imagine new Helper()

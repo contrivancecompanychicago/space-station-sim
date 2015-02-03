@@ -181,38 +181,10 @@ class Grid
 
 
 
-	randomBlock: ->
-		keys = _.keys Game.state.gridData
-		if keys.length is 0
-			throw new error 'no block'
-		key = keys[Math.floor(Math.random()*keys.length)]; #random key
-		if BlockTypes[Game.state.gridData[key].type].isWall
-			return @randomBlock() # try again
-		helper.stringToBlock key
 
 
-	# returns adjacent block data
-	adjacentBlocks: (block) ->
-		# debugger
-		combos = [
-			{x: -1, y:0}
-			{x: 1, y:0}
-			{x: 0, y:-1}
-			{x: 0, y:1}
-			]
-		out = []
-		combos.forEach (combo) =>
-			bl = 
-				x: block.x + combo.x
-				y: block.y + combo.y
-			key = helper.blockToString bl
-			val = Game.state.gridData[key]
-			if val
-				type = BlockTypes[val.type]
-				unless type.isWall
-					bl.data = val
-					out.push bl
-		out
+
+	
 
 	# find all blocks with room type
 	blocksWithRoom: (room)->
