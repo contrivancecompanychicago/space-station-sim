@@ -106,8 +106,8 @@ class Input
 				Game.grid.requireRender()
 			when states.moving
 				# todo: zoom correct move
-				Game.state.view.offset.x -= delta.x
-				Game.state.view.offset.y -= delta.y
+				Game.state.view.offset.x -= delta.x / Game.state.view.scale
+				Game.state.view.offset.y -= delta.y / Game.state.view.scale
 				Imagine.notify 'viewStateChanged'
 		setLastMouse e
 	state: states.blank
