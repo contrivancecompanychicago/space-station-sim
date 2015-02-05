@@ -1,6 +1,7 @@
 Imagine = require 'bower/imagine/imagine'
 config = require 'Game/config'
 _ = require "underscore"
+ItemTypes = require 'Game/Grid/Item/Types'
 
 gbw = config.grid.block.width
 gbh = config.grid.block.height
