@@ -5,8 +5,10 @@ config = require './config.coffee'
 Imagine = require 'bower/imagine/imagine'
 RoomTypes = require './Grid/Room/Types.coffee'
 Item = require './Grid/Item.coffee'
-ItemTypes = require './Grid/Item/Types.coffee'
 helper = require './Grid/Helper.coffee'
+
+ItemTypes = require 'Game/Grid/Item/Types'
+
 class Grid
 
 	constructor: (@canvas) ->
