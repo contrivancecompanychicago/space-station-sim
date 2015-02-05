@@ -2,6 +2,8 @@ Imagine = require 'bower/imagine/imagine'
 Vic = require 'victor'
 gridhelper = require 'Game/Grid/Helper'
 
+config = require 'Game/config'
+
 states = 
 	blank: -1
 	selecting: 0
@@ -32,11 +34,11 @@ class Input
 			startMouse = Vic.fromObject Game.globalToLocal {x: e.x, y: e.y}
 			# console.log startMouse
 			if e.wheelDelta > 0
-				if Game.state.view.scale < Game.state.view._scale.max
-					Game.state.view.scale += Game.state.view._scale.step
+				if Game.state.view.scale < config.view.scale.max
+					Game.state.view.scale += config.view.scale.step
 			else
-				if Game.state.view.scale > Game.state.view._scale.min
-					Game.state.view.scale -= Game.state.view._scale.step
+				if Game.state.view.scale > config.view.scale.min
+					Game.state.view.scale -= config.view.scale.step
 
 			# console.log "new scale ", Game.state.view.scale
 			endMouse = Vic.fromObject Game.globalToLocal {x: e.x, y: e.y}

@@ -2,10 +2,10 @@
 module.exports = 
 	timeScale: 1
 	view:
-		_scale: 
-			max: 2
-			min: 0.5
-			step: 0.125
+		# _scale: 
+		# 	max: 2
+		# 	min: 0.5
+		# 	step: 0.125
 		scale: 1
 		offset:
 			x: 0

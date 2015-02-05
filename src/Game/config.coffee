@@ -1,4 +1,9 @@
 module.exports = 	
+	view:
+		scale: 
+			max: 2
+			min: 0.5
+			step: 0.125
 	grid:
 		debugtext: false
 		width: 20
