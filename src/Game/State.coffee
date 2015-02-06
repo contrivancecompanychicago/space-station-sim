@@ -22,3 +22,5 @@ module.exports =
 	characterData: {
 		visitor: []
 	}
+	taskData: [
+	]
