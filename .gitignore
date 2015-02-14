@@ -6,3 +6,5 @@ temp
 .sass-cache
 project.*
 heroku.txt
+.idea
+space sim
