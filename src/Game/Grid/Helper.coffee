@@ -9,6 +9,9 @@ gbh = config.grid.block.height
 cw = config.canvas.width
 ch = config.canvas.height
 
+# debugger
+console.log 'initing grid helper'
+
 class Helper
 	name: "gridhelper"
 	blockAtPoint: (point)->
@@ -88,5 +91,6 @@ class Helper
 		# 	return @randomBlock() # try again
 		@stringToBlock key
 
-
-module.exports = Imagine new Helper()
+ret = Imagine new Helper()
+console.log 'game.grid.helper returning', ret
+module.exports = ret

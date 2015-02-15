@@ -1,15 +1,15 @@
 Imagine = require 'bower/imagine/imagine'
 $ = require 'jquery-browserify'
-Grid = require './Game/Grid.coffee'
-Input = require './Game/Input.coffee'
-Storage = require './Game/Storage.coffee'
-config = require './Game/config.coffee'
+Grid = require 'Game/Grid'
+Input = require 'Game/Input'
+Storage = require 'Game/Storage'
+config = require 'Game/config'
 _ = require 'underscore'
 
-Character = require './Game/Character.coffee'
+Character = require 'Game/Character'
 
-UI = require './Game/UI/Layer.coffee'
-CharacterLayer = require './Game/Character/Layer.coffee'
+UI = require 'Game/UI/Layer'
+CharacterLayer = require 'Game/Character/Layer'
 
 class window.Game
 	name: "spacesim"
@@ -26,7 +26,7 @@ class window.Game
 		if loaded
 			@constructor.state = JSON.parse Storage.get()
 		else
-			@constructor.state = require './Game/State.coffee'
+			@constructor.state = require 'Game/State'
 
 		# grid
 		@canvas = document.createElement 'canvas'

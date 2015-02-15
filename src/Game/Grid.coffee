@@ -5,7 +5,7 @@ config = require './config.coffee'
 Imagine = require 'bower/imagine/imagine'
 RoomTypes = require './Grid/Room/Types.coffee'
 Item = require './Grid/Item.coffee'
-helper = require './Grid/Helper.coffee'
+helper = require 'Game/Grid/Helper'
 
 ItemTypes = require 'Game/Grid/Item/Types'
 

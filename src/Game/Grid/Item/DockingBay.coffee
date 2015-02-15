@@ -1,8 +1,9 @@
 Base = require './Base.coffee'
 Character = require 'Game/Character'
 Imagine = require 'bower/imagine/imagine'
+console.log 'initiing grid helper in dockingbay'
 gridhelper = require 'Game/Grid/Helper'
-
+console.log 'gridhelper init', gridhelper
 img = require './dockspot.png'
 ship = require './ship.png'
 
@@ -40,7 +41,8 @@ Imagine
 						data.timeTilDock -= Imagine.time.deltaTime * Game.state.timeScale
 						if data.timeTilDock <=0
 							data.ship = true
-							
+							console.log gridhelper
+
 							block = gridhelper.stringToBlock key
 
 							num = 1 + Math.floor(Math.random()*4)
