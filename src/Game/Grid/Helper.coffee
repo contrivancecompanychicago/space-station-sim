@@ -1,8 +1,7 @@
 Imagine = require 'bower/imagine/imagine'
-config = require 'Game/config'
 _ = require "underscore"
-
-ItemTypes = require 'Game/Grid/Item/Types'
+config = require 'Game/config'
+ItemTypes = require 'Game/Grid/Item/Types' #circular dependency starts here, affects dockingbay and character
 
 gbw = config.grid.block.width
 gbh = config.grid.block.height
@@ -10,7 +9,7 @@ cw = config.canvas.width
 ch = config.canvas.height
 
 # debugger
-console.log 'initing grid helper'
+#console.log 'initing grid helper'
 
 class Helper
 	name: "gridhelper"
@@ -92,5 +91,4 @@ class Helper
 		@stringToBlock key
 
 ret = Imagine new Helper()
-console.log 'game.grid.helper returning', ret
 module.exports = ret

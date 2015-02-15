@@ -1,9 +1,7 @@
 Base = require './Base.coffee'
 Character = require 'Game/Character'
 Imagine = require 'bower/imagine/imagine'
-console.log 'initiing grid helper in dockingbay'
 gridhelper = require 'Game/Grid/Helper'
-console.log 'gridhelper init', gridhelper
 img = require './dockspot.png'
 ship = require './ship.png'
 

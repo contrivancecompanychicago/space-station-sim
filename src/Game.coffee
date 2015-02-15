@@ -1,10 +1,10 @@
 Imagine = require 'bower/imagine/imagine'
 $ = require 'jquery-browserify'
+_ = require 'underscore'
 Grid = require 'Game/Grid'
 Input = require 'Game/Input'
 Storage = require 'Game/Storage'
 config = require 'Game/config'
-_ = require 'underscore'
 
 Character = require 'Game/Character'
 

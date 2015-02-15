@@ -6,6 +6,7 @@ namegen = require './Util/namegen.coffee'
 vic = require 'victor'
 
 ActionTypes = require './Character/Action/Types.coffee'
+#debugger
 gridhelper = require 'Game/Grid/Helper'
 
 
