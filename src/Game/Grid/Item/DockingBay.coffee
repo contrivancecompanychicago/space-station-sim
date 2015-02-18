@@ -39,7 +39,7 @@ Imagine
 						data.timeTilDock -= Imagine.time.deltaTime * Game.state.timeScale
 						if data.timeTilDock <=0
 							data.ship = true
-							console.log gridhelper
+#							console.log gridhelper
 
 							block = gridhelper.stringToBlock key
 

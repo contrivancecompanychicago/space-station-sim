@@ -1,7 +1,7 @@
 Imagine = require 'bower/imagine/imagine'
 _ = require "underscore"
 config = require 'Game/config'
-ItemTypes = require 'Game/Grid/Item/Types' #circular dependency starts here, affects dockingbay and character
+#ItemTypes = require 'Game/Grid/Item/Types' #circular dependency starts here, affects dockingbay and character
 
 gbw = config.grid.block.width
 gbh = config.grid.block.height
@@ -42,7 +42,7 @@ class Helper
 				if Game.state.gridData[block]#check if block exists
 					type = Game.ui.item.state.selected
 					obj = {type:type}
-					_.extend obj, ItemTypes[type].defaults
+#					_.extend obj, ItemTypes[type].defaults # todo: build this back in
 					Game.state.itemData[block] = obj
 			
 	removeBlock: (pos) ->
