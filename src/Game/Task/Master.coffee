@@ -1,8 +1,7 @@
-
+Imagine = require 'bower/imagine/imagine.js'
 
 class TaskMaster
-
-
+	
 	name: 'taskmaster'
 	addTask: (task) ->
 		# add to list
@@ -12,3 +11,4 @@ class TaskMaster
 
 	removeTasksFromBlock: (block) ->
 		
+module.exports = Imagine new TaskMaster()
