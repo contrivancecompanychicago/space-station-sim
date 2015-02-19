@@ -1,11 +1,13 @@
 Imagine = require 'bower/imagine/imagine.js'
 
 class TaskMaster
-	
+
 	name: 'taskmaster'
 	addTask: (task) ->
 		# add to list
-	findTask: (character) ->
+		Game.state.taskData.push task
+	findTaskForCharacter: (character) ->
+
 
 	removeTask: (task) ->
 
