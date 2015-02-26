@@ -3,7 +3,6 @@ base64 = require 'gulp-base64'
 bower = require 'gulp-bower'
 browserify = require 'browserify'
 coffee = require 'coffee-script'
-coffeeify = require 'coffeeify'
 concat = require 'gulp-concat'
 fs = require 'fs'
 glob = require 'glob'
@@ -23,6 +22,8 @@ templatify = require 'browserify-underscore-templatify'
 through = require 'through2'
 
 imgify = require './buildTasks/imgify.coffee'
+
+require './buildTasks/js.coffee'
 
 bkslsh = /\\/g
 dblbkslsh = /\\\\/g
@@ -60,25 +61,6 @@ imgXform = (raw) ->
 	# out += "';out['"+path+"'] = img;"
 	out += "';module.exports = img;"
 	out
-
-gulp.task 'js', ->
-	opts = 
-		entries: [ './src/main.coffee' ]
-		debug: true
-
-	#aliasmap
-
-
-
-	bundler = browserify opts
-	bundler.transform coffeeify
-	bundler.transform templatify()
-	# bundler.transform imgify()
-
-
-	bundler.bundle()
-		.pipe(source('bundle.js'))
-		.pipe gulp.dest('./dist/')
 
 gulp.task 'coffeeify', ['bower'], ->
 	gulp.src 'src/main.coffee'

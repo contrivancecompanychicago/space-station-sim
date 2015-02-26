@@ -11,16 +11,10 @@ module.exports = (opts) ->
 		unless path.extname(file) in defaults.ext
 			return t2()
 		t2 (data, enc, cb) ->
-			data = String data
-			data = 'module.exports = ' + _.template(data).source
-			@push new Buffer data
+			out = "img = document.createElement('img');"
+			out += "img.src = 'data:image/png;base64,"
+			out += new Buffer(data).toString 'base64'
+			out += "';module.exports = img;"
+			out
+			@push new Buffer out
 			cb()
-
-
-	# imgXform = (raw) ->
-	# out = "img = document.createElement('img');"
-	# out += "img.src = 'data:image/png;base64,"
-	# out += new Buffer(raw).toString 'base64'
-	# # out += "';out['"+path+"'] = img;"
-	# out += "';module.exports = img;"
-	# out
