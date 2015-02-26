@@ -62,11 +62,19 @@ imgXform = (raw) ->
 	out
 
 gulp.task 'js', ->
-	bundler = browserify(
+	opts = 
 		entries: [ './src/main.coffee' ]
-		debug: true)
+		debug: true
+
+	#aliasmap
+
+
+
+	bundler = browserify opts
 	bundler.transform coffeeify
 	bundler.transform templatify()
+	# bundler.transform imgify()
+
 
 	bundler.bundle()
 		.pipe(source('bundle.js'))
