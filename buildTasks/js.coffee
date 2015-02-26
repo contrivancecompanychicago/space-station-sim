@@ -9,6 +9,7 @@ templatify = require 'browserify-underscore-templatify'
 
 _ = require 'underscore'
 
+glob = require 'glob'
 
 path = require 'path'
 
@@ -30,7 +31,13 @@ gulp.task 'js', ->
 
 	aliasMap = {}
 	aliases.forEach (alias) ->
-		console.log path.join process.cwd(), alias.cwd
+		dir = path.join process.cwd(), alias.cwd
+		pattern = path.join dir, '**/*.*'
+		console.log pattern
+		glob.sync(pattern).forEach (file)->
+			alias = path.relative dir, file
+			file = path.normalize file
+			console.log alias, file
 
 
 	opts.builtins  = _.defaults require('browserify/lib/builtins'), aliasMap
