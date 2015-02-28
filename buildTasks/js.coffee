@@ -32,15 +32,14 @@ gulp.task 'js', ->
 	aliasMap = {}
 	aliases.forEach (alias) ->
 		dir = path.join process.cwd(), alias.cwd
-		pattern = path.join dir, '**/*.*'
-		console.log pattern
-		glob.sync(pattern).forEach (file)->
-			alias = path.relative dir, file
-			alias = alias.substr 0, alias.length - path.extname(alias).length
-
-			alias = alias.replace /\\+/g, '/'
-			file = path.normalize file
-			console.log alias, file
+		['**/*.coffee', '**/*.js'].forEach (pattern) ->
+			pattern = path.join dir, pattern
+			glob.sync(pattern).forEach (file)->
+				alias = path.relative dir, file
+				alias = alias.substr 0, alias.length - path.extname(alias).length
+				alias = alias.replace /\\+/g, '/'
+				file = path.normalize file
+				aliasMap[alias] = file
 
 
 	opts.builtins  = _.defaults require('browserify/lib/builtins'), aliasMap
