@@ -81,6 +81,7 @@
     "gulp-sourcemaps": "^1.3.0",
     "gulp-bower": "0.0.10",
     "browserify-underscore-templatify": "0.0.2",
-    "vinyl-source-stream": "^1.0.0"
+    "vinyl-source-stream": "^1.0.0",
+    "remapify": "^1.4.4"
   }
 }
