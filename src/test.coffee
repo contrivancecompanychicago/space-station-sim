@@ -1,5 +1,5 @@
 console.log "i'm a test :)"
 
-require 'testing/Game/config'
+require 'src/Game/config.coffee'
 # require './index.html'
 # require './Game/Grid/Block/Type/plain.png'
