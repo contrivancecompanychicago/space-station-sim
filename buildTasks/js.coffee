@@ -13,9 +13,9 @@ path = require 'path'
 
 t2 = require 'through2'
 
-gulp.task 'js', ->
+gulp.task 'js', ['bower'], ->
 	opts = 
-		entries: [ './src/test.coffee' ]
+		entries: [ './src/main.coffee' ]
 		debug: true
 		extensions: ['.js', '.coffee', '.html', '.png'] # needed for remapify
 
@@ -26,6 +26,12 @@ gulp.task 'js', ->
 			src: '**/*.coffee'
 			# expose: 'testing'
 			cwd: path.join process.cwd(), 'src'
+			# filter: console.log
+		}
+		{
+			src: '**/*.js'
+			expose: 'bower'
+			cwd: path.join process.cwd(), 'bower_components'
 			# filter: console.log
 		}
 	]

@@ -8,11 +8,6 @@ defaults =
 module.exports = (opts) ->
 	opts = _.extend defaults, opts
 	return (file) ->
-		console.log file
-		# t2 (data, enc, cb) ->
-		# 	console.log String data
-		# 	@push data
-		# 	cb()
 		unless path.extname(file) in defaults.ext
 			return t2()
 		t2 (data, enc, cb) ->

@@ -34,12 +34,12 @@ gulp.task 'server', ['build']
 gulp.task 'build', [
 		'copy-html'
 		'sass'
-		'coffeeify'
+		'js'
 	]
 
 gulp.task 'watch', ->
 	livereload.listen()
-	gulp.watch ['gulpfile.coffee', 'src/**/*.*'], ['coffeeify']
+	gulp.watch ['gulpfile.coffee', 'src/**/*.*'], ['js']
 	gulp.watch ['src/**/*.sass'], ['sass']
 
 
