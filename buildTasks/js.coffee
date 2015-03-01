@@ -41,8 +41,6 @@ gulp.task 'js', ['bower'], ->
 			}
 		]
 
-
-
 	bundler = browserify opts
 
 	bundler.plugin remapify, opts.aliases
@@ -58,15 +56,6 @@ gulp.task 'js', ['bower'], ->
 			process.stdout.write '.'# reporter
 			# console.log file, new Date() - t
 			# t = new Date()
-		# .on 'package', -> console.log "package"
-		# .on 'bundle', -> console.log "bundle"
-		# .on 'reset', -> console.log "reset"
-		# .on 'transform', -> console.log "x"
-		# .on('error', (err) ->
-		# 	console.log err
-		# 	this.emit 'end'
-		# )
-		# .on 'file', console.log
 		.pipe(source('bundle.js'))
 		.pipe gulp.dest('./dist/')
 		.pipe livereload()
