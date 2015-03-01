@@ -57,8 +57,8 @@ htmlXform = (data)->
 imgXform = (data) ->
 	# console.log "-----"
 	# console.log (String data).substr 0, 100
-	console.log data
-	console.log data.length
+	# console.log data
+	# console.log data.length
 	# console.log data.toJSON()
 	out = "img = document.createElement('img');"
 	out += "img.src = 'data:image/png;base64,"
@@ -69,7 +69,7 @@ imgXform = (data) ->
 	# JSON.stringify data.toJSON()
 
 gulp.task 'coffeeify', ['bower'], ->
-	gulp.src 'src/test.coffee'
+	gulp.src 'src/main.coffee'
 	# gulp.src 'src/test.coffee'
 		# .pipe sourcemaps.init()
 		.pipe gulpcoffeeify({

@@ -26,7 +26,7 @@ cacheImg = cacheify imgify(), dbImg
 
 gulp.task 'js', ['bower'], ->
 	opts = 
-		entries: [ './src/test.coffee' ]
+		entries: [ './src/main.coffee' ]
 		debug: true
 		extensions: ['.js', '.coffee', '.html', '.png'] # needed for remapify
 		aliases: [
