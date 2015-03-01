@@ -13,6 +13,17 @@ path = require 'path'
 
 t2 = require 'through2'
 
+livereload = require 'gulp-livereload'
+
+cacheify = require 'cacheify'
+levelup = require 'levelup'
+dbCoffee = levelup '', {db: require 'memdown' }
+dbTempl = levelup '', {db: require 'memdown' }
+dbImg = levelup '', {db: require 'memdown' }
+cacheCoffee = cacheify coffeeify, dbCoffee
+cacheTempl = cacheify templatify(), dbTempl
+cacheImg = cacheify imgify(), dbImg
+
 gulp.task 'js', ['bower'], ->
 	opts = 
 		entries: [ './src/main.coffee' ]
@@ -40,9 +51,9 @@ gulp.task 'js', ['bower'], ->
 		process.stdout.write '.'
 		t2()
 
-	bundler.transform coffeeify
-	bundler.transform templatify()
-	bundler.transform imgify()
+	bundler.transform cacheCoffee
+	bundler.transform cacheTempl
+	bundler.transform cacheImg
 
 	bundler.bundle()
 		# .on 'package', -> console.log "package"
@@ -56,3 +67,4 @@ gulp.task 'js', ['bower'], ->
 		# .on 'file', console.log
 		.pipe(source('bundle.js'))
 		.pipe gulp.dest('./dist/')
+		.pipe livereload()
