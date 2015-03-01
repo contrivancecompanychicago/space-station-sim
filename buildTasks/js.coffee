@@ -54,12 +54,12 @@ gulp.task 'js', ->
 
 	bundler = browserify opts
 
-
+	# console.log path.join process.cwd(), 'src'
 	bundler.plugin remapify, [
 		{
-			src: './src/**/*.coffee'
+			src: '**/*.coffee'
 			# expose: 'testing'
-			# cwd: process.cwd()
+			cwd: path.join process.cwd(), 'src'
 			# filter: console.log
 		}
 	]
