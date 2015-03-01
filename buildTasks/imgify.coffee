@@ -18,21 +18,11 @@ module.exports = (opts) ->
 			# getting file direct from FS
 			self = @
 			fs.readFile file, (err, data) ->
-				# console.log err, data
 
-				# console.log enc
-				# console.log "-----"
-				# console.log (String data).substr 0, 100
-				# console.log data
-				# console.log data.length
-				# console.log _.keys data
 				out = "img = document.createElement('img');"
 				out += "img.src = 'data:image/png;base64,"
 				out += new Buffer(data).toString 'base64'
-				# out += String data
 				out += "';module.exports = img;"
-				# out
 
 				self.push new Buffer out
-				# @push new Buffer JSON.stringify data.toJSON()
 				cb()

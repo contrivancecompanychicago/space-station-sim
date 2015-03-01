@@ -51,55 +51,6 @@ gulp.task 'livereload', ->
 	gulp.src 'dist/index.html'
 		.pipe livereload()
 
-htmlXform = (data)->
-	content = data.replace(/'/g, '\\\'').replace(/\r/g, '').replace(/\n/g, '')
-	"module.exports = require('underscore').template('" + content + "');"
-imgXform = (data) ->
-	# console.log "-----"
-	# console.log (String data).substr 0, 100
-	# console.log data
-	# console.log data.length
-	# console.log data.toJSON()
-	out = "img = document.createElement('img');"
-	out += "img.src = 'data:image/png;base64,"
-	out += new Buffer(data).toString 'base64'
-	# out += String data
-	out += "';module.exports = img;"
-	out
-	# JSON.stringify data.toJSON()
-
-gulp.task 'coffeeify', ['bower'], ->
-	gulp.src 'src/main.coffee'
-	# gulp.src 'src/test.coffee'
-		# .pipe sourcemaps.init()
-		.pipe gulpcoffeeify({
-			transforms: [
-				{
-					ext: '.html'
-					transform: htmlXform
-				}
-				{
-					ext: '.png'
-					transformRaw: imgXform
-				}
-			]
-			aliases: [
-				{
-					cwd: 'src'
-					# base: 'Game'
-				}
-				{
-					cwd: 'bower_components'
-					base: 'bower'
-				}
-			]
-			# debug: true
-		})
-		# .pipe sourcemaps.write()
-		.pipe concat('main.js')
-		.pipe gulp.dest 'dist'
-		.pipe livereload()
-
 gulp.task 'clean', (cb)->
 	rimraf 'dist', cb
 
