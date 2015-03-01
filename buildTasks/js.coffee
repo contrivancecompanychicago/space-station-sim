@@ -26,7 +26,7 @@ cacheImg = cacheify imgify(), dbImg
 
 gulp.task 'js', ['bower'], ->
 	opts = 
-		entries: [ './src/main.coffee' ]
+		entries: [ './src/test.coffee' ]
 		debug: true
 		extensions: ['.js', '.coffee', '.html', '.png'] # needed for remapify
 		aliases: [
@@ -47,15 +47,17 @@ gulp.task 'js', ['bower'], ->
 
 	bundler.plugin remapify, opts.aliases
 
-	bundler.transform (file) -> # reporter
-		process.stdout.write '.'
-		t2()
-
 	bundler.transform cacheCoffee
 	bundler.transform cacheTempl
-	bundler.transform cacheImg
+	bundler.transform imgify()
+
+	t = new Date()
 
 	bundler.bundle()
+		.on 'file', (file) ->
+			process.stdout.write '.'# reporter
+			# console.log file, new Date() - t
+			# t = new Date()
 		# .on 'package', -> console.log "package"
 		# .on 'bundle', -> console.log "bundle"
 		# .on 'reset', -> console.log "reset"

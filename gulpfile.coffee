@@ -54,16 +54,22 @@ gulp.task 'livereload', ->
 htmlXform = (data)->
 	content = data.replace(/'/g, '\\\'').replace(/\r/g, '').replace(/\n/g, '')
 	"module.exports = require('underscore').template('" + content + "');"
-imgXform = (raw) ->
+imgXform = (data) ->
+	# console.log "-----"
+	# console.log (String data).substr 0, 100
+	console.log data
+	console.log data.length
+	# console.log data.toJSON()
 	out = "img = document.createElement('img');"
 	out += "img.src = 'data:image/png;base64,"
-	out += new Buffer(raw).toString 'base64'
-	# out += "';out['"+path+"'] = img;"
+	out += new Buffer(data).toString 'base64'
+	# out += String data
 	out += "';module.exports = img;"
 	out
+	# JSON.stringify data.toJSON()
 
 gulp.task 'coffeeify', ['bower'], ->
-	gulp.src 'src/main.coffee'
+	gulp.src 'src/test.coffee'
 	# gulp.src 'src/test.coffee'
 		# .pipe sourcemaps.init()
 		.pipe gulpcoffeeify({
@@ -109,3 +115,8 @@ gulp.task 'copy-html', ->
 		.pipe gulp.dest 'dist'
 
 
+b64 = require 'gulp-base64'
+gulp.task 'b64', ->
+	gulp.src './src/**/*.png'
+		.pipe b64()
+		.pipe gulp.dest './temp'
