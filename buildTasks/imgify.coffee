@@ -9,17 +9,17 @@ module.exports = (opts) ->
 	opts = _.extend defaults, opts
 	return (file) ->
 		console.log file
-		t2 (data, enc, cb) ->
-			console.log String data
-			@push data
-			cb()
-		# unless path.extname(file) in defaults.ext
-		# 	return t2()
 		# t2 (data, enc, cb) ->
-		# 	out = "img = document.createElement('img');"
-		# 	out += "img.src = 'data:image/png;base64,"
-		# 	out += new Buffer(data).toString 'base64'
-		# 	out += "';module.exports = img;"
-		# 	out
-		# 	@push new Buffer out
+		# 	console.log String data
+		# 	@push data
 		# 	cb()
+		unless path.extname(file) in defaults.ext
+			return t2()
+		t2 (data, enc, cb) ->
+			out = "img = document.createElement('img');"
+			out += "img.src = 'data:image/png;base64,"
+			out += new Buffer(data).toString 'base64'
+			out += "';module.exports = img;"
+			# out
+			@push new Buffer out
+			cb()
