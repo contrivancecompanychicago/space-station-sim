@@ -12,6 +12,8 @@ gulpcoffeeify = require 'gulp-coffeeify'
 insert = require 'gulp-insert'
 livereload = require 'gulp-livereload'
 merge = require 'gulp-merge'
+nodemon = require 'gulp-nodemon'
+open = require 'gulp-open'
 path = require 'path'
 rename = require 'gulp-rename'
 rimraf = require 'rimraf'
@@ -28,7 +30,7 @@ require './buildTasks/js.coffee'
 bkslsh = /\\/g
 dblbkslsh = /\\\\/g
 
-gulp.task 'default', ['build', 'watch']
+gulp.task 'default', ['build', 'watch', 'nodemon']
 gulp.task 'server', ['build']
 
 gulp.task 'build', [
@@ -71,3 +73,11 @@ gulp.task 'b64', ->
 	gulp.src './src/**/*.png'
 		.pipe b64()
 		.pipe gulp.dest './temp'
+
+gulp.task 'nodemon', ->
+	nodemon
+		script: 'server/server.coffee'
+
+gulp.task 'open', ->
+	gulp.src './server/server.coffee' #unneeded
+		.pipe open '', {url: 'http://localhost:31337', app: 'chrome'}
