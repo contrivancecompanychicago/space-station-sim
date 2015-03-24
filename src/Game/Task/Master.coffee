@@ -7,6 +7,9 @@ class TaskMaster
 		# add to list
 		Game.state.taskData.push task
 	findTaskForCharacter: (character) ->
+		# get character location
+		
+
 
 
 	removeTask: (task) ->
