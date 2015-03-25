@@ -1,5 +1,6 @@
 bower_components
 node_modules
+coverage
 *.js
 dist
 temp
@@ -7,4 +8,3 @@ temp
 project.*
 heroku.txt
 .idea
-space sim
