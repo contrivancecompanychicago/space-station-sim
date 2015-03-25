@@ -2,7 +2,6 @@ _ = require 'underscore'
 base64 = require 'gulp-base64'
 bower = require 'gulp-bower'
 browserify = require 'browserify'
-coffee = require 'coffee-script'
 concat = require 'gulp-concat'
 fs = require 'fs'
 glob = require 'glob'
@@ -22,6 +21,7 @@ source = require 'vinyl-source-stream'
 sourcemaps = require 'gulp-sourcemaps'
 templatify = require 'browserify-underscore-templatify'
 through = require 'through2'
+jasmine = require 'gulp-jasmine'
 
 imgify = require './buildTasks/imgify.coffee'
 
@@ -81,3 +81,17 @@ gulp.task 'nodemon', ->
 gulp.task 'open', ->
 	gulp.src './server/server.coffee' #unneeded
 		.pipe open '', {url: 'http://localhost:31337', app: 'chrome'}
+
+gulp.task 'test', ->
+	gulp.start 'jasmine'
+
+gulp.task 'jasmine', ->
+	gulp.src 'spec/Game.spec.coffee'
+		.pipe jasmine()
+
+
+# coffee = require 'gulp-coffee'
+# gulp.task 'coffee-spec', ->
+# 	gulp.src './spec/**/*.coffee'
+# 		.pipe coffee()
+# 		.pipe gulp.dest './temp'
