@@ -1,0 +1,2 @@
+class spectest
+	myfunc: -> 'abc'

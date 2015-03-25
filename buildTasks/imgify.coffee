@@ -12,7 +12,6 @@ module.exports = (opts) ->
 	return (file) ->
 		unless path.extname(file) in defaults.ext
 			return t2()
-		# console.log file
 		t2.obj (data, enc, cb) ->
 			#data given from t2 is shit for some reason
 			# getting file direct from FS

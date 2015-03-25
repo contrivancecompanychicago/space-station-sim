@@ -95,3 +95,11 @@ gulp.task 'jasmine', ->
 # 	gulp.src './spec/**/*.coffee'
 # 		.pipe coffee()
 # 		.pipe gulp.dest './temp'
+
+
+karma = require 'gulp-karma'
+
+gulp.task 'karma', ->
+	gulp.src 'dist/bundle.js'
+		.pipe karma
+			configFile: 'karma.conf.js'
