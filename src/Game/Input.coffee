@@ -1,4 +1,4 @@
-Imagine = require 'bower/imagine/imagine'
+Imagine = require 'imagine'
 Vic = require 'victor'
 gridhelper = require 'Game/Grid/Helper'
 

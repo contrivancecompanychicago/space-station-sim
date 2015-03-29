@@ -1,5 +1,5 @@
 view = require './ModeSelector.html'
-Imagine = require 'bower/imagine/imagine'
+Imagine = require 'imagine'
 class ModeSelector
 	name: 'UIModeSelector'
 	state:

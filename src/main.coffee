@@ -1,4 +1,4 @@
-imagine = require 'bower/imagine/imagine'
+imagine = require 'imagine'
 Game = require './Game.coffee'
 # $ = require 'jquery-browserify'
 # images = require './images.coffee'

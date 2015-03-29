@@ -1,6 +1,6 @@
 Base = require './Base.coffee'
 Character = require 'Game/Character'
-Imagine = require 'bower/imagine/imagine'
+Imagine = require 'imagine'
 gridhelper = require 'Game/Grid/Helper'
 img = require './dockspot.png'
 ship = require './ship.png'

@@ -1,4 +1,4 @@
-Imagine = require 'bower/imagine/imagine'
+Imagine = require 'imagine'
 _ = require "underscore"
 config = require 'Game/config'
 #ItemTypes = require 'Game/Grid/Item/Types' #circular dependency starts here, affects dockingbay and character

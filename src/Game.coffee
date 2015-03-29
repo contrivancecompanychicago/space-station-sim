@@ -1,4 +1,4 @@
-Imagine = require 'bower/imagine/imagine'
+Imagine = require 'imagine'
 $ = require 'jquery-browserify'
 _ = require 'underscore'
 Grid = require 'Game/Grid'

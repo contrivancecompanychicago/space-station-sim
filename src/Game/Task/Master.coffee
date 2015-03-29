@@ -1,4 +1,4 @@
-Imagine = require 'bower/imagine/imagine.js'
+Imagine = require 'imagine.js'
 
 class TaskMaster
 

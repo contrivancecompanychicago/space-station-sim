@@ -1,5 +1,5 @@
 view = require './RoomSelector.html'
-Imagine = require 'bower/imagine/imagine'
+Imagine = require 'imagine'
 Types = require '../Grid/Room/Types.coffee'
 _ = require 'underscore'
 

@@ -9,7 +9,11 @@
 </head>
 <body><!-- -->
 	<div id="container"></div>
-	<script>new Game(document.getElementById('container'));</script>
+	<script>
+		var Game = require('Game');
+		new Game(document.getElementById('container'));
+
+	</script>
 	<div id="fps">xfps</div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 
 _ = require 'underscore'
 config = require './config.coffee'
-Imagine = require 'bower/imagine/imagine'
+Imagine = require 'imagine'
 namegen = require './Util/namegen.coffee'
 vic = require 'victor'
 

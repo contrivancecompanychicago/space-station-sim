@@ -4,7 +4,7 @@ RoomSelector = require './RoomSelector.coffee'
 SpeedSelector = require './SpeedSelector.coffee'
 ItemSelector = require './ItemSelector.coffee'
 SavePanel = require './SavePanel.coffee'
-Imagine = require 'bower/imagine/imagine'
+Imagine = require 'imagine'
 class Layer
 	_modes: ['select', 'block', 'room']#for reference
 	constructor: (@container) ->
