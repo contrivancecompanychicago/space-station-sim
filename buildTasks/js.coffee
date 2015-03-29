@@ -8,6 +8,7 @@ templatify = require 'browserify-underscore-templatify'
 imgify = require './imgify.coffee'
 
 remapify = require 'remapify'
+aliasify = require 'aliasify'
 
 path = require 'path'
 
@@ -43,6 +44,7 @@ gulp.task 'js', ['bower'], ->
 
 	bundler = browserify opts
 
+
 	# bundler.require './bower_components/imagine/imagine.js', expose: 'imagine'
 
 	bundler.plugin remapify, opts.aliases
@@ -50,6 +52,10 @@ gulp.task 'js', ['bower'], ->
 	bundler.transform cacheCoffee
 	bundler.transform cacheTempl
 	bundler.transform imgify()
+
+	bundler.transform aliasify,
+		aliases:
+			'imagine': './bower_components/imagine/imagine'
 
 	t = new Date()
 
