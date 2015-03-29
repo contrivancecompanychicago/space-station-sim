@@ -1,6 +1,6 @@
 console.log "i'm a test :)"
 
-im = require 'bower/imagine/imagine'
+# im = require 'bower/imagine/imagine'
 console.log im
 
 console.log require 'imagine'

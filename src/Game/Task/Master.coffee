@@ -1,4 +1,4 @@
-Imagine = require 'imagine.js'
+Imagine = require 'imagine'
 
 class TaskMaster
 

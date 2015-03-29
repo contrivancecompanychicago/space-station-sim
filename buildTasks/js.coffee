@@ -14,6 +14,8 @@ path = require 'path'
 
 t2 = require 'through2'
 
+_ = require 'lodash'
+
 livereload = require 'gulp-livereload'
 
 cacheify = require 'cacheify'
@@ -25,29 +27,45 @@ cacheCoffee = cacheify coffeeify, dbCoffee
 cacheTempl = cacheify templatify(), dbTempl
 cacheImg = cacheify imgify(), dbImg
 
+
+mapFiles = (base, prefix) ->
+	out = {}
+	files = require('glob').sync "#{base}**/*.coffee"
+	files.forEach (file)->
+		alias = file.substr base.length
+		alias = alias.substr 0, alias.length - path.extname(file).length
+		if prefix then alias = prefix + alias
+		out[alias] = file
+	out
+
 gulp.task 'js', ['bower'], ->
 	opts = 
 		# entries: [ './src/Game.coffee' ]
 		debug: true
 		extensions: ['.js', '.coffee', '.html', '.png'] # needed for remapify
-		aliases: [
-			{
-				src: '**/*.coffee'
-				cwd: path.join process.cwd(), 'src'
-			}
-			{
-				src: '**/*.js'
-				expose: 'bower'
-				cwd: path.join process.cwd(), 'bower_components'
-			}
-		]
+		# aliases: [
+		# 	{
+		# 		src: '**/*.coffee'
+		# 		cwd: path.join process.cwd(), 'src'
+		# 	}
+			
+		# 	# {
+		# 	# 	src: '**/*.coffee'
+		# 	# 	cwd: path.join process.cwd(), 'src'
+		# 	# }
+		# 	# {
+		# 	# 	src: '**/*.js'
+		# 	# 	expose: 'bower'
+		# 	# 	cwd: path.join process.cwd(), 'bower_components'
+		# 	# }
+		# ]
 
 	bundler = browserify opts
 
 
 	# bundler.require './bower_components/imagine/imagine.js', expose: 'imagine'
 
-	bundler.plugin remapify, opts.aliases
+	# bundler.plugin remapify, opts.aliases
 
 	bundler.transform cacheCoffee
 	bundler.transform cacheTempl
@@ -56,12 +74,10 @@ gulp.task 'js', ['bower'], ->
 
 	externals = 
 		'imagine': './bower_components/imagine/imagine.js'
-		'Game': './src/Game.coffee'
-	# bundler.transform aliasify,
-	# 	aliases: als
-			
+		# 'Game': './src/Game.coffee'
+	_.extend externals, mapFiles "./src/"
+	# console.log mapFiles './src/'
 
-	
 	for name of externals
 		bundler.require externals[name], expose: name
 

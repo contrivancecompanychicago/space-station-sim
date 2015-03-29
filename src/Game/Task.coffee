@@ -1,4 +1,4 @@
-master = require 
+# master = require 
 
 class Task
 	constructor: (@type, @block, @params) ->
@@ -6,9 +6,9 @@ class Task
 	register: ->
 		# find depends
 		#make depends
-		master.addTask this
+		# master.addTask this
 
-	Depends
+	# Depends
 
 	# types
 	BLOCK: 'block'
