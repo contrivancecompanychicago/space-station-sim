@@ -77,6 +77,7 @@ gulp.task 'b64', ->
 gulp.task 'nodemon', ->
 	nodemon
 		script: 'server/server.coffee'
+		ext: 'none'
 
 gulp.task 'open', ->
 	gulp.src './server/server.coffee' #unneeded

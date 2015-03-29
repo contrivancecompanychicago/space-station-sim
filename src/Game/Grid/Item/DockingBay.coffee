@@ -5,6 +5,8 @@ gridhelper = require 'Game/Grid/Helper'
 img = require './dockspot.png'
 ship = require './ship.png'
 
+Game = require 'Game'
+
 item = new Base(2, 2)
 item.defaults = 
 	ship: false

@@ -43,40 +43,16 @@ gulp.task 'js', ['bower'], ->
 		# entries: [ './src/Game.coffee' ]
 		debug: true
 		extensions: ['.js', '.coffee', '.html', '.png'] # needed for remapify
-		# aliases: [
-		# 	{
-		# 		src: '**/*.coffee'
-		# 		cwd: path.join process.cwd(), 'src'
-		# 	}
-			
-		# 	# {
-		# 	# 	src: '**/*.coffee'
-		# 	# 	cwd: path.join process.cwd(), 'src'
-		# 	# }
-		# 	# {
-		# 	# 	src: '**/*.js'
-		# 	# 	expose: 'bower'
-		# 	# 	cwd: path.join process.cwd(), 'bower_components'
-		# 	# }
-		# ]
 
 	bundler = browserify opts
-
-
-	# bundler.require './bower_components/imagine/imagine.js', expose: 'imagine'
-
-	# bundler.plugin remapify, opts.aliases
 
 	bundler.transform cacheCoffee
 	bundler.transform cacheTempl
 	bundler.transform imgify()
 
-
 	externals = 
 		'imagine': './bower_components/imagine/imagine.js'
-		# 'Game': './src/Game.coffee'
 	_.extend externals, mapFiles "./src/"
-	# console.log mapFiles './src/'
 
 	for name of externals
 		bundler.require externals[name], expose: name
