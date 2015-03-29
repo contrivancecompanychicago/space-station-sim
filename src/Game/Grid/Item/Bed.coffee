@@ -1,4 +1,4 @@
-Base = require './Base.coffee'
+Base = require 'Game/Grid/Item/Base'
 
 img = require './bed.png'
 

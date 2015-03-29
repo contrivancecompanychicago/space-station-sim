@@ -1,6 +1,6 @@
 view = require './RoomSelector.html'
 Imagine = require 'imagine'
-Types = require '../Grid/Room/Types.coffee'
+Types = require 'Game/Grid/Room/Types'
 _ = require 'underscore'
 
 class RoomSelector

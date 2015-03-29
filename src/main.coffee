@@ -1,5 +1,5 @@
 imagine = require 'imagine'
-Game = require './Game.coffee'
+Game = require 'Game'
 # $ = require 'jquery-browserify'
 # images = require './images.coffee'
 

@@ -7,7 +7,7 @@
 # 		context.fillStyle = "grey"
 # 		context.fillRect offset.x, offset.y, gbw * Game.state.view.scale, gbh * Game.state.view.scale
 
-Base = require './Base.coffee'
+Base = require 'Game/Grid/Block/Type/Base'
 img = require './wall.png'
 block = new Base()
 block.isWall = true

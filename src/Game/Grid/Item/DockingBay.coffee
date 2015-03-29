@@ -1,4 +1,4 @@
-Base = require './Base.coffee'
+Base = require 'Game/Grid/Item/Base'
 Character = require 'Game/Character'
 Imagine = require 'imagine'
 gridhelper = require 'Game/Grid/Helper'

@@ -1,6 +1,6 @@
 view = require './BlockSelector.html'
 Imagine = require 'imagine'
-Types = require '../Grid/Block/Types.coffee'
+Types = require 'Game/Grid/Block/Types'
 _ = require 'underscore'
 
 class BlockSelector

@@ -1,9 +1,9 @@
-BlockSelector = require './BlockSelector.coffee'
-ModeSelector = require './ModeSelector.coffee'
-RoomSelector = require './RoomSelector.coffee'
-SpeedSelector = require './SpeedSelector.coffee'
-ItemSelector = require './ItemSelector.coffee'
-SavePanel = require './SavePanel.coffee'
+BlockSelector = require 'Game/UI/BlockSelector'
+ModeSelector = require 'Game/UI/ModeSelector'
+RoomSelector = require 'Game/UI/RoomSelector'
+SpeedSelector = require 'Game/UI/SpeedSelector'
+ItemSelector = require 'Game/UI/ItemSelector'
+SavePanel = require 'Game/UI/SavePanel'
 Imagine = require 'imagine'
 class Layer
 	_modes: ['select', 'block', 'room']#for reference

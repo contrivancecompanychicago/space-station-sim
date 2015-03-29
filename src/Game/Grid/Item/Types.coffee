@@ -3,9 +3,9 @@
 # gbh = config.grid.block.height
 
 module.exports = 
-	test: require './Test.coffee'
-	dockingbay: require './DockingBay.coffee'
-	bed: require './Bed.coffee'
+	test: require 'Game/Grid/Item/Test'
+	dockingbay: require 'Game/Grid/Item/DockingBay'
+	bed: require 'Game/Grid/Item/Bed'
 	# test: 
 	# 	render: (context, offset, data) ->
 	# 		context.fillStyle = "red"

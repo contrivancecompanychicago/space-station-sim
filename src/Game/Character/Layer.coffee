@@ -1,7 +1,7 @@
-config = require '../config.coffee'
-Character = require '../Character.coffee'
+config = require 'Game/config'
+Character = require 'Game/Character'
 Imagine = require 'imagine'
-ActionTypes = require '../Character/Action/Types.coffee'
+ActionTypes = require 'Game/Character/Action/Types'
 
 class CharacterLayer
 	cw = config.canvas.width

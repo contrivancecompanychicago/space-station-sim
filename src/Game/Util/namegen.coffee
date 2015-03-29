@@ -1,6 +1,6 @@
-NameGenerator = require './NameGenerator/NameGenerator.coffee'
-first = require './NameGenerator/firstname_set.coffee'
-last = require './NameGenerator/lastname_set.coffee'
+NameGenerator = require 'Game/Util/NameGenerator/NameGenerator'
+first = require 'Game/Util/NameGenerator/firstname_set'
+last = require 'Game/Util/NameGenerator/lastname_set'
 
 gen = new NameGenerator()
 gen.setList 'first', first

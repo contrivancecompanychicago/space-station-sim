@@ -1,4 +1,4 @@
-config = require './config.coffee'
+config = require 'Game/config'
 
 module.exports = 
 	set: (state)->

@@ -1,3 +1,3 @@
-Imagine = require '../../../'
+# Imagine = require '../../../'
 
 # game grid block helper

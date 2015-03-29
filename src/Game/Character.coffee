@@ -1,11 +1,11 @@
 
 _ = require 'underscore'
-config = require './config.coffee'
+config = require 'Game/config'
 Imagine = require 'imagine'
-namegen = require './Util/namegen.coffee'
+namegen = require 'Game/Util/namegen'
 vic = require 'victor'
 
-ActionTypes = require './Character/Action/Types.coffee'
+ActionTypes = require 'Game/Character/Action/Types'
 #debugger
 gridhelper = require 'Game/Grid/Helper'
 

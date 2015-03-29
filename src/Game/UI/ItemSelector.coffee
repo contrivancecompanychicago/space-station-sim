@@ -1,6 +1,6 @@
 view = require './ItemSelector.html'
 Imagine = require 'imagine'
-Types = require '../Grid/Item/Types.coffee'
+Types = require 'Game/Grid/Item/Types'
 _ = require 'underscore'
 
 class ItemSelector
