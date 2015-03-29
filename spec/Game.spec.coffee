@@ -9,3 +9,11 @@ describe 'Game', ->
 
 	it 'should have localToGlobal', ->
 		expect(window.Game.localToGlobal).toBeDefined()
+
+	# it 'should have a long test', (cb)->
+	# 	window.requestAnimationFrame(cb)
+	# 	setTimeout ->
+	# 		cb()
+	# 	, 10000
+	# 	cb()
+

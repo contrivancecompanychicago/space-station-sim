@@ -26,7 +26,7 @@ cacheImg = cacheify imgify(), dbImg
 
 gulp.task 'js', ['bower'], ->
 	opts = 
-		entries: [ './src/main.coffee' ]
+		entries: [ './src/Game.coffee' ]
 		debug: true
 		extensions: ['.js', '.coffee', '.html', '.png'] # needed for remapify
 		aliases: [
@@ -42,6 +42,8 @@ gulp.task 'js', ['bower'], ->
 		]
 
 	bundler = browserify opts
+
+	# bundler.require './bower_components/imagine/imagine.js', expose: 'imagine'
 
 	bundler.plugin remapify, opts.aliases
 
