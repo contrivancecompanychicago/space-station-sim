@@ -18,7 +18,11 @@ describe 'Game', ->
 	it 'should throw an error if instantiated without a container', ->
 		expect(-> new gameClass()).toThrow new Error 'Game container not defined'
 
-	it 'should expose instance after being instantiated', ->
+	it 'should expose instance after being instantiated', (cb)->
+		g = new gameClass(div)
+		# console.log gameClass
+		expect(gameClass.instance).toBeDefined()
+		cb()
 		
 
 	# it 'should have a long test', (cb)->

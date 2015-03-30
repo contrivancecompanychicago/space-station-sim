@@ -13,9 +13,13 @@ CharacterLayer = require 'Game/Character/Layer'
 
 class window.Game
 	name: "spacesim"
+
 	# @state: 'no'
 	constructor: (container)->
+		@init container
 
+	init: (container)->
+		# @instance = @
 		unless container
 			throw new Error 'Game container not defined'
 		# @constructor.state = "yes"
@@ -56,6 +60,8 @@ class window.Game
 		$(container).append UIdiv
 		@constructor.ui = new UI UIdiv
 
+	@instance: ->
+		@
 
 	@globalToLocal: (point) ->
 		x: ((point.x / Game.state.view.scale) - Game.state.view.offset.x)

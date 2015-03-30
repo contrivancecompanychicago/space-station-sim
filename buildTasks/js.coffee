@@ -9,7 +9,7 @@ imgify = require './imgify.coffee'
 
 remapify = require 'remapify'
 aliasify = require 'aliasify'
-
+rename = require 'gulp-rename'
 path = require 'path'
 
 t2 = require 'through2'
@@ -39,7 +39,13 @@ mapFiles = (base, prefix) ->
 		out[alias] = file
 	out
 
-gulp.task 'js', ->
+gulp.task 'js', ['browserify'],  ->
+	# this extra step because browserify piping directly to dest breaks karma
+	gulp.src './dist/output.js'
+		.pipe rename 'bundle.js'
+		.pipe gulp.dest './dist/'
+
+gulp.task 'browserify', ->
 	opts = 
 		# entries: [ './src/Game.coffee' ]
 		debug: true
@@ -65,7 +71,8 @@ gulp.task 'js', ->
 			process.stdout.write '.'# reporter
 			# console.log file, new Date() - t
 			# t = new Date()
-		.pipe(source('bundle.js'))
+		.pipe(source('output.js'))
+		.pipe livereload()
 		.pipe gulp.dest('./dist/')
 		.pipe livereload()
 		.pipe touch '.bundled'
