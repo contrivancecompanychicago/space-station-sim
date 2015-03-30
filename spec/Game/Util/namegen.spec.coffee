@@ -9,12 +9,13 @@ describe 'Game/Util/namegen', ->
 		expect(typeof out).toBe 'object'
 		expect(out.length).toBe 2
 
-	it 'should have strings', ->
-		out = namegen()
-		expect(typeof out[0]).toBe 'string'
-		expect(typeof out[1]).toBe 'string'
-		expect(out[0].length).toBeGreaterThan 1
-		expect(out[0].length).toBeLessThan 12
-		expect(out[1].length).toBeGreaterThan 1
-		expect(out[1].length).toBeLessThan 12
+	for [1..40]
+		it 'should have strings', ->
+			out = namegen()
+			expect(typeof out[0]).toBe 'string'
+			expect(typeof out[1]).toBe 'string'
+			expect(out[0].length).toBeGreaterThan 1
+			expect(out[0].length).toBeLessThan 12
+			expect(out[1].length).toBeGreaterThan 1
+			expect(out[1].length).toBeLessThan 12
 
