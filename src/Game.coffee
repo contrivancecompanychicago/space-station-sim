@@ -59,7 +59,8 @@ class window.Game
 		$(container).append UIdiv
 		@constructor.ui = new UI UIdiv
 
-	
+	destroy: ->
+		console.log "boom"
 
 	@globalToLocal: (point) ->
 		x: ((point.x / Game.state.view.scale) - Game.state.view.offset.x)

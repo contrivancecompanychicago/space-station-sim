@@ -20,9 +20,18 @@ describe 'Game', ->
 
 	it 'should expose instance after being instantiated', (cb)->
 		g = new gameClass(div)
-		# console.log gameClass
-		expect(gameClass.instance).toBeDefined()
+		expect(gameClass.instance).toBe(g)
 		cb()
+
+	describe 'destroy', ->
+		it 'should be defined', ->
+			g = new gameClass(div)
+			expect(g.destroy).toBeDefined()
+			console.log g.destroy
+			expect(typeof g.destroy).toBe 'function'
+		it 'should clear the div', ->
+		it 'should clear its instance variable', ->
+
 		
 
 	# it 'should have a long test', (cb)->
