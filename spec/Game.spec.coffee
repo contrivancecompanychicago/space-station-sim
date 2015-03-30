@@ -55,7 +55,14 @@ describe 'Game', ->
 			imagine = require 'imagine'
 			expect(imagine.objects.length).toBe 0
 
+	describe 'makeCanvas', ->
+		it 'should be defined', ->
+			expect(game.makeCanvas).toBeDefined()
+		it 'should return a canvas', ->
+		it 'should take a style object', ->
 
+	describe 'createUI', ->
+		it 'should append a ui div'
 		
 
 	# it 'should have a long test', (cb)->
