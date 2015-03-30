@@ -1,8 +1,18 @@
 gameClass = require 'Game'
+div = document.createElement 'DIV'
+game = new gameClass(div)
 
 describe 'Game', ->
 
-	div = document.createElement 'DIV'
+	beforeEach ->
+		gameClass = require 'Game'
+		div = document.createElement 'DIV'
+		game = new gameClass(div)
+	afterEach ->
+		game.destroy()
+
+
+	
 
 	it 'should have tests', ->
 		expect(1).toBe 1
@@ -27,10 +37,24 @@ describe 'Game', ->
 		it 'should be defined', ->
 			g = new gameClass(div)
 			expect(g.destroy).toBeDefined()
-			console.log g.destroy
+			# console.log g.destroy
 			expect(typeof g.destroy).toBe 'function'
 		it 'should clear the div', ->
+			g = new gameClass(div)
+			g.destroy()
+			expect(div.innerHTML).toBe ''
 		it 'should clear its instance variable', ->
+			g = new gameClass(div)
+			g.destroy()
+			expect(gameClass.instance).toBeUndefined()
+
+
+		it 'should *arrogantly* kill everything in imagine', ->
+			g = new gameClass(div)
+			g.destroy()
+			imagine = require 'imagine'
+			expect(imagine.objects.length).toBe 0
+
 
 		
 

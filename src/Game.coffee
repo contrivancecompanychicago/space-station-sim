@@ -60,7 +60,9 @@ class window.Game
 		@constructor.ui = new UI UIdiv
 
 	destroy: ->
-		console.log "boom"
+		@container.innerHTML = ''
+		window.Game.instance = undefined
+		Imagine.engine.reset()
 
 	@globalToLocal: (point) ->
 		x: ((point.x / Game.state.view.scale) - Game.state.view.offset.x)
