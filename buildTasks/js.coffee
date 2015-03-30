@@ -27,6 +27,7 @@ cacheCoffee = cacheify coffeeify, dbCoffee
 cacheTempl = cacheify templatify(), dbTempl
 cacheImg = cacheify imgify(), dbImg
 
+touch = require 'gulp-touch'
 
 mapFiles = (base, prefix) ->
 	out = {}
@@ -38,7 +39,7 @@ mapFiles = (base, prefix) ->
 		out[alias] = file
 	out
 
-gulp.task 'js', ['bower'], ->
+gulp.task 'js', ->
 	opts = 
 		# entries: [ './src/Game.coffee' ]
 		debug: true
@@ -67,3 +68,4 @@ gulp.task 'js', ['bower'], ->
 		.pipe(source('bundle.js'))
 		.pipe gulp.dest('./dist/')
 		.pipe livereload()
+		.pipe touch '.bundled'

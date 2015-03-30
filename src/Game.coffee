@@ -15,6 +15,9 @@ class window.Game
 	name: "spacesim"
 	# @state: 'no'
 	constructor: (container)->
+
+		unless container
+			throw new Error 'Game container not defined'
 		# @constructor.state = "yes"
 		@container = container
 
