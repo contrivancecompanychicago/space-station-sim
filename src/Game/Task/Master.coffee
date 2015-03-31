@@ -9,11 +9,11 @@ class TaskMaster
 	findTaskForCharacter: (character) ->
 		# get character location
 		
-
+	getTasks: ->
 
 
 	removeTask: (task) ->
 
 	removeTasksFromBlock: (block) ->
 		
-module.exports = Imagine new TaskMaster()
+module.exports = TaskMaster

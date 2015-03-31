@@ -12,8 +12,6 @@ ItemTypes = require 'Game/Grid/Item/Types'
 class Grid
 
 	constructor: (@canvas) ->
-
-		
 		# console.log Game.state
 		@context = @canvas.getContext('2d')
 		@item = new Item(@context)

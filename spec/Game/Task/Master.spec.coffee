@@ -1,10 +1,14 @@
 describe "Game.Task.Master", ->
-	klass = require 'Game/Task/Master'
+	beforeEach ->
+		@TaskMaster = require 'Game/Task/Master'
+		@taskMaster = new @TaskMaster()
+
 	it 'should exist', ->
-		expect(klass).toBeDefined()
+		expect(@TaskMaster).toBeDefined()
 	it 'should have getTasks', ->
-		master = new klass()
-		expect master.toBeDefined()
-	it 'should addTasks'
+		expect(@taskMaster.getTasks).toBeDefined()
+	describe 'addTask', ->
+		it 'should be defined', ->
+			expect(@taskMaster.addTask).toBeDefined()
 
 		
