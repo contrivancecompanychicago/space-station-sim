@@ -44,6 +44,7 @@ gulp.task 'js', ['browserify'],  ->
 	gulp.src './dist/output.js'
 		.pipe rename 'bundle.js'
 		.pipe gulp.dest './dist/'
+		.pipe livereload()
 
 gulp.task 'browserify', ->
 	opts = 
@@ -72,7 +73,5 @@ gulp.task 'browserify', ->
 			# console.log file, new Date() - t
 			# t = new Date()
 		.pipe(source('output.js'))
-		.pipe livereload()
 		.pipe gulp.dest('./dist/')
-		.pipe livereload()
 		.pipe touch '.bundled'

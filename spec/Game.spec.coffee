@@ -2,6 +2,8 @@ gameClass = require 'Game'
 div = document.createElement 'DIV'
 game = new gameClass(div)
 
+config = require 'Game/config'
+
 describe 'Game', ->
 
 	beforeEach ->
@@ -59,7 +61,13 @@ describe 'Game', ->
 		it 'should be defined', ->
 			expect(game.makeCanvas).toBeDefined()
 		it 'should return a canvas', ->
+			expect(game.makeCanvas().tagName.toLowerCase()).toBe 'canvas'
 		it 'should take a style object', ->
+			canvas = game.makeCanvas()
+			expect(canvas.style).toBeDefined()
+			expect(canvas.width).toBe(config.canvas.width)
+			expect(canvas.style.border).toBe(config.canvas.style.border)
+
 
 	describe 'createUI', ->
 		it 'should append a ui div'

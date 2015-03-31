@@ -35,20 +35,15 @@ class window.Game
 			@constructor.state = require 'Game/State'
 
 		# grid
-		@canvas = document.createElement 'canvas'
-		_.extend @canvas, config.canvas
-		_.extend @canvas.style, config.canvas.style
+		@canvas = @makeCanvas()
 		$(container).append @canvas
 		@constructor.grid = Imagine new Grid @canvas
 
 		# character
-		canvas = document.createElement 'canvas'
+		canvas = @makeCanvas()
 		@constructor.input = Imagine new Input canvas
 
 		canvas.id = "character"
-		for attr of config.canvas
-			canvas.setAttribute attr, config.canvas[attr]
-		_.extend canvas.style, config.canvas.style
 		$(container).append canvas
 		@constructor.character = Imagine new CharacterLayer canvas
 
@@ -58,7 +53,13 @@ class window.Game
 		
 		$(container).append UIdiv
 		@constructor.ui = new UI UIdiv
-	
+
+	makeCanvas: ->
+		canvas = document.createElement 'canvas'
+		_.extend canvas, config.canvas
+		_.extend canvas.style, config.canvas.style
+		canvas
+
 
 	destroy: ->
 		@container.innerHTML = ''
