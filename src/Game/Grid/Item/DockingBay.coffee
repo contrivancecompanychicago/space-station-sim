@@ -5,7 +5,7 @@ gridhelper = require 'Game/Grid/Helper'
 img = require './dockspot.png'
 ship = require './ship.png'
 
-Game = require 'Game'
+
 
 item = new Base(2, 2)
 item.defaults = 
@@ -26,6 +26,8 @@ module.exports = item
 Imagine 
 	name: 'dockmanager'
 	update: ->
+		Game = require('Game')
+		# console.log Game
 		if Game.state #todo: state not available in first frame?
 			for key of Game.state.itemData
 				data = Game.state.itemData[key]
