@@ -9,7 +9,7 @@ describe 'Game/Util/namegen', ->
 		expect(typeof out).toBe 'object'
 		expect(out.length).toBe 2
 
-	for [1..40]
+	for [1..10]
 		it 'should have strings', ->
 			out = namegen()
 			expect(typeof out[0]).toBe 'string'

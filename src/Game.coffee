@@ -58,6 +58,7 @@ class window.Game
 		
 		$(container).append UIdiv
 		@constructor.ui = new UI UIdiv
+	
 
 	destroy: ->
 		@container.innerHTML = ''
