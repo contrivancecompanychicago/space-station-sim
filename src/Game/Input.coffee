@@ -14,6 +14,11 @@ states =
 
 class Input
 	# mousePosition: {x:0, y:0}
+
+	constructor: (@container) ->
+		for key, val of @fns
+			@container[key] = val
+			
 	fns:
 		onmousedown: (e) =>
 			engageMouse e
@@ -133,10 +138,6 @@ class Input
 			selection.t = pt1.y
 			selection.b = pt2.y
 		selection
-
-	constructor: (@container) ->
-		for key, val of @fns
-			@container[key] = val
 
 	@objectUnderMouse = null
 	findObjectUnderMouse: ->
