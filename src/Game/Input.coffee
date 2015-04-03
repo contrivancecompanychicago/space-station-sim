@@ -65,6 +65,7 @@ class Input
 		lastMouse = 
 			x: e.x
 			y: e.y
+	@getLastMouse: -> lastMouse
 
 	@getMouseDelta: (e)->
 		if lastMouse

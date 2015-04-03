@@ -19,16 +19,23 @@ describe 'Game/Input', ->
 			it 'onmousewheel', ->
 				expect(@div.onmousewheel).toBeDefined()
 
-	describe 'lastMouse', ->
+	describe 'getLastMouse', ->
 		it 'should be defined', ->
-			expect(@Input.lastMouse).toBeDefined()
+			expect(@Input.getLastMouse).toBeDefined()
+		describe 'returns', ->
+			beforeEach ->
+				@out = @Input.getLastMouse()
+			it 'an object with x', ->
+				expect(@out.x).toBeDefined()
+			it 'an object with y', ->
+				expect(@out.y).toBeDefined()
 	describe 'setLastMouse', ->
 		it 'should be defined', ->
 			expect(@Input.setLastMouse).toBeDefined()
 		it 'should take chrome style events', ->
 			@Input.setLastMouse {x: 123, y:456}
-			expect(@Input.lastMouse.x).toBe 123
-			expect(@Input.lastMouse.y).toBe 456
+			expect(@Input.getLastMouse().x).toBe 123
+			expect(@Input.getLastMouse().y).toBe 456
 	describe 'getMouseDelta', ->
 		it 'should be defined', ->
 			expect(@Input.getMouseDelta).toBeDefined()
