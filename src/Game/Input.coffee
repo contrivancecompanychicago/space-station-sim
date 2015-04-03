@@ -14,10 +14,11 @@ states =
 
 class Input
 	# mousePosition: {x:0, y:0}
-
+	
 	constructor: (@container) ->
 		for key, val of @fns
 			@container[key] = val
+		
 
 	fns:
 		onmousedown: (e) =>
@@ -60,13 +61,14 @@ class Input
 
 	startEvent = null
 
-	lastMouse = {x:0, y:0}
-	setLastMouse = (e) ->
+	lastMouse: {x:0, y:0}
+	setLastMouse: (e) ->
+		console.log e
 		lastMouse = 
 			x: e.x
 			y: e.y
 
-	getMouseDelta = (e)->
+	getMouseDelta: (e)->
 		if lastMouse
 			x: lastMouse.x - e.x
 			y: lastMouse.y - e.y
@@ -74,12 +76,12 @@ class Input
 			{x:0, y:0} #init
 
 
-	engageMouse = (e) =>
+	engageMouse: (e) =>
 		setLastMouse e
 		startEvent = e
 		@state = e.button
 
-	disengageMouse = (e) =>
+	disengageMouse: (e) =>
 		Game.grid.selection = null
 
 		if (@state is states.selecting) or (@state is states.deselecting)
@@ -98,7 +100,7 @@ class Input
 		
 		
 
-	moveMouse = (e) =>
+	moveMouse: (e) =>
 		# console.log @mousePosition
 		# @mousePosition = {x:e.x, y:e.y}
 		# console.log @mousePosition
@@ -120,7 +122,7 @@ class Input
 		setLastMouse e
 	state: states.blank
 
-	calcSelection = ->
+	calcSelection: ->
 		pt1 = gridhelper.blockAtPoint startEvent
 		pt2 = gridhelper.blockAtPoint lastMouse
 		selection = {}
@@ -145,7 +147,7 @@ class Input
 		#get mouse position
 		# console.log lastMouse
 		#search characters
-		console.log lastMouse.x, lastMouse.y
+		# console.log lastMouse.x, lastMouse.y
 		alpha = Game.character.context.getImageData(lastMouse.x, lastMouse.y, 1, 1).data[3]
 		unless alpha
 			# def not over anything
