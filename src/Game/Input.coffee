@@ -18,7 +18,7 @@ class Input
 	constructor: (@container) ->
 		for key, val of @fns
 			@container[key] = val
-			
+
 	fns:
 		onmousedown: (e) =>
 			engageMouse e
@@ -145,6 +145,7 @@ class Input
 		#get mouse position
 		# console.log lastMouse
 		#search characters
+		console.log lastMouse.x, lastMouse.y
 		alpha = Game.character.context.getImageData(lastMouse.x, lastMouse.y, 1, 1).data[3]
 		unless alpha
 			# def not over anything
