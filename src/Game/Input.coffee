@@ -63,8 +63,8 @@ class Input
 	lastMouse = {x:0, y:0}
 	@setLastMouse: (e) ->
 		lastMouse = 
-			x: e.x
-			y: e.y
+			x: e.x or e.clientX
+			y: e.y or e.clientY
 	@getLastMouse: -> lastMouse
 
 	@getMouseDelta: (e)->
@@ -84,7 +84,7 @@ class Input
 		Game.grid.selection = null
 
 		if (@state is states.selecting) or (@state is states.deselecting)
-			sel = calcSelection()
+			sel = @calcSelection()
 			for x in [sel.l..sel.r]
 				for y in [sel.t..sel.b]
 					if @state is states.selecting
@@ -106,11 +106,11 @@ class Input
 		delta = @getMouseDelta e
 		switch @state
 			when states.selecting
-				Game.grid.selection = calcSelection()
+				Game.grid.selection = @calcSelection()
 				# Imagine.notify 'gridStateChanged'
 				Game.grid.requireRender()
 			when states.deselecting
-				Game.grid.selection = calcSelection()
+				Game.grid.selection = @calcSelection()
 				# Imagine.notify 'gridStateChanged'
 				Game.grid.requireRender()
 			when states.moving

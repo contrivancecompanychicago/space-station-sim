@@ -36,6 +36,10 @@ describe 'Game/Input', ->
 			@Input.setLastMouse {x: 123, y:456}
 			expect(@Input.getLastMouse().x).toBe 123
 			expect(@Input.getLastMouse().y).toBe 456
+		it 'should take firefox style events', ->
+			@Input.setLastMouse {clientX: 456, clientY:789}
+			expect(@Input.getLastMouse().x).toBe 456
+			expect(@Input.getLastMouse().y).toBe 789
 	describe 'getMouseDelta', ->
 		it 'should be defined', ->
 			expect(@Input.getMouseDelta).toBeDefined()
@@ -48,4 +52,6 @@ describe 'Game/Input', ->
 	describe 'moveMouse', ->
 		it 'should be defined', ->
 			expect(@Input.moveMouse).toBeDefined()
-
+	describe 'calcSelection', ->
+		it 'should be defined', ->
+			expect(@Input.calcSelection).toBeDefined()
