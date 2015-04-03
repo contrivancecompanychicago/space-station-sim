@@ -11,30 +11,29 @@ states =
 	deselecting: 2
 
 
-
+# singleton whatever
 class Input
 	# mousePosition: {x:0, y:0}
-	
+
 	constructor: (@container) ->
 		for key, val of @fns
 			@container[key] = val
-		
 
 	fns:
 		onmousedown: (e) =>
-			engageMouse e
+			@engageMouse e
 		# onmouseenter: (e) ->
 		# 	console.log "onmouseenter"
 		# onmouseleave: (e) ->
 		# 	console.log "onmouseleave"
 		onmousemove: (e) =>
-			moveMouse e
+			@moveMouse e
 		# onmouseout: (e) ->
 		# 	console.log "onmouseout"
 		# onmouseover: (e) ->
 		# 	console.log "onmouseover"
 		onmouseup: (e) =>
-			disengageMouse e
+			@disengageMouse e
 		onmousewheel: (e) ->
 			# console.log e
 			startMouse = Vic.fromObject Game.globalToLocal {x: e.x, y: e.y}
@@ -61,14 +60,13 @@ class Input
 
 	startEvent = null
 
-	lastMouse: {x:0, y:0}
-	setLastMouse: (e) ->
-		console.log e
+	lastMouse = {x:0, y:0}
+	@setLastMouse: (e) ->
 		lastMouse = 
 			x: e.x
 			y: e.y
 
-	getMouseDelta: (e)->
+	@getMouseDelta: (e)->
 		if lastMouse
 			x: lastMouse.x - e.x
 			y: lastMouse.y - e.y
@@ -76,12 +74,12 @@ class Input
 			{x:0, y:0} #init
 
 
-	engageMouse: (e) =>
-		setLastMouse e
+	@engageMouse: (e) ->
+		@setLastMouse e
 		startEvent = e
 		@state = e.button
 
-	disengageMouse: (e) =>
+	@disengageMouse: (e) =>
 		Game.grid.selection = null
 
 		if (@state is states.selecting) or (@state is states.deselecting)
@@ -100,11 +98,11 @@ class Input
 		
 		
 
-	moveMouse: (e) =>
+	@moveMouse: (e) =>
 		# console.log @mousePosition
 		# @mousePosition = {x:e.x, y:e.y}
 		# console.log @mousePosition
-		delta = getMouseDelta e
+		delta = @getMouseDelta e
 		switch @state
 			when states.selecting
 				Game.grid.selection = calcSelection()
@@ -119,10 +117,10 @@ class Input
 				Game.state.view.offset.x -= delta.x / Game.state.view.scale
 				Game.state.view.offset.y -= delta.y / Game.state.view.scale
 				Imagine.notify 'viewStateChanged'
-		setLastMouse e
+		@setLastMouse e
 	state: states.blank
 
-	calcSelection: ->
+	@calcSelection: ->
 		pt1 = gridhelper.blockAtPoint startEvent
 		pt2 = gridhelper.blockAtPoint lastMouse
 		selection = {}

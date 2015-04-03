@@ -21,5 +21,17 @@ describe 'Game/Input', ->
 
 	describe 'setLastMouse', ->
 		it 'should be defined', ->
-			expect(@input.setLastMouse).toBeDefined()
+			expect(@Input.setLastMouse).toBeDefined()
+	describe 'getMouseDelta', ->
+		it 'should be defined', ->
+			expect(@Input.getMouseDelta).toBeDefined()
+	describe 'engageMouse', ->
+		it 'should be defined', ->
+			expect(@Input.engageMouse).toBeDefined()
+	describe 'disengageMouse', ->
+		it 'should be defined', ->
+			expect(@Input.disengageMouse).toBeDefined()
+	describe 'moveMouse', ->
+		it 'should be defined', ->
+			expect(@Input.moveMouse).toBeDefined()
 
