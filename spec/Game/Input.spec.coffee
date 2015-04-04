@@ -71,6 +71,14 @@ describe 'Game/Input', ->
 	describe 'getMouseDelta', ->
 		it 'should be defined', ->
 			expect(@Input.getMouseDelta).toBeDefined()
+		it 'should call mouseEventPosition', ->
+			spyOn(@Input, 'mouseEventPosition').and.callThrough()
+			@Input.getMouseDelta {x: 1, y:2}
+			expect(@Input.mouseEventPosition).toHaveBeenCalled()
+		it 'should return an x,y object', ->
+			out = @Input.getMouseDelta {x: 1, y:2}
+			expect(out.x).toBeDefined()
+			expect(out.y).toBeDefined()
 	describe 'engageMouse', ->
 		it 'should be defined', ->
 			expect(@Input.engageMouse).toBeDefined()
@@ -83,3 +91,5 @@ describe 'Game/Input', ->
 	describe 'calcSelection', ->
 		it 'should be defined', ->
 			expect(@Input.calcSelection).toBeDefined()
+
+

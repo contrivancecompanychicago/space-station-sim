@@ -4,40 +4,33 @@ gridhelper = require 'Game/Grid/Helper'
 
 config = require 'Game/config'
 
-states = 
-	blank: -1
-	selecting: 0
-	moving: 1
-	deselecting: 2
+
 
 
 # singleton whatever
 class Input
 	# mousePosition: {x:0, y:0}
+	@states: 
+		blank: -1
+		selecting: 0
+		moving: 1
+		deselecting: 2
+
+	state: @states.blank
 
 	constructor: (@container) ->
+		Input.instance = @
 		Imagine.addEvent @container, 'mousemove', @fns.onmousemove
 		Imagine.addEvent @container, 'mouseup', @fns.onmouseup
 		Imagine.addEvent @container, 'mousedown', @fns.onmousedown
 		Imagine.addEvent @container, 'mousewheel', @fns.onmousewheel
 		Imagine.addEvent @container, 'DOMMouseScroll', @fns.onmousewheel
-			# @moveMouse e
-		# for key, val of @fns
-		# 	@container[key] = val
 
 	fns:
 		onmousedown: (e) =>
 			@engageMouse e
-		# onmouseenter: (e) ->
-		# 	console.log "onmouseenter"
-		# onmouseleave: (e) ->
-		# 	console.log "onmouseleave"
 		onmousemove: (e) =>
 			@moveMouse e
-		# onmouseout: (e) ->
-		# 	console.log "onmouseout"
-		# onmouseover: (e) ->
-		# 	console.log "onmouseover"
 		onmouseup: (e) =>
 			@disengageMouse e
 		onmousewheel: (e) ->
@@ -69,10 +62,11 @@ class Input
 	lastMouse = {x:0, y:0}
 	@setLastMouse: (e) ->
 		lastMouse = @mouseEventPosition e
-		
+
 	@getLastMouse: -> lastMouse
 
 	@getMouseDelta: (e)->
+		e = @mouseEventPosition e
 		if lastMouse
 			x: lastMouse.x - e.x
 			y: lastMouse.y - e.y
@@ -88,18 +82,18 @@ class Input
 	@disengageMouse: (e) =>
 		Game.grid.selection = null
 
-		if (@state is states.selecting) or (@state is states.deselecting)
+		if (@state is @states.selecting) or (@state is @states.deselecting)
 			sel = @calcSelection()
 			for x in [sel.l..sel.r]
 				for y in [sel.t..sel.b]
-					if @state is states.selecting
+					if @state is @states.selecting
 						gridhelper.addBlock {x, y}
-					if @state is states.deselecting
+					if @state is @states.deselecting
 						gridhelper.removeBlock {x, y}
 			Imagine.notify 'gridStateChanged'
 
 			
-		@state = states.blank
+		@state = @states.blank
 		
 		
 	@mouseEventPosition: (e) ->
@@ -107,26 +101,24 @@ class Input
 		y: e.y or e.clientY
 
 	@moveMouse: (e) =>
-		# console.log @mousePosition
-		# @mousePosition = {x:e.x, y:e.y}
-		# console.log @mousePosition
 		delta = @getMouseDelta e
 		switch @state
-			when states.selecting
+			when @states.selecting
 				Game.grid.selection = @calcSelection()
 				# Imagine.notify 'gridStateChanged'
 				Game.grid.requireRender()
-			when states.deselecting
+			when @states.deselecting
 				Game.grid.selection = @calcSelection()
 				# Imagine.notify 'gridStateChanged'
 				Game.grid.requireRender()
-			when states.moving
+			when @states.moving
 				# todo: zoom correct move
 				Game.state.view.offset.x -= delta.x / Game.state.view.scale
 				Game.state.view.offset.y -= delta.y / Game.state.view.scale
 				Imagine.notify 'viewStateChanged'
 		@setLastMouse e
-	state: states.blank
+
+	
 
 	@calcSelection: ->
 		pt1 = gridhelper.blockAtPoint startEvent
@@ -150,10 +142,6 @@ class Input
 	@objectUnderMouse = null
 	findObjectUnderMouse: ->
 		@objectUnderMouse = null #clear it
-		#get mouse position
-		# console.log lastMouse
-		#search characters
-		# console.log lastMouse.x, lastMouse.y
 		alpha = Game.character.context.getImageData(lastMouse.x, lastMouse.y, 1, 1).data[3]
 		unless alpha
 			# def not over anything
@@ -166,13 +154,8 @@ class Input
 				@objectUnderMouse = char
 				return
 
-
-
 	update: ->
 		@findObjectUnderMouse()
-		# switch @state
-		# 	when states.moving
-
 
 
 
