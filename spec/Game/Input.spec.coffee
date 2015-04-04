@@ -27,19 +27,21 @@ describe 'Game/Input', ->
 			it 'should add mousewheel', ->
 				arg = @eventArgs.filter (a) -> a[0] is 'mousewheel'
 				expect(arg.length).toBe(1);
+			it 'should add firefox mousewheel', ->
+				arg = @eventArgs.filter (a) -> a[0] is 'DOMMouseScroll'
+				expect(arg.length).toBe(1);
 				
-
-		# describe 'adds Function', ->
-		# 	it 'onmousedown', ->
-		# 		expect(@div.onmousedown).toBeDefined()
-		# 	it 'onmousemove', ->
-		# 		expect(@div.onmousemove).toBeDefined()
-		# 	it 'onmouseup', ->
-		# 		expect(@div.onmouseup).toBeDefined()
-		# 	it 'onmousewheel', ->
-		# 		console.log 'todo: firefox mousewheel'
-		# 		if navigator.userAgent.indexOf('Firefox') is -1
-		# 			expect(@div.onmousewheel).toBeDefined()
+	describe 'mouseEventPosition', ->
+		it 'should be defined', ->
+			expect(@Input.mouseEventPosition).toBeDefined()
+		it 'should take chrome style events', ->
+			pos = @Input.mouseEventPosition {x: 123, y:456}
+			expect(pos.x).toBe 123
+			expect(pos.y).toBe 456
+		it 'should take firefox style events', ->
+			pos = @Input.mouseEventPosition {clientX: 456, clientY:789}
+			expect(pos.x).toBe 456
+			expect(pos.y).toBe 789
 
 	describe 'getLastMouse', ->
 		it 'should be defined', ->
@@ -54,6 +56,10 @@ describe 'Game/Input', ->
 	describe 'setLastMouse', ->
 		it 'should be defined', ->
 			expect(@Input.setLastMouse).toBeDefined()
+		it 'should call mouseEventPosition', ->
+			spyOn(@Input, 'mouseEventPosition').and.callThrough()
+			@Input.setLastMouse {x: 1, y:2}
+			expect(@Input.mouseEventPosition).toHaveBeenCalled()
 		it 'should take chrome style events', ->
 			@Input.setLastMouse {x: 123, y:456}
 			expect(@Input.getLastMouse().x).toBe 123

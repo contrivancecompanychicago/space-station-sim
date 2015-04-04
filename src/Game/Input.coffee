@@ -19,6 +19,8 @@ class Input
 		Imagine.addEvent @container, 'mousemove', @fns.onmousemove
 		Imagine.addEvent @container, 'mouseup', @fns.onmouseup
 		Imagine.addEvent @container, 'mousedown', @fns.onmousedown
+		Imagine.addEvent @container, 'mousewheel', @fns.onmousewheel
+		Imagine.addEvent @container, 'DOMMouseScroll', @fns.onmousewheel
 			# @moveMouse e
 		# for key, val of @fns
 		# 	@container[key] = val
@@ -66,9 +68,8 @@ class Input
 
 	lastMouse = {x:0, y:0}
 	@setLastMouse: (e) ->
-		lastMouse = 
-			x: e.x or e.clientX
-			y: e.y or e.clientY
+		lastMouse = @mouseEventPosition e
+		
 	@getLastMouse: -> lastMouse
 
 	@getMouseDelta: (e)->
@@ -101,7 +102,9 @@ class Input
 		@state = states.blank
 		
 		
-		
+	@mouseEventPosition: (e) ->
+		x: e.x or e.clientX
+		y: e.y or e.clientY
 
 	@moveMouse: (e) =>
 		# console.log @mousePosition
