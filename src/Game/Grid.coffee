@@ -280,6 +280,7 @@ class Grid
 		# console.log "render grid"
 		@clear()
 		blocks = @blocksToRender()
+		console.log @selection
 		# console.log blocks
 		for block in blocks
 			@renderBlock block

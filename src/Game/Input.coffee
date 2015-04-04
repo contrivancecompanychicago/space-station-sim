@@ -121,7 +121,7 @@ class Input
 	
 
 	@calcSelection: ->
-		pt1 = gridhelper.blockAtPoint startEvent
+		pt1 = gridhelper.blockAtPoint @mouseEventPosition startEvent
 		pt2 = gridhelper.blockAtPoint lastMouse
 		selection = {}
 		if pt1.x > pt2.x
