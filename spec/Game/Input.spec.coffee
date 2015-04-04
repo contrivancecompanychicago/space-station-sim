@@ -3,24 +3,43 @@ describe 'Game/Input', ->
 	beforeEach ->
 		@Input = require 'Game/Input'
 		@div = document.createElement 'DIV'
-		@input = new @Input div
+		spyOn @div, "addEventListener"
+		@input = new @Input @div
 
 	it 'should be defined', ->
 		expect(@Input).toBeDefined()
 
 	describe 'constructor', ->
-		describe 'adds Function', ->
-			it 'onmousedown', ->
-				expect(@div.onmousedown).toBeDefined()
-			it 'onmousemove', ->
-				expect(@div.onmousemove).toBeDefined()
-			it 'onmouseup', ->
-				expect(@div.onmouseup).toBeDefined()
-			it 'onmousewheel', ->
-				console.log navigator.userAgent.indexOf('Firefox')
-				console.log 'todo: firefox mousewheel'
-				if navigator.userAgent.indexOf('Firefox') is -1
-					expect(@div.onmousewheel).toBeDefined()
+		describe 'event listeners', ->
+			beforeEach ->
+				@eventArgs = @div.addEventListener.calls.allArgs()
+			it 'should call addEventListener', ->
+				expect(@div.addEventListener).toHaveBeenCalled()
+			it 'should add mousemove', ->
+				arg = @eventArgs.filter (a) -> a[0] is 'mousemove'
+				expect(arg.length).toBe(1);
+			it 'should add mouseup', ->
+				arg = @eventArgs.filter (a) -> a[0] is 'mouseup'
+				expect(arg.length).toBe(1);
+			it 'should add mousedown', ->
+				arg = @eventArgs.filter (a) -> a[0] is 'mousedown'
+				expect(arg.length).toBe(1);
+			it 'should add mousewheel', ->
+				arg = @eventArgs.filter (a) -> a[0] is 'mousewheel'
+				expect(arg.length).toBe(1);
+				
+
+		# describe 'adds Function', ->
+		# 	it 'onmousedown', ->
+		# 		expect(@div.onmousedown).toBeDefined()
+		# 	it 'onmousemove', ->
+		# 		expect(@div.onmousemove).toBeDefined()
+		# 	it 'onmouseup', ->
+		# 		expect(@div.onmouseup).toBeDefined()
+		# 	it 'onmousewheel', ->
+		# 		console.log 'todo: firefox mousewheel'
+		# 		if navigator.userAgent.indexOf('Firefox') is -1
+		# 			expect(@div.onmousewheel).toBeDefined()
 
 	describe 'getLastMouse', ->
 		it 'should be defined', ->

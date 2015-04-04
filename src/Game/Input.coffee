@@ -16,8 +16,12 @@ class Input
 	# mousePosition: {x:0, y:0}
 
 	constructor: (@container) ->
-		for key, val of @fns
-			@container[key] = val
+		Imagine.addEvent @container, 'mousemove', @fns.onmousemove
+		Imagine.addEvent @container, 'mouseup', @fns.onmouseup
+		Imagine.addEvent @container, 'mousedown', @fns.onmousedown
+			# @moveMouse e
+		# for key, val of @fns
+		# 	@container[key] = val
 
 	fns:
 		onmousedown: (e) =>
