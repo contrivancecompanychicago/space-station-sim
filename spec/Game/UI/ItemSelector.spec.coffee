@@ -21,12 +21,13 @@ describe 'Game/UI/ItemSelector', ->
 	afterEach ->
 		# Imagine.engine.reset()
 
-	it 'should set Game State'#, ->
-		# buttons = $(@div).find 'button'
-		# for i in [0...buttons.length]
-		# 	eventFire buttons[i], 'mousedown'
-		# 	eventFire buttons[i], 'mouseup'
-		# 	expect(@State.ui.item).toBe buttons[i].value
+	it 'should set Game State', ->
+		buttons = $(@div).find 'button'
+		for i in [0...buttons.length]
+			# eventFire buttons[i], 'mousedown'
+			# eventFire buttons[i], 'mouseup'
+			$(buttons[i]).trigger 'click'
+			expect(@State.ui.item).toBe buttons[i].value
 
 	it 'should use e.currentTarget ', ->
 		ev = new MouseEvent(1)
