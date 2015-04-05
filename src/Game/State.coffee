@@ -2,7 +2,7 @@
 module.exports =
 	ui:
 		block: 'plain'
-		item: 'test'
+		item: 'dockingbay'
 		mode: 'block'
 		room: 'shop'
 
