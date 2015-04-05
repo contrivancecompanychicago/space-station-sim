@@ -34,7 +34,6 @@ class Input
 		onmouseup: (e) =>
 			@disengageMouse e
 		onmousewheel: (e) ->
-			console.log e
 			startMouse = Vic.fromObject Game.globalToLocal {x: e.x, y: e.y}
 			# console.log startMouse
 			if e.wheelDelta

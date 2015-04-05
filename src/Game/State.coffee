@@ -1,5 +1,11 @@
 
-module.exports = 
+module.exports =
+	ui:
+		block: 'plain'
+		item: 'test'
+		mode: 'block'
+		room: 'shop'
+
 	timeScale: 1
 	view:
 		# _scale: 

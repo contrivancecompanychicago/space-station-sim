@@ -3,6 +3,8 @@ Imagine = require 'imagine'
 Types = require 'Game/Grid/Room/Types'
 _ = require 'underscore'
 
+State = require 'Game/State'
+
 class RoomSelector
 	state:
 		selected: 'shop'
@@ -13,11 +15,11 @@ class RoomSelector
 		@render()
 	render: ->
 		@container.innerHTML = view
-			state: @state
-			mode: @mode.state
+			state: State.ui.room
+			mode: State.ui.mode
 			types: _.keys Types
 		$(@container).find('button').click (e)=>
-			@state.selected = e.currentTarget.value
+			State.ui.room = e.currentTarget.value
 			Imagine.notify 'UIRoomSelected'
 			@render()
 

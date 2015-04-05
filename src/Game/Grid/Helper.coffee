@@ -3,6 +3,8 @@ _ = require "underscore"
 config = require 'Game/config'
 #ItemTypes = require 'Game/Grid/Item/Types' #circular dependency starts here, affects dockingbay and character
 
+State = require 'Game/State'
+
 gbw = config.grid.block.width
 gbh = config.grid.block.height
 cw = config.canvas.width
@@ -27,26 +29,26 @@ class Helper
 		out 
 
 	addBlock: (pos) ->
-		mode = Game.ui.mode.state.selected
+		mode = State.ui.mode
 		switch mode
 			when 'block'
-				type = Game.ui.block.state.selected
+				type = State.ui.block
 				obj = {type: type}
 				Game.state.gridData[@blockToString(pos)] = obj
 			when 'room'
-				type = Game.ui.room.state.selected
+				type = State.ui.room
 				obj = {type: 'plain', room:type}
 				Game.state.gridData[@blockToString(pos)] = obj
 			when 'item'
 				block = @blockToString(pos)
 				if Game.state.gridData[block]#check if block exists
-					type = Game.ui.item.state.selected
+					type = State.ui.item
 					obj = {type:type}
 #					_.extend obj, ItemTypes[type].defaults # todo: build this back in
 					Game.state.itemData[block] = obj
 			
 	removeBlock: (pos) ->
-		mode = Game.ui.mode.state.selected
+		mode = State.ui.mode
 		switch mode
 			when 'block'
 				delete Game.state.gridData[@blockToString(pos)]

@@ -3,9 +3,9 @@ Imagine = require 'imagine'
 Types = require 'Game/Grid/Item/Types'
 _ = require 'underscore'
 
+State = require 'Game/State'
+
 class ItemSelector
-	state:
-		selected: 'test'
 	constructor: (@container) ->
 		@mode = Imagine.getComponent 'UIModeSelector'
 		@render()
@@ -14,11 +14,11 @@ class ItemSelector
 		@render()
 	render: ->
 		@container.innerHTML = view
-			state: @state
-			mode: @mode.state
+			state: State.ui.item
+			mode: State.ui.mode
 			types: _.keys Types
 		$(@container).find('button').click (e)=>
-			@state.selected = e.currentTarget.value
+			State.ui.item = e.currentTarget.value
 			Imagine.notify 'UIItemSelected'
 			@render()
 

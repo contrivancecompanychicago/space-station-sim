@@ -1,27 +1,30 @@
 view = require './ModeSelector.html'
 Imagine = require 'imagine'
+
+State = require 'Game/State'
+
 class ModeSelector
 	name: 'UIModeSelector'
 	state:
 		selected: 'block'
 	UIBlockSelected: ->
-		@state.selected = 'block'
+		State.ui.mode = 'block'
 		Imagine.notify 'UIModeSelected'
 		@render()
 	UIRoomSelected: ->
-		@state.selected = 'room'
+		State.ui.mode = 'room'
 		Imagine.notify 'UIModeSelected'
 		@render()
 	UIItemSelected: ->
-		@state.selected = 'item'
+		State.ui.mode = 'item'
 		Imagine.notify 'UIModeSelected'
 		@render()
 	constructor: (@container) ->
 		@render()
 	render: ->
-		@container.innerHTML = view(@state)
+		@container.innerHTML = view({selected: State.ui.mode})
 		$(@container).find('button').click (e)=>
-			@state.selected = e.currentTarget.value
+			State.ui.mode = e.currentTarget.value
 			Imagine.notify 'UIModeSelected'
 			@render()
 
