@@ -17,7 +17,7 @@ class TimeSelector
 			options: options
 		$(@container).find('button').click (e)=>
 			# console.log e.srcElement.value
-			Game.state.timeScale = parseInt e.srcElement.value
+			Game.state.timeScale = parseInt e.currentTarget.value
 			# @state.selected = e.srcElement.value
 			# Imagine.notify 'UIBlockSelected'
 			@render()

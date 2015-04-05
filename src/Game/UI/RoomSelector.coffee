@@ -17,7 +17,7 @@ class RoomSelector
 			mode: @mode.state
 			types: _.keys Types
 		$(@container).find('button').click (e)=>
-			@state.selected = e.srcElement.value
+			@state.selected = e.currentTarget.value
 			Imagine.notify 'UIRoomSelected'
 			@render()
 

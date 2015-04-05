@@ -34,10 +34,15 @@ class Input
 		onmouseup: (e) =>
 			@disengageMouse e
 		onmousewheel: (e) ->
-			# console.log e
+			console.log e
 			startMouse = Vic.fromObject Game.globalToLocal {x: e.x, y: e.y}
 			# console.log startMouse
-			if e.wheelDelta > 0
+			if e.wheelDelta
+				d =  e.wheelDelta
+			else
+				d = -e.detail
+
+			if d > 0
 				if Game.state.view.scale < config.view.scale.max
 					Game.state.view.scale += config.view.scale.step
 			else

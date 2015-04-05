@@ -21,7 +21,7 @@ class ModeSelector
 	render: ->
 		@container.innerHTML = view(@state)
 		$(@container).find('button').click (e)=>
-			@state.selected = e.srcElement.value
+			@state.selected = e.currentTarget.value
 			Imagine.notify 'UIModeSelected'
 			@render()
 
