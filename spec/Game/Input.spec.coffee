@@ -10,7 +10,14 @@
 #     el.dispatchEvent(evObj);
 #   }
 # }
-
+eventFire = (el, etype) ->
+	if el.fireEvent
+		el.fireEvent('on' + etype)
+	else
+		evObj = document.createEvent('Events')
+		evObj.initEvent(etype, true, false)
+		el.dispatchEvent(evObj)
+		
 describe 'Game/Input', ->
 	beforeEach ->
 		@Input = require 'Game/Input'

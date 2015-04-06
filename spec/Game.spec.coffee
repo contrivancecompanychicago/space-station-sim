@@ -73,6 +73,14 @@ describe 'Game', ->
 		it 'should append a ui div'
 		
 
+	describe 'state', ->
+		it 'should not be called from window.Game'#, ->
+			# expect(gameClass.state()).toThrow new Error 'Dont use Game.state'
+			# spyOn gameClass, 'state'
+			# g = new gameClass(div)
+			# expect(gameClass.state).not.toHaveBeenCalled()
+
+
 	# it 'should have a long test', (cb)->
 	# 	# window.requestAnimationFrame(cb)
 	# 	setTimeout ->

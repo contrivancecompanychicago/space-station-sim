@@ -9,6 +9,8 @@ helper = require 'Game/Grid/Helper'
 
 ItemTypes = require 'Game/Grid/Item/Types'
 
+State = require 'Game/State'
+
 class Grid
 
 	constructor: (@canvas) ->

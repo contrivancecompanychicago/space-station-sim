@@ -1,14 +1,6 @@
 Imagine = require 'imagine'
 
 
-#move somewhere better
-eventFire = (el, etype) ->
-	if el.fireEvent
-		el.fireEvent('on' + etype)
-	else
-		evObj = document.createEvent('Events')
-		evObj.initEvent(etype, true, false)
-		el.dispatchEvent(evObj)
 
 
 describe 'Game/UI/ItemSelector', ->
@@ -24,8 +16,6 @@ describe 'Game/UI/ItemSelector', ->
 	it 'should set Game State', ->
 		buttons = $(@div).find 'button'
 		for i in [0...buttons.length]
-			# eventFire buttons[i], 'mousedown'
-			# eventFire buttons[i], 'mouseup'
 			$(buttons[i]).trigger 'click'
 			expect(@State.ui.item).toBe buttons[i].value
 
