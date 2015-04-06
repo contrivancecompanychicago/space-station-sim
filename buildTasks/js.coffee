@@ -27,7 +27,7 @@ cacheCoffee = cacheify coffeeify, dbCoffee
 cacheTempl = cacheify templatify(), dbTempl
 cacheImg = cacheify imgify(), dbImg
 
-touch = require 'gulp-touch'
+# touch = require 'gulp-touch'
 
 mapFiles = (base, prefix) ->
 	out = {}
@@ -46,7 +46,7 @@ gulp.task 'js', ['browserify'],  ->
 		.pipe gulp.dest './dist/'
 		.pipe livereload()
 
-gulp.task 'browserify', ->
+gulp.task 'browserify', ['bower'], ->
 	opts = 
 		# entries: [ './src/Game.coffee' ]
 		debug: true
@@ -74,4 +74,4 @@ gulp.task 'browserify', ->
 			# t = new Date()
 		.pipe(source('output.js'))
 		.pipe gulp.dest('./dist/')
-		.pipe touch '.bundled'
+		# .pipe touch '.bundled'
