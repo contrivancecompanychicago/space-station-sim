@@ -15,14 +15,14 @@ describe "Game.Task.Master", ->
 		it 'should be defined', ->
 			expect(@taskMaster.addTask).toBeDefined()
 		it 'should add a task to the list', ->
-			len = State.tasks.length
-			@TaskMaster.addTask {}
-			expect(len+1).toBe State.tasks.length
+			len = State.taskData.length
+			@taskMaster.addTask {}
+			expect(len+1).toBe State.taskData.length
 
 	describe 'task state', ->
 		it 'should be defined', ->
-			expect(State.tasks).toBeDefined()
+			expect(State.taskData).toBeDefined()
 		it 'should be an array', ->
-			expect(Array.isArray(State.tasks)).toBe(true)
+			expect(Array.isArray(State.taskData)).toBe(true)
 
 		
