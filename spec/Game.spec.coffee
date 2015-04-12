@@ -30,10 +30,6 @@ describe 'Game', ->
 	it 'should throw an error if instantiated without a container', ->
 		expect(-> new gameClass()).toThrow new Error 'Game container not defined'
 
-	it 'should expose instance after being instantiated', (cb)->
-		g = new gameClass(div)
-		expect(gameClass.instance).toBe(g)
-		cb()
 
 	describe 'destroy', ->
 		it 'should be defined', ->

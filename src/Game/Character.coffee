@@ -9,6 +9,7 @@ ActionTypes = require 'Game/Character/Action/Types'
 #debugger
 gridhelper = require 'Game/Grid/Helper'
 
+State = require 'Game/State'
 
 class Character
 	name: 'character'
@@ -28,10 +29,11 @@ class Character
 			@data = params.data
 		else
 			[firstname, lastname] = namegen()
-			Game.state.characterData.visitor.push
-				firstname: firstname
-				lastname: lastname
-			@data = Game.state.characterData.visitor[Game.state.characterData.visitor.length-1]
+			State.characterData.visitor.push {
+				'firstname': firstname
+				'lastname': lastname
+			}
+			@data = State.characterData.visitor[State.characterData.visitor.length-1]
 			@makeNeeds()
 
 
@@ -135,7 +137,7 @@ class Character
 			diff = @target.clone().subtract(@pos)
 			len = diff.length()
 			dir = diff.norm()
-			m = Imagine.time.deltaTime * @speed * Game.state.timeScale
+			m = Imagine.time.deltaTime * @speed * State.timeScale
 			dir.multiply(new vic(m,m))
 			@pos.add dir
 			if len < 10
@@ -165,13 +167,13 @@ class Character
 		@walkUpdate()
 		# console.log @target
 		unless @target #still walking
-			timediff = Imagine.time.deltaTime * Game.state.timeScale
+			timediff = Imagine.time.deltaTime * State.timeScale
 			@waitTime -= timediff
 			# debugger
 			need = 0
 			if action.need
 				need = action.need.map((need) ->
-					@data.needs[need] -= 0.1 * Imagine.time.deltaTime * Game.state.timeScale
+					@data.needs[need] -= 0.1 * Imagine.time.deltaTime * State.timeScale
 				, @)
 				.reduce (a,b) ->
 					a+b
@@ -190,15 +192,15 @@ class Character
 
 		switch @action
 			when 'leave'
-				# ind = Game.state.characterData.visitor.indexOf @data
-				Game.state.characterData.visitor = _.without Game.state.characterData.visitor, @data
+				# ind = State.characterData.visitor.indexOf @data
+				State.characterData.visitor = _.without State.characterData.visitor, @data
 				# @data.del = "me"
 				# delete @data
 				# console.log @block, @dock
 				if @data.dock
 					if (@block.x is @data.dock.x) and (@block.y is @data.dock.y)
 						# leaving at the dock I came from
-						data = Game.state.itemData[gridhelper.blockToString @data.dock]
+						data = State.itemData[gridhelper.blockToString @data.dock]
 						# console.log data
 						if data?.waitingFor
 							data.waitingFor--

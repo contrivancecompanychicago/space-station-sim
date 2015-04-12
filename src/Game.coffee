@@ -18,7 +18,6 @@ class window.Game
 		@init container
 
 	init: (container)->
-		window.Game.instance = @
 		unless container
 			throw new Error 'Game container not defined'
 		# @constructor.state = "yes"
@@ -48,11 +47,11 @@ class window.Game
 		@constructor.character = Imagine new CharacterLayer canvas
 
 		# UI
-		UIdiv = document.createElement 'div'
-		UIdiv.id = "ui"
+		UI_div = document.createElement 'div'
+		UI_div.id = "ui"
 		
-		$(container).append UIdiv
-		@constructor.ui = new UI UIdiv
+		$(container).append UI_div
+		@constructor.ui = new UI UI_div
 
 	makeCanvas: ->
 		canvas = document.createElement 'canvas'

@@ -6,7 +6,6 @@ config = require 'Game/config'
 
 
 
-
 # singleton whatever
 class Input
 	# mousePosition: {x:0, y:0}

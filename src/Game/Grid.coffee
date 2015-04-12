@@ -52,7 +52,7 @@ class Grid
 			while blocks.length > 0
 				#start a new room
 				# console.log "new room"
-				room = 
+				room =
 					blocks:[]
 					minx: Infinity
 					miny: Infinity
@@ -79,13 +79,13 @@ class Grid
 				rooms.push room
 			@rooms[key] = rooms
 		# console.log @rooms
-			
+
 
 
 	calcPathData: ->
 		keys = _.keys Game.state.gridData
 		if keys.length is 0
-			return 
+			return
 			arr: []
 			min: 0
 			max: 0
@@ -126,7 +126,7 @@ class Grid
 		# console.log start, end
 
 		# console.log arr
-		
+
 		pathData = {
 			arr
 			minx
@@ -166,7 +166,7 @@ class Grid
 	cw = config.canvas.width
 	ch = config.canvas.height
 
-	# offset: 
+	# offset:
 	# 	x: 0
 	# 	y: 0
 	scale: 1
@@ -186,7 +186,7 @@ class Grid
 
 
 
-	
+
 
 	# find all blocks with room type
 	blocksWithRoom: (room)->
@@ -208,7 +208,7 @@ class Grid
 
 	# tries to render the block in Game.state.gridData['_'+x+'_'+y]
 	blockPosition: (block) ->
-		Game.localToGlobal 
+		Game.localToGlobal
 			x: gbw * block.x
 			y: gbh * block.y
 
