@@ -20,17 +20,25 @@ class window.Game
 	init: (container)->
 		unless container
 			throw new Error 'Game container not defined'
-		# @constructor.state = "yes"
+
+		@styleContainer(container)
+		@initState()
+		@initGrid(container)
+		@initCharacter(container)
+		@initUI(container)
+
+	styleContainer: (container) ->
 		@container = container
 		@container.style.width = config.canvas.width + "px"
 		@container.style.position = "relative"
 
 
-		@initState()
+	initGrid: (container) ->
+		canvas = @makeCanvas()
+		$(container).append canvas
+		@constructor.grid = Imagine new Grid canvas
 
-		@initGrid(container)
-
-		# character
+	initCharacter: (container) ->
 		canvas = @makeCanvas()
 		@constructor.input = Imagine new Input canvas
 
@@ -38,17 +46,12 @@ class window.Game
 		$(container).append canvas
 		@constructor.character = Imagine new CharacterLayer canvas
 
-		# UI
+	initUI: (container) ->
 		UI_div = document.createElement 'div'
 		UI_div.id = "ui"
-		
+
 		$(container).append UI_div
 		@constructor.ui = new UI UI_div
-
-	initGrid: (container) ->
-		@canvas = @makeCanvas()
-		$(container).append @canvas
-		@constructor.grid = Imagine new Grid @canvas
 
 	initState: ->
 		loaded = Storage.get()
