@@ -33,7 +33,8 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       '**/*.coffee': ['coffee'],
-      // 'dist/bundle.js': ['coverage']
+      'dist/bundle.js': ['coverage']
+      // 'src/**/*.coffee': ['coffee', 'coverage']
     },
     // optionally, configure the reporter
     coverageReporter: {

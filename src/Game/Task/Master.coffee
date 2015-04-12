@@ -7,7 +7,7 @@ class TaskMaster extends require 'Singleton'
 	name: 'taskmaster'
 	addTask: (task) ->
 		# add to list
-		Game.state.taskData.push task
+		State.taskData.push task
 	findTaskForCharacter: (character) ->
 		# get character location
 		
