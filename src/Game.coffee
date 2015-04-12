@@ -22,21 +22,13 @@ class window.Game
 			throw new Error 'Game container not defined'
 		# @constructor.state = "yes"
 		@container = container
-
 		@container.style.width = config.canvas.width + "px"
 		@container.style.position = "relative"
 
 
-		loaded = Storage.get()
-		if loaded
-			@constructor.state = JSON.parse Storage.get()
-		else
-			@constructor.state = require 'Game/State'
+		@initState()
 
-		# grid
-		@canvas = @makeCanvas()
-		$(container).append @canvas
-		@constructor.grid = Imagine new Grid @canvas
+		@initGrid(container)
 
 		# character
 		canvas = @makeCanvas()
@@ -52,6 +44,18 @@ class window.Game
 		
 		$(container).append UI_div
 		@constructor.ui = new UI UI_div
+
+	initGrid: (container) ->
+		@canvas = @makeCanvas()
+		$(container).append @canvas
+		@constructor.grid = Imagine new Grid @canvas
+
+	initState: ->
+		loaded = Storage.get()
+		if loaded
+			@constructor.state = JSON.parse Storage.get()
+		else
+			@constructor.state = require 'Game/State'
 
 	makeCanvas: ->
 		canvas = document.createElement 'canvas'

@@ -34,7 +34,12 @@ describe 'Game/State/Manager', ->
 
 		it 'should extend state with NewGame'
 	describe 'loadGame', ->
-		it 'should copy tests from newgame'
+		it 'should be defined', ->
+			expect(StateManager.loadGame).toBeDefined()
+		it 'should call init', ->
+			spyOn StateManager, 'init'
+			StateManager.loadGame()
+			expect(StateManager.init).toHaveBeenCalled()
 
 	describe 'Game State', ->
 		it 'should set the variable exposed by Game/State'

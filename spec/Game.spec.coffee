@@ -64,10 +64,22 @@ describe 'Game', ->
 			expect(canvas.width).toBe(config.canvas.width)
 			expect(canvas.style.border).toBe(config.canvas.style.border)
 
+	describe 'initGrid', ->
+		it 'should be defined', ->
+			expect(game.initGrid).toBeDefined()
 
 	describe 'createUI', ->
 		it 'should append a ui div'
-		
+
+	describe 'initState', ->
+		it 'should be defined', ->
+			expect(game.initState).toBeDefined()
+		it 'should check storage', ->
+			Storage = require 'Game/Storage'
+			spyOn Storage, 'get'
+			game.initState()
+			expect(Storage.get).toHaveBeenCalled()
+
 
 	describe 'state', ->
 		it 'should not be called from window.Game'#, ->
@@ -77,10 +89,10 @@ describe 'Game', ->
 			# expect(gameClass.state).not.toHaveBeenCalled()
 
 
-	# it 'should have a long test', (cb)->
-	# 	# window.requestAnimationFrame(cb)
-	# 	setTimeout ->
-	# 		cb()
-	# 	, 2000
-	# # 	cb()
+	 it 'should have a long test', (cb)->
+	 	# window.requestAnimationFrame(cb)
+	 	setTimeout ->
+	 		cb()
+	 	, 2000
+	 # 	cb()
 
