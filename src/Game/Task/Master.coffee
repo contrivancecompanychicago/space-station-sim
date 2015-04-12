@@ -1,6 +1,8 @@
 Imagine = require 'imagine'
+State = require 'Game/State'
 
-class TaskMaster
+
+class TaskMaster extends require 'Singleton'
 
 	name: 'taskmaster'
 	addTask: (task) ->
@@ -10,6 +12,8 @@ class TaskMaster
 		# get character location
 		
 	getTasks: ->
+		State.taskData
+
 
 
 	removeTask: (task) ->

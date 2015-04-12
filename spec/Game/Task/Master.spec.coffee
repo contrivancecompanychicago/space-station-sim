@@ -24,6 +24,8 @@ describe "Game.Task.Master", ->
 			expect(@taskMaster.getTasks).toBeDefined()
 		it 'should return an array', ->
 			expect(Array.isArray @taskMaster.getTasks()).toBe true
+		it 'should return state.taskdata', ->
+			expect(@taskMaster.getTasks()).toBe State.taskData
 
 	describe 'task state', ->
 		it 'should be defined', ->
