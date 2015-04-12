@@ -1,31 +1,31 @@
 
 StateManager = require 'Game/State/Manager'
 State = require 'Game/State'
-describe "Game.Task.Master", ->
+describe "Game.Task.Helper", ->
 	beforeEach ->
 		StateManager.newGame()
-		@TaskMaster = require 'Game/Task/Master'
-		@taskMaster = new @TaskMaster()
+		@TaskHelper = require 'Game/Task/Helper'
+		@taskHelper = new @TaskHelper()
 
 	it 'should exist', ->
-		expect(@TaskMaster).toBeDefined()
+		expect(@TaskHelper).toBeDefined()
 	it 'should have getTasks', ->
-		expect(@taskMaster.getTasks).toBeDefined()
+		expect(@taskHelper.getTasks).toBeDefined()
 	describe 'addTask', ->
 		it 'should be defined', ->
-			expect(@taskMaster.addTask).toBeDefined()
+			expect(@taskHelper.addTask).toBeDefined()
 		it 'should add a task to the list', ->
 			len = State.taskData.length
-			@taskMaster.addTask {}
+			@taskHelper.addTask {}
 			expect(len+1).toBe State.taskData.length
 
 	describe 'getTasks', ->
 		it 'should be defined', ->
-			expect(@taskMaster.getTasks).toBeDefined()
+			expect(@taskHelper.getTasks).toBeDefined()
 		it 'should return an array', ->
-			expect(Array.isArray @taskMaster.getTasks()).toBe true
+			expect(Array.isArray @taskHelper.getTasks()).toBe true
 		it 'should return state.taskdata', ->
-			expect(@taskMaster.getTasks()).toBe State.taskData
+			expect(@taskHelper.getTasks()).toBe State.taskData
 
 	describe 'task state', ->
 		it 'should be defined', ->

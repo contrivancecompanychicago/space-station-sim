@@ -2,7 +2,7 @@ Imagine = require 'imagine'
 State = require 'Game/State'
 
 
-class TaskMaster extends require 'Singleton'
+class TaskHelper extends require 'Singleton'
 
 	name: 'taskmaster'
 	addTask: (task) ->
@@ -17,7 +17,8 @@ class TaskMaster extends require 'Singleton'
 
 
 	removeTask: (task) ->
+		
 
 	removeTasksFromBlock: (block) ->
 		
-module.exports = TaskMaster
+module.exports = TaskHelper
