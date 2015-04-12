@@ -89,10 +89,3 @@ describe 'Game', ->
 			# expect(gameClass.state).not.toHaveBeenCalled()
 
 
-	 it 'should have a long test', (cb)->
-	 	# window.requestAnimationFrame(cb)
-	 	setTimeout ->
-	 		cb()
-	 	, 2000
-	 # 	cb()
-

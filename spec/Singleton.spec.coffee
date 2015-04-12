@@ -15,5 +15,10 @@ describe 'Singleton', ->
 	describe 'extending', ->
 		it 'should be done properly', ->
 			expect(HelperA.getInstance().myfunc).toBeDefined()
+			expect(HelperA.getInstance().constructor.name).toBe("HelperA")
 		it 'should not alter base', ->
 			expect(Singleton.getInstance().myfunc).toBeUndefined()
+			ins = new Singleton()
+			new HelperA()
+			expect(ins.constructor.name).toBe Singleton.getInstance().constructor.name
+
