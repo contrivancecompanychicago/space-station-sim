@@ -9,4 +9,4 @@ describe 'Singleton', ->
 			expect(Singleton.getInstance).toBeDefined()
 		it 'should return an instance of itself', ->
 			ins = new Singleton()
-			expect(ins).toBe Singleton.getInstance()
+			expect(ins.constructor.name).toBe Singleton.getInstance().constructor.name
