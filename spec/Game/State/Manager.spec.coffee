@@ -11,6 +11,10 @@ describe 'Game/State/Manager', ->
 
 	afterEach ->
 		StateManager.newGame()
+
+
+	it 'should extend singleton', ->
+		expect(StateManager.getInstance).toBeDefined()
 	describe 'init', ->
 		it 'should be defined', ->
 			expect(StateManager.init).toBeDefined()

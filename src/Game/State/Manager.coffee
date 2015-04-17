@@ -3,7 +3,7 @@ Defaults = require 'Game/State/Defaults'
 NewGame = require 'Game/State/NewGame'
 _ = require 'lodash'
 
-class StateManager
+class StateManager extends require 'Singleton'
 	@init: ->
 		StateManager.clear()
 		_.extend State, Defaults
@@ -14,6 +14,9 @@ class StateManager
 	@newGame: ->
 		StateManager.init()
 		_.extend State, NewGame
+
+	@loadGame: ->
+		StateManager.init()
 
 
 
