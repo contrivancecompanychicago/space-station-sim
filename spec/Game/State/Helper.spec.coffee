@@ -1,5 +1,5 @@
 # console.log "manager spec turned off"
-StateManager = require 'Game/State/Manager'
+StateManager = require 'Game/State/Helper'
 State = require 'Game/State'
 Defaults = require 'Game/State/Defaults'
 NewGame = require 'Game/State/NewGame'

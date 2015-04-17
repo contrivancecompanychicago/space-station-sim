@@ -1,5 +1,5 @@
 
-StateManager = require 'Game/State/Manager'
+StateManager = require 'Game/State/Helper'
 State = require 'Game/State'
 describe "Game.Task.Helper", ->
 	beforeEach ->
