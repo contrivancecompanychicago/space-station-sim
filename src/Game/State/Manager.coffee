@@ -2,6 +2,7 @@ State = require 'Game/State'
 Defaults = require 'Game/State/Defaults'
 NewGame = require 'Game/State/NewGame'
 _ = require 'lodash'
+Storage = require 'Game/Storage'
 
 class StateManager extends require 'Singleton'
 	@init: ->
@@ -17,6 +18,7 @@ class StateManager extends require 'Singleton'
 
 	@loadGame: ->
 		StateManager.init()
+		_.extend State, JSON.parse Storage.get()
 
 
 
