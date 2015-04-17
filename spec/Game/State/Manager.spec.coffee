@@ -4,6 +4,7 @@ State = require 'Game/State'
 Defaults = require 'Game/State/Defaults'
 NewGame = require 'Game/State/NewGame'
 
+Storage = require 'Game/Storage'
 
 defStr = JSON.stringify Defaults
 newStr = JSON.stringify NewGame
@@ -44,6 +45,17 @@ describe 'Game/State/Manager', ->
 			spyOn StateManager, 'init'
 			StateManager.loadGame()
 			expect(StateManager.init).toHaveBeenCalled()
+		it 'should have more than defaults', ->
+
+			Storage.set()
+			StateManager.loadGame()
+
+			expect(JSON.stringify State).not.toBe defStr
+
+		it 'should load something from localstorage', ->
+
+		it 'shuold be implemented in game'
+
 
 	describe 'Game State', ->
 		it 'should set the variable exposed by Game/State'
