@@ -6,7 +6,7 @@ namegen = require 'Game/Util/namegen'
 vic = require 'victor'
 
 ActionTypes = require 'Game/Character/Action/Types'
-gridhelper = require 'Game/Grid/Helper'
+gridhelper = require('Game/Grid/Helper').getInstance()
 
 State = require 'Game/State'
 
@@ -93,8 +93,6 @@ class Character
 			else
 				@target = null
 	whatToDoNext: ->
-		# console.log "what next"
-		# debugger
 		options = []
 		path = {}
 		for type of ActionTypes
@@ -117,7 +115,6 @@ class Character
 		if options.length is 0
 			if @data.dock
 				path.leave = @findPathToBlock @data.dock
-				# console.log path.leave
 			unless path.leave	
 				path.leave = @findPathToRoom 'dock'
 			if path.leave then options.push 'leave'
@@ -151,7 +148,6 @@ class Character
 			unless @action is 'wait'
 				debugger
 				throw new Error 'no path'
-		# console.log @, @waitTime
 		action = ActionTypes[@action]
 		if action.waitTime
 			@waitTime = action.waitTime
@@ -164,7 +160,6 @@ class Character
 	update: ->
 		action = ActionTypes[@action]
 		@walkUpdate()
-		# console.log @target
 		unless @target #still walking
 			timediff = Imagine.time.deltaTime * State.timeScale
 			@waitTime -= timediff
@@ -176,7 +171,6 @@ class Character
 				, @)
 				.reduce (a,b) ->
 					a+b
-			# console.log need
 			
 			if @waitTime <= 0 and need <= 0
 				@endAction()
@@ -184,7 +178,6 @@ class Character
 
 	endAction: ->
 		action = ActionTypes[@action]
-		# console.log action
 		if action.need
 			for need in action.need
 				@data.needs[need] = 0
@@ -195,12 +188,10 @@ class Character
 				State.characterData.visitor = _.without State.characterData.visitor, @data
 				# @data.del = "me"
 				# delete @data
-				# console.log @block, @dock
 				if @data.dock
 					if (@block.x is @data.dock.x) and (@block.y is @data.dock.y)
 						# leaving at the dock I came from
 						data = State.itemData[gridhelper.blockToString @data.dock]
-						# console.log data
 						if data?.waitingFor
 							data.waitingFor--
 

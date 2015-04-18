@@ -1,6 +1,6 @@
 Imagine = require 'imagine'
 Vic = require 'victor'
-gridhelper = require 'Game/Grid/Helper'
+gridhelper = require('Game/Grid/Helper').getInstance()
 
 config = require 'Game/config'
 

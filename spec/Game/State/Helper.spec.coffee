@@ -34,9 +34,6 @@ describe 'Game/State/Helper', ->
 			spyOn stateManager, 'init'
 			stateManager.newGame()
 			expect(stateManager.init).toHaveBeenCalled()
-		# it 'should combine defaults and newgame', ->
-		# 	expect(JSON.stringify )
-
 
 		it 'should extend state with NewGame'
 	describe 'loadGame', ->
@@ -53,7 +50,7 @@ describe 'Game/State/Helper', ->
 
 			expect(JSON.stringify State).not.toBe defStr
 
-		it 'should load something from localstorage', ->
+		it 'should load something from localstorage'
 
 		it 'should be implemented in game'
 

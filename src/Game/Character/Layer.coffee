@@ -9,7 +9,6 @@ class CharacterLayer
 	cw = config.canvas.width
 	ch = config.canvas.height
 	constructor: (@canvas) ->
-		# console.log 'layer'
 		@context = @canvas.getContext '2d'
 		# for [0..0]
 		# 	@addCharacter()
@@ -23,7 +22,6 @@ class CharacterLayer
 
 	# wipes canvas
 	clear: ->
-		# console.log 0, 0, cw, ch
 		@context.closePath()
 		@context.clearRect 0, 0, cw, ch
 
@@ -48,7 +46,6 @@ class CharacterLayer
 			@context.fillText ActionTypes[obj.action].desc, 10, y += 20
 			@context.fillText "Needs:", 10, y += 20
 			@context.font = '10px verdana'
-			# console.log obj
 			for need of obj.data.needs
 				@context.fillStyle = 'white'
 				@context.fillText need, 10, y += 14
@@ -67,8 +64,6 @@ class CharacterLayer
 			@selected = Game.input.objectUnderMouse
 
 		if @selected
-			# console.log @selected.pos
-
 			pos = Game.localToGlobal @selected.pos
 			@context.strokeStyle = 'white'
 			@context.lineWidth = 2

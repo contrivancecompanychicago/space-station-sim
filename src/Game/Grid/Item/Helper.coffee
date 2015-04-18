@@ -1,4 +1,4 @@
-helper = require 'Game/Grid/Helper'
+helper = require('Game/Grid/Helper').getInstance()
 State = require 'Game/State'
 class Helper
 	name: 'itemhelper'

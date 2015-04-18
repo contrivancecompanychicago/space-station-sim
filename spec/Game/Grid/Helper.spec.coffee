@@ -7,7 +7,6 @@ point = {x: 1, y: 2}
 describe 'Game/Grid/Helper', ->
   it 'should be singleton', ->
     expect(GridHelper.getInstance).toBeDefined()
-    console.log GridHelper
   describe 'blockAtPoint', ->
     it 'should be defined', ->
       expect gridHelper.blockAtPoint
