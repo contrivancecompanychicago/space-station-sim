@@ -39,6 +39,18 @@ mapFiles = (base, prefix) ->
 		out[alias] = file
 	out
 
+
+configureBundler = (bundler) ->
+	bundler.transform cacheCoffee
+	bundler.transform cacheTempl
+	bundler.transform imgify()
+	externals =
+		'imagine': './bower_components/imagine/imagine.js'
+	_.extend externals, mapFiles "./src/"
+	for name of externals
+		bundler.require externals[name], expose: name
+	bundler.require 'underscore'
+
 gulp.task 'js', ['browserify'],  ->
 	# this extra step because browserify piping directly to dest breaks karma
 	gulp.src './dist/output.js'
@@ -47,27 +59,11 @@ gulp.task 'js', ['browserify'],  ->
 		.pipe livereload()
 
 gulp.task 'browserify', ['bower'], ->
-	opts = 
-		# entries: [ './src/Game.coffee' ]
+
+	bundler = browserify
 		debug: true
 		extensions: ['.js', '.coffee', '.html', '.png'] # needed for remapify
-
-	bundler = browserify opts
-
-	bundler.transform cacheCoffee
-	bundler.transform cacheTempl
-	bundler.transform imgify()
-
-	externals =
-		'imagine': './bower_components/imagine/imagine.js'
-	_.extend externals, mapFiles "./src/"
-
-	for name of externals
-		bundler.require externals[name], expose: name
-
-	bundler.require 'underscore'
-
-	t = new Date()
+	configureBundler bundler
 
 	bundler.bundle()
 		.on 'file', (file) ->
@@ -77,3 +73,6 @@ gulp.task 'browserify', ['bower'], ->
 		.pipe(source('output.js'))
 		.pipe gulp.dest('./dist/')
 		# .pipe touch '.bundled'
+
+
+module.exports = configureBundler

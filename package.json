@@ -102,6 +102,7 @@
     "karma": "~0.12.31",
     "karma-coverage": "~0.2.7",
     "karma-nyan-reporter": "0.0.60",
-    "aliasify": "~1.7.2"
+    "aliasify": "~1.7.2",
+    "karma-browserify": "~4.1.2"
   }
 }

@@ -1,6 +1,7 @@
 // Karma configuration
 // Generated on Wed Mar 25 2015 22:36:44 GMT+1100 (AUS Eastern Daylight Time)
 
+
 module.exports = function(config) {
   config.set({
 
@@ -10,7 +11,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['browserify', 'jasmine'],
 
 
     // list of files / patterns to load in the browser
@@ -23,6 +24,15 @@ module.exports = function(config) {
       'spec/**/*.spec.coffee'
     ],
 
+    browserify: {
+      debug:true,
+      extensions: ['.js', '.coffee', '.html', '.png'],
+      configure: function(bundle) {
+        bundle.on('prebundle', function() {
+          bundle.external('underscore');
+        });
+      }
+    },
 
     // list of files to exclude
     exclude: [
@@ -33,6 +43,7 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       '**/*.coffee': ['coffee'],
+      'spec/**/*spec.js': ['browserify'],
       'dist/bundle.js': ['coverage']
       // 'src/**/*.coffee': ['coffee', 'coverage']
     },
@@ -58,7 +69,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_disable,
+    logLevel: config.LOG_DISABLE,
 
 
     // enable / disable watching file and executing tests whenever any file changes
