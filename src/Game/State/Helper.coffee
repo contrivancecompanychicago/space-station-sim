@@ -5,19 +5,19 @@ _ = require 'lodash'
 Storage = require 'Game/Storage'
 
 class StateManager extends require 'Singleton'
-	@init: ->
-		StateManager.clear()
+	init: ->
+		@clear()
 		_.extend State, Defaults
-	@clear: ->
+	clear: ->
 		for prop of State
 			if State.hasOwnProperty prop
 				delete State[prop]
-	@newGame: ->
-		StateManager.init()
+	newGame: ->
+		@init()
 		_.extend State, NewGame
 
-	@loadGame: ->
-		StateManager.init()
+	loadGame: ->
+		@init()
 		_.extend State, JSON.parse Storage.get()
 
 

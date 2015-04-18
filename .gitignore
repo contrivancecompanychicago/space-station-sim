@@ -10,3 +10,4 @@ project.*
 heroku.txt
 .idea
 .bundled
+npm-debug.log

@@ -1,9 +1,10 @@
 
 StateManager = require 'Game/State/Helper'
+stateManager = StateManager.getInstance()
 State = require 'Game/State'
 describe "Game.Task.Helper", ->
 	beforeEach ->
-		StateManager.newGame()
+		stateManager.newGame()
 		@TaskHelper = require 'Game/Task/Helper'
 		@taskHelper = new @TaskHelper()
 
