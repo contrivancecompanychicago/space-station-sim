@@ -5,30 +5,30 @@ module.exports = (config) ->
   config.set
     basePath: ''
     frameworks: [
-      'browserify'
+#      'browserify'
       'jasmine'
     ]
     files: [
       'dist/bundle.js'
       'spec/**/*.spec.coffee'
     ]
-    browserify:
-      debug: true
-      extensions: [
-        '.js'
-        '.coffee'
-        '.html'
-        '.png'
-      ]
-      configure: (bundle) ->
-        bundle.on 'prebundle', ->
-          # bundle.external 'underscore'
+#    browserify:
+#      debug: true
+#      extensions: [
+#        '.js'
+#        '.coffee'
+#        '.html'
+#        '.png'
+#      ]
+#      configure: (bundle) ->
+#        bundle.on 'prebundle', ->
+#          # bundle.external 'underscore'
 #          configBundle bundle
     exclude: []
     preprocessors:
       'spec/**/*.coffee': [ 'coffee' ]
-#      'spec/**/*spec.js': [ 'browserify' ]
-      'dist/bundle.js': [ 'coverage' ]
+#      'spec/**/*spec.coffee': [ 'browserify' ]
+      'dist/bundle.js': [ 'coverage', 'sourcemap']
     coverageReporter:
       type: 'html'
       dir: 'coverage/'
