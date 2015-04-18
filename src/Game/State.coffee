@@ -26,7 +26,6 @@ module.exports =
 		g5_5: {type:'test'}
 	}
 	characterData: {
-		visitor: []
 	}
 	taskData: [
 	]

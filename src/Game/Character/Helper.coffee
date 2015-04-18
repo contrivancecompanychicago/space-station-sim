@@ -13,5 +13,12 @@ class Helper extends require 'Singleton'
 
     new Character data
 
+  init: ->
+#		State.characterData.visitor.forEach (data) ->
+#    console.log State.characterData
+#    for id of State.characterData
+#      data = State.characterData[id]
+#			Imagine new Character({data})
+
 
 module.exports = Helper

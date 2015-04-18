@@ -1,13 +1,19 @@
 CharHelper = require 'Game/Character/Helper'
 charHelper = CharHelper.getInstance()
-
+Character = require 'Game/Character'
 _ = require 'underscore'
 
+Imagine = require 'imagine'
+
 State = require 'Game/State'
+
+stateHelper = require('Game/State/Helper').getInstance()
 
 mockCharData = {}
 
 describe 'Game/Character/Helper', ->
+  beforeEach ->
+    stateHelper.newGame()
   it 'should be defined', ->
     expect(CharHelper).toBeDefined()
   it 'should be singleton', ->
@@ -46,7 +52,16 @@ describe 'Game/Character/Helper', ->
       expect -> charHelper.add mockCharData
         .toThrow new Error 'Block not defined'
 
+  describe 'init', ->
+    it 'should be defined', ->
+      expect charHelper.init
+        .toBeDefined()
 
-
+    it 'should call character constructor for each item in characterData', ->
+##      console.log Imagine.objects.length
+#      spyOn Character.prototype, 'constructor'
+##      charHelper.add {block: {x: 1, y: 2}}
+#      expect Character.prototype.constructor
+#        .toHaveBeenCalled()
 
 

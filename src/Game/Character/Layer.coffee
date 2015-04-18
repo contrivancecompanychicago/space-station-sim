@@ -14,8 +14,7 @@ class CharacterLayer
 		@context = @canvas.getContext '2d'
 		@willRender = true
 
-		State.characterData.visitor.forEach (data) ->
-			Imagine new Character({data})
+		helper.init()
 
 		# throw new Error 'LOAD CHAR DATA'
 		@render()

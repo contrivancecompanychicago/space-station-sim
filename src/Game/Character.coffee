@@ -14,26 +14,26 @@ class Character
 	name: 'character'
 	speed: 50
 
-	constructor: (params) ->
-		
-		
-		if params?.block
-			@block = params.block
-		else
-			@block = gridhelper.randomBlock()
-
-		@pos = @getBlockPosition @block
-
-		if params?.data
-			@data = params.data
-		else
-			[firstname, lastname] = namegen()
-			State.characterData.visitor.push {
-				'firstname': firstname
-				'lastname': lastname
-			}
-			@data = State.characterData.visitor[State.characterData.visitor.length-1]
-			@makeNeeds()
+	constructor: (@data) ->
+		@block = @data.block
+#
+#		if params?.block
+#			@block = params.block
+#		else
+#			@block = gridhelper.randomBlock()
+#
+#		@pos = @getBlockPosition @block
+#
+#		if params?.data
+#			@data = params.data
+#		else
+#			[firstname, lastname] = namegen()
+#			State.characterData.visitor.push {
+#				'firstname': firstname
+#				'lastname': lastname
+#			}
+#			@data = State.characterData.visitor[State.characterData.visitor.length-1]
+#			@makeNeeds()
 
 
 	makeNeeds: ->

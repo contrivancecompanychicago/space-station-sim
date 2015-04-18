@@ -19,7 +19,6 @@ module.exports =
 	gridData: {}
 	itemData: {}
 	characterData: {
-		visitor: []
 	}
 	taskData: [
 	]

@@ -7,14 +7,14 @@ Storage = require 'Game/Storage'
 class StateManager extends require 'Singleton'
 	init: ->
 		@clear()
-		_.extend State, Defaults
+		_.merge State, Defaults
 	clear: ->
 		for prop of State
 			if State.hasOwnProperty prop
 				delete State[prop]
 	newGame: ->
 		@init()
-		_.extend State, NewGame
+		_.merge State, NewGame
 
 	loadGame: ->
 		@init()
