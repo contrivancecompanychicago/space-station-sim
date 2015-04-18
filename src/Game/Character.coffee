@@ -16,13 +16,14 @@ class Character
 
 	constructor: (@data) ->
 		@block = @data.block
+		@pos = @getBlockPosition @block
 #
 #		if params?.block
 #			@block = params.block
 #		else
 #			@block = gridhelper.randomBlock()
 #
-#		@pos = @getBlockPosition @block
+#
 #
 #		if params?.data
 #			@data = params.data

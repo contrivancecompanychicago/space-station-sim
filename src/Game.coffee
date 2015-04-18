@@ -79,6 +79,8 @@ class window.Game
 		x: ((point.x / State.view.scale) - State.view.offset.x)
 		y: ((point.y / State.view.scale) - State.view.offset.y)
 	@localToGlobal: (point) ->
+		unless point
+			debugger
 		x: (State.view.offset.x + (point.x)) * State.view.scale
 		y: (State.view.offset.y + (point.y)) * State.view.scale
 
