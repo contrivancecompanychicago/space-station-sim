@@ -3,6 +3,8 @@ Character = require 'Game/Character'
 Imagine = require 'imagine'
 ActionTypes = require 'Game/Character/Action/Types'
 
+helper = require('Game/Character/Helper').getInstance()
+
 State = require 'Game/State'
 
 class CharacterLayer
@@ -10,8 +12,6 @@ class CharacterLayer
 	ch = config.canvas.height
 	constructor: (@canvas) ->
 		@context = @canvas.getContext '2d'
-		# for [0..0]
-		# 	@addCharacter()
 		@willRender = true
 
 		State.characterData.visitor.forEach (data) ->
@@ -25,8 +25,8 @@ class CharacterLayer
 		@context.closePath()
 		@context.clearRect 0, 0, cw, ch
 
-	addCharacter: ->
-		Imagine new Character()
+#	addCharacter: ->
+#		Imagine helper.add()
 
 	render: ->
 		@clear()

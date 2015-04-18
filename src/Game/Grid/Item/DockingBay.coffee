@@ -1,9 +1,9 @@
 Base = require 'Game/Grid/Item/Base'
-Character = require 'Game/Character'
 Imagine = require 'imagine'
 gridhelper = require('Game/Grid/Helper').getInstance()
 img = require './dockspot.png'
 ship = require './ship.png'
+charHelper = require('Game/Character/Helper').getInstance()
 
 State = require 'Game/State'
 
@@ -49,7 +49,7 @@ Imagine
 
 							num = 1 + Math.floor(Math.random()*4)
 							for [1..num]
-								char = Imagine new Character({block})
+								char = Imagine charHelper.add({block})
 								char.data.dock = block
 							data.waitingFor = num
 							Imagine.notify 'itemStateChanged'

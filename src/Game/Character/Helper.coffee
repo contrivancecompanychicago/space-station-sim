@@ -1,6 +1,8 @@
 Util  = require 'Game/Util'
 State = require 'Game/State'
 Character = require 'Game/Character'
+Imagine = require 'imagine'
+
 class Helper extends require 'Singleton'
   add: (data) ->
     unless data.block
