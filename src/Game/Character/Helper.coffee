@@ -8,10 +8,13 @@ class Helper extends require 'Singleton'
     unless data.block
       throw new Error 'Block not defined'
 
+    unless data.needs
+      @makeNeeds data
+
     data.id = Util.guid()
     State.characterData[data.id] = data
 
-    new Character data
+    Imagine new Character data
 
   # takes optional chardata basically for testing
   init: (charsData)->
@@ -23,6 +26,16 @@ class Helper extends require 'Singleton'
 #      console.log charsData, id
       data = charsData[id]
       Imagine new Character data
+
+
+  makeNeeds: (data) ->
+    data.needs =
+      # energy: Math.random()
+      fun: Math.random()
+      # hunger: Math.random()
+      shop: Math.random()
+      medical: Math.random()
+      repair: Math.random()
 
 
 module.exports = Helper

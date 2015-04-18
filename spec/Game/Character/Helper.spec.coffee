@@ -45,6 +45,20 @@ describe 'Game/Character/Helper', ->
       expect char.name
         .toBe 'character'
 
+    describe 'needs', ->
+      beforeEach ->
+        charHelper.add mockCharData
+
+      it 'shuold set needs', ->
+        expect mockCharData.needs
+        .toBeDefined()
+      it 'shuold set fun', ->
+        expect mockCharData.needs.fun
+        .toBeDefined()
+      it 'shuold set shop', ->
+        expect mockCharData.needs.shop
+        .toBeDefined()
+
     it 'should set an ID', ->
       charHelper.add mockCharData
       expect mockCharData.id

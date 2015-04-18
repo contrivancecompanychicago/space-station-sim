@@ -36,14 +36,6 @@ class Character
 #			@makeNeeds()
 
 
-	makeNeeds: ->
-		@data.needs =
-			# energy: Math.random()
-			fun: Math.random()
-			# hunger: Math.random()
-			shop: Math.random()
-			medical: Math.random()
-			repair: Math.random()
 
 	gridStateChanged: ->
 		@whatToDoNext()
