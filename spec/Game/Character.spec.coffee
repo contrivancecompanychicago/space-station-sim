@@ -6,3 +6,6 @@ describe 'Game/Character', ->
   it 'should be defined', ->
     expect Character
       .toBeDefined()
+
+
+  describe 'data', ->

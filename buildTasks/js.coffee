@@ -58,12 +58,14 @@ gulp.task 'browserify', ['bower'], ->
 	bundler.transform cacheTempl
 	bundler.transform imgify()
 
-	externals = 
+	externals =
 		'imagine': './bower_components/imagine/imagine.js'
 	_.extend externals, mapFiles "./src/"
 
 	for name of externals
 		bundler.require externals[name], expose: name
+
+	bundler.require 'underscore'
 
 	t = new Date()
 

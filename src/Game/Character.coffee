@@ -36,10 +36,6 @@ class Character
 			@makeNeeds()
 
 
-
-		
-		@whatToDoNext()
-
 	makeNeeds: ->
 		@data.needs =
 			# energy: Math.random()
@@ -158,6 +154,8 @@ class Character
 			when 'wait'
 				@waitTime = Math.random() * action.waitTime
 	update: ->
+		unless @action
+			@whatToDoNext()
 		action = ActionTypes[@action]
 		@walkUpdate()
 		unless @target #still walking
