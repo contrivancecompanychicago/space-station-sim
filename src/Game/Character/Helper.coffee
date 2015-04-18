@@ -13,12 +13,16 @@ class Helper extends require 'Singleton'
 
     new Character data
 
-  init: ->
+  # takes optional chardata basically for testing
+  init: (charsData)->
+    unless charsData
+      charsData = State.characterData
+
 #		State.characterData.visitor.forEach (data) ->
-#    console.log State.characterData
-#    for id of State.characterData
-#      data = State.characterData[id]
-#			Imagine new Character({data})
+    for id of charsData
+#      console.log charsData, id
+      data = charsData[id]
+      Imagine new Character data
 
 
 module.exports = Helper

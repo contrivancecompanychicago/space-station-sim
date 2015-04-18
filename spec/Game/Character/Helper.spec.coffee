@@ -14,6 +14,8 @@ mockCharData = {}
 describe 'Game/Character/Helper', ->
   beforeEach ->
     stateHelper.newGame()
+  afterEach ->
+    Imagine.engine.reset()
   it 'should be defined', ->
     expect(CharHelper).toBeDefined()
   it 'should be singleton', ->
@@ -24,6 +26,7 @@ describe 'Game/Character/Helper', ->
     beforeEach ->
       mockCharData =
         block: {x: 1, y: 2}
+
 
     it 'should be defined', ->
       expect charHelper.add
@@ -58,9 +61,10 @@ describe 'Game/Character/Helper', ->
         .toBeDefined()
 
     it 'should call character constructor for each item in characterData', ->
-##      console.log Imagine.objects.length
-#      spyOn Character.prototype, 'constructor'
-##      charHelper.add {block: {x: 1, y: 2}}
+      len = Imagine.objects.length
+      charHelper.init test: {block: {x: 1, y: 2}}
+      expect Imagine.objects.length
+        .toBe len + 1
 #      expect Character.prototype.constructor
 #        .toHaveBeenCalled()
 

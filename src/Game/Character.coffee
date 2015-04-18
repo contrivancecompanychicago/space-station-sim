@@ -94,14 +94,15 @@ class Character
 		for type of ActionTypes
 			action = ActionTypes[type]
 			if action.need #only process actions with needs
-				need = @data.needs[action.need[0]]
-				if need #if needs to go to this room
-					path[action.room] = @findPathToRoom action.room
-					if path[action.room] then options.push {
-						action: type
-						length: path[action.room].length
-						need: need
-					}
+				if @data.needs # todo: remove
+					need = @data.needs[action.need[0]]
+					if need #if needs to go to this room
+						path[action.room] = @findPathToRoom action.room
+						if path[action.room] then options.push {
+							action: type
+							length: path[action.room].length
+							need: need
+						}
 		if options.length #what one do I want the most
 			options.sort (a, b) ->
 				b.need - a.need
