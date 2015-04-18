@@ -12,6 +12,9 @@ aliasify = require 'aliasify'
 rename = require 'gulp-rename'
 path = require 'path'
 
+buffer = require('vinyl-buffer')
+sourcemaps = require('gulp-sourcemaps')
+
 t2 = require 'through2'
 
 _ = require 'lodash'
@@ -71,6 +74,13 @@ gulp.task 'browserify', ['bower'], ->
 			# console.log file, new Date() - t
 			# t = new Date()
 		.pipe(source('output.js'))
+
+		.pipe(buffer())
+		.pipe(sourcemaps.init({loadMaps: true}))
+#		.pipe(uglify())
+#		.on('error', gutil.log)
+		.pipe(sourcemaps.write('./'))
+
 		.pipe gulp.dest('./dist/')
 		# .pipe touch '.bundled'
 
