@@ -1,4 +1,3 @@
-
 Character = require 'Game/Character'
 
 describe 'Game/Character', ->
@@ -7,4 +6,3 @@ describe 'Game/Character', ->
   it 'should be defined', ->
     expect Character
       .toBeDefined()
-'

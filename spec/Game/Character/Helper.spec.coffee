@@ -6,9 +6,6 @@ State = require 'Game/State'
 mockCharData = {}
 
 describe 'Game/Character/Helper', ->
-
-
-
   it 'should be defined', ->
     expect(CharHelper).toBeDefined()
   it 'should be singleton', ->
