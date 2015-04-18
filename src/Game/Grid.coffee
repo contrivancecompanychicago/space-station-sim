@@ -5,7 +5,7 @@ config = require 'Game/config'
 Imagine = require 'imagine'
 RoomTypes = require 'Game/Grid/Room/Types'
 Item = require 'Game/Grid/Item'
-helper = require 'Game/Grid/Helper'
+helper = require('Game/Grid/Helper').getInstance()
 
 ItemTypes = require 'Game/Grid/Item/Types'
 
@@ -96,7 +96,7 @@ class Grid
 
 		# gather data
 		blocks = keys.map (key) =>
-			helper = require 'Game/Grid/Helper'
+			helper = require('Game/Grid/Helper').getInstance()
 			block = helper.stringToBlock key
 			block.data = Game.state.gridData[key]
 			block.type = BlockTypes[block.data.type]

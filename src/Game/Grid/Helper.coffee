@@ -13,7 +13,7 @@ ch = config.canvas.height
 # debugger
 #console.log 'initing grid helper'
 
-class Helper
+class Helper extends require 'Singleton'
 	name: "gridhelper"
 	blockAtPoint: (point)->
 		point = Game.globalToLocal point
@@ -92,5 +92,5 @@ class Helper
 		# 	return @randomBlock() # try again
 		@stringToBlock key
 
-ret = Imagine new Helper()
-module.exports = ret
+#ret = Imagine new Helper()
+module.exports = Helper

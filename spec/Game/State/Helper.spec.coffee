@@ -55,7 +55,7 @@ describe 'Game/State/Helper', ->
 
 		it 'should load something from localstorage', ->
 
-		it 'shuold be implemented in game'
+		it 'should be implemented in game'
 
 
 	describe 'Game State', ->
