@@ -21,9 +21,7 @@ class Helper extends require 'Singleton'
     unless charsData
       charsData = State.characterData
 
-#		State.characterData.visitor.forEach (data) ->
     for id of charsData
-#      console.log charsData, id
       data = charsData[id]
       Imagine new Character data
 

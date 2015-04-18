@@ -69,6 +69,8 @@ class Character
 		@setTarget()
 
 	getBlockPosition: (block) ->
+		unless block
+			throw new Error 'Block is undefined'
 		pos = new vic(block.x* config.grid.block.width, block.y * config.grid.block.height)
 		v = (config.grid.block.width / 4) + (Math.random() * (config.grid.block.width / 2))
 		pos.add new vic(v, v)
@@ -177,7 +179,8 @@ class Character
 		switch @action
 			when 'leave'
 				# ind = State.characterData.visitor.indexOf @data
-				State.characterData.visitor = _.without State.characterData.visitor, @data
+#				State.characterData.visitor = _.without State.characterData.visitor, @data
+				console.log 'implement leaving'
 				# @data.del = "me"
 				# delete @data
 				if @data.dock
