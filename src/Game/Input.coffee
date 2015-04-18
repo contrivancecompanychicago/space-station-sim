@@ -4,6 +4,7 @@ gridhelper = require 'Game/Grid/Helper'
 
 config = require 'Game/config'
 
+State = require 'Game/State'
 
 
 # singleton whatever
@@ -41,21 +42,21 @@ class Input
 				d = -e.detail
 
 			if d > 0
-				if Game.state.view.scale < config.view.scale.max
-					Game.state.view.scale += config.view.scale.step
+				if State.view.scale < config.view.scale.max
+					State.view.scale += config.view.scale.step
 			else
-				if Game.state.view.scale > config.view.scale.min
-					Game.state.view.scale -= config.view.scale.step
+				if State.view.scale > config.view.scale.min
+					State.view.scale -= config.view.scale.step
 
-			# console.log "new scale ", Game.state.view.scale
+			# console.log "new scale ", State.view.scale
 			endMouse = Vic.fromObject Game.globalToLocal {x: e.x, y: e.y}
 			# console.log endMouse
-			offset = Vic.fromObject Game.state.view.offset
+			offset = Vic.fromObject State.view.offset
 
 			diff = endMouse.subtract startMouse
 			offset.add diff
 
-			Game.state.view.offset = offset
+			State.view.offset = offset
 
 			
 			Imagine.notify 'viewStateChanged'
@@ -116,8 +117,8 @@ class Input
 				Game.grid.requireRender()
 			when @states.moving
 				# todo: zoom correct move
-				Game.state.view.offset.x -= delta.x / Game.state.view.scale
-				Game.state.view.offset.y -= delta.y / Game.state.view.scale
+				State.view.offset.x -= delta.x / State.view.scale
+				State.view.offset.y -= delta.y / State.view.scale
 				Imagine.notify 'viewStateChanged'
 		@setLastMouse e
 

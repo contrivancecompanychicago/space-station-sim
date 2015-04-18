@@ -3,6 +3,8 @@ Character = require 'Game/Character'
 Imagine = require 'imagine'
 ActionTypes = require 'Game/Character/Action/Types'
 
+State = require 'Game/State'
+
 class CharacterLayer
 	cw = config.canvas.width
 	ch = config.canvas.height
@@ -13,7 +15,7 @@ class CharacterLayer
 		# 	@addCharacter()
 		@willRender = true
 
-		Game.state.characterData.visitor.forEach (data) ->
+		State.characterData.visitor.forEach (data) ->
 			Imagine new Character({data})
 
 		# throw new Error 'LOAD CHAR DATA'
@@ -70,10 +72,10 @@ class CharacterLayer
 			pos = Game.localToGlobal @selected.pos
 			@context.strokeStyle = 'white'
 			@context.lineWidth = 2
-			# @context.fillRect pos.x, pos.y, 10*Game.state.view.scale, 10*Game.state.view.scale
+			# @context.fillRect pos.x, pos.y, 10*State.view.scale, 10*State.view.scale
 
 			@context.beginPath()
-			@context.arc(pos.x, pos.y, config.character.radius*Game.state.view.scale, 0, 2 * Math.PI, false);
+			@context.arc(pos.x, pos.y, config.character.radius*State.view.scale, 0, 2 * Math.PI, false);
 			@context.stroke()
 			@context.closePath()
 
@@ -81,10 +83,10 @@ class CharacterLayer
 	renderChar: (data) ->
 		pos = Game.localToGlobal data
 		@context.fillStyle = 'green'
-		# @context.fillRect pos.x, pos.y, 10*Game.state.view.scale, 10*Game.state.view.scale
+		# @context.fillRect pos.x, pos.y, 10*State.view.scale, 10*State.view.scale
 
 		@context.beginPath()
-		@context.arc(pos.x, pos.y, config.character.radius*Game.state.view.scale, 0, 2 * Math.PI, false);
+		@context.arc(pos.x, pos.y, config.character.radius*State.view.scale, 0, 2 * Math.PI, false);
 		@context.fill()
 		@context.closePath()
 

@@ -34,30 +34,30 @@ class Helper extends require 'Singleton'
 			when 'block'
 				type = State.ui.block
 				obj = {type: type}
-				Game.state.gridData[@blockToString(pos)] = obj
+				State.gridData[@blockToString(pos)] = obj
 			when 'room'
 				type = State.ui.room
 				obj = {type: 'plain', room:type}
-				Game.state.gridData[@blockToString(pos)] = obj
+				State.gridData[@blockToString(pos)] = obj
 			when 'item'
 				block = @blockToString(pos)
-				if Game.state.gridData[block]#check if block exists
+				if State.gridData[block]#check if block exists
 					type = State.ui.item
 					obj = {type:type}
 #					_.extend obj, ItemTypes[type].defaults # todo: build this back in
-					Game.state.itemData[block] = obj
+					State.itemData[block] = obj
 			
 	removeBlock: (pos) ->
 		mode = State.ui.mode
 		switch mode
 			when 'block'
-				delete Game.state.gridData[@blockToString(pos)]
-				delete Game.state.itemData[@blockToString(pos)]
+				delete State.gridData[@blockToString(pos)]
+				delete State.itemData[@blockToString(pos)]
 			when 'room'
-				if Game.state.gridData[@blockToString(pos)]
-					delete Game.state.gridData[@blockToString(pos)].room
+				if State.gridData[@blockToString(pos)]
+					delete State.gridData[@blockToString(pos)].room
 			when 'item'
-				delete Game.state.itemData[@blockToString(pos)]
+				delete State.itemData[@blockToString(pos)]
 
 
 	# returns adjacent block data
@@ -75,7 +75,7 @@ class Helper extends require 'Singleton'
 				x: block.x + combo.x
 				y: block.y + combo.y
 			key = helper.blockToString bl
-			val = Game.state.gridData[key]
+			val = State.gridData[key]
 			if val
 				type = BlockTypes[val.type]
 				unless type.isWall
@@ -84,11 +84,11 @@ class Helper extends require 'Singleton'
 		out
 
 	randomBlock: ->
-		keys = _.keys Game.state.gridData
+		keys = _.keys State.gridData
 		if keys.length is 0
 			throw new error 'no block'
 		key = keys[Math.floor(Math.random()*keys.length)]; #random key
-		# if BlockTypes[Game.state.gridData[key].type].isWall
+		# if BlockTypes[State.gridData[key].type].isWall
 		# 	return @randomBlock() # try again
 		@stringToBlock key
 

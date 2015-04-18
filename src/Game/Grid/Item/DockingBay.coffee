@@ -5,7 +5,7 @@ gridhelper = require('Game/Grid/Helper').getInstance()
 img = require './dockspot.png'
 ship = require './ship.png'
 
-
+State = require 'Game/State'
 
 item = new Base(2, 2)
 item.defaults = 
@@ -28,9 +28,9 @@ Imagine
 	update: ->
 		Game = require('Game')
 		# console.log Game
-		if Game.state #todo: state not available in first frame?
-			for key of Game.state.itemData
-				data = Game.state.itemData[key]
+		if State #todo: state not available in first frame?
+			for key of State.itemData
+				data = State.itemData[key]
 				if data.type is "dockingbay"
 					if data.ship
 						if data.waitingFor <=0 #everyone on board!
@@ -40,7 +40,7 @@ Imagine
 					else
 						unless data.timeTilDock
 							data.timeTilDock = 1 + (5*Math.random())
-						data.timeTilDock -= Imagine.time.deltaTime * Game.state.timeScale
+						data.timeTilDock -= Imagine.time.deltaTime * State.timeScale
 						if data.timeTilDock <=0
 							data.ship = true
 #							console.log gridhelper

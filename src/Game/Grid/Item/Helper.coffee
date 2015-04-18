@@ -1,7 +1,8 @@
 helper = require 'Game/Grid/Helper'
+State = require 'Game/State'
 class Helper
 	name: 'itemhelper'
-	getByBlock: (block) -> Game.state.itemData[helper.blockToString block]
+	getByBlock: (block) -> State.itemData[helper.blockToString block]
 
 
 module.exports = new Helper()

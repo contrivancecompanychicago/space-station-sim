@@ -1,7 +1,8 @@
 config = require 'Game/config'
-# images = require '../../images.coffee'
 gbw = config.grid.block.width
 gbh = config.grid.block.height
+
+State = require 'Game/State'
 
 class Base
 
@@ -18,8 +19,8 @@ class Base
 		sourceY = 0;
 		sourceWidth = image.width;
 		sourceHeight = image.height;
-		destWidth = gbw * Game.state.view.scale * @width;
-		destHeight = gbh * Game.state.view.scale * @height;
+		destWidth = gbw * State.view.scale * @width;
+		destHeight = gbh * State.view.scale * @height;
 		destX = offset.x
 		destY = offset.y
 		context.drawImage image, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight

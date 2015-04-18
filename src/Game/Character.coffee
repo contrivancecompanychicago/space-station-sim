@@ -6,7 +6,6 @@ namegen = require 'Game/Util/namegen'
 vic = require 'victor'
 
 ActionTypes = require 'Game/Character/Action/Types'
-#debugger
 gridhelper = require 'Game/Grid/Helper'
 
 State = require 'Game/State'

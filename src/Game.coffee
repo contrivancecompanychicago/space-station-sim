@@ -11,6 +11,8 @@ Character = require 'Game/Character'
 UI = require 'Game/UI/Layer'
 CharacterLayer = require 'Game/Character/Layer'
 
+State = require 'Game/State'
+
 class window.Game
 	name: "spacesim"
 	# @state: 'no'
@@ -56,9 +58,10 @@ class window.Game
 	initState: ->
 		loaded = Storage.get()
 		if loaded
-			@constructor.state = JSON.parse Storage.get()
+#			@constructor.state = JSON.parse Storage.get()
+			require('Game/State/Helper').getInstance().loadGame Storage.get()
 		else
-			@constructor.state = require 'Game/State'
+#			@constructor.state = require 'Game/State'
 
 	makeCanvas: ->
 		canvas = document.createElement 'canvas'
@@ -73,11 +76,11 @@ class window.Game
 		Imagine.engine.reset()
 
 	@globalToLocal: (point) ->
-		x: ((point.x / Game.state.view.scale) - Game.state.view.offset.x)
-		y: ((point.y / Game.state.view.scale) - Game.state.view.offset.y)
+		x: ((point.x / State.view.scale) - State.view.offset.x)
+		y: ((point.y / State.view.scale) - State.view.offset.y)
 	@localToGlobal: (point) ->
-		x: (Game.state.view.offset.x + (point.x)) * Game.state.view.scale
-		y: (Game.state.view.offset.y + (point.y)) * Game.state.view.scale
+		x: (State.view.offset.x + (point.x)) * State.view.scale
+		y: (State.view.offset.y + (point.y)) * State.view.scale
 
 	@save: =>
 		# @grid.requireRender()

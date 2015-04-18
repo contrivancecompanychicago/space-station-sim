@@ -14,7 +14,7 @@ State = require 'Game/State'
 class Grid
 
 	constructor: (@canvas) ->
-		# console.log Game.state
+		# console.log State
 		@context = @canvas.getContext('2d')
 		@item = new Item(@context)
 		@calcData()
@@ -83,7 +83,7 @@ class Grid
 
 
 	calcPathData: ->
-		keys = _.keys Game.state.gridData
+		keys = _.keys State.gridData
 		if keys.length is 0
 			return
 			arr: []
@@ -98,7 +98,7 @@ class Grid
 		blocks = keys.map (key) =>
 			helper = require('Game/Grid/Helper').getInstance()
 			block = helper.stringToBlock key
-			block.data = Game.state.gridData[key]
+			block.data = State.gridData[key]
 			block.type = BlockTypes[block.data.type]
 			if block.x < minx then minx = block.x
 			if block.y < miny then miny = block.y
@@ -191,11 +191,11 @@ class Grid
 	# find all blocks with room type
 	blocksWithRoom: (room)->
 		out = []
-		keys = _.keys Game.state.gridData
+		keys = _.keys State.gridData
 		# gather data
 		blocks = keys.forEach (key) =>
 			block = helper.stringToBlock key
-			block.data = Game.state.gridData[key]
+			block.data = State.gridData[key]
 			if block.data.room is room
 				out.push block
 		out
@@ -206,7 +206,7 @@ class Grid
 		@context.clearRect 0, 0, cw, ch
 
 
-	# tries to render the block in Game.state.gridData['_'+x+'_'+y]
+	# tries to render the block in State.gridData['_'+x+'_'+y]
 	blockPosition: (block) ->
 		Game.localToGlobal
 			x: gbw * block.x
@@ -239,7 +239,7 @@ class Grid
 
 		offset = @blockPosition block
 
-		data = Game.state.gridData[helper.blockToString block]
+		data = State.gridData[helper.blockToString block]
 		if data
 			type = BlockTypes[data.type]
 			type.render @context, offset, data
@@ -250,7 +250,7 @@ class Grid
 					@context.fillStyle = roomType.color
 				else
 					@context.fillStyle = 'red' #danger
-				@context.fillRect offset.x, offset.y, gbw * Game.state.view.scale, gbh * Game.state.view.scale
+				@context.fillRect offset.x, offset.y, gbw * State.view.scale, gbh * State.view.scale
 
 
 		if selected
@@ -258,7 +258,7 @@ class Grid
 			@context.strokeStyle = "green"
 		else
 			@context.strokeStyle = "rgba(100,100,100,0.0)"
-		@context.strokeRect offset.x, offset.y, gbw * Game.state.view.scale, gbh * Game.state.view.scale
+		@context.strokeRect offset.x, offset.y, gbw * State.view.scale, gbh * State.view.scale
 
 		# debug
 		@resetContextStyle()
@@ -270,7 +270,7 @@ class Grid
 	renderItem: (block) ->
 
 		offset = @blockPosition block
-		data = Game.state.itemData[helper.blockToString block]
+		data = State.itemData[helper.blockToString block]
 		if data
 			type = ItemTypes[data.type]
 			type.render @context, offset, data

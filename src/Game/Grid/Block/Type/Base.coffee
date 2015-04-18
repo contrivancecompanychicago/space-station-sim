@@ -3,6 +3,8 @@ config = require 'Game/config'
 gbw = config.grid.block.width
 gbh = config.grid.block.height
 
+State = require 'Game/State'
+
 class Base
 
 	imagePath = 'Game/Grid/Block/Type/'
@@ -14,8 +16,8 @@ class Base
 		sourceY = 0;
 		sourceWidth = image.width;
 		sourceHeight = image.height;
-		destWidth = gbw * Game.state.view.scale;
-		destHeight = gbh * Game.state.view.scale;
+		destWidth = gbw * State.view.scale;
+		destHeight = gbh * State.view.scale;
 		destX = offset.x
 		destY = offset.y
 		# console.log image
