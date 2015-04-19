@@ -22,7 +22,6 @@ class Character
 
 		@block = @data.block
 		@pos = @getBlockPosition @block
-#
 #		if params?.block
 #			@block = params.block
 #		else
