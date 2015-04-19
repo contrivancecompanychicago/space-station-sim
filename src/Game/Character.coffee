@@ -15,6 +15,11 @@ class Character
 	speed: 50
 
 	constructor: (@data) ->
+		unless @data
+			throw new Error 'Character data is not defined'
+		unless @data.block
+			throw new Error 'block is not defined'
+
 		@block = @data.block
 		@pos = @getBlockPosition @block
 #

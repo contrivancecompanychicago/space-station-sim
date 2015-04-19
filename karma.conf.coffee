@@ -32,17 +32,18 @@ module.exports = (config) ->
           configBundle bundle
     exclude: []
     preprocessors:
-      'spec/**/*.spec.coffee': [ 'browserify' ]
+      'spec/**/*.spec.coffee': [ 'browserify']
+#      'g:\\Projects\\space-station-sim\\**/*.coffee': [ 'coverage' ]
 #      'spec/**/*.coffee': [ 'coffee' ]
 #      'dist/bundle.js': [ 'coverage', 'sourcemap']
     coverageReporter:
       type: 'html'
       dir: 'coverage/'
     reporters: [
-      'progress'
-      'dots'
+#      'progress'
+#      'dots'
       'nyan'
-      'coverage'
+#      'coverage'
     ]
     port: 9876
     colors: true
