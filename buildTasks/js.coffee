@@ -5,7 +5,8 @@ source = require 'vinyl-source-stream'
 
 coffeeify = require 'coffeeify'
 templatify = require 'browserify-underscore-templatify'
-imgify = require './imgify.coffee'
+#imgify = require './imgify.coffee'
+imgify = require 'browserify-imgify'
 
 remapify = require 'remapify'
 aliasify = require 'aliasify'
@@ -27,8 +28,8 @@ dbCoffee = levelup '', {db: require 'memdown' }
 dbTempl = levelup '', {db: require 'memdown' }
 dbImg = levelup '', {db: require 'memdown' }
 cacheCoffee = cacheify coffeeify, dbCoffee
-cacheTempl = cacheify templatify(), dbTempl
-cacheImg = cacheify imgify(), dbImg
+cacheTempl = cacheify templatify, dbTempl
+cacheImg = cacheify imgify, dbImg
 
 # touch = require 'gulp-touch'
 
@@ -44,15 +45,13 @@ mapFiles = (base, prefix) ->
 
 
 configureBundler = (bundler) ->
-	bundler.transform cacheCoffee
-	bundler.transform cacheTempl
-	bundler.transform imgify()
 	externals =
 		'imagine': './bower_components/imagine/imagine.js'
 	_.extend externals, mapFiles "./src/"
 	for name of externals
 		bundler.require externals[name], expose: name
 	bundler.require 'underscore'
+
 
 gulp.task 'js', ['browserify'],  ->
 	# this extra step because browserify piping directly to dest breaks karma
@@ -66,6 +65,10 @@ gulp.task 'browserify', ['bower'], ->
 	bundler = browserify
 		debug: true
 		extensions: ['.js', '.coffee', '.html', '.png'] # needed for remapify
+
+	bundler.transform cacheCoffee
+	bundler.transform cacheTempl
+	bundler.transform imgify
 	configureBundler bundler
 
 	bundler.bundle()

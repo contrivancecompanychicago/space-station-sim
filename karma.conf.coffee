@@ -5,30 +5,36 @@ module.exports = (config) ->
   config.set
     basePath: ''
     frameworks: [
-#      'browserify'
+      'browserify'
       'jasmine'
     ]
     files: [
-      'dist/bundle.js'
+#      'spec/spectest.spec.coffee'
+#      'dist/bundle.js'
       'spec/**/*.spec.coffee'
+
     ]
-#    browserify:
-#      debug: true
-#      extensions: [
-#        '.js'
-#        '.coffee'
-#        '.html'
-#        '.png'
-#      ]
-#      configure: (bundle) ->
-#        bundle.on 'prebundle', ->
-#          # bundle.external 'underscore'
-#          configBundle bundle
+    browserify:
+      debug: true
+      extensions: [
+        '.js'
+        '.coffee'
+        '.html'
+        '.png'
+      ]
+      transform: [
+        'coffeeify'
+        'browserify-underscore-templatify'
+        'browserify-imgify'
+      ]
+      configure: (bundle) ->
+        bundle.on 'prebundle', ->
+          configBundle bundle
     exclude: []
     preprocessors:
-      'spec/**/*.coffee': [ 'coffee' ]
-#      'spec/**/*spec.coffee': [ 'browserify' ]
-      'dist/bundle.js': [ 'coverage', 'sourcemap']
+      'spec/**/*.spec.coffee': [ 'browserify' ]
+#      'spec/**/*.coffee': [ 'coffee' ]
+#      'dist/bundle.js': [ 'coverage', 'sourcemap']
     coverageReporter:
       type: 'html'
       dir: 'coverage/'
@@ -51,5 +57,3 @@ module.exports = (config) ->
     ]
     # if true, Karma captures browsers, runs the tests and exits
     singleRun: false
-  return
-

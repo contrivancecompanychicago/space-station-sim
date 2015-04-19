@@ -11,7 +11,7 @@ describe 'Game/Character', ->
   describe 'data', ->
 
   describe 'getBlockPosition', ->
-    it 'should throw an error if passed undefined', ->
-      char = new Character()
-      expect -> char.getBlockPosition()
-        .toThrow new Error 'Block is undefined'
+#    it 'should throw an error if passed undefined', ->
+#      char = new Character()
+#      expect -> char.getBlockPosition()
+#        .toThrow new Error 'Block is undefined'
