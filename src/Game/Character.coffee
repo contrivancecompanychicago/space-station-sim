@@ -172,7 +172,10 @@ class Character
 			
 			if @waitTime <= 0 and need <= 0
 				@endAction()
-					
+
+	remove: ->
+		delete State.characterData[@data.id]
+		Imagine.destroy @
 
 	endAction: ->
 		action = ActionTypes[@action]
@@ -182,19 +185,17 @@ class Character
 
 		switch @action
 			when 'leave'
-				# ind = State.characterData.visitor.indexOf @data
-#				State.characterData.visitor = _.without State.characterData.visitor, @data
-				console.log 'implement leaving'
-				# @data.del = "me"
-				# delete @data
 				if @data.dock
 					if (@block.x is @data.dock.x) and (@block.y is @data.dock.y)
 						# leaving at the dock I came from
 						data = State.itemData[gridhelper.blockToString @data.dock]
 						if data?.waitingFor
 							data.waitingFor--
+#				console.log 'implement leaving'
+#				Imagine.destroy @
+#				charHelper.remove @
+				console.log 'implement removal'
 
-				Imagine.destroy @
 
 		@whatToDoNext()
 

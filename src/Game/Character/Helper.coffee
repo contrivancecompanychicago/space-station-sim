@@ -25,12 +25,6 @@ class Helper extends require 'Singleton'
       data = charsData[id]
       Imagine new Character data
 
-  remove: (char) ->
-    unless char
-      throw new Error 'Object is not Character'
-    unless char.name is 'character'
-      throw new Error 'Object is not Character'
-
 
   makeNeeds: (data) ->
     data.needs =
