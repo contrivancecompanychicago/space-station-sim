@@ -194,7 +194,8 @@ class Character
 #				console.log 'implement leaving'
 #				Imagine.destroy @
 #				charHelper.remove @
-				console.log 'implement removal'
+#				console.log 'implement removal'
+				@remove()
 
 
 		@whatToDoNext()
