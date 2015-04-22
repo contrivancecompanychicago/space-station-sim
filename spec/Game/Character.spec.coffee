@@ -3,6 +3,8 @@ Character = require 'Game/Character'
 Imagine = require 'imagine'
 _ = require 'underscore'
 
+State = require 'Game/State'
+
 mockCharData = {block:{x:1,y:2}}
 
 describe 'Game/Character', ->
