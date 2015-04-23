@@ -6,8 +6,7 @@ concat = require 'gulp-concat'
 fs = require 'fs'
 glob = require 'glob'
 gulp = require 'gulp'
-gulpbrowserify = require 'gulp-browserify'
-gulpcoffeeify = require 'gulp-coffeeify'
+# gulpbrowserify = require 'gulp-browserify'
 insert = require 'gulp-insert'
 livereload = require 'gulp-livereload'
 merge = require 'gulp-merge'
@@ -98,9 +97,9 @@ gulp.task 'jasmine', ->
 # 		.pipe gulp.dest './temp'
 
 
-karma = require 'gulp-karma'
+# karma = require 'gulp-karma'
 
-gulp.task 'karma', ->
-	gulp.src 'dist/bundle.js'
-		.pipe karma
-			configFile: 'karma.conf.js'
+# gulp.task 'karma', ->
+# 	gulp.src 'dist/bundle.js'
+# 		.pipe karma
+# 			configFile: 'karma.conf.js'
