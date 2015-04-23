@@ -1,26 +1,20 @@
 gulp = require 'gulp'
 
+_ = require 'lodash'
 browserify = require 'browserify'
 source = require 'vinyl-source-stream'
-
 coffeeify = require 'coffeeify'
 templatify = require 'browserify-underscore-templatify'
-#imgify = require './imgify.coffee'
 imgify = require 'browserify-imgify'
-
-remapify = require 'remapify'
-aliasify = require 'aliasify'
 rename = require 'gulp-rename'
 path = require 'path'
-
-buffer = require('vinyl-buffer')
-sourcemaps = require('gulp-sourcemaps')
+buffer = require 'vinyl-buffer'
+sourcemaps = require 'gulp-sourcemaps'
+livereload = require 'gulp-livereload'
 
 t2 = require 'through2'
 
-_ = require 'lodash'
 
-livereload = require 'gulp-livereload'
 
 cacheify = require 'cacheify'
 levelup = require 'levelup'

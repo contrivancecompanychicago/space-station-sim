@@ -8,6 +8,8 @@ State = require 'Game/State'
 mockCharData = {block:{x:1,y:2}}
 
 describe 'Game/Character', ->
+
+  it 'should require a character/type component on its object'
 #  beforeEach ->
 #    @char = new Character()
   it 'should be defined', ->
