@@ -5,9 +5,7 @@ Grid = require 'Game/Grid'
 Input = require 'Game/Input'
 Storage = require 'Game/Storage'
 config = require 'Game/config'
-
 Character = require 'Game/Character'
-
 UI = require 'Game/UI/Layer'
 CharacterLayer = require 'Game/Character/Layer'
 
