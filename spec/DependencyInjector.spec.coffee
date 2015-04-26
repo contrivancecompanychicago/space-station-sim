@@ -6,6 +6,7 @@ class Home extends Mixin
 
   @dependencies({
     env: new @Dependency 'environment'
+    etc: new @Dependency 'etcetera'
   })
 
   constructor: ->

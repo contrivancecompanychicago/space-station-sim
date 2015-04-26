@@ -35,10 +35,9 @@ class DependencyInjector
 
     _.keys(dependencies).forEach (key) =>
       dependency = dependencies[key]
-      if dependency instanceof Dependency
-        throw new Error "#{dependency}"
-      delete @prototype[key]
-      @prototype[key] = dependency
+      unless dependency instanceof Dependency
+        delete @prototype[key]
+        @prototype[key] = dependency
 
   @inject = @registerDependencies
 
