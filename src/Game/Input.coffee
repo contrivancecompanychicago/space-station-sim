@@ -141,17 +141,17 @@ class Input
 	@objectUnderMouse = null
 	findObjectUnderMouse: ->
 		@objectUnderMouse = null #clear it
-		alpha = Game.character.context.getImageData(lastMouse.x, lastMouse.y, 1, 1).data[3]
+#		alpha = Game#.character.context.getImageData(lastMouse.x, lastMouse.y, 1, 1).data[3] #todo: rebuild back in
 		unless alpha
 			# def not over anything
 			return
 
 		chars = Imagine.getComponents 'character'
-		mousePos = Vic.fromObject Game.globalToLocal lastMouse
+		mousePos = Vic.fromObject renderer.globalToLocal lastMouse
 		chars.forEach (char) =>
 			if char.pos.clone().subtract(mousePos).length() < 30
 				@objectUnderMouse = char
-				return
+				return #break out of function early
 
 	update: ->
 		@findObjectUnderMouse()

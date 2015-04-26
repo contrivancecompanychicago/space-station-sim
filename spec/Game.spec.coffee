@@ -35,7 +35,6 @@ describe 'Game', ->
 		it 'should be defined', ->
 			g = new gameClass(div)
 			expect(g.destroy).toBeDefined()
-			# console.log g.destroy
 			expect(typeof g.destroy).toBe 'function'
 		it 'should clear the div', ->
 			g = new gameClass(div)
@@ -69,7 +68,7 @@ describe 'Game', ->
 			expect(game.initGrid).toBeDefined()
 
 	describe 'createUI', ->
-		it 'should append a ui div'
+#		it 'should append a ui div'
 
 	describe 'initState', ->
 		it 'should be defined', ->
@@ -79,13 +78,4 @@ describe 'Game', ->
 			spyOn Storage, 'get'
 			game.initState()
 			expect(Storage.get).toHaveBeenCalled()
-
-
-	describe 'state', ->
-		it 'should not be called from window.Game'#, ->
-			# expect(gameClass.state()).toThrow new Error 'Dont use Game.state'
-			# spyOn gameClass, 'state'
-			# g = new gameClass(div)
-			# expect(gameClass.state).not.toHaveBeenCalled()
-
 

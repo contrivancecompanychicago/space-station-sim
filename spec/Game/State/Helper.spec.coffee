@@ -35,7 +35,7 @@ describe 'Game/State/Helper', ->
 			stateManager.newGame()
 			expect(stateManager.init).toHaveBeenCalled()
 
-		it 'should extend state with NewGame'
+#		it 'should extend state with NewGame'
 	describe 'loadGame', ->
 		it 'should be defined', ->
 			expect(stateManager.loadGame).toBeDefined()
@@ -50,13 +50,13 @@ describe 'Game/State/Helper', ->
 
 			expect(JSON.stringify State).not.toBe defStr
 
-		it 'should load something from localstorage'
+#		it 'should load something from localstorage'
 
-		it 'should be implemented in game'
+#		it 'should be implemented in game'
 
 
-	describe 'Game State', ->
-		it 'should set the variable exposed by Game/State'
+#	describe 'Game State', ->
+#		it 'should set the variable exposed by Game/State'
 
 	describe 'clear', ->
 		it 'should be defined', ->
