@@ -49,6 +49,17 @@ describe 'Game/Input', ->
 			it 'should add firefox mousewheel', ->
 				arg = @eventArgs.filter (a) -> a[0] is 'DOMMouseScroll'
 				expect(arg.length).toBe(1);
+
+	describe 'findObjectUnderMouse', ->
+		it 'should be defined', ->
+			input = new @Input document.createElement 'DIV'
+			expect input.findObjectUnderMouse
+			.toBeDefined()
+		it 'should not error', ->
+			input = new @Input document.createElement 'DIV'
+			input.findObjectUnderMouse()
+			
+
 				
 	describe 'mouseEventPosition', ->
 		it 'should be defined', ->

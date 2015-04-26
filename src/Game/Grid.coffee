@@ -6,12 +6,15 @@ Imagine = require 'imagine'
 RoomTypes = require 'Game/Grid/Room/Types'
 Item = require 'Game/Grid/Item'
 helper = require('Game/Grid/Helper').getInstance()
+renderer = require('Game/Renderer').getInstance()
 
 ItemTypes = require 'Game/Grid/Item/Types'
 
 State = require 'Game/State'
 
 Input = require 'Game/Input'
+
+
 
 class Grid
 
