@@ -22,3 +22,20 @@ describe 'Singleton', ->
 			new HelperA()
 			expect(ins.constructor.name).toBe Singleton.getInstance().constructor.name
 
+	describe 'constructor', ->
+		describe '@instance', ->
+			it 'should set', ->
+				delete Singleton.instance
+				new Singleton()
+				expect Singleton.instance
+					.toBeDefined()
+			it 'should set on descendants', ->
+				delete Singleton.instance
+				delete HelperA.instance
+				new HelperA()
+				expect HelperA.instance
+					.toBeDefined()
+				expect Singleton.instance
+					.not.toBeDefined()
+
+

@@ -2,6 +2,7 @@ Imagine = require 'imagine'
 _ = require "underscore"
 config = require 'Game/config'
 #ItemTypes = require 'Game/Grid/Item/Types' #circular dependency starts here, affects dockingbay and character
+Util = require 'Game/Util'
 
 State = require 'Game/State'
 
@@ -14,9 +15,9 @@ ch = config.canvas.height
 #console.log 'initing grid helper'
 
 class Helper extends require 'Singleton'
-	name: "gridhelper"
+	name: "gridhelper" #todo: why?
 	blockAtPoint: (point)->
-		point = Game.globalToLocal point
+		point = Util.globalToLocal point
 		x: Math.floor point.x / gbw
 		y: Math.floor point.y / gbh
 

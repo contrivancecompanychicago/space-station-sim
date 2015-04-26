@@ -16,7 +16,7 @@ Input = require 'Game/Input'
 
 
 
-class Grid
+class Grid extends require 'Singleton'
 
 	constructor: (@canvas) ->
 		# console.log State
