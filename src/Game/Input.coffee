@@ -84,7 +84,7 @@ class Input
 		@state = e.button
 
 	@disengageMouse: (e) =>
-		Game.grid.selection = null
+		Input.selection = null
 
 		if (@state is @states.selecting) or (@state is @states.deselecting)
 			sel = @calcSelection()
@@ -108,13 +108,11 @@ class Input
 		delta = @getMouseDelta e
 		switch @state
 			when @states.selecting
-				# Imagine.notify 'gridStateChanged'
-				Game.grid.selection = @calcSelection()
-				Game.grid.requireRender()
+				Input.selection = @calcSelection()
+				Imagine.notify 'viewStateChanged'
 			when @states.deselecting
-				# Imagine.notify 'gridStateChanged'
-				Game.grid.selection = @calcSelection()
-				Game.grid.requireRender()
+				Input.selection = @calcSelection()
+				Imagine.notify 'viewStateChanged'
 			when @states.moving
 				State.view.offset.x -= delta.x / State.view.scale
 				State.view.offset.y -= delta.y / State.view.scale

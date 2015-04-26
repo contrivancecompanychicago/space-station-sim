@@ -11,6 +11,8 @@ ItemTypes = require 'Game/Grid/Item/Types'
 
 State = require 'Game/State'
 
+Input = require 'Game/Input'
+
 class Grid
 
 	constructor: (@canvas) ->
@@ -230,8 +232,8 @@ class Grid
 		# @context.strokeStyle = "black"
 
 	renderBlock: (block) ->
-		if @selection
-			s = @selection
+		if Input.selection
+			s = Input.selection
 			if (s.l<=block.x) and (s.r>=block.x) and (s.t<=block.y) and (s.b>=block.y)
 				selected = true
 
