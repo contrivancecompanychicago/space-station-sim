@@ -1,3 +1,5 @@
+Character = require 'Game/Character'
+
 describe 'Game/Grid', ->
 	beforeEach ->
 		@Grid = require 'Game/Grid'
@@ -9,3 +11,9 @@ describe 'Game/Grid', ->
 	# describe 'calcSelection', -> #oops?
 	# 	it 'should be defined', ->
 	# 		expect(@grid.calcSelection).toBeDefined()
+	describe 'constructor', ->
+		it 'should inject into character', ->
+			spyOn Character, 'inject'
+			new @Grid @canvas
+			expect Character.inject
+			.toHaveBeenCalled()
