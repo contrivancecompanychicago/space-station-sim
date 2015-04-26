@@ -59,10 +59,10 @@ describe 'Game/Character/Helper', ->
       it 'should set needs', ->
         expect mockCharData.needs
         .toBeDefined()
-      it 'shuold set fun', ->
+      it 'should set fun', ->
         expect mockCharData.needs.fun
         .toBeDefined()
-      it 'shuold set shop', ->
+      it 'should set shop', ->
         expect mockCharData.needs.shop
         .toBeDefined()
 
@@ -75,35 +75,6 @@ describe 'Game/Character/Helper', ->
       delete mockCharData.block
       expect -> charHelper.add mockCharData
         .toThrow new Error 'Block not defined'
-
-#    describe 'remove', ->
-#      it 'should be defined', ->
-#        expect charHelper.remove
-#          .toBeDefined()
-#      it 'should throw an error if not given a character instance', ->
-#        expect -> charHelper.remove {}
-#          .toThrow new Error 'Object is not Character'
-##        char = charHelper.add mockCharData
-#      it 'should call Imagine.destroy on the object', ->
-#        char = charHelper.add mockCharData
-#        spyOn Imagine, 'destroy'
-#        charHelper.remove char
-#        expect Imagine.destroy
-#          .toHaveBeenCalled()
-#      it 'should remove the object from state.characterdata', ->
-#        char = charHelper.add mockCharData
-#        len = _.keys(State.characterData).length
-#        id = char.data.id
-#        expect State.characterData[id]
-#          .toBeDefined()
-#        charHelper.remove char
-#        expect State.characterData[id]
-#          .toBe undefined
-#        expect _.keys(State.characterData).length
-#          .toBe len - 1
-
-
-
 
 
 

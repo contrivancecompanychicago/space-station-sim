@@ -1,11 +1,10 @@
 Imagine = require 'imagine'
 Vic = require 'victor'
-gridhelper = require('Game/Grid/Helper').getInstance()
 
 config = require 'Game/config'
-
 State = require 'Game/State'
 
+gridhelper = require('Game/Grid/Helper').getInstance()
 
 # singleton whatever
 class Input
@@ -108,21 +107,18 @@ class Input
 		delta = @getMouseDelta e
 		switch @state
 			when @states.selecting
-				Game.grid.selection = @calcSelection()
 				# Imagine.notify 'gridStateChanged'
+				Game.grid.selection = @calcSelection()
 				Game.grid.requireRender()
 			when @states.deselecting
-				Game.grid.selection = @calcSelection()
 				# Imagine.notify 'gridStateChanged'
+				Game.grid.selection = @calcSelection()
 				Game.grid.requireRender()
 			when @states.moving
-				# todo: zoom correct move
 				State.view.offset.x -= delta.x / State.view.scale
 				State.view.offset.y -= delta.y / State.view.scale
 				Imagine.notify 'viewStateChanged'
 		@setLastMouse e
-
-	
 
 	@calcSelection: ->
 		pt1 = gridhelper.blockAtPoint @mouseEventPosition startEvent
