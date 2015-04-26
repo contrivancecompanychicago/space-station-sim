@@ -1,4 +1,5 @@
 view = require './SavePanel.html'
+Storage = require 'Game/Storage'
 
 class SavePanel
 	constructor: (@container) ->
@@ -6,7 +7,7 @@ class SavePanel
 	render: ->
 		@container.innerHTML = view()
 		$(@container).find('button').click (e) ->
-			Game.save()
+			Storage.set()
 
 
 module.exports = SavePanel

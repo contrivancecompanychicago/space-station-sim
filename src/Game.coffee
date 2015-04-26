@@ -80,10 +80,10 @@ class window.Game
 		x: (State.view.offset.x + (point.x)) * State.view.scale
 		y: (State.view.offset.y + (point.y)) * State.view.scale
 
-	@save: =>
-		# @grid.requireRender()
-		# @character.requireRender()
-		Storage.set()
+#	@save: =>
+#		# @grid.requireRender()
+#		# @character.requireRender()
+#		Storage.set()
 
 
 
