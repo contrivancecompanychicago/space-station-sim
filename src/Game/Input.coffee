@@ -5,6 +5,7 @@ config = require 'Game/config'
 State = require 'Game/State'
 
 gridhelper = require('Game/Grid/Helper').getInstance()
+renderer = require('Game/Renderer').getInstance()
 
 # singleton whatever
 class Input
@@ -33,7 +34,7 @@ class Input
 		onmouseup: (e) =>
 			@disengageMouse e
 		onmousewheel: (e) ->
-			startMouse = Vic.fromObject Game.globalToLocal {x: e.x, y: e.y}
+			startMouse = Vic.fromObject renderer.globalToLocal {x: e.x, y: e.y}
 			# console.log startMouse
 			if e.wheelDelta
 				d =  e.wheelDelta
@@ -48,7 +49,7 @@ class Input
 					State.view.scale -= config.view.scale.step
 
 			# console.log "new scale ", State.view.scale
-			endMouse = Vic.fromObject Game.globalToLocal {x: e.x, y: e.y}
+			endMouse = Vic.fromObject renderer.globalToLocal {x: e.x, y: e.y}
 			# console.log endMouse
 			offset = Vic.fromObject State.view.offset
 
