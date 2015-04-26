@@ -11,3 +11,4 @@ heroku.txt
 .idea
 .bundled
 npm-debug.log
+karma_html

@@ -39,11 +39,24 @@ module.exports = (config) ->
     coverageReporter:
       type: 'html'
       dir: 'coverage/'
+# the default configuration
+    htmlReporter:
+      outputDir: 'karma_html' # where to put the reports
+      templatePath: null # set if you moved jasmine_template.html
+      focusOnFailures: true # reports show failures on start
+      namedFiles: false # name files instead of creating sub-directories
+      pageTitle: null # page title for reports; browser info by default
+      urlFriendlyName: false # simply replaces spaces with _ for files/dirs
+    # experimental
+      preserveDescribeNesting: false, # folded suites stay folded
+      foldAll: false, # reports start folded (only with preserveDescribeNesting)
+
     reporters: [
 #      'progress'
 #      'dots'
       'growl'
       'nyan'
+#      'html'
 #      'coverage'
     ]
     port: 9876
