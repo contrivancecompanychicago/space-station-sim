@@ -12,9 +12,6 @@ buffer = require 'vinyl-buffer'
 sourcemaps = require 'gulp-sourcemaps'
 livereload = require 'gulp-livereload'
 
-t2 = require 'through2'
-
-
 
 cacheify = require 'cacheify'
 levelup = require 'levelup'
