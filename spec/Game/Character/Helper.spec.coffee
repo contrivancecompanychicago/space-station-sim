@@ -22,6 +22,13 @@ describe 'Game/Character/Helper', ->
     expect CharHelper.getInstance
       .toBeDefined()
 
+  describe 'constructor', ->
+    it 'should inject into character', ->
+      spyOn Character, 'inject'
+      new CharHelper()
+      expect Character.inject
+        .toHaveBeenCalled()
+
   describe 'add', ->
     beforeEach ->
       mockCharData =

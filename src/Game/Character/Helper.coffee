@@ -4,6 +4,12 @@ Character = require 'Game/Character'
 Imagine = require 'imagine'
 
 class Helper extends require 'Singleton'
+
+  constructor: ->
+    Character.inject
+      helper: @
+
+
   add: (data) ->
     unless data.block
       throw new Error 'Block not defined'

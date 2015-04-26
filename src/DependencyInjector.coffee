@@ -21,6 +21,7 @@ class DependencyInjector
         set: unresolved
       })
 
+
   @registerDependencies: (deps) ->
     dependencies = @_dependencies
 
@@ -38,5 +39,7 @@ class DependencyInjector
         throw new Error "#{dependency}"
       delete @prototype[key]
       @prototype[key] = dependency
+
+  @inject = @registerDependencies
 
 module.exports = DependencyInjector
