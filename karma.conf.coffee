@@ -42,6 +42,7 @@ module.exports = (config) ->
     reporters: [
 #      'progress'
 #      'dots'
+      'growl'
       'nyan'
 #      'coverage'
     ]
