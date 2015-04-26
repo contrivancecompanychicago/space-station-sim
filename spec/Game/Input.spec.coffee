@@ -58,7 +58,7 @@ describe 'Game/Input', ->
 		it 'should not error', ->
 			input = new @Input document.createElement 'DIV'
 			input.findObjectUnderMouse()
-			
+
 
 				
 	describe 'mouseEventPosition', ->

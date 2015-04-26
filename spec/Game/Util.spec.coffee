@@ -21,3 +21,9 @@ describe 'Game/Util', ->
     it 'should return a string', ->
       expect typeof Util.guid()
         .toBe 'string'
+  describe 'global/local', ->
+    it 'should have globalToLocal', ->
+      expect(Util.globalToLocal).toBeDefined()
+
+    it 'should have localToGlobal', ->
+      expect(Util.localToGlobal).toBeDefined()

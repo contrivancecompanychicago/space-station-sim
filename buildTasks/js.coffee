@@ -65,18 +65,12 @@ gulp.task 'browserify', ['bower'], ->
 	bundler.bundle()
 		.on 'file', (file) ->
 			process.stdout.write '.'# reporter
-			# console.log file, new Date() - t
-			# t = new Date()
 		.pipe(source('output.js'))
-
 		.pipe(buffer())
 		.pipe(sourcemaps.init({loadMaps: true}))
-#		.pipe(uglify())
-#		.on('error', gutil.log)
+		#todo: uglify
 		.pipe(sourcemaps.write('./'))
-
 		.pipe gulp.dest('./dist/')
-		# .pipe touch '.bundled'
 
 
 module.exports = configureBundler

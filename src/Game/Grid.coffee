@@ -6,7 +6,7 @@ Imagine = require 'imagine'
 RoomTypes = require 'Game/Grid/Room/Types'
 Item = require 'Game/Grid/Item'
 helper = require('Game/Grid/Helper').getInstance()
-renderer = require('Game/Renderer').getInstance()
+Util = require('Game/Util')
 
 ItemTypes = require 'Game/Grid/Item/Types'
 
@@ -29,11 +29,9 @@ class Grid
 		@requireRender()
 
 	viewStateChanged: =>
-		# Game.save()
 		@requireRender()
 
 	gridStateChanged: =>
-		# Game.save()
 		@calcData()
 		@requireRender()
 
@@ -213,7 +211,7 @@ class Grid
 
 	# tries to render the block in State.gridData['_'+x+'_'+y]
 	blockPosition: (block) ->
-		Game.localToGlobal
+		Util.localToGlobal
 			x: gbw * block.x
 			y: gbh * block.y
 

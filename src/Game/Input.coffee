@@ -5,7 +5,7 @@ config = require 'Game/config'
 State = require 'Game/State'
 
 gridhelper = require('Game/Grid/Helper').getInstance()
-renderer = require('Game/Renderer').getInstance()
+Util = require('Game/Util')
 
 # singleton whatever
 class Input
@@ -34,7 +34,7 @@ class Input
 		onmouseup: (e) =>
 			@disengageMouse e
 		onmousewheel: (e) ->
-			startMouse = Vic.fromObject renderer.globalToLocal {x: e.x, y: e.y}
+			startMouse = Vic.fromObject Util.globalToLocal {x: e.x, y: e.y}
 			# console.log startMouse
 			if e.wheelDelta
 				d =  e.wheelDelta
@@ -49,7 +49,7 @@ class Input
 					State.view.scale -= config.view.scale.step
 
 			# console.log "new scale ", State.view.scale
-			endMouse = Vic.fromObject renderer.globalToLocal {x: e.x, y: e.y}
+			endMouse = Vic.fromObject Util.globalToLocal {x: e.x, y: e.y}
 			# console.log endMouse
 			offset = Vic.fromObject State.view.offset
 
@@ -142,12 +142,12 @@ class Input
 	findObjectUnderMouse: ->
 		@objectUnderMouse = null #clear it
 #		alpha = Game#.character.context.getImageData(lastMouse.x, lastMouse.y, 1, 1).data[3] #todo: rebuild back in
-		unless alpha
-			# def not over anything
-			return
+#		unless alpha
+#			# def not over anything
+#			return
 
 		chars = Imagine.getComponents 'character'
-		mousePos = Vic.fromObject renderer.globalToLocal lastMouse
+		mousePos = Vic.fromObject Util.globalToLocal lastMouse
 		chars.forEach (char) =>
 			if char.pos.clone().subtract(mousePos).length() < 30
 				@objectUnderMouse = char
