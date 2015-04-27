@@ -10,7 +10,6 @@ gridhelper = require('Game/Grid/Helper').getInstance()
 
 State = require 'Game/State'
 
-
 class Character extends require 'Mixin'
 	@extend require 'DependencyInjector'
 

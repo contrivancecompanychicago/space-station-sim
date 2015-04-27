@@ -29,9 +29,9 @@ class DependencyInjector
     return unless dependencyKeys.length
 
     _.keys(deps).forEach (key) =>
-      unless dependencies[key] and dependencies[key] instanceof Dependency
-        throw new Error "Extraneous dependency `#{key}`"
-      dependencies[key] = deps[key]
+      if dependencies[key] and dependencies[key] instanceof Dependency
+#        throw new Error "Extraneous dependency `#{key}`"
+        dependencies[key] = deps[key]
 
     _.keys(dependencies).forEach (key) =>
       dependency = dependencies[key]

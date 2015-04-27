@@ -19,9 +19,9 @@ Input = require 'Game/Input'
 class Grid extends require 'Singleton'
 
 	constructor: (@canvas) ->
-#		Character = require 'Game/Character'
-#		Character.inject
-#			grid: @
+		Character = require 'Game/Character'
+		Character.inject
+			grid: @
 		# console.log State
 		@context = @canvas.getContext('2d')
 		@item = new Item(@context)
