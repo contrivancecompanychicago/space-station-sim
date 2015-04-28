@@ -10,6 +10,7 @@ gridhelper = require('Game/Grid/Helper').getInstance()
 
 State = require 'Game/State'
 
+
 class Character extends require 'Mixin'
 	@extend require 'DependencyInjector'
 
@@ -53,7 +54,7 @@ class Character extends require 'Mixin'
 		@whatToDoNext()
 		
 	findPathToRoom: (type) ->
-		rooms = Game.grid.rooms[type]
+		rooms = @grid.rooms[type]
 		finalPath = false
 		pathLen = Infinity
 		if rooms.length > 0
@@ -63,20 +64,20 @@ class Character extends require 'Mixin'
 				block = room.blocks[Math.floor(room.blocks.length*Math.random())]
 				unless block
 					throw new Error 'block isnt defined'
-				path = Game.grid.path(@block, block)
+				path = @grid.path(@block, block)
 				if path.length > 0 
 					if path.length < pathLen
 						pathLen = path.length
 						finalPath = path
 		finalPath
 	findPathToBlock: (block) ->
-		path = Game.grid.path(@block, block)
+		path = @grid.path(@block, block)
 		if path.length is 0
 			return false
 		path
 
 	setPath: (block) ->
-		@path = Game.grid.path(@block, block)
+		@path = @grid.path(@block, block)
 		@setTarget()
 
 	getBlockPosition: (block) ->
@@ -126,7 +127,7 @@ class Character extends require 'Mixin'
 		if options.length is 0
 			options.push 'walk'
 			destination = gridhelper.randomBlock()
-			path.walk = Game.grid.path(@block, destination)
+			path.walk = @grid.path(@block, destination)
 			options.push 'wait'
 
 		action = options[Math.floor(Math.random() * options.length)]

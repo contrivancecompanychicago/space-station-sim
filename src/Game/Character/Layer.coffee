@@ -6,6 +6,9 @@ ActionTypes = require 'Game/Character/Action/Types'
 helper = require('Game/Character/Helper').getInstance()
 
 State = require 'Game/State'
+Util = require 'Game/Util'
+
+Input = require 'Game/Input'
 
 class CharacterLayer
 	cw = config.canvas.width
@@ -59,11 +62,12 @@ class CharacterLayer
 				y += 10
 
 	renderSelected: ->
-		if Game.input.objectUnderMouse
-			@selected = Game.input.objectUnderMouse
+#		console.log "remove reference to game"
+		if Input.instance.objectUnderMouse
+			@selected = Input.instance.objectUnderMouse
 
 		if @selected
-			pos = Game.localToGlobal @selected.pos
+			pos = Util.localToGlobal @selected.pos
 			@context.strokeStyle = 'white'
 			@context.lineWidth = 2
 			# @context.fillRect pos.x, pos.y, 10*State.view.scale, 10*State.view.scale
@@ -75,7 +79,7 @@ class CharacterLayer
 
 
 	renderChar: (data) ->
-		pos = Game.localToGlobal data
+		pos = Util.localToGlobal data
 		@context.fillStyle = 'green'
 		# @context.fillRect pos.x, pos.y, 10*State.view.scale, 10*State.view.scale
 
