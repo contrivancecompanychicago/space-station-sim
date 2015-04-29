@@ -1,5 +1,6 @@
 
 configBundle = require './buildTasks/js'
+#istanbul = require('browserify-istanbul')
 
 module.exports = (config) ->
   config.set
@@ -26,6 +27,7 @@ module.exports = (config) ->
         'coffeeify'
         'browserify-underscore-templatify'
         'browserify-imgify'
+        'browserify-istanbul'
       ]
       configure: (bundle) ->
         bundle.on 'prebundle', ->
@@ -33,12 +35,19 @@ module.exports = (config) ->
     exclude: []
     preprocessors:
       'spec/**/*.spec.coffee': [ 'browserify']
+#      '**/*.coffee': ['coverage']
+
 #      'g:\\Projects\\space-station-sim\\**/*.coffee': [ 'coverage' ]
 #      'spec/**/*.coffee': [ 'coffee' ]
 #      'dist/bundle.js': [ 'coverage', 'sourcemap']
     coverageReporter:
-      type: 'html'
-      dir: 'coverage/'
+#      type: 'html'
+#      dir: 'coverage/'
+      reporters: [
+#        {"type": "html"}
+        {"type": "text"}
+      ]
+
 # the default configuration
     htmlReporter:
       outputDir: 'karma_html' # where to put the reports
@@ -57,7 +66,7 @@ module.exports = (config) ->
       'growl'
       'nyan'
 #      'html'
-#      'coverage'
+      'coverage'
     ]
     port: 9876
     colors: true
@@ -69,6 +78,7 @@ module.exports = (config) ->
     browsers: [
       'Chrome'
       'Firefox'
+#      'PhantomJS'
     ]
     # if true, Karma captures browsers, runs the tests and exits
     singleRun: false
