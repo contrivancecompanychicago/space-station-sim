@@ -4,11 +4,11 @@ Vic = require 'victor'
 config = require 'Game/config'
 State = require 'Game/State'
 
-gridhelper = require('Game/Grid/Helper').getInstance()
+gridhelper = require('Game/Grid/Helper').getInstance() # todo: remove
 Util = require('Game/Util')
 
 # singleton whatever
-class Input
+class Input extends require 'Singleton'
 	# mousePosition: {x:0, y:0}
 	@states: 
 		blank: -1
@@ -19,7 +19,8 @@ class Input
 	state: @states.blank
 
 	constructor: (@container) ->
-		Input.instance = @
+#		Input.instance = @
+		super()
 		Imagine.addEvent @container, 'mousemove', @fns.onmousemove
 		Imagine.addEvent @container, 'mouseup', @fns.onmouseup
 		Imagine.addEvent @container, 'mousedown', @fns.onmousedown

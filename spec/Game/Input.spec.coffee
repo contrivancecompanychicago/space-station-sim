@@ -27,6 +27,9 @@ describe 'Game/Input', ->
 
 	it 'should be defined', ->
 		expect(@Input).toBeDefined()
+	it 'should be singleton', ->
+		expect @Input.getInstance
+			.toBeDefined()
 
 	describe 'constructor', ->
 		describe 'event listeners', ->
