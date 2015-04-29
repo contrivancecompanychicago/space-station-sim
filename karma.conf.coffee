@@ -35,16 +35,18 @@ module.exports = (config) ->
     exclude: []
     preprocessors:
       'spec/**/*.spec.coffee': [ 'browserify']
-#      '**/*.coffee': ['coverage']
 
+#      '**/*.coffee': ['coverage']
 #      'g:\\Projects\\space-station-sim\\**/*.coffee': [ 'coverage' ]
 #      'spec/**/*.coffee': [ 'coffee' ]
 #      'dist/bundle.js': [ 'coverage', 'sourcemap']
     coverageReporter:
-#      type: 'html'
-#      dir: 'coverage/'
+      instrumenters: { ibrik : require('ibrik') }
+      instrumenter: {
+        '**/*.coffee': 'ibrik'
+      }
       reporters: [
-#        {"type": "html"}
+#        {"type": "html", dir: 'coverage/'}
         {"type": "text"}
       ]
 
@@ -77,7 +79,7 @@ module.exports = (config) ->
     # 'Firefox', 'FirefoxDeveloper', 'FirefoxAurora', 'FirefoxNightly'
     browsers: [
       'Chrome'
-      'Firefox'
+#      'Firefox'
 #      'PhantomJS'
     ]
     # if true, Karma captures browsers, runs the tests and exits
