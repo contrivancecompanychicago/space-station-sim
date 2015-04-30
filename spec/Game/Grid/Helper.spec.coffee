@@ -35,5 +35,20 @@ describe 'Game/Grid/Helper', ->
         .toBeDefined()
       expect result.y
         .toBeDefined()
+  describe 'addBlock', ->
+    it 'should not error', ->
+      gridHelper.addBlock {x:1, y:2}
+
+  describe 'removeBlock', ->
+    it 'should not error', ->
+      gridHelper.removeBlock {x:1, y:2}
+
+#  describe 'adjacentBlocks', ->
+#    it 'should not error', ->
+#      gridHelper.adjacentBlocks {x:1, y:2}
+
+  describe 'randomBlock', ->
+    it 'should not error', ->
+      gridHelper.randomBlock()
 
 
