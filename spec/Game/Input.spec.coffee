@@ -62,6 +62,9 @@ describe 'Game/Input', ->
 			input = new @Input document.createElement 'DIV'
 			input.findObjectUnderMouse()
 
+	describe 'engageMouse', ->
+		it 'shuldnt error', ->
+			@Input.engageMouse {button:1}
 
 				
 	describe 'mouseEventPosition', ->
