@@ -47,7 +47,7 @@ module.exports = (config) ->
       }
       reporters: [
 #        {"type": "html", dir: 'coverage/'}
-        {"type": "text"}
+#        {"type": "text"}
       ]
 
 # the default configuration

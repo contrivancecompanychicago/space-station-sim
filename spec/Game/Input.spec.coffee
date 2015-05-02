@@ -78,6 +78,10 @@ describe 'Game/Input', ->
 			pos = @Input.mouseEventPosition {clientX: 456, clientY:789}
 			expect(pos.x).toBe 456
 			expect(pos.y).toBe 789
+		it 'should throw an error if it doesnt work', ->
+			expect => @Input.mouseEventPosition {}
+				.toThrow new Error 'Cant find mouse event position'
+
 
 	describe 'getLastMouse', ->
 		it 'should be defined', ->

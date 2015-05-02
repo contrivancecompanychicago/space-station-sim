@@ -102,8 +102,12 @@ class Input extends require 'Singleton'
 		
 		
 	@mouseEventPosition: (e) ->
-		x: e.x or e.clientX
-		y: e.y or e.clientY
+		pos =
+			x: e.x or e.clientX
+			y: e.y or e.clientY
+		unless pos.x and pos.y
+			throw new Error 'Cant find mouse event position'
+		pos
 
 	@moveMouse: (e) =>
 		delta = @getMouseDelta e
