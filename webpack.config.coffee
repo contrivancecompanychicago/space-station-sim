@@ -22,7 +22,6 @@ conf =
     filename: "bundle.js"
     sourceMapFilename: '[file].map'
   module:
-  # todo: put ibrik as the instrumenter for coffee source
     loaders: [
 #      { test: /\.coffee$/, loader: "ibrik-loader" }
       { test: /\.coffee$/, loader: "coffee" }
@@ -51,7 +50,6 @@ conf =
     new webpack.ResolverPlugin(
       new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
     )
-    # new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js")
   ]
 
 
