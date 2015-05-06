@@ -86,8 +86,6 @@ class Grid extends require 'Singleton'
 			@rooms[key] = rooms
 		# console.log @rooms
 
-
-
 	calcPathData: ->
 		keys = _.keys State.gridData
 		if keys.length is 0

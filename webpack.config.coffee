@@ -1,8 +1,6 @@
 path = require 'path'
 webpack = require 'webpack'
 
-
-
 conf =
   karma: ->
     delete @entry
@@ -30,7 +28,6 @@ conf =
       { test: /\.png$/, loader: "img-element!url"}
     ]
     postLoaders: []
-
   resolveLoader:
     root: path.join process.cwd(), 'node_modules'
   resolve:
@@ -52,6 +49,5 @@ conf =
       new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
     )
   ]
-
 
 module.exports = conf

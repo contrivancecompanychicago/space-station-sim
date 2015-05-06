@@ -12,16 +12,11 @@ module.exports = (config) ->
       'spec/**/*.spec.coffee': ['webpack']
     webpack: require('./webpack.config').karma()
     coverageReporter:
-
       reporters: [
         {"type": "html", dir: 'coverage/'}
-#        {"type": "text"}
       ]
-
-
     reporters: [
       'progress'
-#      'dots'
       'growl'
       'nyan'
       'coverage'
