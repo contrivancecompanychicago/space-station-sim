@@ -5,11 +5,11 @@ module.exports = (config) ->
       'jasmine'
     ]
     files: [
-      'spec/**/*.spec.coffee'
+      'test/**/*.spec.coffee'
     ]
     exclude: []
     preprocessors:
-      'spec/**/*.spec.coffee': ['webpack']
+      'test/**/*.spec.coffee': ['webpack']
     webpack: require('./webpack.config').karma()
     coverageReporter:
       reporters: [
