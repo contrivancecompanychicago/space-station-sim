@@ -16,6 +16,7 @@ conf =
     app: "./main"
   devtool: 'inline-source-map'
   debug: true
+  progress: true
   output:
     path: __dirname + "/dist"
 #    publicPath: '/'
