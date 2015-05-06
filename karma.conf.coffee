@@ -12,24 +12,20 @@ module.exports = (config) ->
     preprocessors:
       'spec/**/*.spec.coffee': ['webpack']
     webpack: require('./webpack.config').karma()
-#    coverageReporter:
-#
-#      reporters: [
-#        {"type": "html", dir: 'coverage/'}
-#        {"type": "text"}
-#      ]
+    coverageReporter:
 
-#    plugins: [
-#      require "karma-webpack"
-#      require "karma-nyan-reporter"
-#      require "karma-growl-reporter"
-#    ]
+      reporters: [
+        {"type": "html", dir: 'coverage/'}
+#        {"type": "text"}
+      ]
+
+
     reporters: [
       'progress'
 #      'dots'
       'growl'
       'nyan'
-#      'coverage'
+      'coverage'
     ]
     port: 9876
     colors: true
