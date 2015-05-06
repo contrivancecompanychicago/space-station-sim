@@ -1,5 +1,6 @@
 
-test = require '../src/spectest.coffee'
+
+test = require 'spectest'
 _ = require 'underscore'
 
 describe 'spectest', ->
@@ -19,3 +20,4 @@ describe 'spectest', ->
     conf = require 'Game/config'
     expect conf
       .toBeDefined()
+

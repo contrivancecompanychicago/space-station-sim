@@ -12,17 +12,20 @@ sass = require 'gulp-sass'
 
 require './buildTasks/js.coffee'
 
-gulp.task 'default', ['build', 'watch', 'nodemon']
-gulp.task 'server', ['build']
+gulp.task 'default', ->
+	gulp.start ['build', 'watch']
+gulp.task 'server', ->
+	gulp.start ['build']
 gulp.task 'build', [
 		'copy-html'
 		'sass'
-		'js'
+		'webpack'
 	]
 
 gulp.task 'watch', ->
 	livereload.listen()
-	gulp.watch ['gulpfile.coffee', 'src/**/*.*'], ['js']
+	gulp.watch ['gulpfile.coffee', 'src/**/*.*'], ['webpack']
+	gulp.watch ['dist/bundle.js'], ['livereload']
 	gulp.watch ['src/**/*.sass'], ['sass']
 
 gulp.task 'bower', ->
@@ -62,3 +65,36 @@ gulp.task 'test', ->
 gulp.task 'jasmine', ->
 	gulp.src 'spec/Game.spec.coffee'
 		.pipe jasmine()
+
+
+fs = require 'fs'
+reportStats = (stats) ->
+#	console.log stats.toString
+#		colors:true
+#		hash: false
+#		version: false
+#		timings: false
+#		assets: false
+#		chunks: false
+#		chunkModules: false
+#		modules: false
+#		cached: false
+#		reasons: false
+#		source: false
+#		errorDetails: true
+#		chunkOrigins: false
+#		modulesSort: false
+#		chunksSort: false
+#		assetsSort: false
+	fs.writeFile 'buildstats.json', JSON.stringify(stats.toJson(), null, 2)#, -> console.log "stats json file written"
+
+
+gulp.task 'webpack', ->
+	gulp.start 'webpack-runonce'
+
+gulp.task 'webpack-runonce', (cb) ->
+	webpack = require 'webpack'
+	compiler = webpack require './webpack.config.coffee'
+	compiler.run (err, stats) ->
+		reportStats stats
+		cb()

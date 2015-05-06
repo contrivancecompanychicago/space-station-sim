@@ -10,8 +10,3 @@ window.onload = ->
 	fps = document.getElementById 'fps'
 	fps = imagine fps
 	fps.addComponent new imagine.FPS()
-
-
-
-
-

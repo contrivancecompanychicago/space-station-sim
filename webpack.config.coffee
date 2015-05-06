@@ -5,7 +5,7 @@ webpack = require 'webpack'
 
 conf =
   karma: ->
-    @entry = null
+    delete @entry
     @module.postLoaders.push
         test: /\.coffee$/
         exclude: /(test|node_modules|bower_components)\\/
@@ -16,13 +16,13 @@ conf =
     app: "./main"
   devtool: 'inline-source-map'
   debug: true
+  progress: true
   output:
     path: __dirname + "/dist"
 #    publicPath: '/'
     filename: "bundle.js"
     sourceMapFilename: '[file].map'
   module:
-  # todo: put ibrik as the instrumenter for coffee source
     loaders: [
 #      { test: /\.coffee$/, loader: "ibrik-loader" }
       { test: /\.coffee$/, loader: "coffee" }
@@ -51,9 +51,7 @@ conf =
     new webpack.ResolverPlugin(
       new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
     )
-    # new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js")
   ]
-
 
 
 module.exports = conf

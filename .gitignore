@@ -12,3 +12,4 @@ heroku.txt
 .bundled
 npm-debug.log
 karma_html
+buildstats.*
