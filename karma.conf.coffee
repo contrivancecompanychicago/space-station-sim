@@ -5,8 +5,8 @@ module.exports = (config) ->
       'jasmine'
     ]
     files: [
-      'spec/spectest.spec.coffee'
-#      'spec/**/*.spec.coffee'
+#      'spec/spectest.spec.coffee'
+      'spec/**/*.spec.coffee'
     ]
     exclude: []
     preprocessors:

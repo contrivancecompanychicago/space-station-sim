@@ -5,7 +5,7 @@ webpack = require 'webpack'
 
 conf =
   karma: ->
-    @entry = null
+    delete @entry
     @module.postLoaders.push
         test: /\.coffee$/
         exclude: /(test|node_modules|bower_components)\\/
