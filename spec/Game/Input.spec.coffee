@@ -66,7 +66,6 @@ describe 'Game/Input', ->
 		it 'shuldnt error', ->
 			@Input.engageMouse {button:1, x:1, y:2}
 
-				
 	describe 'mouseEventPosition', ->
 		it 'should be defined', ->
 			expect(@Input.mouseEventPosition).toBeDefined()

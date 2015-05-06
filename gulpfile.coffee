@@ -25,7 +25,7 @@ gulp.task 'build', [
 gulp.task 'watch', ->
 	livereload.listen()
 	gulp.watch ['gulpfile.coffee', 'src/**/*.*'], ['webpack']
-	gulp.watch ['dist/bundle.coffee'], ['livereload']
+	gulp.watch ['dist/bundle.js'], ['livereload']
 	gulp.watch ['src/**/*.sass'], ['sass']
 
 gulp.task 'bower', ->
