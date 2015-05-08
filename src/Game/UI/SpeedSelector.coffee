@@ -1,7 +1,7 @@
 view = require './SpeedSelector.html'
 Imagine = require 'imagine'
 # Types = require '../Grid/Block/Types.coffee'
-_ = require 'underscore'
+_ = require 'lodash'
 
 options = [0, 1, 2, 4]
 

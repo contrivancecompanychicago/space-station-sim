@@ -1,7 +1,7 @@
 view = require './RoomSelector.html'
 Imagine = require 'imagine'
 Types = require 'Game/Grid/Room/Types'
-_ = require 'underscore'
+_ = require 'lodash'
 
 State = require 'Game/State'
 

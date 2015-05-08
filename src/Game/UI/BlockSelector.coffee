@@ -1,7 +1,7 @@
 view = require './BlockSelector.html'
 Imagine = require 'imagine'
 Types = require 'Game/Grid/Block/Types'
-_ = require 'underscore'
+_ = require 'lodash'
 
 State = require 'Game/State'
 

@@ -1,5 +1,5 @@
-_ = require 'underscore'
-astar = require 'javascript-astar'
+_ = require 'lodash'
+astar = require 'astar/astar'
 BlockTypes = require 'Game/Grid/Block/Types'
 config = require 'Game/config'
 Imagine = require 'imagine'

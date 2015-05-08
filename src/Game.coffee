@@ -1,6 +1,6 @@
 Imagine = require 'imagine'
 $ = require 'jquery-browserify'
-_ = require 'underscore'
+_ = require 'lodash'
 Grid = require 'Game/Grid'
 Input = require 'Game/Input'
 Storage = require 'Game/Storage'

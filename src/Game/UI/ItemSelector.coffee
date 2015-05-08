@@ -1,7 +1,7 @@
 view = require './ItemSelector.html'
 Imagine = require 'imagine'
 Types = require 'Game/Grid/Item/Types'
-_ = require 'underscore'
+_ = require 'lodash'
 
 State = require 'Game/State'
 

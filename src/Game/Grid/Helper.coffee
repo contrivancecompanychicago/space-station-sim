@@ -1,5 +1,5 @@
 Imagine = require 'imagine'
-_ = require "underscore"
+_ = require "lodash"
 config = require 'Game/config'
 #ItemTypes = require 'Game/Grid/Item/Types' #circular dependency starts here, affects dockingbay and character
 Util = require 'Game/Util'

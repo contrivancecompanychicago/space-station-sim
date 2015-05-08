@@ -1,5 +1,5 @@
 
-_ = require 'underscore'
+_ = require 'lodash'
 config = require 'Game/config'
 Imagine = require 'imagine'
 namegen = require 'Game/Util/namegen'
