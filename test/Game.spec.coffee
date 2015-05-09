@@ -78,6 +78,9 @@ describe 'Game', ->
 	describe 'initGrid', ->
 		it 'should be defined', ->
 			expect(game.initGrid).toBeDefined()
+		it 'should have set game.types', ->
+			expect game.types.block
+				.toBeDefined()
 
 	describe 'createUI', ->
 #		it 'should append a ui div'

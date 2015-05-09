@@ -25,3 +25,17 @@ describe 'Game/Grid', ->
 		it 'should be defined', ->
 			expect @grid.getHelpers
 				.toBeDefined()
+#		it 'should return an object with item', ->
+#			expect @grid.getHelpers().item
+#			.toBeDefined()
+
+	describe 'getTypes', ->
+		it 'should return an object with block', ->
+			expect @grid.getTypes().block
+			.toBeDefined()
+		it 'should return an object with item', ->
+			expect @grid.getTypes().item
+			.toBeDefined()
+		it 'should return an object with room', ->
+			expect @grid.getTypes().room
+			.toBeDefined()

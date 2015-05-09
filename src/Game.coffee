@@ -45,6 +45,7 @@ class window.Game
 		container.appendChild canvas
 		@grid = Imagine new Grid canvas
 		@helpers.grid = @grid.helper
+		_.extend @types, @grid.getTypes()
 
 	initCharacter: (container) ->
 		canvas = @makeCanvas()

@@ -1,14 +1,14 @@
 _ = require 'lodash'
 astar = require 'astar/astar'
-BlockTypes = require 'Game/Grid/Block/Types'
 config = require 'Game/config'
 Imagine = require 'imagine'
-RoomTypes = require 'Game/Grid/Room/Types'
-Item = require 'Game/Grid/Item'
-helper = require('Game/Grid/Helper').getInstance()
 Util = require('Game/Util')
 
 ItemTypes = require 'Game/Grid/Item/Types'
+BlockTypes = require 'Game/Grid/Block/Types'
+RoomTypes = require 'Game/Grid/Room/Types'
+helper = require('Game/Grid/Helper').getInstance()
+
 
 State = require 'Game/State'
 
@@ -25,9 +25,17 @@ class Grid extends require 'Singleton'
 			grid: @
 		# console.log State
 		@context = @canvas.getContext('2d')
-		@item = new Item(@context)
 		@calcData()
 		@render()
+
+	getHelpers: ->
+		{}
+	getTypes: ->
+		{
+			item: ItemTypes
+			block: BlockTypes
+			room: RoomTypes
+		}
 
 	itemStateChanged: =>
 		@requireRender()

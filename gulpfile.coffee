@@ -71,9 +71,13 @@ gulp.task 'jasmine', ->
 fs = require 'fs'
 
 reportStats = (stats) ->
+	jsonStats = stats.toJson({exclude:[/bower_components/]})
 	notifier.notify
 		title: "Webpack build complete"
-		message: "output written to buildstats.json"
+		message: [
+			"Output written to buildstats.json"
+			"Errors: " + jsonStats.errors.length
+		].join "\n"
 #		stats.toString
 #			colors:true
 #			hash: false
@@ -91,7 +95,7 @@ reportStats = (stats) ->
 #			modulesSort: false
 #			chunksSort: false
 #			assetsSort: false
-	fs.writeFile 'buildstats.json', JSON.stringify(stats.toJson({exclude:[/bower_components/]}), null, 2)#, -> console.log "stats json file written"
+	fs.writeFile 'buildstats.json', JSON.stringify(jsonStats, null, 2)#, -> console.log "stats json file written"
 
 gulp.task 'webpack', ->
 	gulp.start 'webpack-runonce'
