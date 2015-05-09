@@ -57,6 +57,10 @@ class window.Game
 		@character = Imagine new CharacterLayer canvas
 
 	initUI: (container) ->
+		UI.inject
+			helpers: @helpers
+			types: @types
+
 		UI_div = document.createElement 'div'
 		UI_div.id = "ui"
 

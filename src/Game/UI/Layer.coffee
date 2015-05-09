@@ -10,9 +10,13 @@ class Layer extends require 'Mixin'
 
 	@dependencies({
 		helpers: new @Dependency 'Game Helpers'
+		types: new @Dependency 'UI Game types'
 	})
 	_modes: ['select', 'block', 'room']#for reference
 	constructor: (@container) ->
+
+#		BlockSelector.inject
+#			types: @types.block
 		# console.log "layer"
 		modeDiv = document.createElement 'div'
 		blockDiv = document.createElement 'div'
