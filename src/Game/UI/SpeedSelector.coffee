@@ -6,6 +6,7 @@ _ = require 'lodash'
 options = [0, 1, 2, 4]
 
 State = require 'Game/State'
+$ = require 'jquery'
 
 class TimeSelector
 	constructor: (@container) ->

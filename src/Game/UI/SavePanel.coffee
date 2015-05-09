@@ -1,6 +1,7 @@
 view = require './SavePanel.html'
 Storage = require 'Game/Storage'
 
+$ = require 'jquery'
 class SavePanel
 	constructor: (@container) ->
 		@render()

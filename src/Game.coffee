@@ -1,5 +1,5 @@
 Imagine = require 'imagine'
-$ = require 'jquery-browserify'
+#$ = require 'jquery'
 _ = require 'lodash'
 Grid = require 'Game/Grid'
 Input = require 'Game/Input'
@@ -8,6 +8,8 @@ config = require 'Game/config'
 Character = require 'Game/Character'
 UI = require 'Game/UI/Layer'
 CharacterLayer = require 'Game/Character/Layer'
+
+DockingBay = require 'Game/Observer/DockingBay'
 
 State = require 'Game/State'
 
@@ -26,6 +28,7 @@ class window.Game
 		@initGrid(container)
 		@initCharacter(container)
 		@initUI(container)
+		@spawnObservers()
 
 	styleContainer: (container) ->
 		@container = container
@@ -35,7 +38,8 @@ class window.Game
 
 	initGrid: (container) ->
 		canvas = @makeCanvas()
-		$(container).append canvas
+#		$(container).append canvas
+		container.appendChild canvas
 		@constructor.grid = Imagine new Grid canvas
 
 	initCharacter: (container) ->
@@ -43,14 +47,16 @@ class window.Game
 		@constructor.input = Imagine new Input canvas
 
 		canvas.id = "character"
-		$(container).append canvas
+#		$(container).append canvas
+		container.appendChild canvas
 		@constructor.character = Imagine new CharacterLayer canvas
 
 	initUI: (container) ->
 		UI_div = document.createElement 'div'
 		UI_div.id = "ui"
 
-		$(container).append UI_div
+#		$(container).append UI_div
+		container.appendChild UI_div
 		@constructor.ui = new UI UI_div
 
 	initState: ->
@@ -66,6 +72,9 @@ class window.Game
 		_.extend canvas, config.canvas
 		_.extend canvas.style, config.canvas.style
 		canvas
+
+	spawnObservers: ->
+		Imagine new DockingBay()
 
 
 	destroy: ->

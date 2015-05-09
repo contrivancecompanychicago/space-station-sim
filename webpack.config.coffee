@@ -35,7 +35,6 @@ conf =
     root: [
       path.join process.cwd(), 'src'
       path.join process.cwd(), 'bower_components'
-      path.join process.cwd(), 'node_modules'
     ]
     extensions: [
       ''

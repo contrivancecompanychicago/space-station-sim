@@ -2,6 +2,7 @@ view = require './BlockSelector.html'
 Imagine = require 'imagine'
 Types = require 'Game/Grid/Block/Types'
 _ = require 'lodash'
+$ = require 'jquery'
 
 State = require 'Game/State'
 

@@ -2,6 +2,7 @@ view = require './RoomSelector.html'
 Imagine = require 'imagine'
 Types = require 'Game/Grid/Room/Types'
 _ = require 'lodash'
+$ = require 'jquery'
 
 State = require 'Game/State'
 

@@ -2,6 +2,7 @@ view = require './ItemSelector.html'
 Imagine = require 'imagine'
 Types = require 'Game/Grid/Item/Types'
 _ = require 'lodash'
+$ = require 'jquery'
 
 State = require 'Game/State'
 

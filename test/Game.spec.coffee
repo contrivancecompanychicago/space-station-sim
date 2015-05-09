@@ -79,3 +79,7 @@ describe 'Game', ->
 			game.initState()
 			expect(Storage.get).toHaveBeenCalled()
 
+	describe 'spawnObservers', ->
+		it 'should be defined', ->
+			expect game.spawnObservers
+				.toBeDefined()

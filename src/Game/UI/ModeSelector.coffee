@@ -1,6 +1,6 @@
 view = require './ModeSelector.html'
 Imagine = require 'imagine'
-
+$ = require 'jquery'
 State = require 'Game/State'
 
 class ModeSelector

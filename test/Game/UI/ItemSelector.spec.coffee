@@ -1,5 +1,5 @@
 Imagine = require 'imagine'
-
+$ = require 'jquery'
 
 
 
