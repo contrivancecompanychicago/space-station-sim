@@ -85,7 +85,6 @@ class Grid extends require 'Singleton'
 
 				rooms.push room
 			@rooms[key] = rooms
-		# console.log @rooms
 
 	calcPathData: ->
 		keys = _.keys State.gridData
