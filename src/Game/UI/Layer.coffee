@@ -19,6 +19,8 @@ class Layer extends require 'Mixin'
 			types: @types.block
 		ItemSelector.inject
 			types: @types.item
+		RoomSelector.inject
+			types: @types.room
 		modeDiv = document.createElement 'div'
 		blockDiv = document.createElement 'div'
 		roomDiv = document.createElement 'div'
