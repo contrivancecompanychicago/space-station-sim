@@ -1,13 +1,19 @@
 view = require './ItemSelector.html'
 Imagine = require 'imagine'
-Types = require 'Game/Grid/Item/Types'
 _ = require 'lodash'
 $ = require 'jquery'
 
 State = require 'Game/State'
 
-class ItemSelector
+class ItemSelector extends require 'Mixin'
+	@extend require 'DependencyInjector'
+
+	@dependencies({
+		types: new @Dependency 'Game/Grid/Item/Types'
+	})
+
 	constructor: (@container) ->
+		super()
 		@mode = Imagine.getComponent 'UIModeSelector'
 		@render()
 
@@ -17,7 +23,7 @@ class ItemSelector
 		@container.innerHTML = view
 			state: State.ui.item
 			mode: State.ui.mode
-			types: _.keys Types
+			types: _.keys @types
 		$(@container).find('button').click (e)=>
 			State.ui.item = e.currentTarget.value
 			Imagine.notify 'UIItemSelected'

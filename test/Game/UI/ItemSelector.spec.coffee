@@ -7,6 +7,8 @@ describe 'Game/UI/ItemSelector', ->
 	beforeEach ->
 		@div = document.createElement 'DIV'
 		@Sel = require 'Game/UI/ItemSelector'
+		@Sel.inject
+			types: {}
 		@sel = new @Sel @div
 		@State = require 'Game/State'
 
