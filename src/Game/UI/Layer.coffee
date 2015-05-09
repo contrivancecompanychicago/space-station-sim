@@ -14,9 +14,10 @@ class Layer extends require 'Mixin'
 	})
 	_modes: ['select', 'block', 'room']#for reference
 	constructor: (@container) ->
-
-#		BlockSelector.inject
-#			types: @types.block
+		super()
+#		console.log @
+		BlockSelector.inject
+			types: @types.block
 		# console.log "layer"
 		modeDiv = document.createElement 'div'
 		blockDiv = document.createElement 'div'

@@ -61,6 +61,7 @@ class window.Game
 			helpers: @helpers
 			types: @types
 
+
 		UI_div = document.createElement 'div'
 		UI_div.id = "ui"
 

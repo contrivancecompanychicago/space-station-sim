@@ -1,6 +1,5 @@
 view = require './BlockSelector.html'
 Imagine = require 'imagine'
-Types = require 'Game/Grid/Block/Types'
 _ = require 'lodash'
 $ = require 'jquery'
 State = require 'Game/State'
@@ -22,7 +21,7 @@ class BlockSelector extends require 'Mixin'
 		@container.innerHTML = view
 			state: State.ui.block
 			mode: State.ui.mode
-			types: _.keys Types
+			types: _.keys @types
 		$(@container).find('button').click (e)=>
 			State.ui.block = e.currentTarget.value
 			Imagine.notify 'UIBlockSelected'
