@@ -6,8 +6,15 @@ $ = require 'jquery'
 
 State = require 'Game/State'
 
-class BlockSelector
+class BlockSelector extends require 'Mixin'
+	@extend require 'DependencyInjector'
+
+	@dependencies({
+		Types: new @Dependency 'Game/Grid/Block/Types'
+	})
+
 	constructor: (@container) ->
+		super()
 		@mode = Imagine.getComponent 'UIModeSelector'
 		@render()
 	UIModeSelected: ->
@@ -16,7 +23,7 @@ class BlockSelector
 		@container.innerHTML = view
 			state: State.ui.block
 			mode: State.ui.mode
-			types: _.keys Types
+			types: _.keys @Types
 		$(@container).find('button').click (e)=>
 			State.ui.block = e.currentTarget.value
 			Imagine.notify 'UIBlockSelected'

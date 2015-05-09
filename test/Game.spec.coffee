@@ -1,6 +1,6 @@
 gameClass = require 'Game'
-div = document.createElement 'DIV'
-game = new gameClass(div)
+div = {}
+game = {}
 
 config = require 'Game/config'
 
