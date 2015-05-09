@@ -5,7 +5,12 @@ SpeedSelector = require 'Game/UI/SpeedSelector'
 ItemSelector = require 'Game/UI/ItemSelector'
 SavePanel = require 'Game/UI/SavePanel'
 Imagine = require 'imagine'
-class Layer
+class Layer extends require 'Mixin'
+	@extend require 'DependencyInjector'
+
+	@dependencies({
+		helpers: new @Dependency 'Game Helpers'
+	})
 	_modes: ['select', 'block', 'room']#for reference
 	constructor: (@container) ->
 		# console.log "layer"

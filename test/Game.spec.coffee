@@ -30,6 +30,18 @@ describe 'Game', ->
 	it 'should throw an error if instantiated without a container', ->
 		expect(-> new gameClass()).toThrow new Error 'Game container not defined'
 
+	describe 'helpers', ->
+		it 'should be defined', ->
+			expect game.helpers
+				.toBeDefined()
+		it 'should have grid', ->
+			expect game.helpers.grid
+				.toBeDefined()
+
+	describe 'types', ->
+		it 'should be defined', ->
+			expect game.types
+				.toBeDefined()
 
 	describe 'destroy', ->
 		it 'should be defined', ->

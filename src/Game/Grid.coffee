@@ -19,7 +19,8 @@ Input = require 'Game/Input'
 class Grid extends require 'Singleton'
 
 	constructor: (@canvas) ->
-		Character = require 'Game/Character'
+		@helper = helper
+		Character = require 'Game/Character' # todo remove
 		Character.inject
 			grid: @
 		# console.log State

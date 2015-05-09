@@ -17,3 +17,11 @@ describe 'Game/Grid', ->
 			new @Grid @canvas
 			expect Character.inject
 			.toHaveBeenCalled()
+
+	it 'should have helper', ->
+		expect @grid.helper
+			.toBeDefined()
+	describe 'getHelpers', ->
+		it 'should be defined', ->
+			expect @grid.getHelpers
+				.toBeDefined()

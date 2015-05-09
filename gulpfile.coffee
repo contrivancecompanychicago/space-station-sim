@@ -13,7 +13,7 @@ sass = require 'gulp-sass'
 require './buildTasks/js.coffee'
 
 gulp.task 'default', ->
-	gulp.start ['build', 'watch']
+	gulp.start ['build', 'watch', 'karma']
 gulp.task 'server', ->
 	gulp.start ['build']
 gulp.task 'build', [
@@ -98,3 +98,9 @@ gulp.task 'webpack-runonce', (cb) ->
 	compiler.run (err, stats) ->
 		reportStats stats
 		cb()
+
+
+gulp.task 'karma', ->
+	karma = require 'karma'
+	karma.server.start
+		configFile: __dirname + '/karma.conf.coffee'

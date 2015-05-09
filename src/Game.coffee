@@ -23,6 +23,9 @@ class window.Game
 		unless container
 			throw new Error 'Game container not defined'
 
+		@helpers = {}
+		@types = {}
+
 		@styleContainer(container)
 		@initState()
 		@initGrid(container)
@@ -40,16 +43,17 @@ class window.Game
 		canvas = @makeCanvas()
 #		$(container).append canvas
 		container.appendChild canvas
-		@constructor.grid = Imagine new Grid canvas
+		@grid = Imagine new Grid canvas
+		@helpers.grid = @grid.helper
 
 	initCharacter: (container) ->
 		canvas = @makeCanvas()
-		@constructor.input = Imagine new Input canvas
+		@input = Imagine new Input canvas
 
 		canvas.id = "character"
 #		$(container).append canvas
 		container.appendChild canvas
-		@constructor.character = Imagine new CharacterLayer canvas
+		@character = Imagine new CharacterLayer canvas
 
 	initUI: (container) ->
 		UI_div = document.createElement 'div'
@@ -57,7 +61,7 @@ class window.Game
 
 #		$(container).append UI_div
 		container.appendChild UI_div
-		@constructor.ui = new UI UI_div
+		@ui = new UI UI_div
 
 	initState: ->
 		loaded = Storage.get()
