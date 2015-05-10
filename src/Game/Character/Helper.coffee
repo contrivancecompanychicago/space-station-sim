@@ -3,11 +3,19 @@ State = require 'Game/State'
 Character = require 'Game/Character'
 Imagine = require 'imagine'
 
-class Helper extends require 'Singleton'
+class Helper extends require 'Mixin'
+  @extend require 'DependencyInjector'
+#  @extend require 'Singleton'
+
+  @dependencies({
+    helpers: new @Dependency 'CharacterHelper Helpers'
+  })
 
   constructor: ->
+    super()
     Character.inject
       helper: @
+      helpers: @helpers
 
 
   add: (data) ->

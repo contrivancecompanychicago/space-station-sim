@@ -1,10 +1,16 @@
 
 State = require 'Game/State'
 Imagine = require 'imagine'
-gridhelper = require('Game/Grid/Helper').getInstance()
-charHelper = require('Game/Character/Helper').getInstance()
+#gridhelper = require('Game/Grid/Helper').getInstance()
+#charHelper = require('Game/Character/Helper').getInstance()
 
-class DockingBay
+class DockingBay extends require 'Mixin'
+  @extend require 'DependencyInjector'
+
+  @dependencies({
+    helpers: new @Dependency 'DockingBay Helpers Reference'
+  })
+
   name: 'dockmanager'
   constructor: ->
   update: ->
@@ -28,14 +34,13 @@ class DockingBay
     data = State.itemData[key]
 
     data.ship = true
-    block = gridhelper.stringToBlock key
+    block = @helpers.grid.stringToBlock key
 
     num = 1 + Math.floor(Math.random()*4)
     for [1..num]
-      char = Imagine charHelper.add({block}) #todo: remove imagine?
+      char = Imagine @helpers.character.add({block}) #todo: remove imagine?
       char.data.dock = block
     data.waitingFor = num
     Imagine.notify 'itemStateChanged'
-
 
 module.exports = DockingBay

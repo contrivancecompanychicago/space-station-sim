@@ -5,7 +5,6 @@ Grid = require 'Game/Grid'
 Input = require 'Game/Input'
 Storage = require 'Game/Storage'
 config = require 'Game/config'
-Character = require 'Game/Character'
 UI = require 'Game/UI/Layer'
 CharacterLayer = require 'Game/Character/Layer'
 
@@ -48,6 +47,12 @@ class window.Game
 		_.extend @types, @grid.getTypes()
 
 	initCharacter: (container) ->
+		CharHelper = require('Game/Character/Helper')
+		CharHelper.inject
+			helpers: @helpers
+		helper = new CharHelper()
+		helper.init()
+		@helpers.character = helper
 		canvas = @makeCanvas()
 		@input = Imagine new Input canvas
 
@@ -84,6 +89,8 @@ class window.Game
 		canvas
 
 	spawnObservers: ->
+		DockingBay.inject
+			helpers: @helpers
 		Imagine new DockingBay()
 
 

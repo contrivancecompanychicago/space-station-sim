@@ -1,5 +1,7 @@
 CharHelper = require 'Game/Character/Helper'
-charHelper = CharHelper.getInstance()
+CharHelper.inject
+  helpers: {}
+charHelper = new CharHelper()
 Character = require 'Game/Character'
 _ = require 'underscore'
 
@@ -18,9 +20,6 @@ describe 'Game/Character/Helper', ->
     Imagine.engine.reset()
   it 'should be defined', ->
     expect(CharHelper).toBeDefined()
-  it 'should be singleton', ->
-    expect CharHelper.getInstance
-      .toBeDefined()
 
   describe 'constructor', ->
     it 'should inject into character', ->

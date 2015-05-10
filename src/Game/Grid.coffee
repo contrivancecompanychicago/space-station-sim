@@ -7,7 +7,7 @@ Util = require('Game/Util')
 ItemTypes = require 'Game/Grid/Item/Types'
 BlockTypes = require 'Game/Grid/Block/Types'
 RoomTypes = require 'Game/Grid/Room/Types'
-helper = require('Game/Grid/Helper').getInstance()
+Helper = require('Game/Grid/Helper')
 
 
 State = require 'Game/State'
@@ -19,10 +19,12 @@ Input = require 'Game/Input'
 class Grid extends require 'Singleton'
 
 	constructor: (@canvas) ->
-		@helper = helper
-		Character = require 'Game/Character' # todo remove
-		Character.inject
+		Helper.inject
 			grid: @
+		@helper = Helper.getInstance()
+#		Character = require 'Game/Character' # todo remove
+#		Character.inject
+#			grid: @
 		# console.log State
 		@context = @canvas.getContext('2d')
 		@calcData()
@@ -206,7 +208,7 @@ class Grid extends require 'Singleton'
 		keys = _.keys State.gridData
 		# gather data
 		blocks = keys.forEach (key) =>
-			block = helper.stringToBlock key
+			block = @helper.stringToBlock key
 			block.data = State.gridData[key]
 			if block.data.room is room
 				out.push block
@@ -227,8 +229,8 @@ class Grid extends require 'Singleton'
 	# looks at @offset, @scale and config.grid.block to output a list of blocks that are on screen
 	blocksToRender: ->
 
-		tl = helper.blockAtPoint {x:0, y:0}
-		br = helper.blockAtPoint {x:cw, y:ch}
+		tl = @helper.blockAtPoint {x:0, y:0}
+		br = @helper.blockAtPoint {x:cw, y:ch}
 
 		out = []
 		for x in [tl.x..br.x]
@@ -251,7 +253,7 @@ class Grid extends require 'Singleton'
 
 		offset = @blockPosition block
 
-		data = State.gridData[helper.blockToString block]
+		data = State.gridData[@helper.blockToString block]
 		if data
 			type = BlockTypes[data.type]
 			type.render @context, offset, data
@@ -282,7 +284,7 @@ class Grid extends require 'Singleton'
 	renderItem: (block) ->
 
 		offset = @blockPosition block
-		data = State.itemData[helper.blockToString block]
+		data = State.itemData[@helper.blockToString block]
 		if data
 			type = ItemTypes[data.type]
 			type.render @context, offset, data

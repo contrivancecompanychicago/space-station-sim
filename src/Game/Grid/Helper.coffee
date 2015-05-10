@@ -14,7 +14,14 @@ ch = config.canvas.height
 # debugger
 #console.log 'initing grid helper'
 
-class Helper extends require 'Singleton'
+class Helper extends require 'Mixin'
+	@extend require 'DependencyInjector'
+	@extend require 'Singleton'
+
+	@dependencies({
+		grid: new @Dependency 'Grid Reference'
+	})
+
 	name: "gridhelper" #todo: why?
 	blockAtPoint: (point)->
 		point = Util.globalToLocal point
@@ -93,5 +100,31 @@ class Helper extends require 'Singleton'
 		# 	return @randomBlock() # try again
 		@stringToBlock key
 
-#ret = Imagine new Helper()
+	# PATHING
+	findPathToRoom: (startBlock, type) ->
+		rooms = @grid.rooms[type]
+		finalPath = false
+		pathLen = Infinity
+		if rooms.length > 0
+			rooms.forEach (room) =>
+				unless startBlock
+					throw new Error '@block isnt defined'
+				block = room.blocks[Math.floor(room.blocks.length*Math.random())]
+				unless block
+					throw new Error 'block isnt defined'
+				path = @grid.path(@block, block)
+				if path.length > 0
+					if path.length < pathLen
+						pathLen = path.length
+						finalPath = path
+		finalPath
+	path: (startBlock, endBlock) ->
+		path = @grid.path(startBlock, endBlock)
+		if path.length is 0
+			return false
+		path
+
+
+
+	#ret = Imagine new Helper()
 module.exports = Helper

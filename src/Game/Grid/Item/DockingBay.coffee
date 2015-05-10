@@ -1,9 +1,9 @@
 Base = require 'Game/Grid/Item/Base'
 Imagine = require 'imagine'
-gridhelper = require('Game/Grid/Helper').getInstance()
+#gridhelper = require('Game/Grid/Helper').getInstance()
 img = require './dockspot.png'
 ship = require './ship.png'
-charHelper = require('Game/Character/Helper').getInstance()
+#charHelper = require('Game/Character/Helper').getInstance()
 
 State = require 'Game/State'
 

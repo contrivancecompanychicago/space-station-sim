@@ -6,7 +6,7 @@ namegen = require 'Game/Util/namegen'
 vic = require 'victor'
 
 ActionTypes = require 'Game/Character/Action/Types'
-gridhelper = require('Game/Grid/Helper').getInstance()
+#gridhelper = require('Game/Grid/Helper').getInstance()
 
 State = require 'Game/State'
 
@@ -16,7 +16,8 @@ class Character extends require 'Mixin'
 
 	@dependencies({
 		helper: new @Dependency 'Character Helper'
-		grid: new @Dependency 'Grid Reference'
+		helpers: new @Dependency 'Character Helpers'
+#		grid: new @Dependency 'Grid Reference'
 	})
 
 	name: 'character'
@@ -27,6 +28,8 @@ class Character extends require 'Mixin'
 			throw new Error 'Character data is not defined'
 		unless @data.block
 			throw new Error 'block is not defined'
+
+		@grid = @helpers.grid.grid
 
 		@block = @data.block
 		@pos = @getBlockPosition @block
@@ -53,7 +56,7 @@ class Character extends require 'Mixin'
 	gridStateChanged: ->
 		@whatToDoNext()
 		
-	findPathToRoom: (type) ->
+	findPathToRoom: (type) -> #todo: depreciated, delete me for gridhelper
 		rooms = @grid.rooms[type]
 		finalPath = false
 		pathLen = Infinity
@@ -70,7 +73,7 @@ class Character extends require 'Mixin'
 						pathLen = path.length
 						finalPath = path
 		finalPath
-	findPathToBlock: (block) ->
+	findPathToBlock: (block) -> #todo: depreciated, delete me for gridhelper
 		path = @grid.path(@block, block)
 		if path.length is 0
 			return false
@@ -126,7 +129,7 @@ class Character extends require 'Mixin'
 
 		if options.length is 0
 			options.push 'walk'
-			destination = gridhelper.randomBlock()
+			destination = @helpers.grid.randomBlock()
 			path.walk = @grid.path(@block, destination)
 			options.push 'wait'
 
@@ -196,7 +199,7 @@ class Character extends require 'Mixin'
 				if @data.dock
 					if (@block.x is @data.dock.x) and (@block.y is @data.dock.y)
 						# leaving at the dock I came from
-						data = State.itemData[gridhelper.blockToString @data.dock]
+						data = State.itemData[@helpers.grid.blockToString @data.dock]
 						if data?.waitingFor
 							data.waitingFor--
 #				console.log 'implement leaving'

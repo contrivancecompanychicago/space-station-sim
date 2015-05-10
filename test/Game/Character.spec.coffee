@@ -1,4 +1,7 @@
-charHelper = require('Game/Character/Helper').getInstance()
+CharHelper = require('Game/Character/Helper')
+Game = require 'Game'
+game = new Game document.createElement 'div' # injects
+charHelper = new CharHelper()
 Character = require 'Game/Character'
 Imagine = require 'imagine'
 _ = require 'underscore'

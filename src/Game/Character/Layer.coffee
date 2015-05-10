@@ -1,9 +1,8 @@
 config = require 'Game/config'
-Character = require 'Game/Character'
 Imagine = require 'imagine'
 ActionTypes = require 'Game/Character/Action/Types'
 
-helper = require('Game/Character/Helper').getInstance()
+
 
 State = require 'Game/State'
 Util = require 'Game/Util'
@@ -17,8 +16,6 @@ class CharacterLayer
 		@context = @canvas.getContext '2d'
 		@willRender = true
 
-		helper.init()
-
 		# throw new Error 'LOAD CHAR DATA'
 		@render()
 
@@ -27,8 +24,6 @@ class CharacterLayer
 		@context.closePath()
 		@context.clearRect 0, 0, cw, ch
 
-#	addCharacter: ->
-#		Imagine helper.add()
 
 	render: ->
 		@clear()
