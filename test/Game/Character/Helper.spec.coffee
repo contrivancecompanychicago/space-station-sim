@@ -1,6 +1,7 @@
+Game = require 'Game'
+new Game document.createElement 'div'
 CharHelper = require 'Game/Character/Helper'
-CharHelper.inject
-  helpers: {}
+
 charHelper = new CharHelper()
 Character = require 'Game/Character'
 _ = require 'underscore'
