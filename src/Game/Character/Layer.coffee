@@ -9,7 +9,14 @@ Util = require 'Game/Util'
 
 Input = require 'Game/Input'
 
-class CharacterLayer
+class CharacterLayer extends require 'Mixin'
+	@extend require 'DependencyInjector'
+
+	@dependencies({
+		types: new @Dependency 'CharacterLayer types'
+#		grid: new @Dependency 'Grid Reference'
+	})
+
 	cw = config.canvas.width
 	ch = config.canvas.height
 	constructor: (@canvas) ->
@@ -40,7 +47,7 @@ class CharacterLayer
 			y = 30
 			@context.fillText obj.data.firstname + " " + obj.data.lastname, 10, y += 20
 			@context.font = '14px verdana'
-			@context.fillText ActionTypes[obj.action].desc, 10, y += 20
+			@context.fillText @types.action[obj.action].desc, 10, y += 20
 			@context.fillText "Needs:", 10, y += 20
 			@context.font = '10px verdana'
 			for need of obj.data.needs
