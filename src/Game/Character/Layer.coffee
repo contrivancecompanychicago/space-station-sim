@@ -1,6 +1,6 @@
 config = require 'Game/config'
 Imagine = require 'imagine'
-ActionTypes = require 'Game/Character/Action/Types'
+#ActionTypes = require 'Game/Character/Action/Types'
 
 
 
