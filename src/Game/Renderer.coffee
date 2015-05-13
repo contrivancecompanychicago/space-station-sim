@@ -1,6 +1,9 @@
 State = require 'Game/State'
 
-class Renderer extends require 'Singleton'
+class Renderer extends require 'Mixin'
+  @extend require 'DependencyInjector'
+
+
 
 
 
