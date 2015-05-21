@@ -1,5 +1,8 @@
 Renderer = require 'Game/Renderer'
-renderer = Renderer.getInstance()
+
 
 describe 'Game/Renderer', ->
+  it 'should be defined', ->
+    expect Renderer
+      .toBeDefined()
 
