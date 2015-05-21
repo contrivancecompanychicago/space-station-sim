@@ -1,7 +1,6 @@
 _ = require 'lodash'
 astar = require 'astar/astar'
 config = require 'Game/config'
-Imagine = require 'imagine'
 Util = require('Game/Util')
 
 ItemTypes = require 'Game/Grid/Item/Types'
@@ -180,11 +179,6 @@ class Grid extends require 'Singleton'
 	cw = config.canvas.width
 	ch = config.canvas.height
 
-	# offset:
-	# 	x: 0
-	# 	y: 0
-	scale: 1
-
 
 
 	requireRender: ->
@@ -213,7 +207,7 @@ class Grid extends require 'Singleton'
 			if block.data.room is room
 				out.push block
 		out
-
+#########TODO START DELETE
 	# wipes canvas
 	clear: ->
 		@context.closePath()
@@ -319,7 +313,7 @@ class Grid extends require 'Singleton'
 				# console.log roomType.name
 				@context.font = '10px verdana'
 				@context.fillText roomType.name, offset.x+5, offset.y+15
-
+#########TODO END DELETE
 
 
 

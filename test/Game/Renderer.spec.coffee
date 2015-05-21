@@ -1,4 +1,12 @@
 Renderer = require 'Game/Renderer'
+
+Game = require 'Game' #injecting
+game = new Game document.createElement 'div'
+#Renderer.inject
+#  helpers: game.helpers
+#  types: game.types
+
+
 renderer = null
 div = null
 

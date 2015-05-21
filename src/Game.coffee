@@ -84,6 +84,9 @@ class window.Game
 #			@constructor.state = require 'Game/State'
 
 	initRenderer: (container) ->
+		Renderer.inject
+			helpers: @helpers
+			types: @types
 		@renderer = new Renderer container
 
 	makeCanvas: ->
