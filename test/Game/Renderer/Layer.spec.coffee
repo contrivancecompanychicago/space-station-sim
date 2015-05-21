@@ -18,7 +18,7 @@ describe 'Game/Renderer/Layer', ->
 
     it 'should set container', ->
       expect layer.container
-        .toBeDefined()
+        .toBe div
     it 'should set canvas', ->
       expect layer.canvas
         .toBeDefined()

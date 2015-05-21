@@ -5,6 +5,7 @@ Grid = require 'Game/Grid'
 Input = require 'Game/Input'
 Storage = require 'Game/Storage'
 config = require 'Game/config'
+Renderer = require 'Game/Renderer'
 UI = require 'Game/UI/Layer'
 CharacterLayer = require 'Game/Character/Layer'
 
@@ -14,7 +15,6 @@ State = require 'Game/State'
 
 class window.Game
 	name: "spacesim"
-	# @state: 'no'
 	constructor: (container)->
 		@init container
 
@@ -30,6 +30,7 @@ class window.Game
 		@initGrid(container)
 		@initCharacter(container)
 		@initUI(container)
+		@initRenderer(container)
 		@spawnObservers()
 
 	styleContainer: (container) ->
@@ -81,6 +82,9 @@ class window.Game
 			require('Game/State/Helper').getInstance().loadGame Storage.get()
 		else
 #			@constructor.state = require 'Game/State'
+
+	initRenderer: (container) ->
+		@renderer = new Renderer container
 
 	makeCanvas: ->
 		canvas = document.createElement 'canvas'

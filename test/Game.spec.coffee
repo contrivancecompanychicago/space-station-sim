@@ -98,3 +98,9 @@ describe 'Game', ->
 		it 'should be defined', ->
 			expect game.spawnObservers
 				.toBeDefined()
+	describe 'initRenderer', ->
+		it 'should be defined', ->
+			expect game.initRenderer
+				.toBeDefined()
+		it 'should not error', ->
+			game.initRenderer div

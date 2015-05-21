@@ -18,7 +18,7 @@ module.exports = (config) ->
     reporters: [
       'progress'
       'growl'
-      'nyan'
+#      'nyan'
       'coverage'
     ]
     port: 9876
