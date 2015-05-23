@@ -134,7 +134,7 @@ class Renderer extends require 'Mixin'
     for block in blocks
       @renderItem block
 
-#    @renderRooms()
+    @renderRooms()
 
 
 
