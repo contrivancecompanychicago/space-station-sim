@@ -42,15 +42,30 @@ class Renderer extends require 'Mixin'
 #    @calcData() #todo
     @requireRender()
 
+
   requireRender: ->
     @willRender = true
 
   update: ->
     if @willRender
-      @render()
+      @render()# todo: change to blockRenderer.render @gridLayer
       @willRender = false
 
-  # tries to render the block in State.gridData['_'+x+'_'+y]
+
+
+      # todo: get rid of this
+#starts mega draw call
+  render: ->
+    @gridLayer.clear()
+    blocks = @blocksToRender()
+    # console.log blocks
+    for block in blocks
+      @renderBlock block
+    for block in blocks
+      @renderItem block
+#    @renderRooms()
+
+# tries to render the block in State.gridData['_'+x+'_'+y]
   blockPosition: (block) ->
     Util.localToGlobal
       x: gbw * block.x
@@ -89,15 +104,12 @@ class Renderer extends require 'Mixin'
         else
           @gridLayer.context.fillStyle = 'red' #danger
         @gridLayer.context.fillRect offset.x, offset.y, gbw * State.view.scale, gbh * State.view.scale
-
-
     if selected
       @gridLayer.context.lineWidth = 3
       @gridLayer.context.strokeStyle = "green"
     else
       @gridLayer.context.strokeStyle = "rgba(100,100,100,0.0)"
     @gridLayer.context.strokeRect offset.x, offset.y, gbw * State.view.scale, gbh * State.view.scale
-
     # debug
     @gridLayer.resetContextStyle()
     if config.grid.debugText
@@ -112,17 +124,6 @@ class Renderer extends require 'Mixin'
     if data
       type = @types.item[data.type]
       type.render @gridLayer.context, offset, data
-
-  #starts mega draw call
-  render: ->
-    @gridLayer.clear()
-    blocks = @blocksToRender()
-    # console.log blocks
-    for block in blocks
-      @renderBlock block
-    for block in blocks
-      @renderItem block
-#    @renderRooms()
 
 
 
