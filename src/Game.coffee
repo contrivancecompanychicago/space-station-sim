@@ -28,9 +28,9 @@ class window.Game
 		@styleContainer(container)
 		@initState()
 		@initGrid(container)
+		@initRenderer(container)
 		@initCharacter(container)
 		@initUI(container)
-		@initRenderer(container)
 		@spawnObservers()
 
 	styleContainer: (container) ->

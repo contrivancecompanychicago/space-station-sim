@@ -12,6 +12,8 @@ ch = config.canvas.height
 
 Input = require 'Game/Input'
 
+Imagine = require 'imagine'
+
 
 class Renderer extends require 'Mixin'
   @extend require 'DependencyInjector'
@@ -23,8 +25,9 @@ class Renderer extends require 'Mixin'
 
   constructor: (@container) ->
     @gridLayer = new Layer @container
-    @gridLayer.canvas.style.paddingTop = "480px"
+#    @gridLayer.canvas.style.paddingTop = "480px"
     @render()
+    Imagine @
 
 
   itemStateChanged: =>
@@ -34,7 +37,7 @@ class Renderer extends require 'Mixin'
     @requireRender()
 
   gridStateChanged: =>
-    @calcData()
+#    @calcData() #todo
     @requireRender()
 
   requireRender: ->

@@ -21,13 +21,10 @@ class Grid extends require 'Singleton'
 		Helper.inject
 			grid: @
 		@helper = Helper.getInstance()
-#		Character = require 'Game/Character' # todo remove
-#		Character.inject
-#			grid: @
-		# console.log State
+
 		@context = @canvas.getContext('2d')
 		@calcData()
-		@render()
+#		@render()
 
 	getHelpers: ->
 		{}
@@ -38,15 +35,15 @@ class Grid extends require 'Singleton'
 			room: RoomTypes
 		}
 
-	itemStateChanged: =>
-		@requireRender()
-
-	viewStateChanged: =>
-		@requireRender()
+#	itemStateChanged: =>
+#		@requireRender()
+#
+#	viewStateChanged: =>
+#		@requireRender()
 
 	gridStateChanged: =>
 		@calcData()
-		@requireRender()
+#		@requireRender()
 
 	pathData = null
 
@@ -181,13 +178,13 @@ class Grid extends require 'Singleton'
 
 
 
-	requireRender: ->
-		@willRender = true
-
-	update: ->
-		if @willRender
-			@render()
-			@willRender = false
+#	requireRender: ->
+#		@willRender = true
+#
+#	update: ->
+#		if @willRender
+#			@render()
+#			@willRender = false
 
 
 
@@ -208,111 +205,111 @@ class Grid extends require 'Singleton'
 				out.push block
 		out
 #########TODO START DELETE
-	# wipes canvas
-	clear: ->
-		@context.closePath()
-		@context.clearRect 0, 0, cw, ch
-
-
-	# tries to render the block in State.gridData['_'+x+'_'+y]
-	blockPosition: (block) ->
-		Util.localToGlobal
-			x: gbw * block.x
-			y: gbh * block.y
-
-	# looks at @offset, @scale and config.grid.block to output a list of blocks that are on screen
-	blocksToRender: ->
-
-		tl = @helper.blockAtPoint {x:0, y:0}
-		br = @helper.blockAtPoint {x:cw, y:ch}
-
-		out = []
-		for x in [tl.x..br.x]
-			for y in [tl.y..br.y]
-				out.push {x, y}
-		out
-
-	resetContextStyle: ->
-		@context.lineWidth = 1
-		@context.fillStyle = "black"
-		# @context.strokeStyle = "black"
-
-	renderBlock: (block) ->
-		if Input.selection
-			s = Input.selection
-			if (s.l<=block.x) and (s.r>=block.x) and (s.t<=block.y) and (s.b>=block.y)
-				selected = true
-
-		@resetContextStyle()
-
-		offset = @blockPosition block
-
-		data = State.gridData[@helper.blockToString block]
-		if data
-			type = BlockTypes[data.type]
-			type.render @context, offset, data
-			room = data.room
-			if room
-				roomType = RoomTypes[room]
-				if roomType
-					@context.fillStyle = roomType.color
-				else
-					@context.fillStyle = 'red' #danger
-				@context.fillRect offset.x, offset.y, gbw * State.view.scale, gbh * State.view.scale
-
-
-		if selected
-			@context.lineWidth = 3
-			@context.strokeStyle = "green"
-		else
-			@context.strokeStyle = "rgba(100,100,100,0.0)"
-		@context.strokeRect offset.x, offset.y, gbw * State.view.scale, gbh * State.view.scale
-
-		# debug
-		@resetContextStyle()
-		if config.grid.debugText
-			@context.fillStyle = "grey"
-			@context.font = '10px verdana'
-			@context.fillText block.x+','+block.y, offset.x, offset.y+10
-
-	renderItem: (block) ->
-
-		offset = @blockPosition block
-		data = State.itemData[@helper.blockToString block]
-		if data
-			type = ItemTypes[data.type]
-			type.render @context, offset, data
-
-
-
-	#starts mega draw call
-	render: ->
-		# console.log "render grid"
-		@clear()
-		blocks = @blocksToRender()
-		# console.log blocks
-		for block in blocks
-			@renderBlock block
-		for block in blocks
-			@renderItem block
-
-		@renderRooms()
-		
-
-
-
-	renderRooms: ->
-		# console.log "do me"
-		@context.fillStyle = 'rgba(0,0,0,0.5)'
-		for type of @rooms
-			roomType = RoomTypes[type]
-			rooms = @rooms[type]
-			# console.log rooms
-			for room in rooms
-				offset = @blockPosition {x: room.minx, y: room.miny}
-				# console.log roomType.name
-				@context.font = '10px verdana'
-				@context.fillText roomType.name, offset.x+5, offset.y+15
+#	# wipes canvas
+#	clear: ->
+#		@context.closePath()
+#		@context.clearRect 0, 0, cw, ch
+#
+#
+#	# tries to render the block in State.gridData['_'+x+'_'+y]
+#	blockPosition: (block) ->
+#		Util.localToGlobal
+#			x: gbw * block.x
+#			y: gbh * block.y
+#
+#	# looks at @offset, @scale and config.grid.block to output a list of blocks that are on screen
+#	blocksToRender: ->
+#
+#		tl = @helper.blockAtPoint {x:0, y:0}
+#		br = @helper.blockAtPoint {x:cw, y:ch}
+#
+#		out = []
+#		for x in [tl.x..br.x]
+#			for y in [tl.y..br.y]
+#				out.push {x, y}
+#		out
+#
+#	resetContextStyle: ->
+#		@context.lineWidth = 1
+#		@context.fillStyle = "black"
+#		# @context.strokeStyle = "black"
+#
+#	renderBlock: (block) ->
+#		if Input.selection
+#			s = Input.selection
+#			if (s.l<=block.x) and (s.r>=block.x) and (s.t<=block.y) and (s.b>=block.y)
+#				selected = true
+#
+#		@resetContextStyle()
+#
+#		offset = @blockPosition block
+#
+#		data = State.gridData[@helper.blockToString block]
+#		if data
+#			type = BlockTypes[data.type]
+#			type.render @context, offset, data
+#			room = data.room
+#			if room
+#				roomType = RoomTypes[room]
+#				if roomType
+#					@context.fillStyle = roomType.color
+#				else
+#					@context.fillStyle = 'red' #danger
+#				@context.fillRect offset.x, offset.y, gbw * State.view.scale, gbh * State.view.scale
+#
+#
+#		if selected
+#			@context.lineWidth = 3
+#			@context.strokeStyle = "green"
+#		else
+#			@context.strokeStyle = "rgba(100,100,100,0.0)"
+#		@context.strokeRect offset.x, offset.y, gbw * State.view.scale, gbh * State.view.scale
+#
+#		# debug
+#		@resetContextStyle()
+#		if config.grid.debugText
+#			@context.fillStyle = "grey"
+#			@context.font = '10px verdana'
+#			@context.fillText block.x+','+block.y, offset.x, offset.y+10
+#
+#	renderItem: (block) ->
+#
+#		offset = @blockPosition block
+#		data = State.itemData[@helper.blockToString block]
+#		if data
+#			type = ItemTypes[data.type]
+#			type.render @context, offset, data
+#
+#
+#
+#	#starts mega draw call
+#	render: ->
+#		# console.log "render grid"
+#		@clear()
+#		blocks = @blocksToRender()
+#		# console.log blocks
+#		for block in blocks
+#			@renderBlock block
+#		for block in blocks
+#			@renderItem block
+#
+#		@renderRooms()
+#
+#
+#
+#
+#	renderRooms: ->
+#		# console.log "do me"
+#		@context.fillStyle = 'rgba(0,0,0,0.5)'
+#		for type of @rooms
+#			roomType = RoomTypes[type]
+#			rooms = @rooms[type]
+#			# console.log rooms
+#			for room in rooms
+#				offset = @blockPosition {x: room.minx, y: room.miny}
+#				# console.log roomType.name
+#				@context.font = '10px verdana'
+#				@context.fillText roomType.name, offset.x+5, offset.y+15
 #########TODO END DELETE
 
 
