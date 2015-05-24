@@ -14,6 +14,8 @@ Input = require 'Game/Input'
 
 Imagine = require 'imagine'
 
+BlockRenderer = require 'Game/Grid/Block/Renderer'
+
 
 class Renderer extends require 'Mixin'
   @extend require 'DependencyInjector'
@@ -24,6 +26,7 @@ class Renderer extends require 'Mixin'
   })
 
   constructor: (@container) ->
+    @blockRenderer = new BlockRenderer()
     @gridLayer = new Layer @container
     @render()
     Imagine @
@@ -47,9 +50,6 @@ class Renderer extends require 'Mixin'
       @render()
       @willRender = false
 
-
-
-
   # tries to render the block in State.gridData['_'+x+'_'+y]
   blockPosition: (block) ->
     Util.localToGlobal
@@ -66,10 +66,6 @@ class Renderer extends require 'Mixin'
         out.push {x, y}
     out
 
-  resetContextStyle: ->
-    @gridLayer.context.lineWidth = 1
-    @gridLayer.context.fillStyle = "black"
-# @gridLayer.context.strokeStyle = "black"
 
   renderBlock: (block) ->
     if Input.selection
@@ -77,7 +73,7 @@ class Renderer extends require 'Mixin'
       if (s.l<=block.x) and (s.r>=block.x) and (s.t<=block.y) and (s.b>=block.y)
         selected = true
 
-    @resetContextStyle()
+    @gridLayer.resetContextStyle()
 
     offset = @blockPosition block
 
@@ -103,7 +99,7 @@ class Renderer extends require 'Mixin'
     @gridLayer.context.strokeRect offset.x, offset.y, gbw * State.view.scale, gbh * State.view.scale
 
     # debug
-    @resetContextStyle()
+    @gridLayer.resetContextStyle()
     if config.grid.debugText
       @gridLayer.context.fillStyle = "grey"
       @gridLayer.context.font = '10px verdana'
@@ -117,8 +113,6 @@ class Renderer extends require 'Mixin'
       type = @types.item[data.type]
       type.render @gridLayer.context, offset, data
 
-
-
   #starts mega draw call
   render: ->
     @gridLayer.clear()
@@ -128,23 +122,10 @@ class Renderer extends require 'Mixin'
       @renderBlock block
     for block in blocks
       @renderItem block
-
-    @renderRooms()
-
+#    @renderRooms()
 
 
 
-  renderRooms: ->
-# console.log "do me"
-    @gridLayer.context.fillStyle = 'rgba(0,0,0,0.5)'
-    for type of @rooms
-      roomType = @types.room[type]
-      rooms = @rooms[type]
-      # console.log rooms
-      for room in rooms
-        offset = @blockPosition {x: room.minx, y: room.miny}
-        # console.log roomType.name
-        @gridLayer.context.font = '10px verdana'
-        @gridLayer.context.fillText roomType.name, offset.x+5, offset.y+15
+
 
 module.exports = Renderer
