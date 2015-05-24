@@ -40,10 +40,7 @@ class window.Game
 
 
 	initGrid: (container) ->
-		canvas = @makeCanvas()
-#		$(container).append canvas
-		container.appendChild canvas
-		@grid = Imagine new Grid canvas
+		@grid = Imagine new Grid
 		@helpers.grid = @grid.helper
 		_.extend @types, @grid.getTypes()
 

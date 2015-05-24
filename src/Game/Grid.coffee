@@ -17,12 +17,10 @@ Input = require 'Game/Input'
 
 class Grid extends require 'Singleton'
 
-	constructor: (@canvas) ->
+	constructor: ->
 		Helper.inject
 			grid: @
 		@helper = Helper.getInstance()
-
-		@context = @canvas.getContext('2d')
 		@calcData()
 
 	getHelpers: ->
