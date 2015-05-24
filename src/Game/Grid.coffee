@@ -24,7 +24,6 @@ class Grid extends require 'Singleton'
 
 		@context = @canvas.getContext('2d')
 		@calcData()
-#		@render()
 
 	getHelpers: ->
 		{}
@@ -35,11 +34,6 @@ class Grid extends require 'Singleton'
 			room: RoomTypes
 		}
 
-#	itemStateChanged: =>
-#		@requireRender()
-#
-#	viewStateChanged: =>
-#		@requireRender()
 
 	gridStateChanged: =>
 		@calcData()
@@ -116,8 +110,6 @@ class Grid extends require 'Singleton'
 			if block.y > maxy then maxy = block.y
 			block
 
-		# console.log minx, miny, maxx, maxy
-
 		# make array
 		arr = []
 		for x in [minx..maxx]
@@ -133,9 +125,6 @@ class Grid extends require 'Singleton'
 			if block.type.isWall
 				weight = 0
 			arr[block.x-minx][block.y-miny] = weight
-		# console.log start, end
-
-		# console.log arr
 
 		pathData = {
 			arr
@@ -169,30 +158,6 @@ class Grid extends require 'Singleton'
 		path
 
 
-
-	gbw = config.grid.block.width
-	gbh = config.grid.block.height
-
-	cw = config.canvas.width
-	ch = config.canvas.height
-
-
-
-#	requireRender: ->
-#		@willRender = true
-#
-#	update: ->
-#		if @willRender
-#			@render()
-#			@willRender = false
-
-
-
-
-
-
-
-
 	# find all blocks with room type
 	blocksWithRoom: (room)->
 		out = []
@@ -204,113 +169,7 @@ class Grid extends require 'Singleton'
 			if block.data.room is room
 				out.push block
 		out
-#########TODO START DELETE
-#	# wipes canvas
-#	clear: ->
-#		@context.closePath()
-#		@context.clearRect 0, 0, cw, ch
-#
-#
-#	# tries to render the block in State.gridData['_'+x+'_'+y]
-#	blockPosition: (block) ->
-#		Util.localToGlobal
-#			x: gbw * block.x
-#			y: gbh * block.y
-#
-#	# looks at @offset, @scale and config.grid.block to output a list of blocks that are on screen
-#	blocksToRender: ->
-#
-#		tl = @helper.blockAtPoint {x:0, y:0}
-#		br = @helper.blockAtPoint {x:cw, y:ch}
-#
-#		out = []
-#		for x in [tl.x..br.x]
-#			for y in [tl.y..br.y]
-#				out.push {x, y}
-#		out
-#
-#	resetContextStyle: ->
-#		@context.lineWidth = 1
-#		@context.fillStyle = "black"
-#		# @context.strokeStyle = "black"
-#
-#	renderBlock: (block) ->
-#		if Input.selection
-#			s = Input.selection
-#			if (s.l<=block.x) and (s.r>=block.x) and (s.t<=block.y) and (s.b>=block.y)
-#				selected = true
-#
-#		@resetContextStyle()
-#
-#		offset = @blockPosition block
-#
-#		data = State.gridData[@helper.blockToString block]
-#		if data
-#			type = BlockTypes[data.type]
-#			type.render @context, offset, data
-#			room = data.room
-#			if room
-#				roomType = RoomTypes[room]
-#				if roomType
-#					@context.fillStyle = roomType.color
-#				else
-#					@context.fillStyle = 'red' #danger
-#				@context.fillRect offset.x, offset.y, gbw * State.view.scale, gbh * State.view.scale
-#
-#
-#		if selected
-#			@context.lineWidth = 3
-#			@context.strokeStyle = "green"
-#		else
-#			@context.strokeStyle = "rgba(100,100,100,0.0)"
-#		@context.strokeRect offset.x, offset.y, gbw * State.view.scale, gbh * State.view.scale
-#
-#		# debug
-#		@resetContextStyle()
-#		if config.grid.debugText
-#			@context.fillStyle = "grey"
-#			@context.font = '10px verdana'
-#			@context.fillText block.x+','+block.y, offset.x, offset.y+10
-#
-#	renderItem: (block) ->
-#
-#		offset = @blockPosition block
-#		data = State.itemData[@helper.blockToString block]
-#		if data
-#			type = ItemTypes[data.type]
-#			type.render @context, offset, data
-#
-#
-#
-#	#starts mega draw call
-#	render: ->
-#		# console.log "render grid"
-#		@clear()
-#		blocks = @blocksToRender()
-#		# console.log blocks
-#		for block in blocks
-#			@renderBlock block
-#		for block in blocks
-#			@renderItem block
-#
-#		@renderRooms()
-#
-#
-#
-#
-#	renderRooms: ->
-#		# console.log "do me"
-#		@context.fillStyle = 'rgba(0,0,0,0.5)'
-#		for type of @rooms
-#			roomType = RoomTypes[type]
-#			rooms = @rooms[type]
-#			# console.log rooms
-#			for room in rooms
-#				offset = @blockPosition {x: room.minx, y: room.miny}
-#				# console.log roomType.name
-#				@context.font = '10px verdana'
-#				@context.fillText roomType.name, offset.x+5, offset.y+15
-#########TODO END DELETE
+
 
 
 

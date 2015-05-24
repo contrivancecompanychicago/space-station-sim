@@ -25,7 +25,6 @@ class Renderer extends require 'Mixin'
 
   constructor: (@container) ->
     @gridLayer = new Layer @container
-#    @gridLayer.canvas.style.paddingTop = "480px"
     @render()
     Imagine @
 
