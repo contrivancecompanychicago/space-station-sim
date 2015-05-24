@@ -21,12 +21,6 @@ describe 'Game', ->
 	it 'should exist', ->
 		expect(gameClass).toBeDefined()
 
-	it 'should have globalToLocal', ->
-		expect(gameClass.globalToLocal).toBeDefined()
-
-	it 'should have localToGlobal', ->
-		expect(gameClass.localToGlobal).toBeDefined()
-
 	it 'should throw an error if instantiated without a container', ->
 		expect(-> new gameClass()).toThrow new Error 'Game container not defined'
 

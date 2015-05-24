@@ -13,5 +13,4 @@ class Util
     x: (State.view.offset.x + (point.x)) * State.view.scale
     y: (State.view.offset.y + (point.y)) * State.view.scale
 
-
 module.exports = Util

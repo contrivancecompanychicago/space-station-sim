@@ -58,6 +58,8 @@ class window.Game
 		canvas.id = "character"
 #		$(container).append canvas
 		container.appendChild canvas
+		CharacterLayer.inject
+			types: @types
 		@character = Imagine new CharacterLayer canvas
 
 	initUI: (container) ->
@@ -103,7 +105,5 @@ class window.Game
 		window.Game.instance = undefined
 		Imagine.engine.reset()
 
-	@globalToLocal: Util.globalToLocal
-	@localToGlobal: Util.localToGlobal
 
 module.exports = window.Game

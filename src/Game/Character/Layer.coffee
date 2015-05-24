@@ -31,7 +31,6 @@ class CharacterLayer extends require 'Mixin'
 		@context.closePath()
 		@context.clearRect 0, 0, cw, ch
 
-
 	render: ->
 		@clear()
 		chars = Imagine.getComponents 'character'
@@ -47,7 +46,7 @@ class CharacterLayer extends require 'Mixin'
 			y = 30
 			@context.fillText obj.data.firstname + " " + obj.data.lastname, 10, y += 20
 			@context.font = '14px verdana'
-			@context.fillText @types.action[obj.action].desc, 10, y += 20
+#			@context.fillText @types.action[obj.action].desc, 10, y += 20
 			@context.fillText "Needs:", 10, y += 20
 			@context.font = '10px verdana'
 			for need of obj.data.needs
@@ -60,7 +59,6 @@ class CharacterLayer extends require 'Mixin'
 				r = Math.floor(need * 255)
 				@context.fillStyle = 'rgb(' + r + ',' + (255-r) + ',0)'
 				@context.fillRect 10, y, need * 100, 10
-				 
 				y += 10
 
 	renderSelected: ->
