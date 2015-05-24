@@ -10,5 +10,9 @@ class Layer
     _.extend @canvas, config.canvas
     _.extend @canvas.style, config.canvas.style
 
+  # wipes canvas
+  clear: ->
+    @context.closePath()
+    @context.clearRect 0, 0, config.canvas.width, config.canvas.height
 
 module.exports = Layer

@@ -50,13 +50,6 @@ class Renderer extends require 'Mixin'
 
 
 
-
-    # wipes canvas
-  clear: ->
-    @gridLayer.context.closePath()
-    @gridLayer.context.clearRect 0, 0, cw, ch
-
-
   # tries to render the block in State.gridData['_'+x+'_'+y]
   blockPosition: (block) ->
     Util.localToGlobal
@@ -128,7 +121,7 @@ class Renderer extends require 'Mixin'
 
   #starts mega draw call
   render: ->
-    @clear()
+    @gridLayer.clear()
     blocks = @blocksToRender()
     # console.log blocks
     for block in blocks

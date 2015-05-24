@@ -8,6 +8,7 @@ config = require 'Game/config'
 Renderer = require 'Game/Renderer'
 UI = require 'Game/UI/Layer'
 CharacterLayer = require 'Game/Character/Layer'
+Util = require 'Game/Util'
 
 DockingBay = require 'Game/Observer/DockingBay'
 
@@ -97,28 +98,12 @@ class window.Game
 			helpers: @helpers
 		Imagine new DockingBay()
 
-
 	destroy: ->
 		@container.innerHTML = ''
 		window.Game.instance = undefined
 		Imagine.engine.reset()
 
-	@globalToLocal: (point) ->
-		x: ((point.x / State.view.scale) - State.view.offset.x)
-		y: ((point.y / State.view.scale) - State.view.offset.y)
-	@localToGlobal: (point) ->
-		x: (State.view.offset.x + (point.x)) * State.view.scale
-		y: (State.view.offset.y + (point.y)) * State.view.scale
-
-#	@save: =>
-#		# @grid.requireRender()
-#		# @character.requireRender()
-#		Storage.set()
-
-
-
-
-
-
+	@globalToLocal: Util.globalToLocal
+	@localToGlobal: Util.localToGlobal
 
 module.exports = window.Game
