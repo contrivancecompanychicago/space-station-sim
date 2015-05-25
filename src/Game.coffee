@@ -7,7 +7,7 @@ Storage = require 'Game/Storage'
 config = require 'Game/config'
 Renderer = require 'Game/Renderer'
 UI = require 'Game/UI/Layer'
-CharacterLayer = require 'Game/Character/Layer'
+CharacterLayer = require 'Game/Character/Renderer'
 Util = require 'Game/Util'
 
 DockingBay = require 'Game/Observer/DockingBay'
@@ -28,7 +28,7 @@ class window.Game
 
 		@styleContainer(container)
 		@initState()
-		@initGrid(container)
+		@initGrid()
 		@initRenderer(container)
 		@initCharacter(container)
 		@initUI(container)
@@ -40,7 +40,7 @@ class window.Game
 		@container.style.position = "relative"
 
 
-	initGrid: (container) ->
+	initGrid: ->
 		@grid = Imagine new Grid
 		@helpers.grid = @grid.helper
 		_.extend @types, @grid.getTypes()
