@@ -3,6 +3,8 @@ Imagine = require 'imagine'
 #ActionTypes = require 'Game/Character/Action/Types'
 
 
+cw = config.canvas.width
+ch = config.canvas.height
 
 State = require 'Game/State'
 Util = require 'Game/Util'
@@ -17,13 +19,9 @@ class CharacterLayer extends require 'Mixin'
 #		grid: new @Dependency 'Grid Reference'
 	})
 
-	cw = config.canvas.width
-	ch = config.canvas.height
 	constructor: (@canvas) ->
 		@context = @canvas.getContext '2d'
 		@willRender = true
-
-		# throw new Error 'LOAD CHAR DATA'
 		@render()
 
 	# wipes canvas
