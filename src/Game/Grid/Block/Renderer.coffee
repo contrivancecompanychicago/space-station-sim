@@ -36,7 +36,6 @@ class BlockRenderer extends require 'Mixin'
   render: (@layer) ->
     @layer.clear()
     blocks = @blocksToRender()
-    # console.log blocks
     for block in blocks
       @renderBlock block
     for block in blocks

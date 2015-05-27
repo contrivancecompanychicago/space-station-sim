@@ -1,6 +1,5 @@
 config = require 'Game/config'
 Imagine = require 'imagine'
-#ActionTypes = require 'Game/Character/Action/Types'
 
 
 cw = config.canvas.width
@@ -11,18 +10,18 @@ Util = require 'Game/Util'
 
 Input = require 'Game/Input'
 
-class CharacterLayer extends require 'Mixin'
+class CharacterRenderer extends require 'Mixin'
 	@extend require 'DependencyInjector'
 
 	@dependencies({
-		types: new @Dependency 'CharacterLayer types'
+		types: new @Dependency 'CharacterRenderer types'
 #		grid: new @Dependency 'Grid Reference'
 	})
 
 	constructor: (@canvas) ->
 		@context = @canvas.getContext '2d'
 		@willRender = true
-		@render()
+#		@render()
 
 	# wipes canvas
 	clear: ->
@@ -94,4 +93,4 @@ class CharacterLayer extends require 'Mixin'
 			@render()
 			# @willRender = false
 
-module.exports = CharacterLayer
+module.exports = CharacterRenderer

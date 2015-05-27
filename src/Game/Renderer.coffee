@@ -15,6 +15,7 @@ Input = require 'Game/Input'
 Imagine = require 'imagine'
 
 BlockRenderer = require 'Game/Grid/Block/Renderer'
+CharacterRenderer = require 'Game/Character/Renderer'
 
 
 class Renderer extends require 'Mixin'
@@ -31,7 +32,17 @@ class Renderer extends require 'Mixin'
       helpers: @helpers
       types: @types
     @gridLayer = new Layer @container
+    @gridLayer.canvas.id = 'grid'
+    @characterLayer = new Layer @container
+    @characterLayer.canvas.id = 'character'
     @requireRender()
+
+
+    CharacterRenderer.inject
+      types: @types
+    @character = Imagine new CharacterRenderer @characterLayer.canvas
+
+
     Imagine @
 
 

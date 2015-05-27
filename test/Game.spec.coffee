@@ -58,16 +58,16 @@ describe 'Game', ->
 			imagine = require 'imagine'
 			expect(imagine.objects.length).toBe 0
 
-	describe 'makeCanvas', ->
-		it 'should be defined', ->
-			expect(game.makeCanvas).toBeDefined()
-		it 'should return a canvas', ->
-			expect(game.makeCanvas().tagName.toLowerCase()).toBe 'canvas'
-		it 'should take a style object', ->
-			canvas = game.makeCanvas()
-			expect(canvas.style).toBeDefined()
-			expect(canvas.width).toBe(config.canvas.width)
-			expect(canvas.style.border).toBe(config.canvas.style.border)
+#	describe 'makeCanvas', ->
+#		it 'should be defined', ->
+#			expect(game.makeCanvas).toBeDefined()
+#		it 'should return a canvas', ->
+#			expect(game.makeCanvas().tagName.toLowerCase()).toBe 'canvas'
+#		it 'should take a style object', ->
+#			canvas = game.makeCanvas()
+#			expect(canvas.style).toBeDefined()
+#			expect(canvas.width).toBe(config.canvas.width)
+#			expect(canvas.style.border).toBe(config.canvas.style.border)
 
 	describe 'initGrid', ->
 		it 'should be defined', ->

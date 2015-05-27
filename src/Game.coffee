@@ -7,7 +7,7 @@ Storage = require 'Game/Storage'
 config = require 'Game/config'
 Renderer = require 'Game/Renderer'
 UI = require 'Game/UI/Layer'
-CharacterLayer = require 'Game/Character/Renderer'
+CharacterRenderer = require 'Game/Character/Renderer'
 Util = require 'Game/Util'
 
 DockingBay = require 'Game/Observer/DockingBay'
@@ -30,6 +30,7 @@ class window.Game
 		@initState()
 		@initGrid()
 		@initRenderer(container)
+		@initInput()
 		@initCharacter(container)
 		@initUI(container)
 		@spawnObservers()
@@ -52,15 +53,10 @@ class window.Game
 		helper = new CharHelper()
 		helper.init()
 		@helpers.character = helper
-		canvas = @makeCanvas()
-		@input = Imagine new Input canvas
 
-		canvas.id = "character"
-#		$(container).append canvas
-		container.appendChild canvas
-		CharacterLayer.inject
-			types: @types
-		@character = Imagine new CharacterLayer canvas
+
+	initInput: ->
+		@input = Imagine new Input @renderer.characterLayer.canvas
 
 	initUI: (container) ->
 		UI.inject
