@@ -18,18 +18,8 @@ class CharacterRenderer extends require 'Mixin'
 #		grid: new @Dependency 'Grid Reference'
 	})
 
-	constructor: (@canvas) ->
-		@context = @canvas.getContext '2d'
-		@willRender = true
-#		@render()
-
-	# wipes canvas
-	clear: ->
-		@context.closePath()
-		@context.clearRect 0, 0, cw, ch
-
-	render: ->
-		@clear()
+	render: (@layer) ->
+		@layer.clear()
 		chars = Imagine.getComponents 'character'
 		chars.forEach (char) =>
 			@renderChar char.pos
@@ -38,59 +28,51 @@ class CharacterRenderer extends require 'Mixin'
 
 		if @selected
 			obj = @selected
-			@context.fillStyle = "white"
-			@context.font = 'bold 16px verdana'
+			@layer.context.fillStyle = "white"
+			@layer.context.font = 'bold 16px verdana'
 			y = 30
-			@context.fillText obj.data.firstname + " " + obj.data.lastname, 10, y += 20
-			@context.font = '14px verdana'
-#			@context.fillText @types.action[obj.action].desc, 10, y += 20
-			@context.fillText "Needs:", 10, y += 20
-			@context.font = '10px verdana'
+			@layer.context.fillText obj.data.firstname + " " + obj.data.lastname, 10, y += 20
+			@layer.context.font = '14px verdana'
+#			@layer.context.fillText @types.action[obj.action].desc, 10, y += 20
+			@layer.context.fillText "Needs:", 10, y += 20
+			@layer.context.font = '10px verdana'
 			for need of obj.data.needs
-				@context.fillStyle = 'white'
-				@context.fillText need, 10, y += 14
-				@context.fillStyle = 'grey'
+				@layer.context.fillStyle = 'white'
+				@layer.context.fillText need, 10, y += 14
+				@layer.context.fillStyle = 'grey'
 				y += 4
-				@context.fillRect 10, y, 100, 10
+				@layer.context.fillRect 10, y, 100, 10
 				need = obj.data.needs[need]
 				r = Math.floor(need * 255)
-				@context.fillStyle = 'rgb(' + r + ',' + (255-r) + ',0)'
-				@context.fillRect 10, y, need * 100, 10
+				@layer.context.fillStyle = 'rgb(' + r + ',' + (255-r) + ',0)'
+				@layer.context.fillRect 10, y, need * 100, 10
 				y += 10
 
 	renderSelected: ->
-#		console.log "remove reference to game"
 		if Input.instance.objectUnderMouse
 			@selected = Input.instance.objectUnderMouse
 
 		if @selected
 			pos = Util.localToGlobal @selected.pos
-			@context.strokeStyle = 'white'
-			@context.lineWidth = 2
-			# @context.fillRect pos.x, pos.y, 10*State.view.scale, 10*State.view.scale
+			@layer.context.strokeStyle = 'white'
+			@layer.context.lineWidth = 2
+			# @layer.context.fillRect pos.x, pos.y, 10*State.view.scale, 10*State.view.scale
 
-			@context.beginPath()
-			@context.arc(pos.x, pos.y, config.character.radius*State.view.scale, 0, 2 * Math.PI, false);
-			@context.stroke()
-			@context.closePath()
+			@layer.context.beginPath()
+			@layer.context.arc(pos.x, pos.y, config.character.radius*State.view.scale, 0, 2 * Math.PI, false);
+			@layer.context.stroke()
+			@layer.context.closePath()
 
 
 	renderChar: (data) ->
 		pos = Util.localToGlobal data
-		@context.fillStyle = 'green'
-		# @context.fillRect pos.x, pos.y, 10*State.view.scale, 10*State.view.scale
+		@layer.context.fillStyle = 'green'
+		# @layer.context.fillRect pos.x, pos.y, 10*State.view.scale, 10*State.view.scale
 
-		@context.beginPath()
-		@context.arc(pos.x, pos.y, config.character.radius*State.view.scale, 0, 2 * Math.PI, false);
-		@context.fill()
-		@context.closePath()
+		@layer.context.beginPath()
+		@layer.context.arc(pos.x, pos.y, config.character.radius*State.view.scale, 0, 2 * Math.PI, false);
+		@layer.context.fill()
+		@layer.context.closePath()
 
-	requireRender: ->
-		@willRender = true
-
-	update: ->
-		if @willRender
-			@render()
-			# @willRender = false
 
 module.exports = CharacterRenderer

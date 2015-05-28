@@ -36,15 +36,10 @@ class Renderer extends require 'Mixin'
     @characterLayer = new Layer @container
     @characterLayer.canvas.id = 'character'
     @requireRender()
-
-
     CharacterRenderer.inject
       types: @types
-    @character = Imagine new CharacterRenderer @characterLayer.canvas
-
-
+    @characterRenderer = new CharacterRenderer
     Imagine @
-
 
   itemStateChanged: =>
     @requireRender()
@@ -56,11 +51,11 @@ class Renderer extends require 'Mixin'
 #    @calcData() #todo
     @requireRender()
 
-
   requireRender: ->
     @willRender = true
 
   update: ->
+    @characterRenderer.render @characterLayer
     if @willRender
       @blockRenderer.render @gridLayer
       @willRender = false

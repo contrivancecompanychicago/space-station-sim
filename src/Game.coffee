@@ -1,5 +1,4 @@
 Imagine = require 'imagine'
-#$ = require 'jquery'
 _ = require 'lodash'
 Grid = require 'Game/Grid'
 Input = require 'Game/Input'
@@ -31,7 +30,7 @@ class window.Game
 		@initGrid()
 		@initRenderer(container)
 		@initInput()
-		@initCharacter(container)
+		@initCharacter()
 		@initUI(container)
 		@spawnObservers()
 
@@ -40,13 +39,26 @@ class window.Game
 		@container.style.width = config.canvas.width + "px"
 		@container.style.position = "relative"
 
+	initState: ->
+		loaded = Storage.get()
+		if loaded
+			require('Game/State/Helper').getInstance().loadGame loaded
 
 	initGrid: ->
 		@grid = Imagine new Grid
 		@helpers.grid = @grid.helper
 		_.extend @types, @grid.getTypes()
 
-	initCharacter: (container) ->
+	initRenderer: (container) ->
+		Renderer.inject
+			helpers: @helpers
+			types: @types
+		@renderer = new Renderer container
+
+	initInput: ->
+		@input = Imagine new Input @renderer.characterLayer.canvas
+
+	initCharacter: ->
 		CharHelper = require('Game/Character/Helper')
 		CharHelper.inject
 			helpers: @helpers
@@ -55,41 +67,16 @@ class window.Game
 		@helpers.character = helper
 
 
-	initInput: ->
-		@input = Imagine new Input @renderer.characterLayer.canvas
-
 	initUI: (container) ->
 		UI.inject
 			helpers: @helpers
 			types: @types
 
-
 		UI_div = document.createElement 'div'
 		UI_div.id = "ui"
 
-#		$(container).append UI_div
 		container.appendChild UI_div
 		@ui = new UI UI_div
-
-	initState: ->
-		loaded = Storage.get()
-		if loaded
-#			@constructor.state = JSON.parse Storage.get()
-			require('Game/State/Helper').getInstance().loadGame Storage.get()
-		else
-#			@constructor.state = require 'Game/State'
-
-	initRenderer: (container) ->
-		Renderer.inject
-			helpers: @helpers
-			types: @types
-		@renderer = new Renderer container
-
-	makeCanvas: ->
-		canvas = document.createElement 'canvas'
-		_.extend canvas, config.canvas
-		_.extend canvas.style, config.canvas.style
-		canvas
 
 	spawnObservers: ->
 		DockingBay.inject
