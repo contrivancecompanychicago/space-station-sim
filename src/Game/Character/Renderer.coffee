@@ -26,27 +26,7 @@ class CharacterRenderer extends require 'Mixin'
 
 		@renderSelected()
 
-		if @selected
-			obj = @selected
-			@layer.context.fillStyle = "white"
-			@layer.context.font = 'bold 16px verdana'
-			y = 30
-			@layer.context.fillText obj.data.firstname + " " + obj.data.lastname, 10, y += 20
-			@layer.context.font = '14px verdana'
-#			@layer.context.fillText @types.action[obj.action].desc, 10, y += 20
-			@layer.context.fillText "Needs:", 10, y += 20
-			@layer.context.font = '10px verdana'
-			for need of obj.data.needs
-				@layer.context.fillStyle = 'white'
-				@layer.context.fillText need, 10, y += 14
-				@layer.context.fillStyle = 'grey'
-				y += 4
-				@layer.context.fillRect 10, y, 100, 10
-				need = obj.data.needs[need]
-				r = Math.floor(need * 255)
-				@layer.context.fillStyle = 'rgb(' + r + ',' + (255-r) + ',0)'
-				@layer.context.fillRect 10, y, need * 100, 10
-				y += 10
+
 
 	renderSelected: ->
 		if Input.instance.objectUnderMouse
@@ -62,6 +42,28 @@ class CharacterRenderer extends require 'Mixin'
 			@layer.context.arc(pos.x, pos.y, config.character.radius*State.view.scale, 0, 2 * Math.PI, false);
 			@layer.context.stroke()
 			@layer.context.closePath()
+
+			# text overlay
+			obj = @selected
+			@layer.context.fillStyle = "white"
+			@layer.context.font = 'bold 16px verdana'
+			y = 30
+			@layer.context.fillText obj.data.firstname + " " + obj.data.lastname, 10, y += 20
+			@layer.context.font = '14px verdana'
+			#			@layer.context.fillText @types.action[obj.action].desc, 10, y += 20
+			@layer.context.fillText "Needs:", 10, y += 20
+			@layer.context.font = '10px verdana'
+			for need of obj.data.needs
+				@layer.context.fillStyle = 'white'
+				@layer.context.fillText need, 10, y += 14
+				@layer.context.fillStyle = 'grey'
+				y += 4
+				@layer.context.fillRect 10, y, 100, 10
+				need = obj.data.needs[need]
+				r = Math.floor(need * 255)
+				@layer.context.fillStyle = 'rgb(' + r + ',' + (255-r) + ',0)'
+				@layer.context.fillRect 10, y, need * 100, 10
+				y += 10
 
 
 	renderChar: (data) ->
