@@ -5,6 +5,9 @@ State = require 'Game/State'
 class TaskHelper extends require 'Singleton'
 
 	name: 'taskmaster'
+#	init: ->
+#		State.taskData.forEach (task) ->
+#			new Task task
 	addTask: (task) ->
 		# add to list
 		State.taskData.push task

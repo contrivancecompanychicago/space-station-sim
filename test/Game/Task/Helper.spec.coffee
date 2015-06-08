@@ -5,6 +5,7 @@ State = require 'Game/State'
 
 TaskHelper = require 'Game/Task/Helper'
 taskHelper = TaskHelper.getInstance()
+Task = require 'Game/Task'
 describe "Game/Task/Helper", ->
 
 	it 'should be singleton', ->
@@ -37,5 +38,23 @@ describe "Game/Task/Helper", ->
 			expect(State.taskData).toBeDefined()
 		it 'should be an array', ->
 			expect(Array.isArray(State.taskData)).toBe(true)
+#
+#	describe 'init', ->
+#		it 'should be defined', ->
+#			expect taskHelper.init
+#				.toBeDefined()
+#		it 'should make Task objects for every thing in game state tasks', ->
+#			spyOn Task, 'constructor'
+#			State.taskData = [
+#				1
+#				2
+#				3
+#			]
+#			taskHelper.init()
+#			expect Task.constructor
+#				.toHaveBeenCalled()
+
+
+
 
 		
