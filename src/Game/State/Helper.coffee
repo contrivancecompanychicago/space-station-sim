@@ -8,9 +8,9 @@ Storage = require 'Game/Storage'
 
 class StateManager extends require 'Singleton'
 	init: ->
-		window.state = State #DEBUG
 		@clear()
 		_.merge State, Defaults
+		window.state = State #DEBUG
 	clear: ->
 		for prop of State
 			if State.hasOwnProperty prop

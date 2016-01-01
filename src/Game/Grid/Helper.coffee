@@ -6,6 +6,8 @@ Util = require 'Game/Util'
 
 State = require 'Game/State'
 
+ItemTypes = require 'Game/Grid/Item/Types'
+
 gbw = config.grid.block.width
 gbh = config.grid.block.height
 cw = config.canvas.width
@@ -58,9 +60,15 @@ class Helper extends require 'Mixin'
 					# just using block key due to simplified refactoring. Could introduce a bug
 					key = block
 					State.itemData[key] = obj
-					State.gridData[block].item = key
+					# State.gridData[block].item = key
 					# two way link from block to item for rendering
-
+					# "paint" the other cells if item overlaps
+					type = ItemTypes[type]
+					for w in [0..type.width-1]
+						for h in [0..type.height-1]
+							# console.log w, h, pos
+							block = @blockToString({x: pos.x + w, y: pos.y + h })
+							State.gridData[block].item = key
 
 
 
