@@ -41,8 +41,9 @@ class window.Game
 
 	initState: ->
 		loaded = Storage.get()
+		helper = require('Game/State/Helper').getInstance()
 		if loaded
-			require('Game/State/Helper').getInstance().loadGame loaded
+			helper.loadGame loaded
 
 	initGrid: ->
 		@grid = Imagine new Grid

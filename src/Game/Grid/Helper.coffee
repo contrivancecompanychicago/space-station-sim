@@ -59,8 +59,8 @@ class Helper extends require 'Mixin'
 					type = ItemTypes[type]
 					for w in [0..type.width-1]
 						for h in [0..type.height-1]
-							block = @blockToString({x: pos.x + w, y: pos.y + h })
-							if State.gridData[block].item
+							testblock = @blockToString({x: pos.x + w, y: pos.y + h })
+							if State.gridData[testblock].item
 								return false# if it already has an item, stop.
 
 
@@ -91,7 +91,12 @@ class Helper extends require 'Mixin'
 				if State.gridData[@blockToString(pos)]
 					delete State.gridData[@blockToString(pos)].room
 			when 'item'
-				delete State.itemData[@blockToString(pos)]
+				item = State.gridData[@blockToString(pos)].item
+				delete State.itemData[item] #delete it
+				_.keys(State.gridData).forEach (key) -> #and wipe all traces
+					if State.gridData[key].item is item
+						delete State.gridData[key].item
+
 
 
 	# returns adjacent block data

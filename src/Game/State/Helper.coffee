@@ -4,13 +4,13 @@ NewGame = require 'Game/State/NewGame'
 _ = require 'lodash'
 Storage = require 'Game/Storage'
 
-
+window.state = State #DEBUG
 
 class StateManager extends require 'Singleton'
 	init: ->
 		@clear()
 		_.merge State, Defaults
-		window.state = State #DEBUG
+
 	clear: ->
 		for prop of State
 			if State.hasOwnProperty prop

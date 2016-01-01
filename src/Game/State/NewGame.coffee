@@ -1,3 +1,4 @@
+# shit aint implemented i think
 module.exports =
 	gridData: {
 		g5_5: {type:'plain'}
