@@ -4,8 +4,11 @@ NewGame = require 'Game/State/NewGame'
 _ = require 'lodash'
 Storage = require 'Game/Storage'
 
+
+
 class StateManager extends require 'Singleton'
 	init: ->
+		window.state = State #DEBUG
 		@clear()
 		_.merge State, Defaults
 	clear: ->

@@ -96,11 +96,13 @@ class BlockRenderer extends require 'Mixin'
 
   renderItem: (block) ->
 
-    offset = @blockPosition block
-    data = State.itemData[@helpers.grid.blockToString block]
-    if data
-      type = @types.item[data.type]
-      type.render @layer.context, offset, data
+    data = State.gridData[@helpers.grid.blockToString block]
+    if data?.item
+      offset = @blockPosition block
+      data = State.itemData[data.item]
+      if data
+        type = @types.item[data.type]
+        type.render @layer.context, offset, data
 
 
 

@@ -34,7 +34,7 @@ class Helper extends require 'Mixin'
 		ar = str.substr(1).split '_'
 		out = {x: parseInt(ar[0]), y: parseInt(ar[1])}
 		# debugger
-		out 
+		out
 
 	addBlock: (pos) ->
 		mode = State.ui.mode
@@ -50,11 +50,20 @@ class Helper extends require 'Mixin'
 			when 'item'
 				block = @blockToString(pos)
 				if State.gridData[block]#check if block exists
+					console.log "TODO: check surrounding block"
 					type = State.ui.item
-					obj = {type:type}
+					obj = {type: type, block: block}
 #					_.extend obj, ItemTypes[type].defaults # todo: build this back in
-					State.itemData[block] = obj
-			
+					# make the new item
+					# just using block key due to simplified refactoring. Could introduce a bug
+					key = block
+					State.itemData[key] = obj
+					State.gridData[block].item = key
+					# two way link from block to item for rendering
+
+
+
+
 	removeBlock: (pos) ->
 		mode = State.ui.mode
 		switch mode
@@ -79,7 +88,7 @@ class Helper extends require 'Mixin'
 			]
 		out = []
 		combos.forEach (combo) =>
-			bl = 
+			bl =
 				x: block.x + combo.x
 				y: block.y + combo.y
 			key = helper.blockToString bl
