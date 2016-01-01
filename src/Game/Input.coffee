@@ -10,7 +10,7 @@ Util = require('Game/Util')
 # singleton whatever
 class Input extends require 'Singleton'
 	# mousePosition: {x:0, y:0}
-	@states: 
+	@states:
 		blank: -1
 		selecting: 0
 		moving: 1
@@ -59,7 +59,7 @@ class Input extends require 'Singleton'
 
 			State.view.offset = offset
 
-			
+
 			Imagine.notify 'viewStateChanged'
 
 	startEvent = null
@@ -97,10 +97,10 @@ class Input extends require 'Singleton'
 						gridhelper.removeBlock {x, y}
 			Imagine.notify 'gridStateChanged'
 
-			
+
 		@state = @states.blank
-		
-		
+
+
 	@mouseEventPosition: (e) ->
 		pos =
 			x: e.x or e.clientX
