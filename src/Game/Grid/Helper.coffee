@@ -52,10 +52,19 @@ class Helper extends require 'Mixin'
 			when 'item'
 				block = @blockToString(pos)
 				if State.gridData[block]#check if block exists
-					console.log "TODO: check surrounding block"
+
 					type = State.ui.item
 					obj = {type: type, block: block}
-#					_.extend obj, ItemTypes[type].defaults # todo: build this back in
+					# check surrounding
+					type = ItemTypes[type]
+					for w in [0..type.width-1]
+						for h in [0..type.height-1]
+							block = @blockToString({x: pos.x + w, y: pos.y + h })
+							if State.gridData[block].item
+								return false# if it already has an item, stop.
+
+
+					#_.extend obj, ItemTypes[type].defaults # todo: build this back in
 					# make the new item
 					# just using block key due to simplified refactoring. Could introduce a bug
 					key = block
@@ -63,7 +72,7 @@ class Helper extends require 'Mixin'
 					# State.gridData[block].item = key
 					# two way link from block to item for rendering
 					# "paint" the other cells if item overlaps
-					type = ItemTypes[type]
+
 					for w in [0..type.width-1]
 						for h in [0..type.height-1]
 							# console.log w, h, pos
