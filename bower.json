@@ -23,7 +23,6 @@
     "astar": "git+https://git@github.com/bgrins/javascript-astar.git",
     "jquery": "~2.1.3",
     "imagine": "*",
-    "victor": "~0.2.6",
     "lodash": "~3.8.0"
   }
 }

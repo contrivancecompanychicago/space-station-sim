@@ -10,5 +10,11 @@
   * grid
    * block
 
+## to dev
+
+gulp nodemon
+webpack --watch
+
+
 
 todo: moved to trello

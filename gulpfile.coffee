@@ -15,6 +15,8 @@ notifier = require 'node-notifier'
 require './buildTasks/js.coffee'
 
 gulp.task 'default', ->
+	gulp.start ['build', 'open']
+gulp.task 'dev', ->
 	gulp.start ['build', 'watch'] #karma
 gulp.task 'server', ->
 	gulp.start ['build']
