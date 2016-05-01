@@ -1,10 +1,15 @@
-import task from 'reducer/task';
+import tasks from 'reducer/tasks';
 
+import { combineReducers } from 'redux';
 
-export default function reducer(state = {}, action) {
-  return {
-    task: task(state.task, action)
-  }
-
-  return state;
-}
+export default combineReducers({
+  tasks: tasks
+})
+// export default function reducer(state = {}, action) {
+//
+//   return {
+//     tasks: tasks(state.task, action)
+//   }
+//
+//   return state;
+// }
