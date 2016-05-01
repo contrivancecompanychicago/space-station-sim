@@ -6,6 +6,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var dir_js = path.resolve(__dirname, 'src');
 var dir_html = path.resolve(__dirname, 'html');
 var dir_build = path.resolve(__dirname, 'dist');
+var dir_spec = path.resolve(__dirname, 'test');
 
 module.exports = {
     entry: path.resolve(dir_js, 'main.js'),
@@ -21,6 +22,10 @@ module.exports = {
             {
                 loader: 'babel-loader',
                 test: dir_js,
+            },
+            {
+                loader: 'babel-loader',
+                test: dir_spec,
             },
             {
                 test: /\.html$/,
@@ -44,7 +49,7 @@ module.exports = {
         colors: true
     },
     resolve:{
-      root: process.cwd(),
+      root: path.join(process.cwd(), 'src'),
       extensions: [
         '',
         '.js'

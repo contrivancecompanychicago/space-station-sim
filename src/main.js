@@ -1,4 +1,4 @@
-// let Imagine = require('imagine-engine');
-
-const Game = require('./Game');
-window.game = new Game();
+import Game from 'Game';
+window.onload = () => {
+  window.game = new Game(document.getElementById('container'));
+}
