@@ -2,7 +2,7 @@ import tasks from 'reducer/tasks';
 import { createStore } from 'redux';
 let action = {type:'NOTHING'};
 
-describe('reducer/task', function(){
+describe('reducer/tasks', function(){
 
   it('should be defined', () => {
     expect(tasks).toBeDefined();

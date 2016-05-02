@@ -3,7 +3,7 @@ import tasks from 'reducer/tasks';
 import { combineReducers } from 'redux';
 
 export default combineReducers({
-  tasks: tasks
+  tasks
 })
 // export default function reducer(state = {}, action) {
 //

@@ -10,5 +10,8 @@ describe('reducer', () => {
     const store = createStore(reducer);
     expect(store.getState()).toBeDefined();
   });
+  it('should have tasks', () => {
+    expect(reducer({}, {type:'NOTHING'}).tasks).toBeDefined();
+  });
 
 });

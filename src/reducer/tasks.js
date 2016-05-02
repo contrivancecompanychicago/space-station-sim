@@ -1,8 +1,9 @@
+import task from 'reducer/tasks/task';
+
 export default function(state = [], action){
-  // console.log("tasking", action);
   switch(action.type) {
     case 'ADD_TASK':
-        return [...state, action.task]
+        return [...state, task(undefined, action)];
       break;
     default:
       return state;
