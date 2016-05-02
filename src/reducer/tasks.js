@@ -1,4 +1,4 @@
-import task from 'reducer/tasks/task';
+import task from 'reducer/task';
 
 export default function(state = [], action){
   switch(action.type) {

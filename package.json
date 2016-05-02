@@ -37,6 +37,7 @@
     "coffee-script": "^1.9.2",
     "coffeeify": "^1.0.0",
     "copy-webpack-plugin": "^0.2.0",
+    "deep-freeze": "0.0.1",
     "ejs-loader": "^0.2.1",
     "express": "^4.10.6",
     "glob": "~4.5.3",
