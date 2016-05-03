@@ -43,5 +43,4 @@ describe('Game/Component', () => {
 
   });
 
-
 });
