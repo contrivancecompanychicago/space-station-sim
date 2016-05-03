@@ -5,7 +5,6 @@ export default function task(state = {}, action){
     case 'ADD_TASK':
     switch(action.task){
       case 'build':
-        console.log('build');
         return build(state, action);
       break;
     }

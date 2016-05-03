@@ -15,12 +15,12 @@ describe('Game', () => {
       let game = new Game(div);
       expect(div.childNodes.length>0).toBe(true);
     });
-    it('should set the globals', () => {
-      let div = document.createElement('div');
-      let game = new Game(div);
-
-      expect(global.engine).toBeDefined();
-    });
+    // it('should set the globals', () => {
+    //   let div = document.createElement('div');
+    //   let game = new Game(div);
+    //
+    //   expect(global.engine).toBeDefined();
+    // });
     it('should clear globals on startup', () => {
       global.myvar = "abc";
       new Game(document.createElement('div'));

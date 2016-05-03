@@ -8,7 +8,7 @@ export default class Game {
   constructor(div){
     div.appendChild(document.createElement('div'));
     keys(global).forEach((key) => { delete global[key]; }); //clean globals
-    global.engine = new Imagine();
+    // global.engine = new Imagine();
     global.store = createStore(reducer);
   }
 
