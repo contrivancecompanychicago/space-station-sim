@@ -22,13 +22,11 @@ describe('reducer/tasks', function(){
   });
 
   describe('ADD_TASK', () => {
-
     it('should add to the state', () => {
       let out = tasks(state, {type:'ADD_TASK', task: 'build', x:1, y:2, block:3});
       // expect(out[0]).toBe(task);
       expect(out[0]).toBeDefined();
     });
-
   });
 
 });
