@@ -6,6 +6,9 @@ describe('Game/Task', () => {
     expect(Task).toBeDefined();
   });
   describe('statics', () => {
+    describe('add', () => {
+
+    });
     describe('assign', () => {
       it('should be defined', () => {
         expect(Task.assign).toBeDefined();
