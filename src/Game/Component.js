@@ -14,8 +14,13 @@ export default class Component {
     let className = this.constructor.name;
     if(!this.state.id) this.state.id = uniqid();
     if(!state[className]) state[className] = {};
-    state[this.state.id] = this.state; //attach to state
+    state[className][this.state.id] = this.state; //attach to state
 
     engine.register(this);
+  }
+
+  destroy(){
+    delete state[this.constructor.name][this.state.id];
+    engine.destroy(this);
   }
 };

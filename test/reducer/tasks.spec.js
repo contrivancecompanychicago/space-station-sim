@@ -28,5 +28,8 @@ describe('reducer/tasks', function(){
       expect(out[0]).toBeDefined();
     });
   });
+  // describe('ASSIGN_TASK', () => {
+  //   it('should')
+  // });
 
 });
