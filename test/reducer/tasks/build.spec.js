@@ -15,6 +15,17 @@ describe('reducer/tasks/build', () => {
     });
   });
 
+  describe('REMOVE_TASK', () => {
+    it('should add to the state', () => {
+      let state = {dummy: {}}
+      let action = {type:'REMOVE_TASK', id: 'dummy'}
+      let out = build(state, action);
+
+      expect(out[action.id]).not.toBeDefined();
+      expect(keys(out).length).toBe(0);
+    });
+  });
+
   describe('ASSIGN_TASK', () => {
     it('should set worker on a task', function(){
       let state = {dummy:{}};
@@ -28,6 +39,14 @@ describe('reducer/tasks/build', () => {
     it('should remove a worker', () => {
       let state = {dummy: {worker: 'joe'}};
       let action = {type: 'UNASSIGN_TASK', id: 'dummy'};
+      let out = build(state, action);
+      expect(out.dummy.worker).not.toBeDefined();
+    });
+  });
+  describe('UNASSIGN_TASK_WORKER', () => {
+    it('should remove a worker', () => {
+      let state = {dummy: {worker: 'joe'}};
+      let action = {type: 'UNASSIGN_TASK_WORKER', worker: 'joe'};
       let out = build(state, action);
       expect(out.dummy.worker).not.toBeDefined();
     });
