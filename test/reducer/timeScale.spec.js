@@ -5,6 +5,6 @@ describe('timescale', function(){
     expect(timeScale(undefined, {type:'NOTHING'})).toBe(1);
   });
   it('should take more numbers', function(){
-    expect(timeScale(1, {type:'TIMESCALE', scale:2})).toBe(2);
+    expect(timeScale(1, {type:'TIME_SCALE', scale:2})).toBe(2);
   })
 });
