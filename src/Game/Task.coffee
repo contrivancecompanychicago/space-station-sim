@@ -1,6 +1,4 @@
 
-import uniqid from 'Game/Util/uniqid';
-
 class Task
 	constructor: (@type, @block, @params) ->
 

@@ -40,7 +40,6 @@ describe('Game/Component', () => {
       expect(engine.objects.length).toBe(0);
       let c = new Component();
       expect(engine.objects.length).toBe(1);
-      // console.log(keys(c));
     });
 
   });
@@ -59,7 +58,6 @@ describe('Game/Component', () => {
     it('should remove from state', function(){
       let c = new Component();
       let stateid = c.state.id;
-      console.log(state);
       expect(state.Component[stateid]).toBeDefined();
       c.destroy();
       expect(state.Component[stateid]).not.toBeDefined();

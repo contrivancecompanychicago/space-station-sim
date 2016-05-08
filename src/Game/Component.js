@@ -5,7 +5,7 @@ import Imagine from 'imagine-engine';
 import uniqid from 'Game/Util/uniqid';
 
 //class statics
-export let state = {};
+export const state = {};
 export let engine = new Imagine();
 
 export default class Component {
