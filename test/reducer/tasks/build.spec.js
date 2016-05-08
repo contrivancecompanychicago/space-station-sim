@@ -24,6 +24,15 @@ describe('reducer/tasks/build', () => {
     });
   });
 
+  describe('UNASSIGN_TASK', () => {
+    it('should remove a worker', () => {
+      let state = {dummy: {worker: 'joe'}};
+      let action = {type: 'UNASSIGN_TASK', id: 'dummy'};
+      let out = build(state, action);
+      expect(out.dummy.worker).not.toBeDefined();
+    });
+  });
+
   describe('default', () => {
     it('should fall thru and return', function(){
       let state = {dummy:true};

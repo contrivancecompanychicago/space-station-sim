@@ -9,8 +9,24 @@ export default function build(state = {}, action){
         if(!action.id) action.id = uniqid();
         state[action.id] = action;
       }
+    break;
 
-    default:
-     return state;
+    case 'ASSIGN_TASK':
+      if(state[action.id]){
+        state[action.id].worker = action.worker;
+      }
+    break;
+
+    case 'UNASSIGN_TASK':
+      if(state[action.id]){
+        delete state[action.id].worker;
+      }
+    break;
+
+
+
+    // default:
+    //  return state;
   }
+  return state
 }
