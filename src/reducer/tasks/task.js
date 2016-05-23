@@ -25,7 +25,7 @@ export default function task(state = {}, action){
         map(state, (val) =>{
           if(val.worker && val.worker === action.worker) delete val.worker;
           return val;
-        })
+        });
       break;
 
   }

@@ -6,10 +6,10 @@ describe('reducers/ui', () => {
   });
 
   describe('defaults', () => {
-    let out = {}
+    let out = {};
     beforeEach(() => {
       out = ui({}, {type:'NOTHING'});
-    })
+    });
     it('should set block to plain', () => {
       expect(out.block).toBe('plain');
     });
@@ -45,4 +45,4 @@ describe('reducers/ui', () => {
     });
   });
 
-})
+});

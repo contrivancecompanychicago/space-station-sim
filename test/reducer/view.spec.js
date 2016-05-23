@@ -24,4 +24,4 @@ describe('reducer/view', () => {
     expect(out.offset.x).toBe(3);
     expect(out.offset.y).toBe(4);
   });
-})
+});

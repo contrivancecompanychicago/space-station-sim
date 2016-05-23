@@ -25,7 +25,7 @@ describe('Game', () => {
       global.myvar = "abc";
       new Game(document.createElement('div'));
       expect(global.myvar).not.toBeDefined();
-    })
+    });
   });
 
 });

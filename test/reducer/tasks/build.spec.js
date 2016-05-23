@@ -7,7 +7,7 @@ describe('reducer/tasks/build', () => {
 
   describe('ADD_TASK', () => {
     it('should add to the state', () => {
-      let action = {type:'ADD_TASK', task: 'build', x:1, y:2, block:3}
+      let action = {type:'ADD_TASK', task: 'build', x:1, y:2, block:3};
       let out = build({}, action);
       // expect(out[0]).toBe(task);
       expect(out[action.id]).toBeDefined();
@@ -17,8 +17,8 @@ describe('reducer/tasks/build', () => {
 
   describe('REMOVE_TASK', () => {
     it('should add to the state', () => {
-      let state = {dummy: {}}
-      let action = {type:'REMOVE_TASK', id: 'dummy'}
+      let state = {dummy: {}};
+      let action = {type:'REMOVE_TASK', id: 'dummy'};
       let out = build(state, action);
 
       expect(out[action.id]).not.toBeDefined();
@@ -60,4 +60,4 @@ describe('reducer/tasks/build', () => {
     });
   });
 
-})
+});

@@ -14,7 +14,7 @@ describe('Game/Task', () => {
         expect(Task.assign).toBeDefined();
       });
       it('should throw if passed a bad taskid', () => {
-        expect(() => {Task.assign(undefined, 123)}).toThrow();
+        expect(() => {Task.assign(undefined, 123);}).toThrow();
       });
       it('should add worker to a task', () => {
         state.test = {};

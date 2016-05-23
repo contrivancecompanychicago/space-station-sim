@@ -12,7 +12,7 @@ export default combineReducers({
   timeScale,
   ui,
   view
-})
+});
 // export default function reducer(state = {}, action) {
 //
 //   return {

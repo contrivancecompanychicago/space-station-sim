@@ -11,7 +11,7 @@ describe('reducer/tasks', function(){
   beforeEach(() => {
     state = {};
     freeze(state);
-  })
+  });
   it('should be defined', () => {
     expect(tasks).toBeDefined();
   });

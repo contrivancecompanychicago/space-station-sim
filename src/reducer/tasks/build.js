@@ -1,5 +1,5 @@
 import uniqid from 'Game/Util/uniqid';
-import task from 'reducer/tasks/task'
+import task from 'reducer/tasks/task';
 const defaults = {};
 
 
@@ -13,5 +13,5 @@ export default function build(state = {}, action){
       }
     break;
   }
-  return state
+  return state;
 }

@@ -19,11 +19,11 @@ export default function view(state = {}, action){
     out.offset = {
       x: state.offset.x + action.x,
       y: state.offset.y + action.y
-    }
+    };
   }else if(action.type === 'VIEW_SET_OFFSET'){
     out.offset = {x:action.x, y:action.y};
   }else{
-    out.offset = state.offset || {x:0,y:0}
+    out.offset = state.offset || {x:0,y:0};
   }
 
   return out;

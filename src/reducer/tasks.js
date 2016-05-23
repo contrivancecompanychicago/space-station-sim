@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 
 export default combineReducers({
   build
-})
+});
 
 // import task from 'reducer/task';
 //

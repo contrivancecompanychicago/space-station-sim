@@ -6,5 +6,5 @@ describe('timescale', function(){
   });
   it('should take more numbers', function(){
     expect(timeScale(1, {type:'TIME_SCALE', scale:2})).toBe(2);
-  })
+  });
 });

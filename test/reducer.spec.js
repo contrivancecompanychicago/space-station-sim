@@ -13,5 +13,13 @@ describe('reducer', () => {
   it('should have tasks', () => {
     expect(reducer({}, {type:'NOTHING'}).tasks).toBeDefined();
   });
+  describe('should contain', () => {
+    let state = {};
+    beforeEach(()=>{
+      state = reducer({}, {type:'NOTHING'});
+    });
+    it('grid', () => { expect(state.grid).toBeDefined();});
+    it('item', () => { expect(state.item).toBeDefined();});
+  });
 
 });
