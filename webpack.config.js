@@ -8,6 +8,7 @@ var dir_html = path.resolve(__dirname, 'html');
 var dir_build = path.resolve(__dirname, 'dist');
 var dir_spec = path.resolve(__dirname, 'test');
 
+
 module.exports = {
     entry: path.resolve(dir_js, 'main.js'),
     output: {
@@ -21,11 +22,12 @@ module.exports = {
         loaders: [
             {
                 loader: 'babel-loader',
-                test: dir_js,
+                test: /\.js/,
+                exclude: /\.spec\.js/
             },
             {
                 loader: 'babel-loader',
-                test: dir_spec,
+                test: /\.spec\.js/,
             },
             {
                 test: /\.html$/,

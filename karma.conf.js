@@ -15,12 +15,11 @@ module.exports = function(config) {
     files: [
     // {pattern: 'spec/fixtures/*.html', watched: true, included: false, served: true},
       // 'spec/fixtures/*.html',
-      'test/**/*.spec.js',
+      'src/**/*.spec.js',
     ],
 
     // list of files to exclude
     exclude: [
-      'spec/imagine.component.spec.js', //he should be put somewhere else
     ],
 
     // preprocess matching files before serving them to the browser
@@ -58,7 +57,7 @@ module.exports = function(config) {
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
 
-    // browsers: ['Chrome'],
+    browsers: ['Chrome'],
     // browsers: ['c:/Program Files (x86)/Google/Chrome/Application/Chrome.exe'],
     // browsers: ['Chrome', 'Firefox'],
 
