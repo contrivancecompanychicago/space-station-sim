@@ -27,5 +27,15 @@ describe('Game/TaskManager', () => {
       taskManager.addTask({id: 'test'});
       expect(taskManager.getTask('test')).toBeDefined();
     });
+    it('should return the task', () => {
+      let task = {id:'mytest'};
+      let output = taskManager.addTask(task);
+      expect(task).toBe(output);
+    });
+    it('should add in an ID if missing', () => {
+      let task = {type:'something'};
+      let output = taskManager.addTask(task);
+      expect(task.id).toBeDefined();
+    });
   });
 })

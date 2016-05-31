@@ -1,4 +1,4 @@
-
+import uniqid from 'Util/uniqid';
 
 export default class TaskManager{
   constructor(state){
@@ -11,6 +11,7 @@ export default class TaskManager{
   }
 
   addTask(task){
+    if(!task.id) task.id = uniqid();
     this.state[task.id] = task;
     return task;
   }
