@@ -21,6 +21,17 @@ describe('Game/TaskManager', () => {
       taskManager = new TaskManager(state);
       expect(taskManager.getTask('mytask')).toBeDefined();
     });
+
+    it('should return oldest task if not given an id', () => {
+      let first = {type:'first'};
+      let second = {type:'second'};
+      let third = {type:'third'};
+      taskManager.addTask(first);
+      taskManager.addTask(second);
+      taskManager.addTask(third);
+      let out = taskManager.getTask();
+      expect(out).toBe(first);
+    });
   });
   describe('addTask', () => {
     it('should add by id', () => {
@@ -39,28 +50,41 @@ describe('Game/TaskManager', () => {
     });
   });
 
+  describe('getNextTask', () => {
+    it('should get the task after the one given to it', () => {
+        let first = {type:'first'};
+        let second = {type:'second'};
+        let third = {type:'third'};
+        taskManager.addTask(first);
+        taskManager.addTask(second);
+        taskManager.addTask(third);
+        expect(taskManager.getNextTask(first.id)).toBe(second);
+        expect(taskManager.getNextTask(second.id)).toBe(third);
+    });
+  });
+
 
   describe('assignTask', () => {
     it('should set worker on a task', function(){
       taskManager.state = {dummy:{}};
       taskManager.assignTask('dummy', 'joe');
-      expect(taskManager.state.dummy.worker).toBe('joe');
+      expect(taskManager.getTask('dummy').worker).toBe('joe');
     });
   });
 
   describe('unassignTask', () => {
     it('should remove a worker', () => {
-      taskManager.state = {dummy: {worker: 'joe'}};
+      taskManager.addTask({id: 'dummy', worker: 'joe'});
       taskManager.unassignTask('dummy');
-      expect(taskManager.state.dummy.worker).not.toBeDefined();
+      expect(taskManager.getTask('dummy').worker).not.toBeDefined();
     });
   });
 
   describe('unassignTaskWorker', () => {
     it('should remove a worker', () => {
-      taskManager.state = {dummy: {worker: 'joe'}};
+      taskManager.addTask({id: 'dummy', worker: 'joe'});
       taskManager.unassignTaskWorker('joe');
-      expect(taskManager.state.dummy.worker).not.toBeDefined();
+      expect(taskManager.getTask('dummy').worker).not.toBeDefined();
     });
   });
 

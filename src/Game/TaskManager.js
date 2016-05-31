@@ -1,5 +1,5 @@
 import uniqid from 'Util/uniqid';
-import {map} from 'lodash';
+import {map, keys, head} from 'lodash';
 
 
 export default class TaskManager{
@@ -9,7 +9,15 @@ export default class TaskManager{
   }
 
   getTask(id){
+    if(!id) id = head(keys(this.state));
     return this.state[id];
+  }
+
+  getNextTask(id){
+    if(!id) throw new Error('wtf');
+    let tasks = keys(this.state);
+    id = tasks[tasks.indexOf(id.toString())+1];
+    return this.getTask(id);
   }
 
   addTask(task){
