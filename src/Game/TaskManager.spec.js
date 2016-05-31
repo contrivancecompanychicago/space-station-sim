@@ -59,9 +59,6 @@ describe('Game/TaskManager', () => {
   describe('unassignTaskWorker', () => {
     it('should remove a worker', () => {
       taskManager.state = {dummy: {worker: 'joe'}};
-      // let action = {type: 'UNASSIGN_TASK_WORKER', worker: 'joe'};
-      // let out = build(state, action);
-      // expect(out.dummy.worker).not.toBeDefined();
       taskManager.unassignTaskWorker('joe');
       expect(taskManager.state.dummy.worker).not.toBeDefined();
     });
