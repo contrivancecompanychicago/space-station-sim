@@ -38,4 +38,33 @@ describe('Game/TaskManager', () => {
       expect(task.id).toBeDefined();
     });
   });
+
+
+  describe('assignTask', () => {
+    it('should set worker on a task', function(){
+      taskManager.state = {dummy:{}};
+      taskManager.assignTask('dummy', 'joe');
+      expect(taskManager.state.dummy.worker).toBe('joe');
+    });
+  });
+
+  describe('unassignTask', () => {
+    it('should remove a worker', () => {
+      taskManager.state = {dummy: {worker: 'joe'}};
+      taskManager.unassignTask('dummy');
+      expect(taskManager.state.dummy.worker).not.toBeDefined();
+    });
+  });
+
+  describe('unassignTaskWorker', () => {
+    it('should remove a worker', () => {
+      taskManager.state = {dummy: {worker: 'joe'}};
+      // let action = {type: 'UNASSIGN_TASK_WORKER', worker: 'joe'};
+      // let out = build(state, action);
+      // expect(out.dummy.worker).not.toBeDefined();
+      taskManager.unassignTaskWorker('joe');
+      expect(taskManager.state.dummy.worker).not.toBeDefined();
+    });
+  });
+
 })
