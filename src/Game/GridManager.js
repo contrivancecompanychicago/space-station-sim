@@ -25,7 +25,8 @@ export default class GridManager{
   getMin(){
     let min = {x: Infinity, y: Infinity};
     keys(this.state).forEach((key) => {
-      // min = {}
+      let val = this.parseKey(key);
+      min = {x:Math.min(val.x, min.x), y:Math.min(val.y, min.y)};
     });
     return min;
   }
