@@ -64,6 +64,7 @@
     "istanbul": "^0.3.13",
     "istanbul-instrumenter-loader": "^0.1.2",
     "jasmine-core": "^2.3.0",
+    "javascript-astar": "^0.4.1",
     "jquery-browserify": "^1.8.1",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.1.8",
