@@ -66,6 +66,7 @@ export default class GridManager{
     let graph = new Graph(arr);
 
     //TODO: snip above and cache
+    // just need graph, min x and min y
 
     if(start.x===end.x&&start.y===end.y) return [end];
 
