@@ -68,11 +68,18 @@ describe('Game/GridManager', () => {
 
   describe('getPath', () => {
     it('should return a path', () => {
-      gridManager.addNode(1,1);
-      gridManager.addNode(1,2);
-      gridManager.addNode(2,2);
+      gridManager.addNode(1,1, 'test');
+      gridManager.addNode(1,2, 'test');
+      gridManager.addNode(2,2, 'test');
       let path = gridManager.getPath({x:1,y:1}, {x:2, y:2});
       expect(path).toBe([{x:1, y:1},{x:1, y:2},{x:2, y:2}]);
+    });
+
+    it('should return [end] if start and end are same', () => {
+        gridManager.addNode(1,1, 'test');
+        let path = gridManager.getPath({x:1,y:1}, {x:1, y:1});
+        expect(path[0].x).toBe(1);
+        expect(path[0].y).toBe(1);
     });
   });
 });

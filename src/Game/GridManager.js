@@ -31,4 +31,41 @@ export default class GridManager{
     });
     return min;
   }
+
+  getPath(start, end){
+
+    //determine graph size
+    let minx = Infinity;
+    let miny = Infinity;
+    let maxx = -Infinity;
+    let maxy = -Infinity;
+    keys(this.state).forEach((key) => {
+      let loc = this.parseKey(key);
+      minx = Math.min(minx, loc.x);
+      miny = Math.min(miny, loc.y);
+      maxx = Math.max(maxx, loc.x);
+      maxy = Math.max(maxy, loc.y);
+    });
+
+    //make the empty Graph
+    let arr = [];
+    for(let x = minx; x<=maxx; x++){
+      let arr2 = [];
+      for(let y = miny; y<=maxy; y++){
+        arr2.push(0);
+      }
+      arr.push(arr2);
+    }
+
+    //populate graph
+    keys(this.state).forEach((key) => { //duplicate?
+      let loc = this.parseKey(key);
+      arr[loc.x-minx][loc.y-miny] = 1;
+    });
+
+    //TODO: snip above and cache
+
+    if(start.x===end.x&&start.y===end.y) return [end];
+
+  }
 }
