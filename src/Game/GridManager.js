@@ -1,4 +1,5 @@
 import { keys } from 'lodash';
+import { Graph, astar } from 'javascript-astar';
 
 export default class GridManager{
   constructor(state){
