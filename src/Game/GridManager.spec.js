@@ -4,22 +4,27 @@ import { keys } from 'lodash';
 let gridManager;
 let state;
 describe('Game/GridManager', () => {
+
   beforeEach(() => {
     state = {};
     gridManager = new GridManager(state);
   });
+
   it('should capture a ref to state', () => {
     expect(gridManager.state).toBe(state);
   });
 
   describe('makeKey', () => {
+
     it('should turn x, y into string', () => {
       let key = gridManager.makeKey(-12, 34);
       expect(typeof key).toBe('string');
     });
+
   });
 
   describe('parseKey', () => {
+
     it('should turn string from makekey into its orig values', () => {
       let orig = {x:-12, y:34};
       let key = gridManager.makeKey(orig.x, orig.y);
@@ -27,27 +32,31 @@ describe('Game/GridManager', () => {
       expect(orig.x).toBe(parsed.x);
       expect(orig.y).toBe(parsed.y);
     });
+
   });
 
-
-
   describe('addNode', () => {
+
     it('should add a node', () => {
       let nodes = keys(state).length;
       gridManager.addNode(1, 2, "test");
       expect(keys(state).length - nodes).toBe(1);
     });
+
   });
 
   describe('getNode', () => {
+
     it('should return an added node', () => {
       expect(gridManager.getNode(12, 34)).not.toBeDefined();
       gridManager.addNode(12, 34, "test");
       expect(gridManager.getNode(12, 34)).toBeDefined();
     });
+
   });
 
   describe('getMin', () => {
+
     it('should return an object with min/max x/y', () => {
       let min = gridManager.getMin();
       expect(min.x).toBeDefined();
@@ -67,13 +76,13 @@ describe('Game/GridManager', () => {
   });
 
   describe('getPath', () => {
+
     it('should return a path', () => {
       gridManager.addNode(1,1, 'test');
       gridManager.addNode(1,2, 'test');
       gridManager.addNode(2,2, 'test');
       let path = gridManager.getPath({x:1,y:1}, {x:2, y:2});
       expect(path).toBe([{x:1, y:2},{x:2, y:2}]);
-      console.log([{x:1, y:2},{x:2, y:2}].toString());
     });
 
     it('should return [end] if start and end are same', () => {
@@ -82,5 +91,7 @@ describe('Game/GridManager', () => {
         expect(path[0].x).toBe(1);
         expect(path[0].y).toBe(1);
     });
+
   });
+
 });
