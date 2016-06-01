@@ -88,4 +88,4 @@ describe('Game/TaskManager', () => {
     });
   });
 
-})
+});

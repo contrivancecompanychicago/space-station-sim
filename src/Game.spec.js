@@ -23,4 +23,4 @@ describe('Game', () => {
   it('should make the manager object', () => {
     expect(game.engine.getComponent('manager')).toBeDefined();
   });
-})
+});
