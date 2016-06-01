@@ -63,9 +63,23 @@ export default class GridManager{
       arr[loc.x-minx][loc.y-miny] = 1;
     });
 
+    let graph = new Graph(arr);
+
     //TODO: snip above and cache
 
     if(start.x===end.x&&start.y===end.y) return [end];
+
+    start = graph.grid[start.x-minx][start.y-miny];
+    end = graph.grid[end.x-minx][end.y-miny];
+    let result = astar.search(graph, start, end);
+
+    return result.map((res) => {
+      return {
+        x: res.x+minx,
+        y: res.y+miny,
+      };
+    });
+
 
   }
 }
