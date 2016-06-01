@@ -47,11 +47,22 @@ describe('Game/GridManager', () => {
     });
   });
 
-  describe('getGridOffset', () => {
+  describe('getMin', () => {
     it('should return an object with min/max x/y', () => {
-      let output = gridManager.getGridOffset();
-      expect(output.minx).toBeDefined();
-      expect(output.miny).toBeDefined();
+      let min = gridManager.getMin();
+      expect(min.x).toBeDefined();
+      expect(min.y).toBeDefined();
     });
+
+    it('should get the smallest values', () => {
+      gridManager.addNode(-3,2);
+      gridManager.addNode(4,3);
+      gridManager.addNode(8,-1);
+      gridManager.addNode(5,5);
+      let min = gridManager.getMin();
+      expect(min.x).toBe(-3);
+      expect(min.y).toBe(-1);
+    });
+
   });
 });
