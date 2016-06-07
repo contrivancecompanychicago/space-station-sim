@@ -15,6 +15,19 @@ export default class ViewManager{
     this.dragging = false;
   }
 
+    globalToLocal(point){
+      return {
+        x: (point.x / this.state.scale) - this.state.offset.x,
+        y: (point.y / this.state.scale) - this.state.offset.y
+      };
+    }
+    localToGlobal(point){
+      return {
+        x: (this.state.offset.x + (point.x)) * this.state.scale,
+        y: (this.state.offset.y + (point.y)) * this.state.scale,
+      };
+    }
+
   start(){
     this.addListeners();
   }
@@ -27,30 +40,19 @@ export default class ViewManager{
     document.addEventListener('DOMMouseScroll', this.onMouseWheel.bind(this));
   }
 
-  globalToLocal(point){
-    return {
-      x: (point.x / this.state.scale) - this.state.offset.x,
-      y: (point.y / this.state.scale) - this.state.offset.y
-    };
-  }
-  localToGlobal(point){
-    return {
-      x: (this.state.offset.x + (point.x)) * this.state.scale,
-      y: (this.state.offset.y + (point.y)) * this.state.scale,
-    };
-  }
-
 
   onMouseDown(e){
     if(e.button === 1){
       this.startDrag(e);
     }
   }
+
   onMouseUp(e){
     if(e.button === 1){
       this.stopDrag();
     }
   }
+
   onMouseMove(e) {
     if(this.dragging){
       let delta = {x:e.pageX-this.lastPos.x, y: e.pageY-this.lastPos.y};
@@ -75,7 +77,7 @@ export default class ViewManager{
     }
     let end = this.globalToLocal(e);
     //reposition to cursor
-    this.state.offset.x += end.x - start.x; 
+    this.state.offset.x += end.x - start.x;
     this.state.offset.y += end.y - start.y;
   }
 
@@ -87,5 +89,6 @@ export default class ViewManager{
   stopDrag(){
     this.dragging = false;
   }
+  
 
 }
