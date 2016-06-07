@@ -3,7 +3,7 @@ import {map, keys, head} from 'lodash';
 
 
 export default class TaskManager{
-  constructor(state){
+  constructor(state = {}){
     this.type = 'taskManager';
     this.state = state;
   }
