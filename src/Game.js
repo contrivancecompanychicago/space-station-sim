@@ -7,5 +7,4 @@ export default class Game{
     this.engine = new Imagine();
     this.manager = this.engine.register({type:'manager', game:this});
   }
-  
 }
