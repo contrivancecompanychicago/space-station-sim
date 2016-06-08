@@ -13,6 +13,7 @@ describe('Game/UIManager', () => {
   });
 
   it('should render something into the container', () => {
+    uiManager.start();
     expect(container.childNodes.length>0).toBe(true);
   });
 

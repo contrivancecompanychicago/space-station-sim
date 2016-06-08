@@ -1,7 +1,8 @@
 import { createStore } from 'redux';
 import UI from 'Game/UI';
 import reducer from 'Game/UI/reducer';
-import reactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class UIManager{
   constructor(state, container){
@@ -11,9 +12,9 @@ export default class UIManager{
   start(){
     this.store = createStore(reducer);
     this.store.subscribe(this.render);
-    render();
+    this.render();
   }
   render(){
-    reactDOM.render(UI, this.container);
+    ReactDOM.render(<UI />, this.container);
   }
 }
