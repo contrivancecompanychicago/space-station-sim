@@ -2,6 +2,6 @@ import React from 'react';
 
 export default class Item extends React.Component {
   render() {
-    return <div>blank</div>;
+    return <div>Item Panel</div>;
   }
 }

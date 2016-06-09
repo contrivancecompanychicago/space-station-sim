@@ -2,6 +2,6 @@ import React from 'react';
 
 export default class Grid extends React.Component {
   render() {
-    return <div>blank</div>;
+    return <div>Grid Panel</div>;
   }
 }

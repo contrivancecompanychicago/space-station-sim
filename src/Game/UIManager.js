@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 
 export default class UIManager{
   constructor(state, container){
+    this.type = 'uiManager';
     if(!container) throw new Error('I need a container to render in');
     this.container = container;
   }
