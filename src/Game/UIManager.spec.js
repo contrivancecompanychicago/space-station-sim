@@ -11,10 +11,12 @@ describe('Game/UIManager', () => {
     container = document.createElement('div');
     uiManager = new UIManager(state, container);
   });
-
-  it('should render something into the container', () => {
-    uiManager.start();
-    expect(container.childNodes.length>0).toBe(true);
+  describe('start', () => {
+    it('should render something into the container', () => {
+      uiManager.start();
+      expect(container.childNodes.length>0).toBe(true);
+    });  
   });
+
 
 });

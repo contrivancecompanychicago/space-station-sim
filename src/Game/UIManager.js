@@ -15,6 +15,6 @@ export default class UIManager{
     this.render();
   }
   render(){
-    ReactDOM.render(<UI />, this.container);
+    ReactDOM.render(<UI store={this.store} />, this.container);
   }
 }
