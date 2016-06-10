@@ -8,8 +8,6 @@ import Item from './UI/Item';
 class UI extends React.Component {
   render() {
     return <div>
-      <button onClick={()=>this.props.click('me')}>mode {this.props.mode}</button>
-      <p>{this.props.test}</p>
       <Mode />
       <Grid />
       <Item />
@@ -19,8 +17,7 @@ class UI extends React.Component {
 
 function mapStateToProps(state, props) {
   return {
-    mode: state.mode,
-    test: 'a test string'
+    mode: state.mode
   };
 }
 

@@ -3,6 +3,7 @@ import UI from 'Game/UI';
 import reducer from 'Game/UI/reducer';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
 export default class UIManager{
   constructor(state, container){
@@ -16,6 +17,6 @@ export default class UIManager{
     this.render();
   }
   render(){
-    ReactDOM.render(<UI store={this.store} />, this.container);
+    ReactDOM.render(<Provider store={this.store}><UI /></Provider>, this.container);
   }
 }
