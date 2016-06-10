@@ -1,11 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { keys } from 'lodash';
+
+const Modes = {
+  'SELECT': 'select',
+  'GRID': 'grid',
+  'ITEM': 'item',
+};
+
 
 export default class Mode extends React.Component {
   render() {
+
+    const buttons = [];
+    keys(Modes).forEach((key) => {
+      buttons.push(<button key={key} onClick={()=>this.props.click(key)}>{key}</button>);
+    });
+
     return <div>
-      <p>Mode Panel</p>
-      <button onClick={()=>this.props.click('me')}>mode {this.props.mode}</button>
+      <h3>Mode Panel</h3>
+      {this.props.mode} selected
+      {buttons}
     </div>;
   }
 }
@@ -19,7 +34,7 @@ function mapStateToProps(state, props) {
 function mapDispatchToProps(dispatch, props) {
   return {
     click: (id) => {
-      dispatch({type:'CHANGE_MODE'});
+      dispatch({type:'CHANGE_MODE', id: id});
     }
   };
 }
