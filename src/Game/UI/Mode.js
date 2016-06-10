@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { keys } from 'lodash';
+import Button from './Button';
 
 const Modes = {
-  'SELECT': 'select',
-  'GRID': 'grid',
-  'ITEM': 'item',
+  'SELECT': {label: 'select'},
+  'GRID': {label: 'grid'},
+  'ITEM': {label: 'item'},
 };
 
 
@@ -14,7 +15,7 @@ export default class Mode extends React.Component {
 
     const buttons = [];
     keys(Modes).forEach((key) => {
-      buttons.push(<button key={key} onClick={()=>this.props.click(key)}>{key}</button>);
+      buttons.push(<Button key={key} data={Modes[key]} click={()=>this.props.click(key)} />);
     });
 
     return <div>
