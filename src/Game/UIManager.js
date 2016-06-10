@@ -12,7 +12,7 @@ export default class UIManager{
   }
   start(){
     this.store = createStore(reducer);
-    this.store.subscribe(this.render);
+    this.store.subscribe(this.render.bind(this));
     this.render();
   }
   render(){

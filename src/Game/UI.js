@@ -8,7 +8,7 @@ import Item from './UI/Item';
 class UI extends React.Component {
   render() {
     return <div>
-      <button onClick={()=>this.props.click('me')}>click me</button>
+      <button onClick={()=>this.props.click('me')}>mode {this.props.mode}</button>
       <p>{this.props.test}</p>
       <Mode />
       <Grid />
@@ -27,9 +27,7 @@ function mapStateToProps(state, props) {
 function mapDispatchToProps(dispatch, props) {
   return {
     click: (id) => {
-      console.log("click", id);
-      console.log(dispatch);
-      dispatch({type:'DEMO'});
+      dispatch({type:'CHANGE_MODE'});
     }
   };
 }
