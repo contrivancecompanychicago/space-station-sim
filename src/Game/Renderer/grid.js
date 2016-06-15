@@ -1,14 +1,30 @@
 
 import config from 'Game/config';
 
+import { keys } from 'lodash';
 
 const blockWidth = config.grid.width;
 const blockHeight = config.grid.height;
 
+//TODO: move to Util
+function makeKey(x, y){
+  return `${x}_${y}`;
+}
+function parseKey(key){
+  let parts = key.split('_');
+  return {x:parseInt(parts[0]), y:parseInt(parts[1])};
+}
+
 function grid(state, layer){
   layer.clear();
 
-  renderBlock({x:1, y:1}, state, layer);
+  // renderBlock({x:1, y:1}, state, layer);
+  // log(state)
+  keys(state.Grid).forEach((key) => {
+    let pos = parseKey(key);
+    renderBlock(pos, state, layer);
+  });
+
   info(state, layer);
 }
 
@@ -40,9 +56,7 @@ function info(state, layer){
   layer.context.fillStyle = "grey";
   layer.context.font = '14px verdana';
 
-  layer.context.fillText(JSON.stringify(state.View), 10, 10);
-
-
+  layer.context.fillText(JSON.stringify(state.View), 10, 20);
 }
 
 

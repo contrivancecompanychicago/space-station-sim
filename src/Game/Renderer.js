@@ -14,7 +14,7 @@ export default class Renderer{
   resize() {
     this.layer.resize(window.innerWidth, window.innerHeight);
     this.layer.drawDemo();
-
+    // console.log(this.state);
   }
   update(){
     grid(this.state, this.layer);

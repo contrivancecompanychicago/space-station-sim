@@ -2,12 +2,18 @@ import {defaults} from 'lodash';
 import config from 'Game/config';
 
 
+const MouseButtons = {
+  LEFT: 0,
+  MIDDLE: 1,
+  RIGHT: 2
+};
+
 const initial = {
   scale: 1,
   offset: {
     x: 0,
     y: 0
-  }
+  },
 };
 
 export default class ViewManager{
@@ -16,20 +22,21 @@ export default class ViewManager{
     this.type = 'viewManager';
     this.state = defaults(state, initial);
     this.dragging = false;
+    this.down = {};
   }
 
-    globalToLocal(point){
-      return {
-        x: (point.x / this.state.scale) - this.state.offset.x,
-        y: (point.y / this.state.scale) - this.state.offset.y
-      };
-    }
-    localToGlobal(point){
-      return {
-        x: (this.state.offset.x + (point.x)) * this.state.scale,
-        y: (this.state.offset.y + (point.y)) * this.state.scale,
-      };
-    }
+  globalToLocal(point){
+    return {
+      x: (point.x / this.state.scale) - this.state.offset.x,
+      y: (point.y / this.state.scale) - this.state.offset.y
+    };
+  }
+  localToGlobal(point){
+    return {
+      x: (this.state.offset.x + (point.x)) * this.state.scale,
+      y: (this.state.offset.y + (point.y)) * this.state.scale,
+    };
+  }
 
   start(){
     this.addListeners();
@@ -45,15 +52,25 @@ export default class ViewManager{
 
 
   onMouseDown(e){
+    this.down[e.button] = true;
     if(e.button === 1){
       this.startDrag(e);
+    }else{
+      this.startSelection(e);
     }
   }
 
   onMouseUp(e){
+    this.down[e.button] = false;
     if(e.button === 1){
       this.stopDrag();
+    }else{
+      this.endSelection(e);
     }
+  }
+
+  isMouseDown(button){
+    return this.down[button];
   }
 
   onMouseMove(e) {
@@ -94,6 +111,38 @@ export default class ViewManager{
   stopDrag(){
     this.dragging = false;
   }
+
+  startSelection(e){
+    this.selecting = true;
+    this.startPos = this.pointToBlock(this.globalToLocal({x:e.pageX, y: e.pageY}));
+  }
+
+  endSelection(e){
+    this.endPos = this.pointToBlock(this.globalToLocal({x:e.pageX, y: e.pageY}));
+    let sel = {
+      t: Math.min(this.endPos.y, this.startPos.y),
+      r: Math.max(this.endPos.x, this.startPos.x),
+      b: Math.max(this.endPos.y, this.startPos.y),
+      l: Math.min(this.endPos.x, this.startPos.x),
+    };
+    let grid = this.getComponent('gridManager');
+    let pt = this.startPos;
+    //////////////////HACK
+    for(let y = sel.t; y <= sel.b; y++){
+      for(let x = sel.l; x <= sel.r; x++){
+        // console.log(y);
+        grid.addNode(x, y, 'basic');
+      }
+    }
+
+  }
+  pointToBlock(point) {
+    return {
+      x: Math.floor(point.x/config.grid.width),
+      y: Math.floor(point.y/config.grid.height),
+    };
+  }
+
 
 
 }
