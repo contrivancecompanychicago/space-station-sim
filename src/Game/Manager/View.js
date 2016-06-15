@@ -1,4 +1,6 @@
 import {defaults} from 'lodash';
+import config from 'Game/config';
+
 
 const initial = {
   scale: 1,
@@ -72,9 +74,11 @@ export default class ViewManager{
   zoom(out, point){
     let start = this.globalToLocal(point);
     if(out){
-      this.state.scale += 0.1;
+      this.state.scale += config.view.scale.step;
+      this.state.scale = Math.min(this.state.scale, config.view.scale.max);
     }else{ //in
-      this.state.scale -= 0.1;
+      this.state.scale -= config.view.scale.step;
+      this.state.scale = Math.max(this.state.scale, config.view.scale.min);
     }
     let end = this.globalToLocal(point);
     //reposition to cursor

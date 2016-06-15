@@ -1,6 +1,9 @@
 
-const blockWidth = 100;
-const blockHeight = 100;
+import config from 'Game/config';
+
+
+const blockWidth = config.grid.width;
+const blockHeight = config.grid.height;
 
 function grid(state, layer){
   layer.clear();
