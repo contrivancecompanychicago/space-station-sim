@@ -3,24 +3,18 @@ import { connect } from 'react-redux';
 import { keys } from 'lodash';
 import Button from './Button';
 
-const Modes = {
-  'SELECT': {label: 'select'},
-  'GRID': {label: 'grid'},
-  'ITEM': {label: 'item'},
-};
-
+import Modes from 'Game/Type/Mode';
 
 export default class Mode extends React.Component {
   render() {
 
     const buttons = [];
     keys(Modes).forEach((key) => {
-      buttons.push(<Button key={key} data={Modes[key]} click={()=>this.props.click(key)} />);
+      buttons.push(<Button selected={key===this.props.mode} key={key} data={Modes[key]} click={()=>this.props.click(key)} />);
     });
 
-    return <div>
+    return <div className="mode panel">
       <h3>Mode Panel</h3>
-      {this.props.mode} selected
       {buttons}
     </div>;
   }
