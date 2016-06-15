@@ -13,6 +13,7 @@ export default class Game{
 
     this.engine = new Imagine();
     this.state = {};
+
     //spawn managers
     this.manager = this.engine.register({type:'manager', game:this});
     keys(managers).forEach((key) => {

@@ -1,8 +1,6 @@
 import React from 'react';
 
-
 class Button extends React.Component{
-
 
   render(){
     return <button className={this.props.selected?'selected':''} onClick={this.props.click}>
@@ -11,6 +9,5 @@ class Button extends React.Component{
   }
 
 }
-
 
 export default Button;
