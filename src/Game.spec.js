@@ -27,6 +27,9 @@ describe('Game', () => {
     it('should spawn uiManager', () => {
       expect(game.engine.getComponent('uiManager')).toBeDefined();
     });
+    it('should spawn gridManager', () => {
+      expect(game.engine.getComponent('gridManager')).toBeDefined();
+    });
   });
 
 });

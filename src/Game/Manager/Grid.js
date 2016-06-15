@@ -3,6 +3,7 @@ import { Graph, astar } from 'javascript-astar';
 
 export default class GridManager{
   constructor(state = {}){
+    this.type = 'gridManager';
     this.state = state;
   }
 

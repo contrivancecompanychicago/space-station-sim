@@ -9,7 +9,11 @@ export default class UIManager{
   constructor(state, container){
     this.type = 'uiManager';
     if(!container) throw new Error('I need a container to render in');
-    this.container = container;
+
+    const UIDiv = document.createElement('div');
+    container.appendChild(UIDiv);
+    
+    this.container = UIDiv;
   }
   start(){
     this.store = createStore(reducer);

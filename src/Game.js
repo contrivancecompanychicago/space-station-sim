@@ -1,15 +1,27 @@
 import Imagine from 'imagine-engine';
 
-import UIManager from 'Game/Manager/UI';
+require('./Game/style.css');
+
+import managers from 'Game/Manager';
+import Renderer from 'Game/Renderer';
+
+import { keys } from 'lodash';
 
 export default class Game{
   constructor(container){
     this.container = container;
-    this.container.appendChild(document.createElement('canvas'));
+
     this.engine = new Imagine();
+    this.state = {};
+    //spawn managers
     this.manager = this.engine.register({type:'manager', game:this});
-    const UIDiv = document.createElement('div');
-    this.container.appendChild(UIDiv);
-    this.manager.addComponent(new UIManager(null, UIDiv));
+    keys(managers).forEach((key) => {
+      let manager = managers[key];
+      this.state[key] = {};
+      this.manager.addComponent(new manager(this.state[key], this.container));
+    });
+
+    this.engine.register(new Renderer(this.container));
+
   }
 }

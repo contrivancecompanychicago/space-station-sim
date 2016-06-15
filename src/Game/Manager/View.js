@@ -11,6 +11,7 @@ const initial = {
 export default class ViewManager{
 
   constructor(state = {}) {
+    this.type = 'viewManager';
     this.state = defaults(state, initial);
     this.dragging = false;
   }
@@ -89,6 +90,6 @@ export default class ViewManager{
   stopDrag(){
     this.dragging = false;
   }
-  
+
 
 }

@@ -5,7 +5,6 @@ import Mode from './UI/Mode';
 import Grid from './UI/Grid';
 import Item from './UI/Item';
 
-require('./ui/style.css');
 
 class UI extends React.Component {
   render() {
