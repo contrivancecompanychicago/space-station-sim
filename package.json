@@ -4,7 +4,8 @@
   "description": "space station sim game",
   "main": "server/server.coffee",
   "scripts": {
-    "test": "karma start"
+    "test": "karma start",
+    "dev": "webpack-dev-server --hot --inline"
   },
   "bin": {
     "grunt": "./node_modules/grunt-cli/bin/grunt",
