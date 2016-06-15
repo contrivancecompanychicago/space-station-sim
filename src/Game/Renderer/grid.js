@@ -5,8 +5,8 @@ const blockHeight = 100;
 function grid(state, layer){
   layer.clear();
 
-
-  renderBlock({x:0, y:0}, state, layer);
+  renderBlock({x:1, y:1}, state, layer);
+  info(state, layer);
 }
 
 function renderBlock(block, state, layer){
@@ -32,4 +32,15 @@ function localToGlobal(point, state){
     y: (state.View.offset.y + (point.y)) * state.View.scale,
   };
 }
+
+function info(state, layer){
+  layer.context.fillStyle = "grey";
+  layer.context.font = '14px verdana';
+
+  layer.context.fillText(JSON.stringify(state.View), 10, 10);
+
+
+}
+
+
 export default grid;

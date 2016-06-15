@@ -58,8 +58,8 @@ export default class ViewManager{
     if(this.dragging){
       let delta = {x:e.pageX-this.lastPos.x, y: e.pageY-this.lastPos.y};
       this.lastPos = {x:e.pageX, y: e.pageY};
-      this.state.offset.x -= delta.x;
-      this.state.offset.y -= delta.y;
+      this.state.offset.x += delta.x / this.state.scale;
+      this.state.offset.y += delta.y / this.state.scale;
     }
   }
 
@@ -67,7 +67,6 @@ export default class ViewManager{
     let d = e.wheelDelta;
     if(!d) d = -e.detail;
     this.zoom(d>0, e);
-    console.log(this.state);
   }
 
   zoom(out, point){
