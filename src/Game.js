@@ -1,6 +1,6 @@
 import Imagine from 'imagine-engine';
 
-import UIManager from 'Game/UIManager';
+import UIManager from 'Game/Manager/UI';
 
 export default class Game{
   constructor(container){

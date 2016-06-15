@@ -1,9 +1,9 @@
-import TaskManager from 'Game/TaskManager';
+import TaskManager from 'Game/Manager/Task';
 
 let state = {};
 let taskManager = new TaskManager();
 
-describe('Game/TaskManager', () => {
+describe('Game/Manager/Task', () => {
   beforeEach(() => {
     state = {};
     taskManager = new TaskManager(state);

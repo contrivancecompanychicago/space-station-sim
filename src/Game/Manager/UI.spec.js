@@ -1,10 +1,10 @@
-import UIManager from 'Game/UIManager';
+import UIManager from 'Game/Manager/UI';
 
 let state;
 let container;
 let uiManager;
 
-describe('Game/UIManager', () => {
+describe('Game/Manager/UI', () => {
   beforeEach(()=>{
 
     state = {};
@@ -15,7 +15,7 @@ describe('Game/UIManager', () => {
     it('should render something into the container', () => {
       uiManager.start();
       expect(container.childNodes.length>0).toBe(true);
-    });  
+    });
   });
 
 

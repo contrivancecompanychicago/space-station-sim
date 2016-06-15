@@ -1,7 +1,7 @@
 
-import SelectionManager from 'Game/SelectionManager';
+import SelectionManager from 'Game/Manager/Selection';
 
-describe('Game/SelectionManager', () => {
+describe('Game/Manager/Selection', () => {
 
   it('should detect mouse clicking');
   it('should work even if scrolling halfway through selection');
