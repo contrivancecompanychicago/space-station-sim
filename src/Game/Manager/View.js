@@ -67,16 +67,17 @@ export default class ViewManager{
     let d = e.wheelDelta;
     if(!d) d = -e.detail;
     this.zoom(d>0, e);
+    console.log(this.state);
   }
 
   zoom(out, point){
-    let start = this.globalToLocal(e);
+    let start = this.globalToLocal(point);
     if(out){
       this.state.scale += 0.1;
     }else{ //in
       this.state.scale -= 0.1;
     }
-    let end = this.globalToLocal(e);
+    let end = this.globalToLocal(point);
     //reposition to cursor
     this.state.offset.x += end.x - start.x;
     this.state.offset.y += end.y - start.y;

@@ -22,7 +22,7 @@ export default class Game{
       this.manager.addComponent(new manager(this.state[key], this.container));
     });
 
-    this.engine.register(new Renderer(this.container));
+    this.engine.register(new Renderer(this.state, this.container));
 
   }
 }

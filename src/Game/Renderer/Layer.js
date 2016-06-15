@@ -25,7 +25,7 @@ export default class Layer {
     this.context.fill();
     this.context.beginPath();
     this.context.rect(this.canvas.width/2, this.canvas.height/2, this.canvas.width, this.canvas.height);
-    this.context.fillStyle = "blue";
+    this.context.fillStyle = "green";
     this.context.fill();
   }
 
