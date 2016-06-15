@@ -127,11 +127,20 @@ export default class ViewManager{
     };
     let grid = this.getComponent('gridManager');
     let pt = this.startPos;
-    //////////////////HACK
+
+    //////////////////HACK HACK HACK HACK HACK HACK HACK HACK
     for(let y = sel.t; y <= sel.b; y++){
       for(let x = sel.l; x <= sel.r; x++){
-        // console.log(y);
-        grid.addNode(x, y, 'basic');
+        // console.log(y)
+        switch(e.button){
+          case MouseButtons.LEFT:
+            grid.addNode(x, y, 'basic');
+            break;
+          case MouseButtons.RIGHT:
+            grid.removeNode(x, y);
+            break;
+        }
+
       }
     }
 

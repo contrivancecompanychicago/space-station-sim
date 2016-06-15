@@ -24,6 +24,10 @@ export default class GridManager{
     this.state[this.makeKey(x, y)] = node;
   }
 
+  removeNode(x, y){
+    delete this.state[this.makeKey(x, y)];
+  }
+
   getNode(x, y){
     return this.state[this.makeKey(x, y)];
   }
