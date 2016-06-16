@@ -5,19 +5,19 @@ import { keys, mapValues, assign } from 'lodash';
 
 //global space is window coordinates
 //local space is ingame coordinates before scale and offset
-// function globalToLocal(point, state){
-//   return {
-//     x: (point.x / state.View.scale) - state.View.offset.x,
-//     y: (point.y / state.View.scale) - state.View.offset.y
-//   };
-// }
-// function localToGlobal(point, state){
-//   return {
-//     x: (state.View.offset.x + (point.x)) * state.View.scale,
-//     y: (state.View.offset.y + (point.y)) * state.View.scale,
-//   };
-// }
-import { globalToLocal, localToGlobal } from 'Util';
+function globalToLocal(point, state){
+  return {
+    x: (point.x / state.View.scale) - state.View.offset.x,
+    y: (point.y / state.View.scale) - state.View.offset.y
+  };
+}
+function localToGlobal(point, state){
+  return {
+    x: (state.View.offset.x + (point.x)) * state.View.scale,
+    y: (state.View.offset.y + (point.y)) * state.View.scale,
+  };
+}
+// import { globalToLocal, localToGlobal } from 'Util';
 
 const blockWidth = config.grid.width;
 const blockHeight = config.grid.height;
