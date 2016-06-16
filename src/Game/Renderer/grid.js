@@ -1,7 +1,7 @@
 
 import config from 'Game/config';
 
-import { keys } from 'lodash';
+import { keys, mapValues } from 'lodash';
 
 const blockWidth = config.grid.width;
 const blockHeight = config.grid.height;
@@ -18,12 +18,11 @@ function parseKey(key){
 function grid(state, layer){
   layer.clear();
 
-  // renderBlock({x:1, y:1}, state, layer);
-  // log(state)
   keys(state.Grid).forEach((key) => {
     let pos = parseKey(key);
     renderBlock(pos, state, layer);
   });
+  renderSelection(state, layer);
 
   info(state, layer);
 }
@@ -38,6 +37,23 @@ function renderBlock(block, state, layer){
   // console.log(state);
 }
 
+function renderSelection(state, layer){
+  if(state.View.selection){
+    // console.log(state.View.selection);
+    // let sel = mapValues(state.View.selection, (o) => { return o})
+    let tl = localToGlobal({
+      x: state.View.selection.l * blockWidth,
+      y: state.View.selection.t * blockHeight
+    }, state);
+    let br = localToGlobal({
+      x: (state.View.selection.r + 1) * blockWidth,
+      y: (state.View.selection.b + 1) * blockHeight
+    }, state);
+    // console.log(tl);
+    layer.context.strokeRect(tl.x, tl.y, br.x - tl.x, br.y - tl.y);
+
+  }
+}
 
 function globalToLocal(point, state){
   return {

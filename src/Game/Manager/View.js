@@ -79,6 +79,8 @@ export default class ViewManager{
       this.lastPos = {x:e.pageX, y: e.pageY};
       this.state.offset.x += delta.x / this.state.scale;
       this.state.offset.y += delta.y / this.state.scale;
+    }else if(this.selecting){
+      this.updateSelection(e);
     }
   }
 
@@ -117,20 +119,27 @@ export default class ViewManager{
     this.startPos = this.pointToBlock(this.globalToLocal({x:e.pageX, y: e.pageY}));
   }
 
-  endSelection(e){
+  updateSelection(e){
     this.endPos = this.pointToBlock(this.globalToLocal({x:e.pageX, y: e.pageY}));
-    let sel = {
+    this.selection = {
       t: Math.min(this.endPos.y, this.startPos.y),
       r: Math.max(this.endPos.x, this.startPos.x),
       b: Math.max(this.endPos.y, this.startPos.y),
       l: Math.min(this.endPos.x, this.startPos.x),
     };
+    this.state.selection = this.selection;
+  }
+
+  endSelection(e){
+    this.selecting = false;
+    this.updateSelection(e);
+    this.state.selection = false;
     let grid = this.getComponent('gridManager');
     let pt = this.startPos;
 
     //////////////////HACK HACK HACK HACK HACK HACK HACK HACK
-    for(let y = sel.t; y <= sel.b; y++){
-      for(let x = sel.l; x <= sel.r; x++){
+    for(let y = this.selection.t; y <= this.selection.b; y++){
+      for(let x = this.selection.l; x <= this.selection.r; x++){
         // console.log(y)
         switch(e.button){
           case MouseButtons.LEFT:
