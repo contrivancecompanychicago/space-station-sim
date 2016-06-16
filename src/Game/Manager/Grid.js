@@ -5,10 +5,6 @@ export default class GridManager{
   constructor(state = {}){
     this.type = 'gridManager';
     this.state = state;
-    //HACK -------------------------------------
-    this.addNode(1,1, 'blank');
-    this.addNode(1,2, 'blank');
-    this.addNode(2,2, 'blank');
   }
 
   //TODO: move to Util

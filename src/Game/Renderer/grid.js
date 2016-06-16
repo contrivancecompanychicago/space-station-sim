@@ -1,7 +1,23 @@
 
 import config from 'Game/config';
 
-import { keys, mapValues } from 'lodash';
+import { keys, mapValues, assign } from 'lodash';
+
+//global space is window coordinates
+//local space is ingame coordinates before scale and offset
+// function globalToLocal(point, state){
+//   return {
+//     x: (point.x / state.View.scale) - state.View.offset.x,
+//     y: (point.y / state.View.scale) - state.View.offset.y
+//   };
+// }
+// function localToGlobal(point, state){
+//   return {
+//     x: (state.View.offset.x + (point.x)) * state.View.scale,
+//     y: (state.View.offset.y + (point.y)) * state.View.scale,
+//   };
+// }
+import { globalToLocal, localToGlobal } from 'Util';
 
 const blockWidth = config.grid.width;
 const blockHeight = config.grid.height;
@@ -39,6 +55,7 @@ function renderBlock(block, state, layer){
 
 function renderSelection(state, layer){
   if(state.View.selection){
+    assign(layer.context, config.view.selection);
     // console.log(state.View.selection);
     // let sel = mapValues(state.View.selection, (o) => { return o})
     let tl = localToGlobal({
@@ -55,18 +72,6 @@ function renderSelection(state, layer){
   }
 }
 
-function globalToLocal(point, state){
-  return {
-    x: (point.x / state.View.scale) - state.View.offset.x,
-    y: (point.y / state.View.scale) - state.View.offset.y
-  };
-}
-function localToGlobal(point, state){
-  return {
-    x: (state.View.offset.x + (point.x)) * state.View.scale,
-    y: (state.View.offset.y + (point.y)) * state.View.scale,
-  };
-}
 
 function info(state, layer){
   layer.context.fillStyle = "grey";

@@ -4,6 +4,9 @@ export default {
       max: 5,
       min: 0.5,
       step: 0.1
+    },
+    selection: {
+      strokeStyle: "blue"
     }
   },
   grid: {
