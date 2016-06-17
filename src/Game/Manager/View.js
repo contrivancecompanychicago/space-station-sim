@@ -162,6 +162,7 @@ export default class ViewManager{
     this.state.selection = false;
     let grid = this.getComponent('gridManager');
     let pt = this.startPos;
+    debugger;
 
     //////////////////HACK HACK HACK HACK HACK HACK HACK HACK
     for(let y = this.selection.t; y <= this.selection.b; y++){

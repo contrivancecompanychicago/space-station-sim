@@ -1,6 +1,7 @@
 
 import Game from 'Game';
 import { extend, keys } from 'lodash';
+import config from 'Game/config';
 
 
 //keypresses
@@ -25,10 +26,17 @@ describe('Integration', () => {
     const container = document.createElement('div');
     const game = new Game(container);
 
-    mouseEvent('mousedown', {button:0, x:1, y:1});
-    mouseEvent('mouseup', {button:0, x:1, y:1});
+    const viewManager = game.engine.getComponent('viewManager');
 
-    expect(keys(game.state.Grid).length).toBe(1);
+    spyOn(viewManager, 'endSelection').and.callThrough();
+
+    mouseEvent('mousedown', {button:0, pageX:1, pageY:1});
+    mouseEvent('mouseup', {button:0, pageX:config.grid.width + 1, pageY:config.grid.height + 1});
+
+    expect(viewManager.endSelection).toHaveBeenCalled();
+
+    // console.log(game.state.Grid);
+    expect(keys(game.state.Grid).length).toBe(4);
 
     game.destroy();
   });
