@@ -5,7 +5,8 @@
   "main": "server/server.coffee",
   "scripts": {
     "test": "karma start",
-    "dev": "webpack-dev-server --hot --inline"
+    "dev": "webpack-dev-server --hot --inline",
+    "build": "gulp build"
   },
   "bin": {
     "grunt": "./node_modules/grunt-cli/bin/grunt",
