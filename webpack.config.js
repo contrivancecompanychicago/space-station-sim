@@ -15,6 +15,7 @@ module.exports = {
         path: dir_build,
         filename: 'bundle.js'
     },
+    devtool: 'inline-source-map',
     // devServer: {
     //     contentBase: dir_build,
     // },
@@ -60,6 +61,4 @@ module.exports = {
         '.js'
       ]
     },
-    // Create Sourcemaps for the bundle
-    devtool: 'source-map'
 };

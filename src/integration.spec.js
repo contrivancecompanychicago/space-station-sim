@@ -24,7 +24,9 @@ describe('Integration', () => {
   it('should make grid objects', () => {
     const container = document.createElement('div');
     const game = new Game(container);
+    // console.log("debugging");
     // debugger;
+
     // mouseEvent('mousedown', {button:0, x:1, y:1});
     // mouseEvent('mouseup', {button:0, x:1, y:1});
 

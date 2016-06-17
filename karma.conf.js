@@ -2,7 +2,7 @@
 
 var webpackConf = require('./webpack.config.js');
 delete webpackConf.entry;
-webpackConf.module.loaders[0].loader = 'isparta'; //instrument
+// webpackConf.module.loaders[0].loader = 'isparta'; //instrument
 
 module.exports = function(config) {
   config.set({
@@ -25,7 +25,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        '**/*spec.js': ['webpack']
+        '**/*spec.js*': ['webpack', 'sourcemap']
     },
 
     webpack: webpackConf,
