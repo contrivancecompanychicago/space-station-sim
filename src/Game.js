@@ -25,4 +25,8 @@ export default class Game{
     this.engine.register(new Renderer(this.state, this.container));
 
   }
+
+  destroy(){
+    this.engine.notify('destroy');
+  }
 }

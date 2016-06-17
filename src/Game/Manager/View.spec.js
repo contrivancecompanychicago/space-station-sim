@@ -25,6 +25,9 @@ describe('Game/Manager/View', () => {
     state = {};
     viewManager = new ViewManager(state);
   });
+  afterEach(() => {
+    viewManager.destroy();
+  });
 
   describe('constructor', () => {
     it('should set defaults', () => {

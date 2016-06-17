@@ -1,6 +1,6 @@
 
 import Game from 'Game';
-import { extend } from 'lodash';
+import { extend, keys } from 'lodash';
 
 
 //keypresses
@@ -24,12 +24,21 @@ describe('Integration', () => {
   it('should make grid objects', () => {
     const container = document.createElement('div');
     const game = new Game(container);
-    // console.log("debugging");
-    // debugger;
 
-    // mouseEvent('mousedown', {button:0, x:1, y:1});
-    // mouseEvent('mouseup', {button:0, x:1, y:1});
+    mouseEvent('mousedown', {button:0, x:1, y:1});
+    mouseEvent('mouseup', {button:0, x:1, y:1});
 
-    // console.log(game.state.Grid);
+    expect(keys(game.state.Grid).length).toBe(1);
+
+    game.destroy();
+  });
+
+  it('should clean up all listeners on destroy', () => {
+    const container = document.createElement('div');
+    const game = new Game(container);
+    let viewManager = game.engine.getComponent('viewManager');
+    spyOn(viewManager, 'destroy');
+    game.destroy();
+    expect(viewManager.destroy).toHaveBeenCalled();
   });
 });

@@ -43,11 +43,37 @@ export default class ViewManager{
   }
 
   addListeners() {
-    document.addEventListener('mousedown', this.onMouseDown.bind(this));
-    document.addEventListener('mouseup', this.onMouseUp.bind(this));
-    document.addEventListener('mousemove', this.onMouseMove.bind(this));
-    document.addEventListener('mousewheel', this.onMouseWheel.bind(this));
-    document.addEventListener('DOMMouseScroll', this.onMouseWheel.bind(this));
+    document.addEventListener('mousedown', this, false);
+    document.addEventListener('mouseup', this, false);
+    document.addEventListener('mousemove', this, false);
+    document.addEventListener('mousewheel', this, false);
+    document.addEventListener('DOMMouseScroll', this, false);
+  }
+  removeListeners() {
+    document.removeEventListener('mousedown', this, false);
+    document.removeEventListener('mouseup', this, false);
+    document.removeEventListener('mousemove', this, false);
+    document.removeEventListener('mousewheel', this, false);
+    document.removeEventListener('DOMMouseScroll', this, false);
+  }
+  handleEvent(e) {
+    switch(e.type){
+      case 'mousedown':
+        this.onMouseDown(e);
+        break;
+      case 'mouseup':
+        this.onMouseUp(e);
+        break;
+      case 'mousemove':
+        this.onMouseMove(e);
+        break;
+      case 'mousewheel':
+        this.onMouseWheel(e);
+        break;
+      case 'DOMMouseScroll':
+        this.onMouseWheel(e);
+        break;
+    }
   }
 
 
@@ -161,6 +187,9 @@ export default class ViewManager{
     };
   }
 
+  destroy(){
+    this.removeListeners();
+  }
 
 
 }
