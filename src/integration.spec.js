@@ -21,21 +21,19 @@ let mouseEvent = function(eventName, params){
 
 
 describe('Integration', () => {
-  it('should have integration specs');
   it('should make grid objects', () => {
     const container = document.createElement('div');
     const game = new Game(container);
 
-    const viewManager = game.engine.getComponent('viewManager');
 
-    spyOn(viewManager, 'endSelection').and.callThrough();
+    // const viewManager = game.engine.getComponent('viewManager');
+    // spyOn(viewManager, 'endSelection').and.callThrough();
 
     mouseEvent('mousedown', {button:0, pageX:1, pageY:1});
     mouseEvent('mouseup', {button:0, pageX:config.grid.width + 1, pageY:config.grid.height + 1});
 
-    expect(viewManager.endSelection).toHaveBeenCalled();
+    // expect(viewManager.endSelection).toHaveBeenCalled();
 
-    // console.log(game.state.Grid);
     expect(keys(game.state.Grid).length).toBe(4);
 
     game.destroy();
@@ -48,5 +46,20 @@ describe('Integration', () => {
     spyOn(viewManager, 'destroy');
     game.destroy();
     expect(viewManager.destroy).toHaveBeenCalled();
+  });
+
+  it('should be UI clickable', () => {
+    const container = document.createElement('div');
+    const game = new Game(container);
+
+    let panel = container.getElementsByClassName('mode')[0];
+    expect(panel).toBeDefined();
+    let select = panel.childNodes[1];
+
+    // console.log(this.refs);
+    var ReactTestUtils = require('react-addons-test-utils');
+    ReactTestUtils.Simulate.click(select);
+
+    expect(game.state.UI.mode).toBe('SELECT');
   });
 });

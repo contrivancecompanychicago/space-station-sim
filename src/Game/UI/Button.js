@@ -3,7 +3,7 @@ import React from 'react';
 class Button extends React.Component{
 
   render(){
-    return <button className={this.props.selected?'selected':''} onClick={this.props.click}>
+    return <button ref="button-{this.props.data.label}" className={this.props.selected?'selected':''} onClick={this.props.click}>
     {this.props.data.label}
     </button>;
   }

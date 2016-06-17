@@ -28,7 +28,8 @@
   },
   "homepage": "https://github.com/digijin/space-station-sim",
   "devDependencies": {
-    "karma-sourcemap-loader": "^0.3.7"
+    "karma-sourcemap-loader": "^0.3.7",
+    "react-addons-test-utils": "^15.1.0"
   },
   "dependencies": {
     "babel-core": "^6.7.6",
