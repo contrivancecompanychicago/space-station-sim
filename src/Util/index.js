@@ -14,6 +14,9 @@
 // export const localToGlobal = FlocalToGlobal;
 export const globalToLocal = require('./globalToLocal').default;
 export const localToGlobal = require('./localToGlobal').default;
+export const makeKey = require('./makeKey').default;
+export const parseKey = require('./parseKey').default;
+export const blockToPoint = require('./blockToPoint').default;
 
 // export * as localToGlobal from './localToGlobal';
 
