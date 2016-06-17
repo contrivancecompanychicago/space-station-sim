@@ -10,7 +10,7 @@ export default class Grid extends React.Component {
 
     const buttons = [];
     keys(Grids).forEach((key) => {
-      buttons.push(<Button selected={key===this.props.grid} key={key} data={Grids[key]} click={()=>this.props.click(key)} />);
+      buttons.push(<Button type="grid" selected={key===this.props.grid} key={key} data={Grids[key]} click={()=>this.props.click(key)} />);
     });
 
     return <div className="grid panel">

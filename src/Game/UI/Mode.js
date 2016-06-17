@@ -10,7 +10,7 @@ export default class Mode extends React.Component {
 
     const buttons = [];
     keys(Modes).forEach((key) => {
-      buttons.push(<Button selected={key===this.props.mode} key={key} data={Modes[key]} click={()=>this.props.click(key)} />);
+      buttons.push(<Button type="mode" selected={key===this.props.mode} key={key} data={Modes[key]} click={()=>this.props.click(key)} />);
     });
 
     return <div className="mode panel">

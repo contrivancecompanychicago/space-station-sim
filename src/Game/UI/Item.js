@@ -10,7 +10,7 @@ export default class Item extends React.Component {
 
     const buttons = [];
     keys(Items).forEach((key) => {
-      buttons.push(<Button selected={key===this.props.item} key={key} data={Items[key]} click={()=>this.props.click(key)} />);
+      buttons.push(<Button type="item" selected={key===this.props.item} key={key} data={Items[key]} click={()=>this.props.click(key)} />);
     });
 
     return <div className="item panel">

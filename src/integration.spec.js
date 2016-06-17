@@ -2,6 +2,7 @@
 import Game from 'Game';
 import { extend, keys } from 'lodash';
 import config from 'Game/config';
+import ReactTestUtils from 'react-addons-test-utils';
 
 
 //keypresses
@@ -18,13 +19,20 @@ let mouseEvent = function(eventName, params){
 //   mouseEvent('mouseup', {button: 0});
 // };
 
+let container = document.createElement('div');
+let game;
 
+const clickButton = function (button){
+  const select = container.getElementsByClassName(button)[0];
+  ReactTestUtils.Simulate.click(select);
+};
 
 describe('Integration', () => {
+  beforeEach(() => {
+    container = document.createElement('div');
+    game = new Game(container);
+  });
   it('should make grid objects', () => {
-    const container = document.createElement('div');
-    const game = new Game(container);
-
 
     // const viewManager = game.engine.getComponent('viewManager');
     // spyOn(viewManager, 'endSelection').and.callThrough();
@@ -40,8 +48,6 @@ describe('Integration', () => {
   });
 
   it('should clean up all listeners on destroy', () => {
-    const container = document.createElement('div');
-    const game = new Game(container);
     let viewManager = game.engine.getComponent('viewManager');
     spyOn(viewManager, 'destroy');
     game.destroy();
@@ -49,16 +55,8 @@ describe('Integration', () => {
   });
 
   it('should be UI clickable', () => {
-    const container = document.createElement('div');
-    const game = new Game(container);
 
-    let panel = container.getElementsByClassName('mode')[0];
-    expect(panel).toBeDefined();
-    let select = panel.childNodes[1];
-
-    // console.log(this.refs);
-    var ReactTestUtils = require('react-addons-test-utils');
-    ReactTestUtils.Simulate.click(select);
+    clickButton('button-mode-select');
 
     expect(game.state.UI.mode).toBe('SELECT');
   });
