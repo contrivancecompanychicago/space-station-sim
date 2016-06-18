@@ -24,6 +24,7 @@ describe('Game/Manager/View', () => {
   beforeEach(() => {
     state = {};
     viewManager = new ViewManager(state);
+    viewManager.start();
   });
   afterEach(() => {
     viewManager.destroy();
@@ -41,11 +42,12 @@ describe('Game/Manager/View', () => {
 
   describe('detecting middle mouse', () => {
     it('should be called by imagine', () =>{
+      viewManager.removeListeners();
       spyOn(viewManager, 'onMouseDown').and.callThrough();
       spyOn(viewManager, 'startDrag').and.callThrough();
       spyOn(viewManager, 'onMouseUp').and.callThrough();
       spyOn(viewManager, 'stopDrag').and.callThrough();
-      viewManager.start();
+      viewManager.addListeners();
       middleMouseDown();
       expect(viewManager.onMouseDown).toHaveBeenCalled();
       expect(viewManager.startDrag).toHaveBeenCalled();
@@ -70,6 +72,24 @@ describe('Game/Manager/View', () => {
       viewManager.startDrag({pageX: 0, pageY: 0});
       expect(viewManager.lastPos).toBeDefined();
     });
+  });
+
+  describe('selection', () => {
+    it('should detect mouse clicking', () => {
+      mouseEvent('mousedown', {button: 0});
+      expect(viewManager.down).toBeDefined();
+      expect(viewManager.down['0']).toBe(true);
+    });
+    // it('should work even if scrolling halfway through selection');
+    it('should notify a selection on mouseup', () => {
+      viewManager.notify = () => {};
+      spyOn(viewManager, 'notify');
+      mouseEvent('mousedown', {button: 0, pageX: 1, pageY: 1});
+      mouseEvent('mouseup', {button: 0, pageX: 10, pageY: 10});
+      expect(viewManager.notify).toHaveBeenCalled();
+    });
+    it('should use the UI to determine what to do with the selection');
+
   });
 
 });

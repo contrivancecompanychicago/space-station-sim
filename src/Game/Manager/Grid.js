@@ -7,6 +7,25 @@ export default class GridManager{
     this.state = state;
   }
 
+  userAction(selection){
+    // console.log("user wooo", selection);
+    for(let y = selection.rect.t; y <= selection.rect.b; y++){
+      for(let x = selection.rect.l; x <= selection.rect.r; x++){
+        // console.log(y)
+        // console.log(selection);
+        switch(selection.button){
+          case 0:
+            this.addNode(x, y, 'basic');
+            break;
+          case 2://MouseButtons.RIGHT:
+            this.removeNode(x, y);
+            break;
+        }
+
+      }
+    }
+  }
+
   //TODO: move to Util
   makeKey(x, y){
     return `${x}_${y}`;

@@ -9,12 +9,12 @@ export default function renderSelection(state, layer){
   if(state.View.selection){
     assign(layer.context, config.view.selection);
     let tl = localToGlobal(blockToPoint({
-      x: state.View.selection.l,
-      y: state.View.selection.t
+      x: state.View.selection.rect.l,
+      y: state.View.selection.rect.t
     }), state);
     let br = localToGlobal(blockToPoint({
-      x: (state.View.selection.r + 1),
-      y: (state.View.selection.b + 1)
+      x: (state.View.selection.rect.r + 1),
+      y: (state.View.selection.rect.b + 1)
     }), state);
     layer.context.strokeRect(tl.x, tl.y, br.x - tl.x, br.y - tl.y);
 

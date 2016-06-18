@@ -143,11 +143,16 @@ export default class ViewManager{
   startSelection(e){
     this.selecting = true;
     this.startPos = this.pointToBlock(this.globalToLocal({x:e.pageX, y: e.pageY}));
+
+    this.selection = {button: e.button};
+    // console.log(this.startPos, e);
   }
 
   updateSelection(e){
+    // debugger;
+
     this.endPos = this.pointToBlock(this.globalToLocal({x:e.pageX, y: e.pageY}));
-    this.selection = {
+    this.selection.rect = {
       t: Math.min(this.endPos.y, this.startPos.y),
       r: Math.max(this.endPos.x, this.startPos.x),
       b: Math.max(this.endPos.y, this.startPos.y),
@@ -160,24 +165,25 @@ export default class ViewManager{
     this.selecting = false;
     this.updateSelection(e);
     this.state.selection = false;
-    let grid = this.getComponent('gridManager');
-    let pt = this.startPos;
-
-    //////////////////HACK HACK HACK HACK HACK HACK HACK HACK
-    for(let y = this.selection.t; y <= this.selection.b; y++){
-      for(let x = this.selection.l; x <= this.selection.r; x++){
-        // console.log(y)
-        switch(e.button){
-          case MouseButtons.LEFT:
-            grid.addNode(x, y, 'basic');
-            break;
-          case MouseButtons.RIGHT:
-            grid.removeNode(x, y);
-            break;
-        }
-
-      }
-    }
+    // let grid = this.getComponent('gridManager');
+    // let pt = this.startPos;
+    //
+    // //////////////////HACK HACK HACK HACK HACK HACK HACK HACK
+    // for(let y = this.selection.t; y <= this.selection.b; y++){
+    //   for(let x = this.selection.l; x <= this.selection.r; x++){
+    //     // console.log(y)
+    //     switch(e.button){
+    //       case MouseButtons.LEFT:
+    //         grid.addNode(x, y, 'basic');
+    //         break;
+    //       case MouseButtons.RIGHT:
+    //         grid.removeNode(x, y);
+    //         break;
+    //     }
+    //
+    //   }
+    // }
+    this.notify('userAction', this.selection);
 
   }
   pointToBlock(point) {
