@@ -81,6 +81,7 @@
     "karma-growl-reporter": "^0.1.1",
     "karma-html-reporter": "^0.2.6",
     "karma-jasmine": "~0.3.5",
+    "karma-jasmine-html-reporter": "^0.2.0",
     "karma-nyan-reporter": "0.0.60",
     "karma-sourcemap-loader": "~0.3.4",
     "karma-webpack": "^1.7.0",
