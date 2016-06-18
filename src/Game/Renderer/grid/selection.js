@@ -1,5 +1,6 @@
 import {assign} from 'lodash';
 import {localToGlobal, blockToPoint} from 'Util';
+import config from 'Game/config';
 
 export default function renderSelection(state, layer){
 
