@@ -3,6 +3,7 @@ import config from 'Game/config';
 
 import MouseButtons from 'Util/MouseButtons';
 
+import Rect from 'Game/Rect';
 
 const initial = {
   scale: 1,
@@ -140,7 +141,7 @@ export default class ViewManager{
     this.selecting = true;
     this.startPos = this.pointToBlock(this.globalToLocal({x:e.pageX, y: e.pageY}));
 
-    this.selection = {button: e.button};
+    this.selection = {start: this.startPos, button: e.button};
     // console.log(this.startPos, e);
   }
 

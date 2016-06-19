@@ -1,5 +1,5 @@
 import {assign} from 'lodash';
-import {localToGlobal, blockToPoint} from 'Util';
+import {worldToScreen, blockToPoint} from 'Util';
 import config from 'Game/config';
 
 export default function renderSelection(state, layer){
@@ -8,11 +8,11 @@ export default function renderSelection(state, layer){
   layer.context.shadowColor="blue";
   if(state.View.selection){
     assign(layer.context, config.view.selection);
-    let tl = localToGlobal(blockToPoint({
+    let tl = worldToScreen(blockToPoint({
       x: state.View.selection.rect.l,
       y: state.View.selection.rect.t
     }), state);
-    let br = localToGlobal(blockToPoint({
+    let br = worldToScreen(blockToPoint({
       x: (state.View.selection.rect.r + 1),
       y: (state.View.selection.rect.b + 1)
     }), state);
