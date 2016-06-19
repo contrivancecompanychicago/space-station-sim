@@ -1,12 +1,8 @@
 import {defaults} from 'lodash';
 import config from 'Game/config';
 
+import MouseButtons from 'Util/MouseButtons';
 
-const MouseButtons = {
-  LEFT: 0,
-  MIDDLE: 1,
-  RIGHT: 2
-};
 
 const initial = {
   scale: 1,
