@@ -9,8 +9,9 @@ export default class GridManager{
 
   userAction(selection){
     // console.log("user wooo", selection);
-    for(let y = selection.rect.t; y <= selection.rect.b; y++){
-      for(let x = selection.rect.l; x <= selection.rect.r; x++){
+    let sel = selection.rect.blockRect();
+    for(let y = sel.t; y <= sel.b; y++){
+      for(let x = sel.l; x <= sel.r; x++){
         // console.log(y)
         // console.log(selection);
         switch(selection.button){
