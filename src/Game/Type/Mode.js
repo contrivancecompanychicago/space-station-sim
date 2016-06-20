@@ -5,3 +5,9 @@ const Mode = {
 };
 
 export default Mode;
+
+export let Modes = {
+  'SELECT':'SELECT',
+  'GRID':'GRID',
+  'ITEM':'ITEM',
+};

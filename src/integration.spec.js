@@ -34,6 +34,11 @@ describe('Integration', () => {
   });
   it('should make grid objects', () => {
 
+    clickButton('button-mode-grid');
+    clickButton('button-grid-Floor');
+
+    expect(game.state.UI.mode).toBe('GRID');
+
     const viewManager = game.engine.getComponent('viewManager');
     spyOn(viewManager, 'endSelection').and.callThrough();
 

@@ -9,7 +9,7 @@ export default class GridManager{
     this.state = state;
   }
 
-  userAction(selection){
+  addNodes(selection, type){
     // console.log("user wooo", selection);
     // let e = new Error();
     // console.log(e.stack);
@@ -20,7 +20,7 @@ export default class GridManager{
         // console.log(selection);
         switch(selection.button){
           case MouseButtons.LEFT:
-            this.addNode(x, y, 'basic');
+            this.addNode(x, y, type);
             break;
           case MouseButtons.RIGHT://MouseButtons.RIGHT:
             this.removeNode(x, y);
