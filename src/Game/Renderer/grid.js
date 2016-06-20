@@ -13,10 +13,9 @@ import renderSelection from './grid/selection';
 
 function renderGrid(state, layer){
   layer.clear();
-
   keys(state.Grid).forEach((key) => {
     let pos = parseKey(key);
-    renderBlock(pos, state, layer);
+    renderBlock(pos, state.Grid[key], state, layer);
   });
 
   renderSelection(state, layer);

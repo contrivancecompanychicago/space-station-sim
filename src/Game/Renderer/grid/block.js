@@ -6,11 +6,15 @@ const blockHeight = config.grid.height;
 
 import Types from 'Game/Type/Grid';
 
-export default function renderBlock(block, state, layer){
-  const offset = worldToScreen(blockToPoint(block), state);
+export default function renderBlock(pos, block, state, layer){
+  const offset = worldToScreen(blockToPoint(pos), state);
   layer.context.fillRect(offset.x, offset.y, blockWidth * state.View.scale, blockHeight * state.View.scale);
-  // console.log(state);
+  // console.log(block);
   let image = Types.BASIC.image;
-  layer.context.drawImage(image, 0, 0, image.width, image.height, offset.x, offset.y, blockWidth * state.View.scale, blockHeight * state.View.scale);
+  layer.context.drawImage(image,
+    0, 0,
+    image.width, image.height,
+    offset.x, offset.y,
+    blockWidth * state.View.scale, blockHeight * state.View.scale);
 
 }
