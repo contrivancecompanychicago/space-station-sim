@@ -85,7 +85,7 @@ export default class ViewManager{
 
   onMouseUp(e){
     this.down[e.button] = false;
-    if(e.button === 1){
+    if(e.button === MouseButtons.MIDDLE){
       this.stopDrag();
     }else{
       this.endSelection(e);

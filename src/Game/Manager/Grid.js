@@ -1,12 +1,14 @@
 import { keys } from 'lodash';
 import { Graph, astar } from 'javascript-astar';
 
+import MouseButtons from 'Util/MouseButtons';
+
 export default class GridManager{
   constructor(state = {}){
     this.type = 'gridManager';
     this.state = state;
   }
-
+  
   userAction(selection){
     // console.log("user wooo", selection);
     let sel = selection.rect.blockRect();
@@ -15,10 +17,10 @@ export default class GridManager{
         // console.log(y)
         // console.log(selection);
         switch(selection.button){
-          case 0:
+          case MouseButtons.LEFT:
             this.addNode(x, y, 'basic');
             break;
-          case 2://MouseButtons.RIGHT:
+          case MouseButtons.RIGHT://MouseButtons.RIGHT:
             this.removeNode(x, y);
             break;
         }
