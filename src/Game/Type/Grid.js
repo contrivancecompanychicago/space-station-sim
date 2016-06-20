@@ -1,6 +1,6 @@
 const Grid = {
-  'BASIC': {label: 'Basic', image:require('./Grid/plain.png')},
-  'FLOOR': {label: 'Floor'},
+  'BASIC': {label: 'Basic'},
+  'FLOOR': {label: 'Floor', image:require('./Grid/plain.png')},
   'WALL': {label: 'Wall', image:require('./Grid/wall.png')},
 };
 
