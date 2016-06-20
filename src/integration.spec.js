@@ -34,13 +34,17 @@ describe('Integration', () => {
   });
   it('should make grid objects', () => {
 
-    // const viewManager = game.engine.getComponent('viewManager');
-    // spyOn(viewManager, 'endSelection').and.callThrough();
+    const viewManager = game.engine.getComponent('viewManager');
+    spyOn(viewManager, 'endSelection').and.callThrough();
+
+    const actionDispatcher = game.engine.getComponent('actionDispatcher');
+    spyOn(actionDispatcher, 'userAction').and.callThrough();
 
     mouseEvent('mousedown', {button:0, pageX:1, pageY:1});
     mouseEvent('mouseup', {button:0, pageX:config.grid.width + 1, pageY:config.grid.height + 1});
 
-    // expect(viewManager.endSelection).toHaveBeenCalled();
+    expect(viewManager.endSelection).toHaveBeenCalled();
+    expect(actionDispatcher.userAction).toHaveBeenCalled();
 
     expect(keys(game.state.Grid).length).toBe(4);
 

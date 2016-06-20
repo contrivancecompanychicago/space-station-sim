@@ -6,7 +6,9 @@ export default {
       step: 0.1
     },
     selection: {
-      strokeStyle: "blue"
+      strokeStyle: "blue",
+      shadowBlur: 10,
+      shadowColor: "blue"
     }
   },
   grid: {

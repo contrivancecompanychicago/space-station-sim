@@ -8,9 +8,11 @@ export default class GridManager{
     this.type = 'gridManager';
     this.state = state;
   }
-  
+
   userAction(selection){
     // console.log("user wooo", selection);
+    // let e = new Error();
+    // console.log(e.stack);
     let sel = selection.rect.blockRect();
     for(let y = sel.t; y <= sel.b; y++){
       for(let x = sel.l; x <= sel.r; x++){

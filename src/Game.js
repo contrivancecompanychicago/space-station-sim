@@ -4,6 +4,7 @@ require('./Game/style.css');
 
 import managers from 'Game/Manager';
 import Renderer from 'Game/Renderer';
+import ActionDispatcher from 'Game/Action/Dispatcher';
 
 import { keys } from 'lodash';
 
@@ -22,7 +23,10 @@ export default class Game{
       this.manager.addComponent(new manager(this.state[key], this.container));
     });
 
+    this.manager.addComponent(new ActionDispatcher(this.state, this.container));
+
     this.engine.register(new Renderer(this.state, this.container));
+
 
   }
 

@@ -28,6 +28,7 @@ export default class ViewManager{
       y: (point.y / this.state.scale) - this.state.offset.y
     };
   }
+
   localToGlobal(point){
     return {
       x: (this.state.offset.x + (point.x)) * this.state.scale,
@@ -162,24 +163,7 @@ export default class ViewManager{
     this.selecting = false;
     this.updateSelection(e);
     this.state.selection = false;
-    // let grid = this.getComponent('gridManager');
-    // let pt = this.startPos;
-    //
-    // //////////////////HACK HACK HACK HACK HACK HACK HACK HACK
-    // for(let y = this.selection.t; y <= this.selection.b; y++){
-    //   for(let x = this.selection.l; x <= this.selection.r; x++){
-    //     // console.log(y)
-    //     switch(e.button){
-    //       case MouseButtons.LEFT:
-    //         grid.addNode(x, y, 'basic');
-    //         break;
-    //       case MouseButtons.RIGHT:
-    //         grid.removeNode(x, y);
-    //         break;
-    //     }
-    //
-    //   }
-    // }
+
     this.notify('userAction', this.selection);
 
   }
