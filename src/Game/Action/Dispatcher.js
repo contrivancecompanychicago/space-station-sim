@@ -11,12 +11,15 @@ export default class Dispatcher{
 
     switch(this.state.UI.mode){
       case Modes.SELECT:
+
+        console.info('select mode not implemented');
         break;
       case Modes.GRID:
         let gridManager = this.getComponent('gridManager');
         gridManager.addNodes(selection, this.state.UI.grid);
         break;
       case Modes.ITEM:
+        console.info('item mode not implemented');
         break;
     }
   }

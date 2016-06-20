@@ -163,7 +163,6 @@ export default class ViewManager{
     this.selecting = false;
     this.updateSelection(e);
     this.state.selection = false;
-
     this.notify('userAction', this.selection);
 
   }
