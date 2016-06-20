@@ -88,7 +88,7 @@ describe('Game/Manager/View', () => {
       mouseEvent('mouseup', {button: 0, pageX: 10, pageY: 10});
       expect(viewManager.notify).toHaveBeenCalled();
     });
-    it('should use the UI to determine what to do with the selection');
+    // it('should use the UI to determine what to do with the selection');
 
   });
 

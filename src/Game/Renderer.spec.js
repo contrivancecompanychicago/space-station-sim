@@ -10,7 +10,7 @@ describe('Game/Renderer', () => {
     renderer = new Renderer(state, div);
   });
   it('should make a canvas', () => {
-    pending();///<----------------
+    // pending();///<----------------
     expect(div.children.length).toBe(1);
   });
 });
