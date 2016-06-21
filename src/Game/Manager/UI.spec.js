@@ -23,7 +23,7 @@ describe('Game/Manager/UI', () => {
   it('should respect its state object', () => {
     uiManager.start();
     expect(state).toBe(uiManager.state);
-    expect(keys(state).length).toBe(3);
+    expect(keys(state).length).toBe(4);
     uiManager.store.dispatch({type: 'CHANGE_GRID', id: 'test'});
     let out = uiManager.store.getState();
     expect(state).toBe(uiManager.state);

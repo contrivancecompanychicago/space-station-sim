@@ -157,13 +157,14 @@ export default class ViewManager{
       l: Math.min(this.endPos.x, this.startPos.x),
     });
     this.state.selection = this.selection;
+    this.state.selection.end = this.endPos;
   }
 
   endSelection(e){
     this.selecting = false;
     this.updateSelection(e);
-    this.state.selection = false;
     this.notify('userAction', this.selection);
+    this.state.selection = false;
 
   }
   pointToBlock(point) {

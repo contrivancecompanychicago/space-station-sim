@@ -89,6 +89,17 @@ describe('Game/Manager/View', () => {
       expect(viewManager.notify).toHaveBeenCalled();
     });
     // it('should use the UI to determine what to do with the selection');
+    it('should have start end and rect', () => {
+      viewManager.notify = () => {};
+      spyOn(viewManager, 'notify');
+      mouseEvent('mousedown', {button: 0, pageX: 1, pageY: 1});
+      mouseEvent('mouseup', {button: 0, pageX: 10, pageY: 10});
+      let args = viewManager.notify.calls.first().args;
+      let selection = args[1];
+      expect(selection.start).toBeDefined();
+      expect(selection.end).toBeDefined();
+      expect(selection.rect).toBeDefined();
+    });
 
   });
 

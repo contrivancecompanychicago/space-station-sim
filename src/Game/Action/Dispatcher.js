@@ -1,5 +1,7 @@
 
 import {Modes} from 'Game/Type/Mode';
+import CharacterFactory from 'Game/Factory/Character';
+
 
 export default class Dispatcher{
   constructor(state){
@@ -20,6 +22,10 @@ export default class Dispatcher{
         break;
       case Modes.ITEM:
         console.info('item mode not implemented');
+        break;
+      case Modes.CHAR:
+        let charManager = this.getComponent('characterManager');
+        charManager.addChar(CharacterFactory.create({x: selection.end.x, y: selection.end.y}));
         break;
     }
   }
