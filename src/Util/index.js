@@ -19,6 +19,7 @@ export const screenToWorld = require('./screenToWorld').default;
 export const makeKey = require('./makeKey').default;
 export const parseKey = require('./parseKey').default;
 export const blockToPoint = require('./blockToPoint').default;
+export const pointToBlock = require('./pointToBlock').default;
 
 // export * as localToGlobal from './localToGlobal';
 
