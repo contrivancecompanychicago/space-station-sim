@@ -44,7 +44,7 @@ export default class Character{
     });
   }
   move(char, target, time){
-    let speed = 20 * time.deltaTime;
+    let speed = 50 * time.deltaTime;
     const dir = Math.atan2(target.y - char.y, target.x-char.x);
     char.x += Math.cos(dir)*speed;
     char.y += Math.sin(dir)*speed;
