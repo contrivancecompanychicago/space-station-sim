@@ -21,8 +21,6 @@ export default class Character{
   }
 
   update(time){
-
-    let speed = 20 * time.deltaTime;
     keys(this.state).forEach((key) => {
       let char = this.state[key];
       if(!char.targetBlock){
@@ -33,10 +31,10 @@ export default class Character{
         let gridManager = this.getComponent('gridManager');
         gridManager.addNode(char.targetBlock.x, char.targetBlock.y, 'plain');
       }
-      let block = blockToPoint(char.targetBlock);
-      let dir = Math.atan2(block.y - char.y, block.x-char.x);
-      char.x += Math.cos(dir)*speed;
-      char.y += Math.sin(dir)*speed;
+      let point = blockToPoint(char.targetBlock);
+      point.x += 16;
+      point.y += 16;
+      this.move(char, point, time);
       let myBlock = pointToBlock(char);
       if(myBlock.x === char.targetBlock.x && myBlock.y === char.targetBlock.y){
         delete char.targetBlock;
@@ -44,6 +42,12 @@ export default class Character{
       // char.x += Math.random()-.5;
       // char.y += Math.random()-.5;
     });
+  }
+  move(char, target, time){
+    let speed = 20 * time.deltaTime;
+    const dir = Math.atan2(target.y - char.y, target.x-char.x);
+    char.x += Math.cos(dir)*speed;
+    char.y += Math.sin(dir)*speed;
   }
 
 }
