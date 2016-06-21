@@ -1,13 +1,18 @@
+import {Modes } from 'Game/Type/Mode';
+
 export default function mode(state = 1, action){
   switch(action.type){
     case 'CHANGE_MODE':
       state = action.id;
     break;
     case 'CHANGE_GRID':
-      state = 'GRID'; //hack
+      state = Modes.GRID; //hack
     break;
     case 'CHANGE_ITEM':
-      state = 'ITEM'; //hack
+      state = Modes.ITEM; //hack
+    break;
+    case 'CHANGE_CHAR':
+      state = Modes.CHAR; //hack
     break;
   }
   return state;

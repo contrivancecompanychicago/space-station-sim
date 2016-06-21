@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import mode from './reducer/mode';
 import grid from './reducer/grid';
 import item from './reducer/item';
+import character from './reducer/character';
 
 
 // export default function reducer(state = {}, action){
@@ -11,5 +12,6 @@ import item from './reducer/item';
 export default combineReducers({
   mode,
   grid,
-  item
+  item,
+  character
 });
