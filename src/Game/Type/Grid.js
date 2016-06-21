@@ -7,3 +7,9 @@ const Grid = {
 // console.log(Grid.BASIC.image);
 
 export default Grid;
+
+export let Grids = {
+  'BASIC':'BASIC',
+  'FLOOR':'FLOOR',
+  'WALL':'WALL',
+};

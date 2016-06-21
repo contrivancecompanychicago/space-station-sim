@@ -1,9 +1,9 @@
 const Item = {
-  'TEST': {label: 'test item'},
+  'WORKER': {label: 'worker'},
 };
 
 export default Item;
 
 export let Items = {
-  'TEST':'TEST',
+  'WORKER':'WORKER',
 };

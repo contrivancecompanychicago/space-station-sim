@@ -8,7 +8,7 @@ export default class Character{
   constructor(state){
     this.type = 'characterManager';
     this.state = state;
-    this.addChar({name: 'billy'});
+    // this.addChar({name: 'billy'});
   }
   addChar(char){
     if(!char.id)
