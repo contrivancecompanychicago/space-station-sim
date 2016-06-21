@@ -7,7 +7,7 @@ export default function renderCharacter(state, layer) {
     const offset = worldToScreen(char, state);
     layer.context.fillStyle = 'white';
     layer.context.beginPath();
-    layer.context.arc(offset.x, offset.y, 10, 0, Math.PI * 2);
+    layer.context.arc(offset.x, offset.y, 10*state.View.scale, 0, Math.PI * 2);
     layer.context.fill();
   });
 }
