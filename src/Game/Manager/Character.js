@@ -24,20 +24,31 @@ export default class Character{
     keys(this.state).forEach((key) => {
       let char = this.state[key];
       if(!char.targetBlock){
-        char.targetBlock = {
-          x: Math.floor(Math.random()*20),
-          y: Math.floor(Math.random()*20),
-        };
-        let gridManager = this.getComponent('gridManager');
-        gridManager.addNode(char.targetBlock.x, char.targetBlock.y, 'plain');
-      }
-      let point = blockToPoint(char.targetBlock);
-      point.x += 16;
-      point.y += 16;
-      this.move(char, point, time);
-      let myBlock = pointToBlock(char);
-      if(myBlock.x === char.targetBlock.x && myBlock.y === char.targetBlock.y){
-        delete char.targetBlock;
+        if(char.path&&char.path.length>0){
+          char.targetBlock = char.path.shift();
+        }else{
+          // let target = {
+          //   x: Math.floor(Math.random()*10),
+          //   y: Math.floor(Math.random()*10),
+          // };
+          let gridManager = this.getComponent('gridManager');
+          let target = gridManager.randomNode();
+          let currentBlock = pointToBlock(char);
+          char.path = gridManager.getPath(currentBlock, target);
+          // console.log(path);
+          // debugger;
+          // gridManager.addNode(char.targetBlock.x, char.targetBlock.y, 'plain');
+        }
+      }else{
+
+        let point = blockToPoint(char.targetBlock);
+        point.x += 16;
+        point.y += 16;
+        this.move(char, point, time);
+        let myBlock = pointToBlock(char);
+        if(myBlock.x === char.targetBlock.x && myBlock.y === char.targetBlock.y){
+          delete char.targetBlock;
+        }
       }
       // char.x += Math.random()-.5;
       // char.y += Math.random()-.5;

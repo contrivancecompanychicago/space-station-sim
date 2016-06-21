@@ -50,6 +50,11 @@ export default class GridManager{
   getNode(x, y){
     return this.state[this.makeKey(x, y)];
   }
+  randomNode(){
+    let k = keys(this.state);
+    let r = Math.floor(Math.random()* k.length);
+    return this.parseKey(k[r]);
+  }
 
   getMin(){
     let min = {x: Infinity, y: Infinity};
