@@ -12,24 +12,26 @@ const States = {
 };
 const State = {
   idle:{
-    start: (char) => {
+    start: function(char){
 
     },
-    update: (char) => {
-      this.changeState(char, States.RANDOM);
+    update: function(char){
+      if(Math.random()<0.01){
+        this.changeState(char, States.RANDOM);
+      }
     },
-    stop: (char) => {
+    stop: function(char){
 
     }
   },
   random:{
-    start: (char) => {
+    start: function(char){
       this.makePath(char, this.gridManager.randomNode());
     },
-    update: (char) => {
+    update: function(char){
       this.followPath(char);
     },
-    stop: (char) => {
+    stop: function(char){
 
     }
   }
@@ -40,6 +42,11 @@ export default class Character{
     this.type = 'characterManager';
     this.state = state;
     // this.addChar({name: 'billy'});
+    
+  }
+
+  bindState() {
+
   }
   addChar(char){
     if(!char.id)
@@ -56,9 +63,9 @@ export default class Character{
   changeState(char, newState) {
     let current = State[char.state];
     let next = State[newState];
-    current.stop(char);
+    current.stop.bind(this)(char);
     char.state = newState;
-    next.start(char);
+    next.start.bind(this)(char);
   }
 
   update(time){
@@ -67,8 +74,8 @@ export default class Character{
     keys(this.state).forEach((key) => {
       let char = this.state[key];
       let state = State[char.state];
-      // state.update(char).bind(this);
-      this.followPath(char);
+      state.update.bind(this)(char);
+      // this.followPath(char);
 
     });
   }

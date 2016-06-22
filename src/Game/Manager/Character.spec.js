@@ -33,4 +33,26 @@ describe('Game/Manager/Character', () => {
       engine.reset();
     });
   });
+  describe('states', () => {
+    it('should bind properly',  () => {
+      const Test = {
+        test: {
+          myfunc: function() {
+            expect(this.working).toBe(true);
+          }
+        }
+      };
+      spyOn(Test.test, 'myfunc').and.callThrough();
+      class TestClass{
+        call(){
+          this.working = true;
+          let f = Test.test.myfunc.bind(this);
+          f();
+        }
+      }
+      let test = new TestClass();
+      test.call();
+      expect(Test.test.myfunc).toHaveBeenCalled();
+    });
+  });
 });
