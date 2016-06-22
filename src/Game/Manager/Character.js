@@ -42,11 +42,15 @@ export default class Character{
     this.type = 'characterManager';
     this.state = state;
     // this.addChar({name: 'billy'});
-    
+    this.bindState();
   }
 
   bindState() {
-
+    keys(State).forEach((k) => {
+      keys(State[k]).forEach((s) => {
+        State[k][s] = State[k][s].bind(this);
+      });
+    });
   }
   addChar(char){
     if(!char.id)
@@ -63,9 +67,9 @@ export default class Character{
   changeState(char, newState) {
     let current = State[char.state];
     let next = State[newState];
-    current.stop.bind(this)(char);
+    current.stop(char);
     char.state = newState;
-    next.start.bind(this)(char);
+    next.start(char);
   }
 
   update(time){
@@ -74,7 +78,7 @@ export default class Character{
     keys(this.state).forEach((key) => {
       let char = this.state[key];
       let state = State[char.state];
-      state.update.bind(this)(char);
+      state.update(char);
       // this.followPath(char);
 
     });
