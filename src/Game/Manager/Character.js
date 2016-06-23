@@ -42,16 +42,16 @@ export default class Character{
     this.type = 'characterManager';
     this.state = state;
     // this.addChar({name: 'billy'});
-    this.bindState();
+    this.bindStates();
   }
-
-  bindState() {
+  bindStates() {
     keys(State).forEach((k) => {
       keys(State[k]).forEach((s) => {
         State[k][s] = State[k][s].bind(this);
       });
     });
   }
+
   addChar(char){
     if(!char.id)
       char.id = uniqid();
@@ -65,8 +65,10 @@ export default class Character{
   }
 
   changeState(char, newState) {
+    // console.log(char, 'to', newState);
     let current = State[char.state];
     let next = State[newState];
+    // console.log(char.state, current);
     current.stop(char);
     char.state = newState;
     next.start(char);
@@ -79,7 +81,6 @@ export default class Character{
       let char = this.state[key];
       let state = State[char.state];
       state.update(char);
-      // this.followPath(char);
 
     });
   }
@@ -93,8 +94,8 @@ export default class Character{
     }else if(char.path.length>0){
       char.targetBlock = char.path.shift();
     }else{
-      // this.changeState(States.IDLE).bind(this);
-      this.makePath(char, this.gridManager.randomNode());
+      this.changeState(char, States.IDLE);
+      // this.makePath(char, this.gridManager.randomNode());
 
     }
   }
@@ -109,7 +110,6 @@ export default class Character{
     return (myBlock.x === target.x && myBlock.y === target.y);
   }
   makePath(char, target){
-    // let target = gridManager.randomNode();
     let currentBlock = pointToBlock(char);
     char.path = this.gridManager.getPath(currentBlock, target);
   }

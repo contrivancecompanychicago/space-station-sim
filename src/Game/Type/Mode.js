@@ -3,6 +3,7 @@ const Mode = {
   'GRID': {label: 'grid'},
   'ITEM': {label: 'item'},
   'CHAR': {label: 'char'},
+  'TASK': {label: 'task'},
 };
 
 export default Mode;
@@ -12,4 +13,5 @@ export let Modes = {
   'GRID':'GRID',
   'ITEM':'ITEM',
   'CHAR':'CHAR',
+  'TASK':'TASK',
 };

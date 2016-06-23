@@ -6,13 +6,16 @@ export default function mode(state = 1, action){
       state = action.id;
     break;
     case 'CHANGE_GRID':
-      state = Modes.GRID; //hack
+      state = Modes.GRID;
     break;
     case 'CHANGE_ITEM':
-      state = Modes.ITEM; //hack
+      state = Modes.ITEM;
     break;
     case 'CHANGE_CHAR':
-      state = Modes.CHAR; //hack
+      state = Modes.CHAR;
+    break;
+    case 'CHANGE_TASK':
+      state = Modes.TASK;
     break;
   }
   return state;

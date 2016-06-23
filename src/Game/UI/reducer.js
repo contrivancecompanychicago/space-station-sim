@@ -3,6 +3,7 @@ import mode from './reducer/mode';
 import grid from './reducer/grid';
 import item from './reducer/item';
 import character from './reducer/character';
+import task from './reducer/task';
 
 
 // export default function reducer(state = {}, action){
@@ -13,5 +14,6 @@ export default combineReducers({
   mode,
   grid,
   item,
-  character
+  character,
+  task
 });

@@ -5,6 +5,7 @@ import Mode from './UI/Mode';
 import Grid from './UI/Grid';
 import Item from './UI/Item';
 import Character from './UI/Character';
+import Task from './UI/Task';
 
 
 class UI extends React.Component {
@@ -14,6 +15,7 @@ class UI extends React.Component {
       <Grid />
       <Item />
       <Character />
+      <Task />
     </div>;
   }
 }
