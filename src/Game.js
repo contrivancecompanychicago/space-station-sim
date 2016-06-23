@@ -11,6 +11,9 @@ import { keys } from 'lodash';
 
 export default class Game{
   constructor(container){
+
+    window.game = this;
+
     this.container = container;
 
     this.engine = new Imagine();

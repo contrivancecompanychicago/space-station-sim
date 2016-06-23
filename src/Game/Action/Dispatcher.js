@@ -1,7 +1,9 @@
 
 import {Modes} from 'Game/Type/Mode';
 import CharacterFactory from 'Game/Factory/Character';
+import {pointToBlock} from 'Util';
 
+import {Tasks} from 'Game/Type/Task';
 
 export default class Dispatcher{
   constructor(state){
@@ -26,6 +28,12 @@ export default class Dispatcher{
       case Modes.CHAR:
         let charManager = this.getComponent('characterManager');
         charManager.addChar(CharacterFactory.create({x: selection.end.x, y: selection.end.y}));
+        break;
+      case Modes.TASK:
+        let pos = {x: selection.end.x, y: selection.end.y};
+        pos = pointToBlock(pos);
+        let taskManager = this.getComponent('taskManger');
+        taskManager.addTask({block:pos, grid:this.state.UI.grid, type: Tasks.BUILD});
         break;
     }
   }
