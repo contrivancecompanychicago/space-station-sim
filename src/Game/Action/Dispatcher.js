@@ -32,7 +32,7 @@ export default class Dispatcher{
       case Modes.TASK:
         let pos = {x: selection.end.x, y: selection.end.y};
         pos = pointToBlock(pos);
-        let taskManager = this.getComponent('taskManger');
+        let taskManager = this.getComponent('taskManager');
         taskManager.addTask({block:pos, grid:this.state.UI.grid, type: Tasks.BUILD});
         break;
     }
