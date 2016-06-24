@@ -19,10 +19,12 @@ export default class Game{
     this.engine = new Imagine();
     this.state = {};//make initial reference
 
+    this.engine.register(new Renderer(this.state, this.container));
 
 
     //spawn managers
     this.manager = this.engine.register({type:'manager', game:this});
+
     keys(managers).forEach((key) => {
       let manager = managers[key];
       this.state[key] = {};
@@ -31,7 +33,6 @@ export default class Game{
     this.manager.addComponent(new Time(this.engine.time));
     this.manager.addComponent(new ActionDispatcher(this.state, this.container));
 
-    this.engine.register(new Renderer(this.state, this.container));
 
 
   }

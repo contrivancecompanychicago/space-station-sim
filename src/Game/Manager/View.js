@@ -15,9 +15,10 @@ const initial = {
 
 export default class ViewManager{
 
-  constructor(state = {}) {
+  constructor(state = {}, container) {
     this.type = 'viewManager';
     this.state = defaults(state, initial);
+    this.container = container;
     this.dragging = false;
     this.down = {};
   }
@@ -41,13 +42,17 @@ export default class ViewManager{
   }
 
   addListeners() {
-    document.addEventListener('mousedown', this, false);
-    document.addEventListener('mouseup', this, false);
-    document.addEventListener('mousemove', this, false);
-    document.addEventListener('mousewheel', this, false);
-    document.addEventListener('DOMMouseScroll', this, false);
+    // console.log(this.container);
+    const canvas = this.container.getElementsByTagName('canvas')[0];
+    // console.log(this.container.getElementsByTagName('canvas'));
+    canvas.addEventListener('mousedown', this, false);
+    canvas.addEventListener('mouseup', this, false);
+    canvas.addEventListener('mousemove', this, false);
+    canvas.addEventListener('mousewheel', this, false);
+    canvas.addEventListener('DOMMouseScroll', this, false);
   }
   removeListeners() {
+  // const canvas = this.container.getElementsByTagName('canvas')[0];
     document.removeEventListener('mousedown', this, false);
     document.removeEventListener('mouseup', this, false);
     document.removeEventListener('mousemove', this, false);
