@@ -6,11 +6,11 @@ import ReactTestUtils from 'react-addons-test-utils';
 
 
 //keypresses
-let mouseEvent = function(eventName, params){
+let mouseEvent = function(target, eventName, params){
   var event = document.createEvent('Event');
   extend(event, params);
   event.initEvent(eventName);
-  document.dispatchEvent(event); //was document
+  target.dispatchEvent(event); //was document
 };
 // let mouseDown = function(){
 //   mouseEvent('mousedown', {button: 0});
@@ -44,8 +44,8 @@ describe('Integration', () => {
     const actionDispatcher = game.engine.getComponent('actionDispatcher');
     spyOn(actionDispatcher, 'userAction').and.callThrough();
 
-    mouseEvent('mousedown', {button:0, pageX:1, pageY:1});
-    mouseEvent('mouseup', {button:0, pageX:config.grid.width + 1, pageY:config.grid.height + 1});
+    mouseEvent(viewManager.container, 'mousedown', {button:0, pageX:1, pageY:1});
+    mouseEvent(viewManager.container, 'mouseup', {button:0, pageX:config.grid.width + 1, pageY:config.grid.height + 1});
 
     expect(viewManager.endSelection).toHaveBeenCalled();
     expect(actionDispatcher.userAction).toHaveBeenCalled();

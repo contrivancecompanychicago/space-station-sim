@@ -4,26 +4,30 @@ import { extend } from 'lodash';
 
 let state;
 let viewManager;
+let container;
 
 //keypresses
-let mouseEvent = function(eventName, params){
+let mouseEvent = function(target, eventName, params){
   var event = document.createEvent('Event');
   extend(event, params);
   event.initEvent(eventName);
-  document.dispatchEvent(event);
+  target.dispatchEvent(event);
 };
-let middleMouseDown = function(){
-  mouseEvent('mousedown', {button: 1});
+let middleMouseDown = function(target){
+  mouseEvent(target, 'mousedown', {button: 1});
 };
-let middleMouseUp = function(){
-  mouseEvent('mouseup', {button: 1});
+let middleMouseUp = function(target){
+  mouseEvent(target, 'mouseup', {button: 1});
 };
 
 
 describe('Game/Manager/View', () => {
   beforeEach(() => {
     state = {};
-    viewManager = new ViewManager(state);
+    container = document.createElement('div');
+    let canvas = document.createElement('canvas');
+    container.appendChild(canvas);
+    viewManager = new ViewManager(state, container);
     viewManager.start();
   });
   afterEach(() => {
@@ -48,10 +52,10 @@ describe('Game/Manager/View', () => {
       spyOn(viewManager, 'onMouseUp').and.callThrough();
       spyOn(viewManager, 'stopDrag').and.callThrough();
       viewManager.addListeners();
-      middleMouseDown();
+      middleMouseDown(viewManager.container);
       expect(viewManager.onMouseDown).toHaveBeenCalled();
       expect(viewManager.startDrag).toHaveBeenCalled();
-      middleMouseUp();
+      middleMouseUp(viewManager.container);
       expect(viewManager.onMouseUp).toHaveBeenCalled();
       expect(viewManager.stopDrag).toHaveBeenCalled();
     });
@@ -76,7 +80,7 @@ describe('Game/Manager/View', () => {
 
   describe('selection', () => {
     it('should detect mouse clicking', () => {
-      mouseEvent('mousedown', {button: 0});
+      mouseEvent(viewManager.container, 'mousedown', {button: 0});
       expect(viewManager.down).toBeDefined();
       expect(viewManager.down['0']).toBe(true);
     });
@@ -84,16 +88,16 @@ describe('Game/Manager/View', () => {
     it('should notify a selection on mouseup', () => {
       viewManager.notify = () => {};
       spyOn(viewManager, 'notify');
-      mouseEvent('mousedown', {button: 0, pageX: 1, pageY: 1});
-      mouseEvent('mouseup', {button: 0, pageX: 10, pageY: 10});
+      mouseEvent(viewManager.container, 'mousedown', {button: 0, pageX: 1, pageY: 1});
+      mouseEvent(viewManager.container, 'mouseup', {button: 0, pageX: 10, pageY: 10});
       expect(viewManager.notify).toHaveBeenCalled();
     });
     // it('should use the UI to determine what to do with the selection');
     it('should have start end and rect', () => {
       viewManager.notify = () => {};
       spyOn(viewManager, 'notify');
-      mouseEvent('mousedown', {button: 0, pageX: 1, pageY: 1});
-      mouseEvent('mouseup', {button: 0, pageX: 10, pageY: 10});
+      mouseEvent(viewManager.container, 'mousedown', {button: 0, pageX: 1, pageY: 1});
+      mouseEvent(viewManager.container, 'mouseup', {button: 0, pageX: 10, pageY: 10});
       let args = viewManager.notify.calls.first().args;
       let selection = args[1];
       expect(selection.start).toBeDefined();

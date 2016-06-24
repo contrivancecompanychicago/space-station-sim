@@ -18,7 +18,7 @@ export default class ViewManager{
   constructor(state = {}, container) {
     this.type = 'viewManager';
     this.state = defaults(state, initial);
-    this.container = container;
+    this.container = container.getElementsByTagName('canvas')[0];
     this.dragging = false;
     this.down = {};
   }
@@ -43,21 +43,21 @@ export default class ViewManager{
 
   addListeners() {
     // console.log(this.container);
-    const canvas = this.container.getElementsByTagName('canvas')[0];
+    // const canvas = this.container.getElementsByTagName('canvas')[0];
     // console.log(this.container.getElementsByTagName('canvas'));
-    canvas.addEventListener('mousedown', this, false);
-    canvas.addEventListener('mouseup', this, false);
-    canvas.addEventListener('mousemove', this, false);
-    canvas.addEventListener('mousewheel', this, false);
-    canvas.addEventListener('DOMMouseScroll', this, false);
+    this.container.addEventListener('mousedown', this, false);
+    this.container.addEventListener('mouseup', this, false);
+    this.container.addEventListener('mousemove', this, false);
+    this.container.addEventListener('mousewheel', this, false);
+    this.container.addEventListener('DOMMouseScroll', this, false);
   }
   removeListeners() {
   // const canvas = this.container.getElementsByTagName('canvas')[0];
-    document.removeEventListener('mousedown', this, false);
-    document.removeEventListener('mouseup', this, false);
-    document.removeEventListener('mousemove', this, false);
-    document.removeEventListener('mousewheel', this, false);
-    document.removeEventListener('DOMMouseScroll', this, false);
+    this.container.removeEventListener('mousedown', this, false);
+    this.container.removeEventListener('mouseup', this, false);
+    this.container.removeEventListener('mousemove', this, false);
+    this.container.removeEventListener('mousewheel', this, false);
+    this.container.removeEventListener('DOMMouseScroll', this, false);
   }
   handleEvent(e) {
     switch(e.type){
