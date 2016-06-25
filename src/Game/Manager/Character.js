@@ -91,9 +91,9 @@ export default class Character{
     let current = State[char.state];
     let next = State[newState];
     // console.log(char.state, current);
-    current.stop(char);
+    if(current.stop) current.stop(char);
     char.state = newState;
-    next.start(char);
+    if(next.start) next.start(char);
   }
 
   update(time){

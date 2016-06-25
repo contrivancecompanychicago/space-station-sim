@@ -9,6 +9,7 @@ const blockHeight = config.grid.height;
 import renderBlock from './grid/block';
 import renderInfo from './grid/info';
 import renderSelection from './grid/selection';
+import renderTask from './grid/task';
 
 
 function renderGrid(state, layer){
@@ -19,6 +20,8 @@ function renderGrid(state, layer){
   });
 
   renderSelection(state, layer);
+
+  renderTask(state, layer);
 
   renderInfo(state, layer);
 }
