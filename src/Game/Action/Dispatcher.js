@@ -1,6 +1,7 @@
 
 import {Modes} from 'Game/Type/Mode';
 import CharacterFactory from 'Game/Factory/Character';
+import TaskFactory from 'Game/Factory/Task';
 import {pointToBlock} from 'Util';
 
 import {Tasks} from 'Game/Type/Task';
@@ -38,7 +39,7 @@ export default class Dispatcher{
         for(let y = sel.t; y <= sel.b; y++){
           for(let x = sel.l; x <= sel.r; x++){
             let pos = {x:x, y:y};
-            taskManager.addTask({block:pos, grid:this.state.UI.grid, type: Tasks.BUILD});
+            taskManager.addTask(TaskFactory.create({block:pos, grid:this.state.UI.grid, type: Tasks.BUILD}));
           }
         }
 

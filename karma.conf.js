@@ -33,7 +33,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['coverage', 'progress', 'kjhtml'], // 'nyan',
+    reporters: ['coverage', 'nyan', 'kjhtml'], // 'nyan',
 
     coverageReporter: {
       reporters:[
@@ -57,7 +57,7 @@ module.exports = function(config) {
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
 
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'Firefox'],
     // browsers: ['c:/Program Files (x86)/Google/Chrome/Application/Chrome.exe'],
     // browsers: ['Chrome', 'Firefox'],
 

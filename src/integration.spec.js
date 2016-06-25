@@ -9,7 +9,7 @@ import ReactTestUtils from 'react-addons-test-utils';
 let mouseEvent = function(target, eventName, params){
   var event = document.createEvent('Event');
   extend(event, params);
-  event.initEvent(eventName);
+  event.initEvent(eventName, true, true);
   target.dispatchEvent(event); //was document
 };
 // let mouseDown = function(){

@@ -1,6 +1,8 @@
 import { keys } from 'lodash';
 import { Graph, astar } from 'javascript-astar';
 
+import { makeKey, parseKey } from 'Util';
+
 import MouseButtons from 'Util/MouseButtons';
 
 export default class GridManager{
@@ -10,19 +12,14 @@ export default class GridManager{
   }
 
   addNodes(selection, type){
-    // console.log("user wooo", selection);
-    // let e = new Error();
-    // console.log(e.stack);
     let sel = selection.rect.blockRect();
     for(let y = sel.t; y <= sel.b; y++){
       for(let x = sel.l; x <= sel.r; x++){
-        // console.log(y)
-        // console.log(selection);
         switch(selection.button){
           case MouseButtons.LEFT:
             this.addNode(x, y, type);
             break;
-          case MouseButtons.RIGHT://MouseButtons.RIGHT:
+          case MouseButtons.RIGHT:
             this.removeNode(x, y);
             break;
         }
@@ -30,36 +27,28 @@ export default class GridManager{
     }
   }
 
-  //TODO: move to Util
-  makeKey(x, y){
-    return `${x}_${y}`;
-  }
-  parseKey(key){
-    let parts = key.split('_');
-    return {x:parseInt(parts[0]), y:parseInt(parts[1])};
-  }
 
   addNode(x, y, node){
-    this.state[this.makeKey(x, y)] = node;
+    this.state[makeKey(x, y)] = node;
   }
 
   removeNode(x, y){
-    delete this.state[this.makeKey(x, y)];
+    delete this.state[makeKey(x, y)];
   }
 
   getNode(x, y){
-    return this.state[this.makeKey(x, y)];
+    return this.state[makeKey(x, y)];
   }
   randomNode(){
     let k = keys(this.state);
     let r = Math.floor(Math.random()* k.length);
-    return this.parseKey(k[r]);
+    return parseKey(k[r]);
   }
 
   getMin(){
     let min = {x: Infinity, y: Infinity};
     keys(this.state).forEach((key) => {
-      let val = this.parseKey(key);
+      let val = parseKey(key);
       min = {x:Math.min(val.x, min.x), y:Math.min(val.y, min.y)};
     });
     return min;
@@ -73,7 +62,7 @@ export default class GridManager{
     let maxx = -Infinity;
     let maxy = -Infinity;
     keys(this.state).forEach((key) => {
-      let loc = this.parseKey(key);
+      let loc = parseKey(key);
       minx = Math.min(minx, loc.x);
       miny = Math.min(miny, loc.y);
       maxx = Math.max(maxx, loc.x);
@@ -92,7 +81,7 @@ export default class GridManager{
 
     //populate graph
     keys(this.state).forEach((key) => { //duplicate?
-      let loc = this.parseKey(key);
+      let loc = parseKey(key);
       arr[loc.x-minx][loc.y-miny] = 1;
     });
 

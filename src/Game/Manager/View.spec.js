@@ -10,7 +10,7 @@ let container;
 let mouseEvent = function(target, eventName, params){
   var event = document.createEvent('Event');
   extend(event, params);
-  event.initEvent(eventName);
+  event.initEvent(eventName, true, true);
   target.dispatchEvent(event);
 };
 let middleMouseDown = function(target){
