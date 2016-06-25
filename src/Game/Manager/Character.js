@@ -8,7 +8,8 @@ import {blockToPoint, pointToBlock} from 'Util';
 
 const States = {
   IDLE:'idle',
-  RANDOM: 'random'
+  RANDOM: 'random',
+  TASK: 'task'
 };
 const State = {
   idle:{
@@ -16,6 +17,12 @@ const State = {
 
     },
     update: function(char){
+      let task = this.taskManager.getTask();
+      if(task){
+        this.taskManager.assignTask(task.id, char.id);
+        char.task = task.id;
+        this.changeState(char, States.TASK);
+      }
       if(Math.random()<0.01){
         this.changeState(char, States.RANDOM);
       }
@@ -34,6 +41,25 @@ const State = {
     stop: function(char){
 
     }
+  },
+  task:{
+    start: function(){},
+    update: function(char){
+      let task = this.taskManager.getTask(char.task);
+      this.move(char, this.centerBlock(blockToPoint(task.block)), 1);
+      if(this.atBlock(char, task.block)){
+        let block = task.block;
+        let x = block.x;
+        let y = block.y;
+        this.gridManager.addNode(x, y, task.grid);
+        // console.log("node");
+        this.taskManager.finishTask(char.task);
+        this.changeState(char, States.IDLE);
+      }
+    },
+    stop: function(char){
+      delete char.task;
+    },
   }
 };
 
@@ -41,7 +67,6 @@ export default class Character{
   constructor(state){
     this.type = 'characterManager';
     this.state = state;
-    // this.addChar({name: 'billy'});
     this.bindStates();
   }
   bindStates() {
@@ -77,6 +102,7 @@ export default class Character{
   update(time){
     this.time = time;
     this.gridManager = this.getComponent('gridManager');
+    this.taskManager = this.getComponent('taskManager');
     keys(this.state).forEach((key) => {
       let char = this.state[key];
       let state = State[char.state];

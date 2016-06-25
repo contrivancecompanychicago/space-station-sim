@@ -45,5 +45,9 @@ export default class TaskManager{
     });
   }
 
+  finishTask(id){
+    delete this.state[id];
+  }
+
 
 }
