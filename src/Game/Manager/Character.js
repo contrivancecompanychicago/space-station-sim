@@ -6,16 +6,26 @@ import config from 'Game/config';
 
 import {blockToPoint, pointToBlock} from 'Util';
 
+
+function centerBlock(block){
+  return {
+    x: block.x + 16,
+    y: block.y + 16
+  };
+}
+function atBlock (char, target){
+  let myBlock = pointToBlock(char);
+  return (myBlock.x === target.x && myBlock.y === target.y);
+}
+
 const States = {
   IDLE:'idle',
   RANDOM: 'random',
   TASK: 'task'
 };
+//start update and end
 const State = {
   idle:{
-    start: function(char){
-
-    },
     update: function(char){
       let task = this.taskManager.getUnassignedTask();
       if(task){
@@ -27,9 +37,6 @@ const State = {
         this.changeState(char, States.RANDOM);
       }
     },
-    stop: function(char){
-
-    }
   },
   random:{
     start: function(char){
@@ -38,16 +45,13 @@ const State = {
     update: function(char){
       this.followPath(char);
     },
-    stop: function(char){
-
-    }
   },
   task:{
     start: function(){},
     update: function(char){
       let task = this.taskManager.getTask(char.task);
-      this.move(char, this.centerBlock(blockToPoint(task.block)), this.time.deltaTime*50);
-      if(this.atBlock(char, task.block)){
+      this.move(char, centerBlock(blockToPoint(task.block)), this.time.deltaTime*config.character.speed);
+      if(atBlock(char, task.block)){
         task.progress += this.time.deltaTime;
         if(task.progress>=1){
           this.gridManager.addNode(task.block.x, task.block.y, task.grid);
@@ -56,7 +60,7 @@ const State = {
         }
       }
     },
-    stop: function(char){
+    end: function(char){
       delete char.task;
     },
   }
@@ -93,7 +97,7 @@ export default class Character{
     let current = State[char.state];
     let next = State[newState];
     // console.log(char.state, current);
-    if(current.stop) current.stop(char);
+    if(current.end) current.end(char);
     char.state = newState;
     if(next.start) next.start(char);
   }
@@ -110,9 +114,9 @@ export default class Character{
   }
   followPath(char){
     if(char.targetBlock){
-      let point = this.centerBlock(blockToPoint(char.targetBlock));
-      this.move(char, point, 50 * this.time.deltaTime);
-      if(this.atBlock(char, char.targetBlock)){
+      let point = centerBlock(blockToPoint(char.targetBlock));
+      this.move(char, point, config.character.speed * this.time.deltaTime);
+      if(atBlock(char, char.targetBlock)){
         delete char.targetBlock;
       }
     }else if(char.path.length>0){
@@ -122,16 +126,6 @@ export default class Character{
       // this.makePath(char, this.gridManager.randomNode());
 
     }
-  }
-  centerBlock(block){
-    return {
-      x: block.x + 16,
-      y: block.y + 16
-    };
-  }
-  atBlock (char, target){
-    let myBlock = pointToBlock(char);
-    return (myBlock.x === target.x && myBlock.y === target.y);
   }
   makePath(char, target){
     let currentBlock = pointToBlock(char);

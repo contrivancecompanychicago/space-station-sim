@@ -1,8 +1,8 @@
 export default {
   view: {
     scale: {
-      max: 5,
-      min: 0.5,
+      max: 10,
+      min: 0.2,
       step: 0.1
     },
     selection: {
@@ -17,6 +17,7 @@ export default {
     debugtext: false
   },
   character:{
-    radius: 10
+    radius: 10,
+    speed: 50
   }
 };

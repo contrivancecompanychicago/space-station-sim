@@ -13,8 +13,8 @@ export default class Game{
   constructor(container){
 
     window.game = this;
-
     this.container = container;
+    // console.log(window.game);
 
     this.engine = new Imagine();
     this.state = {};//make initial reference
