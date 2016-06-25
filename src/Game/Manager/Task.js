@@ -25,6 +25,14 @@ export default class TaskManager{
     this.state[task.id] = task;
     return task;
   }
+  // addTasks(selection, type){
+  //   let sel = selection.rect.blockRect();
+  //   for(let y = sel.t; y <= sel.b; y++){
+  //     for(let x = sel.l; x <= sel.r; x++){
+  //       this.addTask()
+  //     }
+  //   }
+  // }
 
   assignTask(id, worker){
     if(this.state[id]){

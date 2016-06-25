@@ -48,10 +48,7 @@ const State = {
       let task = this.taskManager.getTask(char.task);
       this.move(char, this.centerBlock(blockToPoint(task.block)), 1);
       if(this.atBlock(char, task.block)){
-        let block = task.block;
-        let x = block.x;
-        let y = block.y;
-        this.gridManager.addNode(x, y, task.grid);
+        this.gridManager.addNode(task.block.x, task.block.y, task.grid);
         // console.log("node");
         this.taskManager.finishTask(char.task);
         this.changeState(char, States.IDLE);

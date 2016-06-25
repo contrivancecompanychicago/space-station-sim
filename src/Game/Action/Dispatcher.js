@@ -30,10 +30,18 @@ export default class Dispatcher{
         charManager.addChar(CharacterFactory.create({x: selection.end.x, y: selection.end.y}));
         break;
       case Modes.TASK:
-        let pos = {x: selection.end.x, y: selection.end.y};
-        pos = pointToBlock(pos);
+        // let pos = {x: selection.end.x, y: selection.end.y};
+        // pos = pointToBlock(pos);
         let taskManager = this.getComponent('taskManager');
-        taskManager.addTask({block:pos, grid:this.state.UI.grid, type: Tasks.BUILD});
+
+        let sel = selection.rect.blockRect();
+        for(let y = sel.t; y <= sel.b; y++){
+          for(let x = sel.l; x <= sel.r; x++){
+            let pos = {x:x, y:y};
+            taskManager.addTask({block:pos, grid:this.state.UI.grid, type: Tasks.BUILD});
+          }
+        }
+
         break;
     }
   }
