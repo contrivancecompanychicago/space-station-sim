@@ -81,7 +81,6 @@ export default class Character{
       let char = this.state[key];
       let state = State[char.state];
       state.update(char);
-
     });
   }
   followPath(char){
