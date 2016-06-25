@@ -46,12 +46,14 @@ const State = {
     start: function(){},
     update: function(char){
       let task = this.taskManager.getTask(char.task);
-      this.move(char, this.centerBlock(blockToPoint(task.block)), 1);
+      this.move(char, this.centerBlock(blockToPoint(task.block)), this.time.deltaTime*50);
       if(this.atBlock(char, task.block)){
-        this.gridManager.addNode(task.block.x, task.block.y, task.grid);
-        // console.log("node");
-        this.taskManager.finishTask(char.task);
-        this.changeState(char, States.IDLE);
+        task.progress += this.time.deltaTime;
+        if(task.progress>=1){
+          this.gridManager.addNode(task.block.x, task.block.y, task.grid);
+          this.taskManager.finishTask(char.task);
+          this.changeState(char, States.IDLE);
+        }
       }
     },
     stop: function(char){

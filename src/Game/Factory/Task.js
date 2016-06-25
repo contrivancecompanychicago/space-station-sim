@@ -7,6 +7,7 @@ const base = {
     x: 0,
     y: 0,
   },
+  progress:0
 };
 
 
