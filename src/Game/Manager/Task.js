@@ -12,6 +12,13 @@ export default class TaskManager{
     if(!id) id = head(keys(this.state));
     return this.state[id];
   }
+  getUnassignedTask(){
+    let tasks = keys(this.state);
+    for(let i = 0; i < tasks.length; i++){
+      let task = this.state[tasks[i]];
+      if(!task.worker) return task;
+    }
+  }
 
   getNextTask(id){
     if(!id) throw new Error('wtf');

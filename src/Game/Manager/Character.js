@@ -17,7 +17,7 @@ const State = {
 
     },
     update: function(char){
-      let task = this.taskManager.getTask();
+      let task = this.taskManager.getUnassignedTask();
       if(task){
         this.taskManager.assignTask(task.id, char.id);
         char.task = task.id;
