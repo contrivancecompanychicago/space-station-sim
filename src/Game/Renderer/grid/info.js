@@ -22,6 +22,7 @@ class FPS{
   render(layer){
     this.count++;
     let i = 0;
+    layer.context.fillStyle = "#6666ff";
     this.fps.forEach((second)=>{
       i++;
       layer.context.fillRect(i, 0, i+1, second/2);
@@ -35,7 +36,7 @@ class FPS{
 let fps = new FPS();
 
 export default function renderInfo(state, layer){
-  let offset = 60;
+  let offset = 30;
   let lineHeight = 20;
   fps.render(layer);
   layer.context.fillStyle = "grey";
