@@ -2,7 +2,7 @@
 import {Modes} from 'Game/Type/Mode';
 import CharacterFactory from 'Game/Factory/Character';
 import TaskFactory from 'Game/Factory/Task';
-import {pointToBlock} from 'Util';
+import {pointToBlock, blockToPoint} from 'Util';
 
 import {Tasks} from 'Game/Type/Task';
 
@@ -13,7 +13,7 @@ export default class Dispatcher{
   }
   userAction(selection){
     // console.log("something happened");
-
+    let sel = selection.rect.blockRect();
     switch(this.state.UI.mode){
       case Modes.SELECT:
 
@@ -28,14 +28,19 @@ export default class Dispatcher{
         break;
       case Modes.CHAR:
         let charManager = this.getComponent('characterManager');
-        charManager.addChar(CharacterFactory.create({x: selection.end.x, y: selection.end.y}));
+
+        for(let y = sel.t; y <= sel.b; y++){
+          for(let x = sel.l; x <= sel.r; x++){
+            let pos = blockToPoint({x:x, y:y});
+            charManager.addChar(CharacterFactory.create(pos));
+          }
+        }
         break;
       case Modes.TASK:
         // let pos = {x: selection.end.x, y: selection.end.y};
         // pos = pointToBlock(pos);
         let taskManager = this.getComponent('taskManager');
 
-        let sel = selection.rect.blockRect();
         for(let y = sel.t; y <= sel.b; y++){
           for(let x = sel.l; x <= sel.r; x++){
             let pos = {x:x, y:y};

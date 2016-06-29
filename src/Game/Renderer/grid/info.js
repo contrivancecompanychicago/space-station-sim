@@ -16,17 +16,13 @@ class FPS{
 
     }, 1000);
   }
-  getStats(){
-
-  }
   render(layer){
     this.count++;
     let i = 0;
     layer.context.fillStyle = "#6666ff";
-    this.fps.forEach((second)=>{
-      i++;
-      layer.context.fillRect(i, 0, i+1, second/2);
-    });
+    for(let i = this.fps.length; i>=0; i--){
+      layer.context.fillRect(this.fps.length-i, 0, 1, this.fps[i]/2);
+  }
 
     layer.context.fillStyle = "white";
     layer.context.fillText(this.fps[this.fps.length-1]+"FPS", 10, 10);
