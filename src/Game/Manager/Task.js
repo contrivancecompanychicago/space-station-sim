@@ -64,5 +64,21 @@ export default class TaskManager{
     delete this.state[id];
   }
 
+  update(){
+    this.clean();
+  }
+  clean() {
+    keys(this.state).forEach(key => {
+      let task = this.state[key];
+      let characterManager = this.getComponent('characterManager');
+      if(task.worker){
+        let char = characterManager.getChar(task.worker);
+        if(char && char.task != task.id){
+          delete task.worker;
+        }
+      }
+    });
+  }
+
 
 }

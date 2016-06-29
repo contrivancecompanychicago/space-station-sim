@@ -5,6 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { keys, assign } from 'lodash';
+import Speed from 'Game/Type/Speed';
 
 export default class UIManager{
   constructor(state, container){
@@ -25,6 +26,7 @@ export default class UIManager{
   }
   render(){
     this.setState();
+    // this.object.engine.time. Speed[this.state.speed].speed;
     ReactDOM.render(<Provider store={this.store}><UI /></Provider>, this.container);
   }
   setState(){

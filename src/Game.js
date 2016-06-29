@@ -24,13 +24,13 @@ export default class Game{
 
     //spawn managers
     this.manager = this.engine.register({type:'manager', game:this});
+    this.manager.addComponent(new Time(this.engine.time));
 
     keys(managers).forEach((key) => {
       let manager = managers[key];
       this.state[key] = {};
       this.manager.addComponent(new manager(this.state[key], this.container));
     });
-    this.manager.addComponent(new Time(this.engine.time));
     this.manager.addComponent(new ActionDispatcher(this.state, this.container));
 
 

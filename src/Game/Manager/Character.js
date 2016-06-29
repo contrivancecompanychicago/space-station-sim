@@ -137,4 +137,8 @@ export default class Character{
     char.y += Math.sin(dir)*amount;
   }
 
+  getChar(id){
+    return this.state[id];
+  }
+
 }
