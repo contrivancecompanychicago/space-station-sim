@@ -19,6 +19,8 @@ function renderGrid(state, layer){
   let tl = pointToBlock(screenToWorld({x:0, y:0}, state));
   let br = pointToBlock(screenToWorld({x:window.innerWidth, y:window.innerHeight}, state));
 
+  renderWalls(state, layer);
+    
   keys(state.Grid).forEach((key) => {
     let pos = parseKey(key);
     if(pos.x>tl.x && pos.x < br.x){
@@ -29,7 +31,6 @@ function renderGrid(state, layer){
 
   });
 
-  // renderWalls(state, layer);
 
 
   renderSelection(state, layer);
