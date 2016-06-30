@@ -23,30 +23,43 @@ export default function renderWall(state, layer){
   let br = pointToBlock(screenToWorld({x:window.innerWidth, y:window.innerHeight}, state));
   let sides = [
     {x:0, y:1},
-    {x:0, y:-1}
+    {x:0, y:-1},
+    {x:1, y:0},
+    {x:-1, y:0}
   ];
   for(let x = tl.x; x<br.x; x++){
     for(let y = tl.y; y<br.y; y++){
       let block = {x, y};
       //EACH RENDERABLE BLOCK
-      sides.forEach(side => {
+      if(isFilled(x, y, state)){
+        //do nothing
+      }else{
 
-        if(isFilled(x+side.x, y+side.y, state)){
-          let blocktl = worldToScreen(blockToPoint(block), state);
-          let blockbr = worldToScreen(blockToPoint({x: block.x+1, y: block.y+1}), state);
-          let x = blocktl.x;
-          let y = blocktl.y;
-          let w = blockbr.x - blocktl.x;
-          let h = blockbr.y - blocktl.y;
-          if(side.y===1){
-            h*=.5;
-            y+= h;
-          }else if(side.y === -1){
-            h*=.5;
+        sides.forEach(side => {
+
+          if(isFilled(x+side.x, y+side.y, state)){
+            let blocktl = worldToScreen(blockToPoint(block), state);
+            let blockbr = worldToScreen(blockToPoint({x: block.x+1, y: block.y+1}), state);
+            let x = blocktl.x;
+            let y = blocktl.y;
+            let w = blockbr.x - blocktl.x;
+            let h = blockbr.y - blocktl.y;
+            if(side.y===1){
+              h*=.5;
+              y+= h;
+            }else if(side.y === -1){
+              h*=.5;
+            }
+            if(side.x===1){
+              w*=.5;
+              x+= w;
+            }else if(side.x === -1){
+              w*=.5;
+            }
+            layer.context.strokeRect(x, y, w, h);
           }
-          layer.context.strokeRect(x, y, w, h);
-        }
-      });
+        });
+      }
     }
   }
 
