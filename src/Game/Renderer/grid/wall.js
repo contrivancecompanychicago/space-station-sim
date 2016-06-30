@@ -25,7 +25,11 @@ export default function renderWall(state, layer){
     {x:0, y:1},
     {x:0, y:-1},
     {x:1, y:0},
-    {x:-1, y:0}
+    {x:-1, y:0},
+    {x:1, y:1},
+    {x:1, y:-1},
+    {x:-1, y:1},
+    {x:-1, y:-1}
   ];
   for(let x = tl.x; x<br.x; x++){
     for(let y = tl.y; y<br.y; y++){
