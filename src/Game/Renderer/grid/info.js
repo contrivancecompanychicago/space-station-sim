@@ -42,4 +42,5 @@ export default function renderInfo(state, layer){
   layer.context.fillText(keys(state.Grid).length+" grid objects", 10, offset+= lineHeight);
   layer.context.fillText(keys(state.Character).length+" character objects", 10, offset+= lineHeight);
   layer.context.fillText(keys(state.Task).length+" task objects", 10, offset+= lineHeight);
+  layer.context.fillText(keys(state.Item).length+" item objects", 10, offset+= lineHeight);
 }

@@ -24,7 +24,9 @@ export default class Dispatcher{
         gridManager.addNodes(selection, this.state.UI.grid);
         break;
       case Modes.ITEM:
-        console.info('item mode not implemented');
+        // console.info('item mode not implemented');
+        let itemManager = this.getComponent('itemManager');
+        itemManager.addItem(selection.end, this.state.UI.item);
         break;
       case Modes.CHAR:
         let charManager = this.getComponent('characterManager');

@@ -2,6 +2,7 @@ import Layer from './Renderer/Layer';
 
 import grid from './Renderer/grid';
 import character from './Renderer/character';
+import item from './Renderer/item';
 
 export default class Renderer{
   constructor(state, container){
@@ -19,6 +20,7 @@ export default class Renderer{
   }
   update(){
     grid(this.state, this.layer);
+    item(this.state, this.layer);
     character(this.state, this.layer);
   }
 }
