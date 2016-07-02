@@ -19,11 +19,11 @@ export default class Renderer{
     // console.log(this.state);
   }
   update(){
-    this.hack++;
-    if(this.hack>= 4){
-      this.hack = 0;
-      grid(this.state, this.layer);
-    }
+    // this.hack++;
+    // if(this.hack>= 4){
+    //   this.hack = 0;
+    grid(this.state, this.layer);
+    // }
     item(this.state, this.layer);
     character(this.state, this.layer);
   }
