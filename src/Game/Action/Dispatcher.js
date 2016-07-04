@@ -25,14 +25,12 @@ export default class Dispatcher{
         gridManager.addNodes(selection, this.state.UI.grid);
         break;
       case Modes.ITEM:
-        // console.info('item mode not implemented');
         let itemManager = this.getComponent('itemManager');
         let item = ItemFactory.create({x: selection.end.x, y: selection.end.y, type:this.state.UI.item});
-        itemManager.addItem(selection.end, this.state.UI.item);
+        itemManager.addItem(item);
         break;
       case Modes.CHAR:
         let charManager = this.getComponent('characterManager');
-
         for(let y = sel.t; y <= sel.b; y++){
           for(let x = sel.l; x <= sel.r; x++){
             let pos = blockToPoint({x:x, y:y});
@@ -41,10 +39,7 @@ export default class Dispatcher{
         }
         break;
       case Modes.TASK:
-        // let pos = {x: selection.end.x, y: selection.end.y};
-        // pos = pointToBlock(pos);
         let taskManager = this.getComponent('taskManager');
-
         for(let y = sel.t; y <= sel.b; y++){
           for(let x = sel.l; x <= sel.r; x++){
             let pos = {x:x, y:y};
