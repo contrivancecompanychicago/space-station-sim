@@ -16,7 +16,8 @@ export default function renderBlock(pos, block, state, layer){
     let i = Types[block].image;
     if(i){
       // layer.context.globalAlpha = 0.3;
-      layer.context.drawImage(i, 0, 0, i.width, i.height, o.x, o.y, o.w, o.h);
+      let fillInTheGaps = 1.01;
+      layer.context.drawImage(i, 0, 0, i.width, i.height, o.x, o.y, o.w*fillInTheGaps, o.h*fillInTheGaps);
       // layer.context.globalAlpha = 1;
       return;
     }

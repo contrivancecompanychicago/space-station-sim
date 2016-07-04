@@ -32,6 +32,10 @@ describe('Integration', () => {
     container = document.createElement('div');
     game = new Game(container);
   });
+  it('shuld not error in the first few ms', (done) => {
+    //would throw error here
+    setInterval(done, 500);
+  });
   it('should make grid objects', () => {
 
     // clickButton('button-mode-grid');

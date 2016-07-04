@@ -1,5 +1,5 @@
 import {keys, tail} from 'lodash';
-
+const MAX = 60 ; //theoretical
 //HACK kinda cus I wanted these to be pure, but I think this is a good exception
 class FPS{
   constructor() {
@@ -19,8 +19,10 @@ class FPS{
   render(layer){
     this.count++;
     let i = 0;
-    layer.context.fillStyle = "#6666ff";
     for(let i = this.fps.length; i>=0; i--){
+
+      let pc = this.fps[i]/MAX;
+      layer.context.fillStyle = 'rgb('+Math.floor((1-pc)*255)+','+Math.floor(pc*255)+',0)';
       layer.context.fillRect(this.fps.length-i, 0, 1, this.fps[i]/2);
   }
 
@@ -42,4 +44,5 @@ export default function renderInfo(state, layer){
   layer.context.fillText(keys(state.Grid).length+" grid objects", 10, offset+= lineHeight);
   layer.context.fillText(keys(state.Character).length+" character objects", 10, offset+= lineHeight);
   layer.context.fillText(keys(state.Task).length+" task objects", 10, offset+= lineHeight);
+  layer.context.fillText(keys(state.Item).length+" item objects", 10, offset+= lineHeight);
 }
