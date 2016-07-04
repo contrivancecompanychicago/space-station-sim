@@ -1,6 +1,7 @@
 
 import {Modes} from 'Game/Type/Mode';
 import CharacterFactory from 'Game/Factory/Character';
+import ItemFactory from 'Game/Factory/Item';
 import TaskFactory from 'Game/Factory/Task';
 import {pointToBlock, blockToPoint} from 'Util';
 
@@ -26,6 +27,7 @@ export default class Dispatcher{
       case Modes.ITEM:
         // console.info('item mode not implemented');
         let itemManager = this.getComponent('itemManager');
+        let item = ItemFactory.create({x: selection.end.x, y: selection.end.y, type:this.state.UI.item});
         itemManager.addItem(selection.end, this.state.UI.item);
         break;
       case Modes.CHAR:
