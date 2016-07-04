@@ -4,7 +4,7 @@ import {keys, defaults} from 'lodash';
 
 import config from 'Game/config';
 
-import {blockToPoint, pointToBlock} from 'Util';
+import {blockToPoint, pointToBlock, blockToCenter, pointAtBlock} from 'Util';
 
 
 function centerBlock(block){

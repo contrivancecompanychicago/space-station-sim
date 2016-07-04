@@ -20,6 +20,8 @@ export const makeKey = require('./makeKey').default;
 export const parseKey = require('./parseKey').default;
 export const blockToPoint = require('./blockToPoint').default;
 export const pointToBlock = require('./pointToBlock').default;
+export const blockToCenter = require('./blockToCenter').default;
+export const pointAtBlock = require('./pointAtBlock').default;
 
 // export * as localToGlobal from './localToGlobal';
 

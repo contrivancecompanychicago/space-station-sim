@@ -1,5 +1,7 @@
-import {globalToLocal, localToGlobal} from 'Util';
+import {globalToLocal, localToGlobal, blockToCenter} from 'Util';
+import config from 'Game/config';
 const Util = require('Util');
+
 
 describe('Util', () => {
   it('should have globalToLocal', () => {
@@ -12,6 +14,18 @@ describe('Util', () => {
       expect(localToGlobal).toBeDefined();
       expect(typeof localToGlobal).toBe('function');
     });
+  describe('blockToCenter', () => {
+    it('should convert a block into a point in the blocks center', () => {
+      let out = blockToCenter({x:0, y:0});
+      // console.log(out);
+      expect(out.x).toBe(config.grid.width/2);
+      expect(out.y).toBe(config.grid.height/2);
+
+      out = blockToCenter({x:1, y:1});
+      expect(out.x).toBe(config.grid.width * 1.5);
+      expect(out.y).toBe(config.grid.height * 1.5);
+    });
+  });
 });
 
 // describe('makeKey', () => {
