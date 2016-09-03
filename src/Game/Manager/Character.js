@@ -19,11 +19,12 @@ function atBlock (char, target){
   return (myBlock.x === target.x && myBlock.y === target.y);
 }
 
-const States = {
-  IDLE:'idle',
-  RANDOM: 'random',
-  TASK: 'task'
-};
+// const States = {
+//   IDLE:'idle',
+//   RANDOM: 'random',
+//   TASK: 'task'
+// };
+import States from './Character/States';
 
 
 
