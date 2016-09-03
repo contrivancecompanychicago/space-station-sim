@@ -6,7 +6,8 @@
   "scripts": {
     "test": "karma start",
     "dev": "webpack-dev-server --hot --inline",
-    "build": "gulp build"
+    "build": "gulp build",
+    "electron": "./node_modules/.bin/electron dist/"
   },
   "bin": {
     "grunt": "./node_modules/grunt-cli/bin/grunt",
