@@ -14,7 +14,7 @@ describe('Util', () => {
       expect(localToGlobal).toBeDefined();
       expect(typeof localToGlobal).toBe('function');
     });
-  describe('blockToCenter', () => {
+  xdescribe('blockToCenter', () => {
     it('should convert a block into a point in the blocks center', () => {
       let out = blockToCenter({x:0, y:0});
       // console.log(out);
