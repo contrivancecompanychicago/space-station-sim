@@ -52,4 +52,9 @@ export default class Point{
       }
     };
   }
+
+  static fromScreen(x,y){
+    //damn bitch
+    return new Point(x, y)
+  }
 }

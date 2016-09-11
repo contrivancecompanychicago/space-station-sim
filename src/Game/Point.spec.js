@@ -41,4 +41,24 @@ describe('Game/Point', () => {
       expect(p.block.y).toBe(0);
     });
   });
+
+  describe('screen', () => {
+    it('should return the screen coordinates in offset and scale')
+  })
+
+  describe('STATIC', () => {
+    describe('fromScreen', () => {
+      it('should have fromScreen', () => {
+        expect(Point.fromScreen).toBeDefined();
+      });
+      it('control case', () => {
+        let p = Point.fromScreen(1,2);
+        expect(p.x).toBe(1);
+        expect(p.y).toBe(2);
+      });
+      it('scale case')
+      it('offset case')
+      it('scale and offset')
+    });
+  });
 });
