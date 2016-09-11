@@ -8,6 +8,9 @@ describe('Game/Point', () => {
       })
       it('should throw if passed strings', () => {
         expect(() => {new Point('1','2')}).toThrow();
+      });
+      it('should throw if given single arg thats not an obj with xy', () => {
+        expect(() => {new Point({'this':'broken'})}).toThrow();
       })
     })
     it('should take x and y as two args', () => {
@@ -15,10 +18,20 @@ describe('Game/Point', () => {
       expect(p.x).toBe(1);
       expect(p.y).toBe(2);
     });
+    it('shoulds take an object with x y keys', () => {
+      let p = new Point({x:1, y:2});
+      expect(p.x).toBe(1);
+      expect(p.y).toBe(2);
+    })
   });
   describe('block', () => {
+    describe('center', () =>{
+      it('should return the center of the block')
+    })
     it('should return object with x y of block the point is located in', () => {
-      let p = new Point(1,2)
+      let p = new Point(1,2);
+      expect(p.block.x).toBe(0);
+      expect(p.block.y).toBe(0);
     });
   });
 });
