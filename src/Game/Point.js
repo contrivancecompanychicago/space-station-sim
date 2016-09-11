@@ -43,7 +43,13 @@ export default class Point{
   get block(){
     return {
       x: Math.floor(this.x / config.grid.width),
-      y: Math.floor(this.y / config.grid.height)
+      y: Math.floor(this.y / config.grid.height),
+      get center(){
+        return {
+          x: (this.x+.5) * config.grid.width,
+          y: (this.y+.5) * config.grid.height
+        }
+      }
     };
   }
 }

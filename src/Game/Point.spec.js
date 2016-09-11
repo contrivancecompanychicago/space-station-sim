@@ -1,5 +1,8 @@
 import Point from 'Game/Point';
 
+import config from 'Game/config';
+
+
 describe('Game/Point', () => {
   describe('constructor', () => {
     describe('error checking', () => {
@@ -26,7 +29,11 @@ describe('Game/Point', () => {
   });
   describe('block', () => {
     describe('center', () =>{
-      it('should return the center of the block')
+      it('should return the center of the block', () => {
+        let p = new Point(1,2);
+        expect(p.block.center.x).toBe(config.grid.width/2);
+        expect(p.block.center.y).toBe(config.grid.height/2);
+      })
     })
     it('should return object with x y of block the point is located in', () => {
       let p = new Point(1,2);
