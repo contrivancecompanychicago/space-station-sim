@@ -43,7 +43,10 @@ describe('Game/Point', () => {
   });
 
   describe('screen', () => {
-    it('should return the screen coordinates in offset and scale')
+    it('should return the screen coordinates in offset and scale', () => {
+      let p = new Point(1,2);
+      expect(p.screen).toBeDefined();
+    })
   })
 
   describe('STATIC', () => {

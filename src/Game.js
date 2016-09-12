@@ -6,6 +6,7 @@ import managers from 'Game/Manager';
 import Renderer from 'Game/Renderer';
 import ActionDispatcher from 'Game/Action/Dispatcher';
 import Time from 'Game/Time';
+import state from 'Game/state';
 
 import { keys } from 'lodash';
 
@@ -17,7 +18,7 @@ export default class Game{
     // console.log(window.game);
 
     this.engine = new Imagine();
-    this.state = {};//make initial reference
+    this.state = state;//make initial reference
 
     this.engine.register(new Renderer(this.state, this.container));
 
