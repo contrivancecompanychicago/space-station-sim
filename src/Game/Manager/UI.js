@@ -7,6 +7,19 @@ import { Provider } from 'react-redux';
 import { keys, assign } from 'lodash';
 import Speed from 'Game/Type/Speed';
 
+
+/*
+UI Manager
+
+UI is a react redux application
+
+maintains a state that is used by a tonne of other things
+ - renderings potential changeState
+ - making changeState
+ 
+
+*/
+
 export default class UIManager{
   constructor(state, container){
     this.type = 'uiManager';
