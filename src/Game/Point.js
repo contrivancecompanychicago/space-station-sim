@@ -3,7 +3,7 @@ eases use of the points system
 points stored in ingame coordinates
 */
 import config from 'Game/config';
-
+import state from 'Game/state';
 
 const dev = true;
 
@@ -14,14 +14,14 @@ export default class Point{
       //object mode
       if(dev){
         if(!arguments[0].x){
-          throw new Error('x not defined')
+          throw new Error('x not defined');
         }
         if(!arguments[0].y){
-          throw new Error('y not defined')
+          throw new Error('y not defined');
         }
       }
-      this.x = arguments[0].x
-      this.y = arguments[0].y
+      this.x = arguments[0].x;
+      this.y = arguments[0].y;
     }else if(arguments.length === 2){
       if(dev){
         if(typeof arguments[0] !== 'number'){
@@ -48,13 +48,13 @@ export default class Point{
         return {
           x: (this.x+.5) * config.grid.width,
           y: (this.y+.5) * config.grid.height
-        }
+        };
       }
     };
   }
 
   static fromScreen(x,y){
     //damn bitch
-    return new Point(x, y)
+    return new Point(x, y);
   }
 }

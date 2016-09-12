@@ -1,5 +1,8 @@
 import Point from 'Game/Point';
 
+import * as state from 'Game/state';
+
+
 import config from 'Game/config';
 
 
@@ -7,15 +10,15 @@ describe('Game/Point', () => {
   describe('constructor', () => {
     describe('error checking', () => {
       it('should throw if >2 args', () => {
-        expect(() => {new Point(1,2,3)}).toThrow();
-      })
+        expect(() => {new Point(1,2,3);}).toThrow();
+      });
       it('should throw if passed strings', () => {
-        expect(() => {new Point('1','2')}).toThrow();
+        expect(() => {new Point('1','2');}).toThrow();
       });
       it('should throw if given single arg thats not an obj with xy', () => {
-        expect(() => {new Point({'this':'broken'})}).toThrow();
-      })
-    })
+        expect(() => {new Point({'this':'broken'});}).toThrow();
+      });
+    });
     it('should take x and y as two args', () => {
       let p = new Point(1,2);
       expect(p.x).toBe(1);
@@ -25,7 +28,7 @@ describe('Game/Point', () => {
       let p = new Point({x:1, y:2});
       expect(p.x).toBe(1);
       expect(p.y).toBe(2);
-    })
+    });
   });
   describe('block', () => {
     describe('center', () =>{
@@ -33,8 +36,8 @@ describe('Game/Point', () => {
         let p = new Point(1,2);
         expect(p.block.center.x).toBe(config.grid.width/2);
         expect(p.block.center.y).toBe(config.grid.height/2);
-      })
-    })
+      });
+    });
     it('should return object with x y of block the point is located in', () => {
       let p = new Point(1,2);
       expect(p.block.x).toBe(0);
@@ -46,8 +49,8 @@ describe('Game/Point', () => {
     it('should return the screen coordinates in offset and scale', () => {
       let p = new Point(1,2);
       expect(p.screen).toBeDefined();
-    })
-  })
+    });
+  });
 
   describe('STATIC', () => {
     describe('fromScreen', () => {
@@ -59,9 +62,9 @@ describe('Game/Point', () => {
         expect(p.x).toBe(1);
         expect(p.y).toBe(2);
       });
-      it('scale case')
-      it('offset case')
-      it('scale and offset')
+      it('scale case');
+      it('offset case');
+      it('scale and offset');
     });
   });
 });
