@@ -18,3 +18,7 @@ webpack --watch
 
 
 todo: moved to trello
+
+also
+char actions to generators
+action proposer
