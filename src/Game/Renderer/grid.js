@@ -11,6 +11,7 @@ import renderInfo from './grid/info';
 import renderSelection from './grid/selection';
 import renderTask from './grid/task';
 import renderWalls from './grid/wall';
+import renderProposal from './grid/proposal';
 
 
 function renderGrid(state, layer){
@@ -48,6 +49,7 @@ function renderGrid(state, layer){
   renderSelection(state, layer);
 
   renderTask(state, layer);
+  renderProposal(state, layer);
 
   renderInfo(state, layer);
 }

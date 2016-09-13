@@ -20,3 +20,24 @@ processing:
  - remove duplicates
 
 */
+import { makeKey, parseKey } from 'Util';
+
+// import state from 'Game/state';
+import {Modes} from 'Game/Type/Mode';
+let proposal = {};
+export default class Proposer{
+  propose(state){
+    proposal = {};
+    // console.log(state);
+    switch(state.UI.mode){
+      case Modes.GRID:
+        proposal.Grid = {};
+        state.View.selection.rect.blocks.forEach((block) => {
+          proposal.Grid[makeKey(block)] = state.UI.grid;
+        });
+      break;
+    }
+
+    return proposal;
+  }
+}

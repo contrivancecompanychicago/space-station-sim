@@ -1,6 +1,7 @@
 import {extend } from 'lodash';
 import config from 'Game/config';
 
+import {Block} from 'Game/Point';
 
 export default class Rect{
   constructor(){
@@ -21,5 +22,15 @@ export default class Rect{
       Math.floor(this.b/config.grid.width),
       Math.floor(this.l/config.grid.height)
     );
+  }
+  get blocks(){
+    let list = [];
+    let sel = this.blockRect();
+    for(let y = sel.t; y <= sel.b; y++){
+      for(let x = sel.l; x <= sel.r; x++){
+        list.push(new Block({x,y}));
+      }
+    }
+    return list;
   }
 }

@@ -151,6 +151,7 @@ export default class ViewManager{
     this.startPos = Point.fromScreen(e.pageX, e.pageY);
 
     this.selection = {start: this.startPos, button: e.button};
+    this.button = e.button;
     // console.log(this.startPos, e);
   }
 
@@ -158,14 +159,18 @@ export default class ViewManager{
     // debugger;
 
     this.endPos = Point.fromScreen(e.pageX, e.pageY);
-    this.selection.rect = new Rect({
-      t: Math.min(this.endPos.y, this.startPos.y),
-      r: Math.max(this.endPos.x, this.startPos.x),
-      b: Math.max(this.endPos.y, this.startPos.y),
-      l: Math.min(this.endPos.x, this.startPos.x),
-    });
+    // this.selection.rect = new Rect({
+    //   t: Math.min(this.endPos.y, this.startPos.y),
+    //   r: Math.max(this.endPos.x, this.startPos.x),
+    //   b: Math.max(this.endPos.y, this.startPos.y),
+    //   l: Math.min(this.endPos.x, this.startPos.x),
+    // });
+    // this.state.selection = this.selection;
+    // this.state.selection.end = this.endPos;
+    this.selection = selection(this.startPos, this.endPos);
+    this.selection.button = this.button;
     this.state.selection = this.selection;
-    this.state.selection.end = this.endPos;
+    // console.log(this.state.selection);
   }
 
   endSelection(e){
@@ -187,4 +192,15 @@ export default class ViewManager{
   }
 
 
+}
+
+export function selection(start, end){
+  let out = {start, end};
+  out.rect = new Rect({
+    t: Math.min(end.y, start.y),
+    r: Math.max(end.x, start.x),
+    b: Math.max(end.y, start.y),
+    l: Math.min(end.x, start.x),
+  });
+  return out;
 }
