@@ -46,7 +46,9 @@ export default function renderWall(state, layer){
         sides.forEach(side => {
           block = block;
           let check = {x:x+side.x, y:y+side.y};
-          if(isFilled(check.x, check.y, state)){
+          let neighbour = isFilled(check.x, check.y, state);
+          if(neighbour){
+            // console.log(neighbour);
             let blocktl = worldToScreen(blockToPoint(block), state);
             let blockbr = worldToScreen(blockToPoint({x: block.x+1, y: block.y+1}), state);
             let x = blocktl.x;
@@ -77,6 +79,9 @@ export default function renderWall(state, layer){
             }
             layer.context.fillStyle = 'grey';
             layer.context.strokeStyle = 'green';
+            if(neighbour==='DOCK'){
+              layer.context.fillStyle = 'pink';
+            }
             // if(side.corner ){//corner
             //   layer.context.strokeRect(x, y, w, h);
             //   // layer.context.fillRect(x, y, w, h);
