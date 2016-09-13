@@ -6,7 +6,7 @@ import config from 'Game/config';
 
 import {blockToPoint, pointToBlock, blockToCenter, pointAtBlock} from 'Util';
 
-import State from './Character/State'
+import State from './Character/State';
 
 function centerBlock(block){
   return {
@@ -76,7 +76,8 @@ export default class Character{
   }
   followPath(char){
     if(char.targetBlock){
-      let point = centerBlock(blockToPoint(char.targetBlock));
+      let point = char.targetBlock.center;
+      if(!point)debugger;
       this.move(char, point, config.character.speed * this.time.deltaTime);
       if(atBlock(char, char.targetBlock)){
         delete char.targetBlock;
@@ -85,8 +86,6 @@ export default class Character{
       char.targetBlock = char.path.shift();
     }else{
       this.changeState(char, States.IDLE);
-      // this.makePath(char, this.gridManager.randomNode());
-
     }
   }
   makePath(char, target){
@@ -94,6 +93,8 @@ export default class Character{
     char.path = this.gridManager.getPath(currentBlock, target);
   }
   move(char, target, amount){
+    // if(!target)debugger;
+    // if(!char)debugger;
     const dir = Math.atan2(target.y - char.y, target.x-char.x);
     char.x += Math.cos(dir)*amount;
     char.y += Math.sin(dir)*amount;

@@ -92,7 +92,7 @@ export default class GridManager{
     //TODO: snip above and cache
     // just need graph, min x and min y
 
-    if(start.x===end.x&&start.y===end.y) return [end];
+    if(start.x===end.x&&start.y===end.y) return [new Block(end)];
 
     start = graph.grid[start.x-minx][start.y-miny];
     end = graph.grid[end.x-minx][end.y-miny];
