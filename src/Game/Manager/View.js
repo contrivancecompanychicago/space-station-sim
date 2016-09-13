@@ -1,6 +1,8 @@
 import {defaults} from 'lodash';
 import config from 'Game/config';
 
+import Point from 'Game/Point';
+
 import MouseButtons from 'Util/MouseButtons';
 
 import Rect from 'Game/Rect';
@@ -145,7 +147,8 @@ export default class ViewManager{
 
   startSelection(e){
     this.selecting = true;
-    this.startPos = this.globalToLocal({x:e.pageX, y: e.pageY});
+    // this.startPos = this.globalToLocal({x:e.pageX, y: e.pageY});
+    this.startPos = Point.fromScreen(e.pageX, e.pageY);
 
     this.selection = {start: this.startPos, button: e.button};
     // console.log(this.startPos, e);
@@ -154,7 +157,7 @@ export default class ViewManager{
   updateSelection(e){
     // debugger;
 
-    this.endPos = this.globalToLocal({x:e.pageX, y: e.pageY});
+    this.endPos = Point.fromScreen(e.pageX, e.pageY);
     this.selection.rect = new Rect({
       t: Math.min(this.endPos.y, this.startPos.y),
       r: Math.max(this.endPos.x, this.startPos.x),

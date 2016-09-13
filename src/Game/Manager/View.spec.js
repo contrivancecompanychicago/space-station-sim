@@ -2,7 +2,8 @@ import ViewManager from 'Game/Manager/View';
 import Imagine from 'imagine-engine';
 import { extend } from 'lodash';
 
-let state;
+import * as state from 'Game/state';
+// let state;
 let viewManager;
 let container;
 
@@ -23,11 +24,11 @@ let middleMouseUp = function(target){
 
 describe('Game/Manager/View', () => {
   beforeEach(() => {
-    state = {};
+    state.default.View = {};
     container = document.createElement('div');
     let canvas = document.createElement('canvas');
     container.appendChild(canvas);
-    viewManager = new ViewManager(state, container);
+    viewManager = new ViewManager(state.default.View, container);
     viewManager.start();
   });
   afterEach(() => {
@@ -40,7 +41,7 @@ describe('Game/Manager/View', () => {
       expect(viewManager.state.offset).toBeDefined();
     });
     it('should mutate', () => {
-      expect(viewManager.state).toBe(state);
+      expect(viewManager.state).toBe(state.default.View);
     });
   });
 
