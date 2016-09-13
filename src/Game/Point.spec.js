@@ -17,6 +17,14 @@ describe('Game/Point', () => {
     };
   });
 
+  describe('stringify', () => {
+    it('shuold stringify without functions', () => {
+      let p = new Point(1,2);
+      let str = JSON.stringify(p);
+      expect(str).toBe('{"x":1,"y":2}');
+    });
+  });
+
   describe('constructor', () => {
     describe('error checking', () => {
       it('should throw if >2 args', () => {

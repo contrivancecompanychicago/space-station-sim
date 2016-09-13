@@ -3,6 +3,8 @@ import { Graph, astar } from 'javascript-astar';
 
 import { makeKey, parseKey } from 'Util';
 
+import {Block} from 'Game/Point';
+
 import MouseButtons from 'Util/MouseButtons';
 
 export default class GridManager{
@@ -97,10 +99,10 @@ export default class GridManager{
     let result = astar.search(graph, start, end);
 
     return result.map((res) => {
-      return {
+      return new Block({
         x: res.x+minx,
         y: res.y+miny,
-      };
+      });
     });
 
 

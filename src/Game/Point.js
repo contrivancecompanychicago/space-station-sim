@@ -47,7 +47,10 @@ export default class Point{
   }
 
   get block(){
-    return new Block(Math.floor(this.x / config.grid.width), Math.floor(this.y / config.grid.height));
+    return new Block({
+      x: Math.floor(this.x / config.grid.width),
+      y: Math.floor(this.y / config.grid.height)
+    });
 
   }
 
@@ -58,9 +61,9 @@ export default class Point{
 }
 
 export class Block{
-  constructor(x, y){
-    this.x = x;
-    this.y = y;
+  constructor(pos){
+    this.x = pos.x;
+    this.y = pos.y;
   }
   get center(){
     return new Point({

@@ -19,11 +19,21 @@ export default function renderBlock(pos, block, state, layer){
       let fillInTheGaps = 1.01;
       layer.context.drawImage(i, 0, 0, i.width, i.height, o.x, o.y, o.w*fillInTheGaps, o.h*fillInTheGaps);
       // layer.context.globalAlpha = 1;
-      return;
+      // return;
+    }
+    let tint = Types[block].tint;
+    if(tint){
+      let a = layer.context.globalAlpha;
+      layer.context.globalAlpha = a * 0.3;
+      layer.context.fillStyle = tint;
+      layer.context.fillRect(o.x, o.y, o.w, o.h);
+      layer.context.globalAlpha  =  a;
     }
 
+  }else{
+    layer.context.fillRect(o.x, o.y, o.w, o.h);
   }
-  layer.context.fillRect(o.x, o.y, o.w, o.h);
+
 
 
 }
