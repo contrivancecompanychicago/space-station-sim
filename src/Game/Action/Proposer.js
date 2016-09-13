@@ -34,7 +34,10 @@ export default class Proposer{
         proposal.Grid = {};
         state.View.selection.rect.blocks.forEach((block) => {
           // console.log(block);
-          proposal.Grid[makeKey(block.x, block.y)] = state.UI.grid;
+          let key = makeKey(block.x, block.y);
+          if(state.Grid&&state.Grid[key]&&state.Grid[key]===state.UI.grid){}else{
+            proposal.Grid[key] = state.UI.grid;
+          }
         });
       break;
     }
