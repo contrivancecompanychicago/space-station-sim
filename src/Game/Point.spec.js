@@ -6,7 +6,17 @@ import * as state from 'Game/state';
 import config from 'Game/config';
 
 
+
+
 describe('Game/Point', () => {
+
+  beforeEach(() => {
+    state.default.View = {
+      offset:{x:0,y:0},
+      scale: 1
+    };
+  });
+
   describe('constructor', () => {
     describe('error checking', () => {
       it('should throw if >2 args', () => {
@@ -37,6 +47,9 @@ describe('Game/Point', () => {
         expect(p.block.center.x).toBe(config.grid.width/2);
         expect(p.block.center.y).toBe(config.grid.height/2);
       });
+      describe('screen', () => {
+        it('should get screen from this');
+      });
     });
     it('should return object with x y of block the point is located in', () => {
       let p = new Point(1,2);
@@ -48,7 +61,10 @@ describe('Game/Point', () => {
   describe('screen', () => {
     it('should return the screen coordinates in offset and scale', () => {
       let p = new Point(1,2);
-      expect(p.screen).toBeDefined();
+      state.default.View.offset = {x:10, y: 20};
+      state.default.View.scale = 2;
+      expect(p.screen.x).toBe(22);
+      expect(p.screen.y).toBe(44);
     });
   });
 
@@ -64,7 +80,13 @@ describe('Game/Point', () => {
       });
       it('scale case');
       it('offset case');
-      it('scale and offset');
+      it('scale and offset', () =>{
+        state.default.View.offset = {x:10, y: 20};
+        state.default.View.scale = 2;
+        let p = Point.fromScreen(22,44);
+        expect(p.x).toBe(1);
+        expect(p.y).toBe(2);
+      });
     });
   });
 });

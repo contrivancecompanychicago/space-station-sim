@@ -5,6 +5,8 @@ points stored in ingame coordinates
 import config from 'Game/config';
 import state from 'Game/state';
 
+import {worldToScreen, screenToWorld} from 'Util';
+
 const dev = true;
 
 export default class Point{
@@ -40,21 +42,30 @@ export default class Point{
     }
   }
 
+  get screen(){
+    return worldToScreen({x:this.x, y:this.y}, state);
+  }
+
   get block(){
-    return {
-      x: Math.floor(this.x / config.grid.width),
-      y: Math.floor(this.y / config.grid.height),
-      get center(){
-        return {
-          x: (this.x+.5) * config.grid.width,
-          y: (this.y+.5) * config.grid.height
-        };
-      }
-    };
+    return new Block(Math.floor(this.x / config.grid.width), Math.floor(this.y / config.grid.height));
+
   }
 
   static fromScreen(x,y){
-    //damn bitch
-    return new Point(x, y);
+    let pos = screenToWorld({x,y}, state);
+    return new Point(pos.x, pos.y);
+  }
+}
+
+export class Block{
+  constructor(x, y){
+    this.x = x;
+    this.y = y;
+  }
+  get center(){
+    return new Point({
+      x: (this.x+.5) * config.grid.width,
+      y: (this.y+.5) * config.grid.height
+    });
   }
 }
