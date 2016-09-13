@@ -33,7 +33,8 @@ export default class Proposer{
       case Modes.GRID:
         proposal.Grid = {};
         state.View.selection.rect.blocks.forEach((block) => {
-          proposal.Grid[makeKey(block)] = state.UI.grid;
+          // console.log(block);
+          proposal.Grid[makeKey(block.x, block.y)] = state.UI.grid;
         });
       break;
     }
