@@ -75,6 +75,12 @@ export default class Character{
     this.taskManager = this.getComponent('taskManager');
     keys(this.state).forEach((key) => {
       let char = this.state[key];
+      // if(!char.action){
+      //   char.action = wander(char);
+      // }
+      // if(char.action.next().done){
+      //   char.action = wander(char);
+      // }
       let state = State[char.state];
       state.update(char);
     });
