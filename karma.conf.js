@@ -15,6 +15,7 @@ module.exports = function(config) {
     files: [
     // {pattern: 'spec/fixtures/*.html', watched: true, included: false, served: true},
       // 'spec/fixtures/*.html',
+      'node_modules/babel-polyfill/dist/polyfill.js',
       'src/**/*.spec.js',
     ],
 

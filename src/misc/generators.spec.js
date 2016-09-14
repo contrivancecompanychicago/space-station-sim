@@ -1,4 +1,4 @@
-require('babel-polyfill'); //for generators~
+// require('babel-polyfill'); //for generators~
 
 describe('generators', () => {
   it('should be supported', () => {

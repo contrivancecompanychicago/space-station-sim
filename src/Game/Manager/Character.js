@@ -8,6 +8,8 @@ import {blockToPoint, pointToBlock, blockToCenter, pointAtBlock} from 'Util';
 
 import State from './Character/State';
 
+import wander from './Character/Action/wander';
+
 function centerBlock(block){
   return {
     x: block.x + 16,

@@ -10,7 +10,7 @@ var dir_spec = path.resolve(__dirname, 'test');
 
 
 module.exports = {
-    entry: path.resolve(dir_js, 'main.js'),
+    entry: ['babel-polyfill', path.resolve(dir_js, 'main.js')],
     output: {
         path: dir_build,
         filename: 'bundle.js'
