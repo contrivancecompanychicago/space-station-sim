@@ -71,4 +71,7 @@ export class Block{
       y: (this.y+.5) * config.grid.height
     });
   }
+  is(block){
+    return (block.x === this.x && block.y === this.y);
+  }
 }

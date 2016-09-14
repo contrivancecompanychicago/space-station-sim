@@ -49,6 +49,16 @@ describe('Game/Point', () => {
     });
   });
   describe('block', () => {
+    describe('is', () => {
+      it("shuold return true if the x's and y's match up", () => {
+        // let b =
+        let p1 = new Point(1,2);
+        let p2 = new Point(2,3);
+        let p3 = new Point(300,400);
+        expect(p1.block.is(p2.block)).toBe(true);
+        expect(p2.block.is(p3.block)).toBe(false);
+      });
+    });
     describe('center', () =>{
       it('should return the center of the block', () => {
         let p = new Point(1,2);
