@@ -43,11 +43,14 @@ export default class Character{
   }
 
   addChar(char){
+
     if(!char.id)
       char.id = uniqid();
     defaults(char, {
-      x:0,
-      y:0,
+      position:{
+        x: 0,
+        y: 0
+      },
       path: [],
       state: States.IDLE
     });
@@ -79,7 +82,7 @@ export default class Character{
       let point = char.targetBlock.center;
       if(!point)debugger;
       this.move(char, point, config.character.speed * this.time.deltaTime);
-      if(atBlock(char, char.targetBlock)){
+      if(atBlock(char.position, char.targetBlock)){
         delete char.targetBlock;
       }
     }else if(char.path.length>0){
@@ -89,15 +92,15 @@ export default class Character{
     }
   }
   makePath(char, target){
-    let currentBlock = pointToBlock(char);
+    let currentBlock = char.position.block;
     char.path = this.gridManager.getPath(currentBlock, target);
   }
   move(char, target, amount){
     // if(!target)debugger;
     // if(!char)debugger;
-    const dir = Math.atan2(target.y - char.y, target.x-char.x);
-    char.x += Math.cos(dir)*amount;
-    char.y += Math.sin(dir)*amount;
+    const dir = Math.atan2(target.y - char.position.y, target.x-char.position.x);
+    char.position.x += Math.cos(dir)*amount;
+    char.position.y += Math.sin(dir)*amount;
   }
 
   getChar(id){

@@ -1,8 +1,10 @@
 import {defaults} from 'lodash';
 
 const base = {
-  x: 0,
-  y: 0,
+  position:{
+    x: 0,
+    y: 0
+  },
   firstname: 'John',
   lastname: 'Doe'
 };
