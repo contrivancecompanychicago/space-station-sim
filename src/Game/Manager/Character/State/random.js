@@ -5,4 +5,4 @@ export default {
   update: function(char){
     this.followPath(char);
   },
-}
+};
