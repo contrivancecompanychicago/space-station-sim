@@ -2,6 +2,8 @@ import {defaults} from 'lodash';
 
 import {Tasks} from 'Game/Type/Task';
 
+import {Block} from 'Game/Point';
+
 const base = {
   block: {
     x: 0,
@@ -18,6 +20,7 @@ export default class TaskFactory{
     if(!task.type) throw new Error('task type not defined');
 
     defaults(task, base);
+    task.block = new Block(task.block);
     return task;
   }
 }

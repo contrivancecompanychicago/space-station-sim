@@ -2,7 +2,7 @@ import config from 'Game/config';
 import time from 'Game/time';
 
 export default function* moveToBlock(char, block){
-
+  
   let target = block.center;
   while(!char.position.block.is(block)){
     let amount = time.deltaTime * config.character.speed;

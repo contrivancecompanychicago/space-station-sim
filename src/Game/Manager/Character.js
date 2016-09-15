@@ -8,7 +8,8 @@ import {blockToPoint, pointToBlock, blockToCenter, pointAtBlock} from 'Util';
 
 import State from './Character/State';
 
-import wander from './Character/Action/wander';
+// import wander from './Character/Action/wander';
+import actions from 'Game/Manager/Character/Action';
 
 function centerBlock(block){
   return {
@@ -76,15 +77,28 @@ export default class Character{
     keys(this.state).forEach((key) => {
       let char = this.state[key];
       if(!char.action){
-        char.action = wander(char);
+        this.newAction(char);
       }
       if(char.action.next().done){
-        char.action = wander(char);
+        this.newAction(char);
       }
       // let state = State[char.state];
       // state.update(char);
     });
   }
+
+  newAction(char){
+    // let action = actions.wander;
+    let task = this.taskManager.getUnassignedTask();
+    if(task){
+      this.taskManager.assignTask(task.id, char.id);
+      char.task = task.id;
+      char.action = actions.task(char);
+      return;
+    }
+    char.action = actions.wander(char);
+  }
+
   followPath(char){
     if(char.targetBlock){
       let point = char.targetBlock.center;

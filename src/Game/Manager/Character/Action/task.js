@@ -5,6 +5,7 @@ import time from 'Game/time';
 export default function* task(char){
   let taskManager = engine.getComponent('taskManager');
   let task = taskManager.getTask(char.task);
+  // console.log(task);
   yield *moveToBlock(char, task.block);
   while(task.progress<1){
     task.progress += time.deltaTime;
