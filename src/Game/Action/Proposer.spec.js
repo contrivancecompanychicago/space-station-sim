@@ -5,7 +5,7 @@ let state;
 describe('Game/Action/Proposer', () => {
   describe('Grid', () => {
     beforeEach(() => {
-      state = {UI:{mode:'GRID',grid:'FLOOR'}, View:{}};
+      state = {UI:{mode:'GRID',grid:'FLOOR'}, View:{}, Grid:{}};
       state.View.selection = selection({x:1, y:1}, {x:100, y:100});
     });
     it('should return a grid object', () => {
