@@ -16,7 +16,6 @@ export default class Character{
     this.state = state;
   }
 
-
   addChar(char){
     if(!char.id)
       char.id = uniqid();
@@ -41,16 +40,13 @@ export default class Character{
       if(!char.action){
         this.newAction(char);
       }
-      if(char.action.next().done){
+      if(char.action.next().done){ ///CALLS NEXT HERE
         this.newAction(char);
       }
-      // let state = State[char.state];
-      // state.update(char);
     });
   }
 
   newAction(char){
-    // let action = actions.wander;
     let task = this.taskManager.getUnassignedTask();
     if(task){
       this.taskManager.assignTask(task.id, char.id);
