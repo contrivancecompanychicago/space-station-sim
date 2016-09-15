@@ -37,7 +37,6 @@ export default class Dispatcher{
             // let pos = blockToPoint({x:x, y:y});
             let pos = new Block({x:x, y:y}).center;
             charManager.addChar(CharacterFactory.create({position: pos}));
-
           }
         }
         break;
@@ -49,7 +48,6 @@ export default class Dispatcher{
             taskManager.addTask(TaskFactory.create({block:pos, grid:this.state.UI.grid, type: Tasks.BUILD}));
           }
         }
-
         break;
     }
   }

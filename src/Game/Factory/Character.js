@@ -1,4 +1,5 @@
 import {defaults} from 'lodash';
+import Point from 'Game/Point';
 
 const base = {
   position:{
@@ -13,6 +14,7 @@ const base = {
 export default class CharacterFactory{
   static create(char = {}){
     defaults(char, base);
+    // char.position = new Point(char.position);
     return char;
   }
 }
