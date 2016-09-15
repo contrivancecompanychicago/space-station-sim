@@ -1,4 +1,2 @@
-
-
-
+//global
 export default {};
