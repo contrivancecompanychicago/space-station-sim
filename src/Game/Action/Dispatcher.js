@@ -27,7 +27,9 @@ export default class Dispatcher{
         break;
       case Modes.ITEM:
         let itemManager = this.getComponent('itemManager');
-        let item = ItemFactory.create({x: selection.end.x, y: selection.end.y, type:this.state.UI.item});
+        let item = ItemFactory.create({
+          position: {x: selection.end.x, y: selection.end.y},
+          type:this.state.UI.item});
         itemManager.addItem(item);
         break;
       case Modes.CHAR:

@@ -1,4 +1,5 @@
-import {defaults} from 'lodash';
+import defaults from 'lodash.defaults';
+import Point from 'Game/Point';
 
 const base = {
   block: {
@@ -11,6 +12,7 @@ const base = {
 export default class ItemFactory{
   static create(item = {}){
     defaults(item, base);
+    item.position = new Point(item.position);
     return item;
   }
 }
