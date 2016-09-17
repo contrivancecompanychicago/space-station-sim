@@ -19,10 +19,10 @@ export default class Point{
     if(arguments.length === 1){
       //object mode
       if(dev){
-        if(!arguments[0].x){
+        if(arguments[0].x === undefined){
           throw new Error('x not defined');
         }
-        if(!arguments[0].y){
+        if(!arguments[0].y === undefined){
           throw new Error('y not defined');
         }
       }

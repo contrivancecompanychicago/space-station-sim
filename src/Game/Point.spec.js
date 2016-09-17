@@ -27,6 +27,9 @@ describe('Game/Point', () => {
 
   describe('constructor', () => {
     describe('error checking', () => {
+      it('should not error on zero', () => {
+        new Point({x:0, y:0})
+      })
       it('should throw if >2 args', () => {
         expect(() => {new Point(1,2,3);}).toThrow();
       });

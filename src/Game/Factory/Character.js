@@ -14,7 +14,7 @@ const base = {
 export default class CharacterFactory{
   static create(char = {}){
     defaults(char, base);
-    // char.position = new Point(char.position);
+    char.position = new Point(char.position);
     return char;
   }
 }
