@@ -11,7 +11,7 @@ const base = {
 
 export default class ItemFactory{
   static create(item = {}){
-    if(config.env==='dev') validate(char);
+    if(config.env==='dev') validate(item);
     defaults(item, base);
     item.position = new Point(item.position);
     return item;

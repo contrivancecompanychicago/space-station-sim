@@ -1,3 +1,7 @@
+/*
+Items are easily movable entities that only have a position
+*/
+
 const Item = {
   'TEST': {label: 'test item'},
 };

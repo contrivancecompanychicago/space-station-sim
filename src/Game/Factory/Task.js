@@ -25,7 +25,7 @@ export default class TaskFactory{
 }
 
 
-export function validate(char){}
+export function validate(task){
   //do some checking
   if(!task.block) throw new Error('task block not defined');
   if(!task.type) throw new Error('task type not defined');
