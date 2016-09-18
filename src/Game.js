@@ -6,8 +6,8 @@ import managers from 'Game/Manager';
 import Renderer from 'Game/Renderer';
 import ActionDispatcher from 'Game/Action/Dispatcher';
 import Time from 'Game/Manager/Time';
-import state from 'Game/state';
 
+import state from 'Game/state';
 import * as time from 'Game/time';
 import * as engine from 'Game/engine';
 

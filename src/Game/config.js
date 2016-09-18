@@ -19,5 +19,6 @@ export default {
   character:{
     radius: 10,
     speed: 50
-  }
+  },
+  env: 'dev' //change this when publishing
 };
