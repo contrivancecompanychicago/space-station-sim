@@ -1,3 +1,6 @@
+
+import keys from 'lodash.keys';
+
 const Speed = {
   'SLOW': {label: 'slow', speed:0.5},
   'NORMAL': {label: 'normal', speed: 1},
@@ -6,8 +9,5 @@ const Speed = {
 
 export default Speed;
 
-export let Speeds = {
-  'SLOW':'SLOW',
-  'NORMAL':'NORMAL',
-  'FAST':'FAST',
-};
+export let Speeds = {};
+keys(Speed).forEach((key) => {Speeds[key]=key;});

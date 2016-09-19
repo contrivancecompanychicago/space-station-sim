@@ -1,17 +1,16 @@
+
+import keys from 'lodash.keys';
+
 const Mode = {
   'SELECT': {label: 'select'},
   'GRID': {label: 'grid'},
   'ITEM': {label: 'item'},
   'CHAR': {label: 'char'},
   'TASK': {label: 'task'},
+  'OBJECT': {label: 'object'},
 };
 
 export default Mode;
 
-export let Modes = {
-  'SELECT':'SELECT',
-  'GRID':'GRID',
-  'ITEM':'ITEM',
-  'CHAR':'CHAR',
-  'TASK':'TASK',
-};
+export let Modes = {};
+keys(Mode).forEach((key) => {Modes[key]=key;});

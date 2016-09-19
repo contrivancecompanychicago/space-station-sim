@@ -1,3 +1,5 @@
+import keys from 'lodash.keys';
+
 const Grid = {
   'BASIC': {label: 'Basic'},
   'FLOOR': {label: 'Floor', image:require('./Grid/plain.png')},
@@ -7,17 +9,7 @@ const Grid = {
   'DOCK': {label: 'Dock', image:require('./Grid/dock.png')},
 };
 
-// console.log(Grid.BASIC.image);
-
-import keys from 'lodash.keys';
-
 export default Grid;
 
-export let Grids = {
-  // 'BASIC':'BASIC',
-  // 'FLOOR':'FLOOR',
-  // 'WALL':'WALL',
-  // 'DOCK':'DOCK',
-};
-
+export let Grids = {};
 keys(Grid).forEach((key) => {Grids[key]=key;});
