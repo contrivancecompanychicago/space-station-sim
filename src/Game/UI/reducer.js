@@ -5,6 +5,7 @@ import item from './reducer/item';
 import character from './reducer/character';
 import task from './reducer/task';
 import speed from './reducer/speed';
+import object from './reducer/object';
 
 
 // export default function reducer(state = {}, action){
@@ -17,5 +18,6 @@ export default combineReducers({
   item,
   character,
   task,
-  speed
+  speed,
+  object
 });

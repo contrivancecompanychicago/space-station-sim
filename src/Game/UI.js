@@ -7,6 +7,7 @@ import Item from './UI/Item';
 import Character from './UI/Character';
 import Task from './UI/Task';
 import Speed from './UI/Speed';
+import Objekt from './UI/Object';
 
 
 class UI extends React.Component {
