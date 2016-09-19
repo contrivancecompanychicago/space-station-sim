@@ -1,4 +1,4 @@
-import {globalToLocal, localToGlobal, blockToCenter} from 'Util';
+import {globalToLocal, localToGlobal, blockToCenter, makeKey} from 'Util';
 import config from 'Game/config';
 const Util = require('Util');
 
@@ -28,14 +28,17 @@ describe('Util', () => {
   });
 });
 
-// describe('makeKey', () => {
-//
-//   it('should turn x, y into string', () => {
-//     let key = gridManager.makeKey(-12, 34);
-//     expect(typeof key).toBe('string');
-//   });
-//
-// });
+describe('makeKey', () => {
+
+  it('should turn x, y into string', () => {
+    let key = makeKey(-12, 34);
+    expect(typeof key).toBe('string');
+  });
+  it('should throw if not given numbers', () => {
+    expect(() => {makeKey("joe", 1);}).toThrow();
+  });
+
+});
 //
 // describe('parseKey', () => {
 //
