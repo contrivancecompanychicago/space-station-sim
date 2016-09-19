@@ -17,8 +17,9 @@ webpack --watch
 
 
 
-todo: moved to trello
-
-also
-char actions to generators
-action proposer
+todo:
+strip Dispatcher
+make proposer come up with tasks
+make base Type class
+make base Manager class (?any benefit)
+move make managers use factories
