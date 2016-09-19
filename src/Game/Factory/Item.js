@@ -1,4 +1,4 @@
-import defaults from 'lodash.defaults';
+import {defaults} from 'lodash';
 import Point from 'Game/Point';
 import config from 'Game/config';
 
