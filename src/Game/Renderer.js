@@ -3,6 +3,7 @@ import Layer from './Renderer/Layer';
 import grid from './Renderer/grid';
 import character from './Renderer/character';
 import item from './Renderer/item';
+import object from './Renderer/object';
 
 export default class Renderer{
   constructor(state, container){
@@ -26,5 +27,6 @@ export default class Renderer{
     // }
     item(this.state, this.layer);
     character(this.state, this.layer);
+    object(this.state, this.layer);
   }
 }
