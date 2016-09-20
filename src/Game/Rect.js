@@ -1,6 +1,8 @@
 import {extend } from 'lodash';
 import config from 'Game/config';
 
+import Point from 'Game/Point';
+
 import {Block} from 'Game/Point';
 
 export default class Rect{
