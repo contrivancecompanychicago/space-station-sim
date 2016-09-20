@@ -9,17 +9,12 @@ const blockWidth = config.grid.width;
 const blockHeight = config.grid.height;
 
 export default function renderObject(state, layer){
-
-  let tl = Point.fromScreen(0,0);
-  let br = Point.fromScreen(window.innerWidth,window.innerHeight);
-  let rect = new Rect(tl, br);
-  rect.blocks.forEach((block) => { //for each block on screen
+  Rect.screenRect().blocks.forEach((block) => { //for each block on screen
     let ob = state.Object(block.key);
     if(ob){
       renderBlock(block, ob, state, layer);
     }
   });
-
 }
 export function renderBlock(pos, block, state, layer){
   const offset = worldToScreen(blockToPoint(pos), state);

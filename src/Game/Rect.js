@@ -4,6 +4,11 @@ import config from 'Game/config';
 import {Block} from 'Game/Point';
 
 export default class Rect{
+  static screenRect(){
+    let tl = Point.fromScreen(0,0);
+    let br = Point.fromScreen(window.innerWidth,window.innerHeight);
+    return new Rect(tl, br);
+  }
   constructor(){
     // console.log(arguments);
     if(arguments.length === 4){
