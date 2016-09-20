@@ -1,6 +1,7 @@
 
 import config from 'Game/config';
 import Point from 'Game/Point';
+import {makeKey} from 'Util';
 
 export default class Block{
   constructor(pos){
@@ -15,5 +16,9 @@ export default class Block{
   }
   is(block){
     return (block.x === this.x && block.y === this.y);
+  }
+
+  get key(){
+    return makeKey(this.x, this.y);
   }
 }
