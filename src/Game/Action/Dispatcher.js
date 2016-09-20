@@ -25,6 +25,11 @@ export default class Dispatcher{
         let gridManager = this.getComponent('gridManager');
         gridManager.addNodes(selection, this.state.UI.grid);
         break;
+      case Modes.OBJECT:
+        let objectManager = this.getComponent('objectManager');
+        let obj = {block:selection.end.block};
+        objectManager.addObject(obj);
+        break;
       case Modes.ITEM:
         let itemManager = this.getComponent('itemManager');
         let item = ItemFactory.create({

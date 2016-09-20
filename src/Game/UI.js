@@ -19,6 +19,7 @@ class UI extends React.Component {
       <Character />
       <Task />
       <Speed />
+      <Objekt />
     </div>;
   }
 }

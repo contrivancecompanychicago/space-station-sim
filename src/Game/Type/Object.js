@@ -8,4 +8,4 @@ const Objekt = {
 export default Objekt;
 
 export let Objects = {};
-keys(Object).forEach((key) => {Objects[key]=key;});
+keys(Objekt).forEach((key) => {Objects[key]=key;});

@@ -17,6 +17,9 @@ export default function mode(state = 1, action){
     case 'CHANGE_TASK':
       state = Modes.TASK;
     break;
+    case 'CHANGE_OBJECT':
+      state = Modes.OBJECT;
+    break;
   }
   return state;
 }
