@@ -16,8 +16,10 @@ export default function renderObject(state, layer){
     }
   });
 }
-export function renderBlock(pos, block, state, layer){
-  const offset = worldToScreen(blockToPoint(pos), state);
+export function renderBlock(block, object, state, layer){
+
+  const offset = block.point.screen;
+
   let o = {x:offset.x, y:offset.y, w:blockWidth * state.View.scale, h:blockHeight * state.View.scale };
 
   layer.context.fillStyle = 'blue';
