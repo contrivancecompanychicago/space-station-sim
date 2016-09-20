@@ -11,8 +11,26 @@ export default class Rect{
       this.r = arguments[1];
       this.b = arguments[2];
       this.l = arguments[3];
-    }else{
+    }else if(arguments.length === 1){
       extend(this, arguments[0]);
+    }else if(arguments.length === 2){
+      let p1 = arguments[0];
+      let p2 = arguments[1];
+      if(p1.x<p2.x){
+        this.l = p1.x;
+        this.r = p2.x;
+      }else{
+        this.l = p2.x;
+        this.r = p1.x;
+      }
+      if(p1.y<p2.y){
+        this.t = p1.y;
+        this.b = p2.y;
+      }else{
+        this.t = p2.y;
+        this.b = p1.y;
+      }
+
     }
   }
   blockRect(){
