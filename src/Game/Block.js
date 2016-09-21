@@ -2,6 +2,7 @@
 import config from 'Game/config';
 import Point from 'Game/Point';
 import {makeKey} from 'Util';
+import Rect from 'Game/Rect';
 
 export default class Block{
   constructor(pos){
@@ -25,6 +26,15 @@ export default class Block{
   }
   is(block){
     return (block.x === this.x && block.y === this.y);
+  }
+
+  get rect(){
+    return new Rect({
+      t: this.y,
+      r: this.x + config.block.width,
+      b: this.y + config.block.width,
+      l: this.x
+    });
   }
 
   get key(){
