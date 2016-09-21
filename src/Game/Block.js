@@ -30,10 +30,10 @@ export default class Block{
 
   get rect(){
     return new Rect({
-      t: this.y,
-      r: this.x + config.block.width,
-      b: this.y + config.block.width,
-      l: this.x
+      t: this.y * config.grid.height,
+      r: (this.x + 1) * config.grid.width,
+      b: (this.y + 1) * config.grid.height,
+      l: this.x * config.grid.width
     });
   }
 
