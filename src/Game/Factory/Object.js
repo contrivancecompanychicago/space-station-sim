@@ -13,7 +13,7 @@ export default class ObjectFactory{
   static create(object = {}){
     if(config.env==='dev') validate(object);
     defaults(object, base);
-    object.block = new Block(object.position);
+    object.block = new Block(object.block);
     return object;
   }
 }

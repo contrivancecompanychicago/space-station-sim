@@ -1,5 +1,5 @@
 import {defaults} from 'lodash';
-
+import uniqid from 'Util/uniqid';
 import {Tasks} from 'Game/Type/Task';
 
 import {Block} from 'Game/Point';
@@ -18,6 +18,7 @@ export default class TaskFactory{
   static create(task = {}){
     if(config.env==='dev') validate(task);
 
+    if(!task.id) task.id = uniqid();
     defaults(task, base);
     task.block = new Block(task.block);
     return task;
@@ -27,6 +28,6 @@ export default class TaskFactory{
 
 export function validate(task){
   //do some checking
-  if(!task.block) throw new Error('task block not defined');
-  if(!task.type) throw new Error('task type not defined');
+  // if(!task.block) throw new Error('task block not defined');
+  // if(!task.type) throw new Error('task type not defined');
 }

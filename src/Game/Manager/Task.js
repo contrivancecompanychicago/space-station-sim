@@ -1,6 +1,6 @@
-import uniqid from 'Util/uniqid';
-import {map, keys, head} from 'lodash';
 
+import {map, keys, head} from 'lodash';
+import Factory from 'Game/Factory/Task';
 
 export default class TaskManager{
   constructor(state = {}){
@@ -28,7 +28,7 @@ export default class TaskManager{
   }
 
   addTask(task){
-    if(!task.id) task.id = uniqid();
+    task = Factory.create(task);
     this.state[task.id] = task;
     return task;
   }

@@ -43,7 +43,7 @@ export default class Dispatcher{
           for(let x = sel.l; x <= sel.r; x++){
             // let pos = blockToPoint({x:x, y:y});
             let pos = new Block({x:x, y:y}).center;
-            charManager.addChar(CharacterFactory.create({position: pos}));
+            charManager.addChar({position: pos});
           }
         }
         break;

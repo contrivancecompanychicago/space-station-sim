@@ -1,8 +1,11 @@
-import uniqid from 'Util/uniqid';
+
 import {keys, defaults} from 'lodash';
 
 import config from 'Game/config';
 import actions from 'Game/Manager/Character/Action';
+
+import Factory from 'Game/Factory/Character';
+
 
 export default class Character{
   constructor(state){
@@ -11,15 +14,7 @@ export default class Character{
   }
 
   addChar(char){
-    if(!char.id)
-      char.id = uniqid();
-    defaults(char, {
-      position:{
-        x: 0,
-        y: 0
-      },
-      path: [],
-    });
+    char = Factory.create(char);
     this.state[char.id] = char;
   }
 
