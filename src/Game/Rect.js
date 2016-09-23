@@ -1,5 +1,6 @@
 import {extend } from 'lodash';
 import config from 'Game/config';
+import state from 'Game/state';
 
 import Point from 'Game/Point';
 
@@ -58,4 +59,12 @@ export default class Rect{
     }
     return list;
   }
+
+  get renderParams() {
+    let tl = new Point(this.l, this.t).screen;
+    let br = new Point(this.r, this.b).screen;
+    return {x: tl.x, y: tl.y, w: br.x-tl.x, h: br.y-tl.y};
+  }
+
+
 }

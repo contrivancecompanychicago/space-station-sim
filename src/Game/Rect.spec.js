@@ -1,9 +1,16 @@
 import Rect from './Rect';
 import config from 'Game/config';
-
+import Block from 'Game/Block';
 import Point from 'Game/Point';
+import * as state from 'Game/state';
 
 describe('Rect', () => {
+  beforeEach(() => {
+    state.default.View = {
+      offset:{x:0,y:0},
+      scale: 1
+    };
+  });
   it('shuld be defined', () => {
     expect(Rect).toBeDefined();
   });
@@ -41,6 +48,16 @@ describe('Rect', () => {
     expect(rect.r).toBe(3);
     expect(rect.b).toBe(4);
 
+
+  });
+
+  it('renderParams', () => {
+    let r = new Block({x:1,y:1}).rect;
+    let rp = r.renderParams;
+    expect(rp.x).toBe(config.grid.width);
+    expect(rp.y).toBe(config.grid.height);
+    expect(rp.w).toBe(config.grid.width);
+    expect(rp.h).toBe(config.grid.height);
 
   });
 });
