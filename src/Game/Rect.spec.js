@@ -60,4 +60,15 @@ describe('Rect', () => {
     expect(rp.h).toBe(config.grid.height);
 
   });
+  // it('loadtest', () => {
+  //   let start = new Date().getTime();
+  //   for(let i = 0; i< 10000; i++){
+  //
+  //       let r = new Block({x:1,y:1}).rect;
+  //       let rp = r.renderParams;
+  //   }
+  //
+  //   let end = new Date().getTime();
+  //   expect(end-start).toBe(0);
+  // });
 });
