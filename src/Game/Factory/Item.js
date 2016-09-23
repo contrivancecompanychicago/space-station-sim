@@ -23,6 +23,6 @@ export default class ItemFactory{
 }
 
 
-export function validate(char){
-
+export function validate(item){
+  if(!item.type) throw new Error('item needs a type');
 }

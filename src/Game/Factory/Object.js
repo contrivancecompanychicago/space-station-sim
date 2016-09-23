@@ -20,5 +20,5 @@ export default class ObjectFactory{
 
 
 export function validate(object){
-
+  if(!object.type) throw new Error('object need s a type');
 }
