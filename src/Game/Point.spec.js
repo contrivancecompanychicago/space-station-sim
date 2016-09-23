@@ -28,8 +28,8 @@ describe('Game/Point', () => {
   describe('constructor', () => {
     describe('error checking', () => {
       it('should not error on zero', () => {
-        new Point({x:0, y:0})
-      })
+        new Point({x:0, y:0});
+      });
       it('should throw if >2 args', () => {
         expect(() => {new Point(1,2,3);}).toThrow();
       });
@@ -99,8 +99,8 @@ describe('Game/Point', () => {
         expect(p.x).toBe(1);
         expect(p.y).toBe(2);
       });
-      it('scale case');
-      it('offset case');
+      // it('scale case');
+      // it('offset case');
       it('scale and offset', () =>{
         state.default.View.offset = {x:10, y: 20};
         state.default.View.scale = 2;
