@@ -27,7 +27,7 @@ export default class Dispatcher{
         break;
       case Modes.OBJECT:
         let objectManager = this.getComponent('objectManager');
-        let obj = {block:selection.end.block};
+        let obj = {block:selection.end.block, type:'TEST'};//HACK
         objectManager.addObject(obj);
         break;
       case Modes.ITEM:
