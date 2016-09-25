@@ -24,17 +24,11 @@ export default class Renderer{
   resize() {
     this.layer.resize(window.innerWidth, window.innerHeight);
     this.layer.drawDemo();
-    // console.log(this.state);
   }
   update(){
     this.layer.clear();
-
     this.layer.context.globalAlpha = 1;
-    // this.hack++;
-    // if(this.hack>= 4){
-    //   this.hack = 0;
     grid(this.state, this.layer);
-    // }
     item(this.state, this.layer);
     character(this.state, this.layer);
     object(this.state, this.layer);

@@ -1,7 +1,18 @@
 import TaskManager from 'Game/Manager/Task';
+import {defaults} from 'lodash';
+import Types from 'Game/Type/Task';
 
 let state = {};
 let taskManager = new TaskManager();
+
+const baseTask = {
+  block: {x:0, y:0},
+  type: 'TEST'
+};
+function testTask(task){
+  return defaults(task, baseTask);
+}
+
 
 describe('Game/Manager/Task', () => {
   beforeEach(() => {
@@ -23,9 +34,9 @@ describe('Game/Manager/Task', () => {
     });
 
     it('should return oldest task if not given an id', () => {
-      let first = {type:'first'};
-      let second = {type:'second'};
-      let third = {type:'third'};
+      let first = testTask({type:'first'});
+      let second = testTask({type:'second'});
+      let third = testTask({type:'third'});
       taskManager.addTask(first);
       taskManager.addTask(second);
       taskManager.addTask(third);
@@ -35,16 +46,16 @@ describe('Game/Manager/Task', () => {
   });
   describe('addTask', () => {
     it('should add by id', () => {
-      taskManager.addTask({id: 'test'});
+      taskManager.addTask(testTask({id: 'test'}));
       expect(taskManager.getTask('test')).toBeDefined();
     });
     it('should return the task', () => {
-      let task = {id:'mytest'};
+      let task = testTask({id:'mytest'});
       let output = taskManager.addTask(task);
       expect(task).toBe(output);
     });
     it('should add in an ID if missing', () => {
-      let task = {type:'something'};
+      let task = testTask({id:'mytest'});
       let output = taskManager.addTask(task);
       expect(task.id).toBeDefined();
     });
@@ -52,14 +63,14 @@ describe('Game/Manager/Task', () => {
 
   describe('getNextTask', () => {
     it('should get the task after the one given to it', () => {
-        let first = {type:'first'};
-        let second = {type:'second'};
-        let third = {type:'third'};
-        taskManager.addTask(first);
-        taskManager.addTask(second);
-        taskManager.addTask(third);
-        expect(taskManager.getNextTask(first.id)).toBe(second);
-        expect(taskManager.getNextTask(second.id)).toBe(third);
+      let first = testTask({type:'first'});
+      let second = testTask({type:'second'});
+      let third = testTask({type:'third'});
+      taskManager.addTask(first);
+      taskManager.addTask(second);
+      taskManager.addTask(third);
+      expect(taskManager.getNextTask(first.id)).toBe(second);
+      expect(taskManager.getNextTask(second.id)).toBe(third);
     });
   });
 
@@ -74,7 +85,7 @@ describe('Game/Manager/Task', () => {
 
   describe('unassignTask', () => {
     it('should remove a worker', () => {
-      taskManager.addTask({id: 'dummy', worker: 'joe'});
+      taskManager.addTask(testTask({id: 'dummy', worker: 'joe'}));
       taskManager.unassignTask('dummy');
       expect(taskManager.getTask('dummy').worker).not.toBeDefined();
     });
@@ -82,7 +93,7 @@ describe('Game/Manager/Task', () => {
 
   describe('unassignTaskWorker', () => {
     it('should remove a worker', () => {
-      taskManager.addTask({id: 'dummy', worker: 'joe'});
+      taskManager.addTask(testTask({id: 'dummy', worker: 'joe'}));
       taskManager.unassignTaskWorker('joe');
       expect(taskManager.getTask('dummy').worker).not.toBeDefined();
     });

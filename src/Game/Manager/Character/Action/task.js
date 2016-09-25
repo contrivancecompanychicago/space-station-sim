@@ -12,6 +12,8 @@ export default function* task(char){
     yield;
   }
   let gridManager = engine.getComponent('gridManager');
+  //resolve task
+  
   gridManager.addNode(task.block.x, task.block.y, task.grid);
   taskManager.finishTask(char.task);
 }
