@@ -35,7 +35,8 @@ export default class Proposer{
         state.View.selection.rect.blocks.forEach((block) => {
           // console.log(block);
           let key = makeKey(block.x, block.y);
-          if(state.Grid&&state.Grid[key]&&state.Grid[key]===state.UI.grid){}else{
+
+          if(state.Grid&&state.Grid[key]&&state.Grid[key]===state.UI.grid){}else{ //if not already there
             proposal.Grid[key] = state.UI.grid;
           }
         });
@@ -44,4 +45,12 @@ export default class Proposer{
 
     return proposal;
   }
+}
+
+/*
+  see if a block already has an object in it ( for determining where to place objects)
+ @returns boolean
+*/
+function blockHasObject(block){
+
 }
