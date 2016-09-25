@@ -10,3 +10,14 @@ export function clear(){
     delete state[key];
   });
 }
+
+export function base(){
+  return {
+    Grid:{},
+    Task:{},
+    UI:{},
+    View:{offset:{x:0,y:0}, scale:1},
+    Character:{},
+    "Object":{}
+  };
+}

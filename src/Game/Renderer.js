@@ -43,6 +43,7 @@ export default class Renderer{
       proposal.View = this.state.View;
       this.layer.context.globalAlpha = 0.5;
       grid(proposal, this.layer);
+      object(proposal, this.layer);
 
     }
   }
