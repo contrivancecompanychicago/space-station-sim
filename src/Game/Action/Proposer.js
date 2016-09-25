@@ -25,6 +25,10 @@ import {base} from 'Game/state';
 
 // import state from 'Game/state';
 import {Modes} from 'Game/Type/Mode';
+
+import ObjectTypes from 'Game/Type/Object';
+
+
 let proposal = {};
 export default class Proposer{
   propose(state){
@@ -46,8 +50,10 @@ export default class Proposer{
       case Modes.OBJECT:
         proposal.Object = {};
         state.View.selection.rect.blocks.forEach((block) => {
-          let key = makeKey(block.x, block.y);
-          proposal.Object[key] = {type:state.UI.object};
+          if(!blockHasObject(proposal, block)){
+            let key = makeKey(block.x, block.y);
+            proposal.Object[key] = {type:state.UI.object};
+          }
         });
       break;
       case Modes.ITEM:
@@ -62,6 +68,19 @@ export default class Proposer{
   see if a block already has an object in it ( for determining where to place objects)
  @returns boolean
 */
-function blockHasObject(block){
-
+function blockHasObject(state, block){
+  let key = makeKey(block.x, block.y);
+  if(state.Object[key]) return true;
+  //check neighbours
+  for(let x = 0; x<3; x++){
+    for(let y = 0; y<3; y++){
+      key = makeKey(block.x - x, block.y - y);
+      let obj = state.Object[key];
+      if(obj){
+        let type = ObjectTypes[obj.type];
+        if(type.width>=x+1 && type.height>=y+1)
+          return true;
+      }
+    }
+  }
 }
