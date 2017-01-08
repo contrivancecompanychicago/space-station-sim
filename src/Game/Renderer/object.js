@@ -20,15 +20,8 @@ export default function renderObject(state, layer){
 }
 export function renderBlock(block, object, state, layer){
 
-  // const offset = block.point.screen;
-  //
-  // let o = {x:offset.x, y:offset.y, w:blockWidth * state.View.scale, h:blockHeight * state.View.scale };
-
   let t = Types[object.type];
   let o = block.rect.renderParams;
-
-  // layer.context.fillStyle = 'blue';
-  // layer.context.fillRect(o.x, o.y, o.w, o.h);
 
   let i = t.image;
   layer.context.drawImage(i, 0, 0, i.width, i.height, o.x, o.y, o.w* t.width, o.h*t.height);

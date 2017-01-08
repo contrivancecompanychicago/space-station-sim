@@ -31,14 +31,11 @@ export default class Renderer{
     grid(this.state, this.layer);
     item(this.state, this.layer);
     character(this.state, this.layer);
-    object(this.state, this.layer);
-    if(this.state.View.selection){
-      let proposal = proposer.propose(this.state);
-      proposal.View = this.state.View;
-      this.layer.context.globalAlpha = 0.5;
-      grid(proposal, this.layer);
-      object(proposal, this.layer);
+    let proposal = proposer.propose(this.state);
+    proposal.View = this.state.View;
+    this.layer.context.globalAlpha = 0.5;
+    grid(proposal, this.layer);
+    object(proposal, this.layer);
 
-    }
   }
 }

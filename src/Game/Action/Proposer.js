@@ -35,29 +35,31 @@ export default class Proposer{
     proposal = base();
     // console.log(state);
 
-    switch(state.UI.mode){
-      case Modes.GRID:
-        proposal.Grid = {};
-        state.View.selection.rect.blocks.forEach((block) => {
-          let key = makeKey(block.x, block.y);
-          if(state.Grid&&state.Grid[key]&&state.Grid[key]===state.UI.grid){}else{ //if not already there
-
-            proposal.Grid[key] = state.UI.grid;
-
-          }
-        });
-      break;
-      case Modes.OBJECT:
-        proposal.Object = {};
-        state.View.selection.rect.blocks.forEach((block) => {
-          if(!blockHasObject(proposal, block)){
+    if(state.View.selection){
+      switch(state.UI.mode){
+        case Modes.GRID:
+          proposal.Grid = {};
+          state.View.selection.rect.blocks.forEach((block) => {
             let key = makeKey(block.x, block.y);
-            proposal.Object[key] = {type:state.UI.object};
-          }
-        });
-      break;
-      case Modes.ITEM:
-      break;
+            if(state.Grid&&state.Grid[key]&&state.Grid[key]===state.UI.grid){}else{ //if not already there
+
+              proposal.Grid[key] = state.UI.grid;
+
+            }
+          });
+        break;
+        case Modes.OBJECT:
+          proposal.Object = {};
+          state.View.selection.rect.blocks.forEach((block) => {
+            if(!blockHasObject(proposal, block)){
+              let key = makeKey(block.x, block.y);
+              proposal.Object[key] = {type:state.UI.object};
+            }
+          });
+        break;
+        case Modes.ITEM:
+        break;
+      }
     }
 
     return proposal;
