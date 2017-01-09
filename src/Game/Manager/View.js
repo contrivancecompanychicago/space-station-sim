@@ -9,6 +9,10 @@ import Rect from 'Game/Rect';
 
 const initial = {
   scale: 1,
+  mousePosition:{
+    x: 0,
+    y: 0
+  },
   offset: {
     x: 0,
     y: 0
@@ -105,14 +109,16 @@ export default class ViewManager{
   }
 
   onMouseMove(e) {
+    let point = Point.fromScreen(e.pageX, e.pageY);
     if(this.dragging){
       let delta = {x:e.pageX-this.lastPos.x, y: e.pageY-this.lastPos.y};
-      this.lastPos = {x:e.pageX, y: e.pageY};
+      this.lastPos = point;
       this.state.offset.x += delta.x / this.state.scale;
       this.state.offset.y += delta.y / this.state.scale;
     }else if(this.selecting){
       this.updateSelection(e);
     }
+    this.state.mousePosition = point;
   }
 
   onMouseWheel(e){

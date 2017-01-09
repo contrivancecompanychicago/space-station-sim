@@ -21,4 +21,13 @@ describe('Game/Action/Proposer', () => {
       expect(p.Grid['0_0']).not.toBeDefined();
     });
   });
+  describe('object', () => {
+    describe('unselected', () => {
+      it('should return an object under the mouse', () => {
+        state = {UI:{mode:'GRID',grid:'FLOOR'}, View:{}, Grid:{}};
+        let p = proposer.propose(state);
+
+      });
+    });
+  });
 });
