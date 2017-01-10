@@ -1,19 +1,31 @@
+// @flow
 import {defaults} from 'lodash';
 import Point from 'Game/Point';
 import config from 'Game/config';
 import uniqid from 'Util/uniqid';
-const base = {
-  position:{
-    x: 0,
-    y: 0
-  },
+
+
+export type Char = {
+  id:string,
+  position: Point,
+  firstname: string,
+  lastname: string,
+  action: ?Object,
+  task: ?Object
+}
+
+const base:Char = {
+  id:'uniqid',
+  position: new Point(0,0),
   firstname: 'John',
-  lastname: 'Doe'
+  lastname: 'Doe',
+  action: null,
+  task: null
 };
 
 
 export default class CharacterFactory{
-  static create(char = {}){
+  static create(char:Object = {}):Char{
     if(config.env==='dev') validate(char);
 
     if(!char.id)
@@ -25,6 +37,6 @@ export default class CharacterFactory{
   }
 }
 
-export function validate(char){
-
+export function validate(char:Object){
+//throw errors and do nothing else
 }

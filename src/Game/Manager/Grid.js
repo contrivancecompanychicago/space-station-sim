@@ -1,3 +1,4 @@
+// @flow
 import { keys } from 'lodash';
 import { Graph, astar } from 'javascript-astar';
 
@@ -6,14 +7,23 @@ import { makeKey, parseKey } from 'Util';
 import {Block} from 'Game/Point';
 
 import MouseButtons from 'Util/MouseButtons';
+import type Point from 'Game/Point'
+
+
+type Node = {
+  type: string
+}
+
 
 export default class GridManager{
-  constructor(state = {}){
+  type:string;
+  state: Object
+  constructor(state:Object = {}){
     this.type = 'gridManager';
     this.state = state;
   }
 
-  addNodes(selection, type){
+  addNodes(selection:Object, type:Node){
     let sel = selection.rect.blockRect();
     for(let y = sel.t; y <= sel.b; y++){
       for(let x = sel.l; x <= sel.r; x++){
@@ -30,18 +40,18 @@ export default class GridManager{
   }
 
 
-  addNode(x, y, node){
+  addNode(x:number, y:number, node:Node){
     this.state[makeKey(x, y)] = node;
   }
 
-  removeNode(x, y){
+  removeNode(x:number, y:number){
     delete this.state[makeKey(x, y)];
   }
 
-  getNode(x, y){
+  getNode(x:number, y:number):Node{
     return this.state[makeKey(x, y)];
   }
-  randomNode(){
+  randomNode():Node{
     let k = keys(this.state);
     let r = Math.floor(Math.random()* k.length);
     return parseKey(k[r]);
@@ -56,7 +66,7 @@ export default class GridManager{
     return min;
   }
 
-  getPath(start, end){
+  getPath(start:Point, end:Point):Array<Block>{
 
     //determine graph size
     let minx = Infinity;

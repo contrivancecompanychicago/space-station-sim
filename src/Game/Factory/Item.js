@@ -1,18 +1,21 @@
+
 import {defaults} from 'lodash';
 import Point from 'Game/Point';
 import config from 'Game/config';
 import uniqid from 'Util/uniqid';
 
-const base = {
-  position: {
-    x: 0,
-    y: 0
-  }
+type Item = {
+  position: Point,
+  type: string
+}
+
+const base:Item = {
+  position: new Point(0,0),
+  type: null
 };
 
 export default class ItemFactory{
   static create(item = {}){
-    if(config.env==='dev') validate(item);
 
     if(!item.id)
       item.id = uniqid();
@@ -20,9 +23,4 @@ export default class ItemFactory{
     item.position = new Point(item.position);
     return item;
   }
-}
-
-
-export function validate(item){
-  if(!item.type) throw new Error('item needs a type');
 }

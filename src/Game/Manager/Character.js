@@ -1,4 +1,4 @@
-
+// @flow
 import {keys, defaults} from 'lodash';
 
 import config from 'Game/config';
@@ -6,19 +6,25 @@ import actions from 'Game/Manager/Character/Action';
 
 import Factory from 'Game/Factory/Character';
 
+import type {Char} from 'Game/Factory/Character';
+
 
 export default class Character{
-  constructor(state){
+  type:string;
+  state: Object;
+  taskManager:Object;
+  getComponent: function;
+  constructor(state:Object){
     this.type = 'characterManager';
     this.state = state;
   }
 
-  addChar(char){
+  addChar(char:Object){
     char = Factory.create(char);
     this.state[char.id] = char;
   }
 
-  update(time){
+  update(){
     keys(this.state).forEach((key) => {
       let char = this.state[key];
       if(!char.action){
@@ -30,7 +36,7 @@ export default class Character{
     });
   }
 
-  newAction(char){
+  newAction(char:Char){
     this.taskManager = this.getComponent('taskManager');
     let task = this.taskManager.getUnassignedTask();
     if(task){
@@ -42,7 +48,7 @@ export default class Character{
     char.action = actions.wander(char);
   }
 
-  getChar(id){
+  getChar(id:string):Char{
     return this.state[id];
   }
 
