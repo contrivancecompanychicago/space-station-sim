@@ -7,7 +7,8 @@
     "test": "karma start",
     "dev": "webpack-dev-server --hot --inline",
     "build": "gulp build",
-    "electron": "./node_modules/.bin/electron dist/"
+    "electron": "./node_modules/.bin/electron dist/",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2"
   },
   "bin": {
     "grunt": "./node_modules/grunt-cli/bin/grunt",
@@ -29,6 +30,8 @@
   },
   "homepage": "https://github.com/digijin/space-station-sim",
   "devDependencies": {
+    "babel-plugin-transform-flow-strip-types": "^6.21.0",
+    "flow-bin": "^0.37.4",
     "karma-sourcemap-loader": "^0.3.7",
     "react-addons-test-utils": "^15.1.0"
   },

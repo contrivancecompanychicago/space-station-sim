@@ -1,3 +1,4 @@
+// @flow
 /*
 eases use of the points system
 points stored in ingame coordinates
@@ -14,6 +15,8 @@ export const Block = BlockClass;
 const dev = true;
 
 export default class Point{
+  x:number;
+  y:number;
   constructor(){
     // console.log(arguments);
     if(arguments.length === 1){
@@ -46,11 +49,11 @@ export default class Point{
     }
   }
 
-  get screen(){
+  get screen():Point{
     return worldToScreen({x:this.x, y:this.y}, state);
   }
 
-  get block(){
+  get block():Block {
     return new Block({
       x: Math.floor(this.x / config.grid.width),
       y: Math.floor(this.y / config.grid.height)
@@ -58,7 +61,7 @@ export default class Point{
 
   }
 
-  static fromScreen(x,y){
+  static fromScreen(x,y):Point{
     let pos = screenToWorld({x,y}, state);
     return new Point(pos.x, pos.y);
   }
