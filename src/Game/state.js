@@ -1,8 +1,28 @@
+// @flow
 //"Global"
 
-import keys from 'lodash.keys';
 
-const state = {};
+
+import keys from 'lodash.keys';
+import Point from 'Game/Point';
+
+
+type View = {
+  offset: Point,
+  mousePosition: Point,
+  scale: number
+}
+
+type State = {
+  Grid: Object,
+  Task: Object,
+  UI: Object,
+  View: View,
+  Character: Object,
+  "Object": Object
+}
+
+const state:State = base();
 export default state;
 export function clear(){
   // console.log(state);
@@ -11,12 +31,12 @@ export function clear(){
   });
 }
 
-export function base(){
+export function base():State{
   return {
     Grid:{},
     Task:{},
     UI:{},
-    View:{offset:{x:0,y:0}, scale:1},
+    View:{offset:new Point(0,0), mousePosition:new Point(0,0), scale:1},
     Character:{},
     "Object":{}
   };
