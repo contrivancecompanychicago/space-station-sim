@@ -60,6 +60,13 @@ export default class Proposer{
         case Modes.ITEM:
         break;
       }
+    }else{ //NO SELECTION
+        switch(state.UI.mode){
+          case Modes.OBJECT:
+            proposal.Object = {};
+            proposal.Object[state.View.mousePosition.block.key] = {type:state.UI.object};
+          break;
+        }
     }
 
     return proposal;

@@ -1,5 +1,7 @@
 import {selection} from 'Game/Manager/View';
 import Proposer from 'Game/Action/Proposer';
+import {keys} from 'lodash';
+import Point from 'Game/Point';
 let proposer = new Proposer();
 let state;
 describe('Game/Action/Proposer', () => {
@@ -24,8 +26,10 @@ describe('Game/Action/Proposer', () => {
   describe('object', () => {
     describe('unselected', () => {
       it('should return an object under the mouse', () => {
-        state = {UI:{mode:'GRID',grid:'FLOOR'}, View:{}, Grid:{}};
+        state = {UI:{mode:'OBJECT',grid:'FLOOR'}, View:{}, Grid:{}};
+        state.View.mousePosition = new Point(0,0);
         let p = proposer.propose(state);
+        expect(keys(p.Object).length).toBe(1);
 
       });
     });
