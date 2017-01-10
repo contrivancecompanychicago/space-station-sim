@@ -6,6 +6,7 @@ import {Block} from 'Game/Point';
 import Character from 'Game/Type/Character';
 import Item from 'Game/Type/Item';
 import Point from 'Game/Point';
+import Objekt from 'Game/Type/Object';
 
 import {Tasks} from 'Game/Data/Task';
 
@@ -28,7 +29,7 @@ export default class Dispatcher{
         break;
       case Modes.OBJECT:
         let objectManager = this.getComponent('objectManager');
-        let obj = {block:selection.end.block, type:this.state.UI.object};
+        let obj = new Objekt({block:selection.end.block, type:this.state.UI.object});
         objectManager.addObject(obj);
         break;
       case Modes.ITEM:
