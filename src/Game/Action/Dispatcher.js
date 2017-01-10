@@ -1,6 +1,5 @@
 // @flow
 import {Modes} from 'Game/Data/Mode';
-import TaskFactory from 'Game/Factory/Task';
 import {pointToBlock, blockToPoint} from 'Util';
 import {Block} from 'Game/Point';
 import Character from 'Game/Type/Character';

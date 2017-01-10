@@ -1,6 +1,5 @@
 // @flow
 import {keys, defaults} from 'lodash';
-import Factory from 'Game/Factory/Item';
 import Item from 'Game/Type/Item';
 
 export default class ItemManager{

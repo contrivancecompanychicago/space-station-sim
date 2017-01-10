@@ -1,6 +1,5 @@
 // @flow
 import {map, keys, head} from 'lodash';
-import Factory from 'Game/Factory/Task';
 import Task from 'Game/Type/Task'
 import Character from 'Game/Type/Character'
 
