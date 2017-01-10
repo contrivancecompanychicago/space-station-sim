@@ -1,14 +1,19 @@
-
+// @flow
 import {map, keys, head} from 'lodash';
 import Factory from 'Game/Factory/Task';
+import Task from 'Game/Type/Task'
+import Character from 'Game/Type/Character'
 
 export default class TaskManager{
-  constructor(state = {}){
+  type: string;
+  state: Object;
+  getComponent: Function
+  constructor(state:Object = {}){
     this.type = 'taskManager';
     this.state = state;
   }
 
-  getTask(id){
+  getTask(id:string){
     if(!id) id = head(keys(this.state));
     return this.state[id];
   }
@@ -20,15 +25,15 @@ export default class TaskManager{
     }
   }
 
-  getNextTask(id){
+  getNextTask(id:string){
     if(!id) throw new Error('wtf');
     let tasks = keys(this.state);
     id = tasks[tasks.indexOf(id.toString())+1];
     return this.getTask(id);
   }
 
-  addTask(task){
-    task = Factory.create(task);
+  addTask(task:Task){
+    // task = Factory.create(task);
     this.state[task.id] = task;
     return task;
   }
@@ -41,26 +46,26 @@ export default class TaskManager{
   //   }
   // }
 
-  assignTask(id, worker){
+  assignTask(id:string, worker:Character){
     if(this.state[id]){
       this.state[id].worker = worker;
     }
   }
 
-  unassignTask(id){
+  unassignTask(id:String){
     if(this.state[id]){
       delete this.state[id].worker;
     }
   }
 
-  unassignTaskWorker(worker){
+  unassignTaskWorker(worker:Character){
     map(this.state, (val) =>{
       if(val.worker && val.worker === worker) delete val.worker;
       return val;
     });
   }
 
-  finishTask(id){
+  finishTask(id:string){
     delete this.state[id];
   }
 

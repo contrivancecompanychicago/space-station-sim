@@ -1,3 +1,4 @@
+// @flow
 /*
 ACTION PROPOSER
 this comes up with a proposal
@@ -31,7 +32,7 @@ import ObjectTypes from 'Game/Data/Object';
 
 let proposal = {};
 export default class Proposer{
-  propose(state){
+  propose(state:Object){
     proposal = base();
     // console.log(state);
 

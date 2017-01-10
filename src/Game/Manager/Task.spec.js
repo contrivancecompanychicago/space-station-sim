@@ -1,6 +1,9 @@
+
 import TaskManager from 'Game/Manager/Task';
 import {defaults} from 'lodash';
 import Types from 'Game/Data/Task';
+import Task from 'Game/Type/Task';
+
 
 let state = {};
 let taskManager = new TaskManager();
@@ -10,7 +13,7 @@ const baseTask = {
   type: 'TEST'
 };
 function testTask(task){
-  return defaults(task, baseTask);
+  return new Task(defaults(task, baseTask));
 }
 
 

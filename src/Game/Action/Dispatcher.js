@@ -1,4 +1,4 @@
-
+// @flow
 import {Modes} from 'Game/Data/Mode';
 import TaskFactory from 'Game/Factory/Task';
 import {pointToBlock, blockToPoint} from 'Util';
@@ -7,15 +7,19 @@ import Character from 'Game/Type/Character';
 import Item from 'Game/Type/Item';
 import Point from 'Game/Point';
 import Objekt from 'Game/Type/Object';
+import Task from 'Game/Type/Task';
 
 import {Tasks} from 'Game/Data/Task';
 
 export default class Dispatcher{
-  constructor(state){
+  type:string;
+  state:Object;
+  getComponent:Function;
+  constructor(state:Object){
     this.type = 'actionDispatcher';
     this.state = state;
   }
-  userAction(selection){
+  userAction(selection:Object){
     // console.log("something happened");
     let sel = selection.rect.blockRect();
     switch(this.state.UI.mode){
@@ -56,7 +60,9 @@ export default class Dispatcher{
         for(let y = sel.t; y <= sel.b; y++){
           for(let x = sel.l; x <= sel.r; x++){
             let pos = {x:x, y:y};
-            taskManager.addTask(TaskFactory.create({block:pos, grid:this.state.UI.grid, type: Tasks.BUILD}));
+            let task = new Task({block:pos, grid:this.state.UI.grid, type: Tasks.BUILD})
+            // taskManager.addTask(TaskFactory.create({block:pos, grid:this.state.UI.grid, type: Tasks.BUILD}));
+            taskManager.addTask(task)
           }
         }
         break;
