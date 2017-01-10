@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { keys, assign } from 'lodash';
-import Speed from 'Game/Type/Speed';
+import Speed from 'Game/Data/Speed';
 
 
 /*

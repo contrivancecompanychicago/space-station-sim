@@ -1,12 +1,12 @@
 
-import {Modes} from 'Game/Type/Mode';
+import {Modes} from 'Game/Data/Mode';
 import CharacterFactory from 'Game/Factory/Character';
 import ItemFactory from 'Game/Factory/Item';
 import TaskFactory from 'Game/Factory/Task';
 import {pointToBlock, blockToPoint} from 'Util';
 import {Block} from 'Game/Point';
 
-import {Tasks} from 'Game/Type/Task';
+import {Tasks} from 'Game/Data/Task';
 
 export default class Dispatcher{
   constructor(state){

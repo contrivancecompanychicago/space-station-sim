@@ -1,4 +1,4 @@
-import {Modes } from 'Game/Type/Mode';
+import {Modes } from 'Game/Data/Mode';
 
 export default function mode(state = 1, action){
   switch(action.type){

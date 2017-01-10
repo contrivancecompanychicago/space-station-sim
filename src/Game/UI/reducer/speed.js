@@ -1,4 +1,4 @@
-import {Speeds} from 'Game/Type/Speed';
+import {Speeds} from 'Game/Data/Speed';
 
 export default function speed(state = Speeds.NORMAL, action){
   switch(action.type){

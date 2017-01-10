@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { keys } from 'lodash';
 import Button from './Button';
 
-import Grids from 'Game/Type/Grid';
-import Tasks from 'Game/Type/Task';
+import Grids from 'Game/Data/Grid';
+import Tasks from 'Game/Data/Task';
 
 export default class Task extends React.Component {
   render() {

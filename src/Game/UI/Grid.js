@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { keys } from 'lodash';
 import Button from './Button';
 
-import Grids from 'Game/Type/Grid';
+import Grids from 'Game/Data/Grid';
 
 export default class Grid extends React.Component {
   render() {

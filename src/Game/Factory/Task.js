@@ -1,6 +1,6 @@
 import {defaults} from 'lodash';
 import uniqid from 'Util/uniqid';
-import {Tasks} from 'Game/Type/Task';
+import {Tasks} from 'Game/Data/Task';
 
 import {Block} from 'Game/Point';
 import config from 'Game/config';

@@ -24,9 +24,9 @@ import { makeKey, parseKey } from 'Util';
 import {base} from 'Game/state';
 
 // import state from 'Game/state';
-import {Modes} from 'Game/Type/Mode';
+import {Modes} from 'Game/Data/Mode';
 
-import ObjectTypes from 'Game/Type/Object';
+import ObjectTypes from 'Game/Data/Object';
 
 
 let proposal = {};

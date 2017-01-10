@@ -8,8 +8,8 @@ import Point from 'Game/Point';
 
 
 type View = {
-  offset: Point,
-  mousePosition: Point,
+  offset: Object,
+  mousePosition: Object,
   scale: number
 }
 
@@ -36,7 +36,11 @@ export function base():State{
     Grid:{},
     Task:{},
     UI:{},
-    View:{offset:new Point(0,0), mousePosition:new Point(0,0), scale:1},
+    View:{
+      offset: {x:0, y:0},
+      mousePosition: {x:0, y:0},
+      scale:1
+    },
     Character:{},
     "Object":{}
   };

@@ -1,6 +1,6 @@
 import TaskManager from 'Game/Manager/Task';
 import {defaults} from 'lodash';
-import Types from 'Game/Type/Task';
+import Types from 'Game/Data/Task';
 
 let state = {};
 let taskManager = new TaskManager();

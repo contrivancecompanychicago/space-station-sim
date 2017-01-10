@@ -1,4 +1,4 @@
-import Speed from 'Game/Type/Speed';
+import Speed from 'Game/Data/Speed';
 
 export default class Time {
     constructor(time){

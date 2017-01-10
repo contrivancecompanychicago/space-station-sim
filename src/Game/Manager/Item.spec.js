@@ -1,7 +1,7 @@
 import Item from './Item';
 import {keys} from 'lodash';
 
-import types from 'Game/Type/Item';
+import types from 'Game/Data/Item';
 
 let item;
 let state;

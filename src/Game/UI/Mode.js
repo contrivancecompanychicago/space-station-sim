@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { keys } from 'lodash';
 import Button from './Button';
 
-import Modes from 'Game/Type/Mode';
+import Modes from 'Game/Data/Mode';
 
 export default class Mode extends React.Component {
   render() {

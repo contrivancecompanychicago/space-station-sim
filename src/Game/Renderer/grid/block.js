@@ -4,7 +4,7 @@ import config from 'Game/config';
 const blockWidth = config.grid.width;
 const blockHeight = config.grid.height;
 
-import Types from 'Game/Type/Grid';
+import Types from 'Game/Data/Grid';
 
 export default function renderBlock(pos, block, state, layer){
   layer.context.fillStyle = 'red';

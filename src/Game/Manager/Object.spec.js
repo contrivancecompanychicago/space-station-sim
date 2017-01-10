@@ -1,6 +1,6 @@
 import ObjectManager from 'Game/Manager/Object';
 import {values, keys} from 'lodash';
-import types from 'Game/Type/Object';
+import types from 'Game/Data/Object';
 
 let state = {};
 let objectManager = new ObjectManager(state);

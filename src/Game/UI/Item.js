@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { keys } from 'lodash';
 import Button from './Button';
 
-import Items from 'Game/Type/Item';
+import Items from 'Game/Data/Item';
 
 export default class Item extends React.Component {
   render() {

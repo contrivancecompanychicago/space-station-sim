@@ -8,7 +8,7 @@ import config from 'Game/config';
 const blockWidth = config.grid.width;
 const blockHeight = config.grid.height;
 
-import Types from 'Game/Type/Object';
+import Types from 'Game/Data/Object';
 
 export default function renderObject(state, layer){
   Rect.screenRect().blocks.forEach((block) => { //for each block on screen

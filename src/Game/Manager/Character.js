@@ -13,7 +13,7 @@ export default class Character{
   type:string;
   state: Object;
   taskManager:Object;
-  getComponent: function;
+  getComponent: Function;
   constructor(state:Object){
     this.type = 'characterManager';
     this.state = state;
