@@ -6,10 +6,10 @@ import actions from 'Game/Manager/Character/Action';
 
 import Factory from 'Game/Factory/Character';
 
-import type {Char} from 'Game/Factory/Character';
+import Character from 'Game/Type/Character';
 
 
-export default class Character{
+export default class CharacterManager{
   type:string;
   state: Object;
   taskManager:Object;
@@ -19,8 +19,10 @@ export default class Character{
     this.state = state;
   }
 
-  addChar(char:Object){
-    char = Factory.create(char);
+  addChar(char:Character){
+
+    // char = new Character(char); //TODO: remove this line
+
     this.state[char.id] = char;
   }
 
@@ -36,7 +38,7 @@ export default class Character{
     });
   }
 
-  newAction(char:Char){
+  newAction(char:Character){
     this.taskManager = this.getComponent('taskManager');
     let task = this.taskManager.getUnassignedTask();
     if(task){
@@ -48,7 +50,7 @@ export default class Character{
     char.action = actions.wander(char);
   }
 
-  getChar(id:string):Char{
+  getChar(id:string):Character{
     return this.state[id];
   }
 

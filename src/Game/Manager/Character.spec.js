@@ -1,5 +1,6 @@
 import Imagine from 'imagine-engine';
-import Character from 'Game/Manager/Character';
+import CharacterManager from 'Game/Manager/Character';
+import Character from 'Game/Type/Character';
 
 let state;
 let character;
@@ -7,7 +8,7 @@ let character;
 describe('Game/Manager/Character', () => {
   beforeEach(() => {
     state = {};
-    character = new Character(state);
+    character = new CharacterManager(state);
   });
   describe('addChar', () => {
     it('should add to state', () => {
@@ -16,7 +17,7 @@ describe('Game/Manager/Character', () => {
       expect(state.myId).toBeDefined();
     });
     it('should make missing ids', () => {
-      let char = {name: 'billy'};
+      let char = new Character({name: 'billy'});
       character.addChar(char);
       expect(char.id).toBeDefined();
       expect(state[char.id]).toBeDefined();

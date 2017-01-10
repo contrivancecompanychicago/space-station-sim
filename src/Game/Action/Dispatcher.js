@@ -5,6 +5,7 @@ import ItemFactory from 'Game/Factory/Item';
 import TaskFactory from 'Game/Factory/Task';
 import {pointToBlock, blockToPoint} from 'Util';
 import {Block} from 'Game/Point';
+import Character from 'Game/Type/Character';
 
 import {Tasks} from 'Game/Data/Task';
 
@@ -43,7 +44,7 @@ export default class Dispatcher{
           for(let x = sel.l; x <= sel.r; x++){
             // let pos = blockToPoint({x:x, y:y});
             let pos = new Block({x:x, y:y}).center;
-            charManager.addChar({position: pos});
+            charManager.addChar(new Character({position: pos}));
           }
         }
         break;
