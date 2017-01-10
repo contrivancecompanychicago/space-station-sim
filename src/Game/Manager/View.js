@@ -1,3 +1,4 @@
+// @flow
 import {defaults} from 'lodash';
 import config from 'Game/config';
 
@@ -6,6 +7,15 @@ import Point from 'Game/Point';
 import MouseButtons from 'Util/MouseButtons';
 
 import Rect from 'Game/Rect';
+
+type Event = {
+  wheelDelta:number,
+  pageX:number,
+  pageY:number,
+  button:number,
+  type: string,
+  detail:number
+}
 
 const initial = {
   scale: 1,
@@ -20,8 +30,21 @@ const initial = {
 };
 
 export default class ViewManager{
+  type: string;
+  state: Object;
 
-  constructor(state = {}, container) {
+  container: Object;
+  dragging: boolean;
+  down: Object;
+  addListeners: Function;
+  notify:Function;
+  selection: Object;
+  selecting: boolean;
+  startPos: Point;
+  endPos: Point;
+  lastPos: Object;
+  button: number;
+  constructor(state:Object = {}, container:Object) {
     this.type = 'viewManager';
     this.state = defaults(state, initial);
     this.container = container.getElementsByTagName('canvas')[0];
@@ -29,14 +52,14 @@ export default class ViewManager{
     this.down = {};
   }
 
-  globalToLocal(point){
+  globalToLocal(point:Object){
     return {
       x: (point.x / this.state.scale) - this.state.offset.x,
       y: (point.y / this.state.scale) - this.state.offset.y
     };
   }
 
-  localToGlobal(point){
+  localToGlobal(point:Object){
     return {
       x: (this.state.offset.x + (point.x)) * this.state.scale,
       y: (this.state.offset.y + (point.y)) * this.state.scale,
@@ -65,7 +88,7 @@ export default class ViewManager{
     this.container.removeEventListener('mousewheel', this, false);
     this.container.removeEventListener('DOMMouseScroll', this, false);
   }
-  handleEvent(e) {
+  handleEvent(e:Event) {
     switch(e.type){
       case 'mousedown':
         this.onMouseDown(e);
@@ -86,7 +109,7 @@ export default class ViewManager{
   }
 
 
-  onMouseDown(e){
+  onMouseDown(e:Event){
     this.down[e.button] = true;
     if(e.button === 1){
       this.startDrag(e);
@@ -95,7 +118,7 @@ export default class ViewManager{
     }
   }
 
-  onMouseUp(e){
+  onMouseUp(e:Event){
     this.down[e.button] = false;
     if(e.button === MouseButtons.MIDDLE){
       this.stopDrag();
@@ -104,11 +127,11 @@ export default class ViewManager{
     }
   }
 
-  isMouseDown(button){
+  isMouseDown(button:string):boolean{
     return this.down[button];
   }
 
-  onMouseMove(e) {
+  onMouseMove(e:Event) {
     let point = Point.fromScreen(e.pageX, e.pageY);
     if(this.dragging){
       let delta = {x:e.pageX-this.lastPos.x, y: e.pageY-this.lastPos.y};
@@ -121,13 +144,13 @@ export default class ViewManager{
     this.state.mousePosition = point;
   }
 
-  onMouseWheel(e){
+  onMouseWheel(e:Object){
     let d = e.wheelDelta;
     if(!d) d = -e.detail;
     this.zoom(d>0, e);
   }
 
-  zoom(out, point){
+  zoom(out:boolean, point:Object){
     let start = this.globalToLocal(point);
     if(out){
       this.state.scale += config.view.scale.step;
@@ -142,7 +165,7 @@ export default class ViewManager{
     this.state.offset.y += end.y - start.y;
   }
 
-  startDrag(e){
+  startDrag(e:Event){
     this.dragging = true;
     this.lastPos = {x:e.pageX, y: e.pageY};
   }
@@ -151,7 +174,7 @@ export default class ViewManager{
     this.dragging = false;
   }
 
-  startSelection(e){
+  startSelection(e:Event){
     this.selecting = true;
     // this.startPos = this.globalToLocal({x:e.pageX, y: e.pageY});
     this.startPos = Point.fromScreen(e.pageX, e.pageY);
@@ -161,7 +184,7 @@ export default class ViewManager{
     // console.log(this.startPos, e);
   }
 
-  updateSelection(e){
+  updateSelection(e:Event){
     // debugger;
 
     this.endPos = Point.fromScreen(e.pageX, e.pageY);
@@ -179,14 +202,14 @@ export default class ViewManager{
     // console.log(this.state.selection);
   }
 
-  endSelection(e){
+  endSelection(e:Event){
     this.selecting = false;
     this.updateSelection(e);
     this.notify('userAction', this.selection);
     this.state.selection = false;
 
   }
-  pointToBlock(point) {
+  pointToBlock(point:Point):Object {
     return {
       x: Math.floor(point.x/config.grid.width),
       y: Math.floor(point.y/config.grid.height),
@@ -200,8 +223,8 @@ export default class ViewManager{
 
 }
 
-export function selection(start, end){
-  let out = {start, end};
+export function selection(start:Object, end:Object):Object{
+  let out:Object = {start, end};
   out.rect = new Rect({
     t: Math.min(end.y, start.y),
     r: Math.max(end.x, start.x),
