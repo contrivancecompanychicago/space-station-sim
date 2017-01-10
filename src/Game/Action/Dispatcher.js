@@ -1,6 +1,5 @@
 
 import {Modes} from 'Game/Data/Mode';
-import CharacterFactory from 'Game/Factory/Character';
 import ItemFactory from 'Game/Factory/Item';
 import TaskFactory from 'Game/Factory/Task';
 import {pointToBlock, blockToPoint} from 'Util';

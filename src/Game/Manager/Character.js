@@ -4,7 +4,6 @@ import {keys, defaults} from 'lodash';
 import config from 'Game/config';
 import actions from 'Game/Manager/Character/Action';
 
-import Factory from 'Game/Factory/Character';
 
 import Character from 'Game/Type/Character';
 
