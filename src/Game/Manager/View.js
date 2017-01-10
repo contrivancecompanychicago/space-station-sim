@@ -16,6 +16,12 @@ type Event = {
   type: string,
   detail:number
 }
+type Selection = {
+  start: Point,
+  end: Point,
+  rect: Rect,
+  button: number
+}
 
 const initial = {
   scale: 1,
@@ -188,14 +194,6 @@ export default class ViewManager{
     // debugger;
 
     this.endPos = Point.fromScreen(e.pageX, e.pageY);
-    // this.selection.rect = new Rect({
-    //   t: Math.min(this.endPos.y, this.startPos.y),
-    //   r: Math.max(this.endPos.x, this.startPos.x),
-    //   b: Math.max(this.endPos.y, this.startPos.y),
-    //   l: Math.min(this.endPos.x, this.startPos.x),
-    // });
-    // this.state.selection = this.selection;
-    // this.state.selection.end = this.endPos;
     this.selection = selection(this.startPos, this.endPos);
     this.selection.button = this.button;
     this.state.selection = this.selection;
@@ -223,7 +221,9 @@ export default class ViewManager{
 
 }
 
-export function selection(start:Object, end:Object):Object{
+
+
+export function selection(start:Object, end:Object):Selection{
   let out:Object = {start, end};
   out.rect = new Rect({
     t: Math.min(end.y, start.y),
