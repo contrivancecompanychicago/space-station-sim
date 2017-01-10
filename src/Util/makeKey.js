@@ -1,5 +1,7 @@
+// @flow
+
 import config from 'Game/config';
-export default function makeKey(x, y){
+export default function makeKey(x:number, y:number):string{
   if(config.env==='dev'){
     if(typeof x !== 'number') throw new Error('makeKey x not a number');
     if(typeof y !== 'number') throw new Error('makeKey y not a number');
