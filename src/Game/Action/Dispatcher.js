@@ -1,10 +1,11 @@
 
 import {Modes} from 'Game/Data/Mode';
-import ItemFactory from 'Game/Factory/Item';
 import TaskFactory from 'Game/Factory/Task';
 import {pointToBlock, blockToPoint} from 'Util';
 import {Block} from 'Game/Point';
 import Character from 'Game/Type/Character';
+import Item from 'Game/Type/Item';
+import Point from 'Game/Point';
 
 import {Tasks} from 'Game/Data/Task';
 
@@ -32,9 +33,11 @@ export default class Dispatcher{
         break;
       case Modes.ITEM:
         let itemManager = this.getComponent('itemManager');
-        let item = ItemFactory.create({
-          position: {x: selection.end.x, y: selection.end.y},
+        // let item = ItemFactory.create({
+        let item = new Item({
+          position: new Point({x: selection.end.x, y: selection.end.y}),
           type:this.state.UI.item});
+
         itemManager.addItem(item);
         break;
       case Modes.CHAR:

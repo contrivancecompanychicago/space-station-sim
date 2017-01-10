@@ -19,9 +19,6 @@ export default class CharacterManager{
   }
 
   addChar(char:Character){
-
-    // char = new Character(char); //TODO: remove this line
-
     this.state[char.id] = char;
   }
 
