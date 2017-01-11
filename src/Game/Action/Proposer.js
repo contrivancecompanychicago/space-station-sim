@@ -27,7 +27,7 @@ import {base} from 'Game/state';
 // import state from 'Game/state';
 import {Modes} from 'Game/Data/Mode';
 
-import ObjectTypes from 'Game/Data/Object';
+import ObjectData from 'Game/Data/Object';
 
 
 let proposal = {};
@@ -87,7 +87,7 @@ function blockHasObject(state, block){
       key = makeKey(block.x - x, block.y - y);
       let obj = state.Object[key];
       if(obj){
-        let type = ObjectTypes[obj.type];
+        let type = ObjectData[obj.type];
         if(type.width>=x+1 && type.height>=y+1)
           return true;
       }

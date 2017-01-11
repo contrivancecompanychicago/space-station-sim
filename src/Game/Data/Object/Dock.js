@@ -9,7 +9,14 @@ const obj:Objekt = {
   width: 2,
   height: 2,
   requirements: {
-
+    block:{
+        empty:[
+          {x:0, y:2},
+          {x:1, y:2},
+          {x:0, y:3},
+          {x:1, y:3},
+        ]
+    }
   }
 }
 
