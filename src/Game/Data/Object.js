@@ -1,3 +1,4 @@
+// @flow
 /*
 Objects are permanent(ish) fixtures attached to blocks
 */

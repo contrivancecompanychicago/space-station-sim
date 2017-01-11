@@ -7,7 +7,10 @@ const obj:Objekt = {
   label: 'Dock',
   image: require('./dockspot.png'),
   width: 2,
-  height: 2
+  height: 2,
+  requirements: {
+
+  }
 }
 
 export default obj
