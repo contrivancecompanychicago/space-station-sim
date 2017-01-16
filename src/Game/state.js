@@ -6,6 +6,9 @@
 import keys from 'lodash.keys';
 import Point from 'Game/Point';
 
+import reducer from 'Game/UI/reducer'
+
+import type {UIState} from 'Game/UI/State';
 
 type View = {
   offset: Object,
@@ -16,7 +19,7 @@ type View = {
 type State = {
   Grid: Object,
   Task: Object,
-  UI: Object,
+  UI: UIState,
   View: View,
   Character: Object,
   "Object": Object
@@ -35,7 +38,7 @@ export function base():State{
   return {
     Grid:{},
     Task:{},
-    UI:{},
+    UI:reducer(),
     View:{
       offset: {x:0, y:0},
       mousePosition: {x:0, y:0},

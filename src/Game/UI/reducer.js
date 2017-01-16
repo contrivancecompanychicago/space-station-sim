@@ -1,3 +1,4 @@
+// @flow
 import { combineReducers } from 'redux';
 import mode from './reducer/mode';
 import grid from './reducer/grid';

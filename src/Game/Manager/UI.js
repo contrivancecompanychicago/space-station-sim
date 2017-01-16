@@ -1,3 +1,5 @@
+// @flow
+
 import { createStore } from 'redux';
 import UI from 'Game/UI';
 import reducer from 'Game/UI/reducer';
@@ -7,6 +9,9 @@ import { Provider } from 'react-redux';
 import { keys, assign } from 'lodash';
 import Speed from 'Game/Data/Speed';
 
+import type { UIState } from 'Game/UI/State'
+
+import Component from 'Imagine/Component'
 
 /*
 UI Manager
@@ -16,12 +21,16 @@ UI is a react redux application
 maintains a state that is used by a tonne of other things
  - renderings potential changeState
  - making changeState
- 
+
 
 */
 
-export default class UIManager{
-  constructor(state, container){
+export default class UIManager extends Component{
+  state:UIState;
+  container: Object;
+  store: Object;
+  constructor(state:UIState, container:Object){
+    super()
     this.type = 'uiManager';
     this.state = state;
     if(!container) throw new Error('I need a container to render in');
