@@ -11,7 +11,7 @@ export default class Character{
   firstname: string;
   lastname: string;
   action: ?Object;
-  task: ?Object;
+  task: string;
   constructor(params:Object){
     defaults(this, params);
     if(!this.id) this.id = uniqid();

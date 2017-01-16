@@ -1,3 +1,4 @@
+// @flow
 import idle from './idle';
 import moveToBlock from './moveToBlock';
 import pathToBlock from './pathToBlock';

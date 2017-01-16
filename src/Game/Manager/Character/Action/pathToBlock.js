@@ -1,7 +1,11 @@
+// @flow
 import engine from 'Game/engine';
 import moveToBlock from './moveToBlock';
 
-export default function* pathToBlock(char, block){
+import type Character from 'Game/Type/Character';
+import type Block from 'Game/Block'
+
+export default function* pathToBlock(char:Character, block:Block):Generator<*,*,*>{
   let gridManager = engine.getComponent('gridManager');
   let current = char.position.block;
   let path = gridManager.getPath(current, block);

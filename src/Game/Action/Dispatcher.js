@@ -64,7 +64,7 @@ export default class Dispatcher extends Component{
         let taskManager:TaskManager = (this.getComponent('taskManager'):any);
         for(let y = sel.t; y <= sel.b; y++){
           for(let x = sel.l; x <= sel.r; x++){
-            let pos = {x:x, y:y};
+          let pos = new Block({x:x, y:y});
             let task = new Task({block:pos, grid:this.state.UI.grid, type: Tasks.BUILD})
             // taskManager.addTask(TaskFactory.create({block:pos, grid:this.state.UI.grid, type: Tasks.BUILD}));
             taskManager.addTask(task)

@@ -1,8 +1,12 @@
+// @flow
 import config from 'Game/config';
 import time from 'Game/time';
 
-export default function* moveToBlock(char, block){
-  
+import type Character from 'Game/Type/Character';
+import type Block from 'Game/Block'
+
+export default function* moveToBlock(char:Character, block:Block):Generator<*,*,*>{
+
   let target = block.center;
   while(!char.position.block.is(block)){
     let amount = time.deltaTime * config.character.speed;

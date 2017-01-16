@@ -8,18 +8,19 @@ import Component from 'Imagine/Component';
 import type CharacterManager from 'Game/Manager/Character'
 
 export default class TaskManager extends Component{
-  state: Object;
+
+  state: {[id:string]: Task};
   constructor(state:Object = {}){
     super();
     this.type = 'taskManager';
     this.state = state;
   }
 
-  getTask(id:string){
+  getTask(id:string):Task{
     if(!id) id = head(keys(this.state));
     return this.state[id];
   }
-  getUnassignedTask(){
+  getUnassignedTask():Task|void{
     let tasks = keys(this.state);
     for(let i = 0; i < tasks.length; i++){
       let task = this.state[tasks[i]];
@@ -54,7 +55,7 @@ export default class TaskManager extends Component{
     }
   }
 
-  unassignTask(id:String){
+  unassignTask(id:string){
     if(this.state[id]){
       delete this.state[id].worker;
     }
