@@ -9,12 +9,12 @@ import Character from 'Game/Type/Character';
 
 import Component from 'Imagine/Component';
 
-
+import type TaskManager from 'Game/Manager/Task'
 
 export default class CharacterManager extends Component{
   // type:string;
   state: {[id:string]: Character};
-  taskManager:Object;
+  taskManager:TaskManager;
   constructor(state:Object){
     super();
     this.type = 'characterManager';
@@ -38,7 +38,9 @@ export default class CharacterManager extends Component{
   }
 
   newAction(char:Character){
-    this.taskManager = this.getComponent('taskManager');
+    if(!this.taskManager){
+      this.taskManager = (this.getComponent('taskManager'):any);
+    }
     let task = this.taskManager.getUnassignedTask();
     if(task){
       this.taskManager.assignTask(task.id, char.id);

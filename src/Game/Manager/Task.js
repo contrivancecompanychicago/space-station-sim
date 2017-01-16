@@ -3,11 +3,14 @@ import {map, keys, head} from 'lodash';
 import Task from 'Game/Type/Task'
 import Character from 'Game/Type/Character'
 
-export default class TaskManager{
-  type: string;
+import Component from 'Imagine/Component';
+
+import type CharacterManager from 'Game/Manager/Character'
+
+export default class TaskManager extends Component{
   state: Object;
-  getComponent: Function
   constructor(state:Object = {}){
+    super();
     this.type = 'taskManager';
     this.state = state;
   }
@@ -45,7 +48,7 @@ export default class TaskManager{
   //   }
   // }
 
-  assignTask(id:string, worker:Character){
+  assignTask(id:string, worker:string){
     if(this.state[id]){
       this.state[id].worker = worker;
     }
@@ -74,7 +77,7 @@ export default class TaskManager{
   clean() {
     keys(this.state).forEach(key => {
       let task = this.state[key];
-      let characterManager = this.getComponent('characterManager');
+      let characterManager:characterManager = this.getComponent('characterManager');
       if(task.worker){
         let char = characterManager.getChar(task.worker);
         if(char && char.task != task.id){
