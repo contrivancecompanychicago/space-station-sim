@@ -7,13 +7,16 @@ import actions from 'Game/Manager/Character/Action';
 
 import Character from 'Game/Type/Character';
 
+import Component from 'Imagine/Component';
 
-export default class CharacterManager{
-  type:string;
-  state: Object;
+
+
+export default class CharacterManager extends Component{
+  // type:string;
+  state: {[id:string]: Character};
   taskManager:Object;
-  getComponent: Function;
   constructor(state:Object){
+    super();
     this.type = 'characterManager';
     this.state = state;
   }
