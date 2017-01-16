@@ -17,7 +17,7 @@ type Node = {
 
 export default class GridManager{
   type:string;
-  state: Object
+  state: {[id:string]: Node};
   constructor(state:Object = {}){
     this.type = 'gridManager';
     this.state = state;

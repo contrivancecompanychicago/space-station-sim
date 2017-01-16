@@ -9,7 +9,7 @@ import Character from 'Game/Type/Character';
 
 import Component from 'Imagine/Component';
 
-import type TaskManager from 'Game/Manager/Task'
+import type TaskManager from 'Game/Manager/Task';
 
 export default class CharacterManager extends Component{
   // type:string;

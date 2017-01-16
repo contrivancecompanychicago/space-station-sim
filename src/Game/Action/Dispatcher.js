@@ -9,12 +9,18 @@ import Objekt from 'Game/Type/Object';
 import Task from 'Game/Type/Task';
 
 import {Tasks} from 'Game/Data/Task';
+import Component from 'Imagine/Component';
 
-export default class Dispatcher{
-  type:string;
+import type GridManager from 'Game/Manager/Grid';
+import type ObjectManager from 'Game/Manager/Object';
+import type ItemManager from 'Game/Manager/Item';
+import type CharManager from 'Game/Manager/Character';
+import type TaskManager from 'Game/Manager/Task';
+
+export default class Dispatcher extends Component{
   state:Object;
-  getComponent:Function;
   constructor(state:Object){
+    super();
     this.type = 'actionDispatcher';
     this.state = state;
   }
@@ -27,16 +33,16 @@ export default class Dispatcher{
         console.info('select mode not implemented');
         break;
       case Modes.GRID:
-        let gridManager = this.getComponent('gridManager');
+        let gridManager:GridManager = (this.getComponent('gridManager'):any);
         gridManager.addNodes(selection, this.state.UI.grid);
         break;
       case Modes.OBJECT:
-        let objectManager = this.getComponent('objectManager');
+        let objectManager:ObjectManager = (this.getComponent('objectManager'):any);
         let obj = new Objekt({block:selection.end.block, type:this.state.UI.object});
         objectManager.addObject(obj);
         break;
       case Modes.ITEM:
-        let itemManager = this.getComponent('itemManager');
+        let itemManager:ItemManager = (this.getComponent('itemManager'):any);
         // let item = ItemFactory.create({
         let item = new Item({
           position: new Point({x: selection.end.x, y: selection.end.y}),
@@ -45,7 +51,7 @@ export default class Dispatcher{
         itemManager.addItem(item);
         break;
       case Modes.CHAR:
-        let charManager = this.getComponent('characterManager');
+        let charManager:CharManager = (this.getComponent('characterManager'):any);
         for(let y = sel.t; y <= sel.b; y++){
           for(let x = sel.l; x <= sel.r; x++){
             // let pos = blockToPoint({x:x, y:y});
@@ -55,7 +61,7 @@ export default class Dispatcher{
         }
         break;
       case Modes.TASK:
-        let taskManager = this.getComponent('taskManager');
+        let taskManager:TaskManager = (this.getComponent('taskManager'):any);
         for(let y = sel.t; y <= sel.b; y++){
           for(let x = sel.l; x <= sel.r; x++){
             let pos = {x:x, y:y};
