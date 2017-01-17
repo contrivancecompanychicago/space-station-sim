@@ -35,7 +35,7 @@ export default class Dispatcher extends Component{
         break;
       case Mode.GRID:
         let gridManager:GridManager = (this.getComponent('gridManager'):any);
-        gridManager.addNodes(selection, new Grid({type:this.state.UI.grid}));
+        gridManager.addNodes(selection, new Grid({type:this.state.UI.grid, rotation:this.state.UI.rotation}));
         break;
       case Mode.OBJECT:
         let objectManager:ObjectManager = (this.getComponent('objectManager'):any);

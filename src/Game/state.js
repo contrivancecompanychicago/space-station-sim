@@ -40,7 +40,8 @@ export type TaskState = {
 }
 
 export type UIState = {
-  mode:any
+  mode:any,
+  rotation: number
 }
 
 export type ViewState = {
@@ -75,7 +76,8 @@ export function base():State{
     "Object":{},
     Task:{},
     UI:{
-      mode: Mode.SELECT
+      mode: Mode.SELECT,
+      rotation: 0
     },
     View:{
       offset: {x:0, y:0},

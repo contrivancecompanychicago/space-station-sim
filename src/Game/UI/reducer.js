@@ -7,18 +7,22 @@ import character from './reducer/character';
 import task from './reducer/task';
 import speed from './reducer/speed';
 import object from './reducer/object';
+import rotation from './reducer/rotation';
 
+
+import type {State} from 'Game/state'
 
 // export default function reducer(state = {}, action){
 //   return state;
 // }
 
-export default combineReducers({
+export default (combineReducers({
   mode,
   grid,
   item,
   character,
   task,
   speed,
-  object
-});
+  object,
+  rotation,
+}):State);

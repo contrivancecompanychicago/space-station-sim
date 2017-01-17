@@ -16,13 +16,15 @@ export default class Mode extends React.Component {
     return <div className="mode panel">
       <h3>Mode Panel</h3>
       {buttons}
+      <button onClick={() => this.props.rotate()}>rotate {this.props.rotation}</button>
     </div>;
   }
 }
 
 function mapStateToProps(state, props) {
   return {
-    mode: state.mode
+    mode: state.mode,
+    rotation: state.rotation
   };
 }
 
@@ -30,6 +32,10 @@ function mapDispatchToProps(dispatch, props) {
   return {
     click: (id) => {
       dispatch({type:'CHANGE_MODE', id: id});
+    },
+    rotate: () => {
+      // console.log("asd");
+      dispatch({type:'ROTATE'})
     }
   };
 }

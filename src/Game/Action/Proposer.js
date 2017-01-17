@@ -49,7 +49,7 @@ export default class Proposer{
             let key = makeKey(block.x, block.y);
             if(state.Grid&&state.Grid[key]&&state.Grid[key]===state.UI.grid){}else{ //if not already there
 
-              proposal.Grid[key] = new Grid({type: state.UI.grid});
+              proposal.Grid[key] = new Grid({type: state.UI.grid, rotation: state.UI.rotation});
 
             }
           });
