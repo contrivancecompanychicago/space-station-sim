@@ -68,6 +68,11 @@ export default class Proposer{
       }
     }else{ //NO SELECTION
         switch(state.UI.mode){
+          case Mode.GRID:
+            proposal.Grid = {};
+            let key = state.View.mousePosition.block.key
+            proposal.Grid[key] = new Grid({type:state.UI.grid, rotation:state.UI.rotation})
+          break;
           case Mode.OBJECT:
             proposal.Object = {};
             proposal.Object[state.View.mousePosition.block.key] = {type:state.UI.object};
