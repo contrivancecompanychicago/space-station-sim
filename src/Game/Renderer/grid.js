@@ -13,6 +13,7 @@ import renderTask from './grid/task';
 import renderWalls from './grid/wall';
 // import renderProposal from './grid/proposal';
 
+import Point from 'Game/Point';
 
 function renderGrid(state, layer){
 
@@ -34,7 +35,7 @@ function renderGrid(state, layer){
 
   for(let x = tl.x; x<br.x; x++){
     for(let y = tl.y; y<br.y; y++){
-      let pos = {x, y};
+      let pos = new Point({x, y});
       let key = makeKey(x, y);
       if(state.Grid[key]){
         renderBlock(pos, state.Grid[key], state, layer);

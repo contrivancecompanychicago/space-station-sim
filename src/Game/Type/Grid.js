@@ -5,5 +5,6 @@ export default class Grid{
   rotation: number;
   constructor(params:Object){
     defaults(this, params);
+    if(!this.rotation)this.rotation = 0;
   }
 }
