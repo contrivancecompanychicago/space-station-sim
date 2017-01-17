@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import { keys, assign } from 'lodash';
 import Speed from 'Game/Data/Speed';
 
-import type { UIState } from 'Game/UI/State'
+// import type { UIState } from 'Game/UI/State'
 
 import Component from 'Imagine/Component'
 
@@ -26,10 +26,10 @@ maintains a state that is used by a tonne of other things
 */
 
 export default class UIManager extends Component{
-  state:UIState;
+  state:Object;
   container: Object;
   store: Object;
-  constructor(state:UIState, container:Object){
+  constructor(state:Object, container:Object){
     super()
     this.type = 'uiManager';
     this.state = state;

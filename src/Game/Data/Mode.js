@@ -14,3 +14,11 @@ export default Mode;
 
 export let Modes = {};
 keys(Mode).forEach((key) => {Modes[key]=key;});
+
+// export type ModesType = $Keys<typeof Mode>
+export type ModesType = 'SELECT'
+| 'GRID'
+| 'ITEM'
+| 'CHAR'
+| 'TASK'
+| 'OBJECT';
