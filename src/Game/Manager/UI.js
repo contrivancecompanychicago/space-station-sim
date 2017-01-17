@@ -65,6 +65,9 @@ export default class UIManager extends Component{
     if(engine.input.getKeyDown(82)){ //rotate
         this.store.dispatch({type:'ROTATE'})
     }
+    if(engine.input.getKeyDown(27)){ //escape
+        this.store.dispatch({type:'CHANGE_MODE', id: 'SELECT'})
+    }
   }
 
 

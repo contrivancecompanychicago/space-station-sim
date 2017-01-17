@@ -14,8 +14,8 @@ describe('Game/Action/Proposer', () => {
       let p = proposer.propose(state);
       expect(p.Grid).toBeDefined();
       // console.log(p);
-      expect(p.Grid['0_0']).toBe('FLOOR');
-      expect(p.Grid['3_3']).toBe('FLOOR');
+      expect(typeof p.Grid['0_0']).toBe('object');
+      expect(typeof p.Grid['3_3']).toBe('object');
     });
     it('should not overwrite existing blocks of same type', () => {
       state.Grid = {'0_0':'FLOOR'};

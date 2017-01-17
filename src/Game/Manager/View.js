@@ -140,8 +140,10 @@ export default class ViewManager{
   onMouseMove(e:Event) {
     let point = Point.fromScreen(e.pageX, e.pageY);
     if(this.dragging){
+
       let delta = {x:e.pageX-this.lastPos.x, y: e.pageY-this.lastPos.y};
-      this.lastPos = point;
+      // console.log(delta);
+      this.lastPos = {x: e.pageX, y:e.pageY};
       this.state.offset.x += delta.x / this.state.scale;
       this.state.offset.y += delta.y / this.state.scale;
     }else if(this.selecting){

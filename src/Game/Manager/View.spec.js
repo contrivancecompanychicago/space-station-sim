@@ -69,6 +69,14 @@ describe('Game/Manager/View', () => {
       expect(viewManager.state.offset.x).toBe(10);
       expect(viewManager.state.offset.y).toBe(20);
     });
+    it('should work multiple times', () => {
+
+      viewManager.startDrag({pageX: 0, pageY: 0});
+      viewManager.onMouseMove({pageX: 10, pageY: 20});
+      viewManager.onMouseMove({pageX: 10, pageY: 20});
+      expect(viewManager.state.offset.x).toBe(20);
+      expect(viewManager.state.offset.y).toBe(40);
+    })
   });
 
   describe('startDrag', () => {
