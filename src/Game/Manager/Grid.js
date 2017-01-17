@@ -11,6 +11,8 @@ import type Point from 'Game/Point'
 
 import Grid from 'Game/Type/Grid'
 
+import GridData from 'Game/Data/Grid'
+
 import type {GridState} from 'Game/state'
 
 
@@ -69,10 +71,10 @@ export default class GridManager{
   getPath(start:Point, end:Point):Array<Block>{
 
     //determine graph size
-    let minx = Infinity;
-    let miny = Infinity;
-    let maxx = -Infinity;
-    let maxy = -Infinity;
+    let minx:number = Infinity;
+    let miny:number = Infinity;
+    let maxx:number = -Infinity;
+    let maxy:number = -Infinity;
     keys(this.state).forEach((key) => {
       let loc = parseKey(key);
       minx = Math.min(minx, loc.x);
@@ -94,7 +96,9 @@ export default class GridManager{
     //populate graph
     keys(this.state).forEach((key) => { //duplicate?
       let loc = parseKey(key);
-      arr[loc.x-minx][loc.y-miny] = 1;
+      let block = this.state[key]
+      let type = GridData[block.type]
+      arr[loc.x-minx][loc.y-miny] = type.weight;
     });
 
     let graph = new Graph(arr);
