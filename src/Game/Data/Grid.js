@@ -7,6 +7,9 @@ const Grid = {
   'BAR': {label: 'Shop', image:require('./Grid/plain.png'), tint:'green'},
   'WALL': {label: 'Wall', image:require('./Grid/wall.png')},
   'DOCK': {label: 'Dock', image:require('./Grid/dock.png')},
+  'BRICKS': {label: 'Bricks', image:require('./Grid/bricks.png')},
+  'ROAD': {label: 'Road', image:require('./Grid/road.png')},
+  'ROAD_LINE': {label: 'Road1', image:require('./Grid/road_line.png')},
 };
 
 export default Grid;
