@@ -1,5 +1,5 @@
 // @flow
-import {Modes} from 'Game/Data/Mode';
+import {Mode} from 'Game/Data/Mode';
 import {pointToBlock, blockToPoint} from 'Util';
 import {Block} from 'Game/Point';
 import Character from 'Game/Type/Character';
@@ -28,20 +28,20 @@ export default class Dispatcher extends Component{
     // console.log("something happened");
     let sel = selection.rect.blockRect();
     switch(this.state.UI.mode){
-      case Modes.SELECT:
+      case Mode.SELECT:
 
         console.info('select mode not implemented');
         break;
-      case Modes.GRID:
+      case Mode.GRID:
         let gridManager:GridManager = (this.getComponent('gridManager'):any);
         gridManager.addNodes(selection, this.state.UI.grid);
         break;
-      case Modes.OBJECT:
+      case Mode.OBJECT:
         let objectManager:ObjectManager = (this.getComponent('objectManager'):any);
         let obj = new Objekt({block:selection.end.block, type:this.state.UI.object});
         objectManager.addObject(obj);
         break;
-      case Modes.ITEM:
+      case Mode.ITEM:
         let itemManager:ItemManager = (this.getComponent('itemManager'):any);
         // let item = ItemFactory.create({
         let item = new Item({
@@ -50,7 +50,7 @@ export default class Dispatcher extends Component{
 
         itemManager.addItem(item);
         break;
-      case Modes.CHAR:
+      case Mode.CHAR:
         let charManager:CharManager = (this.getComponent('characterManager'):any);
         for(let y = sel.t; y <= sel.b; y++){
           for(let x = sel.l; x <= sel.r; x++){
@@ -60,7 +60,7 @@ export default class Dispatcher extends Component{
           }
         }
         break;
-      case Modes.TASK:
+      case Mode.TASK:
         let taskManager:TaskManager = (this.getComponent('taskManager'):any);
         for(let y = sel.t; y <= sel.b; y++){
           for(let x = sel.l; x <= sel.r; x++){

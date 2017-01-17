@@ -1,4 +1,4 @@
-import {Modes } from 'Game/Data/Mode';
+import {Mode } from 'Game/Data/Mode';
 
 export default function mode(state = 1, action){
   switch(action.type){
@@ -6,19 +6,19 @@ export default function mode(state = 1, action){
       state = action.id;
     break;
     case 'CHANGE_GRID':
-      state = Modes.GRID;
+      state = Mode.GRID;
     break;
     case 'CHANGE_ITEM':
-      state = Modes.ITEM;
+      state = Mode.ITEM;
     break;
     case 'CHANGE_CHAR':
-      state = Modes.CHAR;
+      state = Mode.CHAR;
     break;
     case 'CHANGE_TASK':
-      state = Modes.TASK;
+      state = Mode.TASK;
     break;
     case 'CHANGE_OBJECT':
-      state = Modes.OBJECT;
+      state = Mode.OBJECT;
     break;
   }
   return state;

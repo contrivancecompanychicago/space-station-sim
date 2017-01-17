@@ -9,7 +9,7 @@ import type Task from 'Game/Type/Task'
 import type Character from 'Game/Type/Character';
 import type Item from 'Game/Type/Item'
 
-import {Modes, ModesType} from 'Game/Data/Mode';
+import {Mode, ModesType} from 'Game/Data/Mode';
 // type ModesType = 'SELECT'
 // | 'GRID'
 // | 'ITEM'
@@ -74,7 +74,7 @@ export function base():State{
     "Object":{},
     Task:{},
     UI:{
-      mode: Modes.SELECT
+      mode: Mode.SELECT
     },
     View:{
       offset: {x:0, y:0},

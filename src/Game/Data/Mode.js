@@ -1,7 +1,7 @@
 
 import keys from 'lodash.keys';
 
-const Mode = {
+const Modes = {
   'SELECT': {label: 'select'},
   'GRID': {label: 'grid'},
   'ITEM': {label: 'item'},
@@ -10,10 +10,10 @@ const Mode = {
   'OBJECT': {label: 'object'},
 };
 
-export default Mode;
+export default Modes;
 
-export let Modes = {};
-keys(Mode).forEach((key) => {Modes[key]=key;});
+export let Mode = {};
+keys(Modes).forEach((key) => {Mode[key]=key;});
 
 // export type ModesType = $Keys<typeof Mode>
 export type ModesType = 'SELECT'

@@ -25,7 +25,7 @@ import { makeKey, parseKey } from 'Util';
 import {base} from 'Game/state';
 
 // import state from 'Game/state';
-import {Modes} from 'Game/Data/Mode';
+import {Mode} from 'Game/Data/Mode';
 
 import ObjectData from 'Game/Data/Object';
 
@@ -38,7 +38,7 @@ export default class Proposer{
 
     if(state.View.selection){
       switch(state.UI.mode){
-        case Modes.GRID:
+        case Mode.GRID:
           proposal.Grid = {};
           state.View.selection.rect.blocks.forEach((block) => {
             let key = makeKey(block.x, block.y);
@@ -49,7 +49,7 @@ export default class Proposer{
             }
           });
         break;
-        case Modes.OBJECT:
+        case Mode.OBJECT:
           proposal.Object = {};
           state.View.selection.rect.blocks.forEach((block) => {
             if(!blockHasObject(proposal, block)){
@@ -58,12 +58,12 @@ export default class Proposer{
             }
           });
         break;
-        case Modes.ITEM:
+        case Mode.ITEM:
         break;
       }
     }else{ //NO SELECTION
         switch(state.UI.mode){
-          case Modes.OBJECT:
+          case Mode.OBJECT:
             proposal.Object = {};
             proposal.Object[state.View.mousePosition.block.key] = {type:state.UI.object};
           break;
