@@ -9,6 +9,8 @@ import { Provider } from 'react-redux';
 import { keys, assign } from 'lodash';
 import Speed from 'Game/Data/Speed';
 
+import engine from 'Game/engine'
+
 // import type { UIState } from 'Game/UI/State'
 
 import Component from 'Imagine/Component'
@@ -58,4 +60,12 @@ export default class UIManager extends Component{
     assign(this.state, this.store.getState());
 
   }
+
+  update(){
+    if(engine.input.getKeyDown(82)){ //rotate
+        this.store.dispatch({type:'ROTATE'})
+    }
+  }
+
+
 }
