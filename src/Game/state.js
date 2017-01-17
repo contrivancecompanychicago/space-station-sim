@@ -8,8 +8,9 @@ import Point from 'Game/Point';
 import type Task from 'Game/Type/Task'
 import type Character from 'Game/Type/Character';
 import type Item from 'Game/Type/Item'
+import type Grid from 'Game/Type/Grid'
 
-import {Mode, ModesType} from 'Game/Data/Mode';
+import {Mode} from 'Game/Data/Mode';
 // type ModesType = 'SELECT'
 // | 'GRID'
 // | 'ITEM'
@@ -23,7 +24,7 @@ export type CharacterState = {
 }
 
 export type GridState = {
-  [id:string]: string
+  [id:string]: Grid
 }
 
 export type ItemState = {
@@ -39,7 +40,7 @@ export type TaskState = {
 }
 
 export type UIState = {
-  mode:string
+  mode:any
 }
 
 export type ViewState = {

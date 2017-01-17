@@ -43,9 +43,6 @@ function renderGrid(state, layer){
     }
   }
 
-
-
-
   renderSelection(state, layer);
 
   renderTask(state, layer);

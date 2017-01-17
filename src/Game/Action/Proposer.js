@@ -21,16 +21,21 @@ processing:
  - remove duplicates
 
 */
+
 import { makeKey, parseKey } from 'Util';
 import {base} from 'Game/state';
 
 // import state from 'Game/state';
 import {Mode} from 'Game/Data/Mode';
 
+import Grid from 'Game/Type/Grid'
+
 import ObjectData from 'Game/Data/Object';
 
+import type {State} from 'Game/state'
 
-let proposal = {};
+
+let proposal:State;
 export default class Proposer{
   propose(state:Object){
     proposal = base();
@@ -44,7 +49,7 @@ export default class Proposer{
             let key = makeKey(block.x, block.y);
             if(state.Grid&&state.Grid[key]&&state.Grid[key]===state.UI.grid){}else{ //if not already there
 
-              proposal.Grid[key] = state.UI.grid;
+              proposal.Grid[key] = new Grid({type: state.UI.grid});
 
             }
           });

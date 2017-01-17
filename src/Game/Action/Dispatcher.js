@@ -7,6 +7,7 @@ import Item from 'Game/Type/Item';
 import Point from 'Game/Point';
 import Objekt from 'Game/Type/Object';
 import Task from 'Game/Type/Task';
+import Grid from 'Game/Type/Grid';
 
 import {Tasks} from 'Game/Data/Task';
 import Component from 'Imagine/Component';
@@ -34,7 +35,7 @@ export default class Dispatcher extends Component{
         break;
       case Mode.GRID:
         let gridManager:GridManager = (this.getComponent('gridManager'):any);
-        gridManager.addNodes(selection, this.state.UI.grid);
+        gridManager.addNodes(selection, new Grid({type:this.state.UI.grid}));
         break;
       case Mode.OBJECT:
         let objectManager:ObjectManager = (this.getComponent('objectManager'):any);

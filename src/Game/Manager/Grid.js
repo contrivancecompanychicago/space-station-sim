@@ -9,21 +9,21 @@ import {Block} from 'Game/Point';
 import MouseButtons from 'Util/MouseButtons';
 import type Point from 'Game/Point'
 
+import Grid from 'Game/Type/Grid'
 
-type Node = {
-  type: string
-}
+import type {GridState} from 'Game/state'
+
 
 
 export default class GridManager{
   type:string;
-  state: {[id:string]: Node};
-  constructor(state:Object = {}){
+  state: GridState;
+  constructor(state:GridState){
     this.type = 'gridManager';
     this.state = state;
   }
 
-  addNodes(selection:Object, type:Node){
+  addNodes(selection:Object, type:Grid){
     let sel = selection.rect.blockRect();
     for(let y = sel.t; y <= sel.b; y++){
       for(let x = sel.l; x <= sel.r; x++){
@@ -40,7 +40,7 @@ export default class GridManager{
   }
 
 
-  addNode(x:number, y:number, node:Node){
+  addNode(x:number, y:number, node:Grid){
     this.state[makeKey(x, y)] = node;
   }
 
@@ -48,7 +48,7 @@ export default class GridManager{
     delete this.state[makeKey(x, y)];
   }
 
-  getNode(x:number, y:number):Node{
+  getNode(x:number, y:number):Grid{
     return this.state[makeKey(x, y)];
   }
   randomNode():Node{

@@ -12,8 +12,8 @@ export default function renderBlock(pos, block, state, layer){
   let o = {x:offset.x, y:offset.y, w:blockWidth * state.View.scale, h:blockHeight * state.View.scale };
 
   // console.log(block);
-  if(Types[block]){
-    let i = Types[block].image;
+  if(Types[block.type]){
+    let i = Types[block.type].image;
     if(i){
       // layer.context.globalAlpha = 0.3;
       let fillInTheGaps = 1.01;
@@ -21,7 +21,7 @@ export default function renderBlock(pos, block, state, layer){
       // layer.context.globalAlpha = 1;
       // return;
     }
-    let tint = Types[block].tint;
+    let tint = Types[block.type].tint;
     if(tint){
       let a = layer.context.globalAlpha;
       layer.context.globalAlpha = a * 0.3;
