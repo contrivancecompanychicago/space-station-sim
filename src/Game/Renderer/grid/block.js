@@ -13,12 +13,11 @@ import Point from 'Game/Point'
 import type {State} from 'Game/state'
 
 export default function renderBlock(pos:Point, block:Grid, state:State, layer:Object){
-  
+
   layer.context.fillStyle = 'red';
   const offset = worldToScreen(blockToPoint(pos), state);
   let o = {x:offset.x, y:offset.y, w:blockWidth * state.View.scale, h:blockHeight * state.View.scale };
 
-  // console.log(block);
   if(Types[block.type]){
     let i = Types[block.type].image;
     if(i){

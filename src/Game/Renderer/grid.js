@@ -1,4 +1,4 @@
-
+//@flow
 import config from 'Game/config';
 import { keys, mapValues, assign } from 'lodash';
 import { blockToPoint, pointToBlock, screenToWorld, worldToScreen, makeKey, parseKey } from 'Util';
@@ -14,8 +14,10 @@ import renderWalls from './grid/wall';
 // import renderProposal from './grid/proposal';
 
 import Point from 'Game/Point';
+import type {State} from 'Game/state'
+import type Layer from 'Game/Renderer/Layer'
 
-function renderGrid(state, layer){
+function renderGrid(state:State, layer:Layer){
 
 
   let tl = pointToBlock(screenToWorld({x:0, y:0}, state));

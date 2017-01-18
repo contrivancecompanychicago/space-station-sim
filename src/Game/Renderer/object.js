@@ -1,3 +1,5 @@
+//@flow
+
 import {keys} from 'lodash';
 import {worldToScreen, pointToBlock, screenToWorld, blockToPoint, makeKey, parseKey } from 'Util';
 
@@ -10,7 +12,11 @@ const blockHeight = config.grid.height;
 
 import Types from 'Game/Data/Object';
 
-export default function renderObject(state, layer){
+import type {State} from 'Game/state'
+import type Layer from 'Game/Renderer/Layer'
+import type Obj from 'Game/Type/Object'
+
+export default function renderObject(state:State, layer:Layer){
   Rect.screenRect().blocks.forEach((block) => { //for each block on screen
     let ob = state.Object[block.key];
     if(ob){
@@ -18,7 +24,7 @@ export default function renderObject(state, layer){
     }
   });
 }
-export function renderBlock(block, object, state, layer){
+export function renderBlock(block:Object, object:Obj, state:State, layer:Layer){
 
   let t = Types[object.type];
   let o = block.rect.renderParams;

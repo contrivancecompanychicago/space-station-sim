@@ -1,7 +1,11 @@
+//@flow
+
 import {worldToScreen, blockToPoint} from 'Util';
 import {keys} from 'lodash';
+import type {State} from 'Game/state'
+import type Layer from 'Game/Renderer/Layer'
 
-export default function renderCharacter(state, layer) {
+export default function renderCharacter(state:State, layer:Layer) {
   keys(state.Character).forEach((key) => {
     let char = state.Character[key];
     const offset = worldToScreen(char.position, state);

@@ -1,4 +1,4 @@
-
+//@flow
 import Proposer from 'Game/Action/Proposer';
 
 import Layer from './Renderer/Layer';
@@ -11,9 +11,13 @@ import object from './Renderer/object';
 
 const proposer = new Proposer();
 
+import type {State} from 'Game/state'
 
 export default class Renderer{
-  constructor(state, container){
+  state:State;
+  layer:Layer;
+  hack:number;
+  constructor(state:State, container:Object){
     //make canvas
     this.state = state;
     this.layer = new Layer(container);

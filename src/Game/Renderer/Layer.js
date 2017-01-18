@@ -1,8 +1,13 @@
+//@flow
 
 export default class Layer {
-  constructor(container){
+  container:HTMLElement;
+  canvas:HTMLCanvasElement;
+  context:Object;
+  constructor(container:HTMLElement){
     this.container = container;
     this.canvas = document.createElement('canvas');
+    // FLOWHACK //whats up with this
     this.context = this.canvas.getContext('2d');
     this.container.appendChild(this.canvas);
   }
@@ -14,7 +19,7 @@ export default class Layer {
     this.context.lineWidth = 1;
     this.context.fillStyle = 'black';
   }
-  resize(w, h){
+  resize(w:number, h:number){
     this.canvas.width = w;
     this.canvas.height = h;
   }
