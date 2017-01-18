@@ -5,6 +5,7 @@ import pathToBlock from './pathToBlock';
 import task from './task';
 import wander from './wander';
 import cook from './cook';
+import waiter from './waiter';
 
 
 export default {
@@ -13,5 +14,6 @@ export default {
   pathToBlock,
   task,
   wander,
-  cook
+  cook,
+  waiter
 };

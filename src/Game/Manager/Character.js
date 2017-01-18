@@ -56,6 +56,9 @@ export default class CharacterManager extends Component{
       case 'COOK':
         char.action = actions.cook(char);
         break;
+      case 'WAITER':
+        char.action = actions.waiter(char);
+        break;
       default:
         char.action = actions.wander(char);
     }
