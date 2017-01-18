@@ -1,4 +1,6 @@
 // @flow
+import {extend} from 'lodash'
+
 import {Mode} from 'Game/Data/Mode';
 import {pointToBlock, blockToPoint} from 'Util';
 import {Block} from 'Game/Point';
@@ -17,6 +19,9 @@ import type ObjectManager from 'Game/Manager/Object';
 import type ItemManager from 'Game/Manager/Item';
 import type CharManager from 'Game/Manager/Character';
 import type TaskManager from 'Game/Manager/Task';
+
+import Proposer from 'Game/Action/Proposer';
+const proposer = new Proposer();
 
 export default class Dispatcher extends Component{
   state:Object;
@@ -40,7 +45,10 @@ export default class Dispatcher extends Component{
       case Mode.OBJECT:
         let objectManager:ObjectManager = (this.getComponent('objectManager'):any);
         let obj = new Objekt({block:selection.end.block, type:this.state.UI.object});
-        objectManager.addObject(obj);
+        // objectManager.addObject(obj);
+        let proposal = proposer.propose(this.state);
+        extend(this.state.Object, proposal.Object)
+
         break;
       case Mode.ITEM:
         let itemManager:ItemManager = (this.getComponent('itemManager'):any);
