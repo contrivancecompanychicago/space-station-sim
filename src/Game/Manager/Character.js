@@ -50,7 +50,8 @@ export default class CharacterManager extends Component{
       char.action = actions.task(char);
       return;
     }
-    char.action = actions.wander(char);
+    // char.action = actions.wander(char);
+    char.action = actions.cook(char);
   }
 
   getChar(id:string):Character{

@@ -4,6 +4,7 @@ import moveToBlock from './moveToBlock';
 import pathToBlock from './pathToBlock';
 import task from './task';
 import wander from './wander';
+import cook from './cook';
 
 
 export default {
@@ -11,5 +12,6 @@ export default {
   moveToBlock,
   pathToBlock,
   task,
-  wander
+  wander,
+  cook
 };

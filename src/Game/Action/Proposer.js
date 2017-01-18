@@ -33,6 +33,7 @@ import Grid from 'Game/Type/Grid'
 import ObjectData from 'Game/Data/Object';
 
 import type {State} from 'Game/state'
+import Obj from 'Game/Type/Object'
 
 
 let proposal:State;
@@ -59,7 +60,7 @@ export default class Proposer{
           state.View.selection.rect.blocks.forEach((block) => {
             if(!blockHasObject(proposal, block)){
               let key = makeKey(block.x, block.y);
-              proposal.Object[key] = {type:state.UI.object};
+              proposal.Object[key] = new Obj({type:state.UI.object, block:block});
             }
           });
         break;
