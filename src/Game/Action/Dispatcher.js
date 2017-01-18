@@ -1,8 +1,8 @@
 // @flow
-import {extend} from 'lodash'
+import {extend, keys} from 'lodash'
 
 import {Mode} from 'Game/Data/Mode';
-import {pointToBlock, blockToPoint} from 'Util';
+import {pointToBlock, blockToPoint, makeKey, parseKey} from 'Util';
 import {Block} from 'Game/Point';
 import Character from 'Game/Type/Character';
 import Item from 'Game/Type/Item';
@@ -19,6 +19,8 @@ import type ObjectManager from 'Game/Manager/Object';
 import type ItemManager from 'Game/Manager/Item';
 import type CharManager from 'Game/Manager/Character';
 import type TaskManager from 'Game/Manager/Task';
+
+import ObjectData from 'Game/Data/Object'
 
 import Proposer from 'Game/Action/Proposer';
 const proposer = new Proposer();
@@ -44,10 +46,24 @@ export default class Dispatcher extends Component{
         break;
       case Mode.OBJECT:
         let objectManager:ObjectManager = (this.getComponent('objectManager'):any);
-        let obj = new Objekt({block:selection.end.block, type:this.state.UI.object});
+        // let obj = new Objekt({block:selection.end.block, type:this.state.UI.object});
         // objectManager.addObject(obj);
         let proposal = proposer.propose(this.state);
         extend(this.state.Object, proposal.Object)
+        keys(proposal.Object).forEach((key) => {
+          let obj = proposal.Object[key];
+
+          let type = ObjectData[obj.type]
+
+          let coord = parseKey(key)
+          for(let x = 0; x<type.width; x++){
+            for(let y = 0; y<type.height; y++){
+              this.state.Grid[makeKey(coord.x+x, coord.y+y)].object = key
+            }
+          }
+
+
+        })
 
         break;
       case Mode.ITEM:

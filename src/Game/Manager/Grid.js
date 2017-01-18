@@ -31,7 +31,7 @@ export default class GridManager{
       for(let x = sel.l; x <= sel.r; x++){
         switch(selection.button){
           case MouseButtons.LEFT:
-            this.addNode(x, y, type);
+            this.addNode(x, y, new Grid(type));
             break;
           case MouseButtons.RIGHT:
             this.removeNode(x, y);
@@ -98,7 +98,12 @@ export default class GridManager{
       let loc = parseKey(key);
       let block = this.state[key]
       let type = GridData[block.type]
-      arr[loc.x-minx][loc.y-miny] = type.weight;
+      let weight = type.weight
+      if(block.object){
+        weight = 10
+      }
+      arr[loc.x-minx][loc.y-miny] = weight;
+
     });
 
     let graph = new Graph(arr);
