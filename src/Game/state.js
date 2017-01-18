@@ -50,6 +50,10 @@ export type ViewState = {
   scale: number
 }
 
+export type TimeState = {
+  currentTime: number
+}
+
 export type State = {
   Character: CharacterState,
   Grid: GridState,
@@ -58,6 +62,7 @@ export type State = {
   Task: TaskState,
   UI: UIState,
   View: ViewState,
+  Time: TimeState
 }
 
 const state:State = base();
@@ -70,6 +75,7 @@ export function clear(){
 
 export function base():State{
   return {
+    Time: {currentTime:0},
     Character:{},
     Grid:{},
     Item:{},

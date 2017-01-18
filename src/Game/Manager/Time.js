@@ -2,12 +2,20 @@
 
 import Speed from 'Game/Data/Speed';
 
+import type {TimeState} from 'Game/state'
+
+
+// export type TimeState = {
+//   currentTime: number
+// }
 export default class Time {
     type: string;
     time: Object;
     deltaTime: number;
-    getComponent:Function
-    constructor(time:Object){
+    getComponent:Function;
+    state:TimeState;
+    constructor(state:TimeState, time:Object){
+      this.state = state
       this.type = 'time';
       this.time = time;
       this.deltaTime = 0;

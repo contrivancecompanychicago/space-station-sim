@@ -30,7 +30,7 @@ export default class Game{
     //spawn managers
     this.manager = this.engine.register({type:'manager', game:this}); // parent
 
-    let timeManager = new Time(this.engine.time); //time manager
+    let timeManager = new Time(this.state.Time, this.engine.time); //time manager
     time.default = timeManager;
     this.manager.addComponent(timeManager);
 
