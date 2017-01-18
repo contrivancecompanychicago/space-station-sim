@@ -24,6 +24,7 @@ export default class Time {
       let ui = this.getComponent('uiManager');
       time.deltaTime *= Speed[ui.state.speed].speed;
       this.deltaTime = time.deltaTime;
+      this.state.currentTime += this.deltaTime * 200
     }
 
 }

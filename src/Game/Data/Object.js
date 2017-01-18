@@ -7,12 +7,16 @@ import keys from 'lodash.keys';
 import Bed from './Object/Bed';
 import Dock from './Object/Dock';
 import Test from './Object/Test';
+import Oven from './Object/Oven';
+import Fridge from './Object/Fridge';
 
 const Objs = {};
 
 Objs[Bed.id] = Bed;
 Objs[Dock.id] = Dock;
 Objs[Test.id] = Test;
+Objs[Oven.id] = Oven;
+Objs[Fridge.id] = Fridge;
 
 export default Objs;
 
