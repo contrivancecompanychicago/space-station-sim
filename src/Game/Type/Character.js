@@ -7,6 +7,7 @@ import uniqid from 'Util/uniqid';
 
 export default class Character{
   id: string;
+  type:string;
   position: Point;
   firstname: string;
   lastname: string;

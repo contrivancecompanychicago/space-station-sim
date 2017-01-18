@@ -1,10 +1,12 @@
 import keys from 'lodash.keys';
 
-const Item = {
+const Chars = {
   'WORKER': {label: 'worker'},
+  'COOK': {label: 'cook'},
+  'WAITER': {label: 'waiter'},
 };
 
-export default Item;
+export default Chars;
 
-export let Items = {};
-keys(Item).forEach((key) => {Items[key]=key;});
+export let Character = {};
+keys(Chars).forEach((key) => {Character[key]=key;});

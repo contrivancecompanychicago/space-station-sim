@@ -81,7 +81,7 @@ export default class Dispatcher extends Component{
           for(let x = sel.l; x <= sel.r; x++){
             // let pos = blockToPoint({x:x, y:y});
             let pos = new Block({x:x, y:y}).center;
-            charManager.addChar(new Character({position: pos}));
+            charManager.addChar(new Character({position: pos, type: this.state.UI.character}));
           }
         }
         break;
