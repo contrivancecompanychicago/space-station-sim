@@ -1,4 +1,5 @@
-export default function grid(state = 1, action){
+// @flow
+export default function grid(state:string, action:Object):string{
   switch(action.type){
     case 'CHANGE_GRID':
       state = action.id;

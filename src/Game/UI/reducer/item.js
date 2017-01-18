@@ -1,4 +1,6 @@
-export default function item(state = 1, action){
+//@flow
+
+export default function item(state:string, action:Object):string{
   switch(action.type){
     case 'CHANGE_ITEM':
       state = action.id;
