@@ -1,7 +1,7 @@
 //@flow
 import {Mode } from 'Game/Data/Mode';
 
-export default function mode(state:string, action:Object):string{
+export default function mode(state:string = Mode.SELECT, action:Object):string{
   switch(action.type){
     case 'CHANGE_MODE':
       state = action.id;

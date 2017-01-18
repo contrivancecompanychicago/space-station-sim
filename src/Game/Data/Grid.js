@@ -1,6 +1,6 @@
 import keys from 'lodash.keys';
 
-const Grid = {
+const Gridz = {
   'BASIC': {label: 'Basic', weight:1},
   'FLOOR': {label: 'Floor', weight:1, image:require('./Grid/plain.png')},
   'SHOP': {label: 'Shop', weight:2, image:require('./Grid/plain.png'), tint:'red'},
@@ -10,9 +10,11 @@ const Grid = {
   'BRICKS': {label: 'Bricks', weight:0, image:require('./Grid/bricks.png')},
   'ROAD': {label: 'Road', weight:3, image:require('./Grid/road.png')},
   'ROAD_LINE': {label: 'Road1', weight:3, image:require('./Grid/road_line.png')},
-};1
+};1;
 
-export default Grid;
+export default Gridz;
 
 export let Grids = {};
-keys(Grid).forEach((key) => {Grids[key]=key;});
+keys(Gridz).forEach((key) => {Grids[key]=key;});
+
+export let Grid = Grids;

@@ -1,5 +1,7 @@
 // @flow
-export default function grid(state:string, action:Object):string{
+import {Grid} from 'Game/Data/Grid';
+
+export default function grid(state:string = Grid.BASIC, action:Object):string{
   switch(action.type){
     case 'CHANGE_GRID':
       state = action.id;

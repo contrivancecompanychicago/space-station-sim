@@ -16,5 +16,5 @@ Objs[Test.id] = Test;
 
 export default Objs;
 
-// export let Objects = {};
-// keys(Objekt).forEach((key) => {Objects[key]=key;});
+export let Obj = {};
+keys(Objs).forEach((key) => {Obj[key]=key;});

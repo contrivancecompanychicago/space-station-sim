@@ -2,11 +2,11 @@
 Items are easily movable entities that only have a position
 */
 import keys from 'lodash.keys';
-const Item = {
+const Items = {
   'TEST': {label: 'test item'},
 };
 
-export default Item;
+export default Items;
 
-export let Items = {};
-keys(Item).forEach((key) => {Items[key]=key;});
+export let Item = {};
+keys(Items).forEach((key) => {Item[key]=key;});
