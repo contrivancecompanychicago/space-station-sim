@@ -3,15 +3,12 @@ import {keys, defaults} from 'lodash';
 
 import config from 'Game/config';
 import actions from 'Game/Manager/Character/Action';
-
-
 import Character from 'Game/Type/Character';
-
 import Component from 'Imagine/Component';
 
 import type TaskManager from 'Game/Manager/Task';
-
 import type {CharacterState} from 'Game/state'
+
 
 export default class CharacterManager extends Component{
   // type:string;

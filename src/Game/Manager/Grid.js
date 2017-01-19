@@ -1,24 +1,21 @@
 // @flow
 import { keys } from 'lodash';
 import { Graph, astar } from 'javascript-astar';
-
 import { makeKey, parseKey } from 'Util';
 
 import {Block} from 'Game/Point';
-
 import MouseButtons from 'Util/MouseButtons';
-import type Point from 'Game/Point'
-
 import Grid from 'Game/Type/Grid'
-
 import GridData from 'Game/Data/Grid'
 
+import type Point from 'Game/Point'
 import type {GridState} from 'Game/state'
+import type {GridDataType} from 'Game/Data/Grid'
 
-
+// let test:GridDataType = "Asd"
 
 export default class GridManager{
-  type:string;
+  type: string;
   state: GridState;
   constructor(state:GridState){
     this.type = 'gridManager';
@@ -53,20 +50,20 @@ export default class GridManager{
   getNode(x:number, y:number):Grid{
     return this.state[makeKey(x, y)];
   }
-  randomNode():Node{
+  randomNode():string{
     let k = keys(this.state);
     let r = Math.floor(Math.random()* k.length);
     return parseKey(k[r]);
   }
 
-  getMin(){
-    let min = {x: Infinity, y: Infinity};
-    keys(this.state).forEach((key) => {
-      let val = parseKey(key);
-      min = {x:Math.min(val.x, min.x), y:Math.min(val.y, min.y)};
-    });
-    return min;
-  }
+  // getMin(){
+  //   let min = {x: Infinity, y: Infinity};
+  //   keys(this.state).forEach((key) => {
+  //     let val = parseKey(key);
+  //     min = {x:Math.min(val.x, min.x), y:Math.min(val.y, min.y)};
+  //   });
+  //   return min;
+  // }
 
   getPath(start:Point, end:Point):Array<Block>{
 
@@ -97,7 +94,9 @@ export default class GridManager{
     keys(this.state).forEach((key) => { //duplicate?
       let loc = parseKey(key);
       let block = this.state[key]
-      let type = GridData[block.type]
+      let type:GridDataType = GridData[block.type]
+
+
       let weight = type.weight
       if(block.object){
         weight = 10
