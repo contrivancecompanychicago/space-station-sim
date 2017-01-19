@@ -13,8 +13,9 @@ export default function renderSelection(state:State, layer:Layer){
   // layer.context.shadowBlur=10;
   // layer.context.shadowColor="blue";
   if(state.View.selection){
-    // let sel:Selection = state.View.selection; 
+    // let sel:Selection = state.View.selection;
     assign(layer.context, config.view.selection);
+    // FLOWHACK selection is defined
     let r = state.View.selection.rect.blockRect();
     let tl = worldToScreen(blockToPoint({
       x: r.l,
@@ -28,6 +29,7 @@ export default function renderSelection(state:State, layer:Layer){
 
     layer.context.strokeStyle="green";
     layer.context.shadowColor="green";
+    // FLOWHACK selection is defined
     r = state.View.selection.rect;
     tl = worldToScreen(({
       x: r.l,

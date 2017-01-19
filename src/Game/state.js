@@ -50,7 +50,7 @@ export type ViewState = {
   offset: {x:number, y:number},
   mousePosition: {x:number, y:number},
   scale: number,
-  selection: Selection|boolean
+  selection: ?Selection
 }
 
 export type TimeState = {
@@ -92,7 +92,7 @@ export function base():State{
       offset: {x:0, y:0},
       mousePosition: {x:0, y:0},
       scale:1,
-      selection:false
+      selection:null
     },
   };
 }

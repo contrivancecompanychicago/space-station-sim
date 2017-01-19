@@ -31,7 +31,7 @@ const initial:ViewState = {
     x: 0,
     y: 0
   },
-  selection:false
+  selection:null
 };
 
 export default class ViewManager{
@@ -194,7 +194,7 @@ export default class ViewManager{
     this.selecting = false;
     this.updateSelection(e);
     this.notify('userAction', this.selection);
-    this.state.selection = false;
+    this.state.selection = null;
 
   }
   pointToBlock(point:Point):{x:number, y:number} {
