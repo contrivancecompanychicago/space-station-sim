@@ -8,6 +8,8 @@ import MouseButtons from 'Util/MouseButtons';
 
 import Rect from 'Game/Rect';
 
+import type {ViewState} from 'Game/state'
+
 type Event = {
   wheelDelta:number,
   pageX:number,
@@ -23,7 +25,7 @@ type Selection = {
   button: number
 }
 
-const initial = {
+const initial:ViewState = {
   scale: 1,
   mousePosition:{
     x: 0,
@@ -50,7 +52,7 @@ export default class ViewManager{
   endPos: Point;
   lastPos: Object;
   button: number;
-  constructor(state:Object = {}, container:Object) {
+  constructor(state:Object, container:Object) {
     this.type = 'viewManager';
     this.state = defaults(state, initial);
     this.container = container.getElementsByTagName('canvas')[0];

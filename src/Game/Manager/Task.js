@@ -7,10 +7,12 @@ import Component from 'Imagine/Component';
 
 import type CharacterManager from 'Game/Manager/Character'
 
+import type {TaskState} from 'Game/state'
+
 export default class TaskManager extends Component{
 
-  state: {[id:string]: Task};
-  constructor(state:Object = {}){
+  state: TaskState;
+  constructor(state:TaskState = {}){
     super();
     this.type = 'taskManager';
     this.state = state;

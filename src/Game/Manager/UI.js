@@ -15,6 +15,8 @@ import engine from 'Game/engine'
 
 import Component from 'Imagine/Component'
 
+import type {UIState} from 'Game/state'
+
 /*
 UI Manager
 
@@ -28,10 +30,10 @@ maintains a state that is used by a tonne of other things
 */
 
 export default class UIManager extends Component{
-  state:Object;
-  container: Object;
-  store: Object;
-  constructor(state:Object, container:Object){
+  state:UIState;
+  container: HTMLElement;
+  store: {subscribe:Function, getState:Function, dispatch:Function};
+  constructor(state:UIState, container:HTMLElement){
     super()
     this.type = 'uiManager';
     this.state = state;

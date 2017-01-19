@@ -2,16 +2,16 @@
 import {keys, defaults} from 'lodash';
 import Item from 'Game/Type/Item';
 
+import type {ItemState} from 'Game/state'
+
 export default class ItemManager{
   type: string;
-  state: Object;
-  constructor(state:Object){
+  state: ItemState;
+  constructor(state:ItemState){
     this.type = 'itemManager';
     this.state = state;
   }
   addItem(item:Item){
-    // item = Factory.create(item);
-    // item = new Item(item);
     this.state[item.id] = item;
   }
 }

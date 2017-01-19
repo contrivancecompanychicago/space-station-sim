@@ -47,7 +47,8 @@ export type UIState = {
 export type ViewState = {
   offset: Object,
   mousePosition: Object,
-  scale: number
+  scale: number,
+
 }
 
 export type TimeState = {
