@@ -2,7 +2,15 @@
 
 import keys from 'lodash.keys';
 
-const Chars:{[id:string]: {label:string, tint:string}} = {
+export type CharacterType =
+  'WORKER'|
+  'COOK'|
+  'WAITER'|
+  'CUSTOMER'
+
+export type CharacterDataType = {label:string, tint:string}
+
+const Chars:{[id:CharacterType]: CharacterDataType} = {
   'WORKER': {label: 'worker', tint:'yellow'},
   'COOK': {label: 'cook', tint:'white'},
   'WAITER': {label: 'waiter', tint: 'blue'},
@@ -13,9 +21,3 @@ export default Chars;
 
 export let Character = {};
 keys(Chars).forEach((key) => {Character[key]=key;});
-
-export type CharacterType =
-  'WORKER'|
-  'COOK'|
-  'WAITER'|
-  'CUSTOMER'

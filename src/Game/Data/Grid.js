@@ -12,7 +12,7 @@ const Gridz = {
   'BRICKS': {label: 'Bricks', weight:0, image:require('./Grid/bricks.png')},
   'ROAD': {label: 'Road', weight:3, image:require('./Grid/road.png')},
   'ROAD_LINE': {label: 'Road1', weight:3, image:require('./Grid/road_line.png')},
-};1;
+};
 
 export default Gridz;
 
