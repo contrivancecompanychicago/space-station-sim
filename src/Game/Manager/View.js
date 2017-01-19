@@ -35,11 +35,12 @@ const initial:ViewState = {
     x: 0,
     y: 0
   },
+  selection:false
 };
 
 export default class ViewManager{
   type: string;
-  state: Object;
+  state: ViewState;
 
   container: Object;
   dragging: boolean;
@@ -52,7 +53,7 @@ export default class ViewManager{
   endPos: Point;
   lastPos: Object;
   button: number;
-  constructor(state:Object, container:Object) {
+  constructor(state:ViewState, container:Object) {
     this.type = 'viewManager';
     this.state = defaults(state, initial);
     this.container = container.getElementsByTagName('canvas')[0];

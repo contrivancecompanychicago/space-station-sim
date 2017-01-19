@@ -45,10 +45,10 @@ export type UIState = {
 }
 
 export type ViewState = {
-  offset: Object,
-  mousePosition: Object,
+  offset: {x:number, y:number},
+  mousePosition: {x:number, y:number},
   scale: number,
-
+  selection: Object|boolean
 }
 
 export type TimeState = {
@@ -89,7 +89,8 @@ export function base():State{
     View:{
       offset: {x:0, y:0},
       mousePosition: {x:0, y:0},
-      scale:1
+      scale:1,
+      selection:false
     },
   };
 }
