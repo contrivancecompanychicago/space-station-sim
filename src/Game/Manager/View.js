@@ -20,13 +20,6 @@ type Event = {
   type: string,
   detail:number
 }
-//
-// type Selection = {
-//   start: Point,
-//   end: Point,
-//   rect: Rect,
-//   button: number
-// }
 
 const initial:ViewState = {
   scale: 1,
@@ -84,9 +77,6 @@ export default class ViewManager{
   }
 
   addListeners() {
-    // console.log(this.container);
-    // const canvas = this.container.getElementsByTagName('canvas')[0];
-    // console.log(this.container.getElementsByTagName('canvas'));
     this.container.addEventListener('mousedown', this, false);
     this.container.addEventListener('mouseup', this, false);
     this.container.addEventListener('mousemove', this, false);
@@ -94,7 +84,6 @@ export default class ViewManager{
     this.container.addEventListener('DOMMouseScroll', this, false);
   }
   removeListeners() {
-  // const canvas = this.container.getElementsByTagName('canvas')[0];
     this.container.removeEventListener('mousedown', this, false);
     this.container.removeEventListener('mouseup', this, false);
     this.container.removeEventListener('mousemove', this, false);
@@ -149,7 +138,6 @@ export default class ViewManager{
     if(this.dragging){
 
       let delta = {x:e.pageX-this.lastPos.x, y: e.pageY-this.lastPos.y};
-      // console.log(delta);
       this.lastPos = {x: e.pageX, y:e.pageY};
       this.state.offset.x += delta.x / this.state.scale;
       this.state.offset.y += delta.y / this.state.scale;

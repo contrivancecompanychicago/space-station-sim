@@ -1,3 +1,4 @@
+
 import {keys, tail} from 'lodash';
 const MAX = 60 ; //theoretical
 //HACK kinda cus I wanted these to be pure, but I think this is a good exception

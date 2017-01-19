@@ -1,3 +1,5 @@
+//@flow
+
 import {extend } from 'lodash';
 import config from 'Game/config';
 import state from 'Game/state';
@@ -6,7 +8,18 @@ import Point from 'Game/Point';
 
 import {Block} from 'Game/Point';
 
+export type RenderParams = {
+  x:number,
+  y:number,
+  w:number,
+  h:number
+}
+
 export default class Rect{
+  t:number
+  r:number
+  b:number
+  l:number
   static screenRect(){
     let tl = Point.fromScreen(0,0);
     let br = Point.fromScreen(window.innerWidth,window.innerHeight);
@@ -49,7 +62,7 @@ export default class Rect{
       Math.floor(this.l/config.grid.height)
     );
   }
-  get blocks(){
+  get blocks():Array<Block>{
     let list = [];
     let sel = this.blockRect();
     for(let y = sel.t; y <= sel.b; y++){
@@ -60,7 +73,7 @@ export default class Rect{
     return list;
   }
 
-  get renderParams() {
+  get renderParams():RenderParams {
     let tl = new Point(this.l, this.t).screen;
     let br = new Point(this.r, this.b).screen;
     return {x: tl.x, y: tl.y, w: br.x-tl.x, h: br.y-tl.y};

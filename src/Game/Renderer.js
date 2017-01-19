@@ -8,6 +8,8 @@ import character from './Renderer/character';
 import item from './Renderer/item';
 import object from './Renderer/object';
 
+import info from './Renderer/grid/info';
+
 
 const proposer = new Proposer();
 
@@ -17,7 +19,7 @@ export default class Renderer{
   state:State;
   layer:Layer;
   hack:number;
-  constructor(state:State, container:Object){
+  constructor(state:State, container:HTMLElement){
     //make canvas
     this.state = state;
     this.layer = new Layer(container);
@@ -41,6 +43,7 @@ export default class Renderer{
     this.layer.context.globalAlpha = 0.5;
     grid(proposal, this.layer);
     object(proposal, this.layer);
+    info(this.state, this.layer)
 
   }
 }

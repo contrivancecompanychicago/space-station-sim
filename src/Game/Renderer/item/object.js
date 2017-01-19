@@ -1,6 +1,12 @@
+// @flow
+
 import {worldToScreen, blockToPoint} from 'Util';
 
-export default function renderObject(object, state, layer){
+import type {State} from 'Game/state'
+import type Layer from 'Game/Renderer/Layer';
+import type Item from 'Game/Type/Item'
+
+export default function renderObject(object:Item, state:State, layer:Layer){
 
     // layer.context.fillStyle = 'green';
 

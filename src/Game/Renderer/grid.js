@@ -7,7 +7,7 @@ const blockWidth = config.grid.width;
 const blockHeight = config.grid.height;
 
 import renderBlock from './grid/block';
-import renderInfo from './grid/info';
+// import renderInfo from './grid/info';
 import renderSelection from './grid/selection';
 import renderTask from './grid/task';
 import renderWalls from './grid/wall';
@@ -51,7 +51,7 @@ function renderGrid(state:State, layer:Layer){
   renderTask(state, layer);
   // renderProposal(state, layer);
 
-  renderInfo(state, layer);
+  // renderInfo(state, layer);
 }
 
 

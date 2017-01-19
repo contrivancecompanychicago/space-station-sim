@@ -1,11 +1,17 @@
-
+//@flow
 import Proposer from 'Game/Action/Proposer';
 import {parseKey} from 'Util';
 import keys from 'lodash.keys';
 import renderBlock from './block';
+
+import type {State} from 'Game/state'
+import type Layer from 'Game/Renderer/Layer'
+
 const proposer = new Proposer();
 
-export default function renderProposal(state, layer){
+
+
+export default function renderProposal(state:State, layer:Layer){
   if(state.View.selection){
     let proposal = proposer.propose(state);
     if(proposal.Grid){

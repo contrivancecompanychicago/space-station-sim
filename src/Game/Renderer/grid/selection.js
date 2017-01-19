@@ -1,12 +1,19 @@
+// @flow
 import {assign} from 'lodash';
 import {worldToScreen, blockToPoint} from 'Util';
 import config from 'Game/config';
 
-export default function renderSelection(state, layer){
+import type {State} from 'Game/state'
+import type Layer from 'Game/Renderer/Layer'
+
+import type {Selection} from 'Game/Type/Selection'
+
+export default function renderSelection(state:State, layer:Layer){
 
   // layer.context.shadowBlur=10;
   // layer.context.shadowColor="blue";
   if(state.View.selection){
+    // let sel:Selection = state.View.selection; 
     assign(layer.context, config.view.selection);
     let r = state.View.selection.rect.blockRect();
     let tl = worldToScreen(blockToPoint({
