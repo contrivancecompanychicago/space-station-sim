@@ -13,13 +13,13 @@ import Objekt from './UI/Object';
 
 class UI extends React.Component {
   render() {
+    //  <Task />
+    // <Item />
     return <div className="ui">
       <Mode />
-      <Grid />
-      <Item />
-      <Character />
-      <Task />
       <Speed />
+      <Character />
+      <Grid />
       <Objekt />
     </div>;
   }
