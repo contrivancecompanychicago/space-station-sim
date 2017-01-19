@@ -10,6 +10,8 @@ import Rect from 'Game/Rect';
 
 import type {ViewState} from 'Game/state'
 
+import type {Selection} from 'Game/Type/Selection'
+
 type Event = {
   wheelDelta:number,
   pageX:number,
@@ -18,12 +20,13 @@ type Event = {
   type: string,
   detail:number
 }
-type Selection = {
-  start: Point,
-  end: Point,
-  rect: Rect,
-  button: number
-}
+//
+// type Selection = {
+//   start: Point,
+//   end: Point,
+//   rect: Rect,
+//   button: number
+// }
 
 const initial:ViewState = {
   scale: 1,
@@ -44,18 +47,19 @@ export default class ViewManager{
 
   container: Object;
   dragging: boolean;
-  down: Object;
+  down: {[id:number]:boolean};
   addListeners: Function;
   notify:Function;
-  selection: Object;
+  selection: Selection;
   selecting: boolean;
   startPos: Point;
   endPos: Point;
-  lastPos: Object;
+  lastPos: {x:number, y:number};
   button: number;
-  constructor(state:ViewState, container:Object) {
+  constructor(state:ViewState, container:HTMLElement) {
     this.type = 'viewManager';
-    this.state = defaults(state, initial);
+    this.state = defaults(state, initial); //WHYYY
+    // this.state = state
     this.container = container.getElementsByTagName('canvas')[0];
     this.dragging = false;
     this.down = {};
@@ -136,7 +140,7 @@ export default class ViewManager{
     }
   }
 
-  isMouseDown(button:string):boolean{
+  isMouseDown(button:number):boolean{
     return this.down[button];
   }
 
@@ -161,8 +165,8 @@ export default class ViewManager{
     this.zoom(d>0, e);
   }
 
-  zoom(out:boolean, point:Object){
-    let start = this.globalToLocal(point);
+  zoom(out:boolean, point:Point){
+    let start = this.globalToLocal(point); //TODO: use point methods
     if(out){
       this.state.scale += config.view.scale.step;
       this.state.scale = Math.min(this.state.scale, config.view.scale.max);
@@ -170,7 +174,7 @@ export default class ViewManager{
       this.state.scale -= config.view.scale.step;
       this.state.scale = Math.max(this.state.scale, config.view.scale.min);
     }
-    let end = this.globalToLocal(point);
+    let end = this.globalToLocal(point); //TODO: use point methods
     //reposition to cursor
     this.state.offset.x += end.x - start.x;
     this.state.offset.y += end.y - start.y;
@@ -187,22 +191,15 @@ export default class ViewManager{
 
   startSelection(e:Event){
     this.selecting = true;
-    // this.startPos = this.globalToLocal({x:e.pageX, y: e.pageY});
     this.startPos = Point.fromScreen(e.pageX, e.pageY);
-
-    this.selection = {start: this.startPos, button: e.button};
+    this.selection = selection(this.startPos, this.startPos, e.button)
     this.button = e.button;
-    // console.log(this.startPos, e);
   }
 
   updateSelection(e:Event){
-    // debugger;
-
     this.endPos = Point.fromScreen(e.pageX, e.pageY);
-    this.selection = selection(this.startPos, this.endPos);
-    this.selection.button = this.button;
+    this.selection = selection(this.startPos, this.endPos, this.button);
     this.state.selection = this.selection;
-    // console.log(this.state.selection);
   }
 
   endSelection(e:Event){
@@ -212,7 +209,7 @@ export default class ViewManager{
     this.state.selection = false;
 
   }
-  pointToBlock(point:Point):Object {
+  pointToBlock(point:Point):{x:number, y:number} {
     return {
       x: Math.floor(point.x/config.grid.width),
       y: Math.floor(point.y/config.grid.height),
@@ -223,18 +220,20 @@ export default class ViewManager{
     this.removeListeners();
   }
 
-
 }
 
 
 
-export function selection(start:Object, end:Object):Selection{
-  let out:Object = {start, end};
-  out.rect = new Rect({
-    t: Math.min(end.y, start.y),
-    r: Math.max(end.x, start.x),
-    b: Math.max(end.y, start.y),
-    l: Math.min(end.x, start.x),
-  });
-  return out;
+export function selection(start:Object, end:Object, button:number):Selection{
+  return {
+    start: start,
+    end: end,
+    button: button,
+    rect: new Rect({
+      t: Math.min(end.y, start.y),
+      r: Math.max(end.x, start.x),
+      b: Math.max(end.y, start.y),
+      l: Math.min(end.x, start.x),
+    })
+  }
 }

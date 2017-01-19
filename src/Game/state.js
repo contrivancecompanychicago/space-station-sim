@@ -9,6 +9,8 @@ import type Task from 'Game/Type/Task'
 import type Character from 'Game/Type/Character';
 import type Item from 'Game/Type/Item'
 import type Grid from 'Game/Type/Grid'
+import type Obj from 'Game/Type/Object'
+import type {Selection} from 'Game/Type/Selection'
 
 import {Mode} from 'Game/Data/Mode';
 // type ModesType = 'SELECT'
@@ -32,7 +34,7 @@ export type ItemState = {
 }
 
 export type ObjectState = {
-  [id:string]: Object
+  [id:string]: Obj
 }
 
 export type TaskState = {
@@ -48,7 +50,7 @@ export type ViewState = {
   offset: {x:number, y:number},
   mousePosition: {x:number, y:number},
   scale: number,
-  selection: Object|boolean
+  selection: Selection|boolean
 }
 
 export type TimeState = {
