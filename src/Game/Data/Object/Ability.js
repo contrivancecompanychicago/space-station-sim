@@ -11,4 +11,6 @@ const Abilities = {
 
 export default Abilities;
 
+export const Ability = Abilities
+
 export type AbilityType = 'PREP_TABLE'|'DINE_TABLE'|'SERVE_TABLE'|'OVEN'|'FRIDGE'|'SPAWN'|'CHAIR'

@@ -59,6 +59,9 @@ export default class CharacterManager extends Component{
       case 'WAITER':
         char.action = actions.waiter(char);
         break;
+      case 'CUSTOMER':
+        char.action = actions.customer(char);
+        break;
       default:
         char.action = actions.wander(char);
     }

@@ -11,6 +11,7 @@ import Oven from './Object/Oven';
 import Fridge from './Object/Fridge';
 import Table from './Object/Table';
 import Table2 from './Object/Table2';
+import Chair from './Object/Chair';
 
 const Objs = {};
 
@@ -21,6 +22,7 @@ Objs[Oven.id] = Oven;
 Objs[Fridge.id] = Fridge;
 Objs[Table.id] = Table;
 Objs[Table2.id] = Table2;
+Objs[Chair.id] = Chair;
 
 export default Objs;
 

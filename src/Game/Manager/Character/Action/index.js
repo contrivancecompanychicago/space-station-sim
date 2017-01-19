@@ -6,6 +6,7 @@ import task from './task';
 import wander from './wander';
 import cook from './cook';
 import waiter from './waiter';
+import customer from './customer';
 
 
 export default {
@@ -15,5 +16,6 @@ export default {
   task,
   wander,
   cook,
-  waiter
+  waiter,
+  customer
 };
