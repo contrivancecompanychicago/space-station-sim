@@ -34,7 +34,5 @@ const Gridz:{[id:GridType]:GridDataType} = {
 
 export default Gridz;
 
-export let Grids = {};
-keys(Gridz).forEach((key) => {Grids[key]=key;});
-
-export let Grid = Grids;
+export let Grid:{[id:GridType]:GridType} = {};
+keys(Gridz).forEach((key) => {Grid[key]=key;});

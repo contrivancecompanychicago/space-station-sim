@@ -1,5 +1,16 @@
-
+//@flow
 import keys from 'lodash.keys';
+
+export type ModeType = 'SELECT'
+| 'GRID'
+| 'ITEM'
+| 'CHAR'
+| 'TASK'
+| 'OBJECT';
+
+export type ModeDataType = {
+  label:string
+}
 
 const Modes:{[id:ModeType]:ModeDataType} = {
   'SELECT': {label: 'select'},
@@ -12,27 +23,5 @@ const Modes:{[id:ModeType]:ModeDataType} = {
 
 export default Modes;
 
-export let Mode = {};
+export let Mode:{[id:ModeType]:ModeType} = {};
 keys(Modes).forEach((key) => {Mode[key]=key;});
-
-// export type ModesType = $Keys<typeof Mode>
-export type ModeType = 'SELECT'
-| 'GRID'
-| 'ITEM'
-| 'CHAR'
-| 'TASK'
-| 'OBJECT';
-
-export type ModeDataType = {
-  label:string
-}
-
-
-export type ModesType = {
-  SELECT:Object,
-  GRID:Object,
-  ITEM:Object,
-  CHAR:Object,
-  TASK:Object,
-  OBJECT:Object,
-}

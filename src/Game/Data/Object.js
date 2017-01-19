@@ -26,16 +26,16 @@ export type ObjectType =
 'TABLE2'|
 'CHAIR'
 export type ObjectDataType = {
-  id: string,
+  id: ObjectType,
   label: string,
-  image: string,
+  image: any,  //TODO type better
   width: number,
   height: number,
   abilities: Array<AbilityType>
 }
 
 //:{[id:ObjectType]:ObjectDataType}
-const Objs = {};
+const Objs:{[id:ObjectType]:ObjectDataType} = {};
 
 Objs[Bed.id] = Bed;
 Objs[Dock.id] = Dock;
@@ -48,5 +48,5 @@ Objs[Chair.id] = Chair;
 
 export default Objs;
 
-export let Obj = {};
+export let Obj:{[id:ObjectType]:ObjectType} = {};
 keys(Objs).forEach((key) => {Obj[key]=key;});

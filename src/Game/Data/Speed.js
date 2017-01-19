@@ -19,5 +19,5 @@ const Speed:{[id:SpeedType]:SpeedDataType} = {
 
 export default Speed;
 
-export let Speeds = {};
+export let Speeds:{[id:SpeedType]:SpeedType} = {};
 keys(Speed).forEach((key) => {Speeds[key]=key;});

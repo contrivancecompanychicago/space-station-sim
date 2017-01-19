@@ -19,5 +19,5 @@ const Chars:{[id:CharacterType]: CharacterDataType} = {
 
 export default Chars;
 
-export let Character = {};
+export let Character:{[id:CharacterType]:CharacterType} = {};
 keys(Chars).forEach((key) => {Character[key]=key;});

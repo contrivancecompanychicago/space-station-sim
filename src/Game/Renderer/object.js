@@ -28,7 +28,7 @@ export function renderBlock(block:Object, object:Obj, state:State, layer:Layer){
 
   let t = Types[object.type];
   let o = block.rect.renderParams;
-  
+
   let i = t.image;
   layer.context.drawImage(i, 0, 0, i.width, i.height, o.x, o.y, o.w* t.width, o.h*t.height);
 }

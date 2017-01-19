@@ -11,5 +11,5 @@ const Task:{[id:TaskType]:TaskDataType} = {
 
 export default Task;
 
-export let Tasks = {};
+export let Tasks:{[id:TaskType]:TaskType} = {};
 keys(Task).forEach((key) => {Tasks[key]=key;});
