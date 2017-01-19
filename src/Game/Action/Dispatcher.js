@@ -58,7 +58,9 @@ export default class Dispatcher extends Component{
           let coord = parseKey(key)
           for(let x = 0; x<type.width; x++){
             for(let y = 0; y<type.height; y++){
-              this.state.Grid[makeKey(coord.x+x, coord.y+y)].object = key
+              let key = makeKey(coord.x+x, coord.y+y)
+              if(this.state.Grid[key])
+                this.state.Grid[key].object = key;
             }
           }
 

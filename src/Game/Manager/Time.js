@@ -22,8 +22,14 @@ export default class Time {
     }
     update(time:Object){
       let ui = this.getComponent('uiManager');
+      if(time.deltaTime>1){
+        //TIME SPIKE
+        //user probably changed tabs
+        time.deltaTime = 0;
+      }
       time.deltaTime *= Speed[ui.state.speed].speed;
       this.deltaTime = time.deltaTime;
+
       this.state.currentTime += this.deltaTime * 200
     }
 
