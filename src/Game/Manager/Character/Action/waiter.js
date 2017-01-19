@@ -1,4 +1,4 @@
-
+//@flow
 import engine from 'Game/engine';
 
 import pathToBlock from './pathToBlock';
@@ -7,7 +7,9 @@ import idle from './idle';
 
 import Ability from 'Game/Data/Object/Ability'
 
-export default function* waiter(char){
+import type Character from 'Game/Type/Character'
+
+export default function* waiter(char:Character):Generator<*,*,*>{
   let gridManager = engine.getComponent('gridManager');
   let objectManager = engine.getComponent('objectManager');
   yield *pathToObjectWithAbility(char, Ability.SERVE_TABLE);

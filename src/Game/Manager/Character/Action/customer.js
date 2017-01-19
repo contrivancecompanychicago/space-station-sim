@@ -1,4 +1,4 @@
-
+//@flow
 import engine from 'Game/engine';
 
 import pathToBlock from './pathToBlock';
@@ -10,7 +10,8 @@ import wander from './wander'
 import Ability from 'Game/Data/Object/Ability'
 
 
-export default function* cook(char){
+import type Character from 'Game/Type/Character'
+export default function* cook(char:Character):Generator<*,*,*>{
   let gridManager = engine.getComponent('gridManager');
   let objectManager = engine.getComponent('objectManager');
   yield *pathToObjectWithAbility(char, Ability.CHAIR);

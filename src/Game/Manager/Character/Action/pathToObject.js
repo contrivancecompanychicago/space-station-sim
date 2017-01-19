@@ -1,8 +1,13 @@
-
+//@flow
 import engine from 'Game/engine';
 
 import pathToBlock from '././pathToBlock';
-export default function* pathToObject(char, obj){
+
+import type Character from 'Game/Type/Character'
+import type {ObjectType} from 'Game/Data/Object'
+
+
+export default function* pathToObject(char:Character, obj:ObjectType):Generator<*,*,*>{
   let gridManager = engine.getComponent('gridManager');
   let objectManager = engine.getComponent('objectManager');
   let objs = objectManager.getObjectsOfType(obj);
