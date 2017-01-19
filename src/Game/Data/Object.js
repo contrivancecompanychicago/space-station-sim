@@ -2,6 +2,9 @@
 /*
 Objects are permanent(ish) fixtures attached to blocks
 */
+
+import type {AbilityType} from 'Game/Data/Object/Ability'
+
 import keys from 'lodash.keys';
 
 import Bed from './Object/Bed';
@@ -13,6 +16,25 @@ import Table from './Object/Table';
 import Table2 from './Object/Table2';
 import Chair from './Object/Chair';
 
+export type ObjectType =
+'BED'|
+'DOCK'|
+'TEST'|
+'OVEN'|
+'FRIDGE'|
+'TABLE'|
+'TABLE2'|
+'CHAIR'
+export type ObjectDataType = {
+  id: string,
+  label: string,
+  image: string,
+  width: number,
+  height: number,
+  abilities: Array<AbilityType>
+}
+
+//:{[id:ObjectType]:ObjectDataType}
 const Objs = {};
 
 Objs[Bed.id] = Bed;

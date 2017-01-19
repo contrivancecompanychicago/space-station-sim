@@ -1,7 +1,7 @@
 
 import keys from 'lodash.keys';
 
-const Modes = {
+const Modes:{[id:ModeType]:ModeDataType} = {
   'SELECT': {label: 'select'},
   'GRID': {label: 'grid'},
   'ITEM': {label: 'item'},
@@ -22,6 +22,10 @@ export type ModeType = 'SELECT'
 | 'CHAR'
 | 'TASK'
 | 'OBJECT';
+
+export type ModeDataType = {
+  label:string
+}
 
 
 export type ModesType = {

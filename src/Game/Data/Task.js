@@ -1,6 +1,11 @@
 import keys from 'lodash.keys';
 
-const Task = {
+export type TaskType = 'BUILD'
+export type TaskDataType = {
+  label:string
+}
+
+const Task:{[id:TaskType]:TaskDataType} = {
   'BUILD': {label: 'build'},
 };
 

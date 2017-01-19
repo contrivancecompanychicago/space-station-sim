@@ -1,10 +1,9 @@
 // @flow
-import type {Objekt} from './base'
+import type {ObjectDataType} from '../Object'
 
 import Ability from 'Game/Data/Object/Ability'
 
-
-export const obj:Objekt = {
+export const obj:ObjectDataType = {
   id: 'BED',
   label: 'Bed',
   image: require('./bed.png'),

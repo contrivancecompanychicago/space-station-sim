@@ -1,6 +1,24 @@
 import keys from 'lodash.keys';
 
-const Gridz = {
+export type GridType =
+  'BASIC'|
+  'FLOOR'|
+  'TILES1'|
+  'TILES2'|
+  'SHOP'|
+  'BAR'|
+  'WALL'|
+  'DOCK'|
+  'BRICKS'|
+  'ROAD'|
+  'ROAD_LINE'
+
+export type GridDataType = {
+  label:string,
+  weight:number
+}
+
+const Gridz:{[id:GridType]:GridDataType} = {
   'BASIC': {label: 'Basic', weight:1},
   'FLOOR': {label: 'Floor', weight:1, image:require('./Grid/plain.png')},
   'TILES1': {label: 'Tiles', weight:1, image:require('./Grid/bw_tiles.png')},
