@@ -6,8 +6,9 @@ const Abilities = {
   OVEN: 'OVEN',
   FRIDGE: 'FRIDGE',
   SPAWN: 'SPAWN',
+  CHAIR: 'CHAIR'
 }
 
 export default Abilities;
 
-export type AbilityType = 'PREP_TABLE'|'DINE_TABLE'|'SERVE_TABLE'|'OVEN'|'FRIDGE'|'SPAWN'
+export type AbilityType = 'PREP_TABLE'|'DINE_TABLE'|'SERVE_TABLE'|'OVEN'|'FRIDGE'|'SPAWN'|'CHAIR'
