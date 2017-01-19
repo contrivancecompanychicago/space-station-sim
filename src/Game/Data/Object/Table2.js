@@ -11,7 +11,7 @@ const obj:Objekt = {
   height: 1,
   requirements: {
   },
-  abilities: [Ability.PREP_TABLE, Ability.SERVE_TABLE],
+  abilities: [Ability.DINE_TABLE],
 }
 
 export default obj
