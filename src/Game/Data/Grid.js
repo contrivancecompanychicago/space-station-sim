@@ -1,7 +1,7 @@
 import keys from 'lodash.keys';
 
 export type GridType =
-  'BASIC'|
+  // 'BASIC'|
   'FLOOR'|
   'TILES1'|
   'TILES2'|
@@ -19,7 +19,7 @@ export type GridDataType = {
 }
 
 const Gridz:{[id:GridType]:GridDataType} = {
-  'BASIC': {label: 'Basic', weight:1},
+  // 'BASIC': {label: 'Basic', weight:1},
   'FLOOR': {label: 'Floor', weight:1, image:require('./Grid/plain.png')},
   'TILES1': {label: 'Tiles', weight:1, image:require('./Grid/bw_tiles.png')},
   'TILES2': {label: 'Tiles', weight:1, image:require('./Grid/browntiles.png')},

@@ -1,5 +1,5 @@
 import GridManager from 'Game/Manager/Grid';
-import Grid from 'Game/Type/Grid'
+import Grid from 'Game/Type/Grid';
 import { keys } from 'lodash';
 
 let gridManager;
@@ -36,32 +36,32 @@ describe('Game/Manager/Grid', () => {
 
   });
 
-  describe('getMin', () => {
-
-    it('should return an object with min/max x/y', () => {
-      let min = gridManager.getMin();
-      expect(min.x).toBeDefined();
-      expect(min.y).toBeDefined();
-    });
-
-    it('should get the smallest values', () => {
-      gridManager.addNode(-3,2);
-      gridManager.addNode(4,3);
-      gridManager.addNode(8,-1);
-      gridManager.addNode(5,5);
-      let min = gridManager.getMin();
-      expect(min.x).toBe(-3);
-      expect(min.y).toBe(-1);
-    });
-
-  });
+  // describe('getMin', () => {
+  //
+  //   it('should return an object with min/max x/y', () => {
+  //     let min = gridManager.getMin();
+  //     expect(min.x).toBeDefined();
+  //     expect(min.y).toBeDefined();
+  //   });
+  //
+  //   it('should get the smallest values', () => {
+  //     gridManager.addNode(-3,2);
+  //     gridManager.addNode(4,3);
+  //     gridManager.addNode(8,-1);
+  //     gridManager.addNode(5,5);
+  //     let min = gridManager.getMin();
+  //     expect(min.x).toBe(-3);
+  //     expect(min.y).toBe(-1);
+  //   });
+  //
+  // });
 
   describe('getPath', () => {
 
     it('should return a path', () => {
-      gridManager.addNode(1,1, new Grid({type:'BASIC'}));
-      gridManager.addNode(1,2, new Grid({type:'BASIC'}));
-      gridManager.addNode(2,2, new Grid({type:'BASIC'}));
+      gridManager.addNode(1,1, new Grid({type:'FLOOR'}));
+      gridManager.addNode(1,2, new Grid({type:'FLOOR'}));
+      gridManager.addNode(2,2, new Grid({type:'FLOOR'}));
       let path = gridManager.getPath({x:1,y:1}, {x:2, y:2});
       // expect(path).toBe([{x:1, y:2},{x:2, y:2}]);
       expect(path[0].x).toBe(1);
@@ -71,7 +71,7 @@ describe('Game/Manager/Grid', () => {
     });
 
     it('should return [end] if start and end are same', () => {
-        gridManager.addNode(1,1, new Grid({type:'BASIC'}));
+        gridManager.addNode(1,1, new Grid({type:'FLOOR'}));
         let path = gridManager.getPath({x:1,y:1}, {x:1, y:1});
         expect(path[0].x).toBe(1);
         expect(path[0].y).toBe(1);
