@@ -1,6 +1,7 @@
 // @flow
 import type {Objekt} from './base'
 
+import Ability from 'Game/Data/Object/Ability'
 
 const obj:Objekt = {
   id: 'OVEN',
@@ -8,16 +9,8 @@ const obj:Objekt = {
   image: require('./oven.png'),
   width: 1,
   height: 4,
-  requirements: {
-    block:{
-        empty:[
-          {x:0, y:2},
-          {x:1, y:2},
-          {x:0, y:3},
-          {x:1, y:3},
-        ]
-    }
-  }
+  requirements: {},
+  abilities: [Ability.OVEN]
 }
 
 export default obj

@@ -1,6 +1,7 @@
 // @flow
 import type {Objekt} from './base'
 
+import Ability from 'Game/Data/Object/Ability'
 
 const obj:Objekt = {
   id: 'DOCK',
@@ -17,7 +18,8 @@ const obj:Objekt = {
           {x:1, y:3},
         ]
     }
-  }
+  },
+  abilities: [Ability.SPAWN]
 }
 
 export default obj
