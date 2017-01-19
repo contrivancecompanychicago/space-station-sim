@@ -1,3 +1,4 @@
+//@flow
 import React from 'react';
 
 class Button extends React.Component{
@@ -6,10 +7,18 @@ class Button extends React.Component{
     const id = 'button-'+this.props.type+'-'+this.props.data.label;
     let className = this.props.selected?'selected':'';
     className += ' '+id;
+    let image = "";
+    if(this.props.data.image){
+      image = <img src={this.props.data.image.src} />;
+    }
     return <button className={className} onClick={this.props.click}>
     {this.props.data.label}
+    {image}
     </button>;
   }
+  // componentDidMount(){
+  //   let node = this.getDOMNode();
+  // }
 
 }
 

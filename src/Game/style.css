@@ -21,7 +21,7 @@ canvas {
   background-color: #ccc;
   padding: 10px;
   text-align: right;
-  width: 150px;
+  width: 200px;
 }
 
 .ui h3{
@@ -29,10 +29,18 @@ canvas {
 }
 
 .ui button{
+  /*padding-top: 0;*/
   width: 50px;
-  height: 32px;
+  height: 50px;
+  font-size: 10px;
 }
+.ui .grid button{
 
+}
 .ui button.selected{
   background-color: yellow;
+}
+.ui button img{
+  width: 32px;
+  height: 32px;
 }
