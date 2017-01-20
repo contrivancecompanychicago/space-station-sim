@@ -1,3 +1,4 @@
+//@flow
 import keys from 'lodash.keys';
 
 export type GridType =
@@ -11,7 +12,19 @@ export type GridType =
   'DOCK'|
   'BRICKS'|
   'ROAD'|
-  'ROAD_LINE'
+  'ROAD_LINE'|
+  'CARPET'|
+  'CARPETH'|
+  'GREYFLOOR'|
+  'GREYFLOOR2'|
+  'REDFLOOR'|
+  'REDFLOOR2'|
+  'WOODANGLE'|
+  'WOOD'|
+  'GREYWALL'|
+  'GREYWALL2'|
+  'REDWALL'|
+  'REDWALL2'
 
 export type GridDataType = {
   label:string,
@@ -30,6 +43,18 @@ const Gridz:{[id:GridType]:GridDataType} = {
   'BRICKS': {label: 'Bricks', weight:0, image:require('./Grid/bricks.png')},
   'ROAD': {label: 'Road', weight:3, image:require('./Grid/road.png')},
   'ROAD_LINE': {label: 'Road1', weight:3, image:require('./Grid/road_line.png')},
+  'CARPET': {label: 'Floor', weight:1, image:require('./Grid/carpet.png')},
+  'CARPETH': {label: 'Floor', weight:1, image:require('./Grid/carpethighlight.png')},
+  'GREYFLOOR': {label: 'Floor', weight:1, image:require('./Grid/greyfloor.png')},
+  'GREYFLOOR2': {label: 'Floor', weight:1, image:require('./Grid/greyfloor2.png')},
+  'REDFLOOR': {label: 'Floor', weight:1, image:require('./Grid/redfloor1.png')},
+  'REDFLOOR2': {label: 'Floor', weight:1, image:require('./Grid/redfloor2.png')},
+  'WOODANGLE': {label: 'Floor', weight:1, image:require('./Grid/woodanglefloor.png')},
+  'WOOD': {label: 'Floor', weight:1, image:require('./Grid/woodstraightfloor.png')},
+  'GREYWALL': {label: 'Wall', weight:0, image:require('./Grid/greywall.png')},
+  'GREYWALL2': {label: 'Wall', weight:0, image:require('./Grid/greywall2.png')},
+  'REDWALL': {label: 'Wall', weight:0, image:require('./Grid/redwall1.png')},
+  'REDWALL2': {label: 'Wall', weight:0, image:require('./Grid/redwall2.png')},
 };
 
 export default Gridz;
