@@ -23,7 +23,10 @@ export default function* cook(char:Character):Generator<*,*,*>{
   while(!char.item){
     yield; //wait til I get my shit.
   }
+
   yield *idle(char, 5);
+  yield *wander(char);
+  yield *wander(char);
   yield *wander(char);
 
 

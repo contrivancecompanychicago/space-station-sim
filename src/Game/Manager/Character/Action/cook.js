@@ -55,6 +55,7 @@ export default function* cook(char:Character):Generator<*,*,*>{
   obj = yield *forceUseObjectWithAbility(char, Ability.SERVE_TABLE)
   obj.item = char.item;
   char.item = null;
+  order.worker = null;
 
   // yield *placeItemOnEmptyTable(char, Ability.SERVE_TABLE);
 
