@@ -27,12 +27,14 @@ export default function* waiter(char:Character):Generator<*,*,*>{
   // console.log(objs);
   if(objs.length > 0){
     let obj = objs[0];
+    obj.character = char;
     yield *pathToBlock(char, obj.block);
     //pick up item
     char.item = obj.item
     obj.item = null;
-    yield *placeItemOnEmptyTable(char, Ability.DINE_TABLE)
 
+    yield *placeItemOnEmptyTable(char, Ability.DINE_TABLE)
+    obj.character = null;
   }
 
   // yield *pathToObjectWithAbility(char, Ability.SERVE_TABLE);
