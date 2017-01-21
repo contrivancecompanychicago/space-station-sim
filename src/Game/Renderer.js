@@ -22,7 +22,7 @@ export default class Renderer{
   layer:Layer;
   gridLayer:Layer;
   hack:number;
-  cache:{objects:number, grids:number, view:string}
+  cache:{objects:number, grids:string, view:string}
   constructor(state:State, container:HTMLElement){
     //make canvas
     this.state = state;
@@ -31,7 +31,7 @@ export default class Renderer{
     this.resize();
     window.addEventListener('resize', this.resize.bind(this));
     this.hack = 0;
-    this.cache = {objects:0, grids:0, view:""}
+    this.cache = {objects:0, grids:"", view:""}
   }
   resize() {
     this.layer.resize(window.innerWidth, window.innerHeight);
@@ -42,12 +42,12 @@ export default class Renderer{
     this.layer.clear();
     this.layer.context.globalAlpha = 1;
     if(this.cache.objects !== keys(this.state.Object).length ||
-      this.cache.grids !== keys(this.state.Grid).length ||
+      this.cache.grids !== JSON.stringify(this.state.Grid) ||
       this.cache.view !== JSON.stringify(this.state.View.offset)+this.state.View.scale
     ){
       this.cache = {
         objects: keys(this.state.Object).length,
-        grids: keys(this.state.Grid).length,
+        grids: JSON.stringify(this.state.Grid),
         view: JSON.stringify(this.state.View.offset)+this.state.View.scale
       }
       this.gridLayer.clear();
