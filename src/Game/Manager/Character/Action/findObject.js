@@ -9,9 +9,9 @@ export default function* findObject(filter:Function):Generator<*,Obj,*>{
   let obj:Obj
 
   while(!obj){
+    yield;
     let objs = objectManager.getObjects().filter(filter);
     if(objs.length>0) obj = objs[0];
-    yield;
   }
   return obj
 

@@ -10,6 +10,9 @@ import type {ObjectType, ObjectDataType} from 'Game/Data/Object'
 import type Character from 'Game/Type/Character'
 import type Item from 'Game/Type/Item'
 
+import type {AbilityType} from 'Game/Data/Object/Ability'
+import Ability from 'Game/Data/Object/Ability'
+
 export default class Obj{
   block: Block;
   type: ObjectType;
@@ -20,5 +23,8 @@ export default class Obj{
   }
   getData():ObjectDataType{
     return ObjectData[this.type]
+  }
+  hasAbility(ability:AbilityType):boolean{
+    return (this.getData().abilities.indexOf(ability) > -1)
   }
 }
