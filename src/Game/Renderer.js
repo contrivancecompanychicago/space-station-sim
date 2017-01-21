@@ -38,9 +38,7 @@ export default class Renderer{
     this.gridLayer.resize(window.innerWidth, window.innerHeight);
     this.layer.drawDemo();
   }
-  update(){
-    this.layer.clear();
-    this.layer.context.globalAlpha = 1;
+  renderGrid(){
     if(this.cache.objects !== keys(this.state.Object).length ||
       this.cache.grids !== JSON.stringify(this.state.Grid) ||
       this.cache.view !== JSON.stringify(this.state.View.offset)+this.state.View.scale
@@ -56,17 +54,24 @@ export default class Renderer{
     }
 
     this.layer.context.drawImage(this.gridLayer.canvas, 0, 0);
+  }
+  update(){
+    this.layer.clear();
+    this.layer.context.globalAlpha = 1;
+
+    this.renderGrid()
 
     character(this.state, this.layer);
     item(this.state, this.layer);
+
+    renderSelection(this.state, this.layer)
+    info(this.state, this.layer)
+
     let proposal = proposer.propose(this.state);
     proposal.View = this.state.View;
     this.layer.context.globalAlpha = 0.5;
     grid(proposal, this.layer);
     object(proposal, this.layer);
-
-    renderSelection(this.state, this.layer)
-    info(this.state, this.layer)
 
   }
 }
