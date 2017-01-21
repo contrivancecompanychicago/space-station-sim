@@ -7,12 +7,13 @@ import keys from 'lodash.keys';
 export type ItemType = 'TEST'|'INGREDIENTS'
 
 export type ItemDataType = {
-  label:string
+  label:string,
+  image:any
 }
 
 const Items:{[id:ItemType]:ItemDataType} = {
-  'TEST': {label: 'test item'},
-  'INGREDIENTS': {label: 'ingredients'},
+  'TEST': {label: 'test item', image: require('./Item/pizza.png')},
+  'INGREDIENTS': {label: 'ingredients', image: require('./Item/pizza.png')},
 };
 
 export default Items;
