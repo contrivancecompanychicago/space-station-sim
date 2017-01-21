@@ -10,6 +10,7 @@ import type {AbilityType} from 'Game/Data/Object/Ability'
 import ObjectData from 'Game/Data/Object'
 
 import type {ObjectState} from 'Game/state'
+import type {ItemType} from 'Game/Data/Item'
 
 export default class ObjectManager{
   type:string;
@@ -32,6 +33,14 @@ export default class ObjectManager{
     return values(this.state).filter((o)=>{
       let type = ObjectData[o.type]
       if(type.abilities.indexOf(ability) > -1) return true
+    })
+  }
+
+  getObjectsWithItemType(type:ItemType):Array<Obj>{
+    return values(this.state).filter((o)=>{
+      if(o.item){
+        if(o.item.type === type) return true
+      }
     })
   }
 

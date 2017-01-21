@@ -3,6 +3,9 @@ import {values, keys} from 'lodash';
 import types from 'Game/Data/Object';
 
 import Obj from 'Game/Type/Object'
+import Item from 'Game/Type/Item'
+
+
 
 let state = {};
 let objectManager = new ObjectManager(state);
@@ -34,6 +37,20 @@ describe('Game/Manager/Object', () => {
       expect(objs.length).toBe(1)
     })
 
+  })
+
+  describe('getObjectsWithItemType', () => {
+    it('should get items', () => {
+      let obj1 = new Obj({block:{x:10,y:10}, type: 'OVEN'})
+      let obj2 = new Obj({block:{x:15,y:15}, type: 'TABLE'})
+      let item = new Item({position:{x:0,y:0}, type:'TEST'})
+      obj2.item = item;
+      objectManager.addObject(obj1)
+      objectManager.addObject(obj2)
+      let objs = objectManager.getObjectsWithItemType('TEST');
+      expect(objs.length).toBe(1)
+
+    })
   })
 
 });

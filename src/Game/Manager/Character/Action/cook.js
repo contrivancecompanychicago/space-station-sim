@@ -43,7 +43,6 @@ export default function* cook(char:Character):Generator<*,*,*>{
   //   yield *placeItemOnBlock(char, obj.block)
   // }
   // yield *idle(char, 1);
-  console.log("placing");
   yield *placeItemOnEmptyTable(char);
 
 
