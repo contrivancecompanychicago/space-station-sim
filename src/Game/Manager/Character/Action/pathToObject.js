@@ -1,7 +1,7 @@
 //@flow
 import engine from 'Game/engine';
 
-import pathToBlock from '././pathToBlock';
+import pathToBlock from './pathToBlock';
 
 import type Character from 'Game/Type/Character'
 import type {ObjectType} from 'Game/Data/Object'

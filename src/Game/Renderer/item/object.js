@@ -13,6 +13,6 @@ export default function renderObject(object:Item, state:State, layer:Layer){
     const offset = worldToScreen(object.position, state);
     layer.context.fillStyle = 'blue';
     layer.context.beginPath();
-    layer.context.arc(offset.x, offset.y, 10*state.View.scale, 0, Math.PI * 2);
+    layer.context.arc(offset.x, offset.y, 6*state.View.scale, 0, Math.PI * 2);
     layer.context.fill();
 }
