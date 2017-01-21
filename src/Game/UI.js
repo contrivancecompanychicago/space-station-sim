@@ -10,17 +10,29 @@ import Task from './UI/Task';
 import Speed from './UI/Speed';
 import Objekt from './UI/Object';
 
-
 class UI extends React.Component {
   render() {
     //  <Task />
+    let active = ""
+    switch(this.props.mode){
+      case 'CHAR':
+        active = <Character />
+        break;
+      case 'GRID':
+        active = <Grid />
+        break;
+      case 'ITEM':
+        active = <Item />
+        break;
+      case 'OBJECT':
+        active = <Objekt />
+        break;
+    }
+
+    // <Speed />
     return <div className="ui">
       <Mode />
-      <Speed />
-      <Character />
-      <Grid />
-      <Item />
-      <Objekt />
+      {active}
     </div>;
   }
 }

@@ -15,10 +15,10 @@ export type ModeDataType = {
 const Modes:{[id:ModeType]:ModeDataType} = {
   'SELECT': {label: 'select'},
   'GRID': {label: 'grid'},
-  'ITEM': {label: 'item'},
-  'CHAR': {label: 'char'},
-  'TASK': {label: 'task'},
   'OBJECT': {label: 'object'},
+  'CHAR': {label: 'char'},
+  'ITEM': {label: 'item'},
+  // 'TASK': {label: 'task'},
 };
 
 export default Modes;

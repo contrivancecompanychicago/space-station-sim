@@ -11,7 +11,7 @@ class Button extends React.Component{
     if(this.props.data.image){
       image = <img src={this.props.data.image.src} />;
     }
-    return <button className={className} onClick={this.props.click}>
+    return <button className={className} onClick={this.props.click} onMouseOver={this.props.mouseover}>
     {this.props.data.label}
     {image}
     </button>;
