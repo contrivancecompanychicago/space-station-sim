@@ -14,8 +14,8 @@ export default function* moveToBlock(char:Character, block:Block):Generator<*,*,
     char.position.x += Math.cos(dir)*amount;
     char.position.y += Math.sin(dir)*amount;
     if(char.item){
-      char.item.position.x -= (char.item.position.x - char.position.x) /2
-      char.item.position.y -= (char.item.position.y - char.position.y) /2
+      char.item.position.x -= (char.item.position.x - char.position.x) /6
+      char.item.position.y -= (char.item.position.y - char.position.y) /6
     }
 
     yield;

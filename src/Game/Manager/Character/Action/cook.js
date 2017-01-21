@@ -4,6 +4,7 @@ import engine from 'Game/engine';
 import pathToBlock from './pathToBlock';
 import pathToObjectWithAbility from './pathToObjectWithAbility';
 import idle from './idle';
+import placeItemOnBlock from './placeItemOnBlock'
 
 // import {Obj} from 'Game/Data/Object';
 import Ability from 'Game/Data/Object/Ability'
@@ -26,12 +27,22 @@ export default function* cook(char:Character):Generator<*,*,*>{
     char.item = item;
   }
   yield *idle(char, 1);
-  yield *pathToObjectWithAbility(char, Ability.PREP_TABLE);
+  obj = yield *pathToObjectWithAbility(char, Ability.PREP_TABLE);
+  if(obj){
+    yield *placeItemOnBlock(char, obj.block)
+  }
   yield *idle(char, 1);
-  yield *pathToObjectWithAbility(char, Ability.OVEN);
+  obj = yield *pathToObjectWithAbility(char, Ability.OVEN);
+  if(obj){
+    yield *placeItemOnBlock(char, obj.block)
+  }
   yield *idle(char, 1);
-  yield *pathToObjectWithAbility(char, Ability.SERVE_TABLE);
+  obj = yield *pathToObjectWithAbility(char, Ability.SERVE_TABLE);
+  if(obj){
+    yield *placeItemOnBlock(char, obj.block)
+  }
   yield *idle(char, 1);
+  char.item = null;//drop item
 
 
 }
