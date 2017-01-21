@@ -10,8 +10,9 @@ import pathToBlock from './pathToBlock'
 import placeItemOnBlock from './placeItemOnBlock'
 
 import Ability from 'Game/Data/Object/Ability'
-export default function* placeItemOnEmptyTable(char:Character):Generator<*,*,*>{
-  let ability = Ability.SERVE_TABLE;
+import type {AbilityType} from 'Game/Data/Object/Ability'
+export default function* placeItemOnEmptyTable(char:Character, ability:AbilityType):Generator<*,*,*>{
+  // let ability = Ability.SERVE_TABLE;
   let objectManager:ObjectManager = engine.getComponent('objectManager');
   let objs = objectManager.getObjectsWithAbility(ability);
   // console.log(objs);

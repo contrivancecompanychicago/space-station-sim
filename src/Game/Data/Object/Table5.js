@@ -5,7 +5,7 @@ import type {ObjectDataType} from '../Object'
 import Ability from 'Game/Data/Object/Ability'
 const obj:ObjectDataType = {
   id: 'TABLE5',
-  label: 'table',
+  label: 'dine',
   image: require('./table5.png'),
   width: 1,
   height: 1,

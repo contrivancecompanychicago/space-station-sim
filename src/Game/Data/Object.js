@@ -47,18 +47,18 @@ export type ObjectDataType = {
 //:{[id:ObjectType]:ObjectDataType}
 const Objs:{[id:ObjectType]:ObjectDataType} = {};
 
-Objs[Bed.id] = Bed;
-Objs[Dock.id] = Dock;
-Objs[Drawers.id] = Drawers;
+// Objs[Bed.id] = Bed;
+// Objs[Dock.id] = Dock;
+// Objs[Drawers.id] = Drawers;
 Objs[Test.id] = Test;
 Objs[Oven.id] = Oven;
 Objs[Fridge.id] = Fridge;
-Objs[Table.id] = Table;
-Objs[Table2.id] = Table2;
+// Objs[Table.id] = Table;
+// Objs[Table2.id] = Table2;
 Objs[Table3.id] = Table3;
 Objs[Table4.id] = Table4;
 Objs[Table5.id] = Table5;
-Objs[Chair.id] = Chair;
+// Objs[Chair.id] = Chair;
 Objs[Chair2.id] = Chair2;
 
 export default Objs;

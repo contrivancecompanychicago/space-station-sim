@@ -43,7 +43,7 @@ export default function* cook(char:Character):Generator<*,*,*>{
   //   yield *placeItemOnBlock(char, obj.block)
   // }
   // yield *idle(char, 1);
-  yield *placeItemOnEmptyTable(char);
+  yield *placeItemOnEmptyTable(char, Ability.SERVE_TABLE);
 
 
 }

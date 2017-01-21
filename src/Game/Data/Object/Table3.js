@@ -5,13 +5,13 @@ import Ability from 'Game/Data/Object/Ability'
 
 const obj:ObjectDataType = {
   id: 'TABLE3',
-  label: 'table',
+  label: 'prep',
   image: require('./table3.png'),
   width: 1,
   height: 1,
   requirements: {
   },
-  abilities: [Ability.PREP_TABLE, Ability.SERVE_TABLE]
+  abilities: [Ability.PREP_TABLE]
 }
 
 export default obj
