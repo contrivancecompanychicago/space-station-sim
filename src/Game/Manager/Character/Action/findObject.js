@@ -13,6 +13,6 @@ export default function* findObject(filter:Function):Generator<*,Obj,*>{
     let objs = objectManager.getObjects().filter(filter);
     if(objs.length>0) obj = objs[0];
   }
-  return obj
+  return obj;
 
 }

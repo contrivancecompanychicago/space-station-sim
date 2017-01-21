@@ -6,6 +6,7 @@ import View from './View';
 import Character from './Character';
 import Item from './Item';
 import Objekt from './Object';
+import Order from './Order';
 
 const out = {
   Grid: Grid,
@@ -15,6 +16,7 @@ const out = {
   Character: Character,
   Item: Item,
   Object: Objekt,
+  Order: Order,
 };
 
 

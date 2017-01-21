@@ -36,7 +36,8 @@ export default class Game{
 
     keys(managers).forEach((key) => { // misc managers with state
       let manager = managers[key];
-      this.state[key] = {};
+
+      // this.state[key] = {};
       this.manager.addComponent(new manager(this.state[key], this.container));
     });
 

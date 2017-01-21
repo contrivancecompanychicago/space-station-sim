@@ -11,6 +11,7 @@ import type Item from 'Game/Type/Item'
 import type Grid from 'Game/Type/Grid'
 import type Obj from 'Game/Type/Object'
 import type {Selection} from 'Game/Type/Selection'
+import type Order from 'Game/Type/Order'
 
 import {Mode} from 'Game/Data/Mode';
 // type ModesType = 'SELECT'
@@ -20,6 +21,8 @@ import {Mode} from 'Game/Data/Mode';
 // | 'TASK'
 // | 'OBJECT';
 // type ModesType = $Keys<typeof Modes>
+
+export type OrderState = Array<Order>;
 
 export type CharacterState = {
   [id:string]: Character
@@ -65,7 +68,8 @@ export type State = {
   Task: TaskState,
   UI: UIState,
   View: ViewState,
-  Time: TimeState
+  Time: TimeState,
+  Order: OrderState
 }
 
 const state:State = base();
@@ -94,5 +98,6 @@ export function base():State{
       scale:1,
       selection:null
     },
+    Order:[],
   };
 }
