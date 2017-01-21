@@ -17,6 +17,12 @@ export default function renderItem(item:Item, state:State, layer:Layer){
     // layer.context.arc(offset.x, offset.y, 6*state.View.scale, 0, Math.PI * 2);
     // layer.context.fill();
     let i = type.image;
-    layer.context.drawImage(i, 0, 0, i.width, i.height, o.x, o.y, 10*state.View.scale, 10*state.View.scale)
+    let w = 20*state.View.scale
+    let h = 20*state.View.scale
+    let x = o.x - w/2;
+    let y = o.y - h/2;
+
+
+    layer.context.drawImage(i, 0, 0, i.width, i.height, x, y, w, h)
 
 }

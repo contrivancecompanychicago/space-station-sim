@@ -23,17 +23,7 @@ function renderGrid(state:State, layer:Layer){
   let tl = pointToBlock(screenToWorld({x:0, y:0}, state));
   let br = pointToBlock(screenToWorld({x:window.innerWidth, y:window.innerHeight}, state));
 
-  renderWalls(state, layer);
-
-  // keys(state.Grid).forEach((key) => {
-  //   let pos = parseKey(key);
-  //   if(pos.x>tl.x && pos.x < br.x){
-  //     if(pos.y>tl.y && pos.y < br.y){ //cutoff
-  //     renderBlock(pos, state.Grid[key], state, layer);
-  //     }
-  //   }
-  //
-  // });
+  // renderWalls(state, layer);
 
   for(let x = tl.x; x<br.x; x++){
     for(let y = tl.y; y<br.y; y++){
@@ -46,12 +36,9 @@ function renderGrid(state:State, layer:Layer){
     }
   }
 
-  renderSelection(state, layer);
+  // renderSelection(state, layer);
 
   renderTask(state, layer);
-  // renderProposal(state, layer);
-
-  // renderInfo(state, layer);
 }
 
 

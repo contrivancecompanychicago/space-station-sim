@@ -38,7 +38,7 @@ describe('Integration', () => {
   });
   it('should make grid objects', () => {
 
-    // clickButton('button-mode-grid');
+    clickButton('button-mode-grid');
     clickButton('button-grid-Floor');
     expect(game.state.UI.mode).toBe('GRID');
     expect(game.state.UI.grid).toBe('FLOOR');
