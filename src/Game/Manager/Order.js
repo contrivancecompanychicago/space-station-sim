@@ -9,7 +9,6 @@ export default class OrderManager{
   state: OrderState;
   constructor(state:OrderState){
     this.type = 'orderManager';
-    // console.log(state);
     this.state = state;
   }
   addOrder(order:Order){

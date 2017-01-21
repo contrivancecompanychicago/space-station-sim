@@ -20,6 +20,9 @@ export default function* cook(char:Character):Generator<*,*,*>{
   yield *pathToObjectWithAbility(char, Ability.CHAIR);
   //PLACE ORDER!
   orderManager.addOrder(new Order({customer:char}));
+  while(!char.item){
+    yield; //wait til I get my shit.
+  }
   yield *idle(char, 5);
   yield *wander(char);
 
