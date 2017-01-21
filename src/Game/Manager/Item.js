@@ -14,4 +14,7 @@ export default class ItemManager{
   addItem(item:Item){
     this.state[item.id] = item;
   }
+  removeItem(item:Item){
+    delete this.state[item.id];
+  }
 }

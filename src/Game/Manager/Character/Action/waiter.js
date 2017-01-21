@@ -6,6 +6,7 @@ import pathToObjectWithAbility from './pathToObjectWithAbility';
 import pathToObject from './pathToObject'
 import placeItemOnEmptyTable from './placeItemOnEmptyTable'
 import idle from './idle';
+import wander from './wander'
 
 import Ability from 'Game/Data/Object/Ability'
 
@@ -48,12 +49,15 @@ export default function* waiter(char:Character):Generator<*,*,*>{
   order.worker = char
   // FLOWHACK //already checked it exists
   yield *pathToBlock(char, order.item.position.block);
+
   char.item = order.item;
   yield *pathToBlock(char, order.customer.position.block);
   //give to customer
   order.customer.item = char.item;
   char.item = null;
   //finish order
-  orderManager.state.splice(orderManager.state.indexOf(order));
+  orderManager.state.splice(orderManager.state.indexOf(order), 1);
+
+  // yield *wander(char);
 
 }

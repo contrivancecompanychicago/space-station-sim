@@ -4,6 +4,7 @@ import engine from 'Game/engine';
 import pathToBlock from './pathToBlock';
 import pathToObjectWithAbility from './pathToObjectWithAbility';
 import idle from './idle';
+import wander from './wander';
 import placeItemOnBlock from './placeItemOnBlock'
 import placeItemOnEmptyTable from './placeItemOnEmptyTable'
 import findObject from './findObject'
@@ -51,12 +52,16 @@ export default function* cook(char:Character):Generator<*,*,*>{
   order.item = item;
   char.item = item;
   yield *forceUseObjectWithAbility(char, Ability.PREP_TABLE)
+  yield *idle(char, 1);
   yield *forceUseObjectWithAbility(char, Ability.OVEN)
+  yield *idle(char, 2);
   obj = yield *forceUseObjectWithAbility(char, Ability.SERVE_TABLE)
   obj.item = char.item;
   char.item = null;
   order.worker = null;
 
+
+  // yield *wander(char);
   // yield *placeItemOnEmptyTable(char, Ability.SERVE_TABLE);
 
 }
@@ -70,7 +75,6 @@ function* forceUseObjectWithAbility(char:Character, ability:AbilityType):Generat
   obj.character = char;
   yield *pathToBlock(char, obj.block);
   yield *placeItemOnBlock(char, obj.block)
-  yield *idle(char, 1);
   obj.character = null;
   return obj
 }
