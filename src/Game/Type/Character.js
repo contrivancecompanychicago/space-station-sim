@@ -13,6 +13,7 @@ export default class Character{
   firstname: string;
   lastname: string;
   action: ?Object;
+  item: ?Object
   task: string;
   constructor(params:{type:CharacterType, position:Point}){
     defaults(this, params);

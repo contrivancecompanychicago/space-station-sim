@@ -9,7 +9,7 @@ import type Character from 'Game/Type/Character'
 
 import type Obj from 'Game/Type/Object'
 
-export default function* pathToObject(char:Character, ability:AbilityType):Generator<*,Obj|null,*>{
+export default function* pathToObjectWithAbility(char:Character, ability:AbilityType):Generator<*,Obj|null,*>{
   let gridManager = engine.getComponent('gridManager');
   let objectManager = engine.getComponent('objectManager');
   let objs = objectManager.getObjectsWithAbility(ability);
