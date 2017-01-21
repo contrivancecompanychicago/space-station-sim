@@ -26,6 +26,9 @@ export default class ObjectManager{
     this.state[makeKey(obj.block.x,obj.block.y)] = obj;
 
   }
+  getObjects():Array<Obj>{
+    return values(this.state);
+  }
   getObjectsOfType(type:string):Array<Obj>{
     return values(this.state).filter((o)=>{return o.type===type})
   }

@@ -18,7 +18,12 @@ export default function* waiter(char:Character):Generator<*,*,*>{
   let gridManager = engine.getComponent('gridManager');
   let objectManager:ObjectManager = engine.getComponent('objectManager');
 
-  let objs = objectManager.getObjectsWithItemType('TEST')
+  // let objs = objectManager.getObjectsWithItemType('TEST')
+  let objs = objectManager.getObjects().filter((o)=>{
+    if(o.character) return false
+    if(o.getData().abilities.indexOf('DINE_TABLE')>-1) return false;
+    if(o.item&&o.item.type === 'TEST') return true;
+  })
   // console.log(objs);
   if(objs.length > 0){
     let obj = objs[0];
