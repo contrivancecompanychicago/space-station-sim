@@ -37,4 +37,31 @@ export default function renderLines(state:State, layer:Layer){
     }
 
   });
+  state.Order.forEach((order) => {
+    if(order.worker){
+      const offset = worldToScreen(order.customer.position, state);
+      const charoffset = worldToScreen(order.worker.position, state);
+
+      layer.context.beginPath();
+      layer.context.moveTo(offset.x, offset.y);
+      layer.context.lineTo(charoffset.x, charoffset.y);
+      layer.context.lineWidth = 5;
+      layer.context.strokeStyle = '#00ff00';
+      layer.context.stroke();
+
+    }
+
+    if(order.item){
+      const offset = worldToScreen(order.customer.position, state);
+      const charoffset = worldToScreen(order.item.position, state);
+
+      layer.context.beginPath();
+      layer.context.moveTo(offset.x, offset.y);
+      layer.context.lineTo(charoffset.x, charoffset.y);
+      layer.context.lineWidth = 5;
+      layer.context.strokeStyle = '#00ff00';
+      layer.context.stroke();
+
+    }
+  })
 }
