@@ -1,6 +1,8 @@
 //@flow
 import engine from 'Game/engine';
 
+import actions from './index'
+
 import pathToBlock from './pathToBlock';
 import pathToObjectWithAbility from './pathToObjectWithAbility';
 import idle from './idle';
@@ -52,9 +54,9 @@ export default function* cook(char:Character):Generator<*,*,*>{
   order.item = item;
   char.item = item;
   yield *forceUseObjectWithAbility(char, Ability.PREP_TABLE)
-  yield *idle(char, 1);
+  yield *actions.idle(char, 1);
   yield *forceUseObjectWithAbility(char, Ability.OVEN)
-  yield *idle(char, 2);
+  yield *actions.idle(char, 2);
   obj = yield *forceUseObjectWithAbility(char, Ability.SERVE_TABLE)
   obj.item = char.item;
   char.item = null;
@@ -73,8 +75,8 @@ function* forceUseObjectWithAbility(char:Character, ability:AbilityType):Generat
     return o.hasAbility(ability)
   })
   obj.character = char;
-  yield *pathToBlock(char, obj.block);
-  yield *placeItemOnBlock(char, obj.block)
+  yield *actions.pathToBlock(char, obj.block);
+  yield *actions.placeItemOnBlock(char, obj.block)
   obj.character = null;
   return obj
 }

@@ -1,21 +1,33 @@
+
 // @flow
+import cook from './cook';
+import customer from './customer';
 import idle from './idle';
 import moveToBlock from './moveToBlock';
+import moveToBlockCenter from './moveToBlockCenter'
 import pathToBlock from './pathToBlock';
+import pathToObject from './pathToObject'
+import pathToObjectWithAbility from './pathToObjectWithAbility'
+import placeItemOnBlock from './placeItemOnBlock'
+import placeItemOnEmptyTable from './placeItemOnEmptyTable'
 import task from './task';
-import wander from './wander';
-import cook from './cook';
 import waiter from './waiter';
-import customer from './customer';
+import wander from './wander';
+
 
 
 export default {
+  cook,
+  customer,
   idle,
   moveToBlock,
+  moveToBlockCenter,
   pathToBlock,
+  pathToObject,
+  pathToObjectWithAbility,
+  placeItemOnBlock,
+  placeItemOnEmptyTable,
   task,
-  wander,
-  cook,
   waiter,
-  customer
+  wander,
 };
