@@ -4,7 +4,7 @@ Items are easily movable entities that only have a position
 */
 import keys from 'lodash.keys';
 
-export type ItemType = 'TEST'|'INGREDIENTS'
+export type ItemType = 'TEST'|'BASE'|'PIZZAUNCOOKED'|'PIZZA'
 
 export type ItemDataType = {
   label:string,
@@ -13,7 +13,9 @@ export type ItemDataType = {
 
 const Items:{[id:ItemType]:ItemDataType} = {
   'TEST': {label: 'test item', image: require('./Item/pizza.png')},
-  'INGREDIENTS': {label: 'ingredients', image: require('./Item/pizza.png')},
+  'BASE': {label: 'ingredients', image: require('./Item/pizzabase.png')},
+  'PIZZAUNCOOKED': {label: 'ingredients', image: require('./Item/pizzauncooked.png')},
+  'PIZZA': {label: 'ingredients', image: require('./Item/pizza.png')},
 };
 
 export default Items;

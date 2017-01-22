@@ -51,14 +51,16 @@ export default function* cook(char:Character):Generator<*,*,*>{
   order.worker = char
 
   let obj = yield *forceUseObjectWithAbility(char, Ability.FRIDGE)
-  let item = new Item({position: obj.block.center, type:'TEST'})
+  let item = new Item({position: obj.block.center, type:'BASE'})
   itemManager.addItem(item);
   order.item = item;
   char.item = item;
   yield *forceUseObjectWithAbility(char, Ability.PREP_TABLE)
   yield *actions.idle(char, 1);
+  item.type = 'PIZZAUNCOOKED'
   yield *forceUseObjectWithAbility(char, Ability.OVEN)
   yield *actions.idle(char, 2);
+  item.type = 'PIZZA'
   obj = yield *forceUseObjectWithAbility(char, Ability.SERVE_TABLE)
   obj.item = char.item;
   char.item = null;
