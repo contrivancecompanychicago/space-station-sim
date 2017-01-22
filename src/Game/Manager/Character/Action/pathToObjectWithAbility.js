@@ -1,8 +1,7 @@
 //@flow
 import engine from 'Game/engine';
 
-import pathToBlock from './pathToBlock';
-import moveToBlockCenter from './moveToBlockCenter'
+import actions from './index'
 
 import type {AbilityType} from 'Game/Data/Object/Ability'
 import type Character from 'Game/Type/Character'
@@ -18,7 +17,7 @@ export default function* pathToObjectWithAbility(char:Character, ability:Ability
     let i = Math.floor(Math.random()*objs.length);
     let obj = objs[i]
     obj.character = char;
-    yield *pathToBlock(char, obj.block);
+    yield *actions.pathToBlock(char, obj.block);
     obj.character = null;
     // yield *moveToBlockCenter(char, obj.block);
     return obj;

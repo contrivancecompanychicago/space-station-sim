@@ -3,13 +3,13 @@ import engine from 'Game/engine';
 
 import actions from './index'
 
-import pathToBlock from './pathToBlock';
-import pathToObjectWithAbility from './pathToObjectWithAbility';
-import idle from './idle';
-import wander from './wander';
-import placeItemOnBlock from './placeItemOnBlock'
-import placeItemOnEmptyTable from './placeItemOnEmptyTable'
-import findObject from './findObject'
+// import pathToBlock from './pathToBlock';
+// import pathToObjectWithAbility from './pathToObjectWithAbility';
+// import idle from './idle';
+// import wander from './wander';
+// import placeItemOnBlock from './placeItemOnBlock'
+// import placeItemOnEmptyTable from './placeItemOnEmptyTable'
+// import findObject from './findObject'
 // import {Obj} from 'Game/Data/Object';
 import Ability from 'Game/Data/Object/Ability'
 import type {AbilityType} from 'Game/Data/Object/Ability'
@@ -69,7 +69,7 @@ export default function* cook(char:Character):Generator<*,*,*>{
 }
 
 function* forceUseObjectWithAbility(char:Character, ability:AbilityType):Generator<*,Obj,*>{
-  let obj = yield *findObject((o:Obj) => {
+  let obj = yield *actions.findObject((o:Obj) => {
     if(o.character) return false;
     if(o.item) return false;
     return o.hasAbility(ability)

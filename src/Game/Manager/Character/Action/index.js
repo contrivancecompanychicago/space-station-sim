@@ -2,6 +2,7 @@
 // @flow
 import cook from './cook';
 import customer from './customer';
+import findObject from './findObject';
 import idle from './idle';
 import moveToBlock from './moveToBlock';
 import moveToBlockCenter from './moveToBlockCenter'
@@ -20,6 +21,7 @@ import wandertoAdjacentTile from './wandertoAdjacentTile';
 export default {
   cook,
   customer,
+  findObject,
   idle,
   moveToBlock,
   moveToBlockCenter,

@@ -1,12 +1,8 @@
 //@flow
 import engine from 'Game/engine';
 
-import pathToBlock from './pathToBlock';
-import pathToObjectWithAbility from './pathToObjectWithAbility';
-import idle from './idle';
-import wander from './wander'
-import placeItemOnBlock from './placeItemOnBlock'
-import moveToBlockCenter from './moveToBlockCenter'
+
+import actions from './index'
 
 // import {Obj} from 'Game/Data/Object';
 import Ability from 'Game/Data/Object/Ability'
@@ -23,9 +19,9 @@ export default function* cook(char:Character):Generator<*,*,*>{
   let gridManager = engine.getComponent('gridManager');
   let objectManager:ObjectManager = engine.getComponent('objectManager');
   let orderManager:OrderManager = engine.getComponent('orderManager');
-  let obj = yield *pathToObjectWithAbility(char, Ability.CHAIR);
+  let obj = yield *actions.pathToObjectWithAbility(char, Ability.CHAIR);
   if(obj)
-    yield *moveToBlockCenter(char, obj.block)
+    yield *actions.moveToBlockCenter(char, obj.block)
   //PLACE ORDER!
   orderManager.addOrder(new Order({customer:char}));
   while(!char.item){
@@ -36,11 +32,11 @@ export default function* cook(char:Character):Generator<*,*,*>{
   check.y++;
   obj = objectManager.getObjectAtBlock(check);
   if(obj){
-    yield *placeItemOnBlock(char, obj.block)
+    yield *actions.placeItemOnBlock(char, obj.block)
   }
 
-  yield *idle(char, 5);
-  yield *wander(char);
+  yield *actions.idle(char, 5);
+  yield *actions.wander(char);
   if(char.item)
     itemManager.removeItem(char.item);
   char.item = null;

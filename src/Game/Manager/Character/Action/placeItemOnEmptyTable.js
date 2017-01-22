@@ -6,8 +6,7 @@ import type ObjectManager from 'Game/Manager/Object'
 
 import type Obj from 'Game/Type/Object'
 
-import pathToBlock from './pathToBlock'
-import placeItemOnBlock from './placeItemOnBlock'
+import actions from './index'
 
 import Ability from 'Game/Data/Object/Ability'
 import type {AbilityType} from 'Game/Data/Object/Ability'
@@ -25,8 +24,8 @@ export default function* placeItemOnEmptyTable(char:Character, ability:AbilityTy
   if(objs.length>0){
     let targ:Obj = objs[0];
     targ.character = char;
-    yield *pathToBlock(char, targ.block);
-    yield *placeItemOnBlock(char, targ.block)
+    yield *actions.pathToBlock(char, targ.block);
+    yield *actions.placeItemOnBlock(char, targ.block)
     targ.character = null;
     targ.item = char.item
   }
