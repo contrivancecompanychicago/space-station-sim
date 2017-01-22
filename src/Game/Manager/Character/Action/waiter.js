@@ -18,19 +18,23 @@ export default function* waiter(char:Character):Generator<*,*,*>{
   let orderManager:OrderManager = engine.getComponent('orderManager');
 
 
-  yield *actions.wandertoAdjacentTile(char);
   // let objs = objectManager.getObjectsWithItemType('TEST')
 
   let orders = orderManager.state.filter((o) => {
     if(o.worker) return false;
     if(o.item) return true;
   });
-  if(orders.length==0) return;
+  if(orders.length==0) {
+    yield *actions.wandertoAdjacentTile(char);
+    return;
+  }
   let order = orders[0];
   order.worker = char
   // FLOWHACK //already checked it exists
   yield *actions.pathToBlock(char, order.item.position.block);
-
+  // FLOWHACK //already checked it exists
+  let obj = objectManager.getObjectAtBlock(order.item.position.block);
+  if(obj) obj.item = null;
   char.item = order.item;
   yield *actions.pathToBlock(char, order.customer.position.block);
   //give to customer
@@ -38,4 +42,5 @@ export default function* waiter(char:Character):Generator<*,*,*>{
   char.item = null;
   //finish order
   orderManager.state.splice(orderManager.state.indexOf(order), 1);
+  yield *actions.wandertoAdjacentTile(char);
 }

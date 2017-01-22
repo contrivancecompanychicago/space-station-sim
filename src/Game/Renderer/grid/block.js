@@ -35,6 +35,7 @@ export default function renderBlock(pos:Point, block:Grid, state:State, layer:Ob
       // layer.context.globalAlpha = 1;
       // return;
     }
+    // FLOWHACK
     let tint = Types[block.type].tint;
     if(tint){
       let a = layer.context.globalAlpha;

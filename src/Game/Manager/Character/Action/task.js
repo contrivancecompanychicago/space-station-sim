@@ -21,6 +21,6 @@ export default function* task(char:Character):Generator<*,*,*>{
   let gridManager = engine.getComponent('gridManager');
   //resolve task
 
-  gridManager.addNode(task.block.x, task.block.y, new Grid({type: task.grid}));
+  gridManager.addNode(task.block.x, task.block.y, new Grid({type: task.grid, rotation:0}));
   taskManager.finishTask(char.task);
 }

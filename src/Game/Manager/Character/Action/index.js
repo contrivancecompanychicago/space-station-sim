@@ -14,7 +14,7 @@ import placeItemOnEmptyTable from './placeItemOnEmptyTable'
 import task from './task';
 import waiter from './waiter';
 import wander from './wander';
-import wandertoAdjacentTile from './wandertoAdjacentTile';
+import wandertoAdjacentTile from './wanderToAdjacentTile';
 
 
 

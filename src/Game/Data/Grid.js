@@ -28,7 +28,8 @@ export type GridType =
 
 export type GridDataType = {
   label:string,
-  weight:number
+  weight:number,
+  image:any,
 }
 
 const Gridz:{[id:GridType]:GridDataType} = {
