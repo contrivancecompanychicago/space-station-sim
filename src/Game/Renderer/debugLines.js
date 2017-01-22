@@ -5,6 +5,10 @@ import {keys} from 'lodash';
 import type {State} from 'Game/state'
 import type Layer from 'Game/Renderer/Layer'
 export default function renderLines(state:State, layer:Layer){
+
+  layer.context.lineWidth = 1;
+
+  layer.context.strokeStyle = '#ff0000';
   keys(state.Character).forEach((key) => {
     //debug
     let char = state.Character[key];
@@ -15,13 +19,12 @@ export default function renderLines(state:State, layer:Layer){
       layer.context.beginPath();
       layer.context.moveTo(offset.x, offset.y);
       layer.context.lineTo(itemoffset.x, itemoffset.y);
-      layer.context.lineWidth = 5;
-      layer.context.strokeStyle = '#ff0000';
       layer.context.stroke();
     }
   });
 
 
+  layer.context.strokeStyle = '#ffff00';
   keys(state.Object).forEach((key) => {
     let obj = state.Object[key];
     if(obj.character){
@@ -31,12 +34,11 @@ export default function renderLines(state:State, layer:Layer){
       layer.context.beginPath();
       layer.context.moveTo(offset.x, offset.y);
       layer.context.lineTo(charoffset.x, charoffset.y);
-      layer.context.lineWidth = 5;
-      layer.context.strokeStyle = '#ffff00';
       layer.context.stroke();
     }
 
   });
+  layer.context.strokeStyle = '#00ff00';
   state.Order.forEach((order) => {
     if(order.worker){
       const offset = worldToScreen(order.customer.position, state);
@@ -45,8 +47,6 @@ export default function renderLines(state:State, layer:Layer){
       layer.context.beginPath();
       layer.context.moveTo(offset.x, offset.y);
       layer.context.lineTo(charoffset.x, charoffset.y);
-      layer.context.lineWidth = 5;
-      layer.context.strokeStyle = '#00ff00';
       layer.context.stroke();
 
     }
@@ -58,8 +58,6 @@ export default function renderLines(state:State, layer:Layer){
       layer.context.beginPath();
       layer.context.moveTo(offset.x, offset.y);
       layer.context.lineTo(charoffset.x, charoffset.y);
-      layer.context.lineWidth = 5;
-      layer.context.strokeStyle = '#00ff00';
       layer.context.stroke();
 
     }
