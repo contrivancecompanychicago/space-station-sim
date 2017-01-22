@@ -1,0 +1,28 @@
+// @flow
+import config from 'Game/config';
+import time from 'Game/time';
+
+import type Character from 'Game/Type/Character';
+import type Block from 'Game/Block'
+
+export default function* moveToBlockCenter(char:Character, block:Block):Generator<*,*,*>{
+
+  let target = block.center;
+  while((char.position.x !== target.x) && (char.position.y !== target.y)){
+    let amount = time.deltaTime * config.character.speed;
+    let dir = Math.atan2(target.y - char.position.y, target.x - char.position.x);
+
+    let dist = Math.sqrt(Math.pow(target.y - char.position.y, 2)+Math.pow(target.x - char.position.x, 2))
+    if(amount>dist){
+      //we're there
+      char.position.x = target.x
+      char.position.y = target.y
+    }else{
+      char.position.x += Math.cos(dir)*amount;
+      char.position.y += Math.sin(dir)*amount;
+    }
+
+    yield;
+  }
+
+}

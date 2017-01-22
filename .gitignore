@@ -1,7 +1,6 @@
 bower_components
 node_modules
 coverage
-*.js
 !karma.conf.js
 dist
 temp
