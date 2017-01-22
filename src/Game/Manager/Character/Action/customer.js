@@ -19,23 +19,28 @@ export default function* cook(char:Character):Generator<*,*,*>{
   let gridManager = engine.getComponent('gridManager');
   let objectManager:ObjectManager = engine.getComponent('objectManager');
   let orderManager:OrderManager = engine.getComponent('orderManager');
-  let obj = yield *actions.pathToObjectWithAbility(char, Ability.CHAIR);
-  if(obj)
-    yield *actions.moveToBlockCenter(char, obj.block)
-  //PLACE ORDER!
-  orderManager.addOrder(new Order({customer:char}));
-  while(!char.item){
-    yield; //wait til I get my shit.
-  }
-  //check for table;
-  let check = char.position.block
-  check.y++;
-  obj = objectManager.getObjectAtBlock(check);
-  if(obj){
-    yield *actions.placeItemOnBlock(char, obj.block)
-  }
+  let chair = yield *actions.pathToObjectWithAbility(char, Ability.CHAIR);
+  if(chair){
+    chair.character = char
+    yield *actions.moveToBlockCenter(char, chair.block)
 
-  yield *actions.idle(char, 5);
+    //PLACE ORDER!
+    orderManager.addOrder(new Order({customer:char}));
+    while(!char.item){
+      yield; //wait til I get my shit.
+    }
+    chair.character = null;
+
+    //check for table;
+    let check = char.position.block
+    check.y++;
+    let table = objectManager.getObjectAtBlock(check);
+    if(table){
+      yield *actions.placeItemOnBlock(char, table.block)
+    }
+
+    yield *actions.idle(char, 5);
+  }
   yield *actions.wander(char);
   if(char.item)
     itemManager.removeItem(char.item);
