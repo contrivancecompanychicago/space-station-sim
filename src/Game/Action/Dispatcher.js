@@ -25,6 +25,8 @@ import ObjectData from 'Game/Data/Object'
 import Proposer from 'Game/Action/Proposer';
 const proposer = new Proposer();
 
+import type {ObjectState} from 'Game/state'
+
 export default class Dispatcher extends Component{
   state:Object;
   constructor(state:Object){
@@ -32,6 +34,24 @@ export default class Dispatcher extends Component{
     this.type = 'actionDispatcher';
     this.state = state;
   }
+  objects(objects:ObjectState){
+    extend(this.state.Object, objects)
+    keys(objects).forEach((key) => {
+      let obj = objects[key];
+
+      let type = ObjectData[obj.type]
+
+      let coord = parseKey(key)
+      for(let x = 0; x<type.width; x++){
+        for(let y = 0; y<type.height; y++){
+          let key = makeKey(coord.x+x, coord.y+y)
+          if(this.state.Grid[key])
+            this.state.Grid[key].object = key;
+        }
+      }
+    })
+  }
+
   userAction(selection:Object){
     // console.log("something happened");
     let sel = selection.rect.blockRect();
@@ -49,23 +69,8 @@ export default class Dispatcher extends Component{
         // let obj = new Objekt({block:selection.end.block, type:this.state.UI.object});
         // objectManager.addObject(obj);
         let proposal = proposer.propose(this.state);
-        extend(this.state.Object, proposal.Object)
-        keys(proposal.Object).forEach((key) => {
-          let obj = proposal.Object[key];
+        this.objects(proposal.Object)
 
-          let type = ObjectData[obj.type]
-
-          let coord = parseKey(key)
-          for(let x = 0; x<type.width; x++){
-            for(let y = 0; y<type.height; y++){
-              let key = makeKey(coord.x+x, coord.y+y)
-              if(this.state.Grid[key])
-                this.state.Grid[key].object = key;
-            }
-          }
-
-
-        })
 
         break;
       case Mode.ITEM:
