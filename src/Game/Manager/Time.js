@@ -27,7 +27,8 @@ export default class Time {
         //user probably changed tabs
         time.deltaTime = 0;
       }
-      time.deltaTime *= Speed[ui.state.speed].speed;
+      let speed = Speed[ui.state.speed] || {speed:1}
+      time.deltaTime *= speed.speed;
       this.deltaTime = time.deltaTime;
 
       this.state.currentTime += this.deltaTime * 200
