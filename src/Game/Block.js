@@ -7,7 +7,7 @@ import Rect from 'Game/Rect';
 export default class Block{
   x:number;
   y:number
-  constructor(pos:Object){
+  constructor(pos:{x:number, y:number}){
     this.x = pos.x;
     this.y = pos.y;
     if(arguments[1]){

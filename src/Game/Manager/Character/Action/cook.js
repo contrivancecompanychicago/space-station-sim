@@ -37,7 +37,7 @@ export default function* cook(char:Character):Generator<*,*,*>{
   //   return;
   // }
   // yield *idle(char, 1);
-
+  yield *actions.wandertoAdjacentTile(char);
   //FIND ORDER
   let orders = orderManager.state.filter((o)=>{
     if(o.worker) return false;
