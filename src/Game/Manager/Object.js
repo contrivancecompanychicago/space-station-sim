@@ -11,6 +11,7 @@ import ObjectData from 'Game/Data/Object'
 
 import type {ObjectState} from 'Game/state'
 import type {ItemType} from 'Game/Data/Item'
+import type Block from 'Game/Block'
 
 export default class ObjectManager{
   type:string;
@@ -25,6 +26,9 @@ export default class ObjectManager{
     // obj = Factory.create(obj);
     this.state[makeKey(obj.block.x,obj.block.y)] = obj;
 
+  }
+  getObjectAtBlock(block:Block):?Obj{
+    return this.state[block.key];
   }
   getObjects():Array<Obj>{
     return values(this.state);
