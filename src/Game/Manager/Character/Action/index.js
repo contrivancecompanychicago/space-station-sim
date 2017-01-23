@@ -1,6 +1,7 @@
 
 // @flow
 import cook from './cook';
+import serveOrder from './serveOrder';
 import cookPizza from './cookPizza';
 import customer from './customer';
 import findObject from './findObject';
@@ -22,6 +23,7 @@ import forceUseObjectWithAbility from './forceUseObjectWithAbility';
 
 export default {
   cook,
+  serveOrder,
   cookPizza,
   customer,
   findObject,
