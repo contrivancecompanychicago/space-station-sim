@@ -3504,8 +3504,8 @@
       "dependencies": {
         "fbjs": {
           "version": "0.8.4",
-          "from": "http://npm.9msn.net:4873/fbjs/-/fbjs-0.8.4.tgz",
-          "resolved": "http://npm.9msn.net:4873/fbjs/-/fbjs-0.8.4.tgz",
+          "from": "http://registry.npmjs.org:4873/fbjs/-/fbjs-0.8.4.tgz",
+          "resolved": "http://registry.npmjs.org:4873/fbjs/-/fbjs-0.8.4.tgz",
           "dependencies": {
             "immutable": {
               "version": "3.8.1",
