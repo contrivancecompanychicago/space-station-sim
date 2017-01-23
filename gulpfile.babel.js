@@ -29,7 +29,7 @@ gulp.task('linttests', () => {
     .pipe(eslint.format());
 });
 
-gulp.task('webpack', ['lint'],  () => {
+gulp.task('webpack', [],  () => {
   return gulp.src('src/imagine.js')
     .pipe(webpack(require('./webpack.config.js')))
     .pipe(gulp.dest('dist/'));

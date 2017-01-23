@@ -2,7 +2,7 @@
   "name": "space-station-sim",
   "version": "0.0.0",
   "description": "space station sim game",
-  "main": "server/server.coffee",
+  "main": "server/server.js",
   "scripts": {
     "test": "karma start",
     "dev": "webpack-dev-server --hot --inline",
