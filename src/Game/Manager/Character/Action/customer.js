@@ -33,7 +33,12 @@ export default function* cook(char:Character):Generator<*,*,*>{
     let coffee = new Order({customer:char, type:'COFFEE'})
     orders.push(coffee)
     orderManager.addOrder(coffee);
-    while(!char.item){
+    let numFulfilled = 0;
+    while(numFulfilled !== orders.length){
+      numFulfilled = 0;
+      orders.forEach((o) => {
+        if(o.status === 'FULFILLED') numFulfilled++;
+      })
       yield; //wait til I get my shit.
     }
     chair.character = null;
