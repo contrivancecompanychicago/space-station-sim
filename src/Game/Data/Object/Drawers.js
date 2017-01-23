@@ -11,7 +11,7 @@ const obj:ObjectDataType = {
   height: 1,
   requirements: {
   },
-  abilities: [Ability.DINE_TABLE],
+  abilities: [Ability.MAKE_COFFEE],
 }
 
 export default obj
