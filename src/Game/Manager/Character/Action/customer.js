@@ -25,7 +25,11 @@ export default function* cook(char:Character):Generator<*,*,*>{
     yield *actions.moveToBlockCenter(char, chair.block)
 
     //PLACE ORDER!
-    orderManager.addOrder(new Order({customer:char}));
+    let orders:Array<Order> = []
+
+    let pizza = new Order({customer:char, type:'PIZZA'})
+    orders.push(pizza)
+    orderManager.addOrder(pizza);
     while(!char.item){
       yield; //wait til I get my shit.
     }

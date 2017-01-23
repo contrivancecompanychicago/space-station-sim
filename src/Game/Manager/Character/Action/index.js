@@ -1,6 +1,7 @@
 
 // @flow
 import cook from './cook';
+import cookPizza from './cookPizza';
 import customer from './customer';
 import findObject from './findObject';
 import idle from './idle';
@@ -15,11 +16,13 @@ import task from './task';
 import waiter from './waiter';
 import wander from './wander';
 import wandertoAdjacentTile from './wanderToAdjacentTile';
+import forceUseObjectWithAbility from './forceUseObjectWithAbility';
 
 
 
 export default {
   cook,
+  cookPizza,
   customer,
   findObject,
   idle,
@@ -34,4 +37,5 @@ export default {
   waiter,
   wander,
   wandertoAdjacentTile,
+  forceUseObjectWithAbility,
 };
