@@ -17,8 +17,8 @@ const Items:{[id:ItemType]:ItemDataType} = {
   'PIZZAUNCOOKED': {label: 'ingredients', image: require('./Item/pizzauncooked.png')},
   'PIZZA': {label: 'ingredients', image: require('./Item/pizza.png')},
   'PIZZADONE': {label: 'ingredients', image: require('./Item/pizza.png')},
-  'COFFEE': {label: 'ingredients', image: require('./Item/pizza.png')},
-  'COFFEEDONE': {label: 'ingredients', image: require('./Item/pizza.png')},
+  'COFFEE': {label: 'ingredients', image: require('./Item/coffee.png')},
+  'COFFEEDONE': {label: 'ingredients', image: require('./Item/coffee_empty.png')},
 };
 
 export default Items;
