@@ -32,13 +32,13 @@
   },
   "homepage": "https://github.com/digijin/space-station-sim",
   "devDependencies": {
+  },
+  "dependencies": {
     "babel-plugin-transform-flow-strip-types": "^6.21.0",
     "flow-bin": "^0.37.4",
     "flow-watch": "^1.1.0",
     "karma-sourcemap-loader": "^0.3.7",
-    "react-addons-test-utils": "^15.1.0"
-  },
-  "dependencies": {
+    "react-addons-test-utils": "^15.1.0",
     "babel-core": "^6.7.6",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-class-properties": "^6.9.1",
