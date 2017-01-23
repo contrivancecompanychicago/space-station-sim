@@ -49,7 +49,7 @@ const Objs:{[id:ObjectType]:ObjectDataType} = {};
 
 // Objs[Bed.id] = Bed;
 // Objs[Dock.id] = Dock;
-// Objs[Drawers.id] = Drawers;
+Objs[Drawers.id] = Drawers;
 Objs[Test.id] = Test;
 Objs[Oven.id] = Oven;
 Objs[Fridge.id] = Fridge;

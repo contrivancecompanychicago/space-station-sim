@@ -3,6 +3,7 @@
 import cook from './cook';
 import serveOrder from './serveOrder';
 import cookPizza from './cookPizza';
+import makeCoffee from './makeCoffee';
 import customer from './customer';
 import findObject from './findObject';
 import idle from './idle';
@@ -25,6 +26,7 @@ export default {
   cook,
   serveOrder,
   cookPizza,
+  makeCoffee,
   customer,
   findObject,
   idle,

@@ -1,6 +1,6 @@
 // @flow
 
-export type OrderStatusType = 'PLACED'|'STARTED'|'COOKED'|'FULFILLED'
+export type OrderStatusType = 'ORDERED'|'STARTED'|'COOKED'|'FULFILLED'
 
 import type {ItemType} from 'Game/Data/Item'
 
@@ -15,6 +15,6 @@ export default class Order{
   type: ItemType;
   constructor(params:{customer:Character, type:ItemType}){
     defaults(this, params);
-    if(!this.status) this.status = 'PLACED'
+    if(!this.status) this.status = 'ORDERED'
   }
 }

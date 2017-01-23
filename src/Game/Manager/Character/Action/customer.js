@@ -30,6 +30,9 @@ export default function* cook(char:Character):Generator<*,*,*>{
     let pizza = new Order({customer:char, type:'PIZZA'})
     orders.push(pizza)
     orderManager.addOrder(pizza);
+    let coffee = new Order({customer:char, type:'COFFEE'})
+    orders.push(coffee)
+    orderManager.addOrder(coffee);
     while(!char.item){
       yield; //wait til I get my shit.
     }

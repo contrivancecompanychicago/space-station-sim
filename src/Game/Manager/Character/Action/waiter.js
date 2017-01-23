@@ -20,9 +20,23 @@ export default function* waiter(char:Character):Generator<*,*,*>{
 
   // let objs = objectManager.getObjectsWithItemType('TEST')
 
+  //LOOK FOR COFFEE ORDERS
+  let coffeeOrders = orderManager.state.filter((o) => {
+    return o.type==='COFFEE'
+      && o.status === 'ORDERED'
+      && o.worker === undefined
+  })
+  // console.log(coffeeOrders.length, 'coffee orders');
+  if(coffeeOrders.length > 0){
+    yield *actions.makeCoffee(char, coffeeOrders[0])
+  }
+
+  //LOOK FOR COOKED PIZZAS
   let orders = orderManager.state.filter((o) => {
-    if(o.worker) return false;
-    if(o.item) return true;
+    // if(o.worker) return false;
+    // if(o.item && o.type === 'PIZZA') return true;
+    return o.worker == undefined
+      && o.status === 'COOKED'
   });
   if(orders.length==0) {
     yield *actions.wandertoAdjacentTile(char);
