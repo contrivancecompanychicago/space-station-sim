@@ -33,6 +33,8 @@ export default function* placeItemOnEmptyTable(char:Character, ability:AbilityTy
       char.removeItem(item)
 
     }
+    // char.item.forEach((item) => {})
+
   }
   // objs.forEach((obj) => {
   //   //find an empty one
