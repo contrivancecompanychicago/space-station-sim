@@ -34,7 +34,7 @@ export default function loadGame(engine:any){
   let chars = [
     {x:11, y:8, type:'COOK'},
     {x:18, y:8, type:'WAITER'},
-    {x:18, y:18, type:'CUSTOMER'},
+    {x:18, y:12, type:'CUSTOMER'},
   ]
   chars.forEach((c)=> {
     // console.log("ding");

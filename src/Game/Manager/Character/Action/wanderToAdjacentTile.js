@@ -40,7 +40,7 @@ export default function* wanderToAdjacentTile(char:Character):Generator<*,*,*>{
     // console.log(grid);
     yield *actions.pathToBlock(char, grid)
     yield *actions.moveToBlockCenter(char, grid)
-    yield *actions.idle(char, 2)
+    // yield *actions.idle(char, 2)
   }
 
 }
