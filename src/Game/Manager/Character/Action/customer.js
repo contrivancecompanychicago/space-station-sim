@@ -54,9 +54,12 @@ export default function* cook(char:Character):Generator<*,*,*>{
     yield *actions.idle(char, 5);
   }
   yield *actions.wander(char);
-  if(char.item)
-    itemManager.removeItem(char.item);
-  char.item = null;
+
+  //WIPE CLEAN - hacky
+  char.item.forEach((item) => {
+    itemManager.removeItem(item);
+    char.removeItem(item)
+  })
 
 
 }

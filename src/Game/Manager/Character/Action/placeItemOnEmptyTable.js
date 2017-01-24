@@ -22,12 +22,17 @@ export default function* placeItemOnEmptyTable(char:Character, ability:AbilityTy
   })
   // console.log(objs);
   if(objs.length>0){
-    let targ:Obj = objs[0];
-    targ.character = char;
-    yield *actions.pathToBlock(char, targ.block);
-    yield *actions.placeItemOnBlock(char, targ.block)
-    targ.character = null;
-    targ.item = char.item
+    let targetObject:Obj = objs[0];
+    targetObject.character = char;
+    yield *actions.pathToBlock(char, targetObject.block);
+    yield *actions.placeItemOnBlock(char, targetObject.block)
+    targetObject.character = null;
+    if(char.item.length>0){
+      let item = char.item[0]
+      targetObject.item = item
+      char.removeItem(item)
+
+    }
   }
   // objs.forEach((obj) => {
   //   //find an empty one
@@ -37,6 +42,6 @@ export default function* placeItemOnEmptyTable(char:Character, ability:AbilityTy
   // })
 
   //drop item
-  char.item = null;
+  // char.item = null;
 
 }

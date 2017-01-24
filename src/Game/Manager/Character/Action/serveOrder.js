@@ -11,18 +11,20 @@ export default function* serveOrder(char:Character, order:Order):Generator<*,*,*
   let objectManager:ObjectManager = engine.getComponent('objectManager');
   let orderManager:OrderManager = engine.getComponent('orderManager');
   order.worker = char
-  if(order.item){
-    let block = order.item.position.block
+  if(order.item != undefined){
+    let item = order.item;
+    let block = item.position.block
     let obj = objectManager.getObjectAtBlock(block);
     if(obj) obj.character = char;
     yield *actions.pathToBlock(char, block);
     if(obj) obj.character = null;
     if(obj) obj.item = null;
-    char.item = order.item;
+
+    char.addItem(item)
     yield *actions.pathToBlock(char, order.customer.position.block);
     //give to customer
-    order.customer.item = char.item;
-    char.item = null;
+    order.customer.addItem(item);
+    char.removeItem(item)
     //finish order
     order.status = 'FULFILLED'
     orderManager.state.splice(orderManager.state.indexOf(order), 1);

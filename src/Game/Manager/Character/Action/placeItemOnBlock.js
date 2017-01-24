@@ -8,8 +8,8 @@ import type Block from 'Game/Block'
 export default function* placeItemOnBlock(char:Character, block:Block):Generator<*,*,*>{
 
   let target = block.center;
-  if(char.item){
-    let item = char.item
+  if(char.item.length>0){
+    let item = char.item[0]
     let dist = distance(target, item.position);
     let amount = 0;
     while(dist>amount){

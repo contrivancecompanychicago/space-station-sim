@@ -19,7 +19,8 @@ export default function* cookPizza(char:Character, order:Order):Generator<*,*,*>
   let item = new Item({position: obj.block.center, type:'BASE'})
   itemManager.addItem(item);
   order.item = item;
-  char.item = item;
+  // char.item = item;
+  char.addItem(item)
   yield *actions.forceUseObjectWithAbility(char, Ability.PREP_TABLE)
   yield *actions.idle(char, 1);
   item.type = 'PIZZAUNCOOKED'
@@ -27,8 +28,9 @@ export default function* cookPizza(char:Character, order:Order):Generator<*,*,*>
   yield *actions.idle(char, 2);
   item.type = 'PIZZA'
   obj = yield *actions.forceUseObjectWithAbility(char, Ability.SERVE_TABLE)
-  obj.item = char.item;
-  char.item = null;
+  obj.item = item;
+  // char.item = null;
+  char.removeItem(item);
   order.status = "COOKED"
   order.worker = null;
 

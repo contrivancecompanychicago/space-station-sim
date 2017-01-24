@@ -19,11 +19,12 @@ export default function* makeCoffee(char:Character, order:Order):Generator<*,*,*
   let item = new Item({position: obj.block.center, type:'COFFEE'})
   itemManager.addItem(item);
   order.item = item;
-  char.item = item;
+  // char.item = item;
+  char.addItem(item)
   yield *actions.idle(char, 2);
   obj = yield *actions.forceUseObjectWithAbility(char, Ability.SERVE_TABLE)
-  obj.item = char.item;
-  char.item = null;
+  obj.item = item;
+  char.removeItem(item)
   order.status = "COOKED"
   order.worker = null;
 

@@ -13,14 +13,16 @@ export default function renderLines(state:State, layer:Layer){
     //debug
     let char = state.Character[key];
 
-    if(char.item){
-      const itemoffset = worldToScreen(char.item.position, state);
+    char.item.forEach((item) => {
+      const itemoffset = worldToScreen(item.position, state);
       const offset = worldToScreen(char.position, state);
       layer.context.beginPath();
       layer.context.moveTo(offset.x, offset.y);
       layer.context.lineTo(itemoffset.x, itemoffset.y);
       layer.context.stroke();
-    }
+
+    })
+
   });
 
 
