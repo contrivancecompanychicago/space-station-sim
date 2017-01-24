@@ -33,5 +33,12 @@ export default class Layer {
     this.context.fillStyle = "green";
     this.context.fill();
   }
+  drawLine(from:{x:number, y:number}, to:{x:number, y:number}){
+    this.context.beginPath();
+    this.context.moveTo(from.x, from.y);
+    this.context.lineTo(to.x, to.y);
+    this.context.stroke();
+
+  }
 
 }
