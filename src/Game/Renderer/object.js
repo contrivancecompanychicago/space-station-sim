@@ -5,6 +5,7 @@ import {worldToScreen, pointToBlock, screenToWorld, blockToPoint, makeKey, parse
 
 import Point from 'Game/Point';
 import Rect from 'Game/Rect';
+import type Block from 'Game/Block';
 
 import config from 'Game/config';
 const blockWidth = config.grid.width;
@@ -24,11 +25,17 @@ export default function renderObject(state:State, layer:Layer){
     }
   });
 }
-export function renderBlock(block:Object, object:Obj, state:State, layer:Layer){
+export function renderBlock(block:Block, object:Obj, state:State, layer:Layer){
 
   let t = Types[object.type];
   let o = block.rect.renderParams;
 
   let i = t.image;
-  layer.context.drawImage(i, 0, 0, i.width, i.height, o.x, o.y, o.w* t.width, o.h*t.height);
+  let center = {x: o.x+(o.w/2), y: o.y+ (o.h/2)}
+  let rot:number = 90*object.rotation*Math.PI/180
+  layer.context.translate(center.x, center.y)
+  layer.context.rotate(rot);
+  layer.context.drawImage(i, 0, 0, i.width, i.height, -o.w/2, -o.h/2, o.w* t.width, o.h*t.height);
+  layer.context.rotate(-rot);
+  layer.context.translate(-center.x, -center.y)
 }

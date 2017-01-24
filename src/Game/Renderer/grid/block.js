@@ -22,16 +22,16 @@ export default function renderBlock(pos:Point, block:Grid, state:State, layer:Ob
     let i = Types[block.type].image;
     if(i){
       // layer.context.globalAlpha = 0.3;
-      let diff:Object = {x: o.x+(o.w/2), y: o.y+ (o.h/2)}
+      let center = {x: o.x+(o.w/2), y: o.y+ (o.h/2)}
       let rot:number = 90*block.rotation*Math.PI/180
-      layer.context.translate(diff.x, diff.y)
+      layer.context.translate(center.x, center.y)
       layer.context.rotate(rot);
 
       layer.context.drawImage(i, 0, 0, i.width, i.height, -o.w/2, -o.h/2, o.w, o.h);
 
 
       layer.context.rotate(-rot);
-      layer.context.translate(-diff.x, -diff.y)
+      layer.context.translate(-center.x, -center.y)
       // layer.context.globalAlpha = 1;
       // return;
     }

@@ -60,7 +60,7 @@ export default class Proposer{
           state.View.selection.rect.blocks.forEach((block) => {
             if(!blockHasObject(proposal, block)){
               let key = makeKey(block.x, block.y);
-              proposal.Object[key] = new Obj({type:state.UI.object, block:block});
+              proposal.Object[key] = new Obj({type:state.UI.object, block:block, rotation: state.UI.rotation});
             }
           });
         break;
@@ -76,7 +76,7 @@ export default class Proposer{
           break;
           case Mode.OBJECT:
             proposal.Object = {};
-            proposal.Object[state.View.mousePosition.block.key] = {type:state.UI.object};
+            proposal.Object[state.View.mousePosition.block.key] = {type:state.UI.object, rotation: state.UI.rotation};
           break;
         }
     }

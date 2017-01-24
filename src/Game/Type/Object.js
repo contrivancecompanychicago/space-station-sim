@@ -18,8 +18,10 @@ export default class Obj{
   type: ObjectType;
   character: ?Character
   item: ?Item
+  rotation: number
   constructor(params:{block:Block, type:ObjectType}){
     defaults(this, params);
+    if(!this.rotation) this.rotation = 0;
   }
   getData():ObjectDataType{
     return ObjectData[this.type]
