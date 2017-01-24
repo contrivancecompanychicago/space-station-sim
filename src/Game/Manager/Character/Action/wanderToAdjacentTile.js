@@ -9,6 +9,8 @@ import type ObjectManager from 'Game/Manager/Object'
 import Block from 'Game/Block'
 
 export default function* wanderToAdjacentTile(char:Character):Generator<*,*,*>{
+  //most of the time do nothing
+
   let gridManager:GridManager = engine.getComponent('gridManager');
   let objectManager:ObjectManager = engine.getComponent('objectManager');
   let here = char.position.block;

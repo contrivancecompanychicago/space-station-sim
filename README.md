@@ -18,11 +18,10 @@ webpack --watch
 
 
 todo:
-strip Dispatcher
-make proposer come up with tasks
-make base Type class
-make base Manager class (?any benefit)
-move make managers use factories
+make banished optional screens
+ - event log
+ - order list
+ -
 
 
 some art from opengameart.com:

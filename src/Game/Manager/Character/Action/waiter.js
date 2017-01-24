@@ -39,10 +39,14 @@ export default function* waiter(char:Character):Generator<*,*,*>{
       && o.status === 'COOKED'
   });
   if(orders.length==0) {
-    yield *actions.wandertoAdjacentTile(char);
+
+    if(Math.random()<0.01)
+      yield *actions.wandertoAdjacentTile(char);
     return;
+  }else{
+    let order = orders[0];
+    yield *actions.serveOrder(char, order);
+
   }
-  let order = orders[0];
-  yield *actions.serveOrder(char, order);
 
 }

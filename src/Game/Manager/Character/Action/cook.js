@@ -37,7 +37,8 @@ export default function* cook(char:Character):Generator<*,*,*>{
     if(o.type === 'PIZZA') return true;
   })
   if(orders.length==0){
-    yield *actions.wandertoAdjacentTile(char);
+    if(Math.random()<0.01)
+      yield *actions.wandertoAdjacentTile(char);
     return;
   }
   let order = orders[0];
