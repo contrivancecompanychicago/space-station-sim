@@ -56,10 +56,19 @@ export default function* cook(char:Character):Generator<*,*,*>{
   yield *actions.wander(char);
 
   //WIPE CLEAN - hacky
-  char.item.forEach((item) => {
+  // console.log(char.item);
+  // char.item.forEach((item) => {
+  //   char.removeItem(item)
+  //   itemManager.removeItem(item);
+  //   console.log("remove", item);
+  // })
+  // console.log(char.item);
+  while(char.item.length>0){
+    let item = char.item[0];
     itemManager.removeItem(item);
-    char.removeItem(item)
-  })
+    char.removeItem(item);
+  }
+
 
 
 }
