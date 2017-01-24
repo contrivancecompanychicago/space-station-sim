@@ -1,20 +1,8 @@
-# space sim
-
- * Game
-  * character
-   * layer
-   * person
-     * robot
-  * Item
-   * Layer
-  * grid
-   * block
+# sim
 
 ## to dev
 
-gulp nodemon
-webpack --watch
-
+npm run test
 
 
 todo:

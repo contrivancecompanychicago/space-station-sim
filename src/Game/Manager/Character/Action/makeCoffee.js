@@ -22,9 +22,10 @@ export default function* makeCoffee(char:Character, order:Order):Generator<*,*,*
   // char.item = item;
   char.addItem(item)
   yield *actions.idle(char, 2);
-  obj = yield *actions.forceUseObjectWithAbility(char, Ability.SERVE_TABLE)
-  obj.item = item;
-  char.removeItem(item)
+
+  // obj = yield *actions.forceUseObjectWithAbility(char, Ability.SERVE_TABLE)
+  // obj.item = item;
+  // char.removeItem(item)
   order.status = "COOKED"
   order.worker = null;
 

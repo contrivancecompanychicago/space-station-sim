@@ -13,14 +13,16 @@ export default function* serveOrder(char:Character, order:Order):Generator<*,*,*
   order.worker = char
   if(order.item != undefined){
     let item = order.item;
-    let block = item.position.block
-    let obj = objectManager.getObjectAtBlock(block);
-    if(obj) obj.character = char;
-    yield *actions.pathToBlock(char, block);
-    if(obj) obj.character = null;
-    if(obj) obj.item = null;
+    if(!char.hasItem(item)){
+      let block = item.position.block
+      let obj = objectManager.getObjectAtBlock(block);
+      if(obj) obj.character = char;
+      yield *actions.pathToBlock(char, block);
+      if(obj) obj.character = null;
+      if(obj) obj.item = null;
+      char.addItem(item)
+    }
 
-    char.addItem(item)
     yield *actions.pathToBlock(char, order.customer.position.block);
     //give to customer
     order.customer.addItem(item);
