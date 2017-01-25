@@ -10,6 +10,17 @@ make banished optional screens
  - event log
  - order list
  -
+customer waiting actions
+ - put shit on the table
+
+ money
+ hiring staff
+staff competancy
+fridges contain food
+food ordering
+food delivery
+
+
 
 
 some art from opengameart.com:
