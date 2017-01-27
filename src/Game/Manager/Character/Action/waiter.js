@@ -10,12 +10,14 @@ import type Character from 'Game/Type/Character'
 import type ObjectManager from 'Game/Manager/Object'
 import type OrderManager from 'Game/Manager/Order'
 
-
+import {getLogManager, getGridManager, getObjectManager, getItemManager, getOrderManager} from 'Game/engine'
 
 export default function* waiter(char:Character):Generator<*,*,*>{
-  let gridManager = engine.getComponent('gridManager');
-  let objectManager:ObjectManager = engine.getComponent('objectManager');
-  let orderManager:OrderManager = engine.getComponent('orderManager');
+  let gridManager = getGridManager()
+  let objectManager = getObjectManager()
+  let itemManager = getItemManager()
+  let orderManager = getOrderManager()
+  let logManager = getLogManager()
 
 
   // let objs = objectManager.getObjectsWithItemType('TEST')
@@ -28,6 +30,10 @@ export default function* waiter(char:Character):Generator<*,*,*>{
   })
   // console.log(coffeeOrders.length, 'coffee orders');
   if(coffeeOrders.length > 0){
+
+    logManager.addLog({
+      message:char.toString()+' making coffee for '+coffeeOrders[0].customer.toString(),
+      type:'EVENT'})
     yield *actions.makeCoffee(char, coffeeOrders[0])
   }
 
@@ -45,6 +51,9 @@ export default function* waiter(char:Character):Generator<*,*,*>{
     return;
   }else{
     let order = orders[0];
+    logManager.addLog({
+      message:char.toString()+' serving to '+order.customer.toString(),
+      type:'EVENT'})
     yield *actions.serveOrder(char, order);
 
   }

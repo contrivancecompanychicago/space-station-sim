@@ -12,6 +12,7 @@ import Objekt from './UI/Object';
 
 import OrderPanel from './UI/Panel/Order';
 import TimePanel from './UI/Panel/Time';
+import LogPanel from './UI/Panel/Log';
 
 class UI extends React.Component {
   render() {
@@ -38,6 +39,7 @@ class UI extends React.Component {
       {active}
       <OrderPanel />
       <TimePanel />
+      <LogPanel />
     </div>;
   }
 }

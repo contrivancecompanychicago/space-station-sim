@@ -17,6 +17,5 @@ export default class LogManager{
     if(this.log.length>20){
       this.log.shift();
     }
-    console.log(this.log);
   }
 }
