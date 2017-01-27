@@ -10,6 +10,8 @@ import Task from './UI/Task';
 import Speed from './UI/Speed';
 import Objekt from './UI/Object';
 
+import OrderPanel from './UI/Panel/Order';
+
 class UI extends React.Component {
   render() {
     //  <Task />
@@ -33,6 +35,7 @@ class UI extends React.Component {
     return <div className="ui">
       <Mode />
       {active}
+      <OrderPanel />
     </div>;
   }
 }
