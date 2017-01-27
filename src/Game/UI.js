@@ -11,6 +11,7 @@ import Speed from './UI/Speed';
 import Objekt from './UI/Object';
 
 import OrderPanel from './UI/Panel/Order';
+import TimePanel from './UI/Panel/Time';
 
 class UI extends React.Component {
   render() {
@@ -36,6 +37,7 @@ class UI extends React.Component {
       <Mode />
       {active}
       <OrderPanel />
+      <TimePanel />
     </div>;
   }
 }

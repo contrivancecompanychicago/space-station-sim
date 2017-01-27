@@ -16,7 +16,7 @@ export default class Time {
     state:TimeState;
     constructor(state:TimeState, time:Object){
       this.state = state
-      this.type = 'time';
+      this.type = 'timeManager';
       this.time = time;
       this.deltaTime = 0;
     }
