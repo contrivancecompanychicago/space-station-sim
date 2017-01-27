@@ -6,10 +6,11 @@ npm run test
 
 
 todo:
-make banished optional screens
+make banished-style optional screens
  - event log
- - order list
- -
+
+panel toggles
+
 customer waiting actions
  - put shit on the table
 
@@ -29,6 +30,8 @@ rotating objects
   - have a lot more data about their access locations and other shit
 
 object weight
+
+move rotation drawing into layer
 
 
 some art from opengameart.com:
