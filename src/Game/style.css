@@ -1,8 +1,14 @@
+@font-face {
+    font-family: Freshman;
+    src: url(Freshman.ttf);
+}
+
+
 body, html {
   margin: 0;
   padding: 0;
   background: #111;
-  font-family: verdana;
+  font-family: Freshman;
 }
 
 canvas {

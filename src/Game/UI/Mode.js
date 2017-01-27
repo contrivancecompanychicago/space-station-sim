@@ -25,7 +25,6 @@ export default class Mode extends React.Component {
     // });
 
     return <div className="mode panel">
-      <h3>Mode Panel</h3>
       <ModeButton name='SELECT' mode={this.props.mode} click={this.props.click} />
       <button onClick={() => this.props.rotate()}>rotate {this.props.rotation}</button>
       <br />
