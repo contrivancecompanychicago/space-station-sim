@@ -29,6 +29,7 @@ export default class TimePanel extends React.Component {
     let year = date.getFullYear();
 
     let day = ''
+    //TODO probably wrong order
     if(date.getDay()==0) day = 'Mon'
     if(date.getDay()==1) day = 'Tues'
     if(date.getDay()==2) day = 'Wed'
@@ -38,7 +39,7 @@ export default class TimePanel extends React.Component {
     if(date.getDay()==6) day = 'Sun'
 
     minutes = Math.floor(minutes/10) * 10;
-    if(minutes == 0) minutes = "00"
+    if(minutes == 0) minutes = "00" //flow is all like whatever yolo
 
     let time = hours+":"+minutes+", "+day+" "+daymonth+"/"+month+"/"+year
     return <div className="time panel">
