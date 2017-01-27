@@ -45,3 +45,9 @@ canvas {
   width: 32px;
   height: 32px;
 }
+
+.ui .panel .order div{
+  border:1px solid black;
+  display:inline;
+  font-size: 10px;
+}

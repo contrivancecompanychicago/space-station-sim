@@ -3,6 +3,8 @@
 import type Point from 'Game/Point';
 import {defaults} from 'lodash';
 import uniqid from 'Util/uniqid';
+import namegen from 'Util/namegen'
+
 
 import type {CharacterType} from 'Game/Data/Character'
 import type Item from 'Game/Type/Item'
@@ -20,6 +22,7 @@ export default class Character{
     defaults(this, params);
     if(!this.id) this.id = uniqid();
     if(!this.item) this.item = []
+    if(!this.firstname) defaults(this, namegen())
   }
   addItem(item:Item){
     this.item.push(item)
@@ -29,5 +32,8 @@ export default class Character{
   }
   removeItem(item:Item){
     this.item.splice(this.item.indexOf(item), 1);
+  }
+  toString():string{
+    return this.firstname + ' ' + this.lastname
   }
 }

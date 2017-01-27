@@ -6,14 +6,23 @@ import React from 'react';
 
 
 export default class OrderPanel extends React.Component {
+  componentDidMount() {
+    setInterval(() => {
+      this.forceUpdate();
+    }, 1000)
+  }
   render() {
     const orderManager = getOrderManager();
 
     let orders = []
     if(orderManager){
-      orderManager.state.forEach((o) => {
-        orders.push(<div>
-            {JSON.stringify(o)}
+      orderManager.state.forEach((o, i) => {
+        orders.push(
+          <div className='order' key={'order'+i}>
+
+            <div className='customer'>{o.customer.toString()}</div>
+            <div className='type'>{o.type}</div>
+            <div className='status'>{o.status}</div>
           </div>)
       });
     }

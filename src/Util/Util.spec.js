@@ -2,6 +2,15 @@ import {globalToLocal, localToGlobal, blockToCenter, makeKey} from 'Util';
 import config from 'Game/config';
 const Util = require('Util');
 
+import namegen from './namegen'
+describe('Util/namegen', () =>{
+  it('should work', () => {
+    expect(namegen).toBeDefined();
+    expect(namegen().firstname).toBeDefined()
+    expect(namegen().lastname).toBeDefined()
+  })
+})
+
 
 describe('Util', () => {
   it('should have globalToLocal', () => {
