@@ -7,6 +7,7 @@ import Character from './Character';
 import Item from './Item';
 import Objekt from './Object';
 import Order from './Order';
+import Log from './Log';
 
 const out = {
   Grid: Grid,
@@ -17,6 +18,7 @@ const out = {
   Item: Item,
   Object: Objekt,
   Order: Order,
+  Log: Log,
 };
 
 

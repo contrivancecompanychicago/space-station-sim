@@ -9,6 +9,7 @@ import type OrderManager from 'Game/Manager/Order'
 import type TaskManager from 'Game/Manager/Task'
 import type TimeManager from 'Game/Manager/Time'
 import type ViewManager from 'Game/Manager/View'
+import type LogManager from 'Game/Manager/Log'
 
 let engine = new Imagine();
 
@@ -55,4 +56,10 @@ let _viewManager;
 export function getViewManager():ViewManager{
   if(!_viewManager) _viewManager = engine.getComponent('viewManager')
   return _viewManager
+}
+
+let _logManager;
+export function getLogManager():LogManager{
+  if(!_logManager) _logManager = engine.getComponent('logManager')
+  return _logManager
 }

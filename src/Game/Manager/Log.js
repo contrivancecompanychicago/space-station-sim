@@ -12,10 +12,11 @@ export default class LogManager{
     this.type = 'logManager';
     this.log = []
   }
-  log(message:LogEntry){
+  addLog(message:LogEntry){
     this.log.push(message);
     if(this.log.length>20){
       this.log.shift();
     }
+    console.log(this.log);
   }
 }

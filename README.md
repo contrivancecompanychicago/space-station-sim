@@ -33,6 +33,10 @@ object weight
 
 move rotation drawing into layer
 
+highlights in build mode
+
+space pause time
+
 
 some art from opengameart.com:
 http://opengameart.org/content/dawnlike-16x16-universal-rogue-like-tileset-v181
