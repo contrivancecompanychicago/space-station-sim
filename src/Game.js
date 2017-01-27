@@ -1,6 +1,6 @@
 //@flow
 
-import Imagine from 'imagine-engine';
+// import Imagine from 'imagine-engine';
 
 require('./Game/style.css');
 
@@ -11,7 +11,7 @@ import Time from 'Game/Manager/Time';
 
 import state from 'Game/state';
 import * as time from 'Game/time';
-import * as engine from 'Game/engine';
+import engine from 'Game/engine';
 
 import { keys } from 'lodash';
 
@@ -33,8 +33,7 @@ export default class Game{
 
     this.container = container; //register container
 
-    this.engine = new Imagine(); //spawn engine
-    engine.default = this.engine;
+    this.engine = engine; //spawn engine
 
     this.state = state;//make initial reference to state global
 

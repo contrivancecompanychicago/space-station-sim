@@ -20,6 +20,9 @@ fridges contain food
 food ordering
 food delivery
 
+highlights
+ - mouse over Character
+ - mouse over grid
 
 
 
