@@ -27,13 +27,14 @@ canvas {
 }
 
 .ui .panel{
-  border: 1px solid border-colour;
+  border: 2px solid border-colour;
   background-color: background-colour;
   color: colour
   padding: 4px;
   text-align: right;
   width: 200px;
   border-radius: 4px;
+  margin-bottom: 4px
 }
 
 .ui h3{
@@ -54,6 +55,9 @@ canvas {
   height: 50px;
   font-size: 10px;
   padding: 0px 0px;
+  border: 1px solid border-colour
+  color: background-colour
+  background-color: colour
 }
 .ui .grid button{
 
@@ -67,14 +71,21 @@ canvas {
 }
 
 .ui .panel .order div{
-  border:1px solid black;
   display:inline;
   font-size: 10px;
 }
-.ui .panel.log{
-  position: absolute
+.ui .log.panel{
+  position: absolute;
+  width: 300px
+  height: 200px
+  .logs{
+    margin-top: 4px
+    border:1px solid border-colour
+    height: 170px
+    overflow-x: hidden
+    overflow-y: scroll
+  }
 }
 .ui .panel .log .message{
-  border:1px solid black;
   font-size: 10px;
 }

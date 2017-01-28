@@ -11,12 +11,12 @@ export default class LogPanel extends React.Component {
       this.forceUpdate();
     }, 1000)
   }
-  mousedown(e:Event){
-    console.log("md", e);
-  }
-  mouseup(e:Event){
-    console.log("mu", e);
-  }
+  // mousedown(e:Event){
+  //   console.log("md", e);
+  // }
+  // mouseup(e:Event){
+  //   console.log("mu", e);
+  // }
   render() {
     const logManager = getLogManager();
 
@@ -31,11 +31,10 @@ export default class LogPanel extends React.Component {
     }
     return <Draggable>
       <div className="log panel">
-        <h3
-          onMouseDown={(e) => { this.mousedown(e);}}
-          onMouseUp={(e) => { this.mouseup(e);}}
-          >Log Panel</h3>
-        {logs}
+        <h3>Log Panel</h3>
+        <div className='logs'>
+          {logs}
+        </div>
       </div>
     </Draggable>
 
