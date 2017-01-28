@@ -13,8 +13,7 @@ export default class Speed extends React.Component {
       buttons.push(<Button type="speed" selected={key===this.props.speed} key={key} data={Speeds[key]} click={()=>this.props.click(key)} />);
     });
 
-    return <div className="speed panel">
-      <h3>Speed Panel</h3>
+    return <div className="speed">
       {buttons}
     </div>;
   }

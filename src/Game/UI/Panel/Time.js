@@ -3,6 +3,7 @@ import {getTimeManager} from 'Game/engine';
 
 import React from 'react';
 
+import Speed from 'Game/UI/Speed'
 
 
 export default class TimePanel extends React.Component {
@@ -44,6 +45,7 @@ export default class TimePanel extends React.Component {
     let time = hours+":"+minutes+", "+day+" "+daymonth+"/"+month+"/"+year
     return <div className="time panel">
       {time}
+      <Speed />
     </div>
   }
 }
