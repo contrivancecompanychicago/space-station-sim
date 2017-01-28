@@ -75,6 +75,6 @@ export default class Renderer{
     grid(proposal, this.layer);
     object(proposal, this.layer);
 
-    renderDebugLines(this.state, this.layer);
+    // renderDebugLines(this.state, this.layer);
   }
 }

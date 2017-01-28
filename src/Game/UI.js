@@ -14,6 +14,8 @@ import OrderPanel from './UI/Panel/Order';
 import TimePanel from './UI/Panel/Time';
 import LogPanel from './UI/Panel/Log';
 
+import StaffPanel from './UI/Panel/Staff';
+
 class UI extends React.Component {
   render() {
     //  <Task />
@@ -38,6 +40,7 @@ class UI extends React.Component {
       <div className="panels">
         <LogPanel />
         <OrderPanel />
+        <StaffPanel />
       </div>
 
       <div className="menu">
