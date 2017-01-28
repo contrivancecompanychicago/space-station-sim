@@ -3,13 +3,19 @@ import {getLogManager} from 'Game/engine';
 
 import React from 'react';
 
-
+import Draggable from 'react-draggable'
 
 export default class LogPanel extends React.Component {
   componentDidMount() {
     setInterval(() => {
       this.forceUpdate();
     }, 1000)
+  }
+  mousedown(e:Event){
+    console.log("md", e);
+  }
+  mouseup(e:Event){
+    console.log("mu", e);
   }
   render() {
     const logManager = getLogManager();
@@ -23,10 +29,15 @@ export default class LogPanel extends React.Component {
           </div>)
       });
     }
-    return <div className="log panel">
-      <h3>Log Panel</h3>
-      {logs}
-    </div>
+    return <Draggable>
+      <div className="log panel">
+        <h3
+          onMouseDown={(e) => { this.mousedown(e);}}
+          onMouseUp={(e) => { this.mouseup(e);}}
+          >Log Panel</h3>
+        {logs}
+      </div>
+    </Draggable>
 
   }
 

@@ -35,11 +35,16 @@ class UI extends React.Component {
 
     // <Speed />
     return <div className="ui">
-      <Mode />
-      {active}
-      <OrderPanel />
-      <TimePanel />
-      <LogPanel />
+      <div className="panels">
+        <LogPanel />
+        <OrderPanel />
+      </div>
+
+      <div className="menu">
+        <TimePanel />
+        <Mode />
+        {active}
+      </div>
     </div>;
   }
 }

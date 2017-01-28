@@ -3,6 +3,7 @@ import {getOrderManager} from 'Game/engine';
 
 import React from 'react';
 
+import Draggable from 'react-draggable'
 
 
 export default class OrderPanel extends React.Component {
@@ -26,10 +27,10 @@ export default class OrderPanel extends React.Component {
           </div>)
       });
     }
-    return <div className="order panel">
+    return <Draggable><div className="order panel">
       <h3>Orders Panel</h3>
       {orders}
-    </div>
+    </div></Draggable>
 
   }
 
