@@ -2,7 +2,11 @@
 
 ## to dev
 
+npm run build //once to bring assets into dist dir
+npm run flow:watch
 npm run test
+npm run dev
+and got o localhost:8080/dist
 
 
 todo:

@@ -2,7 +2,9 @@
 
 // import Imagine from 'imagine-engine';
 
-require('./Game/style.css');
+// FLOWHACK
+require('./Game/style.styl');
+require('./Game/Freshman.ttf')
 
 import managers from 'Game/Manager';
 import Renderer from 'Game/Renderer';

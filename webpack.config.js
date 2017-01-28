@@ -37,8 +37,11 @@ module.exports = {
             {   test: /\.png$/,
                 loader: "img-element!url"
             },
-            {   test: /\.css$/,
-                loader: "style-loader!css-loader"
+            // {   test: /\.css$/,
+            //     loader: "style-loader!css-loader"
+            // },
+            {   test: /\.styl$/,
+                loader: "style-loader!css-loader!stylus-loader"
             },
             {   test: /\.(ttf|eot|svg)$/,
                 loader: "file-loader"
