@@ -18,11 +18,13 @@ export default class CharacterRow extends React.Component {
     keys(this.props.character.skills).forEach((key) => {
       let skill = this.props.character.skills[key];
       // skills.push(<div>{key}-{skill}</div>);
-      skills.push(<Bar text={key} percent={skill} />)
+      skills.push(<Bar key={key} text={key} percent={skill} />)
     })
     return <div className="character row">
       {this.props.character.toString()}
-      {skills}
+      <div className="skills">
+        {skills}
+      </div>
     </div>
   }
 }
