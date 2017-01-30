@@ -42,7 +42,7 @@ highlights in build mode
 space pause time
 
 object blocks
- - fill in rest of data
+ - fill in rest of data - grunt
   - rotation
 
 
