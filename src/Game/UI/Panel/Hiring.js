@@ -17,7 +17,15 @@ export default class HiringPanel extends React.Component {
     let chars = []
     if(charManager){
       charManager.getHireableChars().forEach((c) => {
-        chars.push(<CharacterRow character={c} key={c.id} />)
+        let click = (e) => {
+          console.log("hire", c.toString());
+        }
+        let row = <div key={c.id}>
+          <CharacterRow character={c} />
+          <button onClick={click}>hire</button>
+        </div>
+
+        chars.push(row)
       })
     }
 
