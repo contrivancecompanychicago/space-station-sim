@@ -41,6 +41,7 @@ export type ObjectDataType = {
   image: any,  //TODO type better
   width: number,
   height: number,
+  blocks: Array<{x:number, y:number}>,
   abilities: Array<AbilityType>
 }
 

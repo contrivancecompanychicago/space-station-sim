@@ -9,6 +9,7 @@ const obj:ObjectDataType = {
   image: require('./dockspot.png'),
   width: 2,
   height: 2,
+  blocks: [],
   requirements: {
     block:{
         empty:[

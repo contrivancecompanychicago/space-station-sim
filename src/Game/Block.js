@@ -14,6 +14,12 @@ export default class Block{
       throw new Error('Block constructor takes an object');
     }
   }
+  add(diff:{x:number, y:number}){
+    return new Block({
+      x: this.x + diff.x,
+      y: this.y + diff.y,
+    })
+  }
   get center():Point{
     return new Point({
       x: (this.x+.5) * config.grid.width,

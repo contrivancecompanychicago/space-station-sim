@@ -9,6 +9,7 @@ const obj:ObjectDataType = {
   image: require('./table4.png'),
   width: 1,
   height: 1,
+  blocks: [],
   requirements: {
   },
   abilities: [Ability.SERVE_TABLE],

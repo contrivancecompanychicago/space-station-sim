@@ -9,6 +9,7 @@ export const obj:ObjectDataType = {
   image: require('./bed.png'),
   width: 1,
   height: 2,
+  blocks: [],
   abilities: []
 }
 
