@@ -43,7 +43,6 @@ space pause time
 
 object blocks
  - fill in rest of data - grunt
-  - rotation
 
 
 some art from opengameart.com:

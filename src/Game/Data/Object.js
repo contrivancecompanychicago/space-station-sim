@@ -36,8 +36,14 @@ export type ObjectType =
 'CHAIR'|
 'CHAIR2'
 
+export type ObjectBlocksType = 'ACCESS'|'BLOCK'
+export const ObjectBlocks:{[id:ObjectBlocksType]: ObjectBlocksType} = {
+  'ACCESS':'ACCESS',
+  'BLOCK':'BLOCK',
+}
+
 export type ObjectBlocksDataType = {
-  x:number, y:number
+  x:number, y:number, type: ObjectBlocksType
 }
 export type ObjectDataType = {
   id: ObjectType,
@@ -47,7 +53,6 @@ export type ObjectDataType = {
   height: number,
   blocks: Array<ObjectBlocksDataType>,
   abilities: Array<AbilityType>
-
 }
 
 //:{[id:ObjectType]:ObjectDataType}

@@ -10,7 +10,9 @@ const obj:ObjectDataType = {
   width: 2,
   height: 1,
   requirements: {},
-  blocks: [{x:0,y:0}, {x:1,y:0}],
+  blocks: [
+    {type: 'ACCESS', x:0, y:-1},
+    {type: 'BLOCK', x:0,y:0}, {x:1,y:0}],
   abilities: [Ability.FRIDGE],
 }
 
