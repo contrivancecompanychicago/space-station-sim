@@ -8,7 +8,9 @@ import type Obj from 'Game/Type/Object'
 
 
 export default function renderObjectBlocks(state:State, layer:Layer){
+  // console.log(state);
   values(state.Object).forEach((obj:Obj) => {
+    // console.log(obj);
     obj.getData().blocks.forEach((block) => {
       let o = obj.block.add(block).rect.renderParams
 
