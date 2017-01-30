@@ -1,3 +1,4 @@
+//@flow
 export default {
   view: {
     scale: {
@@ -18,7 +19,10 @@ export default {
   },
   character:{
     radius: 10,
-    speed: 50
+    speed: 50,
+    skill: {
+      max: 100
+    }
   },
   env: 'dev' //change this when publishing
 };

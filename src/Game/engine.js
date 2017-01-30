@@ -15,7 +15,7 @@ let engine = new Imagine();
 
 export default engine;
 
-//EXPANDED THIS WAY FOR EASIER TYPING
+//EXPANDED THIS WAY FOR EASIER FLOWTYPING
 
 let _characterManager;
 export function getCharacterManager():CharacterManager{
