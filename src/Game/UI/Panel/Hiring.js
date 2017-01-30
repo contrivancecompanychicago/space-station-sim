@@ -11,16 +11,19 @@ import CharacterRow from 'Game/UI/Row/Character'
 
 export default class HiringPanel extends React.Component {
 
-
-
   render() {
     const charManager = getCharacterManager();
 
-    let char = new Character();
+    let chars = []
+    if(charManager){
+      charManager.getHireableChars().forEach((c) => {
+        chars.push(<CharacterRow character={c} />)
+      })
+    }
 
     return <Draggable><div className="hiring panel">
       <h3>Hiring Panel</h3>
-      <CharacterRow character={char} />
+      {chars}
     </div></Draggable>
 
   }
