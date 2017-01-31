@@ -35,12 +35,23 @@ export type ObjectType =
 'TABLE5'|
 'CHAIR'|
 'CHAIR2'
+
+export type ObjectBlocksType = 'ACCESS'|'BLOCK'
+export const ObjectBlocks:{[id:ObjectBlocksType]: ObjectBlocksType} = {
+  'ACCESS':'ACCESS',
+  'BLOCK':'BLOCK',
+}
+
+export type ObjectBlocksDataType = {
+  x:number, y:number, type: ObjectBlocksType
+}
 export type ObjectDataType = {
   id: ObjectType,
   label: string,
   image: any,  //TODO type better
   width: number,
   height: number,
+  blocks: Array<ObjectBlocksDataType>,
   abilities: Array<AbilityType>
 }
 

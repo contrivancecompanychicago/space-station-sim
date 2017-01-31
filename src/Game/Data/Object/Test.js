@@ -9,6 +9,7 @@ const obj:ObjectDataType = {
   image: require('./test.png'),
   width: 1,
   height: 1,
+  blocks: [],
   abilities: []
 }
 

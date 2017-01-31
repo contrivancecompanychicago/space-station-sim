@@ -15,6 +15,8 @@ import renderSelection from './Renderer/grid/selection';
 
 import renderDebugLines from './Renderer/debugLines'
 
+import renderObjectBlocks from './Renderer/object/blocks'
+
 const proposer = new Proposer();
 
 import type {State} from 'Game/state'
@@ -74,6 +76,7 @@ export default class Renderer{
     this.layer.context.globalAlpha = 0.5;
     grid(proposal, this.layer);
     object(proposal, this.layer);
+    renderObjectBlocks(proposal, this.layer)
 
     // renderDebugLines(this.state, this.layer);
   }

@@ -9,6 +9,7 @@ const obj:ObjectDataType = {
   image: require('./drawers.png'),
   width: 1,
   height: 1,
+  blocks: [],
   requirements: {
   },
   abilities: [Ability.MAKE_COFFEE],

@@ -9,6 +9,7 @@ const obj:ObjectDataType = {
   image: require('./oven.png'),
   width: 1,
   height: 4,
+  blocks: [],
   requirements: {},
   abilities: [Ability.OVEN]
 }

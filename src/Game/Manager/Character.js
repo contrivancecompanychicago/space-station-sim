@@ -1,6 +1,8 @@
 // @flow
 import {keys, defaults} from 'lodash';
 
+
+import Point from 'Game/Point'
 import config from 'Game/config';
 import actions from 'Game/Manager/Character/Action';
 import Character from 'Game/Type/Character';
@@ -66,6 +68,22 @@ export default class CharacterManager extends Component{
 
   getChar(id:string):Character{
     return this.state[id];
+  }
+
+  _hireableChars: Array<Character>
+  getHireableChars():Array<Character> {
+    if(!this._hireableChars){
+      this._hireableChars = []
+      for(let i =0; i<3; i++){
+        this._hireableChars.push(this.makeHireableChar())
+      }
+    }
+    return this._hireableChars
+  }
+
+  makeHireableChar():Character {
+    let char = new Character({type:'WORKER', position:new Point(0,0)});
+    return char
   }
 
 }

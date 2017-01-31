@@ -13,6 +13,7 @@ import Objekt from './UI/Object';
 import OrderPanel from './UI/Panel/Order';
 import TimePanel from './UI/Panel/Time';
 import LogPanel from './UI/Panel/Log';
+import HiringPanel from './UI/Panel/Hiring';
 
 import StaffPanel from './UI/Panel/Staff';
 
@@ -41,6 +42,7 @@ class UI extends React.Component {
         <LogPanel />
         <OrderPanel />
         <StaffPanel />
+        <HiringPanel />
       </div>
 
       <div className="menu">

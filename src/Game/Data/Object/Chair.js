@@ -9,6 +9,7 @@ const obj:ObjectDataType = {
   image: require('./chair.png'),
   width: 1,
   height: 1,
+  blocks: [],
   requirements: {
   },
   abilities: [Ability.CHAIR],
