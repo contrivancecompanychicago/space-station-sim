@@ -1,6 +1,8 @@
 // @flow
 import type {ObjectDataType} from '../Object'
 
+const a = 'ACCESS';
+const b = 'BLOCK';
 
 import Ability from 'Game/Data/Object/Ability'
 const obj:ObjectDataType = {
@@ -9,7 +11,7 @@ const obj:ObjectDataType = {
   image: require('./table5.png'),
   width: 1,
   height: 1,
-  blocks: [],
+  blocks: [{type: b, x:0,y:0},],
   requirements: {
   },
   abilities: [Ability.DINE_TABLE],

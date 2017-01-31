@@ -3,6 +3,11 @@ import type {ObjectDataType} from '../Object'
 
 import Ability from 'Game/Data/Object/Ability'
 
+// import {ObjectBlocks} from '../Object'
+const a = 'ACCESS';
+const b = 'BLOCK';
+// console.log(ObjectBlocks);
+
 const obj:ObjectDataType = {
   id: 'FRIDGE',
   label: 'Fridge',
@@ -11,8 +16,9 @@ const obj:ObjectDataType = {
   height: 1,
   requirements: {},
   blocks: [
-    {type: 'ACCESS', x:0, y:-1},
-    {type: 'BLOCK', x:0,y:0}, {x:1,y:0}],
+    {type: a, x:0, y:-1},{type: a, x:1, y:-1},
+    {type: b, x:0,y:0}, {type:b, x:1,y:0}
+  ],
   abilities: [Ability.FRIDGE],
 }
 

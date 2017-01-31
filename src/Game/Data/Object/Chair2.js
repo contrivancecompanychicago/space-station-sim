@@ -1,15 +1,22 @@
 // @flow
 import type {ObjectDataType} from '../Object'
 
-
 import Ability from 'Game/Data/Object/Ability'
+
+// import {ObjectBlocks} from '../Object'
+const a = 'ACCESS';
+const b = 'BLOCK';
+
 const obj:ObjectDataType = {
   id: 'CHAIR2',
   label: 'Chair',
   image: require('./chair2.png'),
   width: 1,
   height: 1,
-  blocks: [],
+  blocks: [
+    {type: a, x:0, y:-1},
+    {type: b, x:0,y:0},
+  ],
   requirements: {
   },
   abilities: [Ability.CHAIR],
