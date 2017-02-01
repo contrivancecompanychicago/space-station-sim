@@ -81,6 +81,8 @@ export default class Renderer{
     renderObjectBlocks(proposal, this.layer)
 
     renderCharacterHighlight(this.state, this.layer)
+    //debug
+    // renderObjectBlocks(this.state, this.layer)
     // renderDebugLines(this.state, this.layer);
   }
 }

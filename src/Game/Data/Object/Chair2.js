@@ -15,7 +15,7 @@ const obj:ObjectDataType = {
   height: 1,
   blocks: [
     {type: a, x:0, y:-1},
-    {type: b, x:0,y:0},
+    {type: a, x:0,y:0},
   ],
   requirements: {
   },

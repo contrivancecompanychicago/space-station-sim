@@ -113,8 +113,12 @@ export default class GridManager{
         o.getBlocks().forEach((b) => {
           if(b.type === "BLOCK"){
             let targ = o.block.add(b);
-            arr[targ.x-minx][targ.y-miny] = 100;
+            arr[targ.x-minx][targ.y-miny] = 0;
           }
+          // if(b.type === "ACCESS"){
+          //   let targ = o.block.add(b);
+          //   arr[targ.x-minx][targ.y-miny] = 10;
+          // }
         })
       })
     }
