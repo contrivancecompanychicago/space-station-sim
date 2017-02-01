@@ -1,5 +1,5 @@
 //@flow
-import data from './demo1'
+import data from './demo2'
 
 import Grid from 'Game/Type/Grid'
 import Obj from 'Game/Type/Object'

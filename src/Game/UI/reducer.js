@@ -8,6 +8,7 @@ import task from './reducer/task';
 import speed from './reducer/speed';
 import object from './reducer/object';
 import rotation from './reducer/rotation';
+import panel from './reducer/panel';
 
 
 import type {State} from 'Game/state'
@@ -25,4 +26,5 @@ export default (combineReducers({
   speed,
   object,
   rotation,
+  panel,
 }):State);

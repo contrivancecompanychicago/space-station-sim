@@ -27,6 +27,9 @@ export default class ObjectManager{
     this.state[makeKey(obj.block.x,obj.block.y)] = obj;
 
   }
+  deleteObject(obj:Obj){
+    delete this.state[makeKey(obj.block.x,obj.block.y)];
+  }
   getObjectAtBlock(block:Block):?Obj{
     return this.state[block.key];
   }

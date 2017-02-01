@@ -1,6 +1,7 @@
 // @flow
 import {getCharacterManager} from 'Game/engine';
 
+import { connect } from 'react-redux';
 import React from 'react';
 
 import Draggable from 'react-draggable'
@@ -9,7 +10,7 @@ import Character from 'Game/Type/Character'
 
 import CharacterRow from 'Game/UI/Row/Character'
 
-export default class HiringPanel extends React.Component {
+class HiringPanel extends React.Component {
 
   render() {
     const charManager = getCharacterManager();
@@ -30,10 +31,26 @@ export default class HiringPanel extends React.Component {
     }
 
     return <Draggable><div className="hiring panel">
-      <h3>Hiring Panel</h3>
+      <h3 onClick={this.props.close}>Hiring Panel</h3>
       {chars}
     </div></Draggable>
 
   }
 
 }
+
+function mapStateToProps(state, props) {
+  return {
+  };
+}
+
+function mapDispatchToProps(dispatch, props) {
+  return {
+    close: () => {
+      console.log("asd");
+      dispatch({type:'TOGGLE_HIRING_PANEL'});
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HiringPanel);

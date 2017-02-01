@@ -36,13 +36,17 @@ class UI extends React.Component {
         break;
     }
 
+    let panels = []
+    if(this.props.panel.log.show) panels.push(<LogPanel />)
+    if(this.props.panel.orders.show) panels.push(<OrderPanel />)
+    if(this.props.panel.staff.show) panels.push(<StaffPanel />)
+    if(this.props.panel.hiring.show) panels.push(<HiringPanel />)
+
+
     // <Speed />
     return <div className="ui">
       <div className="panels">
-        <LogPanel />
-        <OrderPanel />
-        <StaffPanel />
-        <HiringPanel />
+        {panels}
       </div>
 
       <div className="menu">
@@ -56,7 +60,8 @@ class UI extends React.Component {
 
 function mapStateToProps(state, props) {
   return {
-    mode: state.mode
+    mode: state.mode,
+    panel: state.panel
   };
 }
 

@@ -1,5 +1,6 @@
 // @flow
 import {extend, keys} from 'lodash'
+import * as engine from 'Game/engine'
 
 import {Mode} from 'Game/Data/Mode';
 import {pointToBlock, blockToPoint, makeKey, parseKey} from 'Util';
@@ -19,7 +20,7 @@ import type ObjectManager from 'Game/Manager/Object';
 import type ItemManager from 'Game/Manager/Item';
 import type CharManager from 'Game/Manager/Character';
 import type TaskManager from 'Game/Manager/Task';
-
+import type {Selection} from 'Game/Type/Selection'
 import ObjectData from 'Game/Data/Object'
 
 import Proposer from 'Game/Action/Proposer';
@@ -34,7 +35,7 @@ export default class Dispatcher extends Component{
     this.type = 'actionDispatcher';
     this.state = state;
   }
-  objects(objects:ObjectState){
+  objects(objects:ObjectState){ //TODO move this to object manager
     extend(this.state.Object, objects)
     keys(objects).forEach((key) => {
       let obj = objects[key];
@@ -52,20 +53,37 @@ export default class Dispatcher extends Component{
     })
   }
 
-  userAction(selection:Object){
+  userAction(selection:Selection){
     // console.log("something happened");
+    // let objectManager:ObjectManager = (this.getComponent('objectManager'):any);
+    // const ObjectManager = engine.getObjectManager();
+
+    let gridManager = engine.getGridManager();
+    let objectManager = engine.getObjectManager();
+
+    console.log(selection);
     let sel = selection.rect.blockRect();
+
+    if(selection.button === 2){
+      //DELETE MODE
+      let obj = objectManager.getObjectAtBlock(selection.end.block);
+      if(obj){
+        objectManager.deleteObject(obj)
+      }
+
+      return;
+    }
+
     switch(this.state.UI.mode){
       case Mode.SELECT:
 
         console.info('select mode not implemented');
         break;
       case Mode.GRID:
-        let gridManager:GridManager = (this.getComponent('gridManager'):any);
+        // let gridManager:GridManager = (this.getComponent('gridManager'):any);
         gridManager.addNodes(selection, new Grid({type:this.state.UI.grid, rotation:this.state.UI.rotation}));
         break;
       case Mode.OBJECT:
-        let objectManager:ObjectManager = (this.getComponent('objectManager'):any);
         // let obj = new Objekt({block:selection.end.block, type:this.state.UI.object});
         // objectManager.addObject(obj);
         let proposal = proposer.propose(this.state);
