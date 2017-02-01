@@ -17,6 +17,8 @@ import renderDebugLines from './Renderer/debugLines'
 
 import renderObjectBlocks from './Renderer/object/blocks'
 
+import renderCharacterHighlight from './Renderer/character/highlight'
+
 const proposer = new Proposer();
 
 import type {State} from 'Game/state'
@@ -78,6 +80,7 @@ export default class Renderer{
     object(proposal, this.layer);
     renderObjectBlocks(proposal, this.layer)
 
+    renderCharacterHighlight(this.state, this.layer)
     // renderDebugLines(this.state, this.layer);
   }
 }
