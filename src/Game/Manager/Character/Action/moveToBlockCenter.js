@@ -24,6 +24,11 @@ export default function* moveToBlockCenter(char:Character, block:Block):Generato
       char.position.y += Math.sin(dir)*amount;
     }
 
+    char.item.forEach((item) => {
+      item.position.x -= (item.position.x - char.position.x) /6
+      item.position.y -= (item.position.y - char.position.y) /6
+    })
+
     yield;
   }
 
