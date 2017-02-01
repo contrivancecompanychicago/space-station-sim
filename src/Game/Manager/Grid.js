@@ -12,6 +12,8 @@ import type Point from 'Game/Point'
 import type {GridState} from 'Game/state'
 import type {GridDataType} from 'Game/Data/Grid'
 
+import {getObjectManager} from 'Game/engine'
+
 // let test:GridDataType = "Asd"
 
 export default class GridManager{
@@ -67,6 +69,8 @@ export default class GridManager{
 
   getPath(start:Point, end:Point):Array<Block>{
 
+    let objectManager = getObjectManager()
+
     //determine graph size
     let minx:number = Infinity;
     let miny:number = Infinity;
@@ -81,7 +85,7 @@ export default class GridManager{
     });
 
     //make the empty Graph
-    let arr = [];
+    let arr:Array<Array<number>> = [];
     for(let x = minx; x<=maxx; x++){
       let arr2 = [];
       for(let y = miny; y<=maxy; y++){
@@ -98,12 +102,23 @@ export default class GridManager{
 
 
       let weight = type.weight
-      if(block.object){
-        weight = 10
-      }
+      // if(block.object){
+      //   weight = 10
+      // }
       arr[loc.x-minx][loc.y-miny] = weight;
 
     });
+    if(objectManager){
+      objectManager.getObjects().forEach((o) => {
+        o.getBlocks().forEach((b) => {
+          if(b.type === "BLOCK"){
+            let targ = o.block.add(b);
+            arr[targ.x-minx][targ.y-miny] = 100;
+          }
+        })
+      })
+    }
+
 
     let graph = new Graph(arr);
 

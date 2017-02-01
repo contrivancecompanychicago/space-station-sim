@@ -37,12 +37,8 @@ object weight
 
 move rotation drawing into layer
 
-highlights in build mode
 
 space pause time
-
-object blocks
- - fill in rest of data - grunt
 
 
 some art from opengameart.com:
