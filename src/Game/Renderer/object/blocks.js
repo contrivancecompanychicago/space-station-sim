@@ -7,6 +7,10 @@ import type Layer from 'Game/Renderer/Layer'
 import type Obj from 'Game/Type/Object'
 
 
+
+// highlights around blocks
+// to tell if a block is buildable
+
 export default function renderObjectBlocks(state:State, layer:Layer){
   // console.log(state);
   values(state.Object).forEach((obj:Obj) => {
@@ -14,8 +18,16 @@ export default function renderObjectBlocks(state:State, layer:Layer){
     obj.getBlocks().forEach((block) => {
       let o = obj.block.add(block).rect.renderParams
 
-      layer.context.fillStyle = 'green';
-      layer.context.strokeStyle = "green"
+      switch(block.type){
+        case 'ACCESS':
+          layer.context.strokeStyle = "green"
+          break;
+        case 'BLOCK':
+          layer.context.strokeStyle = "yellow"
+          break;
+      }
+
+
       layer.context.lineWidth = 4;
       layer.context.strokeRect(o.x, o.y, o.w, o.h);
     })

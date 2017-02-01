@@ -17,7 +17,7 @@ export default function* pathToObjectWithAbility(char:Character, ability:Ability
     let i = Math.floor(Math.random()*objs.length);
     let obj = objs[i]
     obj.character = char;
-    yield *actions.pathToBlock(char, obj.block);
+    yield *actions.pathToBlock(char, obj.getAccessBlock());
     obj.character = null;
     // yield *moveToBlockCenter(char, obj.block);
     return obj;

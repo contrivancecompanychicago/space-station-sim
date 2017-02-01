@@ -31,20 +31,34 @@ export default class Obj{
   hasAbility(ability:AbilityType):boolean{
     return (this.getData().abilities.indexOf(ability) > -1)
   }
+  rotateBlock(b:ObjectBlocksDataType):ObjectBlocksDataType{
+    switch(this.rotation){
+      case 1:
+      return {type: b.type, x:-b.y, y:b.x}
+      case 2:
+      return {type: b.type, x:-b.x, y:-b.y}
+      case 3:
+      return {type: b.type, x:b.y, y:-b.x}
+      default:
+      return b;
+    }
+
+  }
   getBlocks():Array<ObjectBlocksDataType>{
     // console.log(this.rotation);
-
     return this.getData().blocks.map((b) => {
-      switch(this.rotation){
-        case 1:
-          return {type: b.type, x:-b.y, y:b.x}
-        case 2:
-          return {type: b.type, x:-b.x, y:-b.y}
-        case 3:
-          return {type: b.type, x:b.y, y:-b.x}
-        default:
-          return b;
-      }
+      return this.rotateBlock(b);
     })
+  }
+  getAccessBlock():Block{
+    let accessBlocks = this.getBlocks().filter((b) => {
+      return b.type == 'ACCESS';
+    })
+    let ab = accessBlocks[Math.floor(Math.random()*accessBlocks.length)]
+    if(ab){
+      return this.block.add(ab);
+    }else{
+      return this.block
+    }
   }
 }

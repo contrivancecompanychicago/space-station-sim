@@ -12,7 +12,7 @@ export default function* forceUseObjectWithAbility(char:Character, ability:Abili
     return o.hasAbility(ability)
   })
   obj.character = char;
-  yield *actions.pathToBlock(char, obj.block);
+  yield *actions.pathToBlock(char, obj.getAccessBlock());
   yield *actions.placeItemOnBlock(char, obj.block)
   obj.character = null;
   return obj

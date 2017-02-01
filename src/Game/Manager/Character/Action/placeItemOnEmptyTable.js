@@ -24,7 +24,7 @@ export default function* placeItemOnEmptyTable(char:Character, ability:AbilityTy
   if(objs.length>0){
     let targetObject:Obj = objs[0];
     targetObject.character = char;
-    yield *actions.pathToBlock(char, targetObject.block);
+    yield *actions.pathToBlock(char, targetObject.getAccessBlock());
     yield *actions.placeItemOnBlock(char, targetObject.block)
     targetObject.character = null;
     if(char.item.length>0){

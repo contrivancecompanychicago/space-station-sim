@@ -13,7 +13,7 @@ export default function* pathToObject(char:Character, obj:ObjectType):Generator<
   let objs = objectManager.getObjectsOfType(obj);
   if(objs.length > 0){
     let i = Math.floor(Math.random()*objs.length);
-    yield *actions.pathToBlock(char, objs[i].block);
+    yield *actions.pathToBlock(char, objs[i].getAccessBlock());
   }
 
 }
