@@ -26,7 +26,12 @@ export default class CharacterManager extends Component{
     this.state[char.id] = char;
   }
 
-  getClosestCharacterToPoint(p:{x:number, y:number}, min:number = Infinity):?Character{
+  getClosestCharacterToPoint(p:{x:number, y:number}, min:?number):?Character{
+    if(!min){
+      min = Infinity
+    } else{
+      min = Math.pow(min, 2);
+    }
     let closestDist = min;
     let closest:Character;
     values(this.state).forEach((c:Character) => {

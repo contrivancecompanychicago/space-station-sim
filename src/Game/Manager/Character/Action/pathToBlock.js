@@ -12,6 +12,6 @@ export default function* pathToBlock(char:Character, block:Block):Generator<*,*,
   let path = gridManager.getPath(current, block);
   while(path.length>0){
     let target = path.shift();
-    yield *actions.moveToBlock(char, target);
+    yield *actions.moveToBlockCenter(char, target);
   }
 }

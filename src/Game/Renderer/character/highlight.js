@@ -9,7 +9,7 @@ import type Layer from 'Game/Renderer/Layer'
 
 export default function renderCharacterHighlight(state:State, layer:Layer) {
   let charManager = getCharacterManager();
-  let char = charManager.getClosestCharacterToPoint(state.View.mousePosition);
+  let char = charManager.getClosestCharacterToPoint(state.View.mousePosition, 32);
   if(char){
     const o = worldToScreen(char.position, state);
 
