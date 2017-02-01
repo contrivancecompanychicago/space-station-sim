@@ -1,5 +1,5 @@
 // @flow
-import {keys, defaults} from 'lodash';
+import {keys, defaults, values} from 'lodash';
 
 
 import Point from 'Game/Point'
@@ -24,6 +24,23 @@ export default class CharacterManager extends Component{
 
   addChar(char:Character){
     this.state[char.id] = char;
+  }
+
+  getClosestCharacterToPoint(p:{x:number, y:number}, min:number = Infinity):?Character{
+    let closestDist = min;
+    let closest:Character;
+    values(this.state).forEach((c:Character) => {
+      let diff = {
+        x: c.position.x - p.x,
+        y: c.position.y - p.y,
+      }
+      let dist = Math.pow(diff.x, 2) + Math.pow(diff.y, 2);
+      if(dist<closestDist){
+        closestDist = dist;
+        closest = c
+      }
+    })
+    return closest;
   }
 
   update(){

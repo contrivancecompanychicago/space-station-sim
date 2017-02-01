@@ -29,9 +29,6 @@ highlights
  - mouse over Character
  - mouse over grid
 
-rotating objects
- - refine objects
-  - have a lot more data about their access locations and other shit
 
 object weight
 

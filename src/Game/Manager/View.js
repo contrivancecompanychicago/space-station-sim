@@ -12,6 +12,8 @@ import type {ViewState} from 'Game/state'
 
 import type {Selection} from 'Game/Type/Selection'
 
+import {getCharacterManager} from 'Game/engine'
+
 type Event = {
   wheelDelta:number,
   pageX:number,
@@ -49,6 +51,15 @@ export default class ViewManager{
   endPos: Point;
   lastPos: {x:number, y:number};
   button: number;
+
+  update(){
+    //calculate whats under mousey
+    // console.log(this.state.mousePosition);
+    // let charManager = getCharacterManager();
+    // let char = charManager.getClosestCharacterToPoint(this.state.mousePosition);
+
+
+  }
   constructor(state:ViewState, container:HTMLElement) {
     this.type = 'viewManager';
     this.state = defaults(state, initial); //WHYYY
