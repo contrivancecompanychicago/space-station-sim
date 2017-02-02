@@ -61,4 +61,12 @@ export default class Obj{
       return this.block
     }
   }
+
+  addItem(item:Item){
+    this.item = (item)
+  }
+  removeItem(item:Item){
+    if(this.item === item)
+      this.item = null
+  }
 }
