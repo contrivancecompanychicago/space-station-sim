@@ -18,7 +18,6 @@ export default class Point{
   x:number;
   y:number;
   constructor(){
-    // console.log(arguments);
     if(arguments.length === 1){
       //object mode
       if(dev){
@@ -66,19 +65,3 @@ export default class Point{
     return new Point(pos.x, pos.y);
   }
 }
-
-// export class Block{
-//   constructor(pos){
-//     this.x = pos.x;
-//     this.y = pos.y;
-//   }
-//   get center(){
-//     return new Point({
-//       x: (this.x+.5) * config.grid.width,
-//       y: (this.y+.5) * config.grid.height
-//     });
-//   }
-//   is(block){
-//     return (block.x === this.x && block.y === this.y);
-//   }
-// }

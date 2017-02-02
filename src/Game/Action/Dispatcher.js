@@ -54,14 +54,10 @@ export default class Dispatcher extends Component{
   }
 
   userAction(selection:Selection){
-    // console.log("something happened");
-    // let objectManager:ObjectManager = (this.getComponent('objectManager'):any);
-    // const ObjectManager = engine.getObjectManager();
 
     let gridManager = engine.getGridManager();
     let objectManager = engine.getObjectManager();
 
-    console.log(selection);
     let sel = selection.rect.blockRect();
 
     if(selection.button === 2){

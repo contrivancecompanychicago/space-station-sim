@@ -13,7 +13,6 @@ describe('Game/Action/Proposer', () => {
     it('should return a grid object', () => {
       let p = proposer.propose(state);
       expect(p.Grid).toBeDefined();
-      // console.log(p);
       expect(typeof p.Grid['0_0']).toBe('object');
       expect(typeof p.Grid['3_3']).toBe('object');
     });

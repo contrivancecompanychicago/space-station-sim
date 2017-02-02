@@ -35,11 +35,9 @@ export default function* wanderToAdjacentTile(char:Character):Generator<*,*,*>{
   }).filter((g)=>{
     if(g)return true;
   })
-  // console.log(grids);
   if(grids.length>0){
     let i = Math.floor(Math.random()*grids.length);
     let grid:Block = (grids[i]:any);
-    // console.log(grid);
     yield *actions.pathToBlock(char, grid)
     yield *actions.moveToBlockCenter(char, grid)
     // yield *actions.idle(char, 2)

@@ -27,8 +27,6 @@ describe('Game/Manager/UI', () => {
     uiManager.store.dispatch({type: 'CHANGE_GRID', id: 'test'});
     let out = uiManager.store.getState();
     expect(state).toBe(uiManager.state);
-    // console.log(uiManager);
-    // uiManager.store.dis
   });
 
 

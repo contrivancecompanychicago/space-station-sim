@@ -38,7 +38,6 @@ export default function* serveOrder(char:Character, order:Order):Generator<*,*,*
     order.customer.addItem(item);
     char.removeItem(item)
     //finish order
-    // console.log(logManager);
     logManager.addLog({
       message:order.customer.toString()+' got '+item.type,
       type:'EVENT'

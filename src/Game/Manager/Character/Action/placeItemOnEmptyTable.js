@@ -14,13 +14,11 @@ export default function* placeItemOnEmptyTable(char:Character, ability:AbilityTy
   // let ability = Ability.SERVE_TABLE;
   let objectManager:ObjectManager = engine.getComponent('objectManager');
   let objs = objectManager.getObjectsWithAbility(ability);
-  // console.log(objs);
   objs = objs.filter((obj:Obj) => {
     if(obj.character) return false;
     if(obj.item) return false;
     return true;
   })
-  // console.log(objs);
   if(objs.length>0){
     let targetObject:Obj = objs[0];
     targetObject.character = char;
@@ -31,19 +29,6 @@ export default function* placeItemOnEmptyTable(char:Character, ability:AbilityTy
       let item = char.item[0]
       targetObject.item = item
       char.removeItem(item)
-
     }
-    // char.item.forEach((item) => {})
-
   }
-  // objs.forEach((obj) => {
-  //   //find an empty one
-  //   console.log(obj);
-  //   if(obj.character)
-  //
-  // })
-
-  //drop item
-  // char.item = null;
-
 }

@@ -6,7 +6,6 @@ import Ability from 'Game/Data/Object/Ability'
 // import {ObjectBlocks} from '../Object'
 const a = 'ACCESS';
 const b = 'BLOCK';
-// console.log(ObjectBlocks);
 
 const obj:ObjectDataType = {
   id: 'FRIDGE',

@@ -8,7 +8,7 @@ import type Block from 'Game/Block'
 export default function* moveToBlockCenter(char:Character, block:Block):Generator<*,*,*>{
 
   let target = block.center;
-  // console.log(target, char.position, (char.position.x != target.x), (char.position.y != target.y))
+
   while((char.position.x != target.x) || (char.position.y != target.y)){
     let amount = time.deltaTime * config.character.speed;
     let dir = Math.atan2(target.y - char.position.y, target.x - char.position.x);

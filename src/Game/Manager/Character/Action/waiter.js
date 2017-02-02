@@ -28,7 +28,6 @@ export default function* waiter(char:Character):Generator<*,*,*>{
       && o.status === 'ORDERED'
       && o.worker === undefined
   })
-  // console.log(coffeeOrders.length, 'coffee orders');
   if(coffeeOrders.length > 0){
 
     logManager.addLog({

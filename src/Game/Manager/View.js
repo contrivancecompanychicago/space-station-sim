@@ -54,7 +54,6 @@ export default class ViewManager{
 
   update(){
     //calculate whats under mousey
-    // console.log(this.state.mousePosition);
     // let charManager = getCharacterManager();
     // let char = charManager.getClosestCharacterToPoint(this.state.mousePosition);
 
