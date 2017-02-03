@@ -5,7 +5,7 @@ import Button from './Button';
 
 import Speeds from 'Game/Data/Speed';
 
-export default class Speed extends React.Component {
+class Speed extends React.Component {
   render() {
 
     const buttons = [];

@@ -5,7 +5,7 @@ import Button from './Button';
 
 import Items from 'Game/Data/Item';
 
-export default class Item extends React.Component {
+class Item extends React.Component {
   render() {
 
     const buttons = [];

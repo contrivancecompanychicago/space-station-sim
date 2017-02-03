@@ -5,7 +5,7 @@ import Button from './Button';
 
 import Grids from 'Game/Data/Grid';
 
-export default class Grid extends React.Component {
+class Grid extends React.Component {
   render() {
 
     const buttons = [];

@@ -6,7 +6,7 @@ import Button from './Button';
 import Objects from 'Game/Data/Object';
 
 /////////////////////Object is a reserved word
-export default class Objekt extends React.Component {
+class Objekt extends React.Component {
   render() {
 
     const buttons = [];

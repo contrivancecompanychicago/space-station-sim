@@ -6,7 +6,7 @@ import Button from './Button';
 import Grids from 'Game/Data/Grid';
 import Tasks from 'Game/Data/Task';
 
-export default class Task extends React.Component {
+class Task extends React.Component {
   render() {
 
     const buttons = [];

@@ -5,7 +5,7 @@ import Button from './Button';
 
 import Chars from 'Game/Data/Character';
 
-export default class Character extends React.Component {
+class Character extends React.Component {
   render() {
 
     const buttons = [];
