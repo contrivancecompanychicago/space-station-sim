@@ -1,16 +1,22 @@
 // @flow
 import {getTimeManager} from 'Game/engine';
 
+import { connect } from 'react-redux';
 import React from 'react';
 
 import Speed from 'Game/UI/Speed'
 
 
-export default class TimePanel extends React.Component {
+class TimePanel extends React.Component {
+
+  interval:number;
   componentDidMount() {
-    setInterval(() => {
+    this.interval = setInterval(() => {
       this.forceUpdate();
     }, 1000)
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval)
   }
   render() {
     const timeManager = getTimeManager();
@@ -49,3 +55,18 @@ export default class TimePanel extends React.Component {
     </div>
   }
 }
+
+function mapStateToProps(state, props) {
+  return {
+  };
+}
+
+function mapDispatchToProps(dispatch, props) {
+  return {
+    close: () => {
+      dispatch({type:'TOGGLE_TIME_PANEL'});
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TimePanel);

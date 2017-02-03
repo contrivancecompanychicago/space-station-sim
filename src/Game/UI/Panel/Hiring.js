@@ -12,6 +12,7 @@ import CharacterRow from 'Game/UI/Row/Character'
 
 class HiringPanel extends React.Component {
 
+
   render() {
     const charManager = getCharacterManager();
 
@@ -47,7 +48,6 @@ function mapStateToProps(state, props) {
 function mapDispatchToProps(dispatch, props) {
   return {
     close: () => {
-      console.log("asd");
       dispatch({type:'TOGGLE_HIRING_PANEL'});
     }
   };

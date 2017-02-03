@@ -3,14 +3,21 @@ import {getLogManager} from 'Game/engine';
 
 import React from 'react';
 
+import { connect } from 'react-redux';
 import Draggable from 'react-draggable'
 
-export default class LogPanel extends React.Component {
+class LogPanel extends React.Component {
+
+  interval:number;
   componentDidMount() {
-    setInterval(() => {
+    this.interval = setInterval(() => {
       this.forceUpdate();
     }, 1000)
   }
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
+
   // mousedown(e:Event){
   //   console.log("md", e);
   // }
@@ -31,7 +38,7 @@ export default class LogPanel extends React.Component {
     }
     return <Draggable>
       <div className="log panel">
-        <h3>Log Panel</h3>
+        <h3 onClick={this.props.close}>Log Panel</h3>
         <div className='logs'>
           {logs}
         </div>
@@ -41,3 +48,18 @@ export default class LogPanel extends React.Component {
   }
 
 }
+
+function mapStateToProps(state, props) {
+  return {
+  };
+}
+
+function mapDispatchToProps(dispatch, props) {
+  return {
+    close: () => {
+      dispatch({type:'TOGGLE_LOG_PANEL'});
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogPanel);

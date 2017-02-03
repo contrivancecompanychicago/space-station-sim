@@ -1,16 +1,22 @@
 // @flow
 import {getOrderManager} from 'Game/engine';
 
+import { connect } from 'react-redux';
 import React from 'react';
 
 import Draggable from 'react-draggable'
 
 
-export default class OrderPanel extends React.Component {
+class OrderPanel extends React.Component {
+
+  interval:number;
   componentDidMount() {
-    setInterval(() => {
+    this.interval = setInterval(() => {
       this.forceUpdate();
     }, 1000)
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval)
   }
   render() {
     const orderManager = getOrderManager();
@@ -28,10 +34,25 @@ export default class OrderPanel extends React.Component {
       });
     }
     return <Draggable><div className="order panel">
-      <h3>Orders Panel</h3>
+      <h3 onClick={this.props.close}>Orders Panel</h3>
       {orders}
     </div></Draggable>
 
   }
 
 }
+
+function mapStateToProps(state, props) {
+  return {
+  };
+}
+
+function mapDispatchToProps(dispatch, props) {
+  return {
+    close: () => {
+      dispatch({type:'TOGGLE_ORDERS_PANEL'});
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderPanel);

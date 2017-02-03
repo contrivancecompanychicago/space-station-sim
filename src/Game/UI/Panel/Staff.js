@@ -1,6 +1,7 @@
 // @flow
 import {getCharacterManager} from 'Game/engine';
 
+import { connect } from 'react-redux';
 import {values} from 'lodash'
 
 import React from 'react';
@@ -9,11 +10,16 @@ import Draggable from 'react-draggable'
 
 import type Character from 'Game/Type/Character'
 
-export default class OrderPanel extends React.Component {
+class StaffPanel extends React.Component {
+
+  interval:number;
   componentDidMount() {
-    setInterval(() => {
+    this.interval = setInterval(() => {
       this.forceUpdate();
     }, 1000)
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval)
   }
   render() {
     const characterManager = getCharacterManager();
@@ -31,10 +37,25 @@ export default class OrderPanel extends React.Component {
       });
     }
     return <Draggable><div className="staff panel">
-      <h3>Staff Panel</h3>
+      <h3 onClick={this.props.close}>Staff Panel</h3>
       {staff}
     </div></Draggable>
 
   }
 
 }
+
+function mapStateToProps(state, props) {
+  return {
+  };
+}
+
+function mapDispatchToProps(dispatch, props) {
+  return {
+    close: () => {
+      dispatch({type:'TOGGLE_STAFF_PANEL'});
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(StaffPanel);
