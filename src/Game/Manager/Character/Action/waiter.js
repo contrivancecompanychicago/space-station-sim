@@ -34,6 +34,7 @@ export default function* waiter(char:Character):Generator<*,*,*>{
       message:char.toString()+' making coffee for '+coffeeOrders[0].customer.toString(),
       type:'EVENT'})
     yield *actions.makeCoffee(char, coffeeOrders[0])
+    yield *actions.serveOrder(char, coffeeOrders[0]);
   }
 
   //LOOK FOR COOKED PIZZAS
