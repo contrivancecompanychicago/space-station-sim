@@ -16,7 +16,7 @@ class ModeButton extends React.Component{
   }
 }
 
-export default class Mode extends React.Component {
+class Mode extends React.Component {
   render() {
 
     // const buttons = [];
