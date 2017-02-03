@@ -13,13 +13,13 @@ import Ability from 'Game/Data/Object/Ability'
 export default function* cookPizza(char:Character, order:Order):Generator<*,*,*>{
 
   let itemManager:ItemManager = engine.getComponent('itemManager')
-  order.worker = char
+  // order.worker = char
+  order.addWorker(char);
   order.status = 'STARTED'
   let obj = yield *actions.forceUseObjectWithAbility(char, Ability.FRIDGE)
   let item = new Item({position: obj.block.center, type:'BASE'})
   itemManager.addItem(item);
   order.item = item;
-  // char.item = item;
   char.addItem(item)
   yield *actions.forceUseObjectWithAbility(char, Ability.PREP_TABLE)
   yield *actions.idle(char, 1);
@@ -32,6 +32,6 @@ export default function* cookPizza(char:Character, order:Order):Generator<*,*,*>
   // char.item = null;
   char.removeItem(item);
   order.status = "COOKED"
-  order.worker = null;
+  order.removeWorker(char);
 
 }

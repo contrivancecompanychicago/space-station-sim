@@ -17,4 +17,12 @@ export default class Order{
     defaults(this, params);
     if(!this.status) this.status = 'ORDERED'
   }
+  addWorker(char:Character){
+    if(this.worker) throw new Error('order already has worker')
+    this.worker = char;
+  }
+  removeWorker(char:Character){
+    if(char !== this.worker) throw new Error('removing worker who wasnt assigned');
+    this.worker = null;
+  }
 }
