@@ -25,6 +25,8 @@ fridges contain food
 food ordering
 food delivery
 
+types of food
+
 highlights
  - mouse over Character
  - mouse over grid
