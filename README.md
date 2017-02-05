@@ -13,7 +13,7 @@ todo:
 make banished-style optional screens
  - event log
 
-panel toggles
+panel toggles - react menu
 
 customer waiting actions
  - put shit on the table

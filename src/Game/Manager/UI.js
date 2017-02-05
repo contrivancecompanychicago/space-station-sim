@@ -64,10 +64,32 @@ export default class UIManager extends Component{
   }
 
   update(){
-    if(engine.input.getKeyDown(82)){ //rotate
+    //KEYS
+    let keys = {
+      'P': 80,
+      'O': 79,
+      'I': 73,
+      'L': 76,
+      'R': 82,
+      'ESC': 27
+    }
+    if(engine.input.getKeyDown(keys.P)){
+      this.store.dispatch({type:'TOGGLE_HIRING_PANEL'})
+    }
+    if(engine.input.getKeyDown(keys.O)){
+      this.store.dispatch({type:'TOGGLE_ORDERS_PANEL'})
+    }
+    if(engine.input.getKeyDown(keys.I)){
+      this.store.dispatch({type:'TOGGLE_STAFF_PANEL'})
+    }
+    if(engine.input.getKeyDown(keys.L)){
+      this.store.dispatch({type:'TOGGLE_LOG_PANEL'})
+    }
+
+    if(engine.input.getKeyDown(keys.R)){ //rotate
         this.store.dispatch({type:'ROTATE'})
     }
-    if(engine.input.getKeyDown(27)){ //escape
+    if(engine.input.getKeyDown(keys.ESC)){ //escape
         this.store.dispatch({type:'CHANGE_MODE', id: 'SELECT'})
     }
   }
