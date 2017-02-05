@@ -1,5 +1,5 @@
 //@flow
-export type AbilityType = 'PREP_TABLE'|'DINE_TABLE'|'SERVE_TABLE'|'OVEN'|'FRIDGE'|'SPAWN'|'CHAIR'|'MAKE_COFFEE'
+export type AbilityType = 'PREP_TABLE'|'DINE_TABLE'|'SERVE_TABLE'|'OVEN'|'FRIDGE'|'SPAWN'|'CHAIR'|'MAKE_COFFEE'|'SPAWN'
 
 export type AbilityDataType = AbilityType
 
@@ -12,7 +12,8 @@ const Abilities = {
   FRIDGE: 'FRIDGE',
   SPAWN: 'SPAWN',
   CHAIR: 'CHAIR',
-  MAKE_COFFEE: 'MAKE_COFFEE'
+  MAKE_COFFEE: 'MAKE_COFFEE',
+  SPAWN: 'SPAWN'
 }
 
 export default Abilities;

@@ -10,7 +10,7 @@ const obj:ObjectDataType = {
   width: 1,
   height: 1,
   blocks: [],
-  abilities: []
+  abilities: [Ability.SPAWN]
 }
 
 export default obj

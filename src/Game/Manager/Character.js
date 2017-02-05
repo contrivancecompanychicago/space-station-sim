@@ -10,6 +10,11 @@ import Component from 'Imagine/Component';
 
 import type TaskManager from 'Game/Manager/Task';
 import type {CharacterState} from 'Game/state'
+import type Obj from 'Game/Type/Object'
+
+import {getObjectManager} from 'Game/engine'
+
+import Ability from 'Game/Data/Object/Ability'
 
 
 export default class CharacterManager extends Component{
@@ -58,6 +63,17 @@ export default class CharacterManager extends Component{
         this.newAction(char);
       }
     });
+    //spawn;
+    let objectManager = getObjectManager();
+    let spawnPoints = objectManager.getObjectsWithAbility(Ability.SPAWN)
+    spawnPoints.forEach((sp) => {
+      if(Math.random()<0.001){
+        // console.log(sp)
+        let char = new Character({position:sp.block.center, type:'CUSTOMER'})
+        // console.log(this)
+        this.addChar(char);
+      }
+    })
   }
 
   newAction(char:Character){
