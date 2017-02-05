@@ -6,9 +6,12 @@ import type {GridType, GridDataType} from 'Game/Data/Grid'
 
 import GridData from 'Game/Data/Grid';
 
+import type Obj from 'Game/Type/Object'
+
 export default class Grid{
   type: GridType;
   rotation: number;
+  object: ?string
   constructor(params:{type:GridType, rotation:number}){
     defaults(this, params);
     if(!this.rotation)this.rotation = 0;

@@ -31,6 +31,9 @@ highlights
  - mouse over Character
  - mouse over grid
 
+select mode
+ - highlight objects
+ - highlight people
 
 object weight
 

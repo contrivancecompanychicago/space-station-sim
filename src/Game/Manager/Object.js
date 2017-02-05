@@ -13,6 +13,8 @@ import type {ObjectState} from 'Game/state'
 import type {ItemType} from 'Game/Data/Item'
 import type Block from 'Game/Block'
 
+import * as engine from 'Game/engine'
+
 export default class ObjectManager{
   type:string;
   state:ObjectState;
@@ -31,7 +33,17 @@ export default class ObjectManager{
     delete this.state[makeKey(obj.block.x,obj.block.y)];
   }
   getObjectAtBlock(block:Block):?Obj{
-    return this.state[block.key];
+    if(this.state[block.key])
+      return this.state[block.key];
+
+    //check overlapping
+    let grid = engine.getGridManager().getNode(block.x, block.y)
+    if(grid){
+      if(grid.object){
+        return this.state[grid.object];
+      }
+    }
+
   }
   getObjects():Array<Obj>{
     return values(this.state);

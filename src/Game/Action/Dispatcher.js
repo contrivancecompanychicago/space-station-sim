@@ -45,9 +45,9 @@ export default class Dispatcher extends Component{
       let coord = parseKey(key)
       for(let x = 0; x<type.width; x++){
         for(let y = 0; y<type.height; y++){
-          let key = makeKey(coord.x+x, coord.y+y)
-          if(this.state.Grid[key])
-            this.state.Grid[key].object = key;
+          let gridkey = makeKey(coord.x+x, coord.y+y)
+          if(this.state.Grid[gridkey])
+            this.state.Grid[gridkey].object = key;
         }
       }
     })
@@ -78,7 +78,8 @@ export default class Dispatcher extends Component{
         // let pos = viewManager.state.mousePosition;
         // let point = Point.fromScreen(pos.x, pos.y);
         // let obj = objectManager.getObjectAtBlock(point.block);
-        let obj = objectManager.getObjectAtBlock(viewManager.getMousePoint().block);
+        let obj = objectManager.getObjectAtBlock(
+          viewManager.getMousePoint().block);
         console.log(obj);
 
 
