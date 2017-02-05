@@ -28,13 +28,13 @@ class StaffPanel extends React.Component {
     let staff = []
     if(characterManager){
       values(characterManager.state).forEach((o:Character, i) => {
-
-        staff.push(
-          <div className='order' key={'order'+i}>
-
+        if(o.type !== 'CUSTOMER'){
+          staff.push(
+            <div className='order' key={'order'+i}>
             <div className='name'>{o.toString()}</div>
             <div className='type'>{o.type}</div>
-          </div>)
+            </div>)
+        }
       });
     }
     return <Draggable><div className="staff panel">
