@@ -42,7 +42,7 @@ const Gridz:{[id:GridType]:GridDataType} = {
   'WALL': {label: 'Wall', weight:0, image:require('./Grid/wall.png')},
   'DOCK': {label: 'Dock', weight:1, image:require('./Grid/dock.png')},
   'BRICKS': {label: 'Bricks', weight:0, image:require('./Grid/bricks.png')},
-  'ROAD': {label: 'Road', weight:3, image:require('./Grid/road.png')},
+  'ROAD': {label: 'Road', weight:20, image:require('./Grid/road.png')},
   'ROAD_LINE': {label: 'Road1', weight:3, image:require('./Grid/road_line.png')},
   'CARPET': {label: 'Floor', weight:1, image:require('./Grid/carpet.png')},
   'CARPETH': {label: 'Floor', weight:1, image:require('./Grid/carpethighlight.png')},
