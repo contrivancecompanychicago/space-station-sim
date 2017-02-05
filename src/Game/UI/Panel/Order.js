@@ -6,6 +6,7 @@ import React from 'react';
 
 import Draggable from 'react-draggable'
 
+import Header from './Component/Header'
 
 class OrderPanel extends React.Component {
 
@@ -34,7 +35,7 @@ class OrderPanel extends React.Component {
       });
     }
     return <Draggable><div className="order panel">
-      <h3 onClick={this.props.close}>Orders Panel</h3>
+      <Header text='Orders Panel' close={this.props.close} />
       {orders}
     </div></Draggable>
 

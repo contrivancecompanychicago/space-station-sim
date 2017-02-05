@@ -10,6 +10,8 @@ import Character from 'Game/Type/Character'
 
 import CharacterRow from 'Game/UI/Row/Character'
 
+import Header from './Component/Header'
+
 class HiringPanel extends React.Component {
 
 
@@ -32,7 +34,7 @@ class HiringPanel extends React.Component {
     }
 
     return <Draggable><div className="hiring panel">
-      <h3 onClick={this.props.close}>Hiring Panel</h3>
+      <Header text='Hiring Panel' close={this.props.close} />
       {chars}
     </div></Draggable>
 

@@ -7,6 +7,7 @@ import {values} from 'lodash'
 import React from 'react';
 
 import Draggable from 'react-draggable'
+import Header from './Component/Header'
 
 import type Character from 'Game/Type/Character'
 
@@ -37,7 +38,7 @@ class StaffPanel extends React.Component {
       });
     }
     return <Draggable><div className="staff panel">
-      <h3 onClick={this.props.close}>Staff Panel</h3>
+      <Header text='Staff Panel' close={this.props.close} />
       {staff}
     </div></Draggable>
 
