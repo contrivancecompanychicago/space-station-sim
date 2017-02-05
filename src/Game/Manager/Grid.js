@@ -114,26 +114,13 @@ export default class GridManager{
         o.getBlocks().forEach((b) => {
           let targ = o.block.add(b);
           let weight = arr[targ.x-minx][targ.y-miny]
-          // if(b.weight === undefined){
-          //   console.log(b, o);
-          //   debugger;
-          // }
+          //apart from zero
           if(b.weight === 0){
             weight = 0;
           }
-
           //only ever increase weight
           if(weight>0 && weight < b.weight) weight = b.weight;
 
-          // if(b.type === "BLOCK"){
-          //   weight = 0;
-          // }
-          // if(b.type === "ACCESS"){
-          //   // let targ = o.block.add(b);
-          //   // arr[targ.x-minx][targ.y-miny] = 10;
-          //   // console.log(weight);
-          //   if(weight>0 && weight < 10) weight = 10;
-          // }
           arr[targ.x-minx][targ.y-miny] = weight;
         })
       })

@@ -33,12 +33,12 @@ export default function loadGame(engine:any){
   })
   dispatcher.objects(object)
 
-  let chars = [
-    {x:11, y:8, type:'COOK'},
-    {x:18, y:8, type:'WAITER'},
-    {x:18, y:12, type:'CUSTOMER'},
-  ]
-  chars.forEach((c)=> {
+  // let chars = [
+  //   {x:11, y:8, type:'COOK'},
+  //   {x:18, y:8, type:'WAITER'},
+  //   {x:18, y:12, type:'CUSTOMER'},
+  // ]
+  data.Character.forEach((c)=> {
     // console.log("ding");
     let pos = new Block({x:c.x, y:c.y}).center;
     engine.getComponent('characterManager')
