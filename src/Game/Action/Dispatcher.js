@@ -57,6 +57,7 @@ export default class Dispatcher extends Component{
 
     let gridManager = engine.getGridManager();
     let objectManager = engine.getObjectManager();
+    let charManager = engine.getCharacterManager();
 
     let sel = selection.rect.blockRect();
 
@@ -75,12 +76,12 @@ export default class Dispatcher extends Component{
 
         console.info('select mode not implemented');
         let viewManager = engine.getViewManager();
-        // let pos = viewManager.state.mousePosition;
-        // let point = Point.fromScreen(pos.x, pos.y);
-        // let obj = objectManager.getObjectAtBlock(point.block);
-        let obj = objectManager.getObjectAtBlock(
-          viewManager.getMousePoint().block);
+        let mouse = viewManager.getMousePoint();
+        let obj = objectManager.getObjectAtBlock(mouse.block);
         console.log(obj);
+        let char = charManager.getClosestCharacterToPoint(mouse, 32)
+        console.log(char);
+
 
 
         break;
@@ -106,7 +107,7 @@ export default class Dispatcher extends Component{
         itemManager.addItem(item);
         break;
       case Mode.CHAR:
-        let charManager:CharManager = (this.getComponent('characterManager'):any);
+
         for(let y = sel.t; y <= sel.b; y++){
           for(let x = sel.l; x <= sel.r; x++){
             // let pos = blockToPoint({x:x, y:y});
