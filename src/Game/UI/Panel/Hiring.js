@@ -21,12 +21,24 @@ class HiringPanel extends React.Component {
     let chars = []
     if(charManager){
       charManager.getHireableChars().forEach((c) => {
-        let click = (e) => {
+        let hireWaiter = (e) => {
           console.log("hire", c.toString());
+          c.type = 'WAITER'
+          charManager.spawnCharacter(c)
+          charManager.generateHireableChars();
+          this.forceUpdate()
+        }
+        let hireCook = (e) => {
+          console.log("hire", c.toString());
+          c.type = 'COOK'
+          charManager.spawnCharacter(c)
+          charManager.generateHireableChars();
+          this.forceUpdate()
         }
         let row = <div key={c.id}>
           <CharacterRow character={c} />
-          <button onClick={click}>hire</button>
+          <button onClick={hireWaiter}>hire waiter</button>
+          <button onClick={hireCook}>hire cook</button>
         </div>
 
         chars.push(row)

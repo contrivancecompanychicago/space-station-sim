@@ -68,6 +68,22 @@ export default class CharacterManager extends Component{
         this.newAction(char);
       }
     });
+    this.spawnUpdate()
+  }
+
+  spawnCharacter(char:Character){
+    let objectManager = getObjectManager();
+    let spawnPoints = objectManager.getObjectsWithAbility(Ability.SPAWN)
+    if(spawnPoints.length>0){
+      let pt = spawnPoints[Math.floor(Math.random()*spawnPoints.length)];
+      char.position = pt.block.center;
+      this.addChar(char)
+    }else{
+      console.log("NO PLACE TO SPAWN");
+    }
+  }
+
+  spawnUpdate(){
     //spawn;
     let objectManager = getObjectManager();
     let spawnPoints = objectManager.getObjectsWithAbility(Ability.SPAWN)
@@ -79,6 +95,7 @@ export default class CharacterManager extends Component{
         this.addChar(char);
       }
     })
+
   }
 
   newAction(char:Character){
@@ -116,12 +133,16 @@ export default class CharacterManager extends Component{
   _hireableChars: Array<Character>
   getHireableChars():Array<Character> {
     if(!this._hireableChars){
-      this._hireableChars = []
-      for(let i =0; i<3; i++){
-        this._hireableChars.push(this.makeHireableChar())
-      }
+      this.generateHireableChars();
     }
     return this._hireableChars
+  }
+  generateHireableChars(){
+    this._hireableChars = []
+    for(let i =0; i<3; i++){
+      this._hireableChars.push(this.makeHireableChar())
+    }
+
   }
 
   makeHireableChar():Character {
