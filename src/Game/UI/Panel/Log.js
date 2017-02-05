@@ -6,7 +6,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Draggable from 'react-draggable'
 
-import Close from './Component/Close'
+import Header from './Component/Header'
 
 
 class LogPanel extends React.Component {
@@ -41,10 +41,7 @@ class LogPanel extends React.Component {
     }
     return <Draggable>
       <div className="log panel">
-        <h3>
-          Log Panel
-          <Close close={this.props.close} />
-        </h3>
+        <Header text='Log Panel' close={this.props.close} />
         <div className='logs'>
           {logs}
         </div>
