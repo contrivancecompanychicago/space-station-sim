@@ -22,10 +22,10 @@ export default function* customer(char:Character):Generator<*,*,*>{
   let orderManager:OrderManager = engine.getComponent('orderManager');
   let charManager = getCharacterManager();
 
-  let chairs = objectManager.getObjects().filter((o:Obj) => {
-    return (o.hasAbility(Ability.CHAIR) && o.character === null)
-  })
-  console.log(chairs.length);
+  // let chairs = objectManager.getObjects().filter((o:Obj) => {
+  //   return (o.hasAbility(Ability.CHAIR) && o.character === null)
+  // })
+  // console.log(chairs.length);
 
   let chair = yield *actions.pathToObjectWithAbility(char, Ability.CHAIR);
   if(chair){
@@ -61,7 +61,7 @@ export default function* customer(char:Character):Generator<*,*,*>{
 
     yield *actions.idle(char, 5);
   }else{
-    console.log('cant find a chair');
+    // console.log('cant find a chair');
   }
   // yield *actions.wander(char);
 

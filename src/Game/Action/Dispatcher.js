@@ -74,6 +74,14 @@ export default class Dispatcher extends Component{
       case Mode.SELECT:
 
         console.info('select mode not implemented');
+        let viewManager = engine.getViewManager();
+        // let pos = viewManager.state.mousePosition;
+        // let point = Point.fromScreen(pos.x, pos.y);
+        // let obj = objectManager.getObjectAtBlock(point.block);
+        let obj = objectManager.getObjectAtBlock(viewManager.getMousePoint().block);
+        console.log(obj);
+
+
         break;
       case Mode.GRID:
         // let gridManager:GridManager = (this.getComponent('gridManager'):any);
