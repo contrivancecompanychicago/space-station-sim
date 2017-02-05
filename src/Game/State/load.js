@@ -25,7 +25,9 @@ export default function loadGame(engine:any){
   keys(object).forEach((key) => {
     // let block = parseKey(key);
     let obj = object[key];
+
     obj.block = new Block(obj.block)
+    obj.character = null; //HACK: fixing data in demo mode
     // this.manager.getComponent('objectManager').addObject(new Obj(obj));
     object[key] = new Obj(obj);
   })

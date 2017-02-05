@@ -9,17 +9,23 @@ import Ability from 'Game/Data/Object/Ability'
 
 import type OrderManager from 'Game/Manager/Order';
 import type ObjectManager from 'Game/Manager/Object';
-import Order from 'Game/Type/Order'
 import type ItemManager from 'Game/Manager/Item';
-
 import type Character from 'Game/Type/Character'
-export default function* cook(char:Character):Generator<*,*,*>{
+import type Obj from 'Game/Type/Object'
+
+import Order from 'Game/Type/Order'
+export default function* customer(char:Character):Generator<*,*,*>{
 
   let itemManager:ItemManager = engine.getComponent('itemManager')
   let gridManager = engine.getComponent('gridManager');
   let objectManager:ObjectManager = engine.getComponent('objectManager');
   let orderManager:OrderManager = engine.getComponent('orderManager');
   let charManager = getCharacterManager();
+
+  let chairs = objectManager.getObjects().filter((o:Obj) => {
+    return (o.hasAbility(Ability.CHAIR) && o.character === null)
+  })
+  console.log(chairs.length);
 
   let chair = yield *actions.pathToObjectWithAbility(char, Ability.CHAIR);
   if(chair){
@@ -54,6 +60,8 @@ export default function* cook(char:Character):Generator<*,*,*>{
     }
 
     yield *actions.idle(char, 5);
+  }else{
+    console.log('cant find a chair');
   }
   // yield *actions.wander(char);
 
