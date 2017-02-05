@@ -19,6 +19,7 @@ import {getObjectManager} from 'Game/engine'
 export default class GridManager{
   type: string;
   state: GridState;
+  pathCache: {grid: Array<Array<number>>, minx:number, miny:number}
   constructor(state:GridState){
     this.type = 'gridManager';
     this.state = state;
@@ -111,19 +112,23 @@ export default class GridManager{
     if(objectManager){
       objectManager.getObjects().forEach((o) => {
         o.getBlocks().forEach((b) => {
+          let targ = o.block.add(b);
+          let weight = arr[targ.x-minx][targ.y-miny]
           if(b.type === "BLOCK"){
-            let targ = o.block.add(b);
-            arr[targ.x-minx][targ.y-miny] = 0;
+            weight = 0;
           }
-          // if(b.type === "ACCESS"){
-          //   let targ = o.block.add(b);
-          //   arr[targ.x-minx][targ.y-miny] = 10;
-          // }
+          if(b.type === "ACCESS"){
+            // let targ = o.block.add(b);
+            // arr[targ.x-minx][targ.y-miny] = 10;
+            // console.log(weight);
+            if(weight>0 && weight < 10) weight = 10;
+          }
+          arr[targ.x-minx][targ.y-miny] = weight;
         })
       })
     }
 
-
+    this.pathCache = {grid:arr, minx: minx, miny:miny}
     let graph = new Graph(arr);
 
     //TODO: snip above and cache

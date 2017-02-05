@@ -14,10 +14,9 @@ import info from './Renderer/grid/info';
 import renderSelection from './Renderer/grid/selection';
 
 import renderDebugLines from './Renderer/debugLines'
-
 import renderObjectBlocks from './Renderer/object/blocks'
-
 import renderCharacterHighlight from './Renderer/character/highlight'
+import renderGridWeights from './Renderer/grid/weights'
 
 const proposer = new Proposer();
 
@@ -84,5 +83,6 @@ export default class Renderer{
     //debug
     // renderObjectBlocks(this.state, this.layer)
     // renderDebugLines(this.state, this.layer);
+    renderGridWeights(this.state, this.layer)
   }
 }
