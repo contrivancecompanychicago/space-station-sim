@@ -4,6 +4,7 @@ import type {ObjectDataType} from '../Object'
 const a = 'ACCESS';
 const b = 'BLOCK';
 
+import Weight from 'Game/Data/Grid/Weight'
 import Ability from 'Game/Data/Object/Ability'
 const obj:ObjectDataType = {
   id: 'TABLE5',
@@ -11,7 +12,9 @@ const obj:ObjectDataType = {
   image: require('./table5.png'),
   width: 1,
   height: 1,
-  blocks: [{type: b, x:0,y:0},],
+  blocks: [
+    {type: b, weight: Weight.BLOCK, x:0,y:0},
+  ],
   requirements: {
   },
   abilities: [Ability.DINE_TABLE],

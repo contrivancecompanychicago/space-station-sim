@@ -7,6 +7,8 @@ import Ability from 'Game/Data/Object/Ability'
 const a = 'ACCESS';
 const b = 'BLOCK';
 
+import Weight from 'Game/Data/Grid/Weight'
+
 const obj:ObjectDataType = {
   id: 'CHAIR2',
   label: 'Chair',
@@ -14,8 +16,8 @@ const obj:ObjectDataType = {
   width: 1,
   height: 1,
   blocks: [
-    {type: a, x:0, y:-1},
-    {type: a, x:0,y:0},
+    {type: a, weight: Weight.ACCESS, x:0, y:-1},
+    {type: a, weight: Weight.CHAIR, x:0,y:0},
   ],
   requirements: {
   },

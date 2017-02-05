@@ -43,7 +43,7 @@ export const ObjectBlocks:{[id:ObjectBlocksType]: ObjectBlocksType} = {
 }
 
 export type ObjectBlocksDataType = {
-  x:number, y:number, type: ObjectBlocksType
+  x:number, y:number, type: ObjectBlocksType, weight:number
 }
 export type ObjectDataType = {
   id: ObjectType,

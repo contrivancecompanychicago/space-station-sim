@@ -34,11 +34,11 @@ export default class Obj{
   rotateBlock(b:ObjectBlocksDataType):ObjectBlocksDataType{
     switch(this.rotation){
       case 1:
-      return {type: b.type, x:-b.y, y:b.x}
+      return {type: b.type, weight: b.weight, x:-b.y, y:b.x}
       case 2:
-      return {type: b.type, x:-b.x, y:-b.y}
+      return {type: b.type, weight: b.weight, x:-b.x, y:-b.y}
       case 3:
-      return {type: b.type, x:b.y, y:-b.x}
+      return {type: b.type, weight: b.weight, x:b.y, y:-b.x}
       default:
       return b;
     }
