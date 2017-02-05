@@ -31,6 +31,11 @@ export default class CharacterManager extends Component{
     this.state[char.id] = char;
   }
 
+  removeCharacter(char:Character){
+    delete this.state[char.id]
+  }
+
+
   getClosestCharacterToPoint(p:{x:number, y:number}, min:?number):?Character{
     if(!min){
       min = Infinity

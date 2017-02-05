@@ -1,5 +1,5 @@
 //@flow
-import engine from 'Game/engine';
+import engine, {getCharacterManager} from 'Game/engine';
 
 
 import actions from './index'
@@ -19,6 +19,8 @@ export default function* cook(char:Character):Generator<*,*,*>{
   let gridManager = engine.getComponent('gridManager');
   let objectManager:ObjectManager = engine.getComponent('objectManager');
   let orderManager:OrderManager = engine.getComponent('orderManager');
+  let charManager = getCharacterManager();
+
   let chair = yield *actions.pathToObjectWithAbility(char, Ability.CHAIR);
   if(chair){
     chair.character = char
@@ -53,7 +55,7 @@ export default function* cook(char:Character):Generator<*,*,*>{
 
     yield *actions.idle(char, 5);
   }
-  yield *actions.wander(char);
+  // yield *actions.wander(char);
 
   //WIPE CLEAN - hacky
   while(char.item.length>0){
@@ -61,6 +63,10 @@ export default function* cook(char:Character):Generator<*,*,*>{
     itemManager.removeItem(item);
     char.removeItem(item);
   }
+  yield *actions.pathToObjectWithAbility(char, Ability.SPAWN)
+
+  charManager.removeCharacter(char);
+
 
 
 
