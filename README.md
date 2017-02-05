@@ -39,6 +39,9 @@ object weight
 
 move rotation drawing into layer
 
+rating food
+
+track order time
 
 space pause time
 

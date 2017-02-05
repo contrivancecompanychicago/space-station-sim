@@ -83,6 +83,6 @@ export default class Renderer{
     //debug
     // renderObjectBlocks(this.state, this.layer)
     // renderDebugLines(this.state, this.layer);
-    renderGridWeights(this.state, this.layer)
+    // renderGridWeights(this.state, this.layer)
   }
 }

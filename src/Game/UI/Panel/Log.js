@@ -6,6 +6,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Draggable from 'react-draggable'
 
+import Close from './Component/Close'
+
+
 class LogPanel extends React.Component {
 
   interval:number;
@@ -38,7 +41,10 @@ class LogPanel extends React.Component {
     }
     return <Draggable>
       <div className="log panel">
-        <h3 onClick={this.props.close}>Log Panel</h3>
+        <h3>
+          Log Panel
+          <Close close={this.props.close} />
+        </h3>
         <div className='logs'>
           {logs}
         </div>
