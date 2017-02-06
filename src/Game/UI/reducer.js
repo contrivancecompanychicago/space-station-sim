@@ -9,9 +9,10 @@ import speed from './reducer/speed';
 import object from './reducer/object';
 import rotation from './reducer/rotation';
 import panel from './reducer/panel';
+import selected from './reducer/selected';
 
 
-import type {State} from 'Game/state'
+import type {UIState} from 'Game/state'
 
 // export default function reducer(state = {}, action){
 //   return state;
@@ -27,4 +28,5 @@ export default (combineReducers({
   object,
   rotation,
   panel,
-}):State);
+  selected,
+}):UIState);

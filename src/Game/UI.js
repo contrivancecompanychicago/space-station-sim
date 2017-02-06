@@ -41,16 +41,20 @@ class UI extends React.Component {
     }
 
     let panels = []
-    if(this.props.panel.log.show) panels.push(<LogPanel />)
-    if(this.props.panel.orders.show) panels.push(<OrderPanel />)
-    if(this.props.panel.staff.show) panels.push(<StaffPanel />)
-    if(this.props.panel.hiring.show) panels.push(<HiringPanel />)
+    if(this.props.panel.log.show) panels.push(<LogPanel key='Log' />)
+    if(this.props.panel.orders.show) panels.push(<OrderPanel key='Order' />)
+    if(this.props.panel.staff.show) panels.push(<StaffPanel key='Staff' />)
+    if(this.props.panel.hiring.show) panels.push(<HiringPanel key='Hiring' />)
 
 
-    if(state.View.selected){
-      // console.log(state.View.selected)
-      panels.push(<SelectedPanel target={state.View.selected} />)
-    }
+    // if(this.props.selected){
+      
+    //   console.log(this.props.selected)
+    //   panels.push(<SelectedPanel target={this.props.selected} />)
+    // }
+    this.props.selected.forEach((s, i) => {
+      panels.push(<SelectedPanel target={s} />)
+    })
 
 
     // <Speed />
@@ -71,7 +75,8 @@ class UI extends React.Component {
 function mapStateToProps(state, props) {
   return {
     mode: state.mode,
-    panel: state.panel
+    panel: state.panel,
+    selected: state.selected
   };
 }
 

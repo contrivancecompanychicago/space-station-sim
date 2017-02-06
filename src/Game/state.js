@@ -46,7 +46,8 @@ export type TaskState = {
 
 export type UIState = {
   mode:any,
-  rotation: number
+  rotation: number,
+  selected: Array<Obj | Character | null>
 }
 
 export type ViewState = {
@@ -54,7 +55,6 @@ export type ViewState = {
   mousePosition: {x:number, y:number},
   scale: number,
   selection: ?Selection,
-  selected: Obj | Character | null
 }
 
 export type TimeState = {
@@ -96,14 +96,15 @@ export function base():State{
     Task:{},
     UI:{
       mode: Mode.SELECT,
-      rotation: 0
+      rotation: 0,
+      selected: []
     },
     View:{
       offset: {x:0, y:0},
       mousePosition: {x:0, y:0},
       scale:1,
       selection:null,
-      selected:null
+      // selected:null
     },
     Order:[],
     Player:{money:10000}

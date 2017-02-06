@@ -23,6 +23,7 @@ export type GridType =
   'WOOD'|
   'GREYWALL'|
   'GREYWALL2'|
+  'GREYWALLCORNER'|
   'REDWALL'|
   'REDWALL2'
 

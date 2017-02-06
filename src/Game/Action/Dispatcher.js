@@ -82,7 +82,10 @@ export default class Dispatcher extends Component{
         let char = charManager.getClosestCharacterToPoint(mouse, 32)
         // console.log(char);
         if(char){
-          viewManager.state.selected = char;
+          let uiManager = engine.getUIManager()
+          // uiManager
+          // viewManager.state.selected = char;
+          uiManager.setSelected(char);
           // engine.getUIManager().forceUpdate();
         }
 

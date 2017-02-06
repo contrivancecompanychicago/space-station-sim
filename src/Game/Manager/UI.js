@@ -57,7 +57,7 @@ export default class UIManager extends Component{
     this.forceUpdate();
   }
   forceUpdate(){
-    console.log('forcing update')
+    // console.log('forcing update')
     ReactDOM.render(<Provider store={this.store}><UI /></Provider>, this.container);
   }
   setState(){
@@ -66,6 +66,9 @@ export default class UIManager extends Component{
     });
     assign(this.state, this.store.getState());
 
+  }
+  setSelected(selected:any){
+    this.store.dispatch({type:'SET_SELECTED', selected:selected})
   }
 
   update(){
