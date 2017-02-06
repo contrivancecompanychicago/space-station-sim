@@ -43,7 +43,7 @@ module.exports = {
             {   test: /\.styl$/,
                 loader: "style-loader!css-loader!stylus-loader"
             },
-            {   test: /\.(ttf|eot|svg)$/,
+            {   test: /\.(ttf|eot|svg|TTF)$/,
                 loader: "file-loader"
             }
         ]

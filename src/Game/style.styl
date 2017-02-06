@@ -1,6 +1,22 @@
+// to force webpack to extract. Remove later after deciding.
+.dummy{
+  src: url(fonts/ALBA____.TTF)
+  src: url(fonts/ALBAM___.TTF)
+  src: url(fonts/ALBAS___.TTF)
+  src: url(fonts/bunny$mambo.ttf);
+  src: url(fonts/ArcadeClassic.ttf);
+  src: url(fonts/Freshman.ttf);
+  src: url(fonts/RealTrap.ttf);
+  src: url(fonts/Vacaciones-font-ffp-defharo.ttf);
+}
+
 @font-face {
-    font-family: Freshman;
-    src: url(Freshman.ttf);
+    font-family: HeadingFont;
+    src: url(fonts/Vacaciones-font-ffp-defharo.ttf);
+}
+@font-face {
+    font-family: SmallFont;
+    src: url(fonts/ArcadeClassic.ttf);
 }
 
 border-colour = #DD9877
@@ -11,7 +27,7 @@ body, html {
   margin: 0;
   padding: 0;
   background: #111;
-  font-family: Freshman;
+  font-family: SmallFont;
 }
 
 canvas {
@@ -43,13 +59,14 @@ canvas {
   }
 
   h3{
+    font-family: HeadingFont
     margin: 3px;
     font-weight: normal;
     border-radius: 4px;
     border: 1px solid border-colour
     color: background-colour
     background-color: colour
-    padding: 2px
+    padding: 2px 8px
     font-size: 16px
     text-align: left
   }
@@ -114,7 +131,7 @@ canvas {
 
 .bar.component{
   border:1px solid black;
-  height: 20px;
+  height: 14px;
   width: 150px;
   position: relative;
   display: inline-block
@@ -125,6 +142,7 @@ canvas {
     height: 100%;
   }
   .text{
+    font-family: SmallFont;
     position: absolute
   }
 }

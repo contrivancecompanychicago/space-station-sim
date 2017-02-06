@@ -5,7 +5,7 @@ import eslint from 'gulp-eslint';
 import webpack from 'webpack-stream';
 
 
-const src = './src/**/*.js';
+const src = './src/**/*.*';
 const test = './test/**/*.js';
 const config = ['gulpfile.babel.js', 'karma.conf.js', 'webpack.config.js'];
 
