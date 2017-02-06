@@ -54,6 +54,7 @@ const Gridz:{[id:GridType]:GridDataType} = {
   'WOOD': {label: 'Floor', weight:1, image:require('./Grid/woodstraightfloor.png')},
   'GREYWALL': {label: 'Wall', weight:0, image:require('./Grid/greywall.png')},
   'GREYWALL2': {label: 'Wall', weight:0, image:require('./Grid/greywall2.png')},
+  'GREYWALLCORNER': {label: 'Wall', weight:0, image:require('./Grid/greywallcorner.png')},
   'REDWALL': {label: 'Wall', weight:0, image:require('./Grid/redwall1.png')},
   'REDWALL2': {label: 'Wall', weight:0, image:require('./Grid/redwall2.png')},
 };

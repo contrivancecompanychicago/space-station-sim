@@ -12,8 +12,11 @@ class Button extends React.Component{
       image = <img src={this.props.data.image.src} />;
     }
     return <button className={className} onClick={this.props.click} onMouseOver={this.props.mouseover}>
-    {this.props.data.label}
-    {image}
+      <div className="inner">
+        {this.props.data.label}
+        <br />
+        {image}
+      </div>
     </button>;
   }
   // componentDidMount(){

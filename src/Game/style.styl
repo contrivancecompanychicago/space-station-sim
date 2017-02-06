@@ -35,14 +35,18 @@ canvas {
   z-index: 0;
 }
 
-.menu{
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  z-index: 1;
-}
 
 .ui {
+  .menu{
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    z-index: 1;
+    .time{
+      //font-family: HeadingFont;
+
+    }
+  }
   .panel{
     border: 2px solid border-colour;
     background-color: background-colour;
@@ -87,7 +91,26 @@ canvas {
   button.selected{
     background-color: yellow;
   }
+  button .inner{
+    display:block;
+    width: 50px;
+    height: 50px;
+  }
   button img{
+    width: 20px;
+    height: 20px;
+    margin-top: 6px;
+    transition: width .3s, height .2s, margin-top .2s;
+    transition-timing-function: cubic-bezier(.41,-0.6,.51,1.6)
+
+  }
+  button:hover img{
+    margin-top: 0px;
+    width: 32px;
+    height: 32px;
+  }
+  button.selected img{
+    margin-top: 0px;
     width: 32px;
     height: 32px;
   }
