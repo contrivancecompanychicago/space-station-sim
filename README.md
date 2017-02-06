@@ -49,6 +49,7 @@ get closest action points - dont just get any fridge etc
 
 replace worldToScreen, blockToPoint etc from renderer - replace with Point class
 
+budget screens
 
 some art from opengameart.com:
 http://opengameart.org/content/dawnlike-16x16-universal-rogue-like-tileset-v181

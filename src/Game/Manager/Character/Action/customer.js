@@ -1,5 +1,5 @@
 //@flow
-import engine, {getCharacterManager} from 'Game/engine';
+import * as engine from 'Game/engine';
 
 
 import actions from './index'
@@ -16,11 +16,11 @@ import type Obj from 'Game/Type/Object'
 import Order from 'Game/Type/Order'
 export default function* customer(char:Character):Generator<*,*,*>{
 
-  let itemManager:ItemManager = engine.getComponent('itemManager')
-  let gridManager = engine.getComponent('gridManager');
-  let objectManager:ObjectManager = engine.getComponent('objectManager');
-  let orderManager:OrderManager = engine.getComponent('orderManager');
-  let charManager = getCharacterManager();
+  let itemManager = engine.getItemManager()
+  let gridManager = engine.getGridManager()
+  let objectManager = engine.getObjectManager()
+  let orderManager = engine.getOrderManager()
+  let charManager = engine.getCharacterManager();
 
   // let chairs = objectManager.getObjects().filter((o:Obj) => {
   //   return (o.hasAbility(Ability.CHAIR) && o.character === null)
@@ -71,6 +71,9 @@ export default function* customer(char:Character):Generator<*,*,*>{
     itemManager.removeItem(item);
     char.removeItem(item);
   }
+
+  engine.getPlayerManager().addMoney(20)
+
   yield *actions.pathToObjectWithAbility(char, Ability.SPAWN)
 
   charManager.removeCharacter(char);

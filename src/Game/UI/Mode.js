@@ -23,7 +23,7 @@ class Mode extends React.Component {
     // keys(Modes).forEach((key) => {
     //   buttons.push(<Button type="mode" selected={key===this.props.mode} key={key} data={Modes[key]} click={()=>this.props.click(key)} />);
     // });
-
+    
     return <div className="mode panel">
       <button onClick={() => this.props.rotate()}>rotate {this.props.rotation}</button>
       <br />
