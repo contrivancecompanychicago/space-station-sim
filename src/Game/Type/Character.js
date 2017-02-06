@@ -21,11 +21,12 @@ export default class Character{
   position: Point;
   firstname: string;
   lastname: string;
-  action: ?Object;
+  action: ?Generator<*,*,*>;
   item: Array<Item>;
   task: string;
   skills: {[id:Skill]:number}
   salary: number;
+  status: string;
   constructor(params:{type:CharacterType, position:Point}){
     defaults(this, params);
     if(!this.id) this.id = uniqid();
@@ -33,6 +34,7 @@ export default class Character{
     if(!this.firstname) defaults(this, namegen())
     this.randomiseSkills()
     if(!this.salary) this.calculateSalary();
+    this.status = "thinking"
   }
   calculateSalary(){
     this.salary = 500 + Math.floor(Math.random()*500)
@@ -54,5 +56,8 @@ export default class Character{
   }
   toString():string{
     return this.firstname + ' ' + this.lastname
+  }
+  setStatus(status:string){
+    this.status = status;
   }
 }

@@ -19,9 +19,11 @@ class SelectedCharacterPanel extends React.Component{
         return <Draggable><div className="selected panel">
             <Header text='Selected Character' close={this.props.close} />
             <CharacterRow character={this.props.target} />
+            {this.props.target.status}
         </div></Draggable>
     }
 }
+
 
 function mapStateToProps(state, props) {
   return {
