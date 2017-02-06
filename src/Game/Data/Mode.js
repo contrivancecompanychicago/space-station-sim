@@ -13,10 +13,10 @@ export type ModeDataType = {
 }
 
 const Modes:{[id:ModeType]:ModeDataType} = {
-  'SELECT': {label: 'select'},
-  'GRID': {label: 'grid'},
-  'OBJECT': {label: 'object'},
-  'CHAR': {label: 'char'},
+  'SELECT': {label: 'select', image: require('./Mode/cursor-512.png')},
+  'GRID': {label: 'grid', image: require('./Mode/grid.png')},
+  'OBJECT': {label: 'object', image: require('./Mode/object.png')},
+  'CHAR': {label: 'char', image: require('./Character/char1.png')},
   'ITEM': {label: 'item'},
   // 'TASK': {label: 'task'},
 };

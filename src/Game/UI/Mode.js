@@ -25,13 +25,13 @@ class Mode extends React.Component {
     // });
 
     return <div className="mode panel">
-      <ModeButton name='SELECT' mode={this.props.mode} click={this.props.click} />
       <button onClick={() => this.props.rotate()}>rotate {this.props.rotation}</button>
       <br />
+      <ModeButton name='SELECT' mode={this.props.mode} click={this.props.click} />
       <ModeButton name='GRID' mode={this.props.mode} click={this.props.click} />
       <ModeButton name='OBJECT' mode={this.props.mode} click={this.props.click} />
       <ModeButton name='CHAR' mode={this.props.mode} click={this.props.click} />
-      <ModeButton name='ITEM' mode={this.props.mode} click={this.props.click} />
+      {/*<ModeButton name='ITEM' mode={this.props.mode} click={this.props.click} />*/}
     </div>;
   }
 }
