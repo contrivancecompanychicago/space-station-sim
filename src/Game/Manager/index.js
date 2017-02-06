@@ -8,6 +8,7 @@ import Item from './Item';
 import Objekt from './Object';
 import Order from './Order';
 import Log from './Log';
+import Player from './Player';
 
 const out = {
   Grid: Grid,
@@ -19,6 +20,7 @@ const out = {
   Object: Objekt,
   Order: Order,
   Log: Log,
+  Player: Player,
 };
 
 

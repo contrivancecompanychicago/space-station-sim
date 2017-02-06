@@ -60,6 +60,10 @@ export type TimeState = {
   currentTime: number
 }
 
+export type PlayerState = {
+  money: number
+}
+
 export type State = {
   Character: CharacterState,
   Grid: GridState,
@@ -69,7 +73,8 @@ export type State = {
   UI: UIState,
   View: ViewState,
   Time: TimeState,
-  Order: OrderState
+  Order: OrderState,
+  Player: PlayerState
 }
 
 const state:State = base();
@@ -99,5 +104,6 @@ export function base():State{
       selection:null
     },
     Order:[],
+    Player:{money:10000}
   };
 }

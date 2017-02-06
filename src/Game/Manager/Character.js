@@ -16,6 +16,8 @@ import {getObjectManager} from 'Game/engine'
 
 import Ability from 'Game/Data/Object/Ability'
 
+import * as engine from 'Game/engine'
+
 
 export default class CharacterManager extends Component{
   // type:string;
@@ -69,6 +71,12 @@ export default class CharacterManager extends Component{
       }
     });
     this.spawnUpdate()
+  }
+
+  hireCharacter(char:Character){
+    engine.getPlayerManager().spendMoney(char.salary)
+    this.spawnCharacter(char);
+    this.generateHireableChars();
   }
 
   spawnCharacter(char:Character){

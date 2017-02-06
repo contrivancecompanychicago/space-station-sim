@@ -15,6 +15,12 @@ import Header from './Component/Header'
 class HiringPanel extends React.Component {
 
 
+  componentDidMount(){
+    setTimeout(() => {
+      this.forceUpdate(); //HACK because char not inited at mount
+    }, 100)
+  }
+
   render() {
     const charManager = getCharacterManager();
 
@@ -24,15 +30,13 @@ class HiringPanel extends React.Component {
         let hireWaiter = (e) => {
           console.log("hire", c.toString());
           c.type = 'WAITER'
-          charManager.spawnCharacter(c)
-          charManager.generateHireableChars();
+          charManager.hireCharacter(c)
           this.forceUpdate()
         }
         let hireCook = (e) => {
           console.log("hire", c.toString());
           c.type = 'COOK'
-          charManager.spawnCharacter(c)
-          charManager.generateHireableChars();
+          charManager.hireCharacter(c)
           this.forceUpdate()
         }
         let row = <div className="hireable" key={c.id}>

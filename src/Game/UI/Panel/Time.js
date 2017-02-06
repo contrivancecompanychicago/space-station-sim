@@ -1,5 +1,5 @@
 // @flow
-import {getTimeManager} from 'Game/engine';
+import * as engine from 'Game/engine';
 
 import { connect } from 'react-redux';
 import React from 'react';
@@ -19,7 +19,8 @@ class TimePanel extends React.Component {
     clearInterval(this.interval)
   }
   render() {
-    const timeManager = getTimeManager();
+    const timeManager = engine.getTimeManager();
+    const playerManager = engine.getPlayerManager()
     // console.log(timeManager);
     if(!timeManager) return <div />
 
@@ -49,7 +50,12 @@ class TimePanel extends React.Component {
     if(minutes == 0) minutes = "00" //flow is all like whatever yolo
 
     let time = hours+":"+minutes+", "+day+" "+daymonth+"/"+month+"/"+year
+
+    let money = '-';
+    if(playerManager) money = playerManager.state.money
     return <div className="time panel">
+      ${money}
+      <br />
       {time}
       <Speed />
     </div>
