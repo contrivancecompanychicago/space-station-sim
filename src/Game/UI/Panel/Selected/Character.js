@@ -16,10 +16,10 @@ type Props = {
 class SelectedCharacterPanel extends React.Component{
     props: Props
     render(){
-        return <div className="selected panel">
+        return <Draggable><div className="selected panel">
             <Header text='Selected Character' close={this.props.close} />
             <CharacterRow character={this.props.target} />
-        </div>
+        </div></Draggable>
     }
 }
 
@@ -29,9 +29,10 @@ function mapStateToProps(state, props) {
 }
 
 function mapDispatchToProps(dispatch, props) {
+  console.log(props)
   return {
     close: () => {
-      dispatch({type:'TOGGLE_SELECTED_PANEL'});
+      dispatch({type:'REMOVE_SELECTED', selected: props.target});
     }
   };
 }

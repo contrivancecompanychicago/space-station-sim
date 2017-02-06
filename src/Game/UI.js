@@ -53,7 +53,7 @@ class UI extends React.Component {
     //   panels.push(<SelectedPanel target={this.props.selected} />)
     // }
     this.props.selected.forEach((s, i) => {
-      panels.push(<SelectedPanel target={s} />)
+      panels.push(<SelectedPanel key={s.toString()} target={s} />)
     })
 
 

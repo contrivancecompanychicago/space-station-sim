@@ -8,10 +8,10 @@ type State = {
 }
 
 const defaults:State = {
-  hiring:{show:true},
-  staff:{show:true},
-  orders:{show:true},
-  log:{show:true},
+  hiring:{show:false},
+  staff:{show:false},
+  orders:{show:false},
+  log:{show:false},
 }
 
 export type PanelAction = 'TOGGLE_HIRING_PANEL'
