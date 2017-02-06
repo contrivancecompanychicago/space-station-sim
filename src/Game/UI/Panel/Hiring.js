@@ -35,8 +35,9 @@ class HiringPanel extends React.Component {
           charManager.generateHireableChars();
           this.forceUpdate()
         }
-        let row = <div key={c.id}>
+        let row = <div className="hireable" key={c.id}>
           <CharacterRow character={c} />
+          <div className="salary">${c.salary} per week</div>
           <button onClick={hireWaiter}>hire waiter</button>
           <button onClick={hireCook}>hire cook</button>
         </div>

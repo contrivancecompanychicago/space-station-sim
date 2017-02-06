@@ -25,12 +25,17 @@ export default class Character{
   item: Array<Item>;
   task: string;
   skills: {[id:Skill]:number}
+  salary: number;
   constructor(params:{type:CharacterType, position:Point}){
     defaults(this, params);
     if(!this.id) this.id = uniqid();
     if(!this.item) this.item = []
     if(!this.firstname) defaults(this, namegen())
     this.randomiseSkills()
+    if(!this.salary) this.calculateSalary();
+  }
+  calculateSalary(){
+    this.salary = 500 + Math.floor(Math.random()*500)
   }
   randomiseSkills(){
     this.skills = {}

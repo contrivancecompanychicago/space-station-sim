@@ -88,7 +88,7 @@ export default class CharacterManager extends Component{
     let objectManager = getObjectManager();
     let spawnPoints = objectManager.getObjectsWithAbility(Ability.SPAWN)
     spawnPoints.forEach((sp) => {
-      if(Math.random()<0.001){
+      if(Math.random()<0.0004){
         // console.log(sp)
         let char = new Character({position:sp.block.center, type:'CUSTOMER'})
         // console.log(this)

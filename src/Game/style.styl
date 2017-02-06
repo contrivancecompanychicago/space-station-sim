@@ -101,7 +101,7 @@ canvas {
     height: 20px;
     margin-top: 6px;
     transition: width .3s, height .2s, margin-top .2s;
-    transition-timing-function: cubic-bezier(.41,-0.6,.51,1.6)
+    transition-timing-function: cubic-bezier(.29,-0.73,.6,2)
 
   }
   button:hover img{
@@ -148,7 +148,19 @@ canvas {
 }
 
 .hiring.panel{
-  width:310px;
+  width:320px;
+  .hireable{
+    border: 1px solid border-colour;
+    padding: 4px;
+    .name{
+      font-family: HeadingFont
+      font-size: 16px;
+      text-align: left;
+    }
+    button{
+      height: 20px;
+    }
+  }
 }
 
 
