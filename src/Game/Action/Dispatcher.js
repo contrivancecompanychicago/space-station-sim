@@ -74,13 +74,17 @@ export default class Dispatcher extends Component{
     switch(this.state.UI.mode){
       case Mode.SELECT:
 
-        console.info('select mode not implemented');
+        // console.info('select mode not implemented');
         let viewManager = engine.getViewManager();
         let mouse = viewManager.getMousePoint();
         let obj = objectManager.getObjectAtBlock(mouse.block);
-        console.log(obj);
+        // console.log(obj);
         let char = charManager.getClosestCharacterToPoint(mouse, 32)
-        console.log(char);
+        // console.log(char);
+        if(char){
+          viewManager.state.selected = char;
+          // engine.getUIManager().forceUpdate();
+        }
 
 
 

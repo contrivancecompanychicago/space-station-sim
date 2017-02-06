@@ -53,6 +53,11 @@ export default class UIManager extends Component{
   render(){
     this.setState();
     // this.object.engine.time. Speed[this.state.speed].speed;
+    // ReactDOM.render(<Provider store={this.store}><UI /></Provider>, this.container);
+    this.forceUpdate();
+  }
+  forceUpdate(){
+    console.log('forcing update')
     ReactDOM.render(<Provider store={this.store}><UI /></Provider>, this.container);
   }
   setState(){

@@ -15,7 +15,11 @@ import TimePanel from './UI/Panel/Time';
 import LogPanel from './UI/Panel/Log';
 import HiringPanel from './UI/Panel/Hiring';
 
+import SelectedPanel from './UI/Panel/Selected'
+
 import StaffPanel from './UI/Panel/Staff';
+
+import state from 'Game/state';
 
 class UI extends React.Component {
   render() {
@@ -41,6 +45,12 @@ class UI extends React.Component {
     if(this.props.panel.orders.show) panels.push(<OrderPanel />)
     if(this.props.panel.staff.show) panels.push(<StaffPanel />)
     if(this.props.panel.hiring.show) panels.push(<HiringPanel />)
+
+
+    if(state.View.selected){
+      // console.log(state.View.selected)
+      panels.push(<SelectedPanel target={state.View.selected} />)
+    }
 
 
     // <Speed />
