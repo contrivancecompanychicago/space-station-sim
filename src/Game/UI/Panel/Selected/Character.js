@@ -28,7 +28,7 @@ class SelectedCharacterPanel extends React.Component{
     
     render(){
         return <Draggable><div className="selected panel">
-            <Header text='Selected Character' close={this.props.close} />
+            <Header text={this.props.target.toString()} close={this.props.close} />
             <CharacterRow character={this.props.target} />
             {this.props.target.status}
         </div></Draggable>
@@ -42,7 +42,7 @@ function mapStateToProps(state, props) {
 }
 
 function mapDispatchToProps(dispatch, props) {
-  console.log(props)
+  // console.log(props)
   return {
     close: () => {
       dispatch({type:'REMOVE_SELECTED', selected: props.target});

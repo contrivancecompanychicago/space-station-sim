@@ -11,7 +11,7 @@ class ModeButton extends React.Component{
       selected={this.props.name===this.props.mode}
       key={this.props.name}
       data={Modes[this.props.name]}
-      mouseover={()=>this.props.click(this.props.name)}
+      // mouseover={()=>this.props.click(this.props.name)}
       click={()=>this.props.click(this.props.name)} />
   }
 }

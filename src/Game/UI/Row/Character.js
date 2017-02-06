@@ -15,13 +15,18 @@ export default class CharacterRow extends React.Component {
   render() {
     // let key = "char"+this.props.character.id;
     let skills = []
-    keys(this.props.character.skills).forEach((key) => {
-      let skill = this.props.character.skills[key];
-      // skills.push(<div>{key}-{skill}</div>);
-      skills.push(<Bar key={key} text={key} percent={skill} />)
-    })
+    if( this.props.character.type !== 'CUSTOMER'){
+      keys(this.props.character.skills).forEach((key) => {
+        let skill = this.props.character.skills[key];
+        // skills.push(<div>{key}-{skill}</div>);
+        skills.push(<Bar key={key} text={key} percent={skill} />)
+      })
+
+    }
+    
     return <div className="character row">
       <div className="name">{this.props.character.toString()}</div>
+      <div className="type">{this.props.character.type}</div>
       <div className="skills">
         {skills}
       </div>
