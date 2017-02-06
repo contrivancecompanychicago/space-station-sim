@@ -13,6 +13,8 @@ import type Obj from 'Game/Type/Object'
 import type {Selection} from 'Game/Type/Selection'
 import type Order from 'Game/Type/Order'
 
+// import {Grid} from 'Game/Data/Grid';
+
 import {Mode} from 'Game/Data/Mode';
 // type ModesType = 'SELECT'
 // | 'GRID'
@@ -47,7 +49,8 @@ export type TaskState = {
 export type UIState = {
   mode:any,
   rotation: number,
-  selected: Array<Obj | Character | null>
+  selected: Array<Obj | Character | null>,
+  // grid:Grid
 }
 
 export type ViewState = {
@@ -97,7 +100,8 @@ export function base():State{
     UI:{
       mode: Mode.SELECT,
       rotation: 0,
-      selected: []
+      selected: [],
+      // grid: Grid.FLOOR
     },
     View:{
       offset: {x:0, y:0},

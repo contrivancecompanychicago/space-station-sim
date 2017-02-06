@@ -15,6 +15,7 @@ import TimePanel from './UI/Panel/Time';
 import LogPanel from './UI/Panel/Log';
 import HiringPanel from './UI/Panel/Hiring';
 
+import Panel from './UI/Panel';
 import SelectedPanel from './UI/Panel/Selected'
 
 import StaffPanel from './UI/Panel/Staff';
@@ -37,6 +38,9 @@ class UI extends React.Component {
         break;
       case 'OBJECT':
         active = <Objekt />
+        break;
+      case 'PANEL':
+        active = <Panel />
         break;
     }
 

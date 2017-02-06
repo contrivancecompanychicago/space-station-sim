@@ -31,6 +31,7 @@ class Mode extends React.Component {
       <ModeButton name='GRID' mode={this.props.mode} click={this.props.click} />
       <ModeButton name='OBJECT' mode={this.props.mode} click={this.props.click} />
       <ModeButton name='CHAR' mode={this.props.mode} click={this.props.click} />
+      <ModeButton name='PANEL' mode={this.props.mode} click={this.props.click} />
       {/*<ModeButton name='ITEM' mode={this.props.mode} click={this.props.click} />*/}
     </div>;
   }

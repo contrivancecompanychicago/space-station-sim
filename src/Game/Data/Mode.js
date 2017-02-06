@@ -6,6 +6,7 @@ export type ModeType = 'SELECT'
 | 'ITEM'
 | 'CHAR'
 | 'TASK'
+| 'PANEL'
 | 'OBJECT';
 
 export type ModeDataType = {
@@ -17,6 +18,7 @@ const Modes:{[id:ModeType]:ModeDataType} = {
   'GRID': {label: 'grid', image: require('./Mode/grid.png')},
   'OBJECT': {label: 'object', image: require('./Mode/object.png')},
   'CHAR': {label: 'char', image: require('./Character/char1.png')},
+  'PANEL': {label: 'panels', image: require('./Object/test.png')},
   'ITEM': {label: 'item'},
   // 'TASK': {label: 'task'},
 };

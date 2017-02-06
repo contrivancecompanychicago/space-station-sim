@@ -59,24 +59,26 @@ export default function* customer(char:Character):Generator<*,*,*>{
     if(table){
       yield *actions.placeItemOnBlock(char, table.block)
     }
-    char.setStatus('eating')
+    char.setStatus('Eating')
     yield *actions.idle(char, 5);
     engine.getPlayerManager().addMoney(20)
+    while(char.item.length>0){
+      let item = char.item[0];
+      itemManager.removeItem(item);
+      char.removeItem(item);
+    }
+    char.setStatus('Leaving')
+    yield *actions.pathToObjectWithAbility(char, Ability.SPAWN)
     
   }else{
+    char.setStatus('Nowhere to sit')
+    yield *actions.pathToObjectWithAbility(char, Ability.SPAWN)
     // console.log('cant find a chair');
   }
   // yield *actions.wander(char);
 
   //WIPE CLEAN - hacky
-  while(char.item.length>0){
-    let item = char.item[0];
-    itemManager.removeItem(item);
-    char.removeItem(item);
-  }
 
-  char.setStatus('Leaving')
-  yield *actions.pathToObjectWithAbility(char, Ability.SPAWN)
 
   char.setStatus('Gone')
   charManager.removeCharacter(char);

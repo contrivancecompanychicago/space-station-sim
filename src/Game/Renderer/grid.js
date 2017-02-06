@@ -25,8 +25,8 @@ function renderGrid(state:State, layer:Layer){
 
   // renderWalls(state, layer);
 
-  for(let x = tl.x; x<br.x; x++){
-    for(let y = tl.y; y<br.y; y++){
+  for(let x = tl.x; x<=br.x; x++){
+    for(let y = tl.y; y<=br.y; y++){
       let pos = new Point({x, y});
       let key = makeKey(x, y);
       if(state.Grid[key]){
