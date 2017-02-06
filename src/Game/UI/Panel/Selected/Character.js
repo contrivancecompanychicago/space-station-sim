@@ -15,6 +15,17 @@ type Props = {
 }
 class SelectedCharacterPanel extends React.Component{
     props: Props
+    
+    interval:number;
+    componentDidMount() {
+      this.interval = setInterval(() => {
+        this.forceUpdate();
+      }, 1000)
+    }
+    componentWillUnmount() {
+      clearInterval(this.interval)
+    }
+    
     render(){
         return <Draggable><div className="selected panel">
             <Header text='Selected Character' close={this.props.close} />

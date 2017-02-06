@@ -26,7 +26,7 @@ export default function* customer(char:Character):Generator<*,*,*>{
   //   return (o.hasAbility(Ability.CHAIR) && o.character === null)
   // })
   // console.log(chairs.length);
-
+  char.setStatus('Sitting down')
   let chair = yield *actions.pathToObjectWithAbility(char, Ability.CHAIR);
   if(chair){
     chair.character = char
@@ -43,12 +43,13 @@ export default function* customer(char:Character):Generator<*,*,*>{
     orderManager.addOrder(coffee);
     let numFulfilled = 0;
     while(numFulfilled !== orders.length){
+      char.setStatus('waiting for order ('+numFulfilled+'/'+orders.length+')')
       numFulfilled = 0;
       orders.forEach((o) => {
         if(o.status === 'FULFILLED') numFulfilled++;
       })
       yield; //wait til I get my shit.
-    }
+    }0
     chair.character = null;
 
     //check for table;
@@ -58,8 +59,10 @@ export default function* customer(char:Character):Generator<*,*,*>{
     if(table){
       yield *actions.placeItemOnBlock(char, table.block)
     }
-
+    char.setStatus('eating')
     yield *actions.idle(char, 5);
+    engine.getPlayerManager().addMoney(20)
+    
   }else{
     // console.log('cant find a chair');
   }
@@ -72,10 +75,10 @@ export default function* customer(char:Character):Generator<*,*,*>{
     char.removeItem(item);
   }
 
-  engine.getPlayerManager().addMoney(20)
-
+  char.setStatus('Leaving')
   yield *actions.pathToObjectWithAbility(char, Ability.SPAWN)
 
+  char.setStatus('Gone')
   charManager.removeCharacter(char);
 
 
