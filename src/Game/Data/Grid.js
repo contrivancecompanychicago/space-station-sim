@@ -24,6 +24,7 @@ export type GridType =
   'GREYWALL'|
   'GREYWALL2'|
   'GREYWALLCORNER'|
+  'GREYWALLCORNER2'|
   'REDWALL'|
   'REDWALL2'
 
@@ -56,6 +57,7 @@ const Gridz:{[id:GridType]:GridDataType} = {
   'GREYWALL': {label: 'Wall', weight:0, image:require('./Grid/greywall.png')},
   'GREYWALL2': {label: 'Wall', weight:0, image:require('./Grid/greywall2.png')},
   'GREYWALLCORNER': {label: 'Wall', weight:0, image:require('./Grid/greywallcorner.png')},
+  'GREYWALLCORNER2': {label: 'Wall', weight:0, image:require('./Grid/greywallcorner2.png')},
   'REDWALL': {label: 'Wall', weight:0, image:require('./Grid/redwall1.png')},
   'REDWALL2': {label: 'Wall', weight:0, image:require('./Grid/redwall2.png')},
 };
