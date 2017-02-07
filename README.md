@@ -53,11 +53,13 @@ budget screens
 
 
 PRIORITISED:
--Point/Block for everything
 -Selected Object as well as player
 -Flesh out selected player
  -center on character button
  -follow button
+-cook actions status
+-waiter action status
+
 
 
 some art from opengameart.com:

@@ -22,10 +22,13 @@ export default function* serveOrder(char:Character, order:Order):Generator<*,*,*
     if(!char.hasItem(item)){
       let block = item.position.block
       let obj = objectManager.getObjectAtBlock(block);
-      if(obj) obj.character = char;
-      yield *actions.pathToBlock(char, block);
-      if(obj) obj.character = null;
-      if(obj) obj.item = null;
+      if(obj){
+        (obj:Obj)
+        obj.character = char;
+        yield *actions.pathToBlock(char, obj.getAccessBlock());
+        obj.character = null;
+        obj.item = null;
+      }
       char.addItem(item)
     }
 
