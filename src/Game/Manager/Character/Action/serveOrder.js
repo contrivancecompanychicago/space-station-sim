@@ -4,7 +4,6 @@ import engine from 'Game/engine';
 import actions from './index'
 import type Character from 'Game/Type/Character'
 import type Order from 'Game/Type/Order'
-import type Obj from 'Game/Type/Object'
 // import type ObjectManager from 'Game/Manager/Object'
 // import type OrderManager from 'Game/Manager/Order'
 import type LogManager from 'Game/Manager/Log'
@@ -23,13 +22,10 @@ export default function* serveOrder(char:Character, order:Order):Generator<*,*,*
     if(!char.hasItem(item)){
       let block = item.position.block
       let obj = objectManager.getObjectAtBlock(block);
-      if(obj){
-        (obj:Obj)
-        obj.character = char;
-        yield *actions.pathToBlock(char, obj.getAccessBlock());
-        obj.character = null;
-        obj.item = null;
-      }
+      if(obj) obj.character = char;
+      yield *actions.pathToBlock(char, block);
+      if(obj) obj.character = null;
+      if(obj) obj.item = null;
       char.addItem(item)
     }
 
@@ -38,10 +34,6 @@ export default function* serveOrder(char:Character, order:Order):Generator<*,*,*
     order.customer.addItem(item);
     char.removeItem(item)
     //finish order
-    logManager.addLog({
-      message:order.customer.toString()+' got '+item.type,
-      type:'EVENT'
-    })
 
     order.status = 'FULFILLED'
     orderManager.state.splice(orderManager.state.indexOf(order), 1);

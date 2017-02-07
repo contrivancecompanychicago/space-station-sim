@@ -1,6 +1,6 @@
 // @flow
 
-import {worldToScreen, blockToPoint} from 'Util';
+
 
 import type {State} from 'Game/state'
 import type Layer from 'Game/Renderer/Layer';
@@ -11,7 +11,7 @@ export default function renderItem(item:Item, state:State, layer:Layer){
 
     // layer.context.fillStyle = 'green';
     let type = ItemData[item.type]
-    const o = worldToScreen(item.position, state);
+    const o = item.position.screen;
     // layer.context.fillStyle = 'blue';
     // layer.context.beginPath();
     // layer.context.arc(offset.x, offset.y, 6*state.View.scale, 0, Math.PI * 2);

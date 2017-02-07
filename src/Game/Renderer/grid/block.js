@@ -1,6 +1,6 @@
 // @flow
 
-import {worldToScreen, blockToPoint} from 'Util';
+// import {worldToScreen, blockToPoint} from 'Util';
 import config from 'Game/config';
 
 const blockWidth = config.grid.width;
@@ -10,12 +10,15 @@ import Types from 'Game/Data/Grid';
 
 import type Grid from 'Game/Type/Grid'
 import Point from 'Game/Point'
+import Block from 'Game/Block'
 import type {State} from 'Game/state'
 
-export default function renderBlock(pos:Point, block:Grid, state:State, layer:Object){
+export default function renderBlock(pos:Block, block:Grid, state:State, layer:Object){
 
   layer.context.fillStyle = 'red';
-  const offset = worldToScreen(blockToPoint(pos), state);
+  // const offset = worldToScreen(blockToPoint(pos), state);
+  
+  const offset = pos.point.screen
   let o = {x:offset.x, y:offset.y, w:blockWidth * state.View.scale, h:blockHeight * state.View.scale };
 
   if(Types[block.type]){

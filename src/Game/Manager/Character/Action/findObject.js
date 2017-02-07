@@ -7,7 +7,7 @@ import type ObjectManager from 'Game/Manager/Object'
 export default function* findObject(filter:Function):Generator<*,Obj,*>{
   let objectManager:ObjectManager = engine.getComponent('objectManager');
   let obj:Obj
-
+  
   while(!obj){
     yield;
     let objs = objectManager.getObjects().filter(filter);

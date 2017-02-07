@@ -1,7 +1,7 @@
 //@flow
 import config from 'Game/config';
 import { keys, mapValues, assign } from 'lodash';
-import { blockToPoint, pointToBlock, screenToWorld, worldToScreen, makeKey, parseKey } from 'Util';
+import { makeKey, parseKey } from 'Util';
 
 const blockWidth = config.grid.width;
 const blockHeight = config.grid.height;
@@ -14,20 +14,22 @@ import renderWalls from './grid/wall';
 // import renderProposal from './grid/proposal';
 
 import Point from 'Game/Point';
+import Block from 'Game/Block';
 import type {State} from 'Game/state'
 import type Layer from 'Game/Renderer/Layer'
 
 function renderGrid(state:State, layer:Layer){
 
 
-  let tl = pointToBlock(screenToWorld({x:0, y:0}, state));
-  let br = pointToBlock(screenToWorld({x:window.innerWidth, y:window.innerHeight}, state));
+  
+  let tl = Point.fromScreen(0,0).block
+  let br = Point.fromScreen(window.innerWidth, window.innerHeight).block
 
   // renderWalls(state, layer);
 
   for(let x = tl.x; x<=br.x; x++){
     for(let y = tl.y; y<=br.y; y++){
-      let pos = new Point({x, y});
+      let pos = new Block({x, y});
       let key = makeKey(x, y);
       if(state.Grid[key]){
         renderBlock(pos, state.Grid[key], state, layer);

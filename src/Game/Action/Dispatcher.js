@@ -3,7 +3,7 @@ import {extend, keys} from 'lodash'
 import * as engine from 'Game/engine'
 
 import {Mode} from 'Game/Data/Mode';
-import {pointToBlock, blockToPoint, makeKey, parseKey} from 'Util';
+import {makeKey, parseKey} from 'Util';
 import {Block} from 'Game/Point';
 import Character from 'Game/Type/Character';
 import Item from 'Game/Type/Item';
@@ -117,7 +117,6 @@ export default class Dispatcher extends Component{
 
         for(let y = sel.t; y <= sel.b; y++){
           for(let x = sel.l; x <= sel.r; x++){
-            // let pos = blockToPoint({x:x, y:y});
             let pos = new Block({x:x, y:y}).center;
             charManager.addChar(new Character({position: pos, type: this.state.UI.character}));
           }

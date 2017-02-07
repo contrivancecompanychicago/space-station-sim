@@ -1,6 +1,6 @@
 //@flow
 
-import {worldToScreen, blockToPoint} from 'Util';
+// import {worldToScreen, blockToPoint} from 'Util';
 
 import {getCharacterManager} from 'Game/engine'
 
@@ -11,7 +11,7 @@ export default function renderCharacterHighlight(state:State, layer:Layer) {
   let charManager = getCharacterManager();
   let char = charManager.getClosestCharacterToPoint(state.View.mousePosition, 32);
   if(char){
-    const o = worldToScreen(char.position, state);
+    const o = char.position.screen
 
     layer.context.strokeStyle = 'blue';
     layer.context.beginPath();
