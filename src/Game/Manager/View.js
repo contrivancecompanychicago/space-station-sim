@@ -69,9 +69,7 @@ export default class ViewManager{
   }
 
   getMousePoint():Point{
-    return Point.fromScreen(
-      this.state.mousePosition.x,
-      this.state.mousePosition.y)
+    return new Point(this.state.mousePosition);
   }
 
   globalToLocal(point:Object){
