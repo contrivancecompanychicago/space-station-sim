@@ -76,17 +76,20 @@ export default class Dispatcher extends Component{
 
         // console.info('select mode not implemented');
         let viewManager = engine.getViewManager();
+        let uiManager = engine.getUIManager()
         let mouse = viewManager.getMousePoint();
-        let obj = objectManager.getObjectAtBlock(mouse.block);
-        // console.log(obj);
         let char = charManager.getClosestCharacterToPoint(mouse, 32)
-        // console.log(char);
         if(char){
-          let uiManager = engine.getUIManager()
           // uiManager
           // viewManager.state.selected = char;
           uiManager.setSelected(char);
           // engine.getUIManager().forceUpdate();
+        }else{
+
+          let obj = objectManager.getObjectAtBlock(mouse.block);
+          if(obj){
+            uiManager.setSelected(obj);
+          }
         }
 
 

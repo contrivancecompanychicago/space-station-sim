@@ -5,6 +5,7 @@ import React from 'react';
 // import Header from './Component/Header'
 
 import SelectedCharacterPanel from './Selected/Character'
+import SelectedObjectPanel from './Selected/Object'
 
 import type Character from 'Game/Type/Character';
 import type Obj from 'Game/Type/Object';
@@ -18,8 +19,9 @@ export default class SelectedPanel extends React.Component{
         if(this.props.target.constructor.name === 'Character'){
             let target = ((this.props.target:any):Character) //recast
             return <SelectedCharacterPanel target={target} />
-        }else{
-            return <div />
+        }else{ //TODO check harder
+            let target = ((this.props.target:any):Obj) //recast
+            return <SelectedObjectPanel target={target} />
         }
     }
 }
