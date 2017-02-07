@@ -18,7 +18,10 @@ class Panel extends React.Component {
     // });
     return <div className="panels panel">
       <h3>Info Panels</h3>
-      <Button type="panel" selected={false} data={{label:'mylabel'}} click={()=>this.props.click('TOGGLE_LOG_PANEL')} />
+      <Button type="panel" selected={false} data={{label:'Logs'}} click={()=>this.props.click('TOGGLE_LOG_PANEL')} />
+      <Button type="panel" selected={false} data={{label:'Hiring'}} click={()=>this.props.click('TOGGLE_HIRING_PANEL')} />
+      <Button type="panel" selected={false} data={{label:'Staff'}} click={()=>this.props.click('TOGGLE_STAFF_PANEL')} />
+      <Button type="panel" selected={false} data={{label:'Orders'}} click={()=>this.props.click('TOGGLE_ORDERS_PANEL')} />
     </div>;
   }
 }
