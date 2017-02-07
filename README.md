@@ -10,32 +10,14 @@ and got o localhost:8080/dist
 
 
 todo:
-make banished-style optional screens
- - event log
 
-panel toggles - react menu
-
-customer waiting actions
- - put shit on the table
-
- money
- hiring staff
-staff competancy
+staff competancy applied
 fridges contain food
 food ordering
 food delivery
 
 types of food
 
-highlights
- - mouse over Character
- - mouse over grid
-
-select mode
- - highlight objects
- - highlight people
-
-object weight
 
 move rotation drawing into layer
 
@@ -46,8 +28,6 @@ track order time
 space pause time
 
 get closest action points - dont just get any fridge etc
-
-replace worldToScreen, blockToPoint etc from renderer - replace with Point class
 
 budget screens
 

@@ -28,7 +28,7 @@ class SelectedObjectPanel extends React.Component{
     
     render(){
         return <Draggable><div className="selected panel">
-            <Header text='object' close={this.props.close} />
+            <Header text={this.props.target.type} close={this.props.close} />
             object
             {JSON.stringify(this.props.target)}
         </div></Draggable>
