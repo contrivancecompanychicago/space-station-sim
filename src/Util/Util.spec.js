@@ -12,29 +12,29 @@ describe('Util/namegen', () =>{
 })
 
 
-describe('Util', () => {
-  it('should have globalToLocal', () => {
-    // console.log(Util);
-    expect(globalToLocal).toBeDefined();
-    expect(typeof globalToLocal).toBe('function');
-  });
-    it('should have localToGlobal', () => {
-      // console.log(Util);
-      expect(localToGlobal).toBeDefined();
-      expect(typeof localToGlobal).toBe('function');
-    });
-  xdescribe('blockToCenter', () => {
-    it('should convert a block into a point in the blocks center', () => {
-      let out = blockToCenter({x:0, y:0});
-      // console.log(out);
-      expect(out.x).toBe(config.grid.width/2);
-      expect(out.y).toBe(config.grid.height/2);
+xdescribe('Util', () => {
+  // it('should have globalToLocal', () => {
+  //   // console.log(Util);
+  //   expect(globalToLocal).toBeDefined();
+  //   expect(typeof globalToLocal).toBe('function');
+  // });
+  //   it('should have localToGlobal', () => {
+  //     // console.log(Util);
+  //     expect(localToGlobal).toBeDefined();
+  //     expect(typeof localToGlobal).toBe('function');
+  //   });
+  // xdescribe('blockToCenter', () => {
+  //   it('should convert a block into a point in the blocks center', () => {
+  //     let out = blockToCenter({x:0, y:0});
+  //     // console.log(out);
+  //     expect(out.x).toBe(config.grid.width/2);
+  //     expect(out.y).toBe(config.grid.height/2);
 
-      out = blockToCenter({x:1, y:1});
-      expect(out.x).toBe(config.grid.width * 1.5);
-      expect(out.y).toBe(config.grid.height * 1.5);
-    });
-  });
+  //     out = blockToCenter({x:1, y:1});
+  //     expect(out.x).toBe(config.grid.width * 1.5);
+  //     expect(out.y).toBe(config.grid.height * 1.5);
+  //   });
+  // });
 });
 
 describe('makeKey', () => {

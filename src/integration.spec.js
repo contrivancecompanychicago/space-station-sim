@@ -54,7 +54,7 @@ describe('Integration', () => {
     expect(viewManager.endSelection).toHaveBeenCalled();
     expect(actionDispatcher.userAction).toHaveBeenCalled();
 
-    expect(keys(game.state.Grid).length).toBe(318);
+    expect(keys(game.state.Grid).length).toBe(796);
 
     game.destroy();
   });
