@@ -6,8 +6,6 @@ import * as state from 'Game/state';
 import config from 'Game/config';
 
 
-
-
 describe('Game/Point', () => {
 
   beforeEach(() => {

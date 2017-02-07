@@ -4,7 +4,7 @@
   "description": "space station sim game",
   "main": "server/server.js",
   "scripts": {
-    "test": "karma start",
+    "test": "jest",
     "dev": "webpack-dev-server --hot --inline",
     "build": "gulp build",
     "electron": "./node_modules/.bin/electron dist/",
@@ -31,7 +31,9 @@
     "url": "https://github.com/digijin/space-station-sim/issues"
   },
   "homepage": "https://github.com/digijin/space-station-sim",
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-jest": "^18.0.0"
+  },
   "dependencies": {
     "babel-core": "^6.7.6",
     "babel-loader": "^6.2.4",
@@ -56,6 +58,7 @@
     "isparta-loader": "^2.0.0",
     "jasmine-core": "^2.3.0",
     "javascript-astar": "^0.4.1",
+    "jest-cli": "^18.1.0",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.1.8",
     "karma-coverage": "^0.5.5",
@@ -85,5 +88,23 @@
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1",
     "webpack-stream": "^3.2.0"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/setupTest.js",
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "modulePaths": [
+      "/src"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less|styl)$": "<rootDir>/__mocks__/styleMock.js"
+    }
   }
 }

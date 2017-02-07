@@ -6,7 +6,12 @@ points stored in ingame coordinates
 import config from 'Game/config';
 import state from 'Game/state';
 
-import {worldToScreen, screenToWorld} from 'Util';
+import worldToScreen from 'Util/worldToScreen'
+import screenToWorld from 'Util/screenToWorld'
+
+// import {worldToScreen, screenToWorld} from 'Util';
+// import * as Util from 'Util';
+
 
 import BlockClass from 'Game/Block';
 
