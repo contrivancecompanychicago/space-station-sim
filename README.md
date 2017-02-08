@@ -31,12 +31,10 @@ get closest action points - dont just get any fridge etc
 
 budget screens
 
+unfollow
+
 
 PRIORITISED:
--Selected Object as well as player
--Flesh out selected player
- -center on character button
- -follow button
 
 
 

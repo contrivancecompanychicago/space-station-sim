@@ -33,6 +33,7 @@ class SelectedCharacterPanel extends React.Component{
             <CharacterRow character={this.props.target} />
             {this.props.target.status}
             <button onClick={this.props.center}>center</button>
+            <button onClick={this.props.follow}>follow</button>
 
         </div></Draggable>
     }
@@ -50,6 +51,10 @@ function mapDispatchToProps(dispatch, props:Props) {
     center: () => {
       let viewManager = engine.getViewManager();
       viewManager.centerOnPoint(props.target.position)
+    },
+    follow: () => {
+      let viewManager = engine.getViewManager();
+      viewManager.followCharacter(props.target)
     },
     close: () => {
       dispatch({type:'REMOVE_SELECTED', selected: props.target});

@@ -14,6 +14,8 @@ import type {Selection} from 'Game/Type/Selection'
 
 import {getCharacterManager} from 'Game/engine'
 
+import type Character from 'Game/Type/Character'
+
 type Event = {
   wheelDelta:number,
   pageX:number,
@@ -52,11 +54,17 @@ export default class ViewManager{
   lastPos: {x:number, y:number};
   button: number;
 
+  follow:?Character;
+
   update(){
     //calculate whats under mousey
     // let charManager = getCharacterManager();
     // let char = charManager.getClosestCharacterToPoint(this.state.mousePosition);
-
+    if(this.follow){
+      console.log(this.follow);
+      
+      this.centerOnPoint(this.follow.position);
+    }
 
   }
   constructor(state:ViewState, container:HTMLElement) {
@@ -74,6 +82,14 @@ export default class ViewManager{
     this.state.offset.y = 400-point.y
     
   }
+
+  followCharacter(char:Character){
+    this.follow = char
+  }
+  unfollowCharacter(){
+    this.follow = null
+  }
+  
 
   getMousePoint():Point{
     return new Point(this.state.mousePosition);
