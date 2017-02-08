@@ -37,8 +37,6 @@ PRIORITISED:
 -Flesh out selected player
  -center on character button
  -follow button
--cook actions status
--waiter action status
 
 
 

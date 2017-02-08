@@ -39,11 +39,15 @@ export default function* cook(char:Character):Generator<*,*,*>{
     message:char.toString()+' cooking '+order.type+' for '+order.customer.toString(),
     type:'EVENT'})
 
+  char.setStatus('cooking food')
   yield *actions.cookPizza(char, order)
 
   logManager.addLog({
     message:char.toString()+' finished cooking '+order.type+' for '+order.customer.toString(),
     type:'EVENT'})
+
+  
+  char.setStatus('waiting for orders')
 
   // yield *wander(char);
   // yield *placeItemOnEmptyTable(char, Ability.SERVE_TABLE);
