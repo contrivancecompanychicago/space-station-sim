@@ -61,9 +61,7 @@ export default class ViewManager{
     // let charManager = getCharacterManager();
     // let char = charManager.getClosestCharacterToPoint(this.state.mousePosition);
     if(this.follow){
-      console.log(this.follow);
-      
-      this.centerOnPoint(this.follow.position);
+      this.centerOnPoint(this.follow.position.rounded);
     }
 
   }
@@ -207,6 +205,7 @@ export default class ViewManager{
 
   startDrag(e:Event){
     this.dragging = true;
+    this.follow = null;
     this.lastPos = {x:e.pageX, y: e.pageY};
   }
 

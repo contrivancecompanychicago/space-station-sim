@@ -64,4 +64,11 @@ export default class Point{
     let pos = screenToWorld({x,y}, state);
     return new Point(pos.x, pos.y);
   }
+
+  get rounded():Point{
+    return new Point(
+      Math.round(this.x),
+      Math.round(this.y)
+    )
+  }
 }
