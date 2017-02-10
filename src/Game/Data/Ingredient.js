@@ -95,5 +95,47 @@ recipes:{
         parmesan
         garlic
     }
-    gamberi
+    gamberi: {
+        sauce
+        prawn
+        mozzarella
+        oregano
+        parmesan
+        chili
+        garlic
+    }
+    marinara: {
+        sauce
+        oregano
+        garlic
+        olive oil
+
+    }
+    meatlover:{
+        sauce
+        ham
+        salami
+        bacon
+        cabanossi
+        sausage
+        mozzarella
+        oregano
+
+    }
+    napoli:{
+        sauce
+        olive
+        anchovy
+        mozzarella
+        oregano
+
+    }
+    pescatore:{
+        sauce
+        seafood
+        oregano
+        chili
+        garlic
+    }
+
 }
