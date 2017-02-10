@@ -5,7 +5,7 @@
 // FLOWHACK
 require('./Game/style.styl');
 
-import managers from 'Game/Manager';
+import Managers from 'Game/Manager';
 import Renderer from 'Game/Renderer';
 import ActionDispatcher from 'Game/Action/Dispatcher';
 import Time from 'Game/Manager/Time';
@@ -41,22 +41,36 @@ export default class Game{
     this.engine.register(new Renderer(this.state, this.container)); // renderer
 
     //spawn managers
+    let managers = [];
     this.manager = this.engine.register({type:'manager', game:this}); // parent
 
     let timeManager = new Time(this.state.Time, this.engine.time); //time manager
     time.default = timeManager;
-    this.manager.addComponent(timeManager);
+    // this.manager.addComponent(timeManager);
+    managers.push(timeManager);
 
-    keys(managers).forEach((key) => { // misc managers with state
-      let manager = managers[key];
+    keys(Managers).forEach((key) => { // misc managers with state
+      let manager = Managers[key];
       // if(!this.state[key])
       //   this.state[key] = {};
-      this.manager.addComponent(new manager(this.state[key], this.container));
+      // this.manager.addComponent(new manager(this.state[key], this.container));
+      managers.push(new manager(this.state[key], this.container));
     });
 
     // etc
     let dispatcher = new ActionDispatcher(this.state, this.container);
-    this.manager.addComponent(dispatcher);
+    // this.manager.addComponent(dispatcher);
+    managers.push(dispatcher);
+
+    //register
+    managers.forEach(man => {
+      this.manager.addComponent(man);
+    })
+    //initialise
+    managers.forEach(man => {
+      // FLOWHACK
+      if(man.init) man.init();
+    })
 
     //LOADGAME hacky
     load(this.engine)
