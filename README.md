@@ -36,6 +36,8 @@ achievement system
 
 
 PRIORITISED:
+properly initialise and not have this check on frame 1 bullshit
+ - possibly change engine
 
 
 

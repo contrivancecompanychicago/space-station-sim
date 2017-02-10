@@ -1,99 +1,73 @@
+//@flow
+export type IngredientType = 
+    'MOZZARELLA' |
+    'SAUCE' |
+    'BBQ' |
+    'TOMATO' |
+    'OREGANO' |
+    'ROSEMARY' |
+    'BASIL' |
+    'GARLIC' |
+    'CHILI' |
+    'SALAMI' |
+    'ANCHOVY' |
+    'CAPSICUM' |
+    'OLIVE' |
+    'HAM' |
+    'MUSHROOM' |
+    'SAUSAGE' |
+    'POTATO' |
+    'PARMESAN' |
+    'OLIVEOIL' |
+    'BACON' |
+    'CABANOSSI' |
+    'SEAFOOD' |
+    'PRAWN' |
+    'CHICKEN' |
+    'SPINACH' |
+    'ROCKET' |
+    'PINEAPPLE' |
+    'ONION'
 
-[
-    mozzarella
-    sauce
-    BBQ
-    tomato
-    oregano
-    rosemary
-    basil
-
-    garlic
-    chili
-    salami
-    anchovy
-    capsicum
-    olive
-    ham
-    mushroom
-    sausage
-    potato
-    parmesan
-    olive oil
-    bacon
-    cabanossi
-    seafood
-    prawn
-    chicken
-    spinach
-    rocket
-    pineapple
-    onion
-
-
-
-
-]
-
-recipes:{
-    garlic: {
-        garlic
-    }
-    garliccheese{
-        garlic
-        mozzarella
-    }
-    margherita:{
-        sauce
-        mozzarella
-        oregano
-    }
-    americana: {
-        tomato sauce
-        salami
-        mozzarella
-        oregano
-    }
-    hawaiian: {
-        sauce
-        mozzarella
-        ham
-        pineapple
-    }
-    capricciosa: {
-        sauce
-        ham
-        mushroom
-        sausage
-        mozzarella
-        oregano
-        chili
-    }
-    contadina: {
-        potato
-        sausage
-        mozzarella
-        rosemary
-        oregano
-        garlic
-    }
-    calabrese: {
-        sauce
-        onion
-        salami
-        capsicum
-        anchovy
-        olive
-        mozzarella
-        oregano
-    }
-    funghi: {
-        sauce
-        mushroom
-        mozzarella
-        oregano
-        parmesan
-        garlic
-    }
-    gamberi
+export type IngredientDataType = {
+    label:string,
+    cost:number
 }
+
+
+export const Ingredient:{[id:IngredientType]:IngredientType} = {
+    'MOZZARELLA': 'MOZZARELLA',
+    'SAUCE': 'SAUCE',
+    'BBQ': 'BBQ',
+    'TOMATO': 'TOMATO',
+    'OREGANO': 'OREGANO',
+    'ROSEMARY': 'ROSEMARY',
+    'BASIL': 'BASIL',
+    'GARLIC': 'GARLIC',
+    'CHILI': 'CHILI',
+    'SALAMI': 'SALAMI',
+    'ANCHOVY': 'ANCHOVY',
+    'CAPSICUM': 'CAPSICUM',
+    'OLIVE': 'OLIVE',
+    'HAM': 'HAM',
+    'MUSHROOM': 'MUSHROOM',
+    'SAUSAGE': 'SAUSAGE',
+    'POTATO': 'POTATO',
+    'PARMESAN': 'PARMESAN',
+    'OLIVEOIL': 'OLIVEOIL',
+    'BACON': 'BACON',
+    'CABANOSSI': 'CABANOSSI',
+    'SEAFOOD': 'SEAFOOD',
+    'PRAWN': 'PRAWN',
+    'CHICKEN': 'CHICKEN',
+    'SPINACH': 'SPINACH',
+    'ROCKET': 'ROCKET',
+    'PINEAPPLE': 'PINEAPPLE',
+    'ONION': 'ONION',
+}
+
+let data:{[id:IngredientType]:IngredientDataType} = {
+    MOZZARELLA: {label: "Mozzarella", cost:1}
+}
+export default data;
+

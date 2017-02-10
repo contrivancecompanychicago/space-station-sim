@@ -12,7 +12,9 @@ import * as engine from 'Game/engine'
 
 type Props = {
     target: Character,
-    close: Function
+    close: Function,
+    center: Function,
+    follow: Function
 }
 class SelectedCharacterPanel extends React.Component{
     props: Props
