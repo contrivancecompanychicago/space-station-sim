@@ -16,7 +16,6 @@ export default class ItemManager extends Manager{
   }
 
   addItem(item:Item){
-    
     this.state[item.id] = item;
   }
   removeItem(item:Item){

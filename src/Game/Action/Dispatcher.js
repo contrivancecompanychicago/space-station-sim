@@ -80,12 +80,8 @@ export default class Dispatcher extends Component{
         let mouse = viewManager.getMousePoint();
         let char = charManager.getClosestCharacterToPoint(mouse, 32)
         if(char){
-          // uiManager
-          // viewManager.state.selected = char;
           uiManager.setSelected(char);
-          // engine.getUIManager().forceUpdate();
         }else{
-
           let obj = objectManager.getObjectAtBlock(mouse.block);
           if(obj){
             uiManager.setSelected(obj);

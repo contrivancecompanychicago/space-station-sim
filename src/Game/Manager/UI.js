@@ -71,6 +71,8 @@ export default class UIManager extends Manager{
 
   }
   setSelected(selected:any){
+    console.log('setting selected', selected);
+    
     this.store.dispatch({type:'SET_SELECTED', selected:selected})
   }
 
