@@ -75,6 +75,9 @@ export default class UIManager extends Manager{
     
     this.store.dispatch({type:'SET_SELECTED', selected:selected})
   }
+  clearSelected(){
+    this.store.dispatch({type:'CLEAR_SELECTED'})
+  }
 
   update(){
     //KEYS

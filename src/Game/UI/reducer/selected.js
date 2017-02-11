@@ -15,6 +15,9 @@ export default function selected(state:Array<Object> = [], action:Object):Array<
             return (o !== action.selected)
         })
     break;
+    case 'CLEAR_SELECTED':
+        state = [];
+    break;
   }
   return state;
 }
