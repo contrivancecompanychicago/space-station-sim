@@ -5,10 +5,14 @@ export type LogType = 'EVENT'|'ORDER'|'SERVE'
 
 export type LogEntry = {type:LogType, message:string}
 
-export default class LogManager{
+import Manager from 'Game/Manager'
+
+
+export default class LogManager extends Manager{
   type: string;
   log: Array<LogEntry>;
   constructor(){
+    super();
     this.type = 'logManager';
     this.log = []
   }

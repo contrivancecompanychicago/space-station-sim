@@ -29,7 +29,10 @@ maintains a state that is used by a tonne of other things
 
 */
 
-export default class UIManager extends Component{
+import Manager from 'Game/Manager'
+
+
+export default class UIManager extends Manager{
   state:UIState;
   container: HTMLElement;
   store: {subscribe:Function, getState:Function, dispatch:Function};

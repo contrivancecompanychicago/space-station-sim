@@ -15,10 +15,13 @@ import type Block from 'Game/Block'
 
 import * as engine from 'Game/engine'
 
-export default class ObjectManager{
+import Manager from 'Game/Manager'
+
+export default class ObjectManager extends Manager{
   type:string;
   state:ObjectState;
   constructor(state:ObjectState = {}){
+    super()
     this.type = 'objectManager';
     this.state = state;
   }

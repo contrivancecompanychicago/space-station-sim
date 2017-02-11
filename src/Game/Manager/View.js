@@ -38,7 +38,11 @@ const initial:ViewState = {
   selection:null
 };
 
-export default class ViewManager{
+
+import Manager from 'Game/Manager'
+
+
+export default class ViewManager extends Manager{
   type: string;
   state: ViewState;
 
@@ -66,6 +70,7 @@ export default class ViewManager{
 
   }
   constructor(state:ViewState, container:HTMLElement) {
+    super();
     this.type = 'viewManager';
     this.state = defaults(state, initial); //WHYYY
     // this.state = state
@@ -171,7 +176,7 @@ export default class ViewManager{
   onMouseMove(e:Event) {
     let point = Point.fromScreen(e.pageX, e.pageY);
     if(this.dragging){
-
+      
       let delta = {x:e.pageX-this.lastPos.x, y: e.pageY-this.lastPos.y};
       this.lastPos = {x: e.pageX, y:e.pageY};
       this.state.offset.x += delta.x / this.state.scale;

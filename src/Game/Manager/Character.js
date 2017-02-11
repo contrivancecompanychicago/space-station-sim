@@ -18,8 +18,9 @@ import Ability from 'Game/Data/Object/Ability'
 
 import * as engine from 'Game/engine'
 
+import Manager from 'Game/Manager'
 
-export default class CharacterManager extends Component{
+export default class CharacterManager extends Manager{
   // type:string;
   state: CharacterState;
   taskManager:TaskManager;

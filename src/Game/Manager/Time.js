@@ -8,13 +8,18 @@ import type {TimeState} from 'Game/state'
 // export type TimeState = {
 //   currentTime: number
 // }
-export default class Time {
+
+import Manager from 'Game/Manager'
+
+
+export default class TimeManager extends Manager {
     type: string;
     time: Object;
     deltaTime: number;
     getComponent:Function;
     state:TimeState;
     constructor(state:TimeState, time:Object){
+      super();
       this.state = state
       this.type = 'timeManager';
       this.time = time;
