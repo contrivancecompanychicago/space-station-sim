@@ -38,6 +38,10 @@ export default class CharacterManager extends Manager{
     delete this.state[char.id]
   }
 
+  getChars():Array<Character>{
+    return values(this.state)
+  }
+
 
   getClosestCharacterToPoint(p:{x:number, y:number}, min:?number):?Character{
     if(!min){
