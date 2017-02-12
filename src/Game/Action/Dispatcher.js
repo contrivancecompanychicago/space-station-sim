@@ -78,7 +78,7 @@ export default class Dispatcher extends Component{
             uiManager.setSelected(obj);
           }
         }
-        console.log(selection.button);
+        // console.log(selection.button);
         
         if(selection.button === 2){
           uiManager.clearSelected();

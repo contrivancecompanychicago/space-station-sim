@@ -69,6 +69,7 @@ export default class Game{
     })
     //initialise
     managers.forEach(man => {
+      
       // FLOWHACK
       if(man.init) man.init();
     })

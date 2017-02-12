@@ -45,6 +45,9 @@ export type ObjectState = {
 export type TaskState = {
   [id:string]: Task
 }
+export type TutorialState = {
+  
+}
 
 export type UIState = {
   mode:any,

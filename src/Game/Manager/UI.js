@@ -53,6 +53,9 @@ export default class UIManager extends Manager{
     this.store.subscribe(this.render.bind(this));
     this.render();
   }
+  dispatch(action:Object){
+    this.store.dispatch(action)
+  }
   render(){
     this.setState();
     // this.object.engine.time. Speed[this.state.speed].speed;
