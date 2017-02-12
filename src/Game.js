@@ -5,7 +5,7 @@
 // FLOWHACK
 require('./Game/style.styl');
 
-import Managers from 'Game/Manager';
+import Managers from 'Game/Manager/index';
 import Renderer from 'Game/Renderer';
 import ActionDispatcher from 'Game/Action/Dispatcher';
 import Time from 'Game/Manager/Time';
@@ -63,6 +63,7 @@ export default class Game{
     managers.push(dispatcher);
 
     //register
+    //debugger;
     managers.forEach(man => {
       this.manager.addComponent(man);
     })
