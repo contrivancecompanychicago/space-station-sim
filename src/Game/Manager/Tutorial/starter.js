@@ -8,13 +8,22 @@ export default function* tutorial():Generator<*,*,*> {
 
     // console.log('starting tutorial');
 
-    let next = false;
-    uiManager.dispatch({type: 'SHOW_TUTORIAL', text: 'Eyy its PAPA GIOVANNI', next:()=>{next = true}})
-    while(!next) yield;
+    
+    yield *nextText('Eyy its PAPA GIOVANNI')
+    yield *nextText('Welcome-a to-a my-a restaurant-a')
+    yield *nextText('I like-a pizza')
+    yield *nextText('You like-a pizza?')
+    yield *nextText('Good, you run my restaurant business')
+    yield *nextText('first you need-a the oven')
 
-    next = false;
-    uiManager.dispatch({type: 'SHOW_TUTORIAL', text: 'Welcome-a to-a my-a restaurant-a', next:()=>{next = true}})
-    while(!next) yield;
 
     uiManager.dispatch({'type': 'HIDE_TUTORIAL'})
+}
+
+
+function* nextText(text:string):Generator<*,*,*>{
+    let uiManager = engine.getUIManager()
+    let next = false;
+    uiManager.dispatch({type: 'SHOW_TUTORIAL', text: text, next:()=>{next = true}})
+    while(!next) yield;
 }
