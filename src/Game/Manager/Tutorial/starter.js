@@ -5,6 +5,7 @@ import * as engine from 'Game/engine'
 export default function* tutorial():Generator<*,*,*> {
 
     let uiManager = engine.getUIManager()
+    let objectManager = engine.getObjectManager()
 
     // console.log('starting tutorial');
 
@@ -17,9 +18,23 @@ export default function* tutorial():Generator<*,*,*> {
     yield *nextText('first you need-a the oven')
 
 
+    showText('make an oven')
+    while(objectManager.getObjectsWithAbility('OVEN').length == 0){
+        yield;
+    }
+
+    
+    yield *nextText('oh you got-sa the oven')
+    yield *nextText('now you need-a the fridge')
+
+
     uiManager.dispatch({'type': 'HIDE_TUTORIAL'})
 }
 
+function showText(text:string){
+    let uiManager = engine.getUIManager()
+    uiManager.dispatch({type: 'SHOW_TUTORIAL', text: text})
+}
 
 function* nextText(text:string):Generator<*,*,*>{
     let uiManager = engine.getUIManager()
