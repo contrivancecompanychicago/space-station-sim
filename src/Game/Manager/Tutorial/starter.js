@@ -16,5 +16,5 @@ export default function* tutorial():Generator<*,*,*> {
     uiManager.dispatch({type: 'SHOW_TUTORIAL', text: 'Welcome-a to-a my-a restaurant-a', next:()=>{next = true}})
     while(!next) yield;
 
-    
+    uiManager.dispatch({'type': 'HIDE_TUTORIAL'})
 }
