@@ -21,10 +21,14 @@ export default function* tutorial():Generator<*,*,*> {
     yield *nextText('Good, you run my restaurant business')
     yield *nextText('first you need-a the oven')
 
-
+    highlight([
+        'button-mode-object',
+        'button-object-Oven',
+    ])
     showText('make an oven')
     yield *reqAbility('OVEN')
 
+    highlight([])
     
     yield *nextText('oh you got-sa the oven')
     yield *nextText('now you need-a the fridge')
@@ -40,13 +44,13 @@ export default function* tutorial():Generator<*,*,*> {
     yield *nextText('you need-a some-a staff all up in this bitch')
 
     showText('open the hiring panel')
-    uiManager.dispatch({'type': 'HIGHLIGHT', elements:[
+    highlight([
         'button-mode-panels',
         'button-panel-Hiring'
-        ]})
+        ])
     while(state.UI.panel.hiring.show == false) yield;
 
-    uiManager.dispatch({'type': 'HIGHLIGHT', elements:[]})
+    highlight([])
 
 
 
@@ -94,4 +98,9 @@ function* reqStaff(type:string):Generator<*,*,*>{
 
     // console.log('charmanger gett chars', cooks);
     yield;
+}
+
+function highlight(elements:Array<string> = []){
+    let uiManager = engine.getUIManager()
+    uiManager.dispatch({'type': 'HIGHLIGHT', elements:elements})
 }
