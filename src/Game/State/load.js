@@ -1,5 +1,5 @@
 //@flow
-import data from './demo3'
+// import data from './demo3'
 
 import Grid from 'Game/Type/Grid'
 import Obj from 'Game/Type/Object'
@@ -7,6 +7,8 @@ import Character from 'Game/Type/Character'
 import {keys} from 'lodash'
 
 export default function loadGame(engine:any){
+
+  let data = JSON.parse(localStorage.quicksave)
 
   let dispatcher = engine.getComponent('actionDispatcher')
 
@@ -38,12 +40,12 @@ export default function loadGame(engine:any){
   //   {x:18, y:8, type:'WAITER'},
   //   {x:18, y:12, type:'CUSTOMER'},
   // ]
-  data.Character.forEach((c)=> {
-    // console.log("ding");
-    let pos = new Block({x:c.x, y:c.y}).center;
-    engine.getComponent('characterManager')
-      .addChar(new Character({position: pos, type: c.type}));
+  // data.Character.forEach((c)=> {
+  //   // console.log("ding");
+  //   let pos = new Block({x:c.x, y:c.y}).center;
+  //   engine.getComponent('characterManager')
+  //     .addChar(new Character({position: pos, type: c.type}));
 
-  })
+  // })
 
 }

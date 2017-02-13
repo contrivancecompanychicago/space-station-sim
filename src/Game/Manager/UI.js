@@ -93,9 +93,9 @@ export default class UIManager extends Manager{
       'L': 76,
       'R': 82,
       'ESC': 27,
-      'F5': 116
+      'F6': 117
     }
-    if(engine.input.getKeyDown(keys.F5)){
+    if(engine.input.getKeyDown(keys.F6)){
       save('quicksave')
     }
     if(engine.input.getKeyDown(keys.P)){
