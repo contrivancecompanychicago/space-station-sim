@@ -29,7 +29,10 @@ maintains a state that is used by a tonne of other things
 
 */
 
-export default class UIManager extends Component{
+import Manager from 'Game/Manager'
+
+
+export default class UIManager extends Manager{
   state:UIState;
   container: HTMLElement;
   store: {subscribe:Function, getState:Function, dispatch:Function};
@@ -50,6 +53,9 @@ export default class UIManager extends Component{
     this.store.subscribe(this.render.bind(this));
     this.render();
   }
+  dispatch(action:Object){
+    this.store.dispatch(action)
+  }
   render(){
     this.setState();
     // this.object.engine.time. Speed[this.state.speed].speed;
@@ -68,7 +74,12 @@ export default class UIManager extends Component{
 
   }
   setSelected(selected:any){
+    console.log('setting selected', selected);
+    
     this.store.dispatch({type:'SET_SELECTED', selected:selected})
+  }
+  clearSelected(){
+    this.store.dispatch({type:'CLEAR_SELECTED'})
   }
 
   update(){

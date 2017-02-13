@@ -20,6 +20,8 @@ import SelectedPanel from './UI/Panel/Selected'
 
 import StaffPanel from './UI/Panel/Staff';
 
+import Tutorial from './UI/Tutorial'
+
 import state from 'Game/state';
 
 class UI extends React.Component {
@@ -65,6 +67,7 @@ class UI extends React.Component {
     return <div className="ui">
       <div className="panels">
         {panels}
+        <Tutorial />
       </div>
 
       <div className="menu">

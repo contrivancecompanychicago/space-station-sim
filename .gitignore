@@ -12,3 +12,4 @@ heroku.txt
 npm-debug.log
 karma_html
 buildstats.*
+.vscode/chrome

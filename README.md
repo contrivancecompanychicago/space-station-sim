@@ -34,8 +34,16 @@ budget screens
 
 achievement system
 
+shift click to select multiple
 
 PRIORITISED:
+add containers
+give orders direct to selected
+
+
+TECH DEBT
+properly initialise and not have this check on frame 1 bullshit
+ - possibly change engine
 
 
 

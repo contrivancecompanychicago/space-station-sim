@@ -61,15 +61,6 @@ export default class Dispatcher extends Component{
 
     let sel = selection.rect.blockRect();
 
-    if(selection.button === 2){
-      //DELETE MODE
-      let obj = objectManager.getObjectAtBlock(selection.end.block);
-      if(obj){
-        objectManager.deleteObject(obj)
-      }
-
-      return;
-    }
 
     switch(this.state.UI.mode){
       case Mode.SELECT:
@@ -80,19 +71,18 @@ export default class Dispatcher extends Component{
         let mouse = viewManager.getMousePoint();
         let char = charManager.getClosestCharacterToPoint(mouse, 32)
         if(char){
-          // uiManager
-          // viewManager.state.selected = char;
           uiManager.setSelected(char);
-          // engine.getUIManager().forceUpdate();
         }else{
-
           let obj = objectManager.getObjectAtBlock(mouse.block);
           if(obj){
             uiManager.setSelected(obj);
           }
         }
-
-
+        // console.log(selection.button);
+        
+        if(selection.button === 2){
+          uiManager.clearSelected();
+        }
 
         break;
       case Mode.GRID:
@@ -102,8 +92,17 @@ export default class Dispatcher extends Component{
       case Mode.OBJECT:
         // let obj = new Objekt({block:selection.end.block, type:this.state.UI.object});
         // objectManager.addObject(obj);
-        let proposal = proposer.propose(this.state);
-        this.objects(proposal.Object)
+        
+        if(selection.button === 2){
+          //DELETE MODE
+          let obj = objectManager.getObjectAtBlock(selection.end.block);
+          if(obj){
+            objectManager.deleteObject(obj)
+          }
+        }else{
+          let proposal = proposer.propose(this.state);
+          this.objects(proposal.Object)
+        }
 
 
         break;

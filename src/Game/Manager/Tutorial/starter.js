@@ -1,0 +1,75 @@
+// @flow
+
+import * as engine from 'Game/engine'
+
+import type {AbilityType} from 'Game/Data/Object/Ability'
+
+export default function* tutorial():Generator<*,*,*> {
+
+    let uiManager = engine.getUIManager()
+    let objectManager = engine.getObjectManager()
+
+    // console.log('starting tutorial');
+
+    
+    // yield *nextText('Eyy its PAPA GIOVANNI')
+    // yield *nextText('Welcome-a to-a my-a restaurant-a')
+    // yield *nextText('I like-a pizza')
+    // yield *nextText('You like-a pizza?')
+    // yield *nextText('Good, you run my restaurant business')
+    // yield *nextText('first you need-a the oven')
+
+
+    // showText('make an oven')
+    // yield *reqAbility('OVEN')
+
+    
+    // yield *nextText('oh you got-sa the oven')
+    // yield *nextText('now you need-a the fridge')
+
+    // showText('make a fridge')
+    // yield *reqAbility('FRIDGE')
+    
+    // yield *nextText('eyy dat-sa good fridge')
+
+    // showText('and a prep table')
+    // yield *reqAbility('PREP_TABLE')
+
+    // yield *nextText('you need-a some-a staff all up in this bitch')
+
+
+    yield *reqStaff('COOK');
+    
+
+
+
+    uiManager.dispatch({'type': 'HIDE_TUTORIAL'})
+}
+
+function showText(text:string){
+    let uiManager = engine.getUIManager()
+    uiManager.dispatch({type: 'SHOW_TUTORIAL', text: text})
+}
+
+function* reqAbility(ability:AbilityType):Generator<*,*,*>{
+    let objectManager = engine.getObjectManager()
+    while(objectManager.getObjectsWithAbility(ability).length == 0){
+        yield;
+    }
+}
+
+function* nextText(text:string):Generator<*,*,*>{
+    let uiManager = engine.getUIManager()
+    let next = false;
+    uiManager.dispatch({type: 'SHOW_TUTORIAL', text: text, next:()=>{next = true}})
+    while(!next) yield;
+}
+function* reqStaff(test:string):Generator<*,*,*>{
+    let characterManager = engine.getCharacterManager()
+    let cooks = characterManager.getChars().filter((c) => {
+        return (c.type == 'COOK')
+    })
+
+    console.log('charmanger gett chars', cooks);
+    yield;
+}
