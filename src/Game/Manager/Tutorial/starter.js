@@ -14,7 +14,7 @@ export default function* tutorial():Generator<*,*,*> {
     // console.log('starting tutorial');
 
     
-    yield *nextText('Eyy its PAPA GIOVANNI')
+    yield *nextText('Eyy itsa me, ™™™™™PAPA GIOVANNI!')
     yield *nextText('Welcome-a to-a my-a restaurant-a')
     yield *nextText('I like-a pizza')
     yield *nextText('You like-a pizza?')
