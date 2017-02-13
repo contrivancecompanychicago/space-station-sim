@@ -40,8 +40,14 @@ export default function* tutorial():Generator<*,*,*> {
     yield *nextText('you need-a some-a staff all up in this bitch')
 
     showText('open the hiring panel')
-
+    uiManager.dispatch({'type': 'HIGHLIGHT', elements:[
+        'button-mode-panels',
+        'button-panel-Hiring'
+        ]})
     while(state.UI.panel.hiring.show == false) yield;
+
+    uiManager.dispatch({'type': 'HIGHLIGHT', elements:[]})
+
 
 
     showText('hire a cook')

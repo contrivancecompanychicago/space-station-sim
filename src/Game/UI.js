@@ -62,9 +62,15 @@ class UI extends React.Component {
       panels.push(<SelectedPanel key={s.toString()} target={s} />)
     })
 
+    let cssHax = ''
+    this.props.highlight.forEach((h) => {
+      cssHax += '.'+h+'{background-color:green !important}'
+    })
+
 
     // <Speed />
     return <div className="ui">
+      <style>{cssHax}</style>
       <div className="panels">
         {panels}
         <Tutorial />
@@ -83,7 +89,8 @@ function mapStateToProps(state, props) {
   return {
     mode: state.mode,
     panel: state.panel,
-    selected: state.selected
+    selected: state.selected,
+    highlight: state.highlight,
   };
 }
 
