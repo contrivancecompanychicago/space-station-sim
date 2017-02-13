@@ -9,6 +9,8 @@ import { Provider } from 'react-redux';
 import { keys, assign } from 'lodash';
 import Speed from 'Game/Data/Speed';
 
+import save from 'Game/State/save'
+
 import engine from 'Game/engine'
 
 // import type { UIState } from 'Game/UI/State'
@@ -90,7 +92,11 @@ export default class UIManager extends Manager{
       'I': 73,
       'L': 76,
       'R': 82,
-      'ESC': 27
+      'ESC': 27,
+      'F5': 116
+    }
+    if(engine.input.getKeyDown(keys.F5)){
+      save('quicksave')
     }
     if(engine.input.getKeyDown(keys.P)){
       this.store.dispatch({type:'TOGGLE_HIRING_PANEL'})
