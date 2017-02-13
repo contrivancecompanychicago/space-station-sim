@@ -1,5 +1,5 @@
 //@flow
-// import data from './demo3'
+import data from './demo3'
 
 import Grid from 'Game/Type/Grid'
 import Obj from 'Game/Type/Object'
@@ -8,7 +8,7 @@ import {keys} from 'lodash'
 
 export default function loadGame(engine:any){
 
-  let data = JSON.parse(localStorage.quicksave)
+  // let data = JSON.parse(localStorage.quicksave)
 
   let dispatcher = engine.getComponent('actionDispatcher')
 

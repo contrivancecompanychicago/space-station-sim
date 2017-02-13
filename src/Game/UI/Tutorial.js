@@ -4,7 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Header from './Panel/Component/Header'
 
-let papa = require('../Data/papagiovanni.png')
+let papa = require('../Data/People/papagiovanni.png')
 
 class Tutorial extends React.Component {
     render(){
@@ -21,8 +21,8 @@ class Tutorial extends React.Component {
             <Header text='Tutorial' close={this.props.tutorial.next} />
             {this.props.tutorial.text}
             <br />
-            <img src={papa.src} />
             {buttons}
+            <img src={papa.src} />
         </div>
 
     }

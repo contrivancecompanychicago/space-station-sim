@@ -65,6 +65,8 @@ export default function* tutorial():Generator<*,*,*> {
     yield *reqStaff('WAITER');
 
 
+    yield *nextText('now hurry up and make some cash money biatch these hos dont pay themselves')
+
     uiManager.dispatch({'type': 'HIDE_TUTORIAL'})
 }
 
