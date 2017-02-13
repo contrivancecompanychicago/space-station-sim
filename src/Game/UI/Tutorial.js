@@ -4,6 +4,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Header from './Panel/Component/Header'
 
+let papa = require('../Data/papagiovanni.png')
+
 class Tutorial extends React.Component {
     render(){
         //RETURN EARLY ON BLANK
@@ -19,6 +21,7 @@ class Tutorial extends React.Component {
             <Header text='Tutorial' close={this.props.tutorial.next} />
             {this.props.tutorial.text}
             <br />
+            <img src={papa.src} />
             {buttons}
         </div>
 
