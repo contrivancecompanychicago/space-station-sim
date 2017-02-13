@@ -2,6 +2,8 @@
 
 import * as engine from 'Game/engine'
 
+import state from 'Game/state'
+
 import type {AbilityType} from 'Game/Data/Object/Ability'
 
 export default function* tutorial():Generator<*,*,*> {
@@ -12,35 +14,45 @@ export default function* tutorial():Generator<*,*,*> {
     // console.log('starting tutorial');
 
     
-    // yield *nextText('Eyy its PAPA GIOVANNI')
-    // yield *nextText('Welcome-a to-a my-a restaurant-a')
-    // yield *nextText('I like-a pizza')
-    // yield *nextText('You like-a pizza?')
-    // yield *nextText('Good, you run my restaurant business')
-    // yield *nextText('first you need-a the oven')
+    yield *nextText('Eyy its PAPA GIOVANNI')
+    yield *nextText('Welcome-a to-a my-a restaurant-a')
+    yield *nextText('I like-a pizza')
+    yield *nextText('You like-a pizza?')
+    yield *nextText('Good, you run my restaurant business')
+    yield *nextText('first you need-a the oven')
 
 
-    // showText('make an oven')
-    // yield *reqAbility('OVEN')
+    showText('make an oven')
+    yield *reqAbility('OVEN')
 
     
-    // yield *nextText('oh you got-sa the oven')
-    // yield *nextText('now you need-a the fridge')
+    yield *nextText('oh you got-sa the oven')
+    yield *nextText('now you need-a the fridge')
 
-    // showText('make a fridge')
-    // yield *reqAbility('FRIDGE')
+    showText('make a fridge')
+    yield *reqAbility('FRIDGE')
     
-    // yield *nextText('eyy dat-sa good fridge')
+    yield *nextText('eyy dat-sa good fridge')
 
-    // showText('and a prep table')
-    // yield *reqAbility('PREP_TABLE')
+    showText('and a prep table')
+    yield *reqAbility('PREP_TABLE')
 
-    // yield *nextText('you need-a some-a staff all up in this bitch')
+    yield *nextText('you need-a some-a staff all up in this bitch')
+
+    showText('open the hiring panel')
+
+    while(state.UI.panel.hiring.show == false) yield;
 
 
+    showText('hire a cook')
     yield *reqStaff('COOK');
     
 
+    yield *nextText('eyy eyyyy dat-sa good-a but you need-a da waiter too')
+
+
+    showText('hire a waiter')
+    yield *reqStaff('WAITER');
 
 
     uiManager.dispatch({'type': 'HIDE_TUTORIAL'})
@@ -64,12 +76,16 @@ function* nextText(text:string):Generator<*,*,*>{
     uiManager.dispatch({type: 'SHOW_TUTORIAL', text: text, next:()=>{next = true}})
     while(!next) yield;
 }
-function* reqStaff(test:string):Generator<*,*,*>{
+function* reqStaff(type:string):Generator<*,*,*>{
     let characterManager = engine.getCharacterManager()
-    let cooks = characterManager.getChars().filter((c) => {
-        return (c.type == 'COOK')
-    })
+    let cooks = []
+    do{
+        cooks = characterManager.getChars().filter((c) => {
+            return (c.type == type)
+        });
+        yield;
+    }while(cooks.length == 0)
 
-    console.log('charmanger gett chars', cooks);
+    // console.log('charmanger gett chars', cooks);
     yield;
 }
