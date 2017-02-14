@@ -14,6 +14,7 @@ import OrderPanel from './UI/Panel/Order';
 import TimePanel from './UI/Panel/Time';
 import LogPanel from './UI/Panel/Log';
 import HiringPanel from './UI/Panel/Hiring';
+import TalentPanel from './UI/Panel/Talent';
 
 import Panel from './UI/Panel';
 import SelectedPanel from './UI/Panel/Selected'
@@ -51,6 +52,7 @@ class UI extends React.Component {
     if(this.props.panel.orders.show) panels.push(<OrderPanel key='Order' />)
     if(this.props.panel.staff.show) panels.push(<StaffPanel key='Staff' />)
     if(this.props.panel.hiring.show) panels.push(<HiringPanel key='Hiring' />)
+    if(this.props.panel.talent.show) panels.push(<TalentPanel key='Talent' />)
 
 
     // if(this.props.selected){

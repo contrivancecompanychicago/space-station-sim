@@ -42,6 +42,11 @@ rewrite probably whole character shit to
    - path
  - be able to give orders
 
+
+add a map class? or sometihng so i can use flow id arrays better
+//https://flowtype.org/docs/classes.html
+//Polymorphism and Type Parameter Variance
+
 PRIORITISED:
 add containers
 give orders direct to selected
