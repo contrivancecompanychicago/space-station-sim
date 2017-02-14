@@ -36,6 +36,12 @@ achievement system
 
 shift click to select multiple
 
+rewrite probably whole character shit to 
+ - always have a task
+ - be able to render task details
+   - path
+ - be able to give orders
+
 PRIORITISED:
 add containers
 give orders direct to selected
@@ -44,6 +50,9 @@ give orders direct to selected
 TECH DEBT
 properly initialise and not have this check on frame 1 bullshit
  - possibly change engine
+
+ add all getters and setters into manager and types
+  - so state is entirely stringifyable
 
 
 
