@@ -47,9 +47,12 @@ add a map class? or sometihng so i can use flow id arrays better
 //https://flowtype.org/docs/classes.html
 //Polymorphism and Type Parameter Variance
 
+give orders direct to selected
+
+
 PRIORITISED:
 add containers
-give orders direct to selected
+talents (without cost)
 
 
 TECH DEBT

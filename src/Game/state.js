@@ -13,6 +13,8 @@ import type Obj from 'Game/Type/Object'
 import type {Selection} from 'Game/Type/Selection'
 import type Order from 'Game/Type/Order'
 
+import type {TalentType} from 'Game/Data/Talent'
+
 // import {Grid} from 'Game/Data/Grid';
 
 import {Mode} from 'Game/Data/Mode';
@@ -71,6 +73,10 @@ export type PlayerState = {
   money: number
 }
 
+export type TalentState = {
+  [id:TalentType]:boolean
+}
+
 export type State = {
   Character: CharacterState,
   Grid: GridState,
@@ -81,7 +87,8 @@ export type State = {
   View: ViewState,
   Time: TimeState,
   Order: OrderState,
-  Player: PlayerState
+  Player: PlayerState,
+  Talent: TalentState
 }
 
 const state:State = base();
@@ -114,6 +121,7 @@ export function base():State{
       // selected:null
     },
     Order:[],
-    Player:{money:10000}
+    Player:{money:10000},
+    Talent: {}
   };
 }
