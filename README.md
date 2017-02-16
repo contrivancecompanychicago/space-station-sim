@@ -42,21 +42,18 @@ rewrite probably whole character shit to
    - path
  - be able to give orders
 
-
+lights 
+air con/heaters
 
 give orders direct to selected
 
 add containers
-talents (without cost)
 
 PRIORITISED:
 
 
 TECH DEBT
-add a map class? or sometihng so i can use flow id arrays better
-//https://flowtype.org/docs/classes.html
-//Polymorphism and Type Parameter Variance
-
+implement DataMap across all data objects
 
 properly initialise and not have this check on frame 1 bullshit
  - possibly change engine

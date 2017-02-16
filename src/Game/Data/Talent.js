@@ -24,7 +24,7 @@ export type TalentDataType = {
 
 let TalentMap:DataMap<TalentType, TalentDataType> = new DataMap();
 
-export Talent{[id:TalentType]:TalentType} = {
+export const Talent:{[id:TalentType]:TalentType} = {
     'VOUCHER': 'VOUCHER',
     'VENDOR': 'VENDOR',
     'SECURITY': 'SECURITY',

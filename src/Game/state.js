@@ -55,6 +55,7 @@ export type UIState = {
   mode:any,
   rotation: number,
   selected: Array<Obj | Character | null>,
+  panel: Object
   // grid:Grid
 }
 
@@ -112,6 +113,13 @@ export function base():State{
       rotation: 0,
       selected: [],
       // grid: Grid.FLOOR
+      panel: {
+        hiring:{show:false},
+        staff:{show:false},
+        orders:{show:false},
+        log:{show:false},
+        talent:{show:false},
+      },
     },
     View:{
       offset: {x:0, y:0},

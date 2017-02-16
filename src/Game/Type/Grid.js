@@ -11,6 +11,7 @@ import GridData from 'Game/Data/Grid';
 
 import type Obj from 'Game/Type/Object'
 
+
 export default class Grid{
   type: GridType;
   rotation: number;
@@ -23,6 +24,6 @@ export default class Grid{
     return GridData[this.type]
   }
   getObject():?Obj{
-    return this.object
+    return engine.getObjectManager().getObject(this.object)
   }
 }

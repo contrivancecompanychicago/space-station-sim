@@ -5,7 +5,7 @@ type Props = {
   type:string,
   data:{
     label: string,
-    image: ?any
+    // image: any|void
   },
   click:Function
 }

@@ -35,6 +35,9 @@ export default class ObjectManager extends Manager{
   deleteObject(obj:Obj){
     delete this.state[makeKey(obj.block.x,obj.block.y)];
   }
+  getObject(key:string){
+    return this.state[key]
+  }
   getObjectAtBlock(block:Block):?Obj{
     if(this.state[block.key])
       return this.state[block.key];
