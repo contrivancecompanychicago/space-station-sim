@@ -1,6 +1,9 @@
 //@flow
 import {defaults} from 'lodash';
 
+import * as engine from 'Game/engine'
+
+
 import type {GridType, GridDataType} from 'Game/Data/Grid'
 // import type {ObjectType, ObjectDataType} from 'Game/Data/Object'
 
@@ -18,5 +21,8 @@ export default class Grid{
   }
   getData():GridDataType{
     return GridData[this.type]
+  }
+  getObject():?Obj{
+    return this.object
   }
 }

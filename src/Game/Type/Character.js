@@ -54,6 +54,9 @@ export default class Character{
   removeItem(item:Item){
     this.item.splice(this.item.indexOf(item), 1);
   }
+  getItems():Array<Item>{
+    return this.item
+  }
   toString():string{
     return this.firstname + ' ' + this.lastname
   }
