@@ -15,6 +15,7 @@ export default function renderCharacter(state:State, layer:Layer) {
     const o = char.position.screen
 
     let type = CharData.get(char.type);
+    // FLOWHACK fix image flow
     let i = type.image;
     let w = 32*state.View.scale
     let h = 32*state.View.scale
