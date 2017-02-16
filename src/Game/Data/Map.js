@@ -27,7 +27,10 @@ export default class DataMap<K, V> {
     store: { [k:K]: V };
     keys: Array<K>;
 
-    constructor() { this.store = {}; }
+    constructor() { 
+        this.keys = []
+        this.store = {};
+    }
 
     get(k: K): V { 
         // assume store[K] is always set

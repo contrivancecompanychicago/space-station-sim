@@ -3,7 +3,18 @@
 
 import DataMap from 'Game/Data/Map'
 
-export type TalentType = 'VOUCHER'|'VENDOR'|'SECURITY'|'COOKS'|'WAITERS'|'PHONE'|'DELIVERY'|'ACCOUNTING'|'SIDES'|'DRINKS'|'ADVERTISING'
+export type TalentType = 
+    'VOUCHER'|
+    'VENDOR'|
+    'SECURITY'|
+    'COOKS'|
+    'WAITERS'|
+    'PHONE'|
+    'DELIVERY'|
+    'ACCOUNTING'|
+    'SIDES'|
+    'DRINKS'|
+    'ADVERTISING'
 
 export type TalentDataType = {
     requires:Array<TalentType>,
@@ -13,64 +24,80 @@ export type TalentDataType = {
 
 let TalentMap:DataMap<TalentType, TalentDataType> = new DataMap();
 
-let talents:{[id:TalentType]:TalentDataType} = {
-    'VOUCHER': {
-        requires: [],
-        label:'Voucher',
-        researchDays: 5,
-    },
-    'VENDOR': {
-        requires: [],
-        label:'Vendor',
-        researchDays: 5,
-    },
-    'SECURITY':{
-        requires:[],
-        label:'Security',
-        researchDays: 1,
-    },
-    'COOKS':{
-        requires:[],
-        label:'Cooks',
-        researchDays: 1,
-    },
-    'WAITERS':{
-        requires:[],
-        label:'Waiters',
-        researchDays: 1,
-    },
-    'PHONE':{
-        requires:[],
-        label:'Phone',
-        researchDays: 1,
-    },
-    'DELIVERY':{
-        requires:[],
-        label:'Delivery',
-        researchDays: 1,
-    },
-    'ACCOUNTING':{
-        requires:[],
-        label:'Accounting',
-        researchDays: 1,
-    },
-    'SIDES':{
-        requires:[],
-        label:'Sides',
-        researchDays: 1,
-    },
-    'DRINKS':{
-        requires:[],
-        label:'Drinks',
-        researchDays: 1,
-    },
-    'ADVERTISING':{
-        requires:[],
-        label:'Advertising',
-        researchDays: 1,
-    },
+export Talent{[id:TalentType]:TalentType} = {
+    'VOUCHER': 'VOUCHER',
+    'VENDOR': 'VENDOR',
+    'SECURITY': 'SECURITY',
+    'COOKS': 'COOKS',
+    'WAITERS': 'WAITERS',
+    'PHONE': 'PHONE',
+    'DELIVERY': 'DELIVERY',
+    'ACCOUNTING': 'ACCOUNTING',
+    'SIDES': 'SIDES',
+    'DRINKS': 'DRINKS',
+    'ADVERTISING': 'ADVERTISING',
 }
-export default talents
+
+// let talents:{[id:TalentType]:TalentDataType} = {
+TalentMap.put('VOUCHER', {
+    requires: [],
+    label:'Voucher',
+    researchDays: 5,
+})
+TalentMap.put('VENDOR', {
+    requires: [],
+    label:'Vendor',
+    researchDays: 5,
+})
+TalentMap.put('SECURITY',{
+    requires:[],
+    label:'Security',
+    researchDays: 1,
+})
+TalentMap.put('COOKS',{
+    requires:[],
+    label:'Cooks',
+    researchDays: 1,
+})
+TalentMap.put('WAITERS',{
+    requires:[],
+    label:'Waiters',
+    researchDays: 1,
+})
+TalentMap.put('PHONE',{
+    requires:[],
+    label:'Phone',
+    researchDays: 1,
+})
+TalentMap.put('DELIVERY',{
+    requires:[],
+    label:'Delivery',
+    researchDays: 1,
+})
+TalentMap.put('ACCOUNTING',{
+    requires:[],
+    label:'Accounting',
+    researchDays: 1,
+})
+TalentMap.put('SIDES',{
+    requires:[],
+    label:'Sides',
+    researchDays: 1,
+})
+TalentMap.put('DRINKS',{
+    requires:[],
+    label:'Drinks',
+    researchDays: 1,
+})
+TalentMap.put('ADVERTISING',{
+    requires:[],
+    label:'Advertising',
+    researchDays: 1,
+})
+
+export default TalentMap;
+// }
+// export default talents
 
 
 /*

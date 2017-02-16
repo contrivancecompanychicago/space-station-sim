@@ -13,7 +13,7 @@ const defaults:State = {
   staff:{show:false},
   orders:{show:false},
   log:{show:false},
-  talent:{show:true},
+  talent:{show:false},
 }
 
 export type PanelAction = 'TOGGLE_HIRING_PANEL'
