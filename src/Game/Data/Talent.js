@@ -1,5 +1,8 @@
 // @flow
 
+
+import DataMap from 'Game/Data/Map'
+
 export type TalentType = 'VOUCHER'|'VENDOR'|'SECURITY'|'COOKS'|'WAITERS'|'PHONE'|'DELIVERY'|'ACCOUNTING'|'SIDES'|'DRINKS'|'ADVERTISING'
 
 export type TalentDataType = {
@@ -7,6 +10,8 @@ export type TalentDataType = {
     label: string,
     researchDays: number,
 }
+
+let TalentMap:DataMap<TalentType, TalentDataType> = new DataMap();
 
 let talents:{[id:TalentType]:TalentDataType} = {
     'VOUCHER': {
@@ -104,4 +109,13 @@ advertising
  - tv
  - newspaper
  - fliers
+ - social media
+
+ facilities 
+ - bathrooms
+ - disabled
+ - mothers room
+
+
+
 */

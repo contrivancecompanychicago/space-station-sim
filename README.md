@@ -43,19 +43,21 @@ rewrite probably whole character shit to
  - be able to give orders
 
 
+
+give orders direct to selected
+
+add containers
+talents (without cost)
+
+PRIORITISED:
+
+
+TECH DEBT
 add a map class? or sometihng so i can use flow id arrays better
 //https://flowtype.org/docs/classes.html
 //Polymorphism and Type Parameter Variance
 
-give orders direct to selected
 
-
-PRIORITISED:
-add containers
-talents (without cost)
-
-
-TECH DEBT
 properly initialise and not have this check on frame 1 bullshit
  - possibly change engine
 
