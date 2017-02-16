@@ -8,6 +8,8 @@ import {keys} from 'lodash'
 import Draggable from 'react-draggable'
 import Header from './Component/Header'
 
+import Button from 'Game/UI/Button'
+
 import Talent from 'Game/Data/Talent'
 import type TalentType from 'Game/Data/Talent'
 
@@ -22,13 +24,14 @@ class TalentPanel extends React.Component {
 
         keys(Talent).forEach((t) => {
             console.log(t);
+            let tal = Talent[t]
             
-            talents.push(t)
+            talents.push(<Button click={console.log} data={tal} type='talent' />)
         })
 
         return <Draggable><div className="talent panel">
             <Header text='Talent Panel' close={this.props.close} />
-            talents:
+            talents:<br />
             {talents}
 
         </div></Draggable>

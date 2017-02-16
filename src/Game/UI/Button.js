@@ -1,8 +1,16 @@
 //@flow
 import React from 'react';
 
+type Props = {
+  type:string,
+  data:{
+    label: string,
+    image: ?any
+  },
+  click:Function
+}
 class Button extends React.Component{
-
+  props:Props
   render(){
     const id = 'button-'+this.props.type+'-'+this.props.data.label;
     let className = this.props.selected?'selected':'';
