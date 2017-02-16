@@ -24,6 +24,10 @@ export default class Grid{
     return GridData[this.type]
   }
   getObject():?Obj{
-    return engine.getObjectManager().getObject(this.object)
+    // console.log(typeof this.object)
+    if(this.object){
+      // FLOWHACK
+      return engine.getObjectManager().getObject(this.object)
+    }
   }
 }

@@ -17,8 +17,10 @@ class Button extends React.Component{
     className += ' '+id;
     let image = "";
     if(this.props.data.image){
+      // FLOWHACK
       image = <img src={this.props.data.image.src} />;
     }
+    // FLOWHACK do image proper
     return <button className={className} onClick={this.props.click} onMouseOver={this.props.mouseover}>
       <div className="inner">
         {this.props.data.label}

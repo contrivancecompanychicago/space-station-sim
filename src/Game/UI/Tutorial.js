@@ -17,6 +17,7 @@ class Tutorial extends React.Component {
         if(this.props.tutorial.next){
             buttons = <button onClick={this.props.tutorial.next}>next</button>
         }
+        // FLOWHACK image proper
         return <div className="tutorial panel">
             <Header text='Tutorial' close={this.props.tutorial.next} />
             {this.props.tutorial.text}
