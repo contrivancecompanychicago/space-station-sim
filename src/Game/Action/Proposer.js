@@ -100,7 +100,7 @@ function blockHasObject(state, block){
       key = makeKey(block.x - x, block.y - y);
       let obj = state.Object[key];
       if(obj){
-        let type = ObjectData[obj.type];
+        let type = ObjectData.get(obj.type);
         if(type.width>=x+1 && type.height>=y+1)
           return true;
       }

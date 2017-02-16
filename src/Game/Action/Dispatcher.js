@@ -40,7 +40,7 @@ export default class Dispatcher extends Component{
     keys(objects).forEach((key) => {
       let obj = objects[key];
 
-      let type = ObjectData[obj.type]
+      let type = ObjectData.get(obj.type)
 
       let coord = parseKey(key)
       for(let x = 0; x<type.width; x++){

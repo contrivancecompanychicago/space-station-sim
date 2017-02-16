@@ -1,7 +1,7 @@
 //@flow
 import Proposer from 'Game/Action/Proposer';
 import {parseKey} from 'Util';
-import keys from 'lodash.keys';
+import {keys} from 'lodash';
 import renderBlock from './block';
 
 import type {State} from 'Game/state'

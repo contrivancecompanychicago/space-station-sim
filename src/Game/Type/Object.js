@@ -26,7 +26,7 @@ export default class Obj{
     if(!this.rotation) this.rotation = 0;
   }
   getData():ObjectDataType{
-    return ObjectData[this.type]
+    return ObjectData.get(this.type)
   }
   hasAbility(ability:AbilityType):boolean{
     return (this.getData().abilities.indexOf(ability) > -1)

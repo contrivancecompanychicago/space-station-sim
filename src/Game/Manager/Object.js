@@ -59,7 +59,7 @@ export default class ObjectManager extends Manager{
   }
   getObjectsWithAbility(ability:AbilityType):Array<Obj>{
     return values(this.state).filter((o)=>{
-      let type = ObjectData[o.type]
+      let type = ObjectData.get(o.type)
       if(type.abilities.indexOf(ability) > -1) return true
     })
   }

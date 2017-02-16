@@ -2,7 +2,7 @@
 /*
 Items are easily movable entities that only have a position
 */
-import keys from 'lodash.keys';
+import {keys} from 'lodash';
 
 export type ItemType = 'TEST'|'BASE'|'PIZZAUNCOOKED'|'PIZZA'|'PIZZADONE'|'COFFEE'|'COFFEEDONE'
 

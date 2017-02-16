@@ -1,7 +1,7 @@
 // @flow
 //"Global"
 
-import keys from 'lodash.keys';
+import {keys} from 'lodash';
 
 import Point from 'Game/Point';
 

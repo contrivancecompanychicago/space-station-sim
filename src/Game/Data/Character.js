@@ -3,7 +3,7 @@
 
 import DataMap from 'Game/Data/Map'
 
-import keys from 'lodash.keys';
+import {keys} from 'lodash';
 
 export type CharacterType =
   'WORKER'|

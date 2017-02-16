@@ -27,7 +27,7 @@ export default function renderObject(state:State, layer:Layer){
 }
 export function renderBlock(block:Block, object:Obj, state:State, layer:Layer){
 
-  let t = Types[object.type];
+  let t = Types.get(object.type);
   let o = block.rect.renderParams;
 
   let i = t.image;
