@@ -1,15 +1,27 @@
 {
   "version": "0.2.0",
   "configurations": [
+    // {
+    //   "name": "Launch Chrome",
+    //   "type": "chrome",
+    //   "request": "launch",
+    //   "url": "http://localhost:8080/dist",
+    //   "webRoot": "${workspaceRoot}",
+    //   "sourceMaps": true,
+    //   "diagnosticLogging": false,
+    //   "userDataDir": "${workspaceRoot}/.vscode/chrome"
+    // },
     {
-      "name": "Launch Chrome",
+      "name": "Launch Chromium",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:8080/dist",
       "webRoot": "${workspaceRoot}",
       "sourceMaps": true,
       "diagnosticLogging": false,
-      "userDataDir": "${workspaceRoot}/.vscode/chrome"
-
-    }]
+      "userDataDir": "${workspaceRoot}/.vscode/chromium",
+      "runtimeExecutable": "/usr/bin/chromium-browser"
+    }
+    
+    ]
 }
