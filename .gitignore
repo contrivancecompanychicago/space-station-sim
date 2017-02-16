@@ -14,3 +14,4 @@ karma_html
 buildstats.*
 .vscode/chrome
 .vscode/chromium
+.vscode/launch.json
