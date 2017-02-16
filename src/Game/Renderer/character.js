@@ -14,7 +14,7 @@ export default function renderCharacter(state:State, layer:Layer) {
     let char = state.Character[key];
     const o = char.position.screen
 
-    let type = CharData[char.type];
+    let type = CharData.get(char.type);
     let i = type.image;
     let w = 32*state.View.scale
     let h = 32*state.View.scale

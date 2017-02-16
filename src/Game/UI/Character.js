@@ -9,8 +9,9 @@ class Character extends React.Component {
   render() {
 
     const buttons = [];
-    keys(Chars).forEach((key) => {
-      buttons.push(<Button type="char" selected={key===this.props.character} key={key} data={Chars[key]} click={()=>this.props.click(key)} />);
+    // keys(Chars).forEach((key) => {
+    Chars.each((key, value) => {
+      buttons.push(<Button type="char" selected={key===this.props.character} key={key} data={value} click={()=>this.props.click(key)} />);
     });
 
     return <div className="char panel">
