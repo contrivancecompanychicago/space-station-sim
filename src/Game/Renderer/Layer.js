@@ -83,6 +83,12 @@ export default class Layer {
   fillRect(){
     this.context.fillRect( ...arguments);
   }
+  translate(){
+    this.context.translate( ...arguments);
+  }
+  rotate(){
+    this.context.rotate( ...arguments);
+  }
   strokeStyle(style:?string):string{
     if(style) this.context.strokeStyle = style
     return this.context.strokeStyle;
