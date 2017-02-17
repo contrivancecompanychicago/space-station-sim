@@ -30,4 +30,7 @@ export default class Grid{
       return engine.getObjectManager().getObject(this.object)
     }
   }
+  setObject(obj:Obj){
+    this.object = obj.getKey();
+  }
 }

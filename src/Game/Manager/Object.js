@@ -29,11 +29,11 @@ export default class ObjectManager extends Manager{
     //todo: check overlaps
     //todo: valid/verify/factory
     // obj = Factory.create(obj);
-    this.state[makeKey(obj.block.x,obj.block.y)] = obj;
+    this.state[obj.getKey()] = obj;
 
   }
   deleteObject(obj:Obj){
-    delete this.state[makeKey(obj.block.x,obj.block.y)];
+    delete this.state[obj.getKey()];
   }
   getObject(key:string){
     return this.state[key]

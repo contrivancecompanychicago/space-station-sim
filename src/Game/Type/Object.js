@@ -13,7 +13,7 @@ import type Item from 'Game/Type/Item'
 import type {AbilityType} from 'Game/Data/Object/Ability'
 import Ability from 'Game/Data/Object/Ability'
 
-
+import makeKey from 'Util/makeKey'
 
 export default class Obj{
   block: Block;
@@ -24,6 +24,9 @@ export default class Obj{
   constructor(params:{block:Block, type:ObjectType}){
     defaults(this, params);
     if(!this.rotation) this.rotation = 0;
+  }
+  getKey():string{
+    return makeKey(this.block.x,this.block.y)
   }
   getData():ObjectDataType{
     return ObjectData.get(this.type)

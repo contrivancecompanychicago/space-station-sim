@@ -25,7 +25,6 @@ export default class Character{
   firstname: string;
   lastname: string;
   action: ?Generator<*,*,*>;
-  item: Array<Item>;
   task: string;
   skills: {[id:Skill]:number}
   salary: number;
@@ -51,6 +50,9 @@ export default class Character{
       this.skills[s] = Math.floor(Math.random()*config.character.skill.max);
     })
   }
+
+  // ITEM
+  item: Array<Item>;
   addItem(item:Item){
     this.item.push(item)
   }
@@ -63,6 +65,7 @@ export default class Character{
   getItems():Array<Item>{
     return this.item
   }
+
   toString():string{
     return this.firstname + ' ' + this.lastname
   }

@@ -4,6 +4,8 @@ export type OrderStatusType = 'ORDERED'|'STARTED'|'COOKED'|'FULFILLED'
 
 import type {ItemType} from 'Game/Data/Item'
 
+import ItemData from 'Game/Data/Item';
+
 import {keys, defaults} from 'lodash';
 import type Character from 'Game/Type/Character'
 import type Item from 'Game/Type/Item'
@@ -16,6 +18,9 @@ export default class Order{
   constructor(params:{customer:Character, type:ItemType}){
     defaults(this, params);
     if(!this.status) this.status = 'ORDERED'
+  }
+  getData(){
+    return ItemData.get(this.type)
   }
   addWorker(char:Character){
     if(this.worker) throw new Error('order already has worker')
