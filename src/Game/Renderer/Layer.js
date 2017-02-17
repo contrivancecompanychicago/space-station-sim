@@ -45,9 +45,9 @@ export default class Layer {
   setAlpha(alpha:number){
     this.context.globalAlpha = alpha
   }
-  getAlpha():number{
-    return this.context.globalAlpha
-  }
+  // getAlpha():number{
+  //   return this.context.globalAlpha
+  // }
 
   drawImageRotated(image:any, centerX:number, centerY:number, width:number, height:number, rotation:number){
 
