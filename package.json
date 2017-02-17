@@ -58,6 +58,7 @@
     "isparta-loader": "^2.0.0",
     "jasmine-core": "^2.3.0",
     "javascript-astar": "^0.4.1",
+    "jest": "^18.1.0",
     "jest-cli": "^18.1.0",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.1.8",

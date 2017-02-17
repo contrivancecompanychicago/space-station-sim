@@ -9386,9 +9386,9 @@
       }
     },
     "imagine-engine": {
-      "version": "0.3.0",
+      "version": "0.3.1",
       "from": "imagine-engine@>=0.3.0 <0.4.0",
-      "resolved": "https://registry.npmjs.org/imagine-engine/-/imagine-engine-0.3.0.tgz"
+      "resolved": "https://registry.npmjs.org/imagine-engine/-/imagine-engine-0.3.1.tgz"
     },
     "img-element-loader": {
       "version": "1.0.0",
