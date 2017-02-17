@@ -53,7 +53,6 @@ PRIORITISED:
 
 
 TECH DEBT
-implement DataMap across all data objects
 
 properly initialise and not have this check on frame 1 bullshit
  - possibly change engine

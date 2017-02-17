@@ -1,5 +1,7 @@
 //@flow
 
+// mock this whole motherfucker for testing
+
 export default class Layer {
   container:HTMLElement;
   canvas:HTMLCanvasElement;
@@ -38,7 +40,22 @@ export default class Layer {
     this.context.moveTo(from.x, from.y);
     this.context.lineTo(to.x, to.y);
     this.context.stroke();
+  }
 
+  setAlpha(alpha:number){
+    this.context.globalAlpha = alpha
+  }
+  getAlpha():number{
+    return this.context.globalAlpha
+  }
+
+  drawImageRotated(image:any, centerX:number, centerY:number, width:number, height:number, rotation:number){
+
+    layer.context.translate(centerX, centerY)
+    layer.context.rotate(rotation);
+    layer.context.drawImage(i, 0, 0, i.width, i.height, -width/2, -height/2, width, height);
+    layer.context.rotate(-rotation);
+    layer.context.translate(-centerX, -centerY)
   }
 
 }
