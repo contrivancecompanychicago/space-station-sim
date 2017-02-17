@@ -10,6 +10,9 @@ import type {CharacterType} from 'Game/Data/Character'
 import type {Skill} from 'Game/Data/Character/Skill'
 import Skills from 'Game/Data/Character/Skill'
 
+import CharacterData from 'Game/Data/Character'
+
+
 import type Item from 'Game/Type/Item'
 
 import config from 'Game/config'
@@ -35,6 +38,9 @@ export default class Character{
     this.randomiseSkills()
     if(!this.salary) this.calculateSalary();
     this.status = "thinking"
+  }
+  getData(){
+    return CharacterData.get(this.type)
   }
   calculateSalary(){
     this.salary = 500 + Math.floor(Math.random()*500)

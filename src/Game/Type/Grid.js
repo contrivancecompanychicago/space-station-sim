@@ -21,7 +21,7 @@ export default class Grid{
     if(!this.rotation)this.rotation = 0;
   }
   getData():GridDataType{
-    return GridData[this.type]
+    return GridData.get(this.type)
   }
   getObject():?Obj{
     // console.log(typeof this.object)

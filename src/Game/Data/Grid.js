@@ -1,6 +1,7 @@
 //@flow
 import {keys} from 'lodash';
 
+import DataMap from 'Game/Data/Map'
 export type GridType =
   // 'BASIC'|
   'FLOOR'|
@@ -62,7 +63,13 @@ const Gridz:{[id:GridType]:GridDataType} = {
   'REDWALL2': {label: 'Wall', weight:0, image:require('./Grid/redwall2.png')},
 };
 
-export default Gridz;
+// export default Gridz;
+const GridMap:DataMap<GridType, GridDataType> = new DataMap();
 
 export let Grid:{[id:GridType]:GridType} = {};
-keys(Gridz).forEach((key) => {Grid[key]=key;});
+keys(Gridz).forEach((key) => {
+  Grid[key]=key;
+  GridMap.put(key, Gridz[key]);
+});
+
+export default GridMap;

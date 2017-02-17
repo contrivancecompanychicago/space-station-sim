@@ -102,7 +102,7 @@ export default class GridManager extends Manager{
     keys(this.state).forEach((key) => { //duplicate?
       let loc = parseKey(key);
       let block = this.state[key]
-      let type:GridDataType = GridData[block.type]
+      let type:GridDataType = GridData.get(block.type)
 
 
       let weight = type.weight
