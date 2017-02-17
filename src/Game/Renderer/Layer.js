@@ -51,11 +51,47 @@ export default class Layer {
 
   drawImageRotated(image:any, centerX:number, centerY:number, width:number, height:number, rotation:number){
 
-    layer.context.translate(centerX, centerY)
-    layer.context.rotate(rotation);
-    layer.context.drawImage(i, 0, 0, i.width, i.height, -width/2, -height/2, width, height);
-    layer.context.rotate(-rotation);
-    layer.context.translate(-centerX, -centerY)
+    this.context.translate(centerX, centerY)
+    this.context.rotate(rotation);
+    this.context.drawImage(image, 
+      0, 0, 
+      image.width, image.height, 
+      -width/2, -height/2, 
+      width, height);
+    this.context.rotate(-rotation);
+    this.context.translate(-centerX, -centerY)
+  }
+
+  drawCircle(center:{x:number, y:number}, width:number, strokeStyle:string = 'white'){
+    
+    this.context.strokeStyle = strokeStyle;
+    this.context.beginPath();
+    this.context.arc(center.x, center.y, width, 0, Math.PI * 2);
+    this.context.stroke();
+  }
+
+  /////CONTEXT GETTERS AND SETTERS (for easier test mocking)
+  drawImage(){
+    this.context.drawImage( ...arguments);
+  }
+  strokeRect(){
+    this.context.strokeRect( ...arguments);
+  }
+  strokeStyle(style:?string):string{
+    if(style) this.context.strokeStyle = style
+    return this.context.strokeStyle;
+  }
+  lineWidth(style:?number):number{
+    if(style) this.context.lineWidth = style
+    return this.context.lineWidth;
+  }
+  shadowColor(style:?string):string{
+    if(style) this.context.shadowColor = style
+    return this.context.shadowColor;
+  }
+  shadowBlur(style:?number):number{
+    if(style!== undefined) this.context.shadowBlur = style
+    return this.context.shadowBlur;
   }
 
 }

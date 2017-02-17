@@ -21,7 +21,7 @@ export default function renderCharacter(state:State, layer:Layer) {
     let h = 32*state.View.scale
     let x = o.x - w/2;
     let y = o.y - h/2;
-    layer.context.drawImage(i, 0, 0, i.width, i.height, x, y, w, h)
+    layer.drawImage(i, 0, 0, i.width, i.height, x, y, w, h)
 
     // layer.context.fillStyle = type.tint;
     // layer.context.beginPath();

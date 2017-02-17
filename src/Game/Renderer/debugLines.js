@@ -6,9 +6,9 @@ import type {State} from 'Game/state'
 import type Layer from 'Game/Renderer/Layer'
 export default function renderLines(state:State, layer:Layer){
 
-  layer.context.lineWidth = 1;
+  layer.lineWidth(1);
 
-  layer.context.strokeStyle = '#ff0000';
+  layer.strokeStyle('#ff0000');
   keys(state.Character).forEach((key) => {
     let char = state.Character[key];
     char.item.forEach((item) => {
@@ -18,7 +18,7 @@ export default function renderLines(state:State, layer:Layer){
     })
   });
 
-  layer.context.strokeStyle = '#ffff00';
+  layer.strokeStyle('#ffff00');
   keys(state.Object).forEach((key) => {
     let obj = state.Object[key];
     if(obj.character){
@@ -28,7 +28,7 @@ export default function renderLines(state:State, layer:Layer){
     }
   });
 
-  layer.context.strokeStyle = '#00ff00';
+  layer.strokeStyle('#00ff00');
   state.Order.forEach((order) => {
     if(order.worker){
       const offset = worldToScreen(order.customer.position, state);

@@ -54,6 +54,8 @@ save/load seamless
 rewrite renderer
  - move all context manipulation into 
 
+use shadowblur for highlighting character
+
 TECH DEBT
 
 properly initialise and not have this check on frame 1 bullshit

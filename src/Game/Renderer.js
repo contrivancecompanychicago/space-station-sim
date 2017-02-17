@@ -58,7 +58,7 @@ export default class Renderer{
       object(this.state, this.gridLayer);
     }
 
-    this.layer.context.drawImage(this.gridLayer.canvas, 0, 0);
+    this.layer.drawImage(this.gridLayer.canvas, 0, 0);
   }
   update(){
     this.layer.clear();
