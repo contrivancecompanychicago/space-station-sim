@@ -12,7 +12,8 @@ let objectManager = new ObjectManager(state);
 
 let dummy = {
   block:{x:1, y:1},
-  type: keys(types)[0]
+  type: keys(types)[0],
+  getKey: () => 123
 };
 
 describe('Game/Manager/Object', () => {

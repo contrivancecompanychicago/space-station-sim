@@ -27,7 +27,7 @@ const clickButton = function (button){
   ReactTestUtils.Simulate.click(select);
 };
 
-describe('Integration', () => {
+xdescribe('Integration', () => {
   beforeEach(() => {
     container = document.createElement('div');
     game = new Game(container);
