@@ -1,7 +1,7 @@
 import Item from './Item';
 import {keys} from 'lodash';
 
-import types from 'Game/Data/Item';
+import ItemData from 'Game/Data/Item';
 
 let item;
 let state;
@@ -9,7 +9,7 @@ let state;
 
 let dummyItem = {
   position: { x:0, y:0 },
-  type: keys(types)[0]
+  type: keys(ItemData)[0]
 };
 
 describe('Game/Manager/Item', () => {

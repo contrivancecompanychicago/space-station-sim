@@ -2,6 +2,7 @@
 /*
 Items are easily movable entities that only have a position
 */
+import DataMap from 'Game/Data/Map'
 import {keys} from 'lodash';
 
 export type ItemType = 'TEST'|'BASE'|'PIZZAUNCOOKED'|'PIZZA'|'PIZZADONE'|'COFFEE'|'COFFEEDONE'
@@ -21,7 +22,13 @@ const Items:{[id:ItemType]:ItemDataType} = {
   'COFFEEDONE': {label: 'ingredients', image: require('./Item/coffee_empty.png')},
 };
 
-export default Items;
+// export default Items;
+const ItemMap:DataMap<ItemType, ItemDataType> = new DataMap();
 
 export let Item:{[id:ItemType]:ItemType} = {};
-keys(Items).forEach((key) => {Item[key]=key;});
+keys(Items).forEach((key) => {
+  Item[key]=key;
+  ItemMap.put(key, Items[key])
+});
+
+export default ItemMap

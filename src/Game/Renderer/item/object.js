@@ -10,7 +10,7 @@ import ItemData from 'Game/Data/Item';
 export default function renderItem(item:Item, state:State, layer:Layer){
 
     // layer.context.fillStyle = 'green';
-    let type = ItemData[item.type]
+    let type = ItemData.get(item.type)
     const o = item.position.screen;
     // layer.context.fillStyle = 'blue';
     // layer.context.beginPath();
