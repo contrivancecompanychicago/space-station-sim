@@ -12,11 +12,7 @@ import Point from 'Game/Point'
 
 export default function renderSelection(state:State, layer:Layer){
 
-  // layer.context.shadowBlur=10;
-  // layer.context.shadowColor="blue";
   if(state.View.selection){
-    // let sel:Selection = state.View.selection;
-    // assign(layer.context, config.view.selection);
     layer.strokeStyle(config.view.selection.strokeStyle)
     layer.shadowColor(config.view.selection.shadowColor)
     layer.shadowBlur(config.view.selection.shadowBlur)

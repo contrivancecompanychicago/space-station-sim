@@ -12,8 +12,8 @@ export default function renderCharacterHighlight(state:State, layer:Layer) {
   let char = charManager.getClosestCharacterToPoint(state.View.mousePosition, 32);
   if(char){
     const o = char.position.screen
-    layer.shadowBlur(5)
+    // layer.shadowBlur(5)
     layer.drawCircle(o, 16*state.View.scale, 'blue')
-    layer.shadowBlur(0)
+    // layer.shadowBlur(0)
   }
 }

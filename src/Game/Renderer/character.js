@@ -23,9 +23,5 @@ export default function renderCharacter(state:State, layer:Layer) {
     let y = o.y - h/2;
     layer.drawImage(i, 0, 0, i.width, i.height, x, y, w, h)
 
-    // layer.context.fillStyle = type.tint;
-    // layer.context.beginPath();
-    // layer.context.arc(o.x, o.y, 4*state.View.scale, 0, Math.PI * 2);
-    // layer.context.fill();
   });
 }

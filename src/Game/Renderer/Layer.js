@@ -77,9 +77,19 @@ export default class Layer {
   strokeRect(){
     this.context.strokeRect( ...arguments);
   }
+  fillText(){
+    this.context.fillText( ...arguments);
+  }
+  fillRect(){
+    this.context.fillRect( ...arguments);
+  }
   strokeStyle(style:?string):string{
     if(style) this.context.strokeStyle = style
     return this.context.strokeStyle;
+  }
+  fillStyle(style:?string):string{
+    if(style) this.context.fillStyle = style
+    return this.context.fillStyle;
   }
   lineWidth(style:?number):number{
     if(style) this.context.lineWidth = style
@@ -93,5 +103,29 @@ export default class Layer {
     if(style!== undefined) this.context.shadowBlur = style
     return this.context.shadowBlur;
   }
+
+//tint examples
+
+
+    // layer.context.fillStyle = type.tint;
+    // layer.context.beginPath();
+    // layer.context.arc(o.x, o.y, 4*state.View.scale, 0, Math.PI * 2);
+    // layer.context.fill();
+
+
+  //fuck tint off
+  // let tint = type.tint;
+  // if(tint){
+  //   let a = layer.context.globalAlpha;
+  //   layer.context.globalAlpha = a * 0.3;
+  //   layer.context.fillStyle = tint;
+  //   layer.context.fillRect(o.x, o.y, o.w, o.h);
+  //   layer.context.globalAlpha  =  a;
+  // }
+
+  // }else{
+  //   layer.context.fillRect(o.x, o.y, o.w, o.h);
+  // }
+
 
 }
