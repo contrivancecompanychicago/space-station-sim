@@ -50,7 +50,9 @@ give orders direct to selected
 add containers
 
 PRIORITISED:
-
+save/load seamless
+rewrite renderer
+ - move all context manipulation into 
 
 TECH DEBT
 
