@@ -4,13 +4,17 @@ import Item from 'Game/Type/Item';
 
 import type {ItemState} from 'Game/state'
 
-export default class ItemManager{
+import Manager from 'Game/Manager'
+
+export default class ItemManager extends Manager{
   type: string;
   state: ItemState;
   constructor(state:ItemState){
+    super();
     this.type = 'itemManager';
-    this.state = state;
+    this.state = state;  
   }
+
   addItem(item:Item){
     this.state[item.id] = item;
   }

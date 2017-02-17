@@ -9,13 +9,8 @@ import ItemData from 'Game/Data/Item';
 
 export default function renderItem(item:Item, state:State, layer:Layer){
 
-    // layer.context.fillStyle = 'green';
-    let type = ItemData[item.type]
+    let type = ItemData.get(item.type)
     const o = item.position.screen;
-    // layer.context.fillStyle = 'blue';
-    // layer.context.beginPath();
-    // layer.context.arc(offset.x, offset.y, 6*state.View.scale, 0, Math.PI * 2);
-    // layer.context.fill();
     let i = type.image;
     let w = 16*state.View.scale
     let h = 16*state.View.scale
@@ -23,6 +18,6 @@ export default function renderItem(item:Item, state:State, layer:Layer){
     let y = o.y - h/2;
 
 
-    layer.context.drawImage(i, 0, 0, i.width, i.height, x, y, w, h)
+    layer.drawImage(i, 0, 0, i.width, i.height, x, y, w, h)
 
 }

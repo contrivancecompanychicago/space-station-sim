@@ -1,10 +1,15 @@
 // @flow
 
 import type {PlayerState} from 'Game/state'
-export default class PlayerManager{
+
+import Manager from 'Game/Manager'
+
+
+export default class PlayerManager extends Manager{
     type:string
     state: PlayerState
     constructor(state:PlayerState){
+        super();
         this.type = 'playerManager';
         this.state = state;
     }

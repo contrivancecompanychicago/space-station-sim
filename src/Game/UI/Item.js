@@ -3,14 +3,15 @@ import { connect } from 'react-redux';
 import { keys } from 'lodash';
 import Button from './Button';
 
-import Items from 'Game/Data/Item';
+import ItemData from 'Game/Data/Item';
 
 class Item extends React.Component {
   render() {
 
     const buttons = [];
-    keys(Items).forEach((key) => {
-      buttons.push(<Button type="item" selected={key===this.props.item} key={key} data={Items[key]} click={()=>this.props.click(key)} />);
+    // keys(Items).forEach((key) => {
+    ItemData.each((key, val) => {
+      buttons.push(<Button type="item" selected={key===this.props.item} key={key} data={val} click={()=>this.props.click(key)} />);
     });
 
     return <div className="item panel">

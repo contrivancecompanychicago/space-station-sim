@@ -12,10 +12,8 @@ export default function renderCharacterHighlight(state:State, layer:Layer) {
   let char = charManager.getClosestCharacterToPoint(state.View.mousePosition, 32);
   if(char){
     const o = char.position.screen
-
-    layer.context.strokeStyle = 'blue';
-    layer.context.beginPath();
-    layer.context.arc(o.x, o.y, 16*state.View.scale, 0, Math.PI * 2);
-    layer.context.stroke();
+    // layer.shadowBlur(5)
+    layer.drawCircle(o, 16*state.View.scale, 'blue')
+    // layer.shadowBlur(0)
   }
 }

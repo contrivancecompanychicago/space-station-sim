@@ -3,9 +3,10 @@
 Objects are permanent(ish) fixtures attached to blocks
 */
 
+import DataMap from 'Game/Data/Map'
 import type {AbilityType} from 'Game/Data/Object/Ability'
 
-import keys from 'lodash.keys';
+import {keys} from 'lodash';
 
 import Bed from './Object/Bed';
 import Dock from './Object/Dock';
@@ -72,7 +73,15 @@ Objs[Table5.id] = Table5;
 // Objs[Chair.id] = Chair;
 Objs[Chair2.id] = Chair2;
 
-export default Objs;
+// export default Objs;
+
+const ObjMap:DataMap<ObjectType, ObjectDataType> = new DataMap();
+
 
 export let Obj:{[id:ObjectType]:ObjectType} = {};
-keys(Objs).forEach((key) => {Obj[key]=key;});
+keys(Objs).forEach((key) => {
+  Obj[key]=key;
+  ObjMap.put(key, Objs[key])
+});
+
+export default ObjMap

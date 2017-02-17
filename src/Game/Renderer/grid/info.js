@@ -23,12 +23,12 @@ class FPS{
     for(let i = this.fps.length; i>=0; i--){
 
       let pc = this.fps[i]/MAX;
-      layer.context.fillStyle = 'rgb('+Math.floor((1-pc)*255)+','+Math.floor(pc*255)+',0)';
-      layer.context.fillRect(this.fps.length-i, 0, 1, this.fps[i]/2);
+      layer.fillStyle('rgb('+Math.floor((1-pc)*255)+','+Math.floor(pc*255)+',0)');
+      layer.fillRect(this.fps.length-i, 0, 1, this.fps[i]/2);
   }
 
-    layer.context.fillStyle = "white";
-    layer.context.fillText(this.fps[this.fps.length-1]+"FPS", 10, 10);
+    layer.fillStyle("white");
+    layer.fillText(this.fps[this.fps.length-1]+"FPS", 10, 10);
   }
 }
 
@@ -45,14 +45,14 @@ export default function renderInfo(state, layer){
   // let time = date.getHours()+":"+date.getMinutes()+", "+
   //   date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
   fps.render(layer);
-  // layer.context.fillStyle = "grey";
-  // layer.context.font = '14px verdana';
-  // layer.context.fillText(JSON.stringify(state.View), 10, offset+= lineHeight);
-  // layer.context.fillText("x "+state.View.offset.x+" y " + state.View.offset.y, 10, offset+= lineHeight);
-  // layer.context.fillText(keys(state.Grid).length+" grid objects", 10, offset+= lineHeight);
-  // layer.context.fillText(keys(state.Character).length+" character objects", 10, offset+= lineHeight);
-  // layer.context.fillText(keys(state.Task).length+" task objects", 10, offset+= lineHeight);
-  // layer.context.fillText(keys(state.Item).length+" item objects", 10, offset+= lineHeight);
-  // layer.context.fillText(keys(state.Object).length+" object objects", 10, offset+= lineHeight);
-  // layer.context.fillText(time, 10, offset+= lineHeight);
+  // layer.fillStyle = "grey";
+  // layer.font = '14px verdana';
+  // layer.fillText(JSON.stringify(state.View), 10, offset+= lineHeight);
+  // layer.fillText("x "+state.View.offset.x+" y " + state.View.offset.y, 10, offset+= lineHeight);
+  // layer.fillText(keys(state.Grid).length+" grid objects", 10, offset+= lineHeight);
+  // layer.fillText(keys(state.Character).length+" character objects", 10, offset+= lineHeight);
+  // layer.fillText(keys(state.Task).length+" task objects", 10, offset+= lineHeight);
+  // layer.fillText(keys(state.Item).length+" item objects", 10, offset+= lineHeight);
+  // layer.fillText(keys(state.Object).length+" object objects", 10, offset+= lineHeight);
+  // layer.fillText(time, 10, offset+= lineHeight);
 }

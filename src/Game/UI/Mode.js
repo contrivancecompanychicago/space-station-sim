@@ -10,7 +10,7 @@ class ModeButton extends React.Component{
     return <Button type="mode"
       selected={this.props.name===this.props.mode}
       key={this.props.name}
-      data={Modes[this.props.name]}
+      data={Modes.get(this.props.name)}
       // mouseover={()=>this.props.click(this.props.name)}
       click={()=>this.props.click(this.props.name)} />
   }

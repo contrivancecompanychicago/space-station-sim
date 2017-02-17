@@ -1,4 +1,4 @@
-import keys from 'lodash.keys';
+import {keys} from 'lodash';
 
 export type TaskType = 'BUILD'
 export type TaskDataType = {

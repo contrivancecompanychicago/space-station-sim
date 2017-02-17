@@ -25,7 +25,7 @@ export default function renderGridWeights(state:State, layer:Layer){
         let cache = gridManager.pathCache
         if(cache){
           let weight = cache.grid[x-cache.minx][y-cache.miny]
-          layer.context.fillText(weight, pos.center.screen.x, pos.center.screen.y)
+          layer.fillText(weight, pos.center.screen.x, pos.center.screen.y)
           // console.log(weight);
           // let block = {x, y};
         }

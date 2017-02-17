@@ -58,11 +58,11 @@ export default class Renderer{
       object(this.state, this.gridLayer);
     }
 
-    this.layer.context.drawImage(this.gridLayer.canvas, 0, 0);
+    this.layer.drawImage(this.gridLayer.canvas, 0, 0);
   }
   update(){
     this.layer.clear();
-    this.layer.context.globalAlpha = 1;
+    this.layer.setAlpha(1)
 
     this.renderGrid()
 
@@ -74,7 +74,7 @@ export default class Renderer{
 
     let proposal = proposer.propose(this.state);
     proposal.View = this.state.View;
-    this.layer.context.globalAlpha = 0.5;
+    this.layer.setAlpha(0.5)
     grid(proposal, this.layer);
     object(proposal, this.layer);
     renderObjectBlocks(proposal, this.layer)

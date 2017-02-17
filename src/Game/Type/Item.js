@@ -5,6 +5,7 @@ import type Point from 'Game/Point';
 import uniqid from 'Util/uniqid';
 
 import type {ItemType} from 'Game/Data/Item'
+import ItemData from 'Game/Data/Item'
 
 import type Obj from 'Game/Type/Object';
 import type Character from 'Game/Type/Character'
@@ -17,6 +18,10 @@ export default class Item{
   constructor(params:{position:Point, type:ItemType}){
     defaults(this, params);
     if(!this.id) this.id = uniqid();
+  }
+
+  getData(){
+    return ItemData.get(this.type)
   }
   setOwner(newOwner: Character|Obj|null){
     //remove from old owner
@@ -41,5 +46,8 @@ export default class Item{
     }
 
     this.owner = newOwner;
+  }
+  getOwner(){
+    return this.owner
   }
 }

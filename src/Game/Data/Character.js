@@ -1,6 +1,9 @@
 // @flow
 
-import keys from 'lodash.keys';
+
+import DataMap from 'Game/Data/Map'
+
+import {keys} from 'lodash';
 
 export type CharacterType =
   'WORKER'|
@@ -10,6 +13,8 @@ export type CharacterType =
 
 export type CharacterDataType = {label:string, tint:string}
 
+const CharMap:DataMap<CharacterType, CharacterDataType> = new DataMap();
+
 const Chars:{[id:CharacterType]: CharacterDataType} = {
   'WORKER': {label: 'worker', tint:'yellow', image:require('./Character/char1.png')},
   'COOK': {label: 'cook', tint:'white', image:require('./Character/char5.png')},
@@ -17,7 +22,12 @@ const Chars:{[id:CharacterType]: CharacterDataType} = {
   'CUSTOMER': {label: 'customer', tint: 'green', image:require('./Character/char4.png')},
 };
 
-export default Chars;
+// export default Chars;
 
 export let Character:{[id:CharacterType]:CharacterType} = {};
-keys(Chars).forEach((key) => {Character[key]=key;});
+keys(Chars).forEach((key) => {
+  Character[key]=key;
+  CharMap.put(key, Chars[key])
+});
+
+export default CharMap;

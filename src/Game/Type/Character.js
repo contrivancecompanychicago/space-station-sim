@@ -10,6 +10,9 @@ import type {CharacterType} from 'Game/Data/Character'
 import type {Skill} from 'Game/Data/Character/Skill'
 import Skills from 'Game/Data/Character/Skill'
 
+import CharacterData from 'Game/Data/Character'
+
+
 import type Item from 'Game/Type/Item'
 
 import config from 'Game/config'
@@ -22,7 +25,6 @@ export default class Character{
   firstname: string;
   lastname: string;
   action: ?Generator<*,*,*>;
-  item: Array<Item>;
   task: string;
   skills: {[id:Skill]:number}
   salary: number;
@@ -36,6 +38,9 @@ export default class Character{
     if(!this.salary) this.calculateSalary();
     this.status = "thinking"
   }
+  getData(){
+    return CharacterData.get(this.type)
+  }
   calculateSalary(){
     this.salary = 500 + Math.floor(Math.random()*500)
   }
@@ -45,6 +50,9 @@ export default class Character{
       this.skills[s] = Math.floor(Math.random()*config.character.skill.max);
     })
   }
+
+  // ITEM
+  item: Array<Item>;
   addItem(item:Item){
     this.item.push(item)
   }
@@ -54,6 +62,10 @@ export default class Character{
   removeItem(item:Item){
     this.item.splice(this.item.indexOf(item), 1);
   }
+  getItems():Array<Item>{
+    return this.item
+  }
+
   toString():string{
     return this.firstname + ' ' + this.lastname
   }

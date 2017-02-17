@@ -77,19 +77,19 @@ export default function renderWall(state, layer){
               if(!side.corner) rendered.left = true;
               w*=size;
             }
-            layer.context.fillStyle = 'grey';
-            layer.context.strokeStyle = 'green';
+            layer.fillStyle('grey');
+            layer.strokeStyle('green');
             if(neighbour==='DOCK'){
-              layer.context.fillStyle = 'pink';
+              layer.fillStyle('pink');
             }
             // if(side.corner ){//corner
-            //   layer.context.strokeRect(x, y, w, h);
-            //   // layer.context.fillRect(x, y, w, h);
-            //   // layer.context.beginPath();
-            //   // layer.context.arc(x, y, w, 0, Math.PI/2);
-            //   // layer.context.fill();
+            //   layer.strokeRect(x, y, w, h);
+            //   // layer.fillRect(x, y, w, h);
+            //   // layer.beginPath();
+            //   // layer.arc(x, y, w, 0, Math.PI/2);
+            //   // layer.fill();
             // }else{
-            layer.context.fillRect(x, y, w, h);
+            layer.fillRect(x, y, w, h);
             // }
           }
         });

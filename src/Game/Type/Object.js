@@ -13,20 +13,21 @@ import type Item from 'Game/Type/Item'
 import type {AbilityType} from 'Game/Data/Object/Ability'
 import Ability from 'Game/Data/Object/Ability'
 
-
+import makeKey from 'Util/makeKey'
 
 export default class Obj{
   block: Block;
   type: ObjectType;
-  character: ?Character
-  item: ?Item
   rotation: number
   constructor(params:{block:Block, type:ObjectType}){
     defaults(this, params);
     if(!this.rotation) this.rotation = 0;
   }
+  getKey():string{
+    return makeKey(this.block.x,this.block.y)
+  }
   getData():ObjectDataType{
-    return ObjectData[this.type]
+    return ObjectData.get(this.type)
   }
   hasAbility(ability:AbilityType):boolean{
     return (this.getData().abilities.indexOf(ability) > -1)
@@ -61,7 +62,16 @@ export default class Obj{
       return this.block
     }
   }
+  
+  character: ?Character
+  setCharacter(char:Character){
+    this.character = char
+  }
+  getCharacter(){
+    return this.character
+  }
 
+  item: ?Item
   addItem(item:Item){
     this.item = (item)
   }

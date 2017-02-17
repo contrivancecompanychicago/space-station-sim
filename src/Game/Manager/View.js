@@ -14,6 +14,8 @@ import type {Selection} from 'Game/Type/Selection'
 
 import {getCharacterManager} from 'Game/engine'
 
+import type Character from 'Game/Type/Character'
+
 type Event = {
   wheelDelta:number,
   pageX:number,
@@ -36,7 +38,11 @@ const initial:ViewState = {
   selection:null
 };
 
-export default class ViewManager{
+
+import Manager from 'Game/Manager'
+
+
+export default class ViewManager extends Manager{
   type: string;
   state: ViewState;
 
@@ -52,14 +58,19 @@ export default class ViewManager{
   lastPos: {x:number, y:number};
   button: number;
 
+  follow:?Character;
+
   update(){
     //calculate whats under mousey
     // let charManager = getCharacterManager();
     // let char = charManager.getClosestCharacterToPoint(this.state.mousePosition);
-
+    if(this.follow){
+      this.centerOnPoint(this.follow.position.rounded);
+    }
 
   }
   constructor(state:ViewState, container:HTMLElement) {
+    super();
     this.type = 'viewManager';
     this.state = defaults(state, initial); //WHYYY
     // this.state = state
@@ -67,6 +78,21 @@ export default class ViewManager{
     this.dragging = false;
     this.down = {};
   }
+  centerOnPoint(point:Point){
+    // console.log('centering');
+    //HACK TODO
+    this.state.offset.x = 400-point.x
+    this.state.offset.y = 400-point.y
+    
+  }
+
+  followCharacter(char:Character){
+    this.follow = char
+  }
+  unfollowCharacter(){
+    this.follow = null
+  }
+  
 
   getMousePoint():Point{
     return new Point(this.state.mousePosition);
@@ -150,7 +176,7 @@ export default class ViewManager{
   onMouseMove(e:Event) {
     let point = Point.fromScreen(e.pageX, e.pageY);
     if(this.dragging){
-
+      
       let delta = {x:e.pageX-this.lastPos.x, y: e.pageY-this.lastPos.y};
       this.lastPos = {x: e.pageX, y:e.pageY};
       this.state.offset.x += delta.x / this.state.scale;
@@ -184,6 +210,7 @@ export default class ViewManager{
 
   startDrag(e:Event){
     this.dragging = true;
+    this.follow = null;
     this.lastPos = {x:e.pageX, y: e.pageY};
   }
 

@@ -4,10 +4,14 @@ import Order from 'Game/Type/Order';
 
 import type {OrderState} from 'Game/state'
 
-export default class OrderManager{
+import Manager from 'Game/Manager'
+
+
+export default class OrderManager extends Manager{
   type: string;
   state: OrderState;
   constructor(state:OrderState){
+    super()
     this.type = 'orderManager';
     this.state = state;
   }

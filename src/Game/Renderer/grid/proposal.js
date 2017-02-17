@@ -1,7 +1,7 @@
 //@flow
 import Proposer from 'Game/Action/Proposer';
 import {parseKey} from 'Util';
-import keys from 'lodash.keys';
+import {keys} from 'lodash';
 import renderBlock from './block';
 
 import type {State} from 'Game/state'
@@ -18,10 +18,10 @@ export default function renderProposal(state:State, layer:Layer){
       // console.log(proposal.Grid);
       keys(proposal.Grid).forEach((key) => {
         let pos = parseKey(key);
-        layer.context.globalAlpha = 0.6;
+        layer.setAlpha(0.6);
         // console.log(key);
         renderBlock(pos, proposal.Grid[key], state, layer);
-        layer.context.globalAlpha = 1;
+        layer.setAlpha(1);
       });
     }
   }

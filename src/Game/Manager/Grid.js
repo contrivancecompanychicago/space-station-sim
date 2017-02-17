@@ -16,11 +16,14 @@ import {getObjectManager} from 'Game/engine'
 
 // let test:GridDataType = "Asd"
 
-export default class GridManager{
+import Manager from 'Game/Manager'
+
+export default class GridManager extends Manager{
   type: string;
   state: GridState;
   pathCache: {grid: Array<Array<number>>, minx:number, miny:number}
   constructor(state:GridState){
+    super()
     this.type = 'gridManager';
     this.state = state;
   }
@@ -99,7 +102,7 @@ export default class GridManager{
     keys(this.state).forEach((key) => { //duplicate?
       let loc = parseKey(key);
       let block = this.state[key]
-      let type:GridDataType = GridData[block.type]
+      let type:GridDataType = GridData.get(block.type)
 
 
       let weight = type.weight

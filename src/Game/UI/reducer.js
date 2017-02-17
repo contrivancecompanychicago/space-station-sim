@@ -10,6 +10,8 @@ import object from './reducer/object';
 import rotation from './reducer/rotation';
 import panel from './reducer/panel';
 import selected from './reducer/selected';
+import tutorial from './reducer/tutorial';
+import highlight from './reducer/highlight';
 
 
 import type {UIState} from 'Game/state'
@@ -29,4 +31,6 @@ export default (combineReducers({
   rotation,
   panel,
   selected,
+  tutorial,
+  highlight,
 }):UIState);

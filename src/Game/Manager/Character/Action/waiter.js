@@ -33,7 +33,10 @@ export default function* waiter(char:Character):Generator<*,*,*>{
     logManager.addLog({
       message:char.toString()+' making coffee for '+coffeeOrders[0].customer.toString(),
       type:'EVENT'})
+    char.setStatus('making coffee')
     yield *actions.makeCoffee(char, coffeeOrders[0])
+
+    char.setStatus('serving coffee')
     yield *actions.serveOrder(char, coffeeOrders[0]);
   }
 
@@ -46,11 +49,14 @@ export default function* waiter(char:Character):Generator<*,*,*>{
   });
   if(orders.length==0) {
 
+    char.setStatus('waiting for something to do')
     if(Math.random()<0.01)
       yield *actions.wandertoAdjacentTile(char);
     return;
   }else{
     let order = orders[0];
+
+    char.setStatus('serving order')
     logManager.addLog({
       message:char.toString()+' serving to '+order.customer.toString(),
       type:'EVENT'})

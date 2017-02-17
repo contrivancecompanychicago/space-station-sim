@@ -1,7 +1,7 @@
 // @flow
 //"Global"
 
-import keys from 'lodash.keys';
+import {keys} from 'lodash';
 
 import Point from 'Game/Point';
 
@@ -12,6 +12,8 @@ import type Grid from 'Game/Type/Grid'
 import type Obj from 'Game/Type/Object'
 import type {Selection} from 'Game/Type/Selection'
 import type Order from 'Game/Type/Order'
+
+import type {TalentType} from 'Game/Data/Talent'
 
 // import {Grid} from 'Game/Data/Grid';
 
@@ -45,11 +47,15 @@ export type ObjectState = {
 export type TaskState = {
   [id:string]: Task
 }
+export type TutorialState = {
+  
+}
 
 export type UIState = {
   mode:any,
   rotation: number,
   selected: Array<Obj | Character | null>,
+  panel: Object
   // grid:Grid
 }
 
@@ -68,6 +74,10 @@ export type PlayerState = {
   money: number
 }
 
+export type TalentState = {
+  [id:TalentType]:boolean
+}
+
 export type State = {
   Character: CharacterState,
   Grid: GridState,
@@ -78,7 +88,8 @@ export type State = {
   View: ViewState,
   Time: TimeState,
   Order: OrderState,
-  Player: PlayerState
+  Player: PlayerState,
+  Talent: TalentState
 }
 
 const state:State = base();
@@ -102,6 +113,13 @@ export function base():State{
       rotation: 0,
       selected: [],
       // grid: Grid.FLOOR
+      panel: {
+        hiring:{show:false},
+        staff:{show:false},
+        orders:{show:false},
+        log:{show:false},
+        talent:{show:false},
+      },
     },
     View:{
       offset: {x:0, y:0},
@@ -111,6 +129,7 @@ export function base():State{
       // selected:null
     },
     Order:[],
-    Player:{money:10000}
+    Player:{money:10000},
+    Talent: {}
   };
 }

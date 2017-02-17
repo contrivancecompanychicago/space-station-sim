@@ -9,7 +9,9 @@ import type CharacterManager from 'Game/Manager/Character'
 
 import type {TaskState} from 'Game/state'
 
-export default class TaskManager extends Component{
+import Manager from 'Game/Manager'
+
+export default class TaskManager extends Manager{
 
   state: TaskState;
   constructor(state:TaskState = {}){

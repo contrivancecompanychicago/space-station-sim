@@ -14,11 +14,14 @@ import OrderPanel from './UI/Panel/Order';
 import TimePanel from './UI/Panel/Time';
 import LogPanel from './UI/Panel/Log';
 import HiringPanel from './UI/Panel/Hiring';
+import TalentPanel from './UI/Panel/Talent';
 
 import Panel from './UI/Panel';
 import SelectedPanel from './UI/Panel/Selected'
 
 import StaffPanel from './UI/Panel/Staff';
+
+import Tutorial from './UI/Tutorial'
 
 import state from 'Game/state';
 
@@ -49,6 +52,7 @@ class UI extends React.Component {
     if(this.props.panel.orders.show) panels.push(<OrderPanel key='Order' />)
     if(this.props.panel.staff.show) panels.push(<StaffPanel key='Staff' />)
     if(this.props.panel.hiring.show) panels.push(<HiringPanel key='Hiring' />)
+    if(this.props.panel.talent.show) panels.push(<TalentPanel key='Talent' />)
 
 
     // if(this.props.selected){
@@ -60,11 +64,18 @@ class UI extends React.Component {
       panels.push(<SelectedPanel key={s.toString()} target={s} />)
     })
 
+    let cssHax = ''
+    this.props.highlight.forEach((h) => {
+      cssHax += '.'+h+'{background-color:green !important}'
+    })
+
 
     // <Speed />
     return <div className="ui">
+      <style>{cssHax}</style>
       <div className="panels">
         {panels}
+        <Tutorial />
       </div>
 
       <div className="menu">
@@ -80,7 +91,8 @@ function mapStateToProps(state, props) {
   return {
     mode: state.mode,
     panel: state.panel,
-    selected: state.selected
+    selected: state.selected,
+    highlight: state.highlight,
   };
 }
 

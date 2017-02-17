@@ -20,16 +20,16 @@ export default function renderObjectBlocks(state:State, layer:Layer){
 
       switch(block.type){
         case 'ACCESS':
-          layer.context.strokeStyle = "green"
+          layer.strokeStyle("green")
           break;
         case 'BLOCK':
-          layer.context.strokeStyle = "yellow"
+          layer.strokeStyle("yellow")
           break;
       }
 
 
-      layer.context.lineWidth = 4;
-      layer.context.strokeRect(o.x, o.y, o.w, o.h);
+      layer.lineWidth(4)
+      layer.strokeRect(o.x, o.y, o.w, o.h);
     })
   })
 }

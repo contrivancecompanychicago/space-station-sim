@@ -1,5 +1,7 @@
 //@flow
-import keys from 'lodash.keys';
+
+import DataMap from 'Game/Data/Map'
+import {keys} from 'lodash';
 
 export type ModeType = 'SELECT'
 | 'GRID'
@@ -23,7 +25,14 @@ const Modes:{[id:ModeType]:ModeDataType} = {
   // 'TASK': {label: 'task'},
 };
 
-export default Modes;
+// export default Modes;
+
+const ModeMap:DataMap<ModeType,ModeDataType> = new DataMap();
 
 export let Mode:{[id:ModeType]:ModeType} = {};
-keys(Modes).forEach((key) => {Mode[key]=key;});
+keys(Modes).forEach((key) => {
+  Mode[key]=key;
+  ModeMap.put(key, Modes[key])
+});
+
+export default ModeMap

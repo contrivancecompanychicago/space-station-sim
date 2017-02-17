@@ -15,10 +15,13 @@ import type Block from 'Game/Block'
 
 import * as engine from 'Game/engine'
 
-export default class ObjectManager{
+import Manager from 'Game/Manager'
+
+export default class ObjectManager extends Manager{
   type:string;
   state:ObjectState;
   constructor(state:ObjectState = {}){
+    super()
     this.type = 'objectManager';
     this.state = state;
   }
@@ -26,11 +29,14 @@ export default class ObjectManager{
     //todo: check overlaps
     //todo: valid/verify/factory
     // obj = Factory.create(obj);
-    this.state[makeKey(obj.block.x,obj.block.y)] = obj;
+    this.state[obj.getKey()] = obj;
 
   }
   deleteObject(obj:Obj){
-    delete this.state[makeKey(obj.block.x,obj.block.y)];
+    delete this.state[obj.getKey()];
+  }
+  getObject(key:string){
+    return this.state[key]
   }
   getObjectAtBlock(block:Block):?Obj{
     if(this.state[block.key])
@@ -53,7 +59,7 @@ export default class ObjectManager{
   }
   getObjectsWithAbility(ability:AbilityType):Array<Obj>{
     return values(this.state).filter((o)=>{
-      let type = ObjectData[o.type]
+      let type = ObjectData.get(o.type)
       if(type.abilities.indexOf(ability) > -1) return true
     })
   }

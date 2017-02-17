@@ -27,15 +27,15 @@ export default function renderObject(state:State, layer:Layer){
 }
 export function renderBlock(block:Block, object:Obj, state:State, layer:Layer){
 
-  let t = Types[object.type];
+  let t = Types.get(object.type);
   let o = block.rect.renderParams;
 
   let i = t.image;
   let center = {x: o.x+(o.w/2), y: o.y+ (o.h/2)}
   let rot:number = 90*object.rotation*Math.PI/180
-  layer.context.translate(center.x, center.y)
-  layer.context.rotate(rot);
-  layer.context.drawImage(i, 0, 0, i.width, i.height, -o.w/2, -o.h/2, o.w* t.width, o.h*t.height);
-  layer.context.rotate(-rot);
-  layer.context.translate(-center.x, -center.y)
+  layer.translate(center.x, center.y)
+  layer.rotate(rot);
+  layer.drawImage(i, 0, 0, i.width, i.height, -o.w/2, -o.h/2, o.w* t.width, o.h*t.height);
+  layer.rotate(-rot);
+  layer.translate(-center.x, -center.y)
 }

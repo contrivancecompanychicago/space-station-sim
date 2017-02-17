@@ -3,11 +3,15 @@ var path = require('path');
 var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
+var WriteFilePlugin = require('write-file-webpack-plugin');
+
 var dir_js = path.resolve(__dirname, 'src');
 var dir_html = path.resolve(__dirname, 'html');
 var dir_build = path.resolve(__dirname, 'dist');
 var dir_spec = path.resolve(__dirname, 'test');
 
+
+console.log(dir_build)
 
 module.exports = {
     entry: ['babel-polyfill', path.resolve(dir_js, 'main.js')],
@@ -16,9 +20,10 @@ module.exports = {
         filename: 'bundle.js'
     },
     devtool: 'inline-source-map',
-    // devServer: {
-    //     contentBase: dir_build,
-    // },
+    devServer: {
+        //contentBase: dir_build,
+        outputPath: dir_build
+    },
     module: {
         loaders: [
             {
@@ -49,6 +54,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new WriteFilePlugin(),
         // Simply copies the files over
         new CopyWebpackPlugin([
             { from: dir_html } // to: output.path

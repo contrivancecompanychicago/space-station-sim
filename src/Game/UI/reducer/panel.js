@@ -5,6 +5,7 @@ type State = {
   staff:{show:boolean},
   orders:{show:boolean},
   log:{show:boolean},
+  talent:{show:boolean},
 }
 
 const defaults:State = {
@@ -12,12 +13,14 @@ const defaults:State = {
   staff:{show:false},
   orders:{show:false},
   log:{show:false},
+  talent:{show:false},
 }
 
 export type PanelAction = 'TOGGLE_HIRING_PANEL'
   |'TOGGLE_STAFF_PANEL'
   |'TOGGLE_ORDERS_PANEL'
   |'TOGGLE_LOG_PANEL'
+  |'TOGGLE_TALENT_PANEL'
 
 export default function panel(state:State, action:{type:string}):State{
   if(!state) state = defaults;
@@ -34,11 +37,15 @@ export default function panel(state:State, action:{type:string}):State{
     case 'TOGGLE_LOG_PANEL':
       state.log.show = !state.log.show
     break;
+    case 'TOGGLE_TALENT_PANEL':
+      state.talent.show = !state.talent.show
+    break;
   }
   return {
     hiring: state.hiring,
     staff: state.staff,
     orders: state.orders,
     log: state.log,
+    talent: state.talent,
   }
 }
