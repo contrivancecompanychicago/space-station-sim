@@ -47,4 +47,7 @@ export default class Item{
 
     this.owner = newOwner;
   }
+  getOwner(){
+    return this.owner
+  }
 }
