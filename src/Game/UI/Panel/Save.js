@@ -20,7 +20,10 @@ class SavePanel extends React.Component {
   }
 
   load(savename:string){
-    console.log(savename);
+    console.log('load', savename);
+  }
+  save(savename:string){
+    console.log('save', savename);
   }
 
   render() {
@@ -43,7 +46,7 @@ class SavePanel extends React.Component {
         this.setState({savename: e.target.value});
         // this.state.savename = e.target.value
       }} />
-      <button>save</button>
+      <button onClick={() => {this.save(this.state.savename)}}>save</button>
     </div>
   }
 }
