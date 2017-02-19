@@ -8,26 +8,43 @@ import Draggable from 'react-draggable'
 import Header from './Component/Header'
 
 import listSaves from 'Game/State/listSaves'
+import save from 'Game/State/save'
+import load from 'Game/State/load'
 
 class SavePanel extends React.Component {
+  state:{savename:string}
 
-  
+  constructor(props) {
+    super(props);
+    this.state = {'savename': 'savename'};
+  }
+
+  load(savename:string){
+    console.log(savename);
+  }
 
   render() {
 
+
+
     let saves = listSaves();
-    console.log(saves);
-    saves.map(s => {
-      return <div>{s}</div>
+    // console.log(saves);
+    saves = saves.map(s => {
+      return <button key={s} onClick={() => {this.load(s)}}>{s}</button>
     })
-    return <Draggable><div className="save panel">
+    return <div className="save panel">
       <Header text='Save Panel' close={this.props.close} />
+      
       {saves}
       <hr />
       new save:
-      <input type="text" value="savename" />
+      <input type="text" value={this.state.savename} onChange={(e)=>{
+        // console.log(e.target.value, this)
+        this.setState({savename: e.target.value});
+        // this.state.savename = e.target.value
+      }} />
       <button>save</button>
-    </div></Draggable>
+    </div>
   }
 }
 
