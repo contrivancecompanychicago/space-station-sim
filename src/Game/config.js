@@ -24,5 +24,8 @@ export default {
       max: 100
     }
   },
+  save: {
+    prefix: 'save_'
+  },
   env: 'dev' //change this when publishing
 };

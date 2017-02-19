@@ -2,6 +2,7 @@
 
 import state from 'Game/state';
 import {keys} from 'lodash'
+import config from 'Game/config'
 
 export default function save(savename:string){
     let out = {
@@ -24,6 +25,6 @@ export default function save(savename:string){
         out.Character[k] = {x:char.x, y:char.y, type:char.type}
     })
 
-    localStorage[savename] = JSON.stringify(out)
+    localStorage[config.save.prefix+savename] = JSON.stringify(out)
 
 }

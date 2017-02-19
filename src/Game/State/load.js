@@ -6,7 +6,10 @@ import Obj from 'Game/Type/Object'
 import Character from 'Game/Type/Character'
 import {keys} from 'lodash'
 
-export default function loadGame(engine:any){
+
+import config from 'Game/config'
+
+export default function loadGame(savename:string, engine:any){
 
   // let data = JSON.parse(localStorage.quicksave)
 

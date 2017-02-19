@@ -4,15 +4,29 @@ import * as engine from 'Game/engine';
 import { connect } from 'react-redux';
 import React from 'react';
 
+import Draggable from 'react-draggable'
+import Header from './Component/Header'
+
+import listSaves from 'Game/State/listSaves'
 
 class SavePanel extends React.Component {
 
   
+
   render() {
-   
+
+    let saves = listSaves();
+    console.log(saves);
+    saves.map(s => {
+      return <div>{s}</div>
+    })
     return <Draggable><div className="save panel">
-      <Header text='Aave Panel' close={this.props.close} />
-      Save data
+      <Header text='Save Panel' close={this.props.close} />
+      {saves}
+      <hr />
+      new save:
+      <input type="text" value="savename" />
+      <button>save</button>
     </div></Draggable>
   }
 }
