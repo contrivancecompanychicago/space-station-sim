@@ -75,7 +75,7 @@ export default class Game{
     })
 
     //LOADGAME hacky
-    load('quicksave', this.engine)
+    load('quicksave')
 
   }
 
