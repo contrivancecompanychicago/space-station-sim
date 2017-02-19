@@ -46,6 +46,8 @@ use shadowblur for highlighting character
 
 ### TECH DEBT
 
+write tests
+
 properly initialise and not have this check on frame 1 bullshit
  - possibly change engine
 

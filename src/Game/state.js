@@ -119,6 +119,7 @@ export function base():State{
         orders:{show:false},
         log:{show:false},
         talent:{show:false},
+        save:{show:false},
       },
     },
     View:{
