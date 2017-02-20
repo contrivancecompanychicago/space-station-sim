@@ -12,16 +12,16 @@ export default function save(savename:string){
     }
 
     //reformat to strip crap
-    keys(state.Grid).forEach((k) => {
-        let grid = state.Grid[k]
+    keys(state.grid.state).forEach((k) => {
+        let grid = state.grid.state[k]
         out.Grid[k] = {type:grid.type, rotation:grid.rotation}
     })
-    keys(state.Object).forEach((k) => {
-        let obj = state.Object[k];
+    keys(state.object.state).forEach((k) => {
+        let obj = state.object.state[k];
         out.Object[k] = {type:obj.type, rotation:obj.rotation, block:obj.block}
     })
-    keys(state.Character).forEach((k) => {
-        let char = state.Character[k]
+    keys(state.character.state).forEach((k) => {
+        let char = state.character.state[k]
         out.Character[k] = {x:char.x, y:char.y, type:char.type}
     })
 

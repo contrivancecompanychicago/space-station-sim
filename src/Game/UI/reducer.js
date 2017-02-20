@@ -14,7 +14,7 @@ import tutorial from './reducer/tutorial';
 import highlight from './reducer/highlight';
 
 
-import type {UIState} from 'Game/state'
+import type {UIState} from 'Game/Model/UI'
 
 // export default function reducer(state = {}, action){
 //   return state;

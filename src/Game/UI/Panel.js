@@ -7,7 +7,7 @@ import Button from './Button';
 
 // import Grids from 'Game/Data/Grid';
 
-import type {UIState} from 'Game/state'
+import type {UIState} from 'Game/Model/UI'
 
 class Panel extends React.Component {
   render() {

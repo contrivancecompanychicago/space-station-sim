@@ -6,6 +6,8 @@ class Engine{
     deltaTime: number;
     objects: Array<Object>;
     constructor(){
+        // FLOWHACK
+        this.update = this.update.bind(this)
         this.lastTime = new Date().getTime();
         this.objects = []
         requestAnimationFrame(this.update);

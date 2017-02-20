@@ -9,7 +9,7 @@ export type ItemState = {
 
 export default class ItemModel {
     state: ItemState;
-    constructor(state: ItemState) {
+    constructor(state: ItemState = {}) {
         this.state = state;
     }
 

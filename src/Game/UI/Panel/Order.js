@@ -1,5 +1,5 @@
 // @flow
-import {getOrderManager} from 'Game/engine';
+
 
 import { connect } from 'react-redux';
 import React from 'react';
@@ -7,6 +7,7 @@ import React from 'react';
 import Draggable from 'react-draggable'
 
 import Header from './Component/Header'
+import state from 'Game/state'
 
 class OrderPanel extends React.Component {
 
@@ -20,7 +21,7 @@ class OrderPanel extends React.Component {
     clearInterval(this.interval)
   }
   render() {
-    const orderManager = getOrderManager();
+    const orderManager = state.order
 
     let orders = []
     if(orderManager){

@@ -40,7 +40,7 @@ export default function loadGame(savename:string){
     // this.manager.getComponent('objectManager').addObject(new Obj(obj));
     object[key] = new Obj(obj);
   })
-  dispatcher.objects(object)
+  state.object.mergeState(object)
 
   // let chars = [
   //   {x:11, y:8, type:'COOK'},

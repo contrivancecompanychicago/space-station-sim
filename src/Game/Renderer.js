@@ -77,8 +77,11 @@ export default class Renderer{
     let proposal = proposer.propose(this.state);
     proposal.view = this.state.view;
     this.layer.setAlpha(0.5)
+    // FLOWHACK
     grid(proposal, this.layer);
+    // FLOWHACK
     object(proposal, this.layer);
+    // FLOWHACK
     renderObjectBlocks(proposal, this.layer)
 
     renderCharacterHighlight(this.state, this.layer)

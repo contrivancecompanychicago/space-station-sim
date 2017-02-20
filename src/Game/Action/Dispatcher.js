@@ -22,6 +22,7 @@ import type {ObjectState} from 'Game/Model/Object'
 import state from 'Game/state'
 
 import Proposer from 'Game/Action/Proposer';
+
 const proposer = new Proposer();
 
 class Dispatcher{

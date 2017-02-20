@@ -10,6 +10,8 @@ import type Character from 'Game/Type/Character';
 import type Obj from 'Game/Type/Object';
 import * as engine from 'Game/engine'
 
+import state from 'Game/state'
+
 type Props = {
     target: Character,
     close: Function,
@@ -51,12 +53,12 @@ function mapDispatchToProps(dispatch, props:Props) {
   // console.log(props)
   return {
     center: () => {
-      let viewManager = engine.getViewManager();
-      viewManager.centerOnPoint(props.target.position)
+      
+      state.view.centerOnPoint(props.target.position)
     },
     follow: () => {
-      let viewManager = engine.getViewManager();
-      viewManager.followCharacter(props.target)
+      
+      state.view.followCharacter(props.target)
     },
     close: () => {
       dispatch({type:'REMOVE_SELECTED', selected: props.target});

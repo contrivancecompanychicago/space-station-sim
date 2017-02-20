@@ -1,5 +1,4 @@
 // @flow
-import {getCharacterManager} from 'Game/engine';
 
 import { connect } from 'react-redux';
 import {values} from 'lodash'
@@ -10,6 +9,8 @@ import Draggable from 'react-draggable'
 import Header from './Component/Header'
 
 import type Character from 'Game/Type/Character'
+
+import state from 'Game/state'
 
 class StaffPanel extends React.Component {
 
@@ -23,7 +24,7 @@ class StaffPanel extends React.Component {
     clearInterval(this.interval)
   }
   render() {
-    const characterManager = getCharacterManager();
+    const characterManager = state.character
 
     let staff = []
     if(characterManager){

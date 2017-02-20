@@ -1,5 +1,5 @@
 // @flow
-import {getLogManager} from 'Game/engine';
+
 
 import React from 'react';
 
@@ -8,7 +8,7 @@ import Draggable from 'react-draggable'
 
 import Header from './Component/Header'
 
-
+import state from 'Game/state'
 class LogPanel extends React.Component {
 
   interval:number;
@@ -28,7 +28,7 @@ class LogPanel extends React.Component {
   //   console.log("mu", e);
   // }
   render() {
-    const logManager = getLogManager();
+    const logManager = state.log
 
     let logs = []
     if(logManager){

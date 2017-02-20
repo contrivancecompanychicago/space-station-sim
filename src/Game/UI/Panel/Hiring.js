@@ -1,5 +1,5 @@
 // @flow
-import {getCharacterManager} from 'Game/engine';
+
 
 import { connect } from 'react-redux';
 import React from 'react';
@@ -12,6 +12,8 @@ import CharacterRow from 'Game/UI/Row/Character'
 
 import Header from './Component/Header'
 
+import state from 'Game/state'
+
 class HiringPanel extends React.Component {
 
 
@@ -22,7 +24,7 @@ class HiringPanel extends React.Component {
   }
 
   render() {
-    const charManager = getCharacterManager();
+    const charManager = state.character
 
     let chars = []
     if(charManager){
