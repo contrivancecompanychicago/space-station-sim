@@ -58,7 +58,8 @@ export default class Proposer {
           proposal.grid.state = {};
           state.view.state.selection.rect.blocks.forEach((block) => {
             let key = makeKey(block.x, block.y);
-            if (state.grid.getNode(block.x, block.y).type === state.ui.state.grid) { } else { //if not already there
+            let bl = state.grid.getNode(block.x, block.y)
+            if (bl && bl.type === state.ui.state.grid) { } else { //if not already there
 
               proposal.grid.state[key] = new Grid({ type: state.ui.state.grid, rotation: state.ui.state.rotation });
 

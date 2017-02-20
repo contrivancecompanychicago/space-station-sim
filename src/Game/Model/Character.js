@@ -7,7 +7,7 @@ import state from 'Game/state'
 import actions from 'Game/Manager/Character/Action';
 import Point from 'Game/Point'
 import Ability from 'Game/Data/Object/Ability'
-
+import Block from 'Game/Block'
 
 export type CharacterState = {
     [id: string]: Character
@@ -153,7 +153,7 @@ export default class CharacterModel {
         let out = {}
         keys(this.state).forEach((k) => {
             let char = this.state[k]
-            out[k] = { x: char.x, y: char.y, type: char.type }
+            out[k] = { x: char.position.x, y: char.position.y, type: char.type }
         })
         return out 
     }

@@ -27,14 +27,16 @@ export default function loadGame(savename:string){
 
   
 
-  let grid = data.Grid
-  let object = data.Object;
+  let grid = data.grid
+  let object = data.object;
 
+  state.character.clear();
   state.object.clear();
   state.grid.clear();
 
   state.grid.load(grid)
   state.object.load(object)
+  state.character.load(data.character)
 
   // let chars = [
   //   {x:11, y:8, type:'COOK'},

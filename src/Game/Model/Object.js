@@ -87,6 +87,7 @@ export default class ObjectModel {
     })
   }
   save(): Object {
+    let out = {}
     keys(this.state).forEach((k) => {
         let obj = this.state[k];
         out[k] = {type:obj.type, rotation:obj.rotation, block:obj.block}
