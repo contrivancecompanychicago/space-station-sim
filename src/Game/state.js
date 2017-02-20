@@ -163,22 +163,36 @@ export class State{
   tutorial:TutorialModel
   ui:UIModel
   view:ViewModel
-  inited:boolean
+  // inited:boolean
 
-  constructor(state:Object){
-    this.inited = false;    
-    this.character = new CharacterModel(state.character)
-    this.grid = new GridModel(state.grid)
-    this.item = new ItemModel(state.item)
-    this.log = new LogModel(state.log)
-    this.object = new ObjectModel(state.object)
-    this.order = new OrderModel(state.order)
-    this.player = new PlayerModel(state.player)
-    this.task = new TaskModel(state.task)
-    this.time = new TimeModel(state.time)
-    this.tutorial = new TutorialModel(state.tutorial)
-    this.ui = new UIModel(state.ui)
-    this.view = new ViewModel(state.view)
+  constructor(){  
+
+    this.character = new CharacterModel()
+    this.grid = new GridModel()
+    this.item = new ItemModel()
+    this.log = new LogModel()
+    this.object = new ObjectModel()
+    this.order = new OrderModel()
+    this.player = new PlayerModel()
+    this.task = new TaskModel()
+    this.time = new TimeModel()
+    this.tutorial = new TutorialModel()
+    this.ui = new UIModel()
+    this.view = new ViewModel()
+
+
+    // this.character = new require('Game/Model/Character').default()
+    // this.grid = new require('Game/Model/Grid').default()
+    // this.item = new require('Game/Model/Item').default()
+    // this.log = new require('Game/Model/Log').default()
+    // this.object = new require('Game/Model/Object').default()
+    // this.order = new require('Game/Model/Order').default()
+    // this.player = new require('Game/Model/Player').default()
+    // this.task = new require('Game/Model/Task').default()
+    // this.time = new require('Game/Model/Time').default()
+    // this.tutorial = new require('Game/Model/Tutorial').default()
+    // this.ui = new require('Game/Model/Ui').default()
+    // this.view = new require('Game/Model/View').default()
 
   }
 
@@ -186,7 +200,7 @@ export class State{
     // state = new State({});
     this.ui.init();
     this.view.init();
-    this.inited = true;
+    // this.inited = true;
   }
 }
 
@@ -200,4 +214,5 @@ export class State{
 //   console.log('initiating state', state)
 // }
 
-export default new State({});
+
+export default new State();

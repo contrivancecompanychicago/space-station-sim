@@ -29,6 +29,19 @@ import TutorialController from 'Game/Controller/Tutorial'
 import UIController from 'Game/Controller/UI'
 import ViewController from 'Game/Controller/View'
 
+import CharacterModel from 'Game/Model/Character'
+import GridModel from 'Game/Model/Grid';
+import ItemModel from 'Game/Model/Item'
+import LogModel from 'Game/Model/Log'
+import ObjectModel from 'Game/Model/Object'
+import OrderModel from 'Game/Model/Order'
+import PlayerModel from 'Game/Model/Player'
+import TaskModel from 'Game/Model/Task'
+import TimeModel from 'Game/Model/Time'
+import TutorialModel from 'Game/Model/Tutorial'
+import UIModel from 'Game/Model/UI'
+import ViewModel from 'Game/Model/View'
+
 
 export default class Game{
   container:HTMLElement
@@ -47,6 +60,19 @@ export default class Game{
 
     state.init();
 
+    // state.character = new CharacterModel()
+    // state.grid = new GridModel()
+    // state.item = new ItemModel()
+    // state.log = new LogModel()
+    // state.object = new ObjectModel()
+    // state.order = new OrderModel()
+    // state.player = new PlayerModel()
+    // state.task = new TaskModel()
+    // state.time = new TimeModel()
+    // state.tutorial = new TutorialModel()
+    // state.ui = new UIModel()
+    // state.view = new ViewModel()
+
     this.engine.register(new Renderer(this.state, this.container)); // renderer
 
     //spawn managers
@@ -57,7 +83,7 @@ export default class Game{
     managers.push(new TimeController())
     managers.push(new TutorialController())
     managers.push(new UIController())
-    managers.push(new ViewController())
+    managers.push(new ViewController(container))
 
     // let timeManager = new Time(this.state.Time, this.engine.time); //time manager
     // time.default = timeManager;

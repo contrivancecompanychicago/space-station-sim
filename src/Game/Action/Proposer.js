@@ -46,7 +46,7 @@ export default class Proposer{
     // console.log(state);
 
     if(state.view.state.selection){
-      switch(state.UI.mode){
+      switch(state.ui.state.mode){
         case Mode.GRID:
           proposal.Grid = {};
           state.View.selection.rect.blocks.forEach((block) => {

@@ -20,6 +20,8 @@ export default class CharacterController{
             }
         });
         this.spawnUpdate()
+        // console.log('every frame');
+        
     }
     spawnUpdate(){
         //spawn;

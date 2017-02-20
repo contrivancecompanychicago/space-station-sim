@@ -6,7 +6,7 @@ import starter from 'Game/Manager/Tutorial/starter'
 export default class TutorialModel{
     state:TutorialState
     tutorial: ?Generator<*,*,*>
-    constructor(state:TutorialState){ 
+    constructor(state:TutorialState = {}){ 
         this.state = state;
         this.tutorial = starter();
     }

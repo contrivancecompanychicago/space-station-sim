@@ -14,6 +14,8 @@ import type {Selection} from 'Game/Type/Selection'
 
 import {getCharacterManager} from 'Game/engine'
 
+import engine from 'Game/engine'
+
 import type Character from 'Game/Type/Character'
 
 type Event = {
@@ -110,86 +112,6 @@ export default class ViewModel{
     };
   }
 
-  start(){
-    this.addListeners();
-  }
-
-  addListeners() {
-    this.container.addEventListener('mousedown', this, false);
-    this.container.addEventListener('mouseup', this, false);
-    this.container.addEventListener('mousemove', this, false);
-    this.container.addEventListener('mousewheel', this, false);
-    this.container.addEventListener('DOMMouseScroll', this, false);
-  }
-  removeListeners() {
-    this.container.removeEventListener('mousedown', this, false);
-    this.container.removeEventListener('mouseup', this, false);
-    this.container.removeEventListener('mousemove', this, false);
-    this.container.removeEventListener('mousewheel', this, false);
-    this.container.removeEventListener('DOMMouseScroll', this, false);
-  }
-  handleEvent(e:Event) {
-    switch(e.type){
-      case 'mousedown':
-        this.onMouseDown(e);
-        break;
-      case 'mouseup':
-        this.onMouseUp(e);
-        break;
-      case 'mousemove':
-        this.onMouseMove(e);
-        break;
-      case 'mousewheel':
-        this.onMouseWheel(e);
-        break;
-      case 'DOMMouseScroll':
-        this.onMouseWheel(e);
-        break;
-    }
-  }
-
-
-  onMouseDown(e:Event){
-    this.down[e.button] = true;
-    if(e.button === 1){
-      this.startDrag(e);
-    }else{
-      this.startSelection(e);
-    }
-  }
-
-  onMouseUp(e:Event){
-    this.down[e.button] = false;
-    if(e.button === MouseButtons.MIDDLE){
-      this.stopDrag();
-    }else{
-      this.endSelection(e);
-    }
-  }
-
-  isMouseDown(button:number):boolean{
-    return this.down[button];
-  }
-
-  onMouseMove(e:Event) {
-    let point = Point.fromScreen(e.pageX, e.pageY);
-    if(this.dragging){
-      
-      let delta = {x:e.pageX-this.lastPos.x, y: e.pageY-this.lastPos.y};
-      this.lastPos = {x: e.pageX, y:e.pageY};
-      this.state.offset.x += delta.x / this.state.scale;
-      this.state.offset.y += delta.y / this.state.scale;
-    }else if(this.selecting){
-      this.updateSelection(e);
-    }
-    this.state.mousePosition = point;
-  }
-
-  onMouseWheel(e:Object){
-    let d = e.wheelDelta;
-    if(!d) d = -e.detail;
-    this.zoom(d>0, e);
-  }
 
   zoom(out:boolean, point:Point){
     let start = this.globalToLocal(point); //TODO: use point methods
@@ -232,7 +154,8 @@ export default class ViewModel{
   endSelection(e:Event){
     this.selecting = false;
     this.updateSelection(e);
-    this.notify('userAction', this.selection);
+    // engine.notify('userAction', this.selection);
+    engine.getComponent('actionDispatcher').userAction(this.selection)
     this.state.selection = null;
 
   }

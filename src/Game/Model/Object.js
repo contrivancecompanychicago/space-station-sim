@@ -3,10 +3,12 @@
 import {values} from 'lodash'
 import Obj from 'Game/Type/Object'
 import type Block from 'Game/Block'
-import state from 'Game/state'
+import gameState from 'Game/state'
 import ObjectData from 'Game/Data/Object'
 import type {AbilityType} from 'Game/Data/Object/Ability'
 import type {ItemType} from 'Game/Data/Item'
+
+
 
 export type ObjectState = {
   [id:string]: Obj
@@ -35,7 +37,9 @@ export default class ObjectModel{
       return this.state[block.key];
 
     //check overlapping
-    let grid = state.grid.getNode(block.x, block.y)
+    console.log(gameState);
+    
+    let grid = gameState.grid.getNode(block.x, block.y)
     if(grid){
       if(grid.object){
         return this.state[grid.object];

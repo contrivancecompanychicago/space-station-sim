@@ -55,19 +55,19 @@ export default class Dispatcher extends Component{
 
   userAction(selection:Selection){
 
-    let gridManager = engine.getGridManager();
-    let objectManager = engine.getObjectManager();
-    let charManager = engine.getCharacterManager();
+    let gridManager = this.state.grid; //engine.getGridManager();
+    let objectManager = this.state.object; //engine.getObjectManager();
+    let charManager = this.state.character; //engine.getCharacterManager();
 
     let sel = selection.rect.blockRect();
 
 
-    switch(this.state.UI.mode){
+    switch(this.state.ui.state.mode){
       case Mode.SELECT:
 
         // console.info('select mode not implemented');
-        let viewManager = engine.getViewManager();
-        let uiManager = engine.getUIManager()
+        let viewManager = this.state.view //engine.getViewManager();
+        let uiManager = this.state.ui //engine.getUIManager()
         let mouse = viewManager.getMousePoint();
         let char = charManager.getClosestCharacterToPoint(mouse, 32)
         if(char){
