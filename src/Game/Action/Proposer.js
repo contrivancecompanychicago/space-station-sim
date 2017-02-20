@@ -48,23 +48,23 @@ export default class Proposer{
     if(state.view.state.selection){
       switch(state.ui.state.mode){
         case Mode.GRID:
-          proposal.Grid = {};
+          proposal.grid.state = {};
           state.View.selection.rect.blocks.forEach((block) => {
             let key = makeKey(block.x, block.y);
             if(state.Grid&&state.Grid[key]&&state.Grid[key]===state.UI.grid){}else{ //if not already there
 
-              proposal.Grid[key] = new Grid({type: state.UI.grid, rotation: state.UI.rotation});
+              proposal.grid.state[key] = new Grid({type: state.UI.grid, rotation: state.UI.rotation});
 
             }
           });
         break;
         case Mode.OBJECT:
-          proposal.Object = {};
+          proposal.object.state = {};
           state.View.selection.rect.blocks.forEach((block) => {
             if(!blockHasObject(proposal, block)){
               let key = makeKey(block.x, block.y);
               let obj = new Obj({type:state.UI.object, block:block, rotation: state.UI.rotation});
-              proposal.Object[key] = obj
+              proposal.object.state[key] = obj
             }
           });
         break;
@@ -74,14 +74,14 @@ export default class Proposer{
     }else{ //NO SELECTION
         switch(state.ui.state.mode){
           case Mode.GRID:
-            proposal.Grid = {};
+            proposal.grid.state = {};
             let key = state.View.mousePosition.block.key
-            proposal.Grid[key] = new Grid({type:state.UI.grid, rotation:state.UI.rotation})
+            proposal.grid.state[key] = new Grid({type:state.UI.grid, rotation:state.UI.rotation})
           break;
           case Mode.OBJECT:
-            proposal.Object = {};
+            proposal.object.state = {};
             let obj = new Obj({type:state.UI.object, rotation: state.UI.rotation, block: state.View.mousePosition.block});
-            proposal.Object[state.View.mousePosition.block.key] = obj
+            proposal.object.state[state.View.mousePosition.block.key] = obj
           break;
         }
     }

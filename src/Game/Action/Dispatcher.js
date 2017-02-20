@@ -23,6 +23,7 @@ import type TaskManager from 'Game/Manager/Task';
 import type {Selection} from 'Game/Type/Selection'
 import ObjectData from 'Game/Data/Object'
 
+
 import Proposer from 'Game/Action/Proposer';
 const proposer = new Proposer();
 
@@ -36,7 +37,9 @@ export default class Dispatcher extends Component{
     this.state = state;
   }
   objects(objects:ObjectState){ //TODO move this to object manager
-    extend(this.state.Object, objects)
+    // console.log('adding objects', objects);
+    
+    extend(this.state.object.state, objects)
     keys(objects).forEach((key) => {
       let obj = objects[key];
 
