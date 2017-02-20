@@ -24,8 +24,8 @@ import load from 'Game/State/load';
 import CharacterController from 'Game/Controller/Character'
 import TimeController from 'Game/Controller/Time'
 import TutorialController from 'Game/Controller/Tutorial'
-import UIController from 'Game/Controller/UI'
 import ViewController from 'Game/Controller/View'
+import UIController from 'Game/Controller/UI'
 
 // import CharacterModel from 'Game/Model/Character'
 // import GridModel from 'Game/Model/Grid';
@@ -56,14 +56,15 @@ export default class Game{
 
     this.state = state;//make initial reference to state global
 
-    state.init();
-
-    engine.register(new Renderer(this.state, this.container)); // renderer
     engine.register(new CharacterController())
     engine.register(new TimeController())
     engine.register(new TutorialController())
     engine.register(new UIController())
+    engine.register(new Renderer(this.state, this.container)); // renderer
     engine.register(new ViewController(container))
+
+    state.init();
+
     
     //LOADGAME hacky
     load('quicksave')
