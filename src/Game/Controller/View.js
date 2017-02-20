@@ -19,7 +19,7 @@ export default class ViewController{
 
   container:Object
   constructor(container:HTMLElement){
-    this.container = container
+    this.container = container.getElementsByTagName('canvas')[0];
     this.start();
   }
 
@@ -28,6 +28,8 @@ export default class ViewController{
   }
 
   handleEvent(e:Event) {
+    console.log(e);
+    
     switch(e.type){
       case 'mousedown':
         this.onMouseDown(e);
