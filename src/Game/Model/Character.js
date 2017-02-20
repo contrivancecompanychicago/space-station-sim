@@ -55,18 +55,18 @@ export default class CharacterModel {
         return closest;
   }
 
-    update(){
-        keys(this.state).forEach((key) => {
-            let char = this.state[key];
-            if (!char.action) {
-                this.newAction(char);
-            }
-            if (char.action.next().done) { ///CALLS NEXT HERE
-                this.newAction(char);
-            }
-        });
-        this.spawnUpdate()
-    }
+    // update(){
+    //     keys(this.state).forEach((key) => {
+    //         let char = this.state[key];
+    //         if (!char.action) {
+    //             this.newAction(char);
+    //         }
+    //         if (char.action.next().done) { ///CALLS NEXT HERE
+    //             this.newAction(char);
+    //         }
+    //     });
+    //     this.spawnUpdate()
+    // }
 
     hireCharacter(char:Character){
         state.player.spendMoney(char.salary)

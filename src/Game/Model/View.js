@@ -57,15 +57,15 @@ export default class ViewModel{
 
   follow:?Character;
 
-  update(){
-    //calculate whats under mousey
-    // let charManager = getCharacterManager();
-    // let char = charManager.getClosestCharacterToPoint(this.state.mousePosition);
-    if(this.follow){
-      this.centerOnPoint(this.follow.position.rounded);
-    }
+//   update(){
+//     //calculate whats under mousey
+//     // let charManager = getCharacterManager();
+//     // let char = charManager.getClosestCharacterToPoint(this.state.mousePosition);
+//     if(this.follow){
+//       this.centerOnPoint(this.follow.position.rounded);
+//     }
 
-  }
+//   }
   constructor(state:ViewState = initial){//, container:HTMLElement) {
     this.state = state
     //defaults(state, initial); //WHYYY

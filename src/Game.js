@@ -10,7 +10,7 @@ import Renderer from 'Game/Renderer';
 import ActionDispatcher from 'Game/Action/Dispatcher';
 import Time from 'Game/Manager/Time';
 
-import state, {initState} from 'Game/state';
+import state from 'Game/state';
 import * as time from 'Game/time';
 import engine from 'Game/engine';
 
@@ -21,7 +21,14 @@ import type {State} from 'Game/state'
 import Obj from 'Game/Type/Object'; //for loading hack
 import Grid from 'Game/Type/Grid'; //for loading hack
 
-import load from 'Game/State/load'
+import load from 'Game/State/load';
+
+import CharacterController from 'Game/Controller/Character'
+import TimeController from 'Game/Controller/Time'
+import TutorialController from 'Game/Controller/Tutorial'
+import UIController from 'Game/Controller/UI'
+import ViewController from 'Game/Controller/View'
+
 
 export default class Game{
   container:HTMLElement
@@ -45,6 +52,12 @@ export default class Game{
     //spawn managers
     let managers = [];
     this.manager = this.engine.register({type:'manager', game:this}); // parent
+
+    managers.push(new CharacterController())
+    managers.push(new TimeController())
+    managers.push(new TutorialController())
+    managers.push(new UIController())
+    managers.push(new ViewController())
 
     // let timeManager = new Time(this.state.Time, this.engine.time); //time manager
     // time.default = timeManager;

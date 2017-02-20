@@ -8,8 +8,8 @@ import type {AbilityType} from 'Game/Data/Object/Ability'
 
 export default function* tutorial():Generator<*,*,*> {
 
-    let uiManager = engine.getUIManager()
-    let objectManager = engine.getObjectManager()
+    // let uiManager = engine.getUIManager()
+    // let objectManager = engine.getObjectManager()
 
     // console.log('starting tutorial');
 
@@ -48,7 +48,7 @@ export default function* tutorial():Generator<*,*,*> {
         'button-mode-panels',
         'button-panel-Hiring'
         ])
-    while(state.UI.panel.hiring.show == false) yield;
+    while(state.ui.state.panel.hiring.show == false) yield;
 
     highlight([])
 
@@ -66,30 +66,29 @@ export default function* tutorial():Generator<*,*,*> {
 
 
     yield *nextText('now hurry up and make some cash money biatch these hos dont pay themselves')
-
-    uiManager.dispatch({'type': 'HIDE_TUTORIAL'})
+    
+    state.ui.dispatch({'type': 'HIDE_TUTORIAL'})
 }
 
 function showText(text:string){
-    let uiManager = engine.getUIManager()
-    uiManager.dispatch({type: 'SHOW_TUTORIAL', text: text})
+    state.ui.dispatch({type: 'SHOW_TUTORIAL', text: text})
 }
 
 function* reqAbility(ability:AbilityType):Generator<*,*,*>{
-    let objectManager = engine.getObjectManager()
-    while(objectManager.getObjectsWithAbility(ability).length == 0){
+    while(state.object.getObjectsWithAbility(ability).length == 0){
         yield;
     }
 }
 
 function* nextText(text:string):Generator<*,*,*>{
-    let uiManager = engine.getUIManager()
+    let uiManager = state.ui
     let next = false;
+    
     uiManager.dispatch({type: 'SHOW_TUTORIAL', text: text, next:()=>{next = true}})
     while(!next) yield;
 }
 function* reqStaff(type:string):Generator<*,*,*>{
-    let characterManager = engine.getCharacterManager()
+    let characterManager = state.character
     let cooks = []
     do{
         cooks = characterManager.getChars().filter((c) => {
@@ -103,6 +102,6 @@ function* reqStaff(type:string):Generator<*,*,*>{
 }
 
 function highlight(elements:Array<string> = []){
-    let uiManager = engine.getUIManager()
+    let uiManager = state.ui
     uiManager.dispatch({'type': 'HIGHLIGHT', elements:elements})
 }
