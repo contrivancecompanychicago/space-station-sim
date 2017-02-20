@@ -9,6 +9,7 @@ import {keys} from 'lodash'
 import engine from 'Game/engine';
 
 import config from 'Game/config'
+import state from 'Game/state'
 
 export default function loadGame(savename:string){
 
@@ -21,9 +22,11 @@ export default function loadGame(savename:string){
   let parseKey = require('Util/parseKey').default;
   let Block = require('Game/Block').default;
 
+  
+
   keys(grid).forEach((key)=>{
       let block = parseKey(key);
-      engine.getComponent('gridManager').addNode(block.x, block.y, new Grid(grid[key]))
+      state.grid.addNode(block.x, block.y, new Grid(grid[key]))
       // console.log(block);
   })
 

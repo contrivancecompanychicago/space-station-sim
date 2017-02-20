@@ -19,7 +19,7 @@ import type Obj from 'Game/Type/Object'
 
 export default function renderObject(state:State, layer:Layer){
   Rect.screenRect().blocks.forEach((block) => { //for each block on screen
-    let ob = state.Object[block.key];
+    let ob = state.object.state[block.key];
     if(ob){
       renderBlock(block, ob, state, layer);
     }

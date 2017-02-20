@@ -4,7 +4,7 @@
 
 export default function globalToLocal(point:Object, state:Object): Object{
   return {
-    x: (point.x / state.View.scale) - state.View.offset.x,
-    y: (point.y / state.View.scale) - state.View.offset.y
+    x: (point.x / state.view.state.scale) - state.view.state.offset.x,
+    y: (point.y / state.view.state.scale) - state.view.state.offset.y
   };
 }

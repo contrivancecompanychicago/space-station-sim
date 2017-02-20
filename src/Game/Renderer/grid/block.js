@@ -16,7 +16,7 @@ import type {State} from 'Game/state'
 export default function renderBlock(pos:Block, block:Grid, state:State, layer:Object){
 
   const offset = pos.point.screen
-  let o = {x:offset.x, y:offset.y, w:blockWidth * state.View.scale, h:blockHeight * state.View.scale };
+  let o = {x:offset.x, y:offset.y, w:blockWidth * state.view.state.scale, h:blockHeight * state.view.state.scale };
 
   let type = GridData.get(block.type);
   

@@ -2,6 +2,7 @@
 
 import Speed from 'Game/Data/Speed';
 import state from 'Game/state'
+import engine from 'Game/engine'
 
 export type TimeState = {
     currentTime: number
@@ -9,13 +10,13 @@ export type TimeState = {
 
 
 
-export default class TimeManager {
+export default class TimeModel {
     time: Object;
     deltaTime: number;
     state: TimeState;
-    constructor(state: TimeState, time: Object) {
+    constructor(state: TimeState = {currentTime:0}) {
         this.state = state
-        this.time = time;
+        this.time = engine.time;
         this.deltaTime = 0;
     }
     update(time: Object) {

@@ -46,8 +46,8 @@ export default class Dispatcher extends Component{
       for(let x = 0; x<type.width; x++){
         for(let y = 0; y<type.height; y++){
           let gridkey = makeKey(coord.x+x, coord.y+y)
-          if(this.state.Grid[gridkey])
-            this.state.Grid[gridkey].object = key;
+          if(this.state.grid.state[gridkey])
+            this.state.grid.state[gridkey].object = key;
         }
       }
     })

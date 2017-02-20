@@ -66,9 +66,12 @@ export default class ViewModel{
     }
 
   }
-  constructor(state:ViewState, container:HTMLElement) {
-    this.state = defaults(state, initial); //WHYYY
-    // this.state = state
+  constructor(state:ViewState = initial){//, container:HTMLElement) {
+    this.state = state
+    //defaults(state, initial); //WHYYY
+  }
+  init(){
+    let container = window.game.container; //HACK
     this.container = container.getElementsByTagName('canvas')[0];
     this.dragging = false;
     this.down = {};

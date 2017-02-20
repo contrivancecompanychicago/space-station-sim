@@ -31,8 +31,8 @@ function renderGrid(state:State, layer:Layer){
     for(let y = tl.y; y<=br.y; y++){
       let pos = new Block({x, y});
       let key = makeKey(x, y);
-      if(state.Grid[key]){
-        renderBlock(pos, state.Grid[key], state, layer);
+      if(state.grid.state[key]){
+        renderBlock(pos, state.grid.state[key], state, layer);
         // let block = {x, y};
       }
     }

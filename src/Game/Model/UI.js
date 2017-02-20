@@ -37,13 +37,30 @@ export type UIState = {
   // grid:Grid
 }
 
+const initial = {
+  mode: 'SELECT',
+  rotation: 0,
+  selected: [],
+  panel: {
+    hiring:{show:false},
+    staff:{show:false},
+    orders:{show:false},
+    log:{show:false},
+    talent:{show:false},
+    save:{show:true},
+  },
+}
 
-export default class UIManager{
+export default class UIModel{
   state:UIState;
   container: HTMLElement;
   store: {subscribe:Function, getState:Function, dispatch:Function};
-  constructor(state:UIState, container:HTMLElement){
+  constructor(state:UIState = initial){//, container:HTMLElement){
     this.state = state;
+
+  }
+  init(){
+    let container = window.game.container; // HACK
     if(!container) throw new Error('I need a container to render in');
 
     const UIDiv = document.createElement('div');

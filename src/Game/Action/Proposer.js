@@ -23,7 +23,7 @@ processing:
 */
 
 import { makeKey, parseKey } from 'Util';
-import {base} from 'Game/state';
+// import {base} from 'Game/state';
 
 // import state from 'Game/state';
 import {Mode} from 'Game/Data/Mode';
@@ -39,10 +39,13 @@ import Obj from 'Game/Type/Object'
 let proposal:State;
 export default class Proposer{
   propose(state:Object){
-    proposal = base();
+    proposal = {
+      grid:{state:{}}, 
+      object:{state:{}}
+    };
     // console.log(state);
 
-    if(state.View.selection){
+    if(state.view.state.selection){
       switch(state.UI.mode){
         case Mode.GRID:
           proposal.Grid = {};
@@ -69,7 +72,7 @@ export default class Proposer{
         break;
       }
     }else{ //NO SELECTION
-        switch(state.UI.mode){
+        switch(state.ui.state.mode){
           case Mode.GRID:
             proposal.Grid = {};
             let key = state.View.mousePosition.block.key
@@ -93,12 +96,12 @@ export default class Proposer{
 */
 function blockHasObject(state, block){
   let key = makeKey(block.x, block.y);
-  if(state.Object[key]) return true;
+  if(state.object.state[key]) return true;
   //check neighbours
   for(let x = 0; x<3; x++){
     for(let y = 0; y<3; y++){
       key = makeKey(block.x - x, block.y - y);
-      let obj = state.Object[key];
+      let obj = state.object.state[key];
       if(obj){
         let type = ObjectData.get(obj.type);
         if(type.width>=x+1 && type.height>=y+1)

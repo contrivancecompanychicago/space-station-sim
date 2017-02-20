@@ -10,7 +10,7 @@ import Renderer from 'Game/Renderer';
 import ActionDispatcher from 'Game/Action/Dispatcher';
 import Time from 'Game/Manager/Time';
 
-import state from 'Game/state';
+import state, {initState} from 'Game/state';
 import * as time from 'Game/time';
 import engine from 'Game/engine';
 
@@ -38,32 +38,26 @@ export default class Game{
 
     this.state = state;//make initial reference to state global
 
+    state.init();
+
     this.engine.register(new Renderer(this.state, this.container)); // renderer
 
     //spawn managers
     let managers = [];
     this.manager = this.engine.register({type:'manager', game:this}); // parent
 
-    let timeManager = new Time(this.state.Time, this.engine.time); //time manager
-    time.default = timeManager;
-    // this.manager.addComponent(timeManager);
-    managers.push(timeManager);
+    // let timeManager = new Time(this.state.Time, this.engine.time); //time manager
+    // time.default = timeManager;
+    // managers.push(timeManager);
 
-    keys(Managers).forEach((key) => { // misc managers with state
-      let manager = Managers[key];
-      // if(!this.state[key])
-      //   this.state[key] = {};
-      // this.manager.addComponent(new manager(this.state[key], this.container));
-      managers.push(new manager(this.state[key], this.container));
-    });
+    // keys(Managers).forEach((key) => { // misc managers with state
+    //   let manager = Managers[key];
+    //   managers.push(new manager(this.state[key], this.container));
+    // });
 
-    // etc
     let dispatcher = new ActionDispatcher(this.state, this.container);
-    // this.manager.addComponent(dispatcher);
     managers.push(dispatcher);
 
-    //register
-    //debugger;
     managers.forEach(man => {
       this.manager.addComponent(man);
     })

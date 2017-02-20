@@ -44,14 +44,14 @@ export default class Renderer{
     this.layer.drawDemo();
   }
   renderGrid(){
-    if(this.cache.objects !== keys(this.state.Object).length ||
-      this.cache.grids !== JSON.stringify(this.state.Grid) ||
-      this.cache.view !== JSON.stringify(this.state.View.offset)+this.state.View.scale
+    if(this.cache.objects !== keys(this.state.object.state).length ||
+      this.cache.grids !== JSON.stringify(this.state.grid.state) ||
+      this.cache.view !== JSON.stringify(this.state.view.state.offset)+this.state.view.state.scale
     ){
       this.cache = {
-        objects: keys(this.state.Object).length,
-        grids: JSON.stringify(this.state.Grid),
-        view: JSON.stringify(this.state.View.offset)+this.state.View.scale
+        objects: keys(this.state.object.state).length,
+        grids: JSON.stringify(this.state.grid.state),
+        view: JSON.stringify(this.state.view.state.offset)+this.state.view.state.offset.scale
       }
       this.gridLayer.clear();
       grid(this.state, this.gridLayer);

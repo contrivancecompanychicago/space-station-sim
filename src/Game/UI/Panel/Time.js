@@ -6,6 +6,8 @@ import React from 'react';
 
 import Speed from 'Game/UI/Speed'
 
+import state from 'Game/state'
+
 
 class TimePanel extends React.Component {
 
@@ -26,7 +28,7 @@ class TimePanel extends React.Component {
 
     let date = new Date('1 January 2000');
     date.setHours(9);
-    date.setSeconds(timeManager.state.currentTime);
+    date.setSeconds(state.time.state.currentTime);
 
 
 
