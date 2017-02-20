@@ -61,7 +61,7 @@ export default class GridModel {
     getPath(start: Block, end: Block): Array<Block> {
 
         let objectManager = state.object
-        
+
         //determine graph size
         let minx: number = Infinity;
         let miny: number = Infinity;
@@ -137,4 +137,24 @@ export default class GridModel {
 
 
     }
+
+    save(): Object {
+        let out  = {}
+        keys(this.state).forEach((k) => {
+            let grid = this.state[k]
+            out[k] = { type: grid.type, rotation: grid.rotation }
+        })
+        return out
+    }
+    clear() {
+        this.state = {}
+    }
+    load(grid: Object) {
+        keys(grid).forEach((key) => {
+            let block = parseKey(key);
+            this.addNode(block.x, block.y, new Grid(grid[key]))
+            // console.log(block);
+        })
+    }
+
 }

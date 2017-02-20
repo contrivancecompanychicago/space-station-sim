@@ -67,7 +67,7 @@ export default class Game{
 
     
     //LOADGAME hacky
-    load('quicksave')
+    // load('quicksave')
 
   }
 

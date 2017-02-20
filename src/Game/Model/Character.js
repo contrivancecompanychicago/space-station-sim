@@ -2,7 +2,7 @@
 
 
 import Character from 'Game/Type/Character';
-import {keys, defaults, values} from 'lodash';
+import { keys, defaults, values } from 'lodash';
 import state from 'Game/state'
 import actions from 'Game/Manager/Character/Action';
 import Point from 'Game/Point'
@@ -15,8 +15,8 @@ export type CharacterState = {
 
 export default class CharacterModel {
     state: CharacterState
-    constructor(state: CharacterState = {}) {
-        this.state = state;
+    constructor(s: CharacterState = {}) {
+        this.state = s;
     }
 
 
@@ -53,7 +53,7 @@ export default class CharacterModel {
             }
         })
         return closest;
-  }
+    }
 
     // update(){
     //     keys(this.state).forEach((key) => {
@@ -130,12 +130,12 @@ export default class CharacterModel {
     }
 
     _hireableChars: Array < Character >
-    getHireableChars():Array < Character > {
-        if(!this._hireableChars){
-            this.generateHireableChars();
-        }
-        return this._hireableChars
+        getHireableChars():Array < Character > {
+            if(!this._hireableChars){
+        this.generateHireableChars();
     }
+    return this._hireableChars
+        }
     generateHireableChars(){
         this._hireableChars = []
         for (let i = 0; i < 3; i++) {
@@ -147,6 +147,27 @@ export default class CharacterModel {
     makeHireableChar():Character {
         let char = new Character({ type: 'WORKER', position: new Point(0, 0) });
         return char
+    }
+
+    save():Object{
+        let out = {}
+        keys(this.state).forEach((k) => {
+            let char = this.state[k]
+            out[k] = { x: char.x, y: char.y, type: char.type }
+        })
+        return out 
+    }
+    clear(){
+        this.state = {}
+    }
+    load(obj:Object){
+        
+        values(obj).forEach((c)=> {
+            // console.log("ding");
+            let pos = new Block({x:c.x, y:c.y}).center;
+            this.addChar(new Character({position: pos, type: c.type}));
+
+        })
     }
 
 }

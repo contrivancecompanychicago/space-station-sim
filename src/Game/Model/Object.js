@@ -2,7 +2,7 @@
 
 import { values, extend, keys } from 'lodash'
 import Obj from 'Game/Type/Object'
-import type Block from 'Game/Block'
+import Block from 'Game/Block'
 import state from 'Game/state'
 import ObjectData from 'Game/Data/Object'
 import type {AbilityType } from 'Game/Data/Object/Ability'
@@ -86,5 +86,28 @@ export default class ObjectModel {
       }
     })
   }
+  save(): Object {
+    keys(this.state).forEach((k) => {
+        let obj = this.state[k];
+        out[k] = {type:obj.type, rotation:obj.rotation, block:obj.block}
+    })
+    return out
+  }
+  clear() {
+    this.state = {}
+  }
+  load(object: Object) {
+    keys(object).forEach((key) => {
+      // let block = parseKey(key);
+      let obj = object[key];
+
+      obj.block = new Block(obj.block)
+      obj.character = null; //HACK: fixing data in demo mode
+      // this.manager.getComponent('objectManager').addObject(new Obj(obj));
+      object[key] = new Obj(obj);
+    })
+    this.mergeState(object)
+  }
+
 
 }

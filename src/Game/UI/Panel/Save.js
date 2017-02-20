@@ -20,10 +20,12 @@ class SavePanel extends React.Component {
   }
 
   load(savename:string){
-    console.log('load', savename);
+    // console.log('load', savename);
+    load(savename);
   }
   save(savename:string){
-    console.log('save', savename);
+    // console.log('save', savename);
+    save(savename)
   }
 
   render() {
