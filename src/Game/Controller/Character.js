@@ -32,7 +32,11 @@ export default class CharacterController{
                 // console.log(sp)
                 let char = new Character({ position: sp.block.center, type: 'CUSTOMER' })
                 // console.log(this)
+
                 state.character.addChar(char);
+
+                // state.view.followCharacter(char)
+                // state.ui.dispatch({type: "SET_SELECTED", selected:char})
             }
         })
 

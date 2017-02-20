@@ -12,7 +12,8 @@ export default function* moveToBlockCenter(char:Character, block:Block):Generato
   while((char.position.x != target.x) || (char.position.y != target.y)){
     let amount = time.deltaTime * config.character.speed;
     let dir = Math.atan2(target.y - char.position.y, target.x - char.position.x);
-
+    
+    
     let distsq = Math.pow(target.y - char.position.y, 2)+Math.pow(target.x - char.position.x, 2)
     let amountsq = Math.pow(amount, 2)
     if(amountsq > distsq){

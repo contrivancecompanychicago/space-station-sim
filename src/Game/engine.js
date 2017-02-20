@@ -1,5 +1,7 @@
 // @flow
 
+import time from 'Game/time'
+
 class Engine{
     updateId: number;
     lastTime: number;
@@ -15,6 +17,7 @@ class Engine{
     update() {
         let dt = new Date().getTime();
         this.deltaTime = (dt - this.lastTime) / 1000;
+        time.deltaTime = this.deltaTime //HACK
         this.lastTime = dt;
         requestAnimationFrame(this.update.bind(this));
         this.updateObjects();
