@@ -42,7 +42,7 @@ import Obj from 'Game/Type/Object'
 
 let proposal: Object;
 export default class Proposer {
-  propose(state: Object) {
+  propose(state: State) {
     proposal = {
       // grid: new GridModel(),
       // object: new ObjectModel(),
@@ -56,11 +56,11 @@ export default class Proposer {
       switch (state.ui.state.mode) {
         case Mode.GRID:
           proposal.grid.state = {};
-          state.View.selection.rect.blocks.forEach((block) => {
+          state.view.state.selection.rect.blocks.forEach((block) => {
             let key = makeKey(block.x, block.y);
-            if (state.Grid && state.Grid[key] && state.Grid[key] === state.UI.grid) { } else { //if not already there
+            if (state.grid.getNode(block.x, block.y).type === state.ui.state.grid) { } else { //if not already there
 
-              proposal.grid.state[key] = new Grid({ type: state.UI.grid, rotation: state.UI.rotation });
+              proposal.grid.state[key] = new Grid({ type: state.ui.state.grid, rotation: state.ui.state.rotation });
 
             }
           });
@@ -70,7 +70,7 @@ export default class Proposer {
           state.view.state.selection.rect.blocks.forEach((block) => {
             if (!blockHasObject(proposal, block)) {
               let key = makeKey(block.x, block.y);
-              let obj = new Obj({ type: state.UI.object, block: block, rotation: state.UI.rotation });
+              let obj = new Obj({ type: state.ui.state.object, block: block, rotation: state.ui.state.rotation });
               proposal.object.state[key] = obj
             }
           });
@@ -82,13 +82,13 @@ export default class Proposer {
       switch (state.ui.state.mode) {
         case Mode.GRID:
           proposal.grid.state = {};
-          let key = state.View.mousePosition.block.key
-          proposal.grid.state[key] = new Grid({ type: state.UI.grid, rotation: state.UI.rotation })
+          let key = state.view.state.mousePosition.block.key
+          proposal.grid.state[key] = new Grid({ type: state.ui.state.grid, rotation: state.ui.state.rotation })
           break;
         case Mode.OBJECT:
           proposal.object.state = {};
           let obj = new Obj({ type: state.ui.state.object, rotation: state.ui.state.rotation, block: state.view.state.mousePosition.block });
-          proposal.object.state[state.View.mousePosition.block.key] = obj
+          proposal.object.state[state.view.state.mousePosition.block.key] = obj
           break;
       }
     }
