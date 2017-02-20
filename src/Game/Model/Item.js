@@ -1,3 +1,7 @@
+// @flow
+
+import {values} from 'lodash'
+import Item from 'Game/Type/Item'
 
 export type ItemState = {
     [id: string]: Item
@@ -14,5 +18,8 @@ export default class ItemModel {
     }
     removeItem(item: Item) {
         delete this.state[item.id];
+    }
+    getItems() :Array<Item>{
+        return values(this.state)
     }
 }

@@ -7,9 +7,9 @@ import type {State} from 'Game/state'
 import type Layer from 'Game/Renderer/Layer'
 
 export default function renderItem(state:State, layer:Layer) {
-  keys(state.Item).forEach((key) => {
-
-    let obj = state.Item[key];
-    renderObject(obj, state, layer);
+  // keys(state.Item).forEach((key) => {
+  //   let obj = state.Item[key];
+  state.item.getItems().forEach(i => {
+    renderObject(i, state, layer);
   });
 }

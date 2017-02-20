@@ -13,65 +13,34 @@ import Task from 'Game/Type/Task';
 import Grid from 'Game/Type/Grid';
 
 import {Tasks} from 'Game/Data/Task';
-import Component from 'Imagine/Component';
 
-import type GridManager from 'Game/Manager/Grid';
-import type ObjectManager from 'Game/Manager/Object';
-import type ItemManager from 'Game/Manager/Item';
-import type CharManager from 'Game/Manager/Character';
-import type TaskManager from 'Game/Manager/Task';
 import type {Selection} from 'Game/Type/Selection'
 import ObjectData from 'Game/Data/Object'
 
 import type {ObjectState} from 'Game/Model/Object'
 
+import state from 'Game/state'
+
 import Proposer from 'Game/Action/Proposer';
 const proposer = new Proposer();
 
-// import type {ObjectState} from 'Game/state'
-
-export default class Dispatcher extends Component{
-  state:Object;
-  constructor(state:Object){
-    super();
-    this.type = 'actionDispatcher';
-    this.state = state;
-  }
-  objects(objects:ObjectState){ //TODO move this to object manager
-    // console.log('adding objects', objects);
-    
-    extend(this.state.object.state, objects)
-    keys(objects).forEach((key) => {
-      let obj = objects[key];
-
-      let type = ObjectData.get(obj.type)
-
-      let coord = parseKey(key)
-      for(let x = 0; x<type.width; x++){
-        for(let y = 0; y<type.height; y++){
-          let gridkey = makeKey(coord.x+x, coord.y+y)
-          if(this.state.grid.state[gridkey])
-            this.state.grid.state[gridkey].object = key;
-        }
-      }
-    })
-  }
+class Dispatcher{
 
   userAction(selection:Selection){
 
-    let gridManager = this.state.grid; //engine.getGridManager();
-    let objectManager = this.state.object; //engine.getObjectManager();
-    let charManager = this.state.character; //engine.getCharacterManager();
+    let gridManager = state.grid; //engine.getGridManager();
+    let objectManager = state.object; //engine.getObjectManager();
+    let charManager = state.character; //engine.getCharacterManager();
 
     let sel = selection.rect.blockRect();
 
 
-    switch(this.state.ui.state.mode){
+    switch(state.ui.state.mode){
       case Mode.SELECT:
 
         // console.info('select mode not implemented');
-        let viewManager = this.state.view //engine.getViewManager();
-        let uiManager = this.state.ui //engine.getUIManager()
+        let viewManager = state.view //engine.getViewManager();
+        let uiManager = state.ui //engine.getUIManager()
         let mouse = viewManager.getMousePoint();
         let char = charManager.getClosestCharacterToPoint(mouse, 32)
         if(char){
@@ -91,10 +60,10 @@ export default class Dispatcher extends Component{
         break;
       case Mode.GRID:
         // let gridManager:GridManager = (this.getComponent('gridManager'):any);
-        gridManager.addNodes(selection, new Grid({type:this.state.UI.grid, rotation:this.state.UI.rotation}));
+        gridManager.addNodes(selection, new Grid({type:state.ui.state.grid, rotation:state.ui.state.rotation}));
         break;
       case Mode.OBJECT:
-        // let obj = new Objekt({block:selection.end.block, type:this.state.UI.object});
+        // let obj = new Objekt({block:selection.end.block, type:state.UI.object});
         // objectManager.addObject(obj);
         
         if(selection.button === 2){
@@ -104,18 +73,18 @@ export default class Dispatcher extends Component{
             objectManager.deleteObject(obj)
           }
         }else{
-          let proposal = proposer.propose(this.state);
-          this.objects(proposal.object.state)
+          let proposal = proposer.propose(state);
+          state.object.mergeState(proposal.object.state)
         }
 
 
         break;
       case Mode.ITEM:
-        let itemManager:ItemManager = (this.getComponent('itemManager'):any);
+        let itemManager = state.item
         // let item = ItemFactory.create({
         let item = new Item({
           position: new Point({x: selection.end.x, y: selection.end.y}),
-          type:this.state.UI.item});
+          type:state.ui.state.item});
 
         itemManager.addItem(item);
         break;
@@ -124,17 +93,17 @@ export default class Dispatcher extends Component{
         for(let y = sel.t; y <= sel.b; y++){
           for(let x = sel.l; x <= sel.r; x++){
             let pos = new Block({x:x, y:y}).center;
-            charManager.addChar(new Character({position: pos, type: this.state.UI.character}));
+            charManager.addChar(new Character({position: pos, type: state.ui.state.character}));
           }
         }
         break;
       case Mode.TASK:
-        let taskManager:TaskManager = (this.getComponent('taskManager'):any);
+        let taskManager = state.task
         for(let y = sel.t; y <= sel.b; y++){
           for(let x = sel.l; x <= sel.r; x++){
           let pos = new Block({x:x, y:y});
-            let task = new Task({block:pos, grid:this.state.UI.grid, type: Tasks.BUILD})
-            // taskManager.addTask(TaskFactory.create({block:pos, grid:this.state.UI.grid, type: Tasks.BUILD}));
+            let task = new Task({block:pos, grid:state.ui.state.grid, type: Tasks.BUILD})
+            // taskManager.addTask(TaskFactory.create({block:pos, grid:state.UI.grid, type: Tasks.BUILD}));
             taskManager.addTask(task)
           }
         }
@@ -142,3 +111,5 @@ export default class Dispatcher extends Component{
     }
   }
 }
+
+export default new Dispatcher();

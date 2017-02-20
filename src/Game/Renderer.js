@@ -51,7 +51,7 @@ export default class Renderer{
       this.cache = {
         objects: keys(this.state.object.state).length,
         grids: JSON.stringify(this.state.grid.state),
-        view: JSON.stringify(this.state.view.state.offset)+this.state.view.state.offset.scale
+        view: JSON.stringify(this.state.view.state.offset)+this.state.view.state.scale
       }
       this.gridLayer.clear();
       grid(this.state, this.gridLayer);
@@ -61,6 +61,8 @@ export default class Renderer{
     this.layer.drawImage(this.gridLayer.canvas, 0, 0);
   }
   update(){
+    
+    
     this.layer.clear();
     this.layer.setAlpha(1)
 
@@ -73,7 +75,7 @@ export default class Renderer{
     info(this.state, this.layer)
 
     let proposal = proposer.propose(this.state);
-    proposal.View = this.state.View;
+    proposal.view = this.state.view;
     this.layer.setAlpha(0.5)
     grid(proposal, this.layer);
     object(proposal, this.layer);

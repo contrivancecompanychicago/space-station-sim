@@ -16,6 +16,7 @@ import Component from 'Imagine/Component'
 
 import type Obj from 'Game/Type/Object'
 import type Character from 'Game/Type/Character'
+import {SpeedType} from 'Game/Data/Speed'
 
 /*
 UI Manager
@@ -33,7 +34,8 @@ export type UIState = {
   mode:any,
   rotation: number,
   selected: Array<Obj | Character | null>,
-  panel: Object
+  panel: Object,
+  speed: SpeedType,
   // grid:Grid
 }
 
@@ -49,6 +51,7 @@ const initial = {
     talent:{show:false},
     save:{show:true},
   },
+  speed:'NORMAL'
 }
 
 export default class UIModel{

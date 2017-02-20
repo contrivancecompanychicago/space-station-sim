@@ -4,7 +4,6 @@ import actions from './index';
 // import engine from 'Game/engine'
 import state from 'Game/state'
 
-import type ItemManager from 'Game/Manager/Item'
 
 import type Order from 'Game/Type/Order'
 import Item from 'Game/Type/Item'
@@ -19,7 +18,7 @@ export default function* cookPizza(char:Character, order:Order):Generator<*,*,*>
   order.addWorker(char);
   order.status = 'STARTED'
   let obj = yield *actions.forceUseObjectWithAbility(char, Ability.FRIDGE)
-  let item = new Item({position: obj.block.center, type:'BASE'})
+  let item:Item = new Item({position: obj.block.center, type:'BASE'})
   itemManager.addItem(item);
   order.item = item;
   char.addItem(item)

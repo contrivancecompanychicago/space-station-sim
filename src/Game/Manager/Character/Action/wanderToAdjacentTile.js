@@ -4,8 +4,6 @@ import engine from 'Game/engine'
 import actions from './index'
 import type Character from 'Game/Type/Character'
 // import type CharacterManager from 'Game/Manager/Character';
-import type GridManager from 'Game/Manager/Grid';
-import type ObjectManager from 'Game/Manager/Object'
 import Block from 'Game/Block'
 
 import state from 'Game/state'

@@ -11,11 +11,11 @@ import engine from 'Game/engine';
 import config from 'Game/config'
 import state from 'Game/state'
 
+import dispatcher from 'Game/Action/Dispatcher'
+
 export default function loadGame(savename:string){
 
   // let data = JSON.parse(localStorage.quicksave)
-
-  let dispatcher = engine.getComponent('actionDispatcher')
 
   let grid = data.Grid
 

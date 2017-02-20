@@ -7,8 +7,6 @@ import actions from './index'
 import Ability from 'Game/Data/Object/Ability'
 
 import type Character from 'Game/Type/Character'
-import type ObjectManager from 'Game/Manager/Object'
-import type OrderManager from 'Game/Manager/Order'
 
 import state from 'Game/state'
 // import {getLogManager, getGridManager, getObjectManager, getItemManager, getOrderManager} from 'Game/engine'

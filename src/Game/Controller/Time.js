@@ -15,8 +15,8 @@ export default class TimeController {
         }
         let speed = Speed[ui.state.speed] || { speed: 1 }
         time.deltaTime *= speed.speed;
-        state.time.state.deltaTime = time.deltaTime;
+        state.time.deltaTime = time.deltaTime;
 
-        state.time.state.currentTime += state.time.state.deltaTime * 200
+        state.time.state.currentTime += state.time.deltaTime * 200
     }
 }

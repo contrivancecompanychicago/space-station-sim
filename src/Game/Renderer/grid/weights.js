@@ -8,20 +8,22 @@ import { makeKey, parseKey } from 'Util';
 
 import * as engine from 'Game/engine'
 
+import state from 'Game/state'
+
 export default function renderGridWeights(state:State, layer:Layer){
   let tl = Point.fromScreen(0,0).block
   let br = Point.fromScreen(window.innerWidth, window.innerHeight).block
   // let tl = pointToBlock(screenToWorld({x:0, y:0}, state));
   // let br = pointToBlock(screenToWorld({x:window.innerWidth, y:window.innerHeight}, state));
 
-  let gridManager = engine.getGridManager()
+  let gridManager = state.grid
   // renderWalls(state, layer);
 
   for(let x = tl.x; x<br.x; x++){
     for(let y = tl.y; y<br.y; y++){
-      let pos = new Block({x, y});
-      let key = makeKey(x, y);
-      if(state.Grid[key]){
+      let pos:Block = new Block({x, y});
+      // let key = makeKey(x, y);
+      if(state.grid.getNode(x, y)){
         let cache = gridManager.pathCache
         if(cache){
           let weight = cache.grid[x-cache.minx][y-cache.miny]

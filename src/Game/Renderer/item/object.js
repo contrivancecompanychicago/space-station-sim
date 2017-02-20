@@ -12,8 +12,8 @@ export default function renderItem(item:Item, state:State, layer:Layer){
     let type = ItemData.get(item.type)
     const o = item.position.screen;
     let i = type.image;
-    let w = 16*state.View.scale
-    let h = 16*state.View.scale
+    let w = 16*state.view.scale
+    let h = 16*state.view.scale
     let x = o.x - w/2;
     let y = o.y - h/2;
 

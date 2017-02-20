@@ -8,13 +8,9 @@ import MouseButtons from 'Util/MouseButtons';
 
 import Rect from 'Game/Rect';
 
-import type {ViewState} from 'Game/state'
-
 import type {Selection} from 'Game/Type/Selection'
 
-import {getCharacterManager} from 'Game/engine'
-
-import engine from 'Game/engine'
+import dispatcher from 'Game/Action/Dispatcher'
 
 import type Character from 'Game/Type/Character'
 
@@ -25,6 +21,13 @@ type Event = {
   button:number,
   type: string,
   detail:number
+}
+
+export type ViewState = {
+  offset: {x:number, y:number},
+  mousePosition: {x:number, y:number},
+  scale: number,
+  selection: ?Selection,
 }
 
 const initial:ViewState = {
@@ -155,7 +158,7 @@ export default class ViewModel{
     this.selecting = false;
     this.updateSelection(e);
     // engine.notify('userAction', this.selection);
-    engine.getComponent('actionDispatcher').userAction(this.selection)
+    dispatcher.userAction(this.selection)
     this.state.selection = null;
 
   }
@@ -166,8 +169,11 @@ export default class ViewModel{
     };
   }
 
-  destroy(){
-    this.removeListeners();
+  // destroy(){
+  //   this.removeListeners();
+  // }
+  get scale():number{
+    return this.state.scale
   }
 
 }

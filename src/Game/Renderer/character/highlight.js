@@ -2,8 +2,6 @@
 
 // import {worldToScreen, blockToPoint} from 'Util';
 
-import {getCharacterManager} from 'Game/engine'
-
 import type {State} from 'Game/state'
 import type Layer from 'Game/Renderer/Layer'
 

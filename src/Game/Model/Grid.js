@@ -51,14 +51,14 @@ export default class GridModel {
     getNode(x: number, y: number): Grid {
         return this.state[makeKey(x, y)];
     }
-    randomNode(): string {
+    randomNode(): Block {
         let k = keys(this.state);
         let r = Math.floor(Math.random() * k.length);
-        return parseKey(k[r]);
+        return new Block(parseKey(k[r]));
     }
 
 
-    getPath(start: Point, end: Point): Array<Block> {
+    getPath(start: Block, end: Block): Array<Block> {
 
         let objectManager = state.object
         

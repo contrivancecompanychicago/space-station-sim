@@ -8,9 +8,6 @@ import actions from './index'
 // import {Obj} from 'Game/Data/Object';
 import Ability from 'Game/Data/Object/Ability'
 
-import type OrderManager from 'Game/Manager/Order';
-import type ObjectManager from 'Game/Manager/Object';
-import type ItemManager from 'Game/Manager/Item';
 import type Character from 'Game/Type/Character'
 import type Obj from 'Game/Type/Object'
 

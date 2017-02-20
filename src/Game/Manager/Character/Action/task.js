@@ -6,23 +6,21 @@ import time from 'Game/time';
 
 import type Character from 'Game/Type/Character';
 
+import state from 'Game/state'
+
 // import type TaskManager from 'Game/Manager/Task';
 
-import state from 'Game/state'
 import Grid from 'Game/Type/Grid'
 
 export default function* task(char:Character):Generator<*,*,*>{
-  // let taskManager:TaskManager = (engine.getComponent('taskManager'):any);
-  let taskManager = state.task
-  let task = taskManager.getTask(char.task);
+  let task = state.task.getTask(char.task);
   yield *actions.moveToBlock(char, task.block);
   while(task.progress<1){
     task.progress += time.deltaTime;
     yield;
   }
-  let gridManager = engine.getComponent('gridManager');
   //resolve task
 
-  gridManager.addNode(task.block.x, task.block.y, new Grid({type: task.grid, rotation:0}));
-  taskManager.finishTask(char.task);
+  state.grid.addNode(task.block.x, task.block.y, new Grid({type: task.grid, rotation:0}));
+  state.task.finishTask(char.task);
 }

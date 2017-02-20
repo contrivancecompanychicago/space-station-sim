@@ -13,6 +13,16 @@ import type {Selection} from 'Game/Type/Selection'
 import type Character from 'Game/Type/Character'
 import state from 'Game/state'
 
+type Event = {
+  wheelDelta:number,
+  pageX:number,
+  pageY:number,
+  button:number,
+  type: string,
+  detail:number
+}
+
+
 export default class ViewController{
 
   container:Object
@@ -26,8 +36,6 @@ export default class ViewController{
   }
 
   handleEvent(e:Event) {
-    console.log(e);
-    
     switch(e.type){
       case 'mousedown':
         this.onMouseDown(e);
