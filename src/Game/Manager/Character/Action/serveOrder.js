@@ -9,14 +9,14 @@ import type Order from 'Game/Type/Order'
 import type LogManager from 'Game/Manager/Log'
 import type Obj from 'Game/Type/Object'
 
-import {getLogManager, getObjectManager, getOrderManager} from 'Game/engine'
+import state from 'Game/state'
 
 export default function* serveOrder(char:Character, order:Order):Generator<*,*,*>{
   // let objectManager:ObjectManager = engine.getComponent('objectManager');
   // let orderManager:OrderManager = engine.getComponent('orderManager');
-  let objectManager = getObjectManager()
-  let orderManager = getOrderManager()
-  let logManager:LogManager = getLogManager()
+  let objectManager = state.object
+  let orderManager = state.order
+  let logManager = state.log
   order.worker = char
   if(order.item != undefined){
     let item = order.item;

@@ -36,7 +36,7 @@ import type {State} from 'Game/state'
 import Obj from 'Game/Type/Object'
 
 
-let proposal:State;
+let proposal:Object;
 export default class Proposer{
   propose(state:Object){
     proposal = {

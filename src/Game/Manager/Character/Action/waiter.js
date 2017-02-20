@@ -10,14 +10,15 @@ import type Character from 'Game/Type/Character'
 import type ObjectManager from 'Game/Manager/Object'
 import type OrderManager from 'Game/Manager/Order'
 
-import {getLogManager, getGridManager, getObjectManager, getItemManager, getOrderManager} from 'Game/engine'
+import state from 'Game/state'
+// import {getLogManager, getGridManager, getObjectManager, getItemManager, getOrderManager} from 'Game/engine'
 
 export default function* waiter(char:Character):Generator<*,*,*>{
-  let gridManager = getGridManager()
-  let objectManager = getObjectManager()
-  let itemManager = getItemManager()
-  let orderManager = getOrderManager()
-  let logManager = getLogManager()
+  let gridManager = state.grid
+  let objectManager = state.object
+  let itemManager = state.item
+  let orderManager = state.order
+  let logManager = state.log
 
 
   // let objs = objectManager.getObjectsWithItemType('TEST')

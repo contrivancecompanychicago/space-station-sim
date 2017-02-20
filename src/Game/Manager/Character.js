@@ -9,10 +9,7 @@ import Character from 'Game/Type/Character';
 import Component from 'Imagine/Component';
 
 import type TaskManager from 'Game/Manager/Task';
-import type {CharacterState} from 'Game/state'
 import type Obj from 'Game/Type/Object'
-
-import {getObjectManager} from 'Game/engine'
 
 import Ability from 'Game/Data/Object/Ability'
 

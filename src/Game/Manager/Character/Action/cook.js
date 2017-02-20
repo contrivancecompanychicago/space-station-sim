@@ -1,5 +1,6 @@
 //@flow
-import engine from 'Game/engine';
+
+import state from 'Game/state'
 
 import actions from './index'
 
@@ -14,15 +15,16 @@ import type Order from 'Game/Type/Order'
 
 // import
 
-import {getLogManager, getGridManager, getObjectManager, getItemManager, getOrderManager} from 'Game/engine'
+// import {getLogManager, getGridManager, getObjectManager, getItemManager, getOrderManager} from 'Game/engine'
 
 export default function* cook(char:Character):Generator<*,*,*>{
 
-  let gridManager = getGridManager()
-  let objectManager = getObjectManager()
-  let itemManager = getItemManager()
-  let orderManager = getOrderManager()
-  let logManager = getLogManager()
+  let gridManager = state.grid
+  let objectManager = state.object
+  let itemManager = state.item
+  let orderManager = state.order
+  let logManager = state.log
+  
   //FIND ORDER
   let orders = orderManager.state.filter((o:Order)=>{
     if(o.worker) return false;

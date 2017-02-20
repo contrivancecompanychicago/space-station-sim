@@ -1,8 +1,8 @@
 //@flow
 import engine from 'Game/engine';
+import state from 'Game/state'
 
 import type Character from 'Game/Type/Character'
-import type ObjectManager from 'Game/Manager/Object'
 
 import type Obj from 'Game/Type/Object'
 
@@ -12,7 +12,7 @@ import Ability from 'Game/Data/Object/Ability'
 import type {AbilityType} from 'Game/Data/Object/Ability'
 export default function* placeItemOnEmptyTable(char:Character, ability:AbilityType):Generator<*,*,*>{
   // let ability = Ability.SERVE_TABLE;
-  let objectManager:ObjectManager = engine.getComponent('objectManager');
+  let objectManager = state.object
   let objs = objectManager.getObjectsWithAbility(ability);
   objs = objs.filter((obj:Obj) => {
     if(obj.character) return false;

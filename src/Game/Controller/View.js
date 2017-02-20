@@ -10,8 +10,6 @@ import Rect from 'Game/Rect';
 
 import type {Selection} from 'Game/Type/Selection'
 
-import {getCharacterManager} from 'Game/engine'
-
 import type Character from 'Game/Type/Character'
 import state from 'Game/state'
 

@@ -2,10 +2,12 @@
 import engine from 'Game/engine'
 
 import type Obj from 'Game/Type/Object'
-import type ObjectManager from 'Game/Manager/Object'
+// import type ObjectManager from 'Game/Manager/Object'
+
+import state from 'Game/state'
 
 export default function* findObject(filter:Function):Generator<*,Obj,*>{
-  let objectManager:ObjectManager = engine.getComponent('objectManager');
+  let objectManager = state.object
   let obj:Obj
   
   while(!obj){

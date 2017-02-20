@@ -19,8 +19,8 @@ export type GridState = {
 export default class GridModel {
     state: GridState;
     pathCache: { grid: Array<Array<number>>, minx: number, miny: number }
-    constructor(state: GridState = {}) {
-        this.state = state;
+    constructor(s: GridState = {}) {
+        this.state = s;
     }
 
     addNodes(selection: Object, type: Grid) {

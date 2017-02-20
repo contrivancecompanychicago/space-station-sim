@@ -1,7 +1,8 @@
 //@flow
 
 import actions from './index';
-import engine from 'Game/engine'
+// import engine from 'Game/engine'
+import state from 'Game/state'
 
 import type ItemManager from 'Game/Manager/Item'
 
@@ -12,7 +13,8 @@ import Ability from 'Game/Data/Object/Ability'
 
 export default function* cookPizza(char:Character, order:Order):Generator<*,*,*>{
 
-  let itemManager:ItemManager = engine.getComponent('itemManager')
+  // let itemManager:ItemManager = engine.getComponent('itemManager')
+  let itemManager = state.item
   // order.worker = char
   order.addWorker(char);
   order.status = 'STARTED'

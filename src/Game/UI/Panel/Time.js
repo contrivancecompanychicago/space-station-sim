@@ -21,8 +21,8 @@ class TimePanel extends React.Component {
     clearInterval(this.interval)
   }
   render() {
-    const timeManager = engine.getTimeManager();
-    const playerManager = engine.getPlayerManager()
+    const timeManager = state.time
+    const playerManager = state.player
     // console.log(timeManager);
     if(!timeManager) return <div />
 

@@ -23,11 +23,12 @@ import type TaskManager from 'Game/Manager/Task';
 import type {Selection} from 'Game/Type/Selection'
 import ObjectData from 'Game/Data/Object'
 
+import type {ObjectState} from 'Game/Model/Object'
 
 import Proposer from 'Game/Action/Proposer';
 const proposer = new Proposer();
 
-import type {ObjectState} from 'Game/state'
+// import type {ObjectState} from 'Game/state'
 
 export default class Dispatcher extends Component{
   state:Object;
@@ -104,7 +105,7 @@ export default class Dispatcher extends Component{
           }
         }else{
           let proposal = proposer.propose(this.state);
-          this.objects(proposal.Object)
+          this.objects(proposal.object.state)
         }
 
 

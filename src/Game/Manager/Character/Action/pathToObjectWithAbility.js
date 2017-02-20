@@ -8,9 +8,11 @@ import type Character from 'Game/Type/Character'
 
 import type Obj from 'Game/Type/Object'
 
+import state from 'Game/state'
+
 export default function* pathToObjectWithAbility(char:Character, ability:AbilityType):Generator<*,Obj|null,*>{
-  let gridManager = engine.getComponent('gridManager');
-  let objectManager = engine.getComponent('objectManager');
+  let gridManager = state.grid
+  let objectManager = state.object
   let objs = objectManager.getObjectsWithAbility(ability)
     .filter((o)=>{if(!o.character) return true});
   if(objs.length > 0){

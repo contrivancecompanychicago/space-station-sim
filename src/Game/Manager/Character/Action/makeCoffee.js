@@ -3,16 +3,19 @@
 import actions from './index';
 import engine from 'Game/engine'
 
-import type ItemManager from 'Game/Manager/Item'
+// import type ItemManager from 'Game/Manager/Item'
 
 import type Order from 'Game/Type/Order'
 import Item from 'Game/Type/Item'
 import type Character from 'Game/Type/Character'
 import Ability from 'Game/Data/Object/Ability'
 
+import state from 'Game/state'
+
 export default function* makeCoffee(char:Character, order:Order):Generator<*,*,*>{
 
-  let itemManager:ItemManager = engine.getComponent('itemManager')
+  // let itemManager:ItemManager = engine.getComponent('itemManager')
+  let itemManager = state.item
   order.worker = char
   order.status = 'STARTED'
   let obj = yield *actions.forceUseObjectWithAbility(char, Ability.MAKE_COFFEE)

@@ -1,6 +1,7 @@
 //@flow
 import * as engine from 'Game/engine';
 
+import state from 'Game/state'
 
 import actions from './index'
 
@@ -16,11 +17,11 @@ import type Obj from 'Game/Type/Object'
 import Order from 'Game/Type/Order'
 export default function* customer(char:Character):Generator<*,*,*>{
 
-  let itemManager = engine.getItemManager()
-  let gridManager = engine.getGridManager()
-  let objectManager = engine.getObjectManager()
-  let orderManager = engine.getOrderManager()
-  let charManager = engine.getCharacterManager();
+  let itemManager = state.item
+  let gridManager = state.grid
+  let objectManager = state.object
+  let orderManager = state.order
+  let charManager = state.character
 
   // let chairs = objectManager.getObjects().filter((o:Obj) => {
   //   return (o.hasAbility(Ability.CHAIR) && o.character === null)
@@ -61,7 +62,7 @@ export default function* customer(char:Character):Generator<*,*,*>{
     }
     char.setStatus('Eating')
     yield *actions.idle(char, 5);
-    engine.getPlayerManager().addMoney(20)
+    state.player.addMoney(20)
     while(char.item.length>0){
       let item = char.item[0];
       itemManager.removeItem(item);
