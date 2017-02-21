@@ -50,7 +50,6 @@ export default class Proposer {
       object: {state:{}},
       view: {}
     };
-    // console.log(state);
 
     if (state.view.state.selection) {
       switch (state.ui.state.mode) {

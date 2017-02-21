@@ -82,7 +82,6 @@ export default class ViewModel{
     this.down = {};
   }
   centerOnPoint(point:Point){
-    // console.log('centering');
     //HACK TODO
     this.state.offset.x = 400-point.x
     this.state.offset.y = 400-point.y

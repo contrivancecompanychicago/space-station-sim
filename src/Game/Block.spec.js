@@ -9,7 +9,6 @@ describe('Game/Block', () => {
   it('point', () => {
     let b = new Block({x:0,y:0});
     let p = b.point;
-    //  console.log(b,p);
     expect(p.x).toBe(0);
     expect(p.y).toBe(0);
   });

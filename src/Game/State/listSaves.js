@@ -12,7 +12,6 @@ export default function listSaves(){
     localStorage['save_demo2'] = JSON.stringify(demo2)
     localStorage['save_demo3'] = JSON.stringify(demo3)
 
-    // console.log('listing saves');
     return keys(localStorage).filter((k) => {
         return k.indexOf(config.save.prefix) === 0
     }).map((k)=>{

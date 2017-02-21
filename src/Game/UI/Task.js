@@ -12,8 +12,6 @@ class Task extends React.Component {
     const buttons = [];
     keys(Tasks).forEach((taskkey) => {
       keys(Grids).forEach((gridkey) => {
-        // console.log(taskkey, gridkey);
-        // console.log(taskkey,this.props.task,gridkey,this.props.grid);
         buttons.push(<Button
           type="task"
           key={taskkey+gridkey}

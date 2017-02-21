@@ -26,7 +26,6 @@ export default class Rect{
     return new Rect(tl, br);
   }
   constructor(){
-    // console.log(arguments);
     if(arguments.length === 4){
       this.t = arguments[0];
       this.r = arguments[1];

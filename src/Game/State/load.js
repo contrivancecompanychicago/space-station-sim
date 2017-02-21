@@ -36,17 +36,4 @@ export default function loadGame(savename:string){
   state.object.load(object)
   state.character.load(data.character)
 
-  // let chars = [
-  //   {x:11, y:8, type:'COOK'},
-  //   {x:18, y:8, type:'WAITER'},
-  //   {x:18, y:12, type:'CUSTOMER'},
-  // ]
-  // data.Character.forEach((c)=> {
-  //   // console.log("ding");
-  //   let pos = new Block({x:c.x, y:c.y}).center;
-  //   engine.getComponent('characterManager')
-  //     .addChar(new Character({position: pos, type: c.type}));
-
-  // })
-
 }

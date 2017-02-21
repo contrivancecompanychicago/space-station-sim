@@ -12,10 +12,7 @@ import type Obj from 'Game/Type/Object'
 // to tell if a block is buildable
 
 export default function renderObjectBlocks(state:State, layer:Layer){
-  // console.log(state);
-  // values(state.Object).forEach((obj:Obj) => {
   values(state.object.state).forEach(obj => {
-    // console.log(obj);
     obj.getBlocks().forEach((block) => {
       let o = obj.block.add(block).rect.renderParams
 

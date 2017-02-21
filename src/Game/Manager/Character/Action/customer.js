@@ -20,10 +20,6 @@ export default function* customer(char:Character):Generator<*,*,*>{
   let orderManager = state.order
   let charManager = state.character
 
-  // let chairs = objectManager.getObjects().filter((o:Obj) => {
-  //   return (o.hasAbility(Ability.CHAIR) && o.character === null)
-  // })
-  // console.log(chairs.length);
   char.setStatus('Sitting down')
   let chair = yield *actions.pathToObjectWithAbility(char, Ability.CHAIR);
   if(chair){
@@ -71,7 +67,6 @@ export default function* customer(char:Character):Generator<*,*,*>{
   }else{
     char.setStatus('Nowhere to sit')
     yield *actions.pathToObjectWithAbility(char, Ability.SPAWN)
-    // console.log('cant find a chair');
   }
   // yield *actions.wander(char);
 

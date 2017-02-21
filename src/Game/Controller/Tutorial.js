@@ -14,7 +14,6 @@ export default class TutorialController{
         if(this.tutorial){
             let result = this.tutorial.next();
             if(result.done){
-                // console.log('tutorial done')
                 this.tutorial = null;
             }
         }

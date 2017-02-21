@@ -10,7 +10,6 @@ class FPS{
 
       this.fps.push(this.count);
       this.count = 0;
-      // console.log(this.fps);
       if(this.fps.length>100){
         this.fps.shift();
       }

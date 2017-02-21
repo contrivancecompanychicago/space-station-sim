@@ -20,13 +20,6 @@ class LogPanel extends React.Component {
   componentWillUnmount() {
     clearInterval(this.interval)
   }
-
-  // mousedown(e:Event){
-  //   console.log("md", e);
-  // }
-  // mouseup(e:Event){
-  //   console.log("mu", e);
-  // }
   render() {
     const logManager = state.log
 

@@ -40,7 +40,6 @@ export default function renderWall(state, layer){
         //do nothing
       }else{
         // if(Math.random()<0.0001)
-        //   console.log('side');
 
 
         sides.forEach(side => {
@@ -48,7 +47,6 @@ export default function renderWall(state, layer){
           let check = {x:x+side.x, y:y+side.y};
           let neighbour = isFilled(check.x, check.y, state);
           if(neighbour){
-            // console.log(neighbour);
             let blocktl = worldToScreen(blockToPoint(block), state);
             let blockbr = worldToScreen(blockToPoint({x: block.x+1, y: block.y+1}), state);
             let x = blocktl.x;

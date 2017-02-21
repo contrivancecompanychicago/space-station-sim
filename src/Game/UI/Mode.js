@@ -50,7 +50,6 @@ function mapDispatchToProps(dispatch, props) {
       dispatch({type:'CHANGE_MODE', id: id});
     },
     rotate: () => {
-      // console.log("asd");
       dispatch({type:'ROTATE'})
     }
   };

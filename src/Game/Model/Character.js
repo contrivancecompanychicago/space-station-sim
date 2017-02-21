@@ -92,9 +92,7 @@ export default class CharacterModel {
         let spawnPoints = objectManager.getObjectsWithAbility(Ability.SPAWN)
         spawnPoints.forEach((sp) => {
             if (Math.random() < 0.0004) {
-                // console.log(sp)
                 let char = new Character({ position: sp.block.center, type: 'CUSTOMER' })
-                // console.log(this)
                 this.addChar(char);
             }
         })
@@ -161,16 +159,9 @@ export default class CharacterModel {
         this.state = {}
     }
     load(obj:Object){
-        
         values(obj).forEach((c)=> {
-            // console.log("ding");
-            
-            
-            // let pos = new Block({x:c.x, y:c.y}).center;
-            // console.log('loading', c, pos);
             let pos = new Point(c);
             this.addChar(new Character({position: pos, type: c.type}));
-
         })
     }
 

@@ -20,7 +20,6 @@ export default class CharacterController{
             }
         });
         this.spawnUpdate()
-        // console.log('every frame');
         
     }
     spawnUpdate(){
@@ -29,14 +28,10 @@ export default class CharacterController{
         let spawnPoints = objectManager.getObjectsWithAbility(Ability.SPAWN)
         spawnPoints.forEach((sp) => {
             if (Math.random() < 0.0004) {
-                // console.log(sp)
                 let char = new Character({ position: sp.block.center, type: 'CUSTOMER' })
-                // console.log(this)
 
                 state.character.addChar(char);
 
-                // state.view.followCharacter(char)
-                // state.ui.dispatch({type: "SET_SELECTED", selected:char})
             }
         })
 

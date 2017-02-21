@@ -153,7 +153,6 @@ export default class GridModel {
         keys(grid).forEach((key) => {
             let block = parseKey(key);
             this.addNode(block.x, block.y, new Grid(grid[key]))
-            // console.log(block);
         })
     }
 

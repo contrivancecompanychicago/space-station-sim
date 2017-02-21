@@ -30,13 +30,11 @@ class HiringPanel extends React.Component {
     if(charManager){
       charManager.getHireableChars().forEach((c) => {
         let hireWaiter = (e) => {
-          console.log("hire", c.toString());
           c.type = 'WAITER'
           charManager.hireCharacter(c)
           this.forceUpdate()
         }
         let hireCook = (e) => {
-          console.log("hire", c.toString());
           c.type = 'COOK'
           charManager.hireCharacter(c)
           this.forceUpdate()

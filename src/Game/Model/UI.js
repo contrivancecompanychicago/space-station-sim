@@ -97,8 +97,6 @@ export default class UIModel{
 
   }
   setSelected(selected:any){
-    console.log('setting selected', selected);
-    
     this.store.dispatch({type:'SET_SELECTED', selected:selected})
   }
   clearSelected(){

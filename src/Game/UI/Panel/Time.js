@@ -23,7 +23,6 @@ class TimePanel extends React.Component {
   render() {
     const timeManager = state.time
     const playerManager = state.player
-    // console.log(timeManager);
     if(!timeManager) return <div />
 
     let date = new Date('1 January 2000');

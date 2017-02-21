@@ -50,7 +50,6 @@ function mapStateToProps(state, props) {
 }
 
 function mapDispatchToProps(dispatch, props:Props) {
-  // console.log(props)
   return {
     center: () => {
       

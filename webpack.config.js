@@ -11,8 +11,6 @@ var dir_build = path.resolve(__dirname, 'dist');
 var dir_spec = path.resolve(__dirname, 'test');
 
 
-console.log(dir_build)
-
 module.exports = {
     entry: ['babel-polyfill', path.resolve(dir_js, 'main.js')],
     output: {

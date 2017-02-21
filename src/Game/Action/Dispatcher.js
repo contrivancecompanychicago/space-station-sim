@@ -52,7 +52,6 @@ class Dispatcher{
             uiManager.setSelected(obj);
           }
         }
-        // console.log(selection.button);
         
         if(selection.button === 2){
           uiManager.clearSelected();

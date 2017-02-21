@@ -20,11 +20,9 @@ class SavePanel extends React.Component {
   }
 
   load(savename:string){
-    // console.log('load', savename);
     load(savename);
   }
   save(savename:string){
-    // console.log('save', savename);
     save(savename)
     this.forceUpdate()
   }
@@ -34,7 +32,6 @@ class SavePanel extends React.Component {
 
 
     let saves = listSaves();
-    // console.log(saves);
     saves = saves.map(s => {
       return <button key={s} onClick={() => {this.load(s)}}>{s}</button>
     })
@@ -45,9 +42,7 @@ class SavePanel extends React.Component {
       <hr />
       new save:
       <input type="text" value={this.state.savename} onChange={(e)=>{
-        // console.log(e.target.value, this)
         this.setState({savename: e.target.value});
-        // this.state.savename = e.target.value
       }} />
       <button onClick={() => {this.save(this.state.savename)}}>save</button>
     </div>

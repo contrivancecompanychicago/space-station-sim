@@ -46,7 +46,6 @@ export default class Obj{
 
   }
   getBlocks():Array<ObjectBlocksDataType>{
-    // console.log(this.rotation);
     return this.getData().blocks.map((b) => {
       return this.rotateBlock(b);
     })

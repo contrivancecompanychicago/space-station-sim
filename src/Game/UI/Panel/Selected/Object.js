@@ -42,7 +42,6 @@ function mapStateToProps(state, props) {
 }
 
 function mapDispatchToProps(dispatch, props) {
-  // console.log(props)
   return {
     close: () => {
       dispatch({type:'REMOVE_SELECTED', selected: props.target});

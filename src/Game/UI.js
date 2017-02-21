@@ -56,12 +56,6 @@ class UI extends React.Component {
     if(this.props.panel.talent.show) panels.push(<TalentPanel key='Talent' />)
     if(this.props.panel.save.show) panels.push(<SavePanel key='Save' />)
 
-
-    // if(this.props.selected){
-      
-    //   console.log(this.props.selected)
-    //   panels.push(<SelectedPanel target={this.props.selected} />)
-    // }
     this.props.selected.forEach((s, i) => {
       panels.push(<SelectedPanel key={s.toString()} target={s} />)
     })

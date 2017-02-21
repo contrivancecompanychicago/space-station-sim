@@ -70,14 +70,4 @@ export class State{
 }
 
 
-// let state = {uninitiated:'true'};
-// export default state;
-
-// export function initState(){
-//   console.log('initiating state', state)
-//   state = new State({})
-//   console.log('initiating state', state)
-// }
-
-
 export default new State();

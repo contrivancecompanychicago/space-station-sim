@@ -7,12 +7,6 @@ import state from 'Game/state'
 import type {AbilityType} from 'Game/Data/Object/Ability'
 
 export default function* tutorial():Generator<*,*,*> {
-
-    // let uiManager = engine.getUIManager()
-    // let objectManager = engine.getObjectManager()
-
-    // console.log('starting tutorial');
-
     
     yield *nextText('Eyy itsa me, ™™™™™PAPA GIOVANNI!')
     yield *nextText('Welcome-a to-a my-a restaurant-a')
@@ -51,8 +45,6 @@ export default function* tutorial():Generator<*,*,*> {
     while(state.ui.state.panel.hiring.show == false) yield;
 
     highlight([])
-
-
 
     showText('hire a cook')
     yield *reqStaff('COOK');
@@ -96,8 +88,6 @@ function* reqStaff(type:string):Generator<*,*,*>{
         });
         yield;
     }while(cooks.length == 0)
-
-    // console.log('charmanger gett chars', cooks);
     yield;
 }
 

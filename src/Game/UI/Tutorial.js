@@ -11,8 +11,6 @@ class Tutorial extends React.Component {
         //RETURN EARLY ON BLANK
         if(!this.props.tutorial.text) return <div />
 
-
-        // console.log(this.props.tutorial.next);
         let buttons = ''
         if(this.props.tutorial.next){
             buttons = <button onClick={this.props.tutorial.next}>next</button>
