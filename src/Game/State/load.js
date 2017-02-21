@@ -15,7 +15,10 @@ import dispatcher from 'Game/Action/Dispatcher'
 
 export default function loadGame(savename:string){
 
-  let data = JSON.parse(localStorage[config.save.prefix+savename])
+
+  let save = localStorage[config.save.prefix+savename];
+  if(!save) return;
+  let data:{grid:Object, object:Object, character:Object} = JSON.parse(save);
   
   
 

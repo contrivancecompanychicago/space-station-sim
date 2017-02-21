@@ -40,16 +40,13 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
 ### PRIORITISED:
 save/load seamless
 rewrite renderer
- - move all context manipulation into 
+ - move all context manipulation into layer class
 
 use shadowblur for highlighting character
 
 ### TECH DEBT
 
 write tests
-
-properly initialise and not have this check on frame 1 bullshit
- - possibly change engine
 
  add all getters and setters into manager and types
   - so state is entirely stringifyable

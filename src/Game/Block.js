@@ -10,9 +10,6 @@ export default class Block{
   constructor(pos:{x:number, y:number}){
     this.x = pos.x;
     this.y = pos.y;
-    if(arguments[1]){
-      throw new Error('Block constructor takes an object');
-    }
   }
   add(diff:{x:number, y:number}){
     return new Block({
