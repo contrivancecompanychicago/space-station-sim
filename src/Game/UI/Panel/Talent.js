@@ -34,12 +34,12 @@ class TalentPanel extends React.Component {
 }
 
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state, props):{} {
   return {
   };
 }
 
-function mapDispatchToProps(dispatch, props) {
+function mapDispatchToProps(dispatch, props):{close:Function} {
   return {
     close: () => {
       dispatch({type:'TOGGLE_TALENT_PANEL'});

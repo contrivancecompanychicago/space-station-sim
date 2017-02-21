@@ -79,7 +79,7 @@ export default class CharacterModel {
         let spawnPoints = objectManager.getObjectsWithAbility(Ability.SPAWN)
         spawnPoints.forEach((sp) => {
             if (Math.random() < 0.0004) {
-                let char = new Character({ position: sp.block.center, type: 'CUSTOMER' })
+                let char:Character = new Character({ position: sp.block.center, type: 'CUSTOMER' })
                 this.addChar(char);
             }
         })
@@ -126,7 +126,6 @@ export default class CharacterModel {
         for (let i = 0; i < 3; i++) {
             this._hireableChars.push(this.makeHireableChar())
         }
-
     }
 
     makeHireableChar():Character {
@@ -142,9 +141,11 @@ export default class CharacterModel {
         })
         return out 
     }
+    
     clear(){
         this.state = {}
     }
+    
     load(obj:Object){
         values(obj).forEach((c)=> {
             let pos = new Point(c);

@@ -1,5 +1,4 @@
 // @flow
-import {defaults} from 'lodash';
 import config from 'Game/config';
 
 import Point from 'Game/Point';
