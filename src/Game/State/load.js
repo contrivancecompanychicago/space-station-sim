@@ -1,5 +1,5 @@
 //@flow
-import backupdata from './demo3'
+
 
 import Grid from 'Game/Type/Grid'
 import Obj from 'Game/Type/Object'
@@ -15,10 +15,8 @@ import dispatcher from 'Game/Action/Dispatcher'
 
 export default function loadGame(savename:string){
 
-  let data = backupdata;
-  if(savename){
-    data = JSON.parse(localStorage[config.save.prefix+savename])
-  }
+  let data = JSON.parse(localStorage[config.save.prefix+savename])
+  
   
 
 

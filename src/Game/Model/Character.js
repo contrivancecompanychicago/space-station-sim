@@ -164,7 +164,11 @@ export default class CharacterModel {
         
         values(obj).forEach((c)=> {
             // console.log("ding");
-            let pos = new Block({x:c.x, y:c.y}).center;
+            
+            
+            // let pos = new Block({x:c.x, y:c.y}).center;
+            // console.log('loading', c, pos);
+            let pos = new Point(c);
             this.addChar(new Character({position: pos, type: c.type}));
 
         })

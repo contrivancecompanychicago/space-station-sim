@@ -26,6 +26,7 @@ class SavePanel extends React.Component {
   save(savename:string){
     // console.log('save', savename);
     save(savename)
+    this.forceUpdate()
   }
 
   render() {
