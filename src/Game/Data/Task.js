@@ -1,15 +1,27 @@
-import {keys} from 'lodash';
+// import {keys} from 'lodash';
+import DataMap from 'Game/Data/Map'
 
-export type TaskType = 'BUILD'
+export type TaskType = 'BUILD'|'PREP'|'COOK'|'SERVE'
 export type TaskDataType = {
   label:string
 }
 
-const Task:{[id:TaskType]:TaskDataType} = {
+const tasks:{[id:TaskType]:TaskDataType} = {
   'BUILD': {label: 'build'},
+  'PREP': {label: 'prep'},
+  'COOK': {label: 'cook'},
+  'SERVE': {label: 'serve'},
 };
 
-export default Task;
+
+let TaskMap:DataMap<TaskType, TaskDataType> = new DataMap();
+
 
 export let Tasks:{[id:TaskType]:TaskType} = {};
-keys(Task).forEach((key) => {Tasks[key]=key;});
+Object.keys(tasks).forEach((key) => {
+  Tasks[key]=key;
+  TaskMap.put(key, Tasks[key])
+});
+
+
+export default TaskMap;
