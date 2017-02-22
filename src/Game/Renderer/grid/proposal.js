@@ -4,6 +4,8 @@ import {parseKey} from 'Util';
 import {keys} from 'lodash';
 import renderBlock from './block';
 
+import Block from 'Game/Block'
+
 import type {State} from 'Game/state'
 import type Layer from 'Game/Renderer/Layer'
 
@@ -16,7 +18,7 @@ export default function renderProposal(state:State, layer:Layer){
     let proposal = proposer.propose(state);
     if(proposal.Grid){
       keys(proposal.Grid).forEach((key) => {
-        let pos = parseKey(key);
+        let pos = new Block(parseKey(key));
         layer.setAlpha(0.6);
         renderBlock(pos, proposal.grid.state[key], state, layer);
         layer.setAlpha(1);

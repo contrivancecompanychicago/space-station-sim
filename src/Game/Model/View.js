@@ -25,17 +25,14 @@ type Event = {
 
 export type ViewState = {
   offset: {x:number, y:number},
-  mousePosition: {x:number, y:number},
+  mousePosition: Point,
   scale: number,
   selection: ?Selection,
 }
 
 const initial:ViewState = {
   scale: 1,
-  mousePosition:{
-    x: 0,
-    y: 0
-  },
+  mousePosition:new Point({x:0, y:0}),
   offset: {
     x: 0,
     y: 0

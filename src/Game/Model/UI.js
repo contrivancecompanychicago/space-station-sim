@@ -1,5 +1,17 @@
 // @flow
 
+/*
+UI Manager
+
+UI is a react redux application
+
+maintains a state that is used by a tonne of other things
+ - renderings potential changeState
+ - making changeState
+
+
+*/
+
 import { createStore } from 'redux';
 import UI from 'Game/UI';
 import reducer from 'Game/UI/reducer';
@@ -18,17 +30,8 @@ import type Obj from 'Game/Type/Object'
 import type Character from 'Game/Type/Character'
 import {SpeedType} from 'Game/Data/Speed'
 
-/*
-UI Manager
-
-UI is a react redux application
-
-maintains a state that is used by a tonne of other things
- - renderings potential changeState
- - making changeState
-
-
-*/
+import type {GridType} from 'Game/Data/Grid'
+import type {ObjectType} from 'Game/Data/Object'
 
 export type UIState = {
   mode:any,
@@ -36,10 +39,11 @@ export type UIState = {
   selected: Array<Obj | Character | null>,
   panel: Object,
   speed: SpeedType,
-  // grid:Grid
+  grid:GridType,
+  object: ObjectType
 }
 
-const initial = {
+const initial:UIState = {
   mode: 'SELECT',
   rotation: 0,
   selected: [],
@@ -51,7 +55,9 @@ const initial = {
     talent:{show:false},
     save:{show:true},
   },
-  speed:'NORMAL'
+  speed:'NORMAL',
+  grid: 'FLOOR',
+  object: 'TEST'
 }
 
 export default class UIModel{

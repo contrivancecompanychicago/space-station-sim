@@ -50,12 +50,13 @@ export default class Proposer {
       object: {state:{}},
       view: {}
     };
+    let sel = state.view.state.selection
 
-    if (state.view.state.selection) {
+    if (sel) {
       switch (state.ui.state.mode) {
         case Mode.GRID:
           proposal.grid.state = {};
-          state.view.state.selection.rect.blocks.forEach((block) => {
+          sel.rect.blocks.forEach((block) => {
             let key = makeKey(block.x, block.y);
             let bl = state.grid.getNode(block.x, block.y)
             if (bl && bl.type === state.ui.state.grid) { } else { //if not already there
@@ -67,7 +68,7 @@ export default class Proposer {
           break;
         case Mode.OBJECT:
           proposal.object.state = {};
-          state.view.state.selection.rect.blocks.forEach((block) => {
+          sel.rect.blocks.forEach((block) => {
             if (!blockHasObject(proposal, block)) {
               let key = makeKey(block.x, block.y);
               let obj = new Obj({ type: state.ui.state.object, block: block, rotation: state.ui.state.rotation });
