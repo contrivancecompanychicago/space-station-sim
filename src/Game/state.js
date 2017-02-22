@@ -13,7 +13,7 @@ import TutorialModel from 'Game/Model/Tutorial'
 import UIModel from 'Game/Model/UI'
 import ViewModel from 'Game/Model/View'
 
-export {GridModel, ObjectModel}
+// export {GridModel, ObjectModel}
 
 export class State{
   character:CharacterModel

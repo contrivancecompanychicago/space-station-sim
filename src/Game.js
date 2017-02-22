@@ -27,19 +27,7 @@ import TutorialController from 'Game/Controller/Tutorial'
 import ViewController from 'Game/Controller/View'
 import UIController from 'Game/Controller/UI'
 
-// import CharacterModel from 'Game/Model/Character'
-// import GridModel from 'Game/Model/Grid';
-// import ItemModel from 'Game/Model/Item'
-// import LogModel from 'Game/Model/Log'
-// import ObjectModel from 'Game/Model/Object'
-// import OrderModel from 'Game/Model/Order'
-// import PlayerModel from 'Game/Model/Player'
-// import TaskModel from 'Game/Model/Task'
-// import TimeModel from 'Game/Model/Time'
-// import TutorialModel from 'Game/Model/Tutorial'
-// import UIModel from 'Game/Model/UI'
-// import ViewModel from 'Game/Model/View'
-
+import Point from 'Game/Point'
 
 export default class Game{
   container:HTMLElement
@@ -56,6 +44,8 @@ export default class Game{
 
     this.state = state;//make initial reference to state global
 
+    Point.registerState(state);
+
     engine.register(new CharacterController())
     engine.register(new TimeController())
     engine.register(new TutorialController())
@@ -64,6 +54,7 @@ export default class Game{
     engine.register(new ViewController(container))
 
     state.init();
+    engine.start();
 
     
     //LOADGAME hacky

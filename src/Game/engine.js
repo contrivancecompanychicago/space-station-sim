@@ -12,7 +12,6 @@ class Engine{
         this.update = this.update.bind(this)
         this.lastTime = new Date().getTime();
         this.objects = []
-        requestAnimationFrame(this.update);
     }
     update() {
         let dt = new Date().getTime();
@@ -29,6 +28,9 @@ class Engine{
         this.objects.forEach(o => {
             o.update({deltaTime:this.deltaTime});
         });
+    }
+    start(){
+        requestAnimationFrame(this.update);
     }
 }
 

@@ -2,7 +2,6 @@
 
 import {extend } from 'lodash';
 import config from 'Game/config';
-import state from 'Game/state';
 
 import Point from 'Game/Point';
 
