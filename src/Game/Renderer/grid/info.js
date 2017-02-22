@@ -1,8 +1,5 @@
 // @flow
 
-
-import {keys, tail} from 'lodash';
-
 import type Layer from 'Game/Renderer/Layer'
 import type {State} from 'Game/state'
 
