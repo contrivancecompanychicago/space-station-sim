@@ -15,10 +15,10 @@ export type CharacterState = {
 
 export default class CharacterModel {
     state: CharacterState
-    constructor(s: CharacterState = {}) {
-        this.state = s;
+    constructor() {
+        
+        this.state = {};
     }
-
 
     addChar(char: Character) {
         this.state[char.id] = char;
@@ -129,7 +129,7 @@ export default class CharacterModel {
     }
 
     makeHireableChar():Character {
-        let char = new Character({ type: 'WORKER', position: new Point(0, 0) });
+        let char = new Character({ type: 'WORKER', position: new Point({x:0, y:0}) });
         return char
     }
 

@@ -1,7 +1,7 @@
 // @flow
 
 import Speed from 'Game/Data/Speed';
-import state from 'Game/state'
+// import state from 'Game/state'
 import engine from 'Game/engine'
 
 export type TimeState = {

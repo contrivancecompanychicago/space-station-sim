@@ -5,7 +5,7 @@ import config from 'Game/config';
 
 import Point from 'Game/Point';
 
-import {Block} from 'Game/Point';
+import Block from 'Game/Block';
 
 export type RenderParams = {
   x:number,
@@ -52,7 +52,7 @@ export default class Rect{
 
     }
   }
-  blockRect(){
+  blockRect():Rect{
     return new Rect(
       Math.floor(this.t/config.grid.height),
       Math.floor(this.r/config.grid.width),
@@ -72,8 +72,8 @@ export default class Rect{
   }
 
   get renderParams():RenderParams {
-    let tl = new Point(this.l, this.t).screen;
-    let br = new Point(this.r, this.b).screen;
+    let tl = new Point({x:this.l, y:this.t}).screen;
+    let br = new Point({x:this.r, y:this.b}).screen;
     return {x: tl.x, y: tl.y, w: br.x-tl.x, h: br.y-tl.y};
   }
 

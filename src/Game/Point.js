@@ -4,20 +4,14 @@ eases use of the points system
 points stored in ingame coordinates
 */
 import config from 'Game/config';
-// import state from 'Game/state';
 
 import worldToScreen from 'Util/worldToScreen'
 import screenToWorld from 'Util/screenToWorld'
 
-// import {worldToScreen, screenToWorld} from 'Util';
-// import * as Util from 'Util';
-
 import type {State} from 'Game/state'
 
+import Block from 'Game/Block';
 
-import BlockClass from 'Game/Block';
-
-export const Block = BlockClass;
 
 const dev = true;
 
@@ -45,7 +39,6 @@ export default class Point{
       y: Math.floor(this.y / config.grid.height)
     })
     return b;
-
   }
 
   static fromScreen(x:number,y:number):Point{

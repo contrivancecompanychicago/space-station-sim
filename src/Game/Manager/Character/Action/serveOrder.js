@@ -4,9 +4,6 @@ import engine from 'Game/engine';
 import actions from './index'
 import type Character from 'Game/Type/Character'
 import type Order from 'Game/Type/Order'
-// import type ObjectManager from 'Game/Manager/Object'
-// import type OrderManager from 'Game/Manager/Order'
-import type LogManager from 'Game/Manager/Log'
 import type Obj from 'Game/Type/Object'
 
 import state from 'Game/state'

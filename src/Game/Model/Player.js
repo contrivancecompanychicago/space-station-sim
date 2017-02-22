@@ -7,8 +7,8 @@ export type PlayerState = {
 export default class PlayerModel{
     type:string
     state: PlayerState
-    constructor(state:PlayerState = {money:10000}){
-        this.state = state;
+    constructor(){
+        this.state = {money:10000};
     }
 
     spendMoney(amount:number):boolean{

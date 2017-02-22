@@ -1,28 +1,26 @@
 // @flow
+import state from 'Game/state'
+import Point from 'Game/Point';
+import Block from 'Game/Block';
+
 import {extend, keys} from 'lodash'
-import * as engine from 'Game/engine'
 
 import {Mode} from 'Game/Data/Mode';
-import {makeKey, parseKey} from 'Util';
-import {Block} from 'Game/Point';
-import Character from 'Game/Type/Character';
-import Item from 'Game/Type/Item';
-import Point from 'Game/Point';
-import Objekt from 'Game/Type/Object';
-import Task from 'Game/Type/Task';
-import Grid from 'Game/Type/Grid';
-
 import {Tasks} from 'Game/Data/Task';
-
-import type {Selection} from 'Game/Type/Selection'
 import ObjectData from 'Game/Data/Object'
 
+import {makeKey, parseKey} from 'Util';
+
+import Character from 'Game/Type/Character';
+import Grid from 'Game/Type/Grid';
+import Item from 'Game/Type/Item';
+import Objekt from 'Game/Type/Object';
+import Task from 'Game/Type/Task';
+
+import type {Selection} from 'Game/Type/Selection'
 import type {ObjectState} from 'Game/Model/Object'
 
-import state from 'Game/state'
-
 import Proposer from 'Game/Action/Proposer';
-
 const proposer = new Proposer();
 
 class Dispatcher{
@@ -45,16 +43,16 @@ class Dispatcher{
         let mouse = viewManager.getMousePoint();
         let char = charManager.getClosestCharacterToPoint(mouse, 32)
         if(char){
-          uiManager.setSelected(char);
+          state.ui.setSelected(char);
         }else{
           let obj = objectManager.getObjectAtBlock(mouse.block);
           if(obj){
-            uiManager.setSelected(obj);
+            state.ui.setSelected(obj);
           }
         }
         
         if(selection.button === 2){
-          uiManager.clearSelected();
+          state.ui.clearSelected();
         }
 
         break;
