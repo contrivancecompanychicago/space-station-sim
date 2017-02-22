@@ -27,7 +27,7 @@ export default function* placeItemOnEmptyTable(char:Character, ability:AbilityTy
     targetObject.removeCharacter();
     if(char.item.length>0){
       let item = char.item[0]
-      targetObject.item = item
+      targetObject.addItem(item)
       char.removeItem(item)
     }
   }

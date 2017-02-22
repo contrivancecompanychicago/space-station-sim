@@ -21,11 +21,10 @@ export default function* serveOrder(char:Character, order:Order):Generator<*,*,*
       let block = item.position.block
       let obj = objectManager.getObjectAtBlock(block);
       if(obj){
-        (obj:Obj)
         obj.setCharacter(char)
         yield *actions.pathToBlock(char, obj.getAccessBlock());
         obj.removeCharacter()
-        obj.item = null;
+        obj.removeItem();
       }
       char.addItem(item)
     }

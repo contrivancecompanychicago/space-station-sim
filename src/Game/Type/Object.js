@@ -65,6 +65,7 @@ export default class Obj{
   }
   
   character: ?string
+  
   setCharacter(char:Character){
     this.character = char.id
   }
@@ -76,12 +77,11 @@ export default class Obj{
     this.character = null
   }
 
-  item: ?Item
+  item: ?string
   addItem(item:Item){
-    this.item = (item)
+    this.item = item.id
   }
   removeItem(item:Item){
-    if(this.item === item)
-      this.item = null
+    this.item = null
   }
 }

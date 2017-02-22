@@ -87,24 +87,15 @@ export default class ObjectModel {
     })
   }
   save(): Object {
-    let out = {}
-    keys(this.state).forEach((k) => {
-        let obj = this.state[k];
-        out[k] = {type:obj.type, rotation:obj.rotation, block:obj.block}
-    })
-    return out
+    return this.state;
   }
   clear() {
     this.state = {}
   }
   load(object: Object) {
-    keys(object).forEach((key) => {
-      // let block = parseKey(key);
+    Object.keys(object).forEach((key) => {
       let obj = object[key];
-
       obj.block = new Block(obj.block)
-      obj.character = null; //HACK: fixing data in demo mode
-      // this.manager.getComponent('objectManager').addObject(new Obj(obj));
       object[key] = new Obj(obj);
     })
     this.mergeState(object)

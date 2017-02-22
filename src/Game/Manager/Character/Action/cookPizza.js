@@ -29,7 +29,7 @@ export default function* cookPizza(char:Character, order:Order):Generator<*,*,*>
   yield *actions.idle(char, 2);
   item.type = 'PIZZA'
   obj = yield *actions.forceUseObjectWithAbility(char, Ability.SERVE_TABLE)
-  obj.item = item;
+  obj.addItem(item);
   // char.item = null;
   char.removeItem(item);
   order.status = "COOKED"

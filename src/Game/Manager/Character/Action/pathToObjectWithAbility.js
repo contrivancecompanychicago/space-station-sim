@@ -14,7 +14,7 @@ export default function* pathToObjectWithAbility(char:Character, ability:Ability
   let gridManager = state.grid
   let objectManager = state.object
   let objs = objectManager.getObjectsWithAbility(ability)
-    .filter((o)=>{if(!o.character) return true});
+    .filter((o)=>{if(!o.getCharacter()) return true});
   if(objs.length > 0){
     let i = Math.floor(Math.random()*objs.length);
     let obj = objs[i]
