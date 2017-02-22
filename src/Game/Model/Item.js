@@ -22,4 +22,15 @@ export default class ItemModel {
     getItems() :Array<Item>{
         return values(this.state)
     }
+
+    save():Object{
+        return this.state
+    }
+    clear(){
+        this.state = {}
+    }
+    load(obj:Object){
+
+    }
+
 }

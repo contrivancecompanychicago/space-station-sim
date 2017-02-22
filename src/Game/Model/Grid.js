@@ -139,18 +139,13 @@ export default class GridModel {
     }
 
     save(): Object {
-        let out  = {}
-        keys(this.state).forEach((k) => {
-            let grid = this.state[k]
-            out[k] = { type: grid.type, rotation: grid.rotation }
-        })
-        return out
+        return this.state;
     }
     clear() {
         this.state = {}
     }
     load(grid: Object) {
-        keys(grid).forEach((key) => {
+        Object.keys(grid).forEach((key) => {
             let block = parseKey(key);
             this.addNode(block.x, block.y, new Grid(grid[key]))
         })

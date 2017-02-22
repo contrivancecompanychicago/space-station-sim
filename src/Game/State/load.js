@@ -31,6 +31,7 @@ export default function loadGame(savename:string){
   let grid = data.grid
   let object = data.object;
 
+  state.item.clear();
   state.character.clear();
   state.object.clear();
   state.grid.clear();

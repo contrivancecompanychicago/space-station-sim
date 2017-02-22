@@ -37,6 +37,9 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
  - give orders direct to selected
  - add containers
 
+ - start in food truck
+ - space for 1 oven, fridge and prep table
+
 ### PRIORITISED:
 save/load seamless
 rewrite renderer
