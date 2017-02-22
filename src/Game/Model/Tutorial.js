@@ -11,12 +11,12 @@ export default class TutorialModel{
         this.tutorial = starter();
     }
 
-    update() {
-        if(this.tutorial){
-            let result = this.tutorial.next();
-            if(result.done){
-                this.tutorial = null;
-            }
-        }
-    }
+    // update() {
+    //     if(this.tutorial){
+    //         let result = this.tutorial.next();
+    //         if(result.done){
+    //             this.tutorial = null;
+    //         }
+    //     }
+    // }
 }

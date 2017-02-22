@@ -23,7 +23,7 @@ export class State {
   player: PlayerModel
   task: TaskModel
   time: TimeModel
-  tutorial: TutorialModel
+  // tutorial: TutorialModel
   ui: UIModel
   view: ViewModel
 
@@ -37,7 +37,7 @@ export class State {
     this.player = new PlayerModel();
     this.task = new TaskModel();
     this.time = new TimeModel();
-    this.tutorial = new TutorialModel();
+    // this.tutorial = new TutorialModel();
     this.ui = new UIModel();
     this.view = new ViewModel();
   }

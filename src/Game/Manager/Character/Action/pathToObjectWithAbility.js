@@ -18,9 +18,9 @@ export default function* pathToObjectWithAbility(char:Character, ability:Ability
   if(objs.length > 0){
     let i = Math.floor(Math.random()*objs.length);
     let obj = objs[i]
-    obj.character = char;
+    obj.setCharacter(char);
     yield *actions.pathToBlock(char, obj.getAccessBlock());
-    obj.character = null;
+    obj.removeCharacter();
     // yield *moveToBlockCenter(char, obj.block);
     return obj;
   }

@@ -15,6 +15,8 @@ import Ability from 'Game/Data/Object/Ability'
 
 import makeKey from 'Util/makeKey'
 
+import state from 'Game/state'
+
 export default class Obj{
   block: Block;
   type: ObjectType;
@@ -62,12 +64,16 @@ export default class Obj{
     }
   }
   
-  character: ?Character
+  character: ?string
   setCharacter(char:Character){
-    this.character = char
+    this.character = char.id
   }
-  getCharacter(){
-    return this.character
+  getCharacter():?Character{
+    if(this.character)
+      return state.character.getChar(this.character);
+  }
+  removeCharacter(){
+    this.character = null
   }
 
   item: ?Item

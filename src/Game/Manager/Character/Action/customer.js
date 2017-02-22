@@ -19,11 +19,11 @@ export default function* customer(char: Character): Generator<*,*,*>{
   let objectManager = state.object
   let orderManager = state.order
   let charManager = state.character
-
+  
   char.setStatus('Sitting down')
   let chair = yield * actions.pathToObjectWithAbility(char, Ability.CHAIR);
   if(chair) {
-    chair.character = char
+    chair.setCharacter(char)
     yield * actions.moveToBlockCenter(char, chair.block)
 
     //PLACE ORDER!
@@ -44,7 +44,7 @@ export default function* customer(char: Character): Generator<*,*,*>{
       })
       yield; //wait til I get my shit.
     } 0
-    chair.character = null;
+    chair.removeCharacter();
 
     //check for table;
     let check = char.position.block

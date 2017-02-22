@@ -1,8 +1,7 @@
 //@flow
 import {defaults} from 'lodash';
 
-import * as engine from 'Game/engine'
-
+import state from 'Game/state'
 
 import type {GridType, GridDataType} from 'Game/Data/Grid'
 // import type {ObjectType, ObjectDataType} from 'Game/Data/Object'
@@ -25,8 +24,7 @@ export default class Grid{
   }
   getObject():?Obj{
     if(this.object){
-      // FLOWHACK
-      return engine.getObjectManager().getObject(this.object)
+      return state.object.getObject(this.object)
     }
   }
   setObject(obj:Obj){
