@@ -1,8 +1,16 @@
+// @flow
+
 
 import {keys, tail} from 'lodash';
+
+import type Layer from 'Game/Renderer/Layer'
+import type {State} from 'Game/state'
+
 const MAX = 60 ; //theoretical
 //HACK kinda cus I wanted these to be pure, but I think this is a good exception
 class FPS{
+  count:number;
+  fps: Array<number>;
   constructor() {
     this.count = 0;
     this.fps = [];
@@ -16,7 +24,7 @@ class FPS{
 
     }, 1000);
   }
-  render(layer){
+  render(layer:Layer){
     this.count++;
     let i = 0;
     for(let i = this.fps.length; i>=0; i--){
@@ -35,7 +43,7 @@ let fps = new FPS();
 
 
 
-export default function renderInfo(state, layer){
+export default function renderInfo(state:State, layer:Layer){
   // let offset = 30;
   // let lineHeight = 20;
   // let date = new Date('1 January 2000');

@@ -41,10 +41,11 @@ export default class Point{
   }
 
   get block():Block {
-    let b:Block = new Block({
+    let pos = {
       x: Math.floor(this.x / config.grid.width),
       y: Math.floor(this.y / config.grid.height)
-    })
+    }
+    let b:Block = new Block(pos);
     return b;
   }
 
@@ -59,5 +60,4 @@ export default class Point{
       y: Math.round(this.y)
     })
   }
-
 }
