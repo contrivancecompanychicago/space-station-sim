@@ -45,4 +45,11 @@ export default class Block{
   get key():string{
     return makeKey(this.x, this.y);
   }
+
+  static fromPoint(point:Point){
+    return new Block({
+      x: Math.floor(point.x / config.grid.width),
+      y: Math.floor(point.y / config.grid.height)
+    })
+  }
 }

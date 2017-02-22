@@ -28,10 +28,10 @@ export default class Point{
   x:number;
   y:number;
   state:State;
-  static registerState(s:State){
+  static registerState(s:State): void{
     state = s
   }
-  constructor(pos:{x:number, y:number}){
+  constructor(pos:{x:number, y:number}): void{
     this.x = pos.x;
     this.y = pos.y;
   }
@@ -49,7 +49,7 @@ export default class Point{
   }
 
   static fromScreen(x:number,y:number):Point{
-    let pos = screenToWorld({x,y}, state);
+    let pos: {x: number, y: number} = screenToWorld({x,y}, state);
     return new Point(pos);
   }
 
