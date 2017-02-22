@@ -49,9 +49,9 @@ export default class Game{
     engine.register(new CharacterController())
     engine.register(new TimeController())
     engine.register(new TutorialController())
-    engine.register(new UIController())
     engine.register(new Renderer(this.state, this.container)); // renderer
     engine.register(new ViewController(container))
+    engine.register(new UIController(container))
 
     state.init();
     engine.start();

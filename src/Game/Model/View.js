@@ -10,7 +10,7 @@ import Rect from 'Game/Rect';
 
 import type {Selection} from 'Game/Type/Selection'
 
-import dispatcher from 'Game/Action/Dispatcher'
+// import dispatcher from 'Game/Action/Dispatcher'
 
 import type Character from 'Game/Type/Character'
 
@@ -42,14 +42,20 @@ const initial:ViewState = {
 
 
 export default class ViewModel{
+
+
+  // ADD ABILITY TO ADD LISTENER TO BREAK DEPS ON DISPATCHER
+  listeners:Array<Function>
+  subscribe(func:Function){
+    this.listeners.push(func)
+  }
+
   type: string;
   state: ViewState;
 
   container: Object;
   dragging: boolean;
   down: {[id:number]:boolean};
-  addListeners: Function;
-  notify:Function;
   selection: Selection;
   selecting: boolean;
   startPos: Point;
@@ -58,6 +64,7 @@ export default class ViewModel{
   button: number;
 
   follow:?Character;
+
 
 //   update(){
 //     //calculate whats under mousey
@@ -70,6 +77,7 @@ export default class ViewModel{
 //   }
   constructor(state:ViewState = initial){//, container:HTMLElement) {
     this.state = state
+    this.listeners = []
     //defaults(state, initial); //WHYYY
   }
   init(){
@@ -153,8 +161,10 @@ export default class ViewModel{
   endSelection(e:Event){
     this.selecting = false;
     this.updateSelection(e);
-    // engine.notify('userAction', this.selection);
-    dispatcher.userAction(this.selection)
+    // dispatcher.userAction(this.selection)
+    this.listeners.forEach(f =>{
+      f.call(null, this.selection);
+    })
     this.state.selection = null;
 
   }

@@ -43,7 +43,6 @@ export class State {
   }
 
   init() {
-    this.ui.init();
     this.view.init();
   }
 }

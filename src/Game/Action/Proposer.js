@@ -22,10 +22,9 @@ processing:
 
 */
 
-import { makeKey, parseKey } from 'Util';
-// import {base} from 'Game/state';
+import type Block from 'Game/Block'
 
-// import state from 'Game/state';
+import { makeKey, parseKey } from 'Util';
 import { Mode } from 'Game/Data/Mode';
 
 import Grid from 'Game/Type/Grid'
@@ -35,10 +34,9 @@ import ObjectData from 'Game/Data/Object';
 import type {State } from 'Game/state'
 import Obj from 'Game/Type/Object'
 
-// import {GridModel, ObjectModel} from 'Game/state'
+import state from 'Game/state';
+console.log(state);
 
-// import GridModel from 'Game/Model/Grid';
-// import ObjectModel from 'Game/Model/Object'
 
 let proposal: Object;
 export default class Proposer {
@@ -51,7 +49,6 @@ export default class Proposer {
       view: {}
     };
     let sel = state.view.state.selection
-
     if (sel) {
       switch (state.ui.state.mode) {
         case Mode.GRID:
@@ -102,7 +99,7 @@ export default class Proposer {
   see if a block already has an object in it ( for determining where to place objects)
  @returns boolean
 */
-function blockHasObject(state, block) {
+function blockHasObject(state:State, block:Block) {
   let key = makeKey(block.x, block.y);
   if (state.object.state[key]) return true;
   //check neighbours

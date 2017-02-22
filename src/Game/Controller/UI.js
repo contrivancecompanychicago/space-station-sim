@@ -1,14 +1,41 @@
 // @flow
 
+import ReactDOM from 'react-dom';
+import React from 'react';
+import { Provider } from 'react-redux';
+import UI from 'Game/UI';
 import save from 'Game/State/save'
 import state from 'Game/state'
 import engine from 'Game/engine'
 
 export default class UIController{
+  container:HTMLElement
+  constructor(container:HTMLElement) {
+    // this.container = container;
+    if(!container) throw new Error('I need a container to render in');
+    
+    const UIDiv = document.createElement('div');
+    container.appendChild(UIDiv);
 
-  constructor() {
-    window.onkeyup = function(e) {
-    var key = e.keyCode ? e.keyCode : e.which;
+    this.container = UIDiv;
+
+    this.addKeyListener();
+
+    state.ui.store.subscribe(this.render.bind(this))
+    this.render()
+  }
+  render(){
+    state.ui.setState()
+    this.forceUpdate();
+  }
+  forceUpdate(){
+    ReactDOM.render(<Provider store={state.ui.store}><UI /></Provider>, this.container);
+  }
+
+  addKeyListener(){
+
+    window.onkeyup = function(e:Event) {
+    var key:number = e.keyCode ? e.keyCode : e.which;
       
       //KEYS
       let keys = {

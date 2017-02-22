@@ -12,6 +12,8 @@ import type {Selection} from 'Game/Type/Selection'
 import type Character from 'Game/Type/Character'
 import state from 'Game/state'
 
+import dispatcher from 'Game/Action/Dispatcher'
+
 type Event = {
   wheelDelta:number,
   pageX:number,
@@ -96,7 +98,14 @@ export default class ViewController{
     if(!d) d = -e.detail;
     state.view.zoom(d>0, e);
   }
+
+  onSelection(selection:Selection){
+    // console.log('onselection', selection);
+    dispatcher.userAction(selection)
+  }
+
   addListeners() {
+    state.view.subscribe(this.onSelection.bind(this));
     this.container.addEventListener('mousedown', this, false);
     this.container.addEventListener('mouseup', this, false);
     this.container.addEventListener('mousemove', this, false);
