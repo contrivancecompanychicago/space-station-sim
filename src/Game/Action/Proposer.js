@@ -31,23 +31,16 @@ import Grid from 'Game/Type/Grid'
 
 import ObjectData from 'Game/Data/Object';
 
-import type {State } from 'Game/state'
+import { State } from 'Game/state'
 import Obj from 'Game/Type/Object'
 
-import state from 'Game/state';
-console.log(state);
+// console.log(state);
 
 
-let proposal: Object;
+let proposal: State;
 export default class Proposer {
   propose(state: State) {
-    proposal = {
-      // grid: new GridModel(),
-      // object: new ObjectModel(),
-      grid: {state:{}},
-      object: {state:{}},
-      view: {}
-    };
+    proposal = new State();
     let sel = state.view.state.selection
     if (sel) {
       switch (state.ui.state.mode) {
@@ -99,7 +92,7 @@ export default class Proposer {
   see if a block already has an object in it ( for determining where to place objects)
  @returns boolean
 */
-function blockHasObject(state:State, block:Block) {
+function blockHasObject(state: State, block: Block) {
   let key = makeKey(block.x, block.y);
   if (state.object.state[key]) return true;
   //check neighbours

@@ -35,6 +35,7 @@ export default class UIController{
   addKeyListener(){
 
     window.onkeyup = function(e:Event) {
+    // FLOWHACK
     var key:number = e.keyCode ? e.keyCode : e.which;
       
       //KEYS
