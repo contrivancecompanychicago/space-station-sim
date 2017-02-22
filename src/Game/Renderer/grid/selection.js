@@ -1,6 +1,5 @@
 // @flow
 import {assign} from 'lodash';
-// import {worldToScreen, blockToPoint} from 'Util';
 import config from 'Game/config';
 
 import type {State} from 'Game/state'

@@ -10,7 +10,6 @@ import renderBlock from './grid/block';
 // import renderInfo from './grid/info';
 import renderSelection from './grid/selection';
 import renderTask from './grid/task';
-import renderWalls from './grid/wall';
 // import renderProposal from './grid/proposal';
 
 import Point from 'Game/Point';

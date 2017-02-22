@@ -1,5 +1,4 @@
 
-import {worldToScreen, blockToPoint} from 'Util';
 
 import {keys} from 'lodash';
 import type {State} from 'Game/state'
@@ -9,36 +8,34 @@ export default function renderLines(state:State, layer:Layer){
   layer.lineWidth(1);
 
   layer.strokeStyle('#ff0000');
-  keys(state.Character).forEach((key) => {
-    let char = state.Character[key];
+  state.character.getChars().forEach( char => {
     char.item.forEach((item) => {
-      const itemoffset = worldToScreen(item.position, state);
-      const offset = worldToScreen(char.position, state);
+      const itemoffset = item.position.screen;
+      const offset = char.position.screen;
       layer.drawLine(offset, itemoffset)
     })
   });
 
   layer.strokeStyle('#ffff00');
-  keys(state.Object).forEach((key) => {
-    let obj = state.Object[key];
+  state.object.getObjects().forEach(obj => {
     if(obj.character){
-      const offset = worldToScreen(obj.block.center, state);
-      const charoffset = worldToScreen(obj.character.position, state);
+      const offset = obj.block.center.screen;
+      const charoffset = obj.character.position.screen;
       layer.drawLine(offset, charoffset)
     }
   });
 
   layer.strokeStyle('#00ff00');
-  state.Order.forEach((order) => {
+  state.order.getOrders().forEach(order => {
     if(order.worker){
-      const offset = worldToScreen(order.customer.position, state);
-      const charoffset = worldToScreen(order.worker.position, state);
+      const offset = order.customer.position.screen;
+      const charoffset = order.worker.position.screen;
       layer.drawLine(offset, charoffset)
     }
 
     if(order.item){
-      const offset = worldToScreen(order.customer.position, state);
-      const charoffset = worldToScreen(order.item.position, state);
+      const offset = order.customer.position.screen;
+      const charoffset = order.item.position.screen;
       layer.drawLine(offset, charoffset)
     }
   })

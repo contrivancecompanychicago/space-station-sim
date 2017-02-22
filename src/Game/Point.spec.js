@@ -100,8 +100,9 @@ describe('Game/Point', () => {
       // it('scale case');
       // it('offset case');
       it('scale and offset', () =>{
-        state.default.View.offset = {x:10, y: 20};
-        state.default.View.scale = 2;
+        Point.registerState(state)
+        state.default.view.offset = {x:10, y: 20};
+        state.default.view.scale = 2;
         let p = Point.fromScreen(22,44);
         expect(p.x).toBe(1);
         expect(p.y).toBe(2);

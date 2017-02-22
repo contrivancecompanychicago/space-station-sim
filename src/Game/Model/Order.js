@@ -11,4 +11,7 @@ export default class OrderModel{
   addOrder(order:Order){
     this.state.push(order);
   }
+  getOrders():Array<Order>{
+    return this.state;
+  }
 }

@@ -4,7 +4,8 @@
     "**/.git": true,
     "**/.svn": true,
     "**/.hg": true,
-    "**/coverage/**/*.*": true
+    "**/coverage/**/*.*": true,
+    "**/dist/**/*.*": true
   },
     "javascript.validate.enable": false,
     "vsicons.presets.angular": false

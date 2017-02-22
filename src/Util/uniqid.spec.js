@@ -4,8 +4,8 @@ describe('Util/uniqid', () => {
   it('should be defined', () => {
     expect(uniqid).toBeDefined();
   });
-  it('should return a number', () => {
-    expect(typeof(uniqid())).toBe('number');
+  it('should return a string', () => {
+    expect(typeof(uniqid())).toBe('string');
   });
   it('should return different each time', () => {
     let id1 = uniqid();

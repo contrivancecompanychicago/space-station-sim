@@ -1,6 +1,5 @@
 // @flow
 
-// import {worldToScreen, blockToPoint} from 'Util';
 import config from 'Game/config';
 
 const blockWidth = config.grid.width;

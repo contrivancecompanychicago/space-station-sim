@@ -4,16 +4,23 @@ eases use of the points system
 points stored in ingame coordinates
 */
 import config from 'Game/config';
-
-import worldToScreen from 'Util/worldToScreen'
-import screenToWorld from 'Util/screenToWorld'
-
+import Block from 'Game/Block';
 import type {State} from 'Game/state'
 
-import Block from 'Game/Block';
 
+export function screenToWorld(point:{x:number, y:number}, state:State): {x:number, y:number}{
+  return {
+    x: (point.x / state.view.state.scale) - state.view.state.offset.x,
+    y: (point.y / state.view.state.scale) - state.view.state.offset.y
+  };
+}
+export function worldToScreen(point:{x:number, y:number}, state:State):{x:number, y:number}{
+  return {
+    x: (state.view.state.offset.x + (point.x)) * state.view.state.scale,
+    y: (state.view.state.offset.y + (point.y)) * state.view.state.scale,
+  };
+}
 
-const dev = true;
 
 let state:State
 
@@ -29,7 +36,7 @@ export default class Point{
     this.y = pos.y;
   }
 
-  get screen():Point{
+  get screen():{x:number, y:number}{
     return worldToScreen({x:this.x, y:this.y}, state);
   }
 
