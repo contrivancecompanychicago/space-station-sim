@@ -39,7 +39,13 @@ export default class Character{
     if(!this.firstname) defaults(this, namegen())
     this.randomiseSkills()
     if(!this.salary) this.calculateSalary();
-    this.status = "thinking"
+    this.status = "initialising"
+
+    this.taskTypes = []
+
+    //HACK dummy Data
+    this.assignTaskType('PREP')
+    this.assignTaskType('COOK')
   }
   getData(){
     return CharacterData.get(this.type)
@@ -97,6 +103,13 @@ export default class Character{
   }
   hasTaskType(type:TaskType):boolean{
     return this.taskTypes.indexOf(type) > -1
+  }
+  toggleTaskType(type:TaskType){
+    if(this.hasTaskType(type)){
+      this.unassignTaskType(type);
+    }else{
+      this.assignTaskType(type);
+    }
   }
 
 

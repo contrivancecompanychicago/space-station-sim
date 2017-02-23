@@ -8,9 +8,10 @@ import CharacterRow from '../../Row/Character'
 
 import type Character from 'Game/Type/Character';
 import type Obj from 'Game/Type/Object';
-import * as engine from 'Game/engine'
+
 
 import TaskData from 'Game/Data/Task'
+import type {TaskType, TaskDataType} from 'Game/Data/Task'
 
 import state from 'Game/state'
 
@@ -32,14 +33,22 @@ class SelectedCharacterPanel extends React.Component{
     componentWillUnmount() {
       clearInterval(this.interval)
     }
+
+    toggleTask(e:Event){
+      // console.log(e.target.name);
+      this.props.target.toggleTaskType(e.target.name)
+      this.forceUpdate()
+    }
     
     render(){
 
       let tasks = []
-      TaskData.each((key, val, index) => {
+      TaskData.each((key:TaskType, val:TaskDataType, index:number) => {
+        let has = this.props.target.hasTaskType(key);
+        
         tasks.push(<div key={index}>
           {val.label}
-          <input type="checkbox" />
+          <input type="checkbox" name={key} checked={has} onChange={this.toggleTask.bind(this)} />
         </div>)
       })
 
@@ -48,7 +57,7 @@ class SelectedCharacterPanel extends React.Component{
             <CharacterRow character={this.props.target} />
             {this.props.target.status}
             <div>
-              <h3>Tasks</h3>
+              <h3>Responsibilities</h3>
               {tasks}
             </div>
             <button onClick={this.props.center}>center</button>
