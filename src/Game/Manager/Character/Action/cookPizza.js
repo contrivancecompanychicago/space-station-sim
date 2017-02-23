@@ -10,6 +10,9 @@ import Item from 'Game/Type/Item'
 import type Character from 'Game/Type/Character'
 import Ability from 'Game/Data/Object/Ability'
 
+import {Tasks} from 'Game/Data/Task'
+
+
 export default function* cookPizza(char:Character, order:Order):Generator<*,*,*>{
 
   // let itemManager:ItemManager = engine.getComponent('itemManager')
@@ -25,6 +28,7 @@ export default function* cookPizza(char:Character, order:Order):Generator<*,*,*>
   yield *actions.forceUseObjectWithAbility(char, Ability.PREP_TABLE)
   yield *actions.idle(char, 1);
   item.type = 'PIZZAUNCOOKED'
+  //BREAK
   yield *actions.forceUseObjectWithAbility(char, Ability.OVEN)
   yield *actions.idle(char, 2);
   item.type = 'PIZZA'

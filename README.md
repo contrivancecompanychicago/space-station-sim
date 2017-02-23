@@ -39,6 +39,7 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
 
  - start in food truck
  - space for 1 oven, fridge and prep table
+ - save meta (screenshot, save date, time played etc)
 
 ### PRIORITISED:
 save/load seamless
