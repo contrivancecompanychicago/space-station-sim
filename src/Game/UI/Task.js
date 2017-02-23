@@ -10,8 +10,8 @@ class Task extends React.Component {
   render() {
 
     const buttons = [];
-    keys(Tasks).forEach((taskkey) => {
-      keys(Grids).forEach((gridkey) => {
+    Object.keys(Tasks).forEach((taskkey) => {
+      Object.keys(Grids).forEach((gridkey) => {
         buttons.push(<Button
           type="task"
           key={taskkey+gridkey}

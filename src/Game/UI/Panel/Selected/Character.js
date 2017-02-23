@@ -10,6 +10,8 @@ import type Character from 'Game/Type/Character';
 import type Obj from 'Game/Type/Object';
 import * as engine from 'Game/engine'
 
+import TaskData from 'Game/Data/Task'
+
 import state from 'Game/state'
 
 type Props = {
@@ -32,10 +34,23 @@ class SelectedCharacterPanel extends React.Component{
     }
     
     render(){
+
+      let tasks = []
+      TaskData.each((key, val, index) => {
+        tasks.push(<div key={index}>
+          {val.label}
+          <input type="checkbox" />
+        </div>)
+      })
+
         return <Draggable><div className="selected panel">
             <Header text={this.props.target.toString()} close={this.props.close} />
             <CharacterRow character={this.props.target} />
             {this.props.target.status}
+            <div>
+              <h3>Tasks</h3>
+              {tasks}
+            </div>
             <button onClick={this.props.center}>center</button>
             <button onClick={this.props.follow}>follow</button>
 

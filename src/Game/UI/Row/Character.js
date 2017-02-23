@@ -16,7 +16,7 @@ export default class CharacterRow extends React.Component {
     // let key = "char"+this.props.character.id;
     let skills = []
     if( this.props.character.type !== 'CUSTOMER'){
-      keys(this.props.character.skills).forEach((key) => {
+      Object.keys(this.props.character.skills).forEach((key) => {
         let skill = this.props.character.skills[key];
         // skills.push(<div>{key}-{skill}</div>);
         skills.push(<Bar key={key} text={key} percent={skill} />)

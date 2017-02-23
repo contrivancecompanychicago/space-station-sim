@@ -10,8 +10,9 @@ import actions from 'Game/Manager/Character/Action'
 export default class CharacterController{
 
     update(){
-        keys(state.character.state).forEach((key) => {
-            let char = state.character.state[key];
+        state.character.getChars().forEach( char => {
+        // keys(state.character.state).forEach((key) => {
+        //     let char = state.character.state[key];
             if (!char.action) {
                 this.newAction(char);
             }
@@ -34,7 +35,6 @@ export default class CharacterController{
 
             }
         })
-
     }
     newAction(char:Character){
         let task = state.task.getUnassignedTask();

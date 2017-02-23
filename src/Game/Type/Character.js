@@ -10,10 +10,14 @@ import type {CharacterType} from 'Game/Data/Character'
 import type {Skill} from 'Game/Data/Character/Skill'
 import Skills from 'Game/Data/Character/Skill'
 
+import state from 'Game/state'
+
 import CharacterData from 'Game/Data/Character'
 
-
+import type Task from 'Game/Type/Task'
 import type Item from 'Game/Type/Item'
+
+import type {TaskType} from 'Game/Type/Task'
 
 import config from 'Game/config'
 
@@ -25,7 +29,6 @@ export default class Character{
   firstname: string;
   lastname: string;
   action: ?Generator<*,*,*>;
-  task: string;
   skills: {[id:Skill]:number}
   salary: number;
   status: string;
@@ -66,10 +69,39 @@ export default class Character{
     return this.item
   }
 
-  toString():string{
-    return this.firstname + ' ' + this.lastname
-  }
   setStatus(status:string){
     this.status = status;
   }
+
+
+  task: ?string;
+  setTask(task:Task){
+    this.task = task.id;
+  }
+  removeTask(){
+    this.task = null;
+  }
+  getTask():?Task{
+    if(this.task)
+      return state.task.getTask(this.task);
+  }
+
+  taskTypes: Array<TaskType>;
+  assignTaskType(type:TaskType){
+    this.taskTypes.push(type);
+  }
+  unassignTaskType(type:TaskType){
+    let id = this.taskTypes.indexOf(type);
+    if(id > -1)
+      this.taskTypes.splice(id, 1);
+  }
+  hasTaskType(type:TaskType):boolean{
+    return this.taskTypes.indexOf(type) > -1
+  }
+
+
+  toString():string{
+    return this.firstname + ' ' + this.lastname
+  }
+
 }

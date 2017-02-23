@@ -1,5 +1,5 @@
 // @flow
-import {map, keys, head} from 'lodash';
+import {map, keys, head, values} from 'lodash';
 import state from 'Game/state'
 
 import Task from 'Game/Type/Task'
@@ -16,6 +16,9 @@ export default class TaskModel{
   state: TaskState;
   constructor(state:TaskState = {}){
     this.state = state;
+  }
+  getTasks():Array<Task>{
+    return values(this.state);
   }
 
   getTask(id:string):Task{
@@ -69,9 +72,9 @@ export default class TaskModel{
     this.clean();
   }
   clean() {
-    keys(this.state).forEach(key => {
-      let task = this.state[key];
-      
+    // keys(this.state).forEach(key => {
+    //   let task = this.state[key];
+    this.getTasks().forEach(t => {
       if(task.worker){
         let char = state.character.getChar(task.worker);
         if(char && char.task != task.id){
