@@ -21,6 +21,7 @@ import Table4 from './Object/Table4';
 import Table5 from './Object/Table5';
 import Chair from './Object/Chair';
 import Chair2 from './Object/Chair2';
+import CashRegister from './Object/CashRegister';
 
 export type ObjectType =
 'BED'|
@@ -35,7 +36,8 @@ export type ObjectType =
 'TABLE4'|
 'TABLE5'|
 'CHAIR'|
-'CHAIR2'
+'CHAIR2'|
+'CASHREGISTER'
 
 export type ObjectBlocksType = 'ACCESS'|'BLOCK'
 export const ObjectBlocks:{[id:ObjectBlocksType]: ObjectBlocksType} = {
@@ -72,6 +74,7 @@ Objs[Table4.id] = Table4;
 Objs[Table5.id] = Table5;
 // Objs[Chair.id] = Chair;
 Objs[Chair2.id] = Chair2;
+Objs[CashRegister.id] = CashRegister;
 
 // export default Objs;
 

@@ -13,6 +13,7 @@ const obj:ObjectDataType = {
   width: 1,
   height: 1,
   blocks: [
+    {type: a, weight:Weight.ACCESS, x:0,y:-1},
     {type: b, weight:Weight.BLOCK, x:0,y:0},
     {type: a, weight:Weight.ACCESS, x:0,y:1},
   ],
