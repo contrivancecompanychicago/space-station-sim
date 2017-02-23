@@ -6,6 +6,7 @@ import cookPizza from './cookPizza';
 import makeCoffee from './makeCoffee';
 import customer from './customer';
 import findObject from './findObject';
+import findObjects from './findObjects';
 import idle from './idle';
 import moveToBlock from './moveToBlock';
 import moveToBlockCenter from './moveToBlockCenter'
@@ -29,6 +30,7 @@ export default {
   makeCoffee,
   customer,
   findObject,
+  findObjects,
   idle,
   moveToBlock,
   moveToBlockCenter,

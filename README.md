@@ -42,11 +42,10 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
  - save meta (screenshot, save date, time played etc)
 
 ### PRIORITISED:
-save/load seamless
-rewrite renderer
- - move all context manipulation into layer class
-
-use shadowblur for highlighting character
+ - forceUseObjectWithAbility
+ - rewrite renderer
+    - move all context manipulation into layer class
+ - use shadowblur for highlighting character
 
 ### TECH DEBT
 
