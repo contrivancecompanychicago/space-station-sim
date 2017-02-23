@@ -27,9 +27,16 @@ const tasks:{[id:TaskType]:TaskDataType} = {
 let TaskMap:DataMap<TaskType, TaskDataType> = new DataMap();
 
 
-export let Tasks:{[id:TaskType]:TaskType} = {};
+export let Tasks:{[id:TaskType]:TaskType} = {
+  PREP:'PREP',
+  COOK:'COOK',
+  SERVEFOOD:'SERVEFOOD',
+  SERVEDRINK:'SERVEDRINK',
+  TAKEORDER:'TAKEORDER',
+  GREET:'GREET',
+};
 keys(tasks).forEach((key:TaskType) => {
-  Tasks[key]=key;
+  // Tasks[key]=key;
   TaskMap.put(key, tasks[key])
 });
 
