@@ -29,7 +29,7 @@ export default function* forceUseObjectWithAbility(char:Character, ability:Abili
     })
     
   })
-  if(shortestPathObject){
+  if(shortestPathObject&&shortestPath){
     shortestPathObject.setCharacter(char);
     yield *actions.followPath(char, shortestPath);
     yield *actions.placeItemOnBlock(char, shortestPathObject.block)

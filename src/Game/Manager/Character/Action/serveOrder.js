@@ -5,6 +5,7 @@ import actions from './index'
 import type Character from 'Game/Type/Character'
 import type Order from 'Game/Type/Order'
 import type Obj from 'Game/Type/Object'
+import type Block from 'Game/Block'
 
 import state from 'Game/state'
 
@@ -31,7 +32,11 @@ export default function* serveOrder(char: Character, order: Order): Generator<*,
             shortestPath = path;
           }
         })
-        yield *actions.followPath(char, shortestPath)
+        if(shortestPath){
+          yield *actions.followPath(char, shortestPath)
+        }else{
+          throw new Error('path not found serveOrder')
+        }
         // yield * actions.pathToBlock(char, obj.getAccessBlock());
         obj.removeCharacter()
         obj.removeItem();

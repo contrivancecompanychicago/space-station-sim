@@ -88,7 +88,7 @@ export default class Obj{
   addItem(item:Item){
     this.item = item.id
   }
-  removeItem(item:Item){
+  removeItem(item:?Item){
     this.item = null
   }
 }
