@@ -25,9 +25,16 @@ class Engine{
         this.objects.push(obj);
     }
     updateObjects(){
+        // let times = {}
         this.objects.forEach(o => {
+            // console.log(o.constructor.name)
+            // debugger;
+            // let start = new Date().getTime();
             o.update({deltaTime:this.deltaTime});
+            // times[o.constructor.name] = new Date().getTime() - start;
         });
+        // console.log(times);
+        
     }
     start(){
         requestAnimationFrame(this.update);
