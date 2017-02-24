@@ -40,11 +40,13 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
  - space for 1 oven, fridge and prep table
  - save meta (screenshot, save date, time played etc)
  - genericize finding shortest path code in forceuseobjectwithability and serveorder
-
-### PRIORITISED:
  - rewrite renderer
     - move all context manipulation into layer class
  - use shadowblur for highlighting character
+
+### PRIORITISED:
+ - serialize character save
+ - cook task
 
 ### TECH DEBT
 

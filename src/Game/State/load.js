@@ -38,6 +38,7 @@ export default function loadGame(savename:string){
 
   state.grid.load(grid)
   state.object.load(object)
+  state.item.load();
   state.character.load(data.character)
 
 }

@@ -2,6 +2,7 @@
 
 import {values} from 'lodash'
 import Item from 'Game/Type/Item'
+import Point from 'Game/Point'
 
 export type ItemState = {
     [id: string]: Item
@@ -30,7 +31,10 @@ export default class ItemModel {
         this.state = {}
     }
     load(obj:Object){
-
+        values(obj).forEach(i => {
+            i.position = new Point(i.position);
+            this.addItem(new Item(i));
+        })
     }
 
 }
