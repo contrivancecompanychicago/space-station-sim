@@ -46,7 +46,11 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
 
 ### PRIORITISED:
  - serialize character save
- - cook task
+ - cook split into prep and cook for task
+ - get electron working
+  - save to disk
+  - use it to make demo saves
+
 
 ### TECH DEBT
 
