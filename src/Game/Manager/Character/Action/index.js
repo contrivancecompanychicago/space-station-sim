@@ -20,6 +20,7 @@ import waiter from './waiter';
 import wander from './wander';
 import wandertoAdjacentTile from './wanderToAdjacentTile';
 import forceUseObjectWithAbility from './forceUseObjectWithAbility';
+import followPath from './followPath';
 
 
 
@@ -44,4 +45,5 @@ export default {
   wander,
   wandertoAdjacentTile,
   forceUseObjectWithAbility,
+  followPath,
 };

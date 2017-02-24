@@ -63,6 +63,13 @@ export default class Obj{
       return this.block
     }
   }
+  getAccessBlocks():Array<Block>{
+    return this.getBlocks().filter((b) => {
+      return b.type == 'ACCESS';
+    }).map(b => {
+      return this.block.add(b);
+    })
+  }
   
   character: ?string
   

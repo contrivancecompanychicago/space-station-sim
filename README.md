@@ -22,7 +22,6 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
  - rating food
  - track order time
  - space pause time
- - get closest action points - dont just get any fridge etc
  - budget screens
  - achievement system
  - shift click to select multiple
@@ -42,7 +41,6 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
  - save meta (screenshot, save date, time played etc)
 
 ### PRIORITISED:
- - forceUseObjectWithAbility
  - rewrite renderer
     - move all context manipulation into layer class
  - use shadowblur for highlighting character

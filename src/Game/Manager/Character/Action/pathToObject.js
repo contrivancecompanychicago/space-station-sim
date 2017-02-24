@@ -1,5 +1,4 @@
 //@flow
-import engine from 'Game/engine';
 
 import actions from './index'
 
