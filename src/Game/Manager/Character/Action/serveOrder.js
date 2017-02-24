@@ -8,28 +8,38 @@ import type Obj from 'Game/Type/Object'
 
 import state from 'Game/state'
 
-export default function* serveOrder(char:Character, order:Order):Generator<*,*,*>{
+export default function* serveOrder(char: Character, order: Order): Generator<*,*,*>{
   // let objectManager:ObjectManager = engine.getComponent('objectManager');
   // let orderManager:OrderManager = engine.getComponent('orderManager');
   let objectManager = state.object
   let orderManager = state.order
   let logManager = state.log
   order.worker = char
-  if(order.item != undefined){
+  if(order.item != undefined) {
     let item = order.item;
-    if(!char.hasItem(item)){
+    if (!char.hasItem(item)) {
       let block = item.position.block
       let obj = objectManager.getObjectAtBlock(block);
-      if(obj){
+      if (obj) {
         obj.setCharacter(char)
-        yield *actions.pathToBlock(char, obj.getAccessBlock());
+        let shortestPathLength = Infinity;
+        let shortestPath: Array<Block>;
+        obj.getAccessBlocks().forEach(b => {
+          let path = state.grid.getPath(char.position.block, b)
+          if (path.length > 0 && path.length < shortestPathLength) { 
+            shortestPathLength = path.length;
+            shortestPath = path;
+          }
+        })
+        yield *actions.followPath(char, shortestPath)
+        // yield * actions.pathToBlock(char, obj.getAccessBlock());
         obj.removeCharacter()
         obj.removeItem();
       }
       char.addItem(item)
     }
 
-    yield *actions.pathToBlock(char, order.customer.position.block);
+    yield * actions.pathToBlock(char, order.customer.position.block);
     //give to customer
     order.customer.addItem(item);
     char.removeItem(item)
@@ -37,7 +47,7 @@ export default function* serveOrder(char:Character, order:Order):Generator<*,*,*
 
     order.status = 'FULFILLED'
     orderManager.state.splice(orderManager.state.indexOf(order), 1);
-    yield *actions.wandertoAdjacentTile(char);
+    yield * actions.wandertoAdjacentTile(char);
 
   }
 }
