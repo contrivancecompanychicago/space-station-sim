@@ -1,21 +1,15 @@
 //@flow
 
 import {defaults} from 'lodash';
-// import type Point from 'Game/Point';
-import type Block from 'Game/Block'
+import Ability from 'Game/Data/Object/Ability'
+import makeKey from 'Util/makeKey'
 import ObjectData from 'Game/Data/Object'
-
+import state from 'Game/state'
+import type {AbilityType} from 'Game/Data/Object/Ability'
 import type {ObjectType, ObjectDataType, ObjectBlocksDataType} from 'Game/Data/Object'
-
+import type Block from 'Game/Block'
 import type Character from 'Game/Type/Character'
 import type Item from 'Game/Type/Item'
-
-import type {AbilityType} from 'Game/Data/Object/Ability'
-import Ability from 'Game/Data/Object/Ability'
-
-import makeKey from 'Util/makeKey'
-
-import state from 'Game/state'
 
 export default class Obj{
   block: Block;
@@ -25,7 +19,7 @@ export default class Obj{
     defaults(this, params);
     if(!this.rotation) this.rotation = 0;
   }
-  getKey():string{
+  getKey():string{1
     return makeKey(this.block.x,this.block.y)
   }
   getData():ObjectDataType{
