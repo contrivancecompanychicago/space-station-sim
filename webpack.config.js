@@ -12,6 +12,7 @@ var dir_spec = path.resolve(__dirname, 'test');
 
 
 module.exports = {
+    target: 'electron',
     entry: ['babel-polyfill', path.resolve(dir_js, 'main.js')],
     output: {
         path: dir_build,
