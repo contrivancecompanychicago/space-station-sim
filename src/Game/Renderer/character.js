@@ -9,18 +9,24 @@ import CharData from 'Game/Data/Character';
 // let i:any = require('../Data/Character/char1.png')
 
 export default function renderCharacter(state:State, layer:Layer) {
-  state.character.getChars().forEach((char) => {
-    
-    const o = char.position.screen
+	state.character.getChars().forEach((char) => {
+		
+		const o = char.position.screen
 
-    let type = CharData.get(char.type);
-    // FLOWHACK fix image flow
-    let i = type.image;
-    let w = 32*state.view.state.scale
-    let h = 32*state.view.state.scale
-    let x = o.x - w/2;
-    let y = o.y - h/2;
-    layer.drawImage(i, 0, 0, i.width, i.height, x, y, w, h)
+		let type = CharData.get(char.type);
+		// FLOWHACK fix image flow
+		let i = type.image;
+		let w = 32*state.view.state.scale
+		let h = 32*state.view.state.scale
+		let x = o.x - w/2;
+		let y = o.y - h/2;
+		if(state.ui.state.selected.indexOf(char) >-1){
+			// 	//hack clean this up it goes somewhere else im sure
+			layer.shadowColor('yellow')
+			layer.shadowBlur(10);
+		}
+		layer.drawImage(i, 0, 0, i.width, i.height, x, y, w, h)
+		layer.shadowBlur(0);
 
-  });
+	});
 }

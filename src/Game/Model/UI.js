@@ -63,7 +63,7 @@ const initial:UIState = {
   speed:'NORMAL',
   grid: 'FLOOR',
   object: 'TEST',
-  character: 'COOK',
+  character: 'WORKER',
   item: 'TEST'
 }
 

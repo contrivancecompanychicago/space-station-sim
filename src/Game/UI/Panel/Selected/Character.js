@@ -47,7 +47,7 @@ class SelectedCharacterPanel extends React.Component{
         let has = this.props.target.hasTaskType(key);
         
         tasks.push(<div key={index}>
-          <label for={key}>{val.label}</label>
+          <label htmlFor={key}>{val.label}</label>
           <input type="checkbox" name={key} checked={has} onChange={this.toggleTask.bind(this)} />
         </div>)
       })
