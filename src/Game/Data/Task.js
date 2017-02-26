@@ -17,8 +17,8 @@ export type TaskDataType = {
 const tasks:{[id:TaskType]:TaskDataType} = {
   // 'BUILD': {label: 'build'},
   'MAKE': {label: 'make food'},
-  'PREP': {label: 'prep food'},
   'COOK': {label: 'cook'},
+  'PREP': {label: 'prep food'},
   'SERVEFOOD': {label: 'serve food'},
   'SERVEDRINK': {label: 'serve drink'},
   'TAKEORDER': {label: 'take orders'},
@@ -31,8 +31,8 @@ let TaskMap:DataMap<TaskType, TaskDataType> = new DataMap();
 
 export let Tasks:{[id:TaskType]:TaskType} = {
   MAKE:'MAKE',
-  PREP:'PREP',
   COOK:'COOK',
+  PREP:'PREP',
   SERVEFOOD:'SERVEFOOD',
   SERVEDRINK:'SERVEDRINK',
   TAKEORDER:'TAKEORDER',

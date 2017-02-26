@@ -44,10 +44,10 @@ export default class Character{
     this.taskTypes = []
 
     //HACK dummy Data
-    this.assignTaskType('PREP')
-    this.assignTaskType('COOK')
-    this.assignTaskType('SERVEFOOD')
-    this.assignTaskType('SERVEDRINK')
+    // this.assignTaskType('PREP')
+    // this.assignTaskType('COOK')
+    // this.assignTaskType('SERVEFOOD')
+    // this.assignTaskType('SERVEDRINK')
   }
   getData(){
     return CharacterData.get(this.type)

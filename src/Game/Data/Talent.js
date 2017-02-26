@@ -143,6 +143,10 @@ advertising
  - disabled
  - mothers room
 
+ zoning
+ - kitchen zone
+ - assign waiters to zones
+ - waiting line zone
 
 
 */
