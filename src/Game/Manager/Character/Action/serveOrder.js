@@ -23,21 +23,22 @@ export default function* serveOrder(char: Character, order: Order): Generator<*,
       let obj = objectManager.getObjectAtBlock(block);
       if (obj) {
         obj.setCharacter(char)
-        let shortestPathLength = Infinity;
-        let shortestPath: Array<Block>;
-        obj.getAccessBlocks().forEach(b => {
-          let path = state.grid.getPath(char.position.block, b)
-          if (path.length > 0 && path.length < shortestPathLength) { 
-            shortestPathLength = path.length;
-            shortestPath = path;
-          }
-        })
-        if(shortestPath){
-          yield *actions.followPath(char, shortestPath)
-        }else{
-          throw new Error('path not found serveOrder')
-        }
-        // yield * actions.pathToBlock(char, obj.getAccessBlock());
+        // let shortestPathLength = Infinity;
+        // let shortestPath: Array<Block>;
+        // obj.getAccessBlocks().forEach(b => {
+        //   let path = state.grid.getPath(char.position.block, b)
+        //   if (path.length > 0 && path.length < shortestPathLength) { 
+        //     shortestPathLength = path.length;
+        //     shortestPath = path;
+        //   }
+        // })
+        // if(shortestPath){
+        //   yield *actions.followPath(char, shortestPath)
+        // }else{
+        //   throw new Error('path not found serveOrder')
+        // }
+        yield *actions.shortestPathToObject(char, obj);
+        
         obj.removeCharacter()
         obj.removeItem();
       }

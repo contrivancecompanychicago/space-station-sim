@@ -25,6 +25,10 @@ export default class Order{
     return this.customer;
   }
 
+  setItem(item:Item){
+    this.item = item;
+  }
+
 
   worker: ?Character;
   addWorker(char:Character){

@@ -1,6 +1,7 @@
 
 // @flow
 import cook from './cook';
+import make from './make';
 import serveOrder from './serveOrder';
 import serveFood from './serveFood';
 import serveDrink from './serveDrink';
@@ -24,10 +25,12 @@ import wandertoAdjacentTile from './wanderToAdjacentTile';
 import forceUseObjectWithAbility from './forceUseObjectWithAbility';
 import followPath from './followPath';
 import worker from './worker';
+import shortestPathToObject from './shortestPathToObject';
 
 
 
 export default {
+  make,
   cook,
   serveOrder,
   serveFood,
@@ -52,4 +55,5 @@ export default {
   forceUseObjectWithAbility,
   followPath,
   worker,
+  shortestPathToObject,
 };

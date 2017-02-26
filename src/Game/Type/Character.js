@@ -17,7 +17,7 @@ import CharacterData from 'Game/Data/Character'
 import type Task from 'Game/Type/Task'
 import type Item from 'Game/Type/Item'
 
-import type TaskType from 'Game/Type/Task'
+import type {TaskType} from 'Game/Type/Task'
 
 import config from 'Game/config'
 

@@ -75,42 +75,19 @@ export default class CharacterModel {
         }
     }
 
-    spawnUpdate(){
-        //spawn;
-        let objectManager = state.object;
-        let spawnPoints = objectManager.getObjectsWithAbility(Ability.SPAWN)
-        spawnPoints.forEach((sp) => {
-            if (Math.random() < 0.0004) {
-                let char:Character = new Character({ position: sp.block.center, type: 'CUSTOMER' })
-                this.addChar(char);
-            }
-        })
+    // spawnUpdate(){
+    //     //spawn;
+    //     let objectManager = state.object;
+    //     let spawnPoints = objectManager.getObjectsWithAbility(Ability.SPAWN)
+    //     spawnPoints.forEach((sp) => {
+    //         if (Math.random() < 0.0004) {
+    //             let char:Character = new Character({ position: sp.block.center, type: 'CUSTOMER' })
+    //             this.addChar(char);
+    //         }
+    //     })
 
-    }
+    // }
 
-    newAction(char:Character){
-        let task = state.task.getUnassignedTask();
-        if (task) {
-            state.task.assignTask(task.id, char.id);
-            char.task = task.id;
-            char.action = actions.task(char);
-            return;
-        }
-
-        switch (char.type) {
-            case 'COOK':
-                char.action = actions.cook(char);
-                break;
-            case 'WAITER':
-                char.action = actions.waiter(char);
-                break;
-            case 'CUSTOMER':
-                char.action = actions.customer(char);
-                break;
-            default:
-                char.action = actions.worker(char);
-        }
-    }
 
     getChar(id:string):Character{
         return this.state[id];
