@@ -29,21 +29,20 @@ class HiringPanel extends React.Component {
     let chars = []
     if(charManager){
       charManager.getHireableChars().forEach((c) => {
-        let hireWaiter = (e) => {
-          c.type = 'WAITER'
+        let hire = (e) => {
+          c.type = 'WORKER'
           charManager.hireCharacter(c)
           this.forceUpdate()
         }
-        let hireCook = (e) => {
-          c.type = 'COOK'
-          charManager.hireCharacter(c)
-          this.forceUpdate()
-        }
+        // let hireCook = (e) => {
+        //   c.type = 'COOK'
+        //   charManager.hireCharacter(c)
+        //   this.forceUpdate()
+        // }
         let row = <div className="hireable" key={c.id}>
           <CharacterRow character={c} />
           <div className="salary">${c.salary} per week</div>
-          <button onClick={hireWaiter}>hire waiter</button>
-          <button onClick={hireCook}>hire cook</button>
+          <button onClick={hire}>hire</button>
         </div>
 
         chars.push(row)
