@@ -39,15 +39,16 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
  - start in food truck
  - space for 1 oven, fridge and prep table
  - save meta (screenshot, save date, time played etc)
- - genericize finding shortest path code in forceuseobjectwithability and serveorder
  - rewrite renderer
     - move all context manipulation into layer class
- - use shadowblur for highlighting character
+ - use shadowblur for highlighting character (better)
  - use code to upsize images to like 64 or something
 
 ### PRIORITISED:
  - serialize character save
- - cook split into prep and cook for task
+ - autosave/hot dev mode
+
+ - totally clear state on load - orders etc
 
 
 ### TECH DEBT
