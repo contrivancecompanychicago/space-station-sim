@@ -59,6 +59,8 @@ export default class CharacterModel {
         state.player.spendMoney(char.salary)
         this.spawnCharacter(char);
         this.generateHireableChars();
+        state.view.followCharacter(char);
+        state.ui.dispatch({type:'SET_SELECTED', selected:char})
     }
 
     spawnCharacter(char:Character){

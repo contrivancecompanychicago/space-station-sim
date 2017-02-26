@@ -15,16 +15,16 @@ export default function save(savename:string){
 
     localStorage[config.save.prefix+savename] = JSON.stringify(out)
 
-    if(process){
-        let fs = require('fs');
-        let path = require('path')
-        // let filename = path.join(__dirname, config.save.prefix+savename+'.js')
-        let filename = 'saves/'+savename+'.js'
-        // console.log(__dirname, config.save, filename)
-        fs.writeFileSync(
-            filename,
-            JSON.stringify(out)
-            );
-    }
+    // if(process){
+    //     let fs = require('fs');
+    //     let path = require('path')
+    //     // let filename = path.join(__dirname, config.save.prefix+savename+'.js')
+    //     let filename = 'saves/'+savename+'.js'
+    //     // console.log(__dirname, config.save, filename)
+    //     fs.writeFileSync(
+    //         filename,
+    //         JSON.stringify(out)
+    //         );
+    // }
 
 }

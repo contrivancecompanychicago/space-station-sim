@@ -43,13 +43,11 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
  - rewrite renderer
     - move all context manipulation into layer class
  - use shadowblur for highlighting character
+ - use code to upsize images to like 64 or something
 
 ### PRIORITISED:
  - serialize character save
  - cook split into prep and cook for task
- - get electron working
-  - save to disk
-  - use it to make demo saves
 
 
 ### TECH DEBT
