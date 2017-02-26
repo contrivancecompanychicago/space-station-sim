@@ -108,7 +108,7 @@ export default class CharacterModel {
                 char.action = actions.customer(char);
                 break;
             default:
-                char.action = actions.wander(char);
+                char.action = actions.worker(char);
         }
     }
 

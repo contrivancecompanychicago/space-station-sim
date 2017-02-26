@@ -1,6 +1,4 @@
 //@flow
-import engine from 'Game/engine';
-
 import actions from './index'
 
 
@@ -24,46 +22,13 @@ export default function* waiter(char:Character):Generator<*,*,*>{
   // let objs = objectManager.getObjectsWithItemType('TEST')
 
   if(char.hasTaskType(Tasks.SERVEDRINK)){
-    //LOOK FOR COFFEE ORDERS
-    let coffeeOrders = orderManager.state.filter((o) => {
-      return o.type==='COFFEE'
-        && o.status === 'ORDERED'
-        && o.worker === undefined
-    })
-    if(coffeeOrders.length > 0){
 
-      logManager.addLog({
-        message:char.toString()+' making coffee for '+coffeeOrders[0].customer.toString(),
-        type:'EVENT'})
-      char.setStatus('making coffee')
-      yield *actions.makeCoffee(char, coffeeOrders[0])
-
-      char.setStatus('serving coffee')
-      yield *actions.serveOrder(char, coffeeOrders[0]);
-    }
+    yield *actions.serveDrink(char);
   }
 
 
   if(char.hasTaskType(Tasks.SERVEFOOD)){
-    //LOOK FOR COOKED PIZZAS
-    let orders = orderManager.state.filter((o) => {
-      // if(o.worker) return false;
-      // if(o.item && o.type === 'PIZZA') return true;
-      return o.worker == undefined
-        && o.status === 'COOKED'
-    });
-    if(orders.length==0) {
-
-    }else{
-      let order = orders[0];
-
-      char.setStatus('serving order')
-      logManager.addLog({
-        message:char.toString()+' serving to '+order.customer.toString(),
-        type:'EVENT'})
-      yield *actions.serveOrder(char, order);
-
-    }
+    yield *actions.serveFood(char);
   }
 
 

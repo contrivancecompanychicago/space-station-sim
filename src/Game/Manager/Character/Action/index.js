@@ -2,6 +2,8 @@
 // @flow
 import cook from './cook';
 import serveOrder from './serveOrder';
+import serveFood from './serveFood';
+import serveDrink from './serveDrink';
 import cookPizza from './cookPizza';
 import makeCoffee from './makeCoffee';
 import customer from './customer';
@@ -21,12 +23,15 @@ import wander from './wander';
 import wandertoAdjacentTile from './wanderToAdjacentTile';
 import forceUseObjectWithAbility from './forceUseObjectWithAbility';
 import followPath from './followPath';
+import worker from './worker';
 
 
 
 export default {
   cook,
   serveOrder,
+  serveFood,
+  serveDrink,
   cookPizza,
   makeCoffee,
   customer,
@@ -46,4 +51,5 @@ export default {
   wandertoAdjacentTile,
   forceUseObjectWithAbility,
   followPath,
+  worker,
 };
