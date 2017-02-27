@@ -62,7 +62,7 @@ module.exports = function(config) {
     // browsers: ['c:/Program Files (x86)/Google/Chrome/Application/Chrome.exe'],
     // browsers: ['Chrome', 'Firefox'],
 
-    singleRun: true,
+    singleRun: false,
 
   });
 };

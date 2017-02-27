@@ -30,42 +30,40 @@ import UIController from 'Game/Controller/UI'
 import Point from 'Game/Point'
 
 export default class Game{
-  container:HTMLElement
-  engine:any;
-  state: State;
-  manager:Object;
-  constructor(container:HTMLElement){
+	container:HTMLElement
+	engine:any;
+	state: State;
+	manager:Object;
+	constructor(container:HTMLElement){
 
-    window.game = this; //bind to window for debug
+		window.game = this; //bind to window for debug
 
-    this.container = container; //register container
+		this.container = container; //register container
 
-    this.engine = engine; //spawn engine
+		this.engine = engine; //spawn engine
 
-    this.state = state;//make initial reference to state global
-    state.init();
-    console.log('state init');
-    
+		this.state = state;//make initial reference to state global
+		state.init();
 
-    Point.registerState(state);
+		Point.registerState(state);
 
-    engine.register(new CharacterController())
-    engine.register(new TimeController())
-    engine.register(new TutorialController())
-    engine.register(new Renderer(this.state, this.container)); // renderer
-    engine.register(new ViewController(container))
-    engine.register(new UIController(container))
+		engine.register(new CharacterController())
+		engine.register(new TimeController())
+		engine.register(new TutorialController())
+		engine.register(new Renderer(this.state, this.container)); // renderer
+		engine.register(new ViewController(container))
+		engine.register(new UIController(container))
 
-    engine.start();
+		engine.start();
 
-    
-    //LOADGAME hacky
-    // load('quicksave')
+		
+		//LOADGAME hacky
+		// load('quicksave')
 
-  }
+	}
 
-  // destroy(){ //mainly for tests
-  //   this.engine.notify('destroy');
-  // }
+	// destroy(){ //mainly for tests
+	//   this.engine.notify('destroy');
+	// }
 
 }
