@@ -9,7 +9,7 @@ const b = 'BLOCK';
 import Weight from 'Game/Data/Grid/Weight'
 
 const obj:ObjectDataType = {
-  id: 'OVEN',
+  id: 'STONEOVEN',
   label: 'Oven',
   image: require('./stoneoven.png'),
   width: 2,

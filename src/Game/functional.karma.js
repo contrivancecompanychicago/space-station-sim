@@ -99,6 +99,12 @@ describe('functional end to end', () => {
 		yield *canvasDragRect({x:10, y:2}, {x:10, y:10});
 	}))
 
+	it('should make some objects', testGen(function *() {
+		expect(clickSelector('.button-mode-object')).toBe(true)
+		yield sleep(100);
+		expect(clickSelector('.button-object-STONEOVEN')).toBe(true)
+	}))
+
 
 
 	it('should wait open', (done) => {

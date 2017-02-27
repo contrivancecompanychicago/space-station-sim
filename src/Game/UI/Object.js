@@ -12,7 +12,7 @@ class Objekt extends React.Component {
     const buttons = [];
     // keys(Objects).forEach((key) => {
     Objects.each((key, val)=> {
-      buttons.push(<Button type="object" selected={key===this.props.object} key={key} data={val} click={()=>this.props.click(key)} />);
+      buttons.push(<Button type="object" selected={key===this.props.object} key={key} id={key} data={val} click={()=>this.props.click(key)} />);
     });
 
     return <div className="object panel">
