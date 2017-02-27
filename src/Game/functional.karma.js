@@ -126,6 +126,37 @@ describe('functional end to end', () => {
 		yield sleep(100);
 		canvasClickBlock(new Block({x:8, y: 3}))
 	}))
+	it('should make a prep table', testGen(function *() {
+		yield sleep(100);
+		expect(clickSelector('.button-object-TABLE3')).toBe(true)
+		canvasClickBlock(new Block({x:9, y: 3}))
+		
+	}))
+	it('should make a line of prep table', testGen(function *() {
+		canvasMouseMove(new Block({x:9, y: 5}).center);
+		yield sleep(100);
+		expect(clickSelector('button.rotate')).toBe(true)
+		yield sleep(100);
+		expect(clickSelector('button.rotate')).toBe(true)
+		yield *canvasDragRect({x:9, y:5}, {x:6, y:5})
+
+	}))
+	it('should make another oven', testGen(function *() {
+		expect(clickSelector('.button-object-STONEOVEN')).toBe(true)
+		canvasMouseMove(new Block({x:4, y: 7}).center);
+		yield sleep(100);
+		expect(clickSelector('button.rotate')).toBe(true)
+		yield sleep(100);
+		expect(clickSelector('button.rotate')).toBe(true)
+		canvasClickBlock(new Block({x:4, y: 7}))
+	}))
+	it('should make some serve tables', testGen(function *() {
+		expect(clickSelector('.button-object-TABLE4')).toBe(true)
+		canvasMouseMove(new Block({x:6, y: 7}).center);
+		
+		yield *canvasDragRect({x:6, y:7}, {x:9, y:7})
+
+	}))
 
 
 
@@ -160,7 +191,7 @@ function* canvasDragRect(from:{x:number, y:number}, to:{x:number, y:number}):Gen
 		y: toBlock.center.y-fromBlock.center.y
 	}
 	// console.log(diff)
-	for(let i = 0; i<1; i+=0.1){ //percentages
+	for(let i = 0; i<1; i+=0.2){ //percentages
 
 		let pos = {
 			x: fromBlock.center.x + (diff.x*i),
