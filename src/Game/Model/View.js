@@ -53,7 +53,7 @@ export default class ViewModel{
   type: string;
   state: ViewState;
 
-  container: Object;
+  // container: Object;
   dragging: boolean;
   down: {[id:number]:boolean};
   selection: Selection;
@@ -79,12 +79,14 @@ export default class ViewModel{
     this.state = state
     this.listeners = []
     //defaults(state, initial); //WHYYY
-  }
-  init(){
-    let container = window.game.container; //HACK
-    this.container = container.getElementsByTagName('canvas')[0];
     this.dragging = false;
     this.down = {};
+  }
+  init(){
+    // console.log('"INIT CALLED');
+    
+    // let container = window.game.container; //HACK
+    // this.container = container.getElementsByTagName('canvas')[0];
   }
   centerOnPoint(point:Point){
     //HACK TODO

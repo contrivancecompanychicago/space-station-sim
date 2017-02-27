@@ -41,6 +41,7 @@ let proposal: State;
 export default class Proposer {
   propose(state: State) {
     proposal = new State();
+    proposal.init();
     let sel = state.view.state.selection
     if (sel) {
       switch (state.ui.state.mode) {

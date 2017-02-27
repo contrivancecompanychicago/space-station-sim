@@ -43,6 +43,9 @@ export default class Game{
     this.engine = engine; //spawn engine
 
     this.state = state;//make initial reference to state global
+    state.init();
+    console.log('state init');
+    
 
     Point.registerState(state);
 
@@ -53,7 +56,6 @@ export default class Game{
     engine.register(new ViewController(container))
     engine.register(new UIController(container))
 
-    state.init();
     engine.start();
 
     

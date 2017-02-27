@@ -28,6 +28,9 @@ export class State {
   view: ViewModel
 
   constructor() {
+  }
+
+  init() {
     this.character = new CharacterModel();
     this.grid = new GridModel();
     this.item = new ItemModel();
@@ -40,10 +43,7 @@ export class State {
     // this.tutorial = new TutorialModel();
     this.ui = new UIModel();
     this.view = new ViewModel();
-  }
 
-  init() {
-    this.view.init();
   }
 }
 
