@@ -16,6 +16,7 @@ export default class CharacterController{
             if (!char.action) {
                 this.newAction(char);
             }
+            // FLOWHACK action is set in previous if
             if (char.action.next().done) { ///CALLS NEXT HERE
                 this.newAction(char);
             }

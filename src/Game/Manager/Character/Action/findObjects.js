@@ -8,13 +8,12 @@ import state from 'Game/state'
 
 export default function* findObjects(filter:(obj:Obj)=>boolean):Generator<*,Array<Obj>,*>{
   let objectManager = state.object
-  let obj:Obj
   
-  while(!obj){
+  let objs:Array<Obj>  = []
+  
+  while(objs.length == 0){
     yield;
-    let objs = objectManager.getObjects().filter(filter);
-    if(objs.length>0) return objs
+    objs = objectManager.getObjects().filter(filter);
   }
-  return obj;
-
+  return objs
 }

@@ -3,6 +3,7 @@ import type Character from 'Game/Type/Character'
 import type Obj from 'Game/Type/Object'
 import state from 'Game/state'
 import actions from './index'
+import type Block from 'Game/Block'
 
 export default function* shortestPathToObject(char: Character, obj: Obj): Generator<*,*,*>{
 	let shortestPathLength = Infinity;

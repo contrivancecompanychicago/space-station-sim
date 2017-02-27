@@ -20,7 +20,7 @@ export default class OrderModel{
   clear(){
     this.state = [];
   }
-  load(obj:Array){
+  load(obj:Array<Object>){
     this.state = obj
   }
 }

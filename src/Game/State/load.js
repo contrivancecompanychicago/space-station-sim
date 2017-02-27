@@ -18,7 +18,7 @@ export default function loadGame(savename:string){
 
   let save = localStorage[config.save.prefix+savename];
   if(!save) return;
-  let data:{grid:Object, object:Object, character:Object} = JSON.parse(save);
+  let data:{grid:Object, object:Object, character:Object, item:Object} = JSON.parse(save);
   
   
 
@@ -42,7 +42,7 @@ export default function loadGame(savename:string){
 
   state.grid.load(grid)
   state.object.load(object)
-  state.item.load();
+  state.item.load(data.item);
   state.character.load(data.character)
 
 }

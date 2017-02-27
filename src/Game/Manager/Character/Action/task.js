@@ -13,14 +13,17 @@ import state from 'Game/state'
 import Grid from 'Game/Type/Grid'
 
 export default function* task(char:Character):Generator<*,*,*>{
-  let task = state.task.getTask(char.task);
-  yield *actions.moveToBlock(char, task.block);
-  while(task.progress<1){
-    task.progress += time.deltaTime;
-    yield;
-  }
-  //resolve task
+  let task = char.getTask();
+  if(task){
+    yield *actions.moveToBlock(char, task.block);
+    while(task.progress<1){
+      task.progress += time.deltaTime;
+      yield;
+    }
+    //resolve task
 
-  state.grid.addNode(task.block.x, task.block.y, new Grid({type: task.grid, rotation:0}));
-  state.task.finishTask(char.task);
+    state.grid.addNode(task.block.x, task.block.y, new Grid({type: task.grid, rotation:0}));
+    state.task.finishTask(task.id);
+
+  }
 }

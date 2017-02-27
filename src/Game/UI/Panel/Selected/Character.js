@@ -35,7 +35,7 @@ class SelectedCharacterPanel extends React.Component{
 		}
 
 		toggleTask(e:Event){
-			// console.log(e.target.name);
+			// FLOWHACK whatever.
 			this.props.target.toggleTaskType(e.target.name)
 			this.forceUpdate()
 		}

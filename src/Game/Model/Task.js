@@ -74,7 +74,7 @@ export default class TaskModel{
   clean() {
     // keys(this.state).forEach(key => {
     //   let task = this.state[key];
-    this.getTasks().forEach(t => {
+    this.getTasks().forEach(task => {
       if(task.worker){
         let char = state.character.getChar(task.worker);
         if(char && char.task != task.id){

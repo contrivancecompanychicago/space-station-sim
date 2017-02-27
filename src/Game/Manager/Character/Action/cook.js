@@ -29,20 +29,25 @@ export default function* cook(char: Character): Generator<*,*,*>{
 		order.addWorker(char);
 		let item = order.item
 		let obj = state.object.getObjectAtBlock(item.position.block)
-		obj.setCharacter(char)
-		yield *actions.shortestPathToObject(char, obj);
-		obj.removeCharacter()
-		obj.removeItem();
-		char.addItem(item);
-		
-		yield *actions.forceUseObjectWithAbility(char, Ability.OVEN)
-		yield *actions.idle(char, 2);
-		item.type = 'PIZZA'
-		obj = yield *actions.forceUseObjectWithAbility(char, Ability.SERVE_TABLE)
-		obj.addItem(item);
-		// char.item = null;
-		char.removeItem(item);
-		order.status = "COOKED"
+		if(obj){
+			obj.setCharacter(char)
+			yield *actions.shortestPathToObject(char, obj);
+			obj.removeCharacter()
+			obj.removeItem();
+			char.addItem(item);
+			
+			yield *actions.forceUseObjectWithAbility(char, Ability.OVEN)
+			yield *actions.idle(char, 2);
+			item.type = 'PIZZA'
+			obj = yield *actions.forceUseObjectWithAbility(char, Ability.SERVE_TABLE)
+			obj.addItem(item);
+			// char.item = null;
+			char.removeItem(item);
+			order.status = "COOKED"
+
+		}else{
+			throw new Error('cant find object to pick item up from')
+		}
 		order.removeWorker(char)
 
 	}
