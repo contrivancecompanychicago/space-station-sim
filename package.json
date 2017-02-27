@@ -32,7 +32,8 @@
   },
   "homepage": "https://github.com/digijin/space-station-sim",
   "devDependencies": {
-    "babel-jest": "^18.0.0"
+    "babel-jest": "^18.0.0",
+    "sizzle": "^2.3.3"
   },
   "dependencies": {
     "babel-core": "^6.7.6",

@@ -16,7 +16,7 @@ module.exports = function(config) {
     // {pattern: 'spec/fixtures/*.html', watched: true, included: false, served: true},
       // 'spec/fixtures/*.html',
       'node_modules/babel-polyfill/dist/polyfill.js',
-      'src/**/*.spec.js',
+      'src/**/*.karma.js',
     ],
 
     // list of files to exclude
@@ -26,7 +26,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        '**/*spec.js*': ['webpack', 'sourcemap']
+        '**/*karma.js*': ['webpack', 'sourcemap']
     },
 
     webpack: webpackConf,
@@ -62,7 +62,7 @@ module.exports = function(config) {
     // browsers: ['c:/Program Files (x86)/Google/Chrome/Application/Chrome.exe'],
     // browsers: ['Chrome', 'Firefox'],
 
-    singleRun: false,
+    singleRun: true,
 
   });
 };
