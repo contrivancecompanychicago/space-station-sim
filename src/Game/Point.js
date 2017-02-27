@@ -37,6 +37,7 @@ export default class Point{
   }
 
   get screen():{x:number, y:number}{
+    if(!state) throw new Error('Point state not registered')
     return worldToScreen({x:this.x, y:this.y}, state);
   }
 
@@ -50,6 +51,7 @@ export default class Point{
   }
 
   static fromScreen(x:number,y:number):Point{
+    if(!state) throw new Error('Point state not registered')
     let pos: {x: number, y: number} = screenToWorld({x,y}, state);
     return new Point(pos);
   }

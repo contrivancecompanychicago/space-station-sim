@@ -14,6 +14,8 @@ import type {Selection} from 'Game/Type/Selection'
 
 import type Character from 'Game/Type/Character'
 
+import state from 'Game/state'
+
 type Event = {
   wheelDelta:number,
   pageX:number,
@@ -170,6 +172,21 @@ export default class ViewModel{
     this.state.selection = null;
 
   }
+
+  mouseMove(e:Event) {
+    let point = Point.fromScreen(e.pageX, e.pageY);
+    if(this.dragging){
+      
+      let delta = {x:e.pageX-this.lastPos.x, y: e.pageY-this.lastPos.y};
+      this.lastPos = {x: e.pageX, y:e.pageY};
+      this.state.offset.x += delta.x / this.state.scale;
+      this.state.offset.y += delta.y / this.state.scale;
+    }else if(this.selecting){
+      this.updateSelection(e);
+    }
+    this.state.mousePosition = point;
+  }
+
   pointToBlock(point:Point):{x:number, y:number} {
     return {
       x: Math.floor(point.x/config.grid.width),

@@ -80,17 +80,18 @@ export default class ViewController{
   }
 
   onMouseMove(e:Event) {
-    let point = Point.fromScreen(e.pageX, e.pageY);
-    if(state.view.dragging){
+    state.view.mouseMove(e);
+    // let point = Point.fromScreen(e.pageX, e.pageY);
+    // if(state.view.dragging){
       
-      let delta = {x:e.pageX-state.view.lastPos.x, y: e.pageY-state.view.lastPos.y};
-      state.view.lastPos = {x: e.pageX, y:e.pageY};
-      state.view.state.offset.x += delta.x / state.view.state.scale;
-      state.view.state.offset.y += delta.y / state.view.state.scale;
-    }else if(state.view.selecting){
-      state.view.updateSelection(e);
-    }
-    state.view.state.mousePosition = point;
+    //   let delta = {x:e.pageX-state.view.lastPos.x, y: e.pageY-state.view.lastPos.y};
+    //   state.view.lastPos = {x: e.pageX, y:e.pageY};
+    //   state.view.state.offset.x += delta.x / state.view.state.scale;
+    //   state.view.state.offset.y += delta.y / state.view.state.scale;
+    // }else if(state.view.selecting){
+    //   state.view.updateSelection(e);
+    // }
+    // state.view.state.mousePosition = point;
   }
 
   onMouseWheel(e:Object){
