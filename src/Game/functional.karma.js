@@ -34,9 +34,13 @@ let container:HTMLDivElement
 let game:Game
 let canvas
 
+let gap = 200
+
 describe('functional end to end', () => {
 
 	beforeAll(function() {
+		if(container)
+			document.body.removeChild(container)
 
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = 999999;
 		//jasmine.getEnv().defaultTimeoutInterval = 60*1000;
@@ -47,7 +51,6 @@ describe('functional end to end', () => {
 		game = new Game(container);
 	});
 	afterAll(function(){
-		document.body.removeChild(container)
 	})
 	it('should wait to start', (done) => {
 		setTimeout(() => {
@@ -101,42 +104,42 @@ describe('functional end to end', () => {
 
 	it('should make some stone oven', testGen(function *() {
 		expect(clickSelector('.button-mode-object')).toBe(true)
-		yield sleep(100);
+		yield sleep(gap);
 		expect(clickSelector('.button-object-STONEOVEN')).toBe(true)
-		yield sleep(100);
+		yield sleep(gap);
 		canvasMouseMove(new Block({x:3, y: 3}).center);
-		yield sleep(100);
+		yield sleep(gap);
 		canvasClickBlock(new Block({x:3, y: 3}))
 	}))
 
 	it('should make fridge', testGen(function *() {
-		yield sleep(100);
+		yield sleep(gap);
 		expect(clickSelector('.button-object-FRIDGE')).toBe(true)
-		yield sleep(100);
+		yield sleep(gap);
 		canvasMouseMove(new Block({x:6, y: 3}).center);
-		yield sleep(100);
+		yield sleep(gap);
 		expect(clickSelector('button.rotate')).toBe(true)
-		yield sleep(100);
+		yield sleep(gap);
 		expect(clickSelector('button.rotate')).toBe(true)
-		yield sleep(100);
+		yield sleep(gap);
 		canvasClickBlock(new Block({x:6, y: 3}))
 	}))
 	it('should make another fridge', testGen(function *() {
 		canvasMouseMove(new Block({x:8, y: 3}).center);
-		yield sleep(100);
+		yield sleep(gap);
 		canvasClickBlock(new Block({x:8, y: 3}))
 	}))
 	it('should make a prep table', testGen(function *() {
-		yield sleep(100);
+		yield sleep(gap);
 		expect(clickSelector('.button-object-TABLE3')).toBe(true)
 		canvasClickBlock(new Block({x:9, y: 3}))
 		
 	}))
 	it('should make a line of prep table', testGen(function *() {
 		canvasMouseMove(new Block({x:9, y: 5}).center);
-		yield sleep(100);
+		yield sleep(gap);
 		expect(clickSelector('button.rotate')).toBe(true)
-		yield sleep(100);
+		yield sleep(gap);
 		expect(clickSelector('button.rotate')).toBe(true)
 		yield *canvasDragRect({x:9, y:5}, {x:6, y:5})
 
@@ -144,9 +147,9 @@ describe('functional end to end', () => {
 	it('should make another oven', testGen(function *() {
 		expect(clickSelector('.button-object-STONEOVEN')).toBe(true)
 		canvasMouseMove(new Block({x:4, y: 7}).center);
-		yield sleep(100);
+		yield sleep(gap);
 		expect(clickSelector('button.rotate')).toBe(true)
-		yield sleep(100);
+		yield sleep(gap);
 		expect(clickSelector('button.rotate')).toBe(true)
 		canvasClickBlock(new Block({x:4, y: 7}))
 	}))
@@ -155,9 +158,13 @@ describe('functional end to end', () => {
 		canvasMouseMove(new Block({x:6, y: 7}).center);
 		
 		yield *canvasDragRect({x:6, y:7}, {x:9, y:7})
-
 	}))
-
+	it('should make some spawn point', testGen(function *() {
+		expect(clickSelector('.button-object-TEST')).toBe(true)
+		canvasMouseMove(new Block({x:0, y: 3}).center);
+		
+		yield *canvasDragRect({x:0, y:3}, {x:0, y:7})
+	}))
 
 
 
