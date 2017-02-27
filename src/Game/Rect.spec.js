@@ -36,10 +36,11 @@ describe('Rect', () => {
   });
 
   it('should take two points', () => {
-    let p1 = new Point(1,2);
-    let p2 = new Point(3,4);
+    let p1 = new Point({x: 1, y:2});
+    let p2 = new Point({x: 3, y:4});
 
     let rect = new Rect(p1, p2);
+    
     expect(rect.l).toBe(1);
     expect(rect.t).toBe(2);
     expect(rect.r).toBe(3);

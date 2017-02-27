@@ -4,7 +4,7 @@ import Proposer from 'Game/Action/Proposer';
 import {keys} from 'lodash';
 import Point from 'Game/Point';
 
-import {State} from state
+import {State} from 'Game/state'
 
 let proposer = new Proposer();
 let state;
@@ -20,6 +20,8 @@ describe('Game/Action/Proposer', () => {
     it('should return a grid object', () => {
       let p = proposer.propose(state);
       expect(p.grid).toBeDefined();
+      console.log(p.grid);
+      
       expect(typeof p.grid.state['0_0']).toBe('object');
       expect(typeof p.grid.state['3_3']).toBe('object');
     });

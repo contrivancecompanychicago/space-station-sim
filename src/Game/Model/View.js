@@ -210,11 +210,12 @@ export function selection(start:Object, end:Object, button:number):Selection{
     start: start,
     end: end,
     button: button,
-    rect: new Rect({
-      t: Math.min(end.y, start.y),
-      r: Math.max(end.x, start.x),
-      b: Math.max(end.y, start.y),
-      l: Math.min(end.x, start.x),
-    })
+    // rect: new Rect({
+    //   t: Math.min(end.y, start.y),
+    //   r: Math.max(end.x, start.x),
+    //   b: Math.max(end.y, start.y),
+    //   l: Math.min(end.x, start.x),
+    // })
+    rect: new Rect(start, end)
   }
 }
