@@ -51,6 +51,7 @@ describe('functional end to end', () => {
 	})
 	it('should wait to start', (done) => {
 		setTimeout(() => {
+			canvas = container.getElementsByTagName('canvas')[0];
 			done();
 		}, 1000)
 	})
@@ -74,17 +75,18 @@ describe('functional end to end', () => {
 		clickSelector('.button-mode-grid')
 		clickSelector('.button-grid-Tiles')
 	})
-	it('should draw some tiles', () => {
-		canvas = container.getElementsByTagName('canvas')[0];
+	it('should insta-draw some tiles', () => {
 		expect(canvas).toBeDefined();
 		mouseEvent(canvas, 'mousedown', {button:0, pageX:1, pageY:1});
 		mouseEvent(canvas, 'mouseup', {button:0, pageX:config.grid.width * 10, pageY:config.grid.height * 10});
 	});
 	it('should draw some floor', testGen(function *() {
 		clickSelector('.button-grid-Floor');
-		yield *canvasDragRect({x:1, y:1}, {x:11, y:11});
-
-
+		yield *canvasDragRect({x:0, y:0}, {x:16, y:16});
+	}))
+	it('should draw some walls', testGen(function *() {
+		clickSelector('.button-grid-Wall');
+		yield *canvasDragRect({x:2, y:2}, {x:2, y:10});
 	}))
 
 
