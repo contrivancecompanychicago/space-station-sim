@@ -8,7 +8,12 @@ import sizzle from 'sizzle'
 
 import testGen from 'jasmine-es6-generator'
 
+import Block from 'Game/Block'
 
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 let mouseEvent = function(target, eventName, params){
   var event = document.createEvent('Event');
   extend(event, params);
@@ -25,10 +30,11 @@ let clickSelector = function(selector:string):boolean{
 	return false;
 }
 
+let container:HTMLDivElement
+let game:Game
+let canvas
+
 describe('functional end to end', () => {
-	let container:HTMLDivElement
-	let game:Game
-	let canvas
 
 	beforeAll(function() {
 
@@ -76,13 +82,8 @@ describe('functional end to end', () => {
 	});
 	it('should draw some floor', testGen(function *() {
 		clickSelector('.button-grid-Floor');
-		mouseEvent(canvas, 'mousemove', {button:0, pageX:config.grid.width * 1.5, pageY:config.grid.height * 1.5});	
-		mouseEvent(canvas, 'mousedown', {button:0, pageX:config.grid.width * 1.5, pageY:config.grid.height * 1.5});
-		for(let i = 2; i<9; i++){
-			mouseEvent(canvas, 'mousemove', {button:0, pageX:config.grid.width * i, pageY:config.grid.height * i});	
-			yield sleep(100)
-		}
-		mouseEvent(canvas, 'mouseup', {button:0, pageX:config.grid.width * 9, pageY:config.grid.height * 9});
+		yield *canvasDragRect({x:1, y:1}, {x:11, y:11});
+
 
 	}))
 
@@ -96,6 +97,27 @@ describe('functional end to end', () => {
 
 })
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+
+//TODO REFACTOR
+function* canvasDragRect(from:{x:number, y:number}, to:{x:number, y:number}):Generator<*,*,*>{
+	let fromBlock = new Block(from)
+	let toBlock = new Block(to)
+	mouseEvent(canvas, 'mousemove', {button:0, pageX:fromBlock.center.x, pageY:fromBlock.center.y});	
+	mouseEvent(canvas, 'mousedown', {button:0, pageX:fromBlock.center.x, pageY:fromBlock.center.y});	
+	let diff = {
+		x: toBlock.center.x-fromBlock.center.x, 
+		y: toBlock.center.y-fromBlock.center.y
+	}
+	console.log(diff)
+	for(let i = 0; i<1; i+=0.1){ //percentages
+
+		let pos = {
+			x: fromBlock.center.x + (diff.x*i),
+			y: fromBlock.center.y + (diff.y*i)
+		}
+		
+		mouseEvent(canvas, 'mousemove', {button:0, pageX:pos.x, pageY:pos.y});	
+		yield sleep(50)
+	}
+	mouseEvent(canvas, 'mouseup', {button:0, pageX:toBlock.center.x, pageY:toBlock.center.y});
 }
