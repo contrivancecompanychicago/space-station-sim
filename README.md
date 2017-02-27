@@ -52,6 +52,8 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
 
  - ui button log those without keys and add keys to all for css selectability
 
+ - fat gloved chef hand cursor with point press and thumbsup
+
 ### PRIORITISED:
  - serialize character save
  - autosave/hot dev mode

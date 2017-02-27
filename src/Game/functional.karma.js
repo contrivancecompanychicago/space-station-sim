@@ -99,22 +99,55 @@ describe('functional end to end', () => {
 		yield *canvasDragRect({x:10, y:2}, {x:10, y:10});
 	}))
 
-	it('should make some objects', testGen(function *() {
+	it('should make some stone oven', testGen(function *() {
 		expect(clickSelector('.button-mode-object')).toBe(true)
 		yield sleep(100);
 		expect(clickSelector('.button-object-STONEOVEN')).toBe(true)
+		yield sleep(100);
+		canvasMouseMove(new Block({x:3, y: 3}).center);
+		yield sleep(100);
+		canvasClickBlock(new Block({x:3, y: 3}))
 	}))
+
+	it('should make fridge', testGen(function *() {
+		yield sleep(100);
+		expect(clickSelector('.button-object-FRIDGE')).toBe(true)
+		yield sleep(100);
+		canvasMouseMove(new Block({x:6, y: 3}).center);
+		yield sleep(100);
+		expect(clickSelector('button.rotate')).toBe(true)
+		yield sleep(100);
+		expect(clickSelector('button.rotate')).toBe(true)
+		yield sleep(100);
+		canvasClickBlock(new Block({x:6, y: 3}))
+	}))
+	it('should make another fridge', testGen(function *() {
+		canvasMouseMove(new Block({x:8, y: 3}).center);
+		yield sleep(100);
+		canvasClickBlock(new Block({x:8, y: 3}))
+	}))
+
 
 
 
 	it('should wait open', (done) => {
 		setTimeout(() => {
 			done();
-		}, 1000)
+		}, 3000)
 	})
 
 })
 
+function canvasMouseMove(pos:{x:number, y:number}){
+	mouseEvent(canvas, 'mousemove', {button:0, pageX:pos.x, pageY:pos.y});	
+}
+
+function canvasClickBlock(block:Block){
+	// debugger;
+	// mouseEvent(canvas, 'mousemove', {button:0, pageX:block.center.x, pageY:block.center.y});	
+	mouseEvent(canvas, 'mousedown', {button:0, pageX:block.center.x, pageY:block.center.y});	
+	mouseEvent(canvas, 'mouseup', {button:0, pageX:block.center.x, pageY:block.center.y});
+}
 
 //TODO REFACTOR
 function* canvasDragRect(from:{x:number, y:number}, to:{x:number, y:number}):Generator<*,*,*>{
