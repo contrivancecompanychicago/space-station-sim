@@ -11,7 +11,7 @@ class Grid extends React.Component {
     const buttons = [];
     // keys(Grids).forEach((key) => {
     GridData.each((key, val) => {
-      buttons.push(<Button type="grid" selected={key===this.props.grid} key={key} data={val} click={()=>this.props.click(key)} />);
+      buttons.push(<Button type="grid" selected={key===this.props.grid} key={key} id={key} data={val} click={()=>this.props.click(key)} />);
     });
 
     return <div className="grid panel">

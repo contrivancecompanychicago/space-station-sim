@@ -50,6 +50,8 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
 
  - add timewarp 
 
+ - ui button log those without keys and add keys to all for css selectability
+
 ### PRIORITISED:
  - serialize character save
  - autosave/hot dev mode

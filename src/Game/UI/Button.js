@@ -12,7 +12,11 @@ type Props = {
 class Button extends React.Component{
   props:Props
   render(){
-    const id = 'button-'+this.props.type+'-'+this.props.data.label;
+    let id = 'button-'+this.props.type+'-'+this.props.data.label;
+    if(this.props.id){
+      // TODO log no key and depreciate
+      id = 'button-'+this.props.type+'-'+this.props.id;
+    }
     let className = this.props.selected?'selected':'';
     className += ' '+id;
     let image = "";

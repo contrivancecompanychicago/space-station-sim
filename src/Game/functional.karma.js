@@ -73,7 +73,7 @@ describe('functional end to end', () => {
 	})
 	it('should open grid panel', () => {
 		clickSelector('.button-mode-grid')
-		clickSelector('.button-grid-Tiles')
+		expect(clickSelector('.button-grid-TILES1')).toBe(true)
 	})
 	it('should insta-draw some tiles', () => {
 		expect(canvas).toBeDefined();
@@ -81,12 +81,14 @@ describe('functional end to end', () => {
 		mouseEvent(canvas, 'mouseup', {button:0, pageX:config.grid.width * 10, pageY:config.grid.height * 10});
 	});
 	it('should draw some floor', testGen(function *() {
-		clickSelector('.button-grid-Floor');
+		expect(clickSelector('.button-grid-Floor')).toBe(true)
 		yield *canvasDragRect({x:0, y:0}, {x:16, y:16});
 	}))
 	it('should draw some walls', testGen(function *() {
 		clickSelector('.button-grid-Wall');
 		yield *canvasDragRect({x:2, y:2}, {x:2, y:10});
+		yield *canvasDragRect({x:2, y:2}, {x:10, y:2});
+		yield *canvasDragRect({x:10, y:2}, {x:10, y:10});
 	}))
 
 
@@ -110,7 +112,7 @@ function* canvasDragRect(from:{x:number, y:number}, to:{x:number, y:number}):Gen
 		x: toBlock.center.x-fromBlock.center.x, 
 		y: toBlock.center.y-fromBlock.center.y
 	}
-	console.log(diff)
+	// console.log(diff)
 	for(let i = 0; i<1; i+=0.1){ //percentages
 
 		let pos = {
