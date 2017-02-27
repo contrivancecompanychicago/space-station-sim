@@ -26,13 +26,13 @@ class Tutorial extends React.Component {
     }
 }
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state:Object, props:Object):Object {
   return {
     tutorial: state.tutorial,
   };
 }
 
-function mapDispatchToProps(dispatch, props) {
+function mapDispatchToProps(dispatch:Function, props:Object):{} {
   return {
   };
 }

@@ -28,12 +28,12 @@ class Panel extends React.Component {
   }
 }
 
-function mapStateToProps(state:UIState, props) {
+function mapStateToProps(state:UIState, props:Object):Object {
   return {
   };
 }
 
-function mapDispatchToProps(dispatch, props) {
+function mapDispatchToProps(dispatch:Function, props:Object):Object {
   return {
     click: (type) => {
       dispatch({type:type});

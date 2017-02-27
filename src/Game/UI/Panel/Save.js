@@ -49,12 +49,12 @@ class SavePanel extends React.Component {
   }
 }
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state:Object, props:Object):Object {
   return {
   };
 }
 
-function mapDispatchToProps(dispatch, props) {
+function mapDispatchToProps(dispatch:Function, props:Object):Object {
   return {
     close: () => {
       dispatch({type:'TOGGLE_SAVE_PANEL'});

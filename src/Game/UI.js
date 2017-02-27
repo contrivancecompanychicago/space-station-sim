@@ -83,7 +83,7 @@ class UI extends React.Component {
   }
 }
 
-function mapStateToProps(state, props):{} {
+function mapStateToProps(state:Object, props:Object):{} {
   return {
     mode: state.mode,
     panel: state.panel,
@@ -92,7 +92,7 @@ function mapStateToProps(state, props):{} {
   };
 }
 
-function mapDispatchToProps(dispatch, props): {click:(id:string) => void} {
+function mapDispatchToProps(dispatch:Function, props:Object): {click:(id:string) => void} {
   return {
     click: (id) => {
       dispatch({type:'CHANGE_MODE'});

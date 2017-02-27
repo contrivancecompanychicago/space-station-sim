@@ -20,7 +20,7 @@ import type {UIState} from 'Game/Model/UI'
 //   return state;
 // }
 
-export default (combineReducers({
+export default combineReducers({
   mode,
   grid,
   item,
@@ -33,4 +33,4 @@ export default (combineReducers({
   selected,
   tutorial,
   highlight,
-}):UIState);
+});

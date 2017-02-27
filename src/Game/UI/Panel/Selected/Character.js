@@ -70,12 +70,12 @@ class SelectedCharacterPanel extends React.Component{
 }
 
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state:Object, props:Object):Object {
 	return {
 	};
 }
 
-function mapDispatchToProps(dispatch, props:Props) {
+function mapDispatchToProps(dispatch:Function, props:Props):Object {
 	return {
 		center: () => {
 			
