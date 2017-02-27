@@ -22,6 +22,7 @@ import Table5 from './Object/Table5';
 import Chair from './Object/Chair';
 import Chair2 from './Object/Chair2';
 import CashRegister from './Object/CashRegister';
+import StoneOven from './Object/StoneOven'
 
 export type ObjectType =
 'BED'|
@@ -75,6 +76,7 @@ Objs[Table5.id] = Table5;
 // Objs[Chair.id] = Chair;
 Objs[Chair2.id] = Chair2;
 Objs[CashRegister.id] = CashRegister;
+Objs[StoneOven.id] = StoneOven;
 
 // export default Objs;
 
