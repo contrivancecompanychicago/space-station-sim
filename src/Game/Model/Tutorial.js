@@ -19,4 +19,15 @@ export default class TutorialModel{
     //         }
     //     }
     // }
+
+    save(){
+
+    }
+    clear(){
+
+    }
+    load(){
+        
+    }
+
 }

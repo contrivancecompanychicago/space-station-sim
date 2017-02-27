@@ -15,4 +15,13 @@ export default class TimeModel {
         this.state = state
         this.deltaTime = 0;
     }
+    save(){
+        return this.state
+    }
+    clear(){
+        this.state = {currentTime:0}
+    }
+    load(obj:Object){
+        this.state = obj
+    }
 }

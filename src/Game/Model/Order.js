@@ -14,4 +14,13 @@ export default class OrderModel{
   getOrders():Array<Order>{
     return this.state;
   }
+  save(){
+    return this.state;
+  }
+  clear(){
+    this.state = [];
+  }
+  load(obj:Array){
+    this.state = obj
+  }
 }

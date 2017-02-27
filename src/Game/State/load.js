@@ -35,6 +35,10 @@ export default function loadGame(savename:string){
   state.character.clear();
   state.object.clear();
   state.grid.clear();
+  state.order.clear();
+  state.player.clear();
+  state.task.clear();
+  state.time.clear();
 
   state.grid.load(grid)
   state.object.load(object)

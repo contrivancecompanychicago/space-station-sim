@@ -84,5 +84,15 @@ export default class TaskModel{
     });
   }
 
+  save(){
+    return this.state
+  }
+  clear() {
+    this.state = {}
+  }
+  load(obj:Object){
+    this.state = obj
+  }
+
 
 }

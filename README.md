@@ -48,8 +48,6 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
  - serialize character save
  - autosave/hot dev mode
 
- - totally clear state on load - orders etc
-
 
 ### TECH DEBT
 

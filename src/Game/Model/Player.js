@@ -22,4 +22,14 @@ export default class PlayerModel{
         this.state.money += amount
     }
 
+    save(){
+        return this.state
+    }
+    clear(){
+        this.state = {money:10001}
+    }
+    load(obj:Object){
+        this.state = obj
+    }
+
 }
