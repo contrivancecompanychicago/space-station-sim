@@ -1,4 +1,4 @@
-import Item from './Item';
+import Item from 'Game/Model/Item';
 import {keys} from 'lodash';
 
 import ItemData from 'Game/Data/Item';
@@ -12,7 +12,7 @@ let dummyItem = {
   type: keys(ItemData)[0]
 };
 
-describe('Game/Manager/Item', () => {
+describe('Game/Model/Item', () => {
   beforeEach(() => {
     state = {};
     item = new Item(state);

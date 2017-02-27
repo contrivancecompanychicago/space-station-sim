@@ -1,10 +1,10 @@
-import GridManager from 'Game/Manager/Grid';
+import GridManager from 'Game/Model/Grid';
 import Grid from 'Game/Type/Grid';
 import { keys } from 'lodash';
 
 let gridManager;
 let state;
-describe('Game/Manager/Grid', () => {
+describe('Game/Model/Grid', () => {
 
   beforeEach(() => {
     state = {};

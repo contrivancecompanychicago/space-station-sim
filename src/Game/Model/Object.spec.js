@@ -1,4 +1,4 @@
-import ObjectManager from 'Game/Manager/Object';
+import ObjectManager from 'Game/Model/Object';
 import {values, keys} from 'lodash';
 import types from 'Game/Data/Object';
 
@@ -16,7 +16,7 @@ let dummy = {
   getKey: () => 123
 };
 
-describe('Game/Manager/Object', () => {
+describe('Game/Model/Object', () => {
   beforeEach(() => {
     state = {};
     objectManager = new ObjectManager(state);

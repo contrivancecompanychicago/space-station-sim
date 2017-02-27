@@ -1,4 +1,4 @@
-import ViewManager from 'Game/Manager/View';
+import ViewManager from 'Game/Model/View';
 import Imagine from 'imagine-engine';
 import { extend } from 'lodash';
 
@@ -22,7 +22,7 @@ let middleMouseUp = function(target){
 };
 
 
-describe('Game/Manager/View', () => {
+describe('Game/Model/View', () => {
   beforeEach(() => {
     state.default.View = {};
     container = document.createElement('div');

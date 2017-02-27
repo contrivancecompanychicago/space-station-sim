@@ -1,11 +1,11 @@
 import Imagine from 'imagine-engine';
-import CharacterManager from 'Game/Manager/Character';
+import CharacterManager from 'Game/Model/Character';
 import Character from 'Game/Type/Character';
 
 let state;
 let character;
 
-describe('Game/Manager/Character', () => {
+describe('Game/Model/Character', () => {
   beforeEach(() => {
     state = {};
     character = new CharacterManager(state);

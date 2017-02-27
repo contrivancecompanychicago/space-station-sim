@@ -1,5 +1,5 @@
 
-import TaskManager from 'Game/Manager/Task';
+import TaskManager from 'Game/Model/Task';
 import {defaults} from 'lodash';
 import Types from 'Game/Data/Task';
 import Task from 'Game/Type/Task';
@@ -17,7 +17,7 @@ function testTask(task){
 }
 
 
-describe('Game/Manager/Task', () => {
+describe('Game/Model/Task', () => {
   beforeEach(() => {
     state = {};
     taskManager = new TaskManager(state);

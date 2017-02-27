@@ -1,4 +1,4 @@
-import UIManager from 'Game/Manager/UI';
+import UIManager from 'Game/Model/UI';
 
 import {keys} from 'lodash';
 
@@ -6,7 +6,7 @@ let state;
 let container;
 let uiManager;
 
-describe('Game/Manager/UI', () => {
+describe('Game/Model/UI', () => {
   beforeEach(()=>{
 
     state = {};
