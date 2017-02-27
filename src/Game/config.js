@@ -19,7 +19,7 @@ export default {
   },
   character:{
     radius: 10,
-    speed: 50,
+    speed: 80,
     skill: {
       max: 100
     }
