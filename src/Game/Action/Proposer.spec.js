@@ -12,8 +12,6 @@ let state;
 describe('Game/Action/Proposer', () => {
   describe('Grid', () => {
     beforeEach(() => {
-      // state = {ui:{mode:'GRID',grid:'FLOOR'}, view:{}, grid:{}};
-      // state.view.selection = selection({x:1, y:1}, {x:100, y:100});
       state = new State();
       state.init();
       state.ui.state = {mode:'GRID',grid:'FLOOR'};
@@ -24,9 +22,6 @@ describe('Game/Action/Proposer', () => {
       let p = proposer.propose(state);
       expect(p.grid).toBeDefined();
       expect(p.grid.getNode(0,0)).toBeDefined();
-      
-      // expect(typeof p.grid.state['0_0']).toBe('object');
-      // expect(typeof p.grid.state['3_3']).toBe('object');
     });
     it('should not overwrite existing blocks of same type', () => {
       state.grid.state = {'0_0':'FLOOR'};
