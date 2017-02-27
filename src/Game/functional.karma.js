@@ -9,7 +9,7 @@ import sizzle from 'sizzle'
 import testGen from 'jasmine-es6-generator'
 
 import Block from 'Game/Block'
-
+import type Grid from 'Game/Type/Grid'
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -79,13 +79,21 @@ describe('functional end to end', () => {
 		expect(canvas).toBeDefined();
 		mouseEvent(canvas, 'mousedown', {button:0, pageX:1, pageY:1});
 		mouseEvent(canvas, 'mouseup', {button:0, pageX:config.grid.width * 10, pageY:config.grid.height * 10});
+		
 	});
 	it('should draw some floor', testGen(function *() {
-		expect(clickSelector('.button-grid-Floor')).toBe(true)
+		expect(clickSelector('.button-grid-FLOOR')).toBe(true)
 		yield *canvasDragRect({x:0, y:0}, {x:16, y:16});
+		let node:Grid = game.state.grid.getNode(0,0);
+		expect(node).toBeDefined();
+		expect(node.type).toBe('FLOOR')
+		node = game.state.grid.getNode(16,16);
+		expect(node).toBeDefined();
+		expect(node.type).toBe('FLOOR')
+
 	}))
 	it('should draw some walls', testGen(function *() {
-		clickSelector('.button-grid-Wall');
+		expect(clickSelector('.button-grid-GREYWALL')).toBe(true)
 		yield *canvasDragRect({x:2, y:2}, {x:2, y:10});
 		yield *canvasDragRect({x:2, y:2}, {x:10, y:2});
 		yield *canvasDragRect({x:10, y:2}, {x:10, y:10});
