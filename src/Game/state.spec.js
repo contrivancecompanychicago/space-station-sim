@@ -6,11 +6,4 @@ describe('Game/state', () => {
     });
   });
 
-  describe('clear', () => {
-    it('should clear default', () => {
-      state.default.test = "abc";
-      state.clear();
-      expect(state.default.test).not.toBeDefined();
-    });
-  });
 });

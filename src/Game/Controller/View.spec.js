@@ -3,12 +3,11 @@ import ViewController from 'Game/Controller/View';
 import Imagine from 'imagine-engine';
 import { extend } from 'lodash';
 
-import * as state from 'Game/state';
+import state from 'Game/state';
 // let state;
-let viewManager;
+let viewController
 let container;
 
-keypresses
 let mouseEvent = function(target, eventName, params){
   var event = document.createEvent('Event');
   extend(event, params);
@@ -23,97 +22,54 @@ let middleMouseUp = function(target){
 };
 
 
-describe('Game/Model/View', () => {
+describe('Game/Controller/View', () => {
   beforeEach(() => {
-    // state.default.View = {};
-    // container = document.createElement('div');
-    // let canvas = document.createElement('canvas');
-    // container.appendChild(canvas);
-    viewManager = new ViewModel();
+    state.init()
+    container = document.createElement('div');
+    let canvas = document.createElement('canvas');
+    container.appendChild(canvas);
+
+    // viewController = new ViewModel();
+    viewController = new ViewController(container)
+
   });
   afterEach(() => {
-    viewManager.destroy();
+    // viewController.destroy();
   });
 
   describe('constructor', () => {
-    it('should set defaults', () => {
-      expect(viewManager.state).toBeDefined();
-      expect(viewManager.state.offset).toBeDefined();
-    });
-    it('should mutate', () => {
-      expect(viewManager.state).toBe(state.default.View);
-    });
   });
 
   describe('detecting middle mouse', () => {
-    it('should be called by imagine', () =>{
-      viewManager.removeListeners();
-      spyOn(viewManager, 'onMouseDown').and.callThrough();
-      spyOn(viewManager, 'startDrag').and.callThrough();
-      spyOn(viewManager, 'onMouseUp').and.callThrough();
-      spyOn(viewManager, 'stopDrag').and.callThrough();
-      viewManager.addListeners();
-      middleMouseDown(viewManager.container);
-      expect(viewManager.onMouseDown).toHaveBeenCalled();
-      expect(viewManager.startDrag).toHaveBeenCalled();
-      middleMouseUp(viewManager.container);
-      expect(viewManager.onMouseUp).toHaveBeenCalled();
-      expect(viewManager.stopDrag).toHaveBeenCalled();
-    });
-  });
-
-  describe('drag', () => {
-    it('should work', () => {
-      viewManager.startDrag({pageX: 0, pageY: 0});
-      viewManager.onMouseMove({pageX: 10, pageY: 20});
-      expect(viewManager.state.offset.x).toBe(10);
-      expect(viewManager.state.offset.y).toBe(20);
-    });
-    it('should work multiple times', () => {
-
-      viewManager.startDrag({pageX: 0, pageY: 0});
-      viewManager.onMouseMove({pageX: 10, pageY: 20});
-      viewManager.onMouseMove({pageX: 10, pageY: 20});
-      expect(viewManager.state.offset.x).toBe(20);
-      expect(viewManager.state.offset.y).toBe(40);
-    })
-  });
-
-  describe('startDrag', () => {
-    it('should set lastPos', () => {
-      expect(viewManager.lastPos).not.toBeDefined();
-      viewManager.startDrag({pageX: 0, pageY: 0});
-      expect(viewManager.lastPos).toBeDefined();
+    it('should be called', () =>{
+      viewController.removeListeners();
+      spyOn(viewController, 'onMouseDown').and.callThrough();
+      spyOn(state.view, 'startDrag').and.callThrough();
+      spyOn(viewController, 'onMouseUp').and.callThrough();
+      spyOn(state.view, 'stopDrag').and.callThrough();
+      viewController.addListeners();
+      middleMouseDown(viewController.container);
+      expect(viewController.onMouseDown).toHaveBeenCalled();
+      expect(state.view.startDrag).toHaveBeenCalled();
+      middleMouseUp(viewController.container);
+      expect(viewController.onMouseUp).toHaveBeenCalled();
+      expect(state.view.stopDrag).toHaveBeenCalled();
     });
   });
 
   describe('selection', () => {
     it('should detect mouse clicking', () => {
-      mouseEvent(viewManager.container, 'mousedown', {button: 0});
-      expect(viewManager.down).toBeDefined();
-      expect(viewManager.down['0']).toBe(true);
+      mouseEvent(viewController.container, 'mousedown', {button: 0});
+      expect(state.view.down).toBeDefined();
+      expect(state.view.down['0']).toBe(true);
     });
     // it('should work even if scrolling halfway through selection');
     it('should notify a selection on mouseup', () => {
-      viewManager.notify = () => {};
-      spyOn(viewManager, 'notify');
-      mouseEvent(viewManager.container, 'mousedown', {button: 0, pageX: 1, pageY: 1});
-      mouseEvent(viewManager.container, 'mouseup', {button: 0, pageX: 10, pageY: 10});
-      expect(viewManager.notify).toHaveBeenCalled();
+      // viewController.notify = () => {};
+      spyOn(state.view, 'endSelection');
+      mouseEvent(viewController.container, 'mousedown', {button: 0, pageX: 1, pageY: 1});
+      mouseEvent(viewController.container, 'mouseup', {button: 0, pageX: 10, pageY: 10});
+      expect(state.view.endSelection).toHaveBeenCalled();
     });
-    // it('should use the UI to determine what to do with the selection');
-    it('should have start end and rect', () => {
-      viewManager.notify = () => {};
-      spyOn(viewManager, 'notify');
-      mouseEvent(viewManager.container, 'mousedown', {button: 0, pageX: 1, pageY: 1});
-      mouseEvent(viewManager.container, 'mouseup', {button: 0, pageX: 10, pageY: 10});
-      let args = viewManager.notify.calls.first().args;
-      let selection = args[1];
-      expect(selection.start).toBeDefined();
-      expect(selection.end).toBeDefined();
-      expect(selection.rect).toBeDefined();
-    });
-
   });
-
 });

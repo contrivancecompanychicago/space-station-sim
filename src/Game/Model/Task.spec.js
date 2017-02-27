@@ -22,9 +22,6 @@ describe('Game/Model/Task', () => {
     state = {};
     taskManager = new TaskManager(state);
   });
-  it('should have a type', () => {
-    expect(taskManager.type).toBe('taskManager');
-  });
   it('should have state', () => {
     expect(taskManager.state).toBe(state);
   });

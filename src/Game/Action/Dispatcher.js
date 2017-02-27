@@ -23,7 +23,7 @@ import type {ObjectState} from 'Game/Model/Object'
 import Proposer from 'Game/Action/Proposer';
 const proposer = new Proposer();
 
-class Dispatcher{
+export class Dispatcher{
 
   userAction(selection:Selection){
 

@@ -3,24 +3,30 @@ import {selection} from 'Game/Model/View';
 import Proposer from 'Game/Action/Proposer';
 import {keys} from 'lodash';
 import Point from 'Game/Point';
+
+import {State} from state
+
 let proposer = new Proposer();
 let state;
 describe('Game/Action/Proposer', () => {
   describe('Grid', () => {
     beforeEach(() => {
-      state = {UI:{mode:'GRID',grid:'FLOOR'}, View:{}, Grid:{}};
-      state.View.selection = selection({x:1, y:1}, {x:100, y:100});
+      // state = {ui:{mode:'GRID',grid:'FLOOR'}, view:{}, grid:{}};
+      // state.view.selection = selection({x:1, y:1}, {x:100, y:100});
+      state = new State();
+      state.init();
+      state.view.state.selection = selection({x:1, y:1}, {x:100, y:100});
     });
     it('should return a grid object', () => {
       let p = proposer.propose(state);
-      expect(p.Grid).toBeDefined();
-      expect(typeof p.Grid['0_0']).toBe('object');
-      expect(typeof p.Grid['3_3']).toBe('object');
+      expect(p.grid).toBeDefined();
+      expect(typeof p.grid.state['0_0']).toBe('object');
+      expect(typeof p.grid.state['3_3']).toBe('object');
     });
     it('should not overwrite existing blocks of same type', () => {
-      state.Grid = {'0_0':'FLOOR'};
+      state.grid.state = {'0_0':'FLOOR'};
       let p = proposer.propose(state);
-      expect(p.Grid['0_0']).not.toBeDefined();
+      expect(p.grid['0_0']).not.toBeDefined();
     });
   });
   describe('object', () => {

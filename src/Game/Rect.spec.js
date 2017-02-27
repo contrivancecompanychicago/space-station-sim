@@ -2,14 +2,18 @@ import Rect from './Rect';
 import config from 'Game/config';
 import Block from 'Game/Block';
 import Point from 'Game/Point';
-import * as state from 'Game/state';
+
 
 describe('Rect', () => {
   beforeEach(() => {
-    state.default.View = {
-      offset:{x:0,y:0},
-      scale: 1
-    };
+    Point.registerState({view:
+        {
+          state:{
+            offset:{x:0,y:0},
+            scale: 1
+          }
+        }
+      })
   });
   it('shuld be defined', () => {
     expect(Rect).toBeDefined();
