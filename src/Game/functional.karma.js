@@ -210,6 +210,18 @@ describe('functional end to end', () => {
 		yield *canvasDragRect({x:5, y:10}, {x:8, y:11})
 
 	}));
+	it('should make drink things', testGen(function *() {
+		expect(clickSelector('.button-object-DRAWERS')).toBe(true)
+		expect(clickSelector('button.rotate')).toBe(true)
+		yield sleep(gap);
+		expect(clickSelector('button.rotate')).toBe(true)
+		yield sleep(gap);
+		expect(clickSelector('button.rotate')).toBe(true)
+		yield *canvasDragRect({x:3, y:8}, {x:3, y:10})
+
+	}));
+
+
 	it('should make some spawn point', testGen(function *() {
 		expect(clickSelector('.button-object-TEST')).toBe(true)
 		canvasMouseMove(new Block({x:0, y: 3}).center);
