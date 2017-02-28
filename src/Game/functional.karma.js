@@ -34,7 +34,7 @@ let container:HTMLDivElement
 let game:Game
 let canvas
 
-let gap = 200
+let gap = 100
 
 describe('functional end to end', () => {
 
@@ -72,7 +72,7 @@ describe('functional end to end', () => {
 				clearInterval(i);
 				done();
 			}
-		}, 100)
+		}, gap)
 	})
 	it('should open grid panel', () => {
 		clickSelector('.button-mode-grid')
@@ -112,6 +112,17 @@ describe('functional end to end', () => {
 		canvasClickBlock(new Block({x:3, y: 3}))
 	}))
 
+	it('should click next on the tutorial a few times', (done) => {
+		let i = setInterval(() => {
+			let tutnext = sizzle('.tutorial button');
+			if(tutnext.length > 0){
+				ReactTestUtils.Simulate.click(tutnext[0]);
+			}else{
+				clearInterval(i);
+				done();
+			}
+		}, gap)
+	})
 	it('should make fridge', testGen(function *() {
 		yield sleep(gap);
 		expect(clickSelector('.button-object-FRIDGE')).toBe(true)
@@ -129,12 +140,24 @@ describe('functional end to end', () => {
 		yield sleep(gap);
 		canvasClickBlock(new Block({x:8, y: 3}))
 	}))
+	
 	it('should make a prep table', testGen(function *() {
 		yield sleep(gap);
 		expect(clickSelector('.button-object-TABLE3')).toBe(true)
 		canvasClickBlock(new Block({x:9, y: 3}))
 		
 	}))
+	it('should click next on the tutorial a few times', (done) => {
+		let i = setInterval(() => {
+			let tutnext = sizzle('.tutorial button');
+			if(tutnext.length > 0){
+				ReactTestUtils.Simulate.click(tutnext[0]);
+			}else{
+				clearInterval(i);
+				done();
+			}
+		}, gap)
+	})
 	it('should make a line of prep table', testGen(function *() {
 		canvasMouseMove(new Block({x:9, y: 5}).center);
 		yield sleep(gap);
@@ -165,13 +188,52 @@ describe('functional end to end', () => {
 		
 		yield *canvasDragRect({x:0, y:3}, {x:0, y:7})
 	}))
+	
+	it('should make some chairs', testGen(function *() {
+		expect(clickSelector('.button-object-CHAIR2')).toBe(true)
+		
+		canvasMouseMove(new Block({x:5, y: 9}).center);
+		yield sleep(gap);
+		expect(clickSelector('button.rotate')).toBe(true)
+		yield sleep(gap);
+		expect(clickSelector('button.rotate')).toBe(true)
+		yield *canvasDragRect({x:5, y:9}, {x:8, y:9})
+		//COPYPASTA
+		canvasMouseMove(new Block({x:5, y: 12}).center);
+		yield sleep(gap);
+		expect(clickSelector('button.rotate')).toBe(true)
+		yield sleep(gap);
+		expect(clickSelector('button.rotate')).toBe(true)
+		yield *canvasDragRect({x:5, y:12}, {x:8, y:12})
 
+	}));
 
+	it('should make tables', testGen(function *() {
+		expect(clickSelector('.button-object-TABLE5')).toBe(true)
+		expect(clickSelector('button.rotate')).toBe(true)
+		yield sleep(gap);
+		expect(clickSelector('button.rotate')).toBe(true)
+		yield *canvasDragRect({x:5, y:10}, {x:8, y:11})
 
+	}));
+	
+	it('should wait for a character to spawn', testGen(function *() {
+		
+		expect(clickSelector('.button-mode-select')).toBe(true)
+
+		while(game.state.character.getChars().length == 0){
+			yield sleep(gap);
+		}
+		let char = game.state.character.getChars()[0];
+		// console.log(char.position, char.position.screen)
+		
+		canvasMouseMove(char.position.screen);
+		canvasClick(char.position.screen)
+	}));
 	it('should wait open', (done) => {
 		setTimeout(() => {
 			done();
-		}, 3000)
+		}, 5000)
 	})
 
 })
@@ -181,10 +243,15 @@ function canvasMouseMove(pos:{x:number, y:number}){
 }
 
 function canvasClickBlock(block:Block){
-	// debugger;
 	// mouseEvent(canvas, 'mousemove', {button:0, pageX:block.center.x, pageY:block.center.y});	
 	mouseEvent(canvas, 'mousedown', {button:0, pageX:block.center.x, pageY:block.center.y});	
 	mouseEvent(canvas, 'mouseup', {button:0, pageX:block.center.x, pageY:block.center.y});
+}
+function canvasClick(pos:{x:number, y:number}){
+	// debugger;
+	// mouseEvent(canvas, 'mousemove', {button:0, pageX:block.center.x, pageY:block.center.y});	
+	mouseEvent(canvas, 'mousedown', {button:0, pageX:pos.x, pageY:pos.y});	
+	mouseEvent(canvas, 'mouseup', {button:0, pageX:pos.x, pageY:pos.y});
 }
 
 //TODO REFACTOR
