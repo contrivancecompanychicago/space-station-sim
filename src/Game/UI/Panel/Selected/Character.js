@@ -41,7 +41,6 @@ class SelectedCharacterPanel extends React.Component{
 		}
 		
 		render(){
-
 			let tasks = []
 			TaskData.each((key:TaskType, val:TaskDataType, index:number) => {
 				let has = this.props.target.hasTaskType(key);

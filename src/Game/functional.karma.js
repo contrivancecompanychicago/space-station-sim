@@ -34,7 +34,7 @@ let container:HTMLDivElement
 let game:Game
 let canvas
 
-let gap = 100
+let gap = 50
 
 describe('functional end to end', () => {
 
@@ -246,10 +246,30 @@ describe('functional end to end', () => {
 		yield sleep(gap);
 		expect(clickSelector('.hireable button')).toBe(true)
 		yield sleep(gap);
-		expect(clickSelector('label.task-MAKE')).toBe(true)
-		debugger
-		ReactTestUtils.Simulate.change(sizzle('label.task-MAKE')[0])
+		clickCheckbox('label.task-MAKE input')
+		
+		yield sleep(gap);
+		expect(clickSelector('.hireable button')).toBe(true)
+		yield sleep(gap);
+		clickCheckbox('label.task-COOK input')
+
+		yield sleep(gap);
+		expect(clickSelector('.hireable button')).toBe(true)
+		yield sleep(gap);
+		clickCheckbox('label.task-SERVEFOOD input')
+
+		yield sleep(gap);
+		expect(clickSelector('.hireable button')).toBe(true)
+		yield sleep(gap);
+		clickCheckbox('label.task-SERVEDRINK input')
 	}));
+
+	
+	it('should speed up time', testGen(function *() {
+		expect(clickSelector('.button-speed-fast')).toBe(true)
+		expect(game.state)
+	}));
+
 	it('should wait open', (done) => {
 		setTimeout(() => {
 			done();
@@ -257,6 +277,11 @@ describe('functional end to end', () => {
 	})
 
 })
+
+function clickCheckbox(selector:string){
+	let el = sizzle(selector)[0]
+	ReactTestUtils.Simulate.change(el, {"target": el})
+}
 
 function canvasMouseMove(pos:{x:number, y:number}){
 	mouseEvent(canvas, 'mousemove', {button:0, pageX:pos.x, pageY:pos.y});	

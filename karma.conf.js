@@ -58,7 +58,7 @@ module.exports = function(config) {
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
 
-    browsers: ['Chrome'],
+    // browsers: ['Chrome'],
     // browsers: ['c:/Program Files (x86)/Google/Chrome/Application/Chrome.exe'],
     // browsers: ['Chrome', 'Firefox'],
 
