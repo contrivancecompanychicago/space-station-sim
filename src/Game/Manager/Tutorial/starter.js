@@ -46,17 +46,9 @@ export default function* tutorial():Generator<*,*,*> {
 
     highlight([])
 
-    showText('hire a cook')
-    yield *reqStaff('COOK');
+    showText('hire a worker')
+    yield *reqStaff('WORKER');
     
-
-    yield *nextText('eyy eyyyy dat-sa good-a but you need-a da waiter too')
-
-
-    showText('hire a waiter')
-    yield *reqStaff('WAITER');
-
-
     yield *nextText('now hurry up and make some cash money biatch these hos dont pay themselves')
     
     state.ui.dispatch({'type': 'HIDE_TUTORIAL'})

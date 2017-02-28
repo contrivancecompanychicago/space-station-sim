@@ -47,7 +47,7 @@ class SelectedCharacterPanel extends React.Component{
 				let has = this.props.target.hasTaskType(key);
 				
 				tasks.push(<div key={index}>
-					<label>
+					<label className={'task-'+key}>
 						{val.label}
 						<input type="checkbox" name={key} checked={has} onChange={this.toggleTask.bind(this)} />
 					</label>
@@ -62,8 +62,8 @@ class SelectedCharacterPanel extends React.Component{
 							<h3>Responsibilities</h3>
 							{tasks}
 						</div>
-						<button onClick={this.props.center}>center</button>
-						<button onClick={this.props.follow}>follow</button>
+						<button className="center" onClick={this.props.center}>center</button>
+						<button className="follow" onClick={this.props.follow}>follow</button>
 
 				</div></Draggable>
 		}

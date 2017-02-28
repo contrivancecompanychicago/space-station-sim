@@ -182,12 +182,6 @@ describe('functional end to end', () => {
 		
 		yield *canvasDragRect({x:6, y:7}, {x:9, y:7})
 	}))
-	it('should make some spawn point', testGen(function *() {
-		expect(clickSelector('.button-object-TEST')).toBe(true)
-		canvasMouseMove(new Block({x:0, y: 3}).center);
-		
-		yield *canvasDragRect({x:0, y:3}, {x:0, y:7})
-	}))
 	
 	it('should make some chairs', testGen(function *() {
 		expect(clickSelector('.button-object-CHAIR2')).toBe(true)
@@ -216,6 +210,12 @@ describe('functional end to end', () => {
 		yield *canvasDragRect({x:5, y:10}, {x:8, y:11})
 
 	}));
+	it('should make some spawn point', testGen(function *() {
+		expect(clickSelector('.button-object-TEST')).toBe(true)
+		canvasMouseMove(new Block({x:0, y: 3}).center);
+		
+		yield *canvasDragRect({x:0, y:14}, {x:5, y:16})
+	}))
 	
 	it('should wait for a character to spawn', testGen(function *() {
 		
@@ -225,10 +225,30 @@ describe('functional end to end', () => {
 			yield sleep(gap);
 		}
 		let char = game.state.character.getChars()[0];
-		// console.log(char.position, char.position.screen)
 		
 		canvasMouseMove(char.position.screen);
+		//select
 		canvasClick(char.position.screen)
+		//follow
+		expect(clickSelector('.follow')).toBe(true)
+		yield sleep(gap);
+	}));
+	
+	it('should hire some dudes', testGen(function *() {
+		yield sleep(gap);
+		expect(clickSelector('.selected .close')).toBe(true)
+		yield sleep(gap);
+		expect(clickSelector('.button-mode-panels')).toBe(true)
+		yield sleep(gap);
+		expect(clickSelector('.button-panel-Hiring')).toBe(true)
+
+		
+		yield sleep(gap);
+		expect(clickSelector('.hireable button')).toBe(true)
+		yield sleep(gap);
+		expect(clickSelector('label.task-MAKE')).toBe(true)
+		debugger
+		ReactTestUtils.Simulate.change(sizzle('label.task-MAKE')[0])
 	}));
 	it('should wait open', (done) => {
 		setTimeout(() => {
