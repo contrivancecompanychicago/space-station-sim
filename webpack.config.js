@@ -2,7 +2,7 @@ var path = require('path');
 
 var webpack = require('webpack');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-
+var StatsWriterPlugin = require("webpack-stats-plugin").StatsWriterPlugin;
 var WriteFilePlugin = require('write-file-webpack-plugin');
 
 var dir_js = path.resolve(__dirname, 'src');
@@ -59,7 +59,11 @@ module.exports = {
             { from: dir_html } // to: output.path
         ]),
         // Avoid publishing files when compilation fails
-        new webpack.NoErrorsPlugin()
+        new webpack.NoErrorsPlugin(),
+        new StatsWriterPlugin({
+            filename: "stats.json", // Default
+            fields: null //all
+        }),
     ],
     stats: {
         // Nice colored output

@@ -8,7 +8,6 @@ require('Game/style.styl');
 import Renderer from 'Game/Renderer';
 import ActionDispatcher from 'Game/Action/Dispatcher';
 
-import * as time from 'Game/time';
 import engine from 'Game/engine';
 import state from 'Game/state';
 

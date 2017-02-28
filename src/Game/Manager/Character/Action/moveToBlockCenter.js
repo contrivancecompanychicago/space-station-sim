@@ -10,7 +10,10 @@ export default function* moveToBlockCenter(char:Character, block:Block):Generato
   let target = block.center;
 
   while((char.position.x != target.x) || (char.position.y != target.y)){
+
     let amount = time.deltaTime * config.character.speed;
+    
+    
     let dir = Math.atan2(target.y - char.position.y, target.x - char.position.x);
     
     

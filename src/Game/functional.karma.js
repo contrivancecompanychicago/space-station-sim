@@ -233,8 +233,11 @@ describe('functional end to end', () => {
 		expect(clickSelector('.follow')).toBe(true)
 		yield sleep(gap);
 	}));
+
+	
 	
 	it('should hire some dudes', testGen(function *() {
+		gap = 500
 		yield sleep(gap);
 		expect(clickSelector('.selected .close')).toBe(true)
 		yield sleep(gap);
@@ -267,13 +270,13 @@ describe('functional end to end', () => {
 	
 	it('should speed up time', testGen(function *() {
 		expect(clickSelector('.button-speed-fast')).toBe(true)
-		expect(game.state)
+		expect(game.state.ui.state.speed).toBe('FAST')
 	}));
 
 	it('should wait open', (done) => {
 		setTimeout(() => {
 			done();
-		}, 5000)
+		}, 10000)
 	})
 
 })
