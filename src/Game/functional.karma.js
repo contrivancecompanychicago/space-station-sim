@@ -245,28 +245,69 @@ describe('functional end to end', () => {
 		expect(clickSelector('.follow')).toBe(true)
 		yield sleep(gap);
 	}));
+	
+	
+	it('should speed up time', testGen(function *() {
+		expect(clickSelector('.button-speed-fast')).toBe(true)
+		expect(game.state.ui.state.speed).toBe('FAST')
+	}));
+	
 
+	let order;
+
+	it('should wait for order', testGen(function *() {
+		while(game.state.order.getOrders().length == 0){
+			yield sleep(gap);
+		}
+		order = game.state.order.getOrders()[0];
+	}));
+
+	it('should open hiring panel',  testGen(function *() {
 	
-	
-	it('should hire some dudes', testGen(function *() {
-		gap = 500
+		gap = 200
 		yield sleep(gap);
 		expect(clickSelector('.selected .close')).toBe(true)
 		yield sleep(gap);
 		expect(clickSelector('.button-mode-panels')).toBe(true)
 		yield sleep(gap);
 		expect(clickSelector('.button-panel-Hiring')).toBe(true)
+	}));
 
-		
+	let char;
+
+	it('should hire make staff',  testGen(function *() {
 		yield sleep(gap);
 		expect(clickSelector('.hireable button')).toBe(true)
 		yield sleep(gap);
 		clickCheckbox('label.task-MAKE input')
-		
+		char = game.state.ui.state.selected[0];
+		expect(char).toBeDefined();
+	}));
+
+	it('should make the order',  testGen(function *() {
+		while(order.status !== 'MADE'){
+			yield sleep(gap);
+		}
+		expect(order.status).toBe('MADE');
+	}));
+
+	it('should hire cook staff',  testGen(function *() {
 		yield sleep(gap);
 		expect(clickSelector('.hireable button')).toBe(true)
 		yield sleep(gap);
 		clickCheckbox('label.task-COOK input')
+	}));
+	
+	it('should make the order',  testGen(function *() {
+		while(order.status !== 'COOKED'){
+			yield sleep(gap);
+		}
+		expect(order.status).toBe('COOKED');
+	}));
+	it('should hire some dudes', testGen(function *() {
+
+		
+		
 
 		yield sleep(gap);
 		expect(clickSelector('.hireable button')).toBe(true)
@@ -279,11 +320,6 @@ describe('functional end to end', () => {
 		clickCheckbox('label.task-SERVEDRINK input')
 	}));
 
-	
-	it('should speed up time', testGen(function *() {
-		expect(clickSelector('.button-speed-fast')).toBe(true)
-		expect(game.state.ui.state.speed).toBe('FAST')
-	}));
 
 	it('should wait open', (done) => {
 		setTimeout(() => {

@@ -34,4 +34,5 @@ export default function* make(char: Character): Generator<*,*,*>{
 	yield *actions.idle(char, 1);
 	item.type = 'PIZZAUNCOOKED'
 	order.removeWorker(char);
+	order.status = 'MADE'
 }
