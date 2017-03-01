@@ -21,6 +21,7 @@ import type {TaskType} from 'Game/Data/Task'
 
 import config from 'Game/config'
 
+import type Block from 'Game/Block'
 
 export default class Character{
   id: string;
@@ -32,6 +33,7 @@ export default class Character{
   skills: {[id:Skill]:number}
   salary: number;
   status: string;
+  path: Array<Block>; //set by actions for use by renderer
   constructor(params:{type:CharacterType, position:Point}){
     defaults(this, params);
     if(!this.id) this.id = uniqid();
@@ -42,12 +44,19 @@ export default class Character{
     this.status = "initialising"
 
     this.taskTypes = []
+    this.path = []
 
     //HACK dummy Data
     // this.assignTaskType('PREP')
     // this.assignTaskType('COOK')
     // this.assignTaskType('SERVEFOOD')
     // this.assignTaskType('SERVEDRINK')
+  }
+  setPath(path:Array<Block>){
+    this.path = path;
+  }
+  getPath():Array<Block> {
+    return this.path;
   }
   getData(){
     return CharacterData.get(this.type)

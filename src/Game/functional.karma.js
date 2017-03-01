@@ -351,7 +351,7 @@ describe('functional end to end', () => {
 	it('should wait open', (done) => {
 		setTimeout(() => {
 			done();
-		}, 10000)
+		}, 1000)
 	})
 
 })
