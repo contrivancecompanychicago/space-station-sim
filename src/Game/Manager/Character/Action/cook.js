@@ -21,8 +21,9 @@ export default function* cook(char: Character): Generator<*,*,*>{
 
 	let orders = state.order.state.filter((o:Order) => {
 		return o.worker == undefined
-			&& o.status === 'STARTED'
+			&& o.status === 'MADE'
 	});
+	
 	if(orders.length > 0){
 		let order = orders[0];
 		char.setStatus('cooking order')

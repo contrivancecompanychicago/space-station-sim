@@ -298,27 +298,54 @@ describe('functional end to end', () => {
 		clickCheckbox('label.task-COOK input')
 	}));
 	
-	it('should make the order',  testGen(function *() {
+	it('should cook the order',  testGen(function *() {
 		while(order.status !== 'COOKED'){
 			yield sleep(gap);
 		}
 		expect(order.status).toBe('COOKED');
 	}));
-	it('should hire some dudes', testGen(function *() {
 
-		
-		
 
+	it('should hire serve staff',  testGen(function *() {
 		yield sleep(gap);
 		expect(clickSelector('.hireable button')).toBe(true)
 		yield sleep(gap);
 		clickCheckbox('label.task-SERVEFOOD input')
+	}));
+
+	it('should serve the order',  testGen(function *() {
+		while(order.status !== 'FULFILLED'){
+			yield sleep(gap);
+		}
+		expect(order.status).toBe('FULFILLED');
+	}));
+
+	it('should have a drink order somewhere', () => {
+		order = game.state.order.state[0];
+		expect(order.type).toBe('COFFEE');
+	})
+
+	it('should hire drink staff', testGen(function *() {
 
 		yield sleep(gap);
 		expect(clickSelector('.hireable button')).toBe(true)
 		yield sleep(gap);
 		clickCheckbox('label.task-SERVEDRINK input')
 	}));
+
+	it('should serve the drink',  testGen(function *() {
+		while(order.status !== 'FULFILLED'){
+			yield sleep(gap);
+		}
+		expect(order.status).toBe('FULFILLED');
+	}));
+
+	it('clean up panels', () => {
+		clickSelector('.hiring.panel .close')
+		expect(clickSelector('.selected .close')).toBe(true)
+		clickSelector('.tutorial button')
+
+	})
 
 
 	it('should wait open', (done) => {

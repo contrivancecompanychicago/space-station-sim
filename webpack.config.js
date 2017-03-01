@@ -18,7 +18,7 @@ module.exports = {
         path: dir_build,
         filename: 'bundle.js'
     },
-    devtool: 'source-map',
+    devtool: 'inline-source-map',
     devServer: {
         //contentBase: dir_build,
         outputPath: dir_build
