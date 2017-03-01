@@ -17,6 +17,7 @@ import renderDebugLines from './Renderer/debugLines'
 import renderObjectBlocks from './Renderer/object/blocks'
 import renderCharacterHighlight from './Renderer/character/highlight'
 import renderGridWeights from './Renderer/grid/weights'
+import renderCharacterPath from './Renderer/character/path'
 
 const proposer = new Proposer();
 
@@ -82,6 +83,11 @@ export default class Renderer{
     renderObjectBlocks(proposal, this.layer)
 
     renderCharacterHighlight(this.state, this.layer)
+
+    if(this.state.ui.state.selected.length>0){
+      let char = this.state.ui.state.selected[0]
+      renderCharacterPath(this.state, this.layer, char);
+    }
     //debug
     // renderObjectBlocks(this.state, this.layer)
     // renderDebugLines(this.state, this.layer);
