@@ -33,6 +33,7 @@
   "homepage": "https://github.com/digijin/space-station-sim",
   "devDependencies": {
     "babel-jest": "^18.0.0",
+    "babel-preset-es2015-native-generators": "^6.6.0",
     "jasmine-es6-generator": "^0.1.0",
     "sizzle": "^2.3.3"
   },

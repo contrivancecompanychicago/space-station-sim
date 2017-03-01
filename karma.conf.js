@@ -3,6 +3,7 @@
 var webpackConf = require('./webpack.config.js');
 delete webpackConf.entry;
 webpackConf.module.loaders[0].loader = 'isparta'; //instrument
+webpackConf.plugins = [];
 
 module.exports = function(config) {
   config.set({
@@ -15,7 +16,7 @@ module.exports = function(config) {
     files: [
     // {pattern: 'spec/fixtures/*.html', watched: true, included: false, served: true},
       // 'spec/fixtures/*.html',
-      'node_modules/babel-polyfill/dist/polyfill.js',
+      // 'node_modules/babel-polyfill/dist/polyfill.js',
       'src/**/*.karma.js',
     ],
 

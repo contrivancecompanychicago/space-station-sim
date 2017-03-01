@@ -1,4 +1,5 @@
 {
-  "presets": ["es2015", "react"],
+  "presets": ["es2015-native-generators", "react"],
+  
   "plugins": ["transform-class-properties", "transform-flow-strip-types"]
 }

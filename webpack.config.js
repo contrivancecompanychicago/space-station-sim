@@ -13,12 +13,12 @@ var dir_spec = path.resolve(__dirname, 'test');
 
 module.exports = {
     // target: 'electron',
-    entry: ['babel-polyfill', path.resolve(dir_js, 'main.js')],
+    entry: [path.resolve(dir_js, 'main.js')],
     output: {
         path: dir_build,
         filename: 'bundle.js'
     },
-    devtool: 'inline-source-map',
+    devtool: 'source-map',
     devServer: {
         //contentBase: dir_build,
         outputPath: dir_build
