@@ -54,9 +54,15 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
 
  - fat gloved chef hand cursor with point press and thumbsup
 
-### PRIORITISED:
- - serialize character save
+
+
  - autosave/hot dev mode
+ - serialize character save
+### PRIORITISED:
+ - chef recipe learning system
+   - recipes datamap
+   - workers have recipes
+   - worker recipe data - exp levels
 
 
 ### TECH DEBT
