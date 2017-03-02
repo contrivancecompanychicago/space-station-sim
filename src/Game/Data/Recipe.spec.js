@@ -1,6 +1,6 @@
 import RecipeData from './Recipe'
-
 let sample;
+
 describe('Game/Data/Recipe', () => {
 	beforeEach(() => {
 		sample = RecipeData.get('GARLIC')
