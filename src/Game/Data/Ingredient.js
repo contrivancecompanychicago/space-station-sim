@@ -1,4 +1,8 @@
-//@flow
+// @flow
+
+import DataMap from 'Game/Data/Map'
+
+
 export type IngredientType = 
     'MOZZARELLA' |
     'SAUCE' |
@@ -65,6 +69,10 @@ export const Ingredient:{[id:IngredientType]:IngredientType} = {
     'PINEAPPLE': 'PINEAPPLE',
     'ONION': 'ONION',
 }
+const ingredientData:DataMap<IngredientType, IngredientDataType> = new DataMap();
+export default ingredientData;
+
+ingredientData.put('MOZZARELLA', {label:'Mozzarella', cost:1})
 
 // <<<<<<< HEAD
 // recipes:{
