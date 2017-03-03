@@ -23,6 +23,8 @@ import config from 'Game/config'
 
 import type Block from 'Game/Block'
 
+import type {RecipeType} from 'Game/Data/Recipe'
+
 export default class Character{
   id: string;
   type:CharacterType;
@@ -34,6 +36,7 @@ export default class Character{
   salary: number;
   status: string;
   path: Array<Block>; //set by actions for use by renderer
+  recipes: {[id:RecipeType]: {level:number, experience: number}}
   constructor(params:{type:CharacterType, position:Point}){
     defaults(this, params);
     if(!this.id) this.id = uniqid();

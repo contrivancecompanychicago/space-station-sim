@@ -54,7 +54,7 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
 
  - fat gloved chef hand cursor with point press and thumbsup
 
-
+ - menu panel once recipes are done
 
  - autosave/hot dev mode
  - serialize character save
