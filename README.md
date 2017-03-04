@@ -58,6 +58,9 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
 
  - autosave/hot dev mode
  - serialize character save
+
+ - when assigning tasks clean up current task;
+
 ### PRIORITISED:
  - chef recipe learning system
    - recipes datamap

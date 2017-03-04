@@ -796,11 +796,11 @@ export default {
          },
          "rotation":3
       },
-      "9_4":{  
+      "9_3":{  
          "type":"OVEN",
          "block":{  
             "x":9,
-            "y":4
+            "y":3
          },
          "rotation":2
       },
