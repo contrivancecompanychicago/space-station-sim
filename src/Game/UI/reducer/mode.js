@@ -21,6 +21,16 @@ export default function mode(state:string = Mode.SELECT, action:Object):string{
     case 'CHANGE_OBJECT':
       state = Mode.OBJECT;
     break;
+
+    
+    case 'TOGGLE_HIRING_PANEL':
+    case 'TOGGLE_STAFF_PANEL':
+    case 'TOGGLE_ORDERS_PANEL':
+    case 'TOGGLE_LOG_PANEL':
+    case 'TOGGLE_TALENT_PANEL':
+    case 'TOGGLE_SAVE_PANEL':
+      state = Mode.SELECT;
+    break;
   }
   return state;
 }
