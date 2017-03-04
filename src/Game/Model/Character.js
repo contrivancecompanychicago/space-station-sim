@@ -75,6 +75,17 @@ export default class CharacterModel {
         }
     }
 
+    spawnCustomer(){ //USED BY TESTS
+        let spawnPoints = state.object.getObjectsWithAbility(Ability.SPAWN);
+        if(spawnPoints.length>0){
+            let sp = spawnPoints[0]
+            let char = new Character({ position: sp.block.center, type: 'CUSTOMER' })
+            this.addChar(char);
+        }else{
+            throw new Error('no spawn points')
+        }
+    }
+
     // spawnUpdate(){
     //     //spawn;
     //     let objectManager = state.object;

@@ -235,6 +235,8 @@ describe('functional end to end', () => {
 		
 		expect(clickSelector('.button-mode-select')).toBe(true)
 
+		game.state.character.spawnCustomer();
+
 		while(game.state.character.getChars().length == 0){
 			yield sleep(gap);
 		}
