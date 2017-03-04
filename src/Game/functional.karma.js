@@ -1,5 +1,5 @@
 // @flow
-import { extend, keys } from 'lodash';
+import { extend, keys, assign } from 'lodash';
 import Game from 'Game';
 import config from 'Game/config';
 import ReactTestUtils from 'react-addons-test-utils';
@@ -281,11 +281,22 @@ describe('functional end to end', () => {
 		yield sleep(gap);
 		expect(clickSelector('.hireable button')).toBe(true)
 		yield sleep(gap);
+		char = game.state.ui.state.selected[0];
+		expect(char).toBeDefined();
+	}));
+
+	it('should give him a new path', testGen(function *() {
+		expect(clickSelector('.button-mode-select')).toBe(true)
+		//right click somewhere
+		canvasClick(new Block({x:14, y:2}).center.screen, {button:2});
+		yield sleep(gap);
+		let lastblock = char.path[char.path.length-1]
+		expect(lastblock.x).toBe(14);
+		expect(lastblock.y).toBe(2);
 	}));
 
 	// it('should select an object',  testGen(function *() {
 		
-	// 	expect(clickSelector('.button-mode-select')).toBe(true)
 	// 	let tablepos = new Block({x:5, y:10});
 	// 	let obj = game.state.object.getObjectAtBlock(tablepos);
 	// 	expect(obj).toBeDefined();
@@ -299,8 +310,6 @@ describe('functional end to end', () => {
 
 	it('should assign make tasks',  testGen(function *() {
 		clickCheckbox('label.task-MAKE input')
-		char = game.state.ui.state.selected[0];
-		expect(char).toBeDefined();
 	}));
 
 	it('should make the order',  testGen(function *() {
@@ -389,11 +398,14 @@ function canvasClickBlock(block:Block){
 	mouseEvent(canvas, 'mousedown', {button:0, pageX:block.center.x, pageY:block.center.y});	
 	mouseEvent(canvas, 'mouseup', {button:0, pageX:block.center.x, pageY:block.center.y});
 }
-function canvasClick(pos:{x:number, y:number}){
+function canvasClick(pos:{x:number, y:number}, param){
 	// debugger;
 	// mouseEvent(canvas, 'mousemove', {button:0, pageX:block.center.x, pageY:block.center.y});	
-	mouseEvent(canvas, 'mousedown', {button:0, pageX:pos.x, pageY:pos.y});	
-	mouseEvent(canvas, 'mouseup', {button:0, pageX:pos.x, pageY:pos.y});
+	
+	let params = assign({button:0, pageX:pos.x, pageY:pos.y}, param)
+	
+	mouseEvent(canvas, 'mousedown', params);	
+	mouseEvent(canvas, 'mouseup', params);
 }
 
 //TODO REFACTOR

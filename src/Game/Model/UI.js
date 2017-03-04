@@ -39,7 +39,7 @@ import type {CharacterType} from 'Game/Data/Character'
 export type UIState = {
   mode: ModeType,
   rotation: number,
-  selected: Array<Obj | Character | null>,
+  selected: Array<Obj | Character>,
   panel: Object,
   speed: SpeedType,
   grid:GridType,
@@ -91,6 +91,9 @@ export default class UIModel{
   }
   clearSelected(){
     this.store.dispatch({type:'CLEAR_SELECTED'})
+  }
+  getSelected(){
+    return this.state.selected
   }
 
 
