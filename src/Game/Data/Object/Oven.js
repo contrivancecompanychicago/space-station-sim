@@ -8,10 +8,22 @@ const b = 'BLOCK';
 
 import Weight from 'Game/Data/Grid/Weight'
 
+let img = require('./oven.png');
+// //upsize image
+// var src = document.createElement("canvas");
+// src.width = img.width;
+// src.height = img.height;
+// src.getContext("2d").drawImage(img, 0, 0);
+// let pixel = src.getContext('2d').getImageData(1, 1, 1, 1).data
+
+// var image = new Image();
+// image.src = src.toDataURL("image/png");
+// debugger;
+
 const obj:ObjectDataType = {
   id: 'OVEN',
   label: 'Oven',
-  image: require('./oven.png'),
+  image: img,
   width: 1,
   height: 4,
   blocks: [

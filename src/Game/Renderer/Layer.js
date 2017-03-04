@@ -11,6 +11,7 @@ export default class Layer {
     this.canvas = document.createElement('canvas');
     // FLOWHACK //whats up with this
     this.context = this.canvas.getContext('2d');
+    // debugger
     this.container.appendChild(this.canvas);
   }
   clear(){
@@ -24,6 +25,7 @@ export default class Layer {
   resize(w:number, h:number){
     this.canvas.width = w;
     this.canvas.height = h;
+    this.context.imageSmoothingEnabled = false;
   }
   drawDemo() {
     this.context.beginPath();
