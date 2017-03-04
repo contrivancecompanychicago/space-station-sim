@@ -8,6 +8,7 @@ import namegen from 'Util/namegen'
 
 import type {CharacterType} from 'Game/Data/Character'
 import type {Skill} from 'Game/Data/Character/Skill'
+import type Obj from 'Game/Type/Object'
 import Skills from 'Game/Data/Character/Skill'
 
 import state from 'Game/state'
@@ -72,6 +73,18 @@ export default class Character{
     keys(Skills).forEach((s:Skill) => {
       this.skills[s] = Math.floor(Math.random()*config.character.skill.max);
     })
+  }
+  object:?Obj; //used for giving directions
+  setObject(obj:Obj){
+    this.object = obj;
+  }
+  clearObject(){
+    this.object = null;
+  }
+  getObject():?Obj{
+    // if(this.object)
+      // return state.task.getTask(this.task);
+      return this.object;
   }
 
   // ITEM

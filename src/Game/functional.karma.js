@@ -290,11 +290,11 @@ describe('functional end to end', () => {
 	it('should give him a new path', testGen(function *() {
 		expect(clickSelector('.button-mode-select')).toBe(true)
 		//right click somewhere
-		canvasClick(new Block({x:14, y:2}).center.screen, {button:2});
+		canvasClick(new Block({x:12, y:12}).center.screen, {button:2});
 		yield sleep(gap);
 		let lastblock = char.path[char.path.length-1]
-		expect(lastblock.x).toBe(14);
-		expect(lastblock.y).toBe(2);
+		expect(lastblock.x).toBe(12);
+		expect(lastblock.y).toBe(12);
 	}));
 
 	// it('should select an object',  testGen(function *() {
@@ -325,10 +325,10 @@ describe('functional end to end', () => {
 		yield sleep(gap);
 		expect(clickSelector('.hireable button')).toBe(true)
 		yield sleep(gap);
-		clickCheckbox('label.task-COOK input')
 	}));
 	
 	it('should cook the order',  testGen(function *() {
+		clickCheckbox('label.task-COOK input')
 		while(order.status !== 'COOKED'){
 			yield sleep(gap);
 		}
@@ -360,10 +360,19 @@ describe('functional end to end', () => {
 		yield sleep(gap);
 		expect(clickSelector('.hireable button')).toBe(true)
 		yield sleep(gap);
-		clickCheckbox('label.task-SERVEDRINK input')
+		char = game.state.ui.state.selected[0];
+		// clickCheckbox('label.task-SERVEDRINK input')
 	}));
 
+	it('should manually assign drink task', testGen(function *() {
+		canvasClick(new Block({x:3, y:8}).center.screen, {button:2});
+		yield sleep(gap);
+		let lastblock = char.path[char.path.length-1]
+		expect(lastblock.y).toBe(8);
+	}));
 	it('should serve the drink',  testGen(function *() {
+
+
 		while(order.status !== 'FULFILLED'){
 			yield sleep(gap);
 		}

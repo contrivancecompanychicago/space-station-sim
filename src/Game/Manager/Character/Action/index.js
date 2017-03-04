@@ -26,10 +26,12 @@ import forceUseObjectWithAbility from './forceUseObjectWithAbility';
 import followPath from './followPath';
 import worker from './worker';
 import shortestPathToObject from './shortestPathToObject';
+import useCoffeeAbility from './useCoffeeAbility';
 
 
 
 export default {
+  useCoffeeAbility,
   make,
   cook,
   serveOrder,

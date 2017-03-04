@@ -62,9 +62,26 @@ export class Dispatcher{
 				if(selection.button === 2){
 					//ASSIGN TASKS
 					// state.ui.clearSelected();
+					//TODO REFACTOR
 					state.ui.getSelected().forEach(s => {
 						if(s.constructor.name=='Character'){
 							s.action = actions.pathToBlock(s, selection.end.block)
+							let obj = state.object.getObjectAtBlock(selection.end.block)
+							if(obj){
+								if(obj.hasAbility('MAKE_COFFEE')){
+									// let orders = state.order.state.filter((o) => {
+									// 	return o.type === 'COFFEE'
+									// 		&& o.status === 'ORDERED'
+									// 		&& o.worker === undefined
+									// })
+									// if(orders.length>0){
+
+									// }
+									
+									s.action = actions.useCoffeeAbility(s, obj)
+								}
+							}
+							
 						}
 						
 					})
