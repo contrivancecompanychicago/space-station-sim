@@ -8,6 +8,8 @@ import sizzle from 'sizzle'
 
 import testGen from 'jasmine-es6-generator'
 
+const tg:(Generator<*,*,*>)=>null = testGen
+
 import Block from 'Game/Block'
 import type Grid from 'Game/Type/Grid'
 
@@ -34,7 +36,7 @@ let container:HTMLDivElement
 let game:Game
 let canvas
 
-let gap = 50
+let gap = 10
 
 describe('functional end to end', () => {
 
@@ -264,7 +266,7 @@ describe('functional end to end', () => {
 
 	it('should open hiring panel',  testGen(function *() {
 	
-		gap = 200
+		gap = 100
 		yield sleep(gap);
 		expect(clickSelector('.selected .close')).toBe(true)
 		yield sleep(gap);
@@ -275,10 +277,27 @@ describe('functional end to end', () => {
 
 	let char;
 
-	it('should hire make staff',  testGen(function *() {
+	it('should hire staff',  testGen(function *() {
 		yield sleep(gap);
 		expect(clickSelector('.hireable button')).toBe(true)
 		yield sleep(gap);
+	}));
+
+	// it('should select an object',  testGen(function *() {
+		
+	// 	expect(clickSelector('.button-mode-select')).toBe(true)
+	// 	let tablepos = new Block({x:5, y:10});
+	// 	let obj = game.state.object.getObjectAtBlock(tablepos);
+	// 	expect(obj).toBeDefined();
+	// 	let point = tablepos.center.screen
+	// 	// debugger;
+	// 	canvasClick(point);
+	// 	// canvasClickBlock(tablepos)
+	// 	expect(game.state.ui.state.selected).toBe('whatevs')
+	// }));
+
+
+	it('should assign make tasks',  testGen(function *() {
 		clickCheckbox('label.task-MAKE input')
 		char = game.state.ui.state.selected[0];
 		expect(char).toBeDefined();
@@ -396,7 +415,7 @@ function* canvasDragRect(from:{x:number, y:number}, to:{x:number, y:number}):Gen
 		}
 		
 		mouseEvent(canvas, 'mousemove', {button:0, pageX:pos.x, pageY:pos.y});	
-		yield sleep(50)
+		yield sleep(gap)
 	}
 	mouseEvent(canvas, 'mouseup', {button:0, pageX:toBlock.center.x, pageY:toBlock.center.y});
 }
