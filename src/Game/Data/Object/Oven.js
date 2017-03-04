@@ -25,7 +25,7 @@ const obj:ObjectDataType = {
   label: 'Oven',
   image: img,
   width: 1,
-  height: 4,
+  height: 3,
   blocks: [
     {type: a, weight: Weight.ACCESS, x:0, y:0},
     {type: b, weight: Weight.BLOCK, x:0, y:1},
