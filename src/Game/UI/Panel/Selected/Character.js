@@ -82,8 +82,11 @@ class SelectedCharacterPanel extends React.Component{
 				if(this.state.showRecipes){
 					RecipeData.each((key:RecipeType, val:RecipeDataType, index:number) => {
 						if(this.props.target.hasRecipe(key)){
-							recipes.push(<div>
+							let r = this.props.target.getRecipe(key);
+							recipes.push(<div key={index}>
 								{val.label}
+								level:{r.level}
+								exp:{r.experience}
 							</div>)
 						}
 					})

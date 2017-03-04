@@ -47,10 +47,27 @@ export default function* customer(char: Character): Generator<*,*,*>{
     chair.removeCharacter();
 
     //check for table;
-    let check = char.position.block
-    check.y++;
-    let table = objectManager.getObjectAtBlock(check);
-    if (table) {
+    let checks = [
+      {x:1, y:0},
+      {x:-1, y:0},
+      {x:0, y:-1},
+      {x:0, y:1},
+    ]
+    let table
+    checks.forEach(c => {
+      let check = char.position.block
+      check.x += c.x
+      check.y += c.y
+      if(!table){
+        table = objectManager.getObjectAtBlock(check);
+        if (table) {
+          if(!table.hasAbility('DINE_TABLE')){
+            table = null;
+          }
+        }
+      }
+    })
+    if(table){
       yield * actions.placeItemOnBlock(char, table.block)
     }
     char.setStatus('Eating')
