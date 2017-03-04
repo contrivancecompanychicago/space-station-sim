@@ -10,6 +10,7 @@ export default function renderCharacterPath(state:State, layer:Layer, char:Chara
     let last = char.position.screen;
     path.forEach(b => {
         let here = b.center.screen;
+        layer.lineWidth(4)
         layer.strokeStyle('#00ff00')
         layer.drawLine(last, here);
         last = here;

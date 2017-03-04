@@ -137,6 +137,8 @@ advertising
  - newspaper
  - fliers
  - social media
+ - fake yelp reviews
+ - 
 
  facilities 
  - bathrooms

@@ -7,7 +7,15 @@ import actions from './index'
 import state from 'Game/state'
 import type Block from 'Game/Block'
 
+
+
+
 export default function* forceUseObjectWithAbility(char:Character, ability:AbilityType):Generator<*,Obj,*>{
+  let shortestPathLength = Infinity
+  let shortestPath:Array<Block>
+  let shortestPathObject:Obj
+
+  
 
   let objs = yield *actions.findObjects((o:Obj) => {
     if(o.character) return false;
@@ -15,9 +23,11 @@ export default function* forceUseObjectWithAbility(char:Character, ability:Abili
     return o.hasAbility(ability)
   })
 
-  let shortestPathLength = Infinity
-  let shortestPath:Array<Block>
-  let shortestPathObject:Obj
+  let obj = char.getObject(); //OVERRIDE
+  if(obj){
+    objs = [obj]
+  }
+
   objs.forEach(o => {
     o.getAccessBlocks().forEach(b => {
       let path = state.grid.getPath(char.position.block, b);

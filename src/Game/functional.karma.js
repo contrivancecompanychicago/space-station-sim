@@ -371,8 +371,6 @@ describe('functional end to end', () => {
 		expect(lastblock.y).toBe(8);
 	}));
 	it('should serve the drink',  testGen(function *() {
-
-
 		while(order.status !== 'FULFILLED'){
 			yield sleep(gap);
 		}
