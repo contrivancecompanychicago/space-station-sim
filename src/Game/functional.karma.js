@@ -361,7 +361,6 @@ describe('functional end to end', () => {
 		expect(clickSelector('.hireable button')).toBe(true)
 		yield sleep(gap);
 		char = game.state.ui.state.selected[0];
-		// clickCheckbox('label.task-SERVEDRINK input')
 	}));
 
 	it('should manually assign drink task', testGen(function *() {
@@ -375,7 +374,11 @@ describe('functional end to end', () => {
 			yield sleep(gap);
 		}
 		expect(order.status).toBe('FULFILLED');
+		
 	}));
+	it('should autoserve drinks', () => {
+		clickCheckbox('label.task-SERVEDRINK input')
+	})
 
 	it('clean up panels', () => {
 		clickSelector('.hiring.panel .close')
