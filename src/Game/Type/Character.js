@@ -56,6 +56,7 @@ export default class Character{
 			this.recipes[key] = {level:0, experience:0}
 			
 		})
+		this.addRecipe('GARLIC')
 
 		//HACK dummy Data
 		// this.assignTaskType('PREP')
@@ -110,7 +111,7 @@ export default class Character{
 	}
 
 
-	object:?Obj; //used for giving directions
+	object:?string; //used for giving directions
 	setObject(obj:Obj){
 		this.object = obj.getKey();
 
