@@ -19,7 +19,7 @@ export default class Obj{
     defaults(this, params);
     if(!this.rotation) this.rotation = 0;
   }
-  getKey():string{1
+  getKey():string{
     return makeKey(this.block.x,this.block.y)
   }
   getData():ObjectDataType{

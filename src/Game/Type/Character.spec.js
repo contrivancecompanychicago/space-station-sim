@@ -50,7 +50,11 @@ describe('Game/Type/Character', () => {
     })
   })
 
+  let c = new Character({});
   describe('recipes', () => {
+    beforeEach(() => {
+      c = new Character({});
+    })
     describe('getRecipe', () => {
       it('should exist', () => {
         expect(c.getRecipe).toBeDefined();
@@ -67,6 +71,7 @@ describe('Game/Type/Character', () => {
         expect(c.hasRecipe).toBeDefined();
       })
       it('positive if level > 0', () => {
+        c.addRecipe('GARLIC');
         expect(c.hasRecipe('GARLIC')).toBe(true);
       })
       it('negative if level = 0', () => {
@@ -80,7 +85,9 @@ describe('Game/Type/Character', () => {
 
       })
       it('should increase the recipe exp by given amount', () => {
-        let start = c.getRecipe('GARLIC').experience;
+        
+        let r = c.getRecipe('GARLIC');
+        let start = r.experience;
         let amount = 20;
         c.addRecipeExperience('GARLIC', amount);
         let end = c.getRecipe('GARLIC').experience;
@@ -88,7 +95,7 @@ describe('Game/Type/Character', () => {
       });
       it('should level up', () => {
         let start = c.getRecipe('GARLIC').level;
-        let amount = 20;
+        let amount = 100;
         c.addRecipeExperience('GARLIC', amount);
         let end = c.getRecipe('GARLIC').level;
         expect(end).toBe(start+1);

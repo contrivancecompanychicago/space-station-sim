@@ -22,6 +22,16 @@ export default {
     speed: 80,
     skill: {
       max: 100
+    },
+    recipe:{
+      level:{
+        '0':{ experience: 50 },
+        '1':{ experience: 100 },
+        '2':{ experience: 200 },
+        '3':{ experience: 500 },
+        '4':{ experience: 1000 },
+
+      }
     }
   },
   save: {

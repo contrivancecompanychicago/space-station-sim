@@ -19,7 +19,7 @@ recipeData.put('GARLICCHEESE', {label:'garlic cheese', ingredients:[
     Ingredient.GARLIC,
     Ingredient.MOZZARELLA,
 ]})
-recipeData.put('GARLICCHEESE', {label:'garlic cheese', ingredients:[
+recipeData.put('MARGHERITA', {label:'margherita', ingredients:[
     Ingredient.SAUCE,
     Ingredient.MOZZARELLA,
     Ingredient.OREGANO,

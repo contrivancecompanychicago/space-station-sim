@@ -57,7 +57,6 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
  - menu panel once recipes are done
 
  - autosave/hot dev mode
- - serialize character save
 
  - when assigning tasks clean up current task;
 
@@ -66,6 +65,8 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
    - recipes datamap
    - workers have recipes
    - worker recipe data - exp levels
+
+ - serialize character save
 
 
 ### TECH DEBT
