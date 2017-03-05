@@ -1,7 +1,7 @@
 //@flow
 
 import {keys} from 'lodash';
-import { makeKey, parseKey } from 'Util';
+import { makeKey, parseKey } from 'Util/index';
 
 import Point from 'Game/Point';
 import Rect from 'Game/Rect';

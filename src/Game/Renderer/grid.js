@@ -1,7 +1,7 @@
 //@flow
 import config from 'Game/config';
 import { keys, mapValues, assign } from 'lodash';
-import { makeKey, parseKey } from 'Util';
+import { makeKey, parseKey } from 'Util/index';
 
 const blockWidth = config.grid.width;
 const blockHeight = config.grid.height;

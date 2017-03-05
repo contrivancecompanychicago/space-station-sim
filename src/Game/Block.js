@@ -1,7 +1,7 @@
 // @flow
 import config from 'Game/config';
 import Point from 'Game/Point';
-import {makeKey} from 'Util';
+import {makeKey} from 'Util/index';
 import Rect from 'Game/Rect';
 
 export default class Block{

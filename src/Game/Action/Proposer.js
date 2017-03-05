@@ -24,7 +24,7 @@ processing:
 
 import type Block from 'Game/Block'
 
-import { makeKey, parseKey } from 'Util';
+import { makeKey, parseKey } from 'Util/index';
 import { Mode } from 'Game/Data/Mode';
 
 import Grid from 'Game/Type/Grid'

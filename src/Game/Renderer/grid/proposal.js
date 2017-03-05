@@ -1,6 +1,6 @@
 //@flow
 import Proposer from 'Game/Action/Proposer';
-import {parseKey} from 'Util';
+import {parseKey} from 'Util/index';
 import {keys} from 'lodash';
 import renderBlock from './block';
 

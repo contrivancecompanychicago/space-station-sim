@@ -9,7 +9,7 @@ import {Mode} from 'Game/Data/Mode';
 import {Tasks} from 'Game/Data/Task';
 import ObjectData from 'Game/Data/Object'
 
-import {makeKey, parseKey} from 'Util';
+import {makeKey, parseKey} from 'Util/index';
 
 import Character from 'Game/Type/Character';
 import Grid from 'Game/Type/Grid';

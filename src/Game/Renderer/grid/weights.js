@@ -4,7 +4,7 @@ import type Layer from 'Game/Renderer/Layer'
 
 import Point from 'Game/Point'
 import Block from 'Game/Block'
-import { makeKey, parseKey } from 'Util';
+import { makeKey, parseKey } from 'Util/index';
 
 import * as engine from 'Game/engine'
 

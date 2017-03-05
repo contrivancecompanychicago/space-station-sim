@@ -4,7 +4,7 @@ import { keys } from 'lodash';
 import { Graph, astar } from 'javascript-astar';
 import Grid from 'Game/Type/Grid'
 import MouseButtons from 'Util/MouseButtons';
-import { makeKey, parseKey } from 'Util';
+import { makeKey, parseKey } from 'Util/index';
 import GridData from 'Game/Data/Grid'
 
 import type Point from 'Game/Point'
