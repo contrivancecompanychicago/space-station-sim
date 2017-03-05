@@ -35,6 +35,9 @@ export default class ObjectModel {
   getObject(key: string) {
     return this.state[key]
   }
+  getObjectWithKey(key: string) {
+    return this.state[key]
+  }
   getObjectAtBlock(block: Block):?Obj{
     if(this.state[block.key])
       return this.state[block.key];

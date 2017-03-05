@@ -23,6 +23,7 @@ import renderBlock from './Renderer/grid/block';
 import {renderBlockObject} from './Renderer/object'
 
 import Point from 'Game/Point'
+import Rect from 'Game/Rect'
 import Block from 'Game/Block'
 import makeKey from 'Util/makeKey'
 
@@ -106,23 +107,19 @@ export default class Renderer{
 
     // renderWalls(state, layer);
 
-    // Rect.screenRect().blocks.forEach((block) => { //for each block on screen
-    for(let x = tl.x; x<=br.x; x++){
-      for(let y = tl.y; y<=br.y; y++){
-        let block = new Block({x, y});
-        let key = makeKey(x, y);
-        if(state.grid.state[key]){
-          renderBlock(block, state.grid.state[key], state, layer);
-          // let block = {x, y};
-          let ob = state.object.state[block.key];
+    Rect.screenRect().blocks.forEach((block) => { //for each block on screen
+        let node = state.grid.getNode(block.x, block.y)
+        if(node){
+          renderBlock(block, node, state, layer);
+          let ob = node.getObject()
           if(ob){
             renderBlockObject(block, ob, state, layer);
           }
         }
 
 
-      }
-    }
+      
+    })
     // grid(state, layer);
     // object(state, layer);
   }
