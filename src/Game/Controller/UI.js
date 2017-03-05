@@ -43,10 +43,14 @@ export default class UIController {
         'P': 80,
         'O': 79,
         'I': 73,
+        'H': 72,
         'L': 76,
         'R': 82,
         'ESC': 27,
         'F6': 117
+      }
+      if (key === (keys.H)) {
+        localStorage.hot = !localStorage.hot
       }
       if (key === (keys.F6)) {
         save('quicksave')
