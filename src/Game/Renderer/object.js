@@ -21,11 +21,11 @@ export default function renderObject(state:State, layer:Layer){
   Rect.screenRect().blocks.forEach((block) => { //for each block on screen
     let ob = state.object.state[block.key];
     if(ob){
-      renderBlock(block, ob, state, layer);
+      renderBlockObject(block, ob, state, layer);
     }
   });
 }
-export function renderBlock(block:Block, object:Obj, state:State, layer:Layer){
+export function renderBlockObject(block:Block, object:Obj, state:State, layer:Layer){
 
   let t = Types.get(object.type);
   let o = block.rect.renderParams;

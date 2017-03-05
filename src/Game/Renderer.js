@@ -19,6 +19,13 @@ import renderCharacterHighlight from './Renderer/character/highlight'
 import renderGridWeights from './Renderer/grid/weights'
 import renderCharacterPath from './Renderer/character/path'
 
+import renderBlock from './Renderer/grid/block';
+import {renderBlockObject} from './Renderer/object'
+
+import Point from 'Game/Point'
+import Block from 'Game/Block'
+import makeKey from 'Util/makeKey'
+
 const proposer = new Proposer();
 
 import type {State} from 'Game/state'
@@ -55,10 +62,8 @@ export default class Renderer{
         view: JSON.stringify(this.state.view.state.offset)+this.state.view.state.scale
       }
       this.gridLayer.clear();
-      grid(this.state, this.gridLayer);
-      object(this.state, this.gridLayer);
     }
-
+    this.renderGridAndObjects(this.state, this.gridLayer);
     this.layer.drawImage(this.gridLayer.canvas, 0, 0);
   }
   update(){
@@ -92,5 +97,33 @@ export default class Renderer{
     // renderObjectBlocks(this.state, this.layer)
     // renderDebugLines(this.state, this.layer);
     // renderGridWeights(this.state, this.layer)
+  }
+
+  renderGridAndObjects(state:State, layer:Layer){
+  
+    let tl = Point.fromScreen(0,0).block
+    let br = Point.fromScreen(window.innerWidth, window.innerHeight).block
+
+    // renderWalls(state, layer);
+
+    // Rect.screenRect().blocks.forEach((block) => { //for each block on screen
+    for(let x = tl.x; x<=br.x; x++){
+      for(let y = tl.y; y<=br.y; y++){
+        let block = new Block({x, y});
+        let key = makeKey(x, y);
+        if(state.grid.state[key]){
+          renderBlock(block, state.grid.state[key], state, layer);
+          // let block = {x, y};
+          let ob = state.object.state[block.key];
+          if(ob){
+            renderBlockObject(block, ob, state, layer);
+          }
+        }
+
+
+      }
+    }
+    // grid(state, layer);
+    // object(state, layer);
   }
 }
