@@ -8,6 +8,7 @@ import { makeKey, parseKey } from 'Util/index';
 import GridData from 'Game/Data/Grid'
 
 import type Point from 'Game/Point'
+import type Rect from 'Game/Rect'
 import Block from 'Game/Block';
 
 import state from 'Game/state';
@@ -24,18 +25,25 @@ export default class GridModel {
     }
 
     //refactor to rect instead of select, add removeNodes
-    addNodes(selection: Object, type: Grid) {
-        let sel = selection.rect.blockRect();
+    addNodes(rect: Rect, grid: Grid) {
+        let sel = rect.blockRect();
         for (let y = sel.t; y <= sel.b; y++) {
             for (let x = sel.l; x <= sel.r; x++) {
-                switch (selection.button) {
-                    case MouseButtons.LEFT:
-                        this.addNode(x, y, new Grid(type));
-                        break;
-                    case MouseButtons.RIGHT:
-                        this.removeNode(x, y);
-                        break;
-                }
+                // switch (selection.button) {
+                //     case MouseButtons.LEFT:
+                        this.addNode(x, y, new Grid(grid));
+                //         break;
+                //     case MouseButtons.RIGHT:
+                //         this.removeNode(x, y);
+                //         break;
+                // }
+            }
+        }
+    }
+    removeNodes(rect:Rect){
+        for (let y = sel.t; y <= sel.b; y++) {
+            for (let x = sel.l; x <= sel.r; x++) {
+                this.removeNode(x, y);
             }
         }
     }

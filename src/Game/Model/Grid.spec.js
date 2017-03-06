@@ -1,18 +1,20 @@
-import GridManager from 'Game/Model/Grid';
+import GridModel from 'Game/Model/Grid';
 import Grid from 'Game/Type/Grid';
 import { keys } from 'lodash';
+import Rect from 'Game/Rect'
+import Block from 'Game/Block'
 
-let gridManager;
+let gridModel;
 let state;
 describe('Game/Model/Grid', () => {
 
   beforeEach(() => {
     state = {};
-    gridManager = new GridManager(state);
+    gridModel = new GridModel(state);
   });
 
   it('should capture a ref to state', () => {
-    expect(gridManager.state).toBe(state);
+    expect(gridModel.state).toBe(state);
   });
 
 
@@ -20,7 +22,7 @@ describe('Game/Model/Grid', () => {
 
     it('should add a node', () => {
       let nodes = keys(state).length;
-      gridManager.addNode(1, 2, "test");
+      gridModel.addNode(1, 2, "test");
       expect(keys(state).length - nodes).toBe(1);
     });
 
@@ -29,27 +31,42 @@ describe('Game/Model/Grid', () => {
   describe('getNode', () => {
 
     it('should return an added node', () => {
-      expect(gridManager.getNode(12, 34)).not.toBeDefined();
-      gridManager.addNode(12, 34, "test");
-      expect(gridManager.getNode(12, 34)).toBeDefined();
+      expect(gridModel.getNode(12, 34)).not.toBeDefined();
+      gridModel.addNode(12, 34, "test");
+      expect(gridModel.getNode(12, 34)).toBeDefined();
     });
 
   });
 
+  describe('addNodes', () => {
+    it('exists', () => {
+      expect(gridModel.addNodes).toBeDefined();
+    });
+    it('should add nodes to state using a rect and a sample grid', ()=> {
+      let rect = new Rect(new Block({x:0,y:0}).center, new Block({x:1,y:3}).center);
+      let grid = new Grid({type:'FLOOR', rotation: 0})
+      gridModel.addNodes(rect, grid);
+      expect(Object.keys(gridModel.state).length).toBe(8);
+      let node = gridModel.getNode(0,0);
+      expect(node).toBeDefined();
+    })
+
+  })
+
   // describe('getMin', () => {
   //
   //   it('should return an object with min/max x/y', () => {
-  //     let min = gridManager.getMin();
+  //     let min = gridModel.getMin();
   //     expect(min.x).toBeDefined();
   //     expect(min.y).toBeDefined();
   //   });
   //
   //   it('should get the smallest values', () => {
-  //     gridManager.addNode(-3,2);
-  //     gridManager.addNode(4,3);
-  //     gridManager.addNode(8,-1);
-  //     gridManager.addNode(5,5);
-  //     let min = gridManager.getMin();
+  //     gridModel.addNode(-3,2);
+  //     gridModel.addNode(4,3);
+  //     gridModel.addNode(8,-1);
+  //     gridModel.addNode(5,5);
+  //     let min = gridModel.getMin();
   //     expect(min.x).toBe(-3);
   //     expect(min.y).toBe(-1);
   //   });
@@ -59,10 +76,10 @@ describe('Game/Model/Grid', () => {
   describe('getPath', () => {
 
     it('should return a path', () => {
-      gridManager.addNode(1,1, new Grid({type:'FLOOR'}));
-      gridManager.addNode(1,2, new Grid({type:'FLOOR'}));
-      gridManager.addNode(2,2, new Grid({type:'FLOOR'}));
-      let path = gridManager.getPath({x:1,y:1}, {x:2, y:2});
+      gridModel.addNode(1,1, new Grid({type:'FLOOR'}));
+      gridModel.addNode(1,2, new Grid({type:'FLOOR'}));
+      gridModel.addNode(2,2, new Grid({type:'FLOOR'}));
+      let path = gridModel.getPath({x:1,y:1}, {x:2, y:2});
       // expect(path).toBe([{x:1, y:2},{x:2, y:2}]);
       expect(path[0].x).toBe(1);
       expect(path[0].y).toBe(2);
@@ -71,8 +88,8 @@ describe('Game/Model/Grid', () => {
     });
 
     it('should return [end] if start and end are same', () => {
-        gridManager.addNode(1,1, new Grid({type:'FLOOR'}));
-        let path = gridManager.getPath({x:1,y:1}, {x:1, y:1});
+        gridModel.addNode(1,1, new Grid({type:'FLOOR'}));
+        let path = gridModel.getPath({x:1,y:1}, {x:1, y:1});
         expect(path[0].x).toBe(1);
         expect(path[0].y).toBe(1);
     });

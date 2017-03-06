@@ -91,7 +91,11 @@ export class Dispatcher{
 				break;
 			case Mode.GRID:
 				// let gridManager:GridManager = (this.getComponent('gridManager'):any);
-				gridManager.addNodes(selection, new Grid({type:state.ui.state.grid, rotation:state.ui.state.rotation}));
+				if(selection.button == 0){
+					gridManager.addNodes(selection.rect, new Grid({type:state.ui.state.grid, rotation:state.ui.state.rotation}));
+				}else if(selection.button == 2){
+					gridManager.removeNodes(selection.rect);
+				}
 				break;
 			case Mode.OBJECT:
 				// let obj = new Objekt({block:selection.end.block, type:state.UI.object});

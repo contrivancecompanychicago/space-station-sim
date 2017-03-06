@@ -70,12 +70,13 @@ describe('Game/Type/Character', () => {
       it('shuld exist', () => {
         expect(c.hasRecipe).toBeDefined();
       })
+      it('negative if level = 0', () => {
+        
+        expect(c.hasRecipe('GARLICCHEESE')).toBe(false);
+      })
       it('positive if level > 0', () => {
         c.addRecipe('GARLIC');
         expect(c.hasRecipe('GARLIC')).toBe(true);
-      })
-      it('negative if level = 0', () => {
-        expect(c.hasRecipe('GARLIC')).toBe(false);
       })
     })
 
