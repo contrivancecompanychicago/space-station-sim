@@ -10,6 +10,9 @@ export default class Block{
   constructor(pos:{x:number, y:number}){
     this.x = pos.x;
     this.y = pos.y;
+    if(arguments.length>1){
+      throw new Error('your block args are fucked, bro.')
+    }
   }
   add(diff:{x:number, y:number}){
     return new Block({

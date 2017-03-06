@@ -23,6 +23,7 @@ export default class GridModel {
         this.state = s;
     }
 
+    //refactor to rect instead of select, add removeNodes
     addNodes(selection: Object, type: Grid) {
         let sel = selection.rect.blockRect();
         for (let y = sel.t; y <= sel.b; y++) {
