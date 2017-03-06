@@ -1,3 +1,4 @@
+// @flow
 import {values} from 'lodash'
 
 import state, {State} from 'Game/state'
@@ -5,6 +6,8 @@ import state, {State} from 'Game/state'
 import Block from 'Game/Block';
 import Rect from 'Game/Rect';
 import Grid from 'Game/Type/Grid'
+
+import Obj from 'Game/Type/Object'
 
 describe('Game/state integration', () => {
 	beforeEach(() => {
@@ -21,8 +24,11 @@ describe('Game/state integration', () => {
 		expect(Object.keys(state.grid.state).length).toBe(8);
 
 		let node = state.grid.getNode(0,0);
-		expect(node).toBeDefined();
-		expect(node.type).toBe('FLOOR')
+		expect(node.type).toBe('FLOOR');
+		node = state.grid.getNode(1,3);
+		expect(node.type).toBe('FLOOR');
+		let obj = new Obj({block:new Block({x:0, y:0}), type:'FRIDGE'});
+		state.object.addObject(obj)
 	})
 
 })

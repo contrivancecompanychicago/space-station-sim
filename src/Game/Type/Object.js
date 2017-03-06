@@ -16,6 +16,8 @@ export default class Obj{
   type: ObjectType;
   rotation: number
   constructor(params:{block:Block, type:ObjectType}){
+    if(!params) throw new Error('No Params')
+    if(params.block.constructor.name != 'Block') throw new Error('Not a block')
     defaults(this, params);
     if(!this.rotation) this.rotation = 0;
   }
