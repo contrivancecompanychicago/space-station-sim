@@ -28,6 +28,9 @@ export default class ObjectModel {
 		// obj = Factory.create(obj);
 		this.state[obj.getKey()] = obj;
 
+		//state grid not there in test env
+		if(state.grid)	state.grid.cacheObject(obj);
+
 	}
 	deleteObject(obj: Obj) {
 		delete this.state[obj.getKey()];
@@ -80,6 +83,7 @@ export default class ObjectModel {
 		keys(objects).forEach((key) => {
 			let obj = objects[key];
 			this.cacheObject(obj)
+			state.grid.cacheObject(obj)
 		})
 	}
 	cacheObject(obj:Obj){
