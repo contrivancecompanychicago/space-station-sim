@@ -72,7 +72,7 @@ export default class Obj{
 		let maxx = -Infinity;
 		let maxy = -Infinity;
 		this.getBlocks().filter(b => {
-			return b.type == 'BLOCK'
+			return b.type != 'ACCESS'
 		}).map(b => {
 			return this.block.add(b);
 		}).forEach((b) => {

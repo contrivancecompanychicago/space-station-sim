@@ -17,7 +17,7 @@ const obj:ObjectDataType = {
   height: 1,
   blocks: [
     {type: a, weight: Weight.ACCESS, x:0, y:-1},
-    {type: a, weight: Weight.CHAIR, x:0,y:0},
+    {type: b, weight: Weight.CHAIR, x:0,y:0},
   ],
   requirements: {
   },

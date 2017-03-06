@@ -114,7 +114,8 @@ export default class Renderer{
 					let ob = node.getObject()
 					if(ob){
 						//only render if I have selected the bottomright block;
-						// if(ob.getBottomRightBlock().is(block))
+						// if(ob.type == 'CHAIR2') debugger;
+						if(ob.getBottomRightBlock().is(block))
 							renderBlockObject(block, ob, state, layer);
 					}
 				}
