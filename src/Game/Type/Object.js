@@ -48,6 +48,7 @@ export default class Obj{
       return this.rotateBlock(b);
     })
   }
+  /** returns the world blocks the points are on, not just offsets */
   getAccessBlock():Block{
     let accessBlocks = this.getBlocks().filter((b) => {
       return b.type == 'ACCESS';
