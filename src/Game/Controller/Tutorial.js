@@ -2,7 +2,7 @@
 
 import state from 'Game/state'
 
-import starter from 'Game/Manager/Tutorial/starter'
+import starter from 'Game/Controller/Tutorial/starter'
 
 export default class TutorialController{
     tutorial: ?Generator<*,*,*>

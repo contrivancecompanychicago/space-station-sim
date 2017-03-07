@@ -20,7 +20,7 @@ import Task from 'Game/Type/Task';
 import type {Selection} from 'Game/Type/Selection'
 import type {ObjectState} from 'Game/Model/Object'
 
-import actions from 'Game/Manager/Character/Action/index'
+import actions from 'Game/Controller/Character/Action/index'
 
 import Proposer from 'Game/Action/Proposer';
 const proposer = new Proposer();

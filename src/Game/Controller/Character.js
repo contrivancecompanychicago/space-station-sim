@@ -5,7 +5,7 @@ import {keys} from 'lodash';
 import Ability from 'Game/Data/Object/Ability'
 
 import Character from 'Game/Type/Character'
-import actions from 'Game/Manager/Character/Action'
+import actions from 'Game/Controller/Character/Action'
 
 export default class CharacterController{
 
