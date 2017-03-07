@@ -43,6 +43,7 @@ export default class GridModel {
 		}
 	}
 	removeNodes(rect:Rect){
+		let sel = rect.blockRect();
 		for (let y = sel.t; y <= sel.b; y++) {
 			for (let x = sel.l; x <= sel.r; x++) {
 				this.removeNode(x, y);

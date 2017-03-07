@@ -410,8 +410,14 @@ describe('functional end to end', () => {
 			clickSelector('button#load-large');
 			setTimeout(done, 1000);
 		})
-		it('should load functional', (done) => {
+		it('should load functionalagain', (done) => {
 			clickSelector('button#load-functional');
+			setTimeout(done, 2000);
+		})
+		it('shuld have the same character with a responsibility', (done) => {
+			console.log(game.state.character.getChar(char.id))
+			console.log(char);
+			
 			setTimeout(done, 2000);
 		})
 

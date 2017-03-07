@@ -63,8 +63,7 @@ export default class CharacterModel {
 	}
 
 	spawnCharacter(char:Character){
-		let objectManager = state.object;
-		let spawnPoints = objectManager.getObjectsWithAbility(Ability.SPAWN)
+		let spawnPoints = state.object.getObjectsWithAbility(Ability.SPAWN)
 		if (spawnPoints.length > 0) {
 			let pt = spawnPoints[Math.floor(Math.random() * spawnPoints.length)];
 			char.position = pt.block.center;

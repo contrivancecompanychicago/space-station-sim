@@ -34,7 +34,7 @@ export default class Character{
 	position: Point;
 	firstname: string;
 	lastname: string;
-	action: ?Generator<*,*,*>;
+	action: ?Generator<*,*,*>
 	skills: {[id:Skill]:number}
 	salary: number;
 	status: string;
@@ -44,19 +44,19 @@ export default class Character{
 		if(!this.id) this.id = uniqid();
 		if(!this.item) this.item = []
 		if(!this.firstname) defaults(this, namegen())
-		this.randomiseSkills()
+		if(!this.skills) this.randomiseSkills()
 		if(!this.salary) this.calculateSalary();
 		this.status = "initialising"
 
-		this.taskTypes = []
-		this.path = []
-
-		this.recipes = {}
-		RecipeData.each((key, val) => {
-			this.recipes[key] = {level:0, experience:0}
-			
-		})
-		this.addRecipe('GARLIC')
+		if(!this.taskTypes)this.taskTypes = []
+		if(!this.path)this.path = []
+		if(!this.recipes){
+			this.recipes = {}
+			RecipeData.each((key, val) => {
+				this.recipes[key] = {level:0, experience:0}
+			})
+			this.addRecipe('GARLIC')
+		}
 
 		//HACK dummy Data
 		// this.assignTaskType('PREP')
@@ -143,7 +143,6 @@ export default class Character{
 			return state.item.getItem(i)
 		})
 	}
-
 	setStatus(status:string){
 		this.status = status;
 	}

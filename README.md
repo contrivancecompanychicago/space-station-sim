@@ -61,6 +61,7 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
  - when assigning tasks clean up current task;
 
  - add load action that is assigned when game is loaded to pick up where left off
+    - workers and customers
 
 ### PRIORITISED:
  - chef recipe learning system
