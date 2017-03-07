@@ -82,6 +82,7 @@ export default class Character{
 			this.skills[s] = Math.floor(Math.random()*config.character.skill.max);
 		})
 	}
+
 	recipes: {[id:RecipeType]: {level:number, experience: number}}
 	getRecipe(recipeType:RecipeType): {level:number, experience: number}{
 		return this.recipes[recipeType];
@@ -127,18 +128,20 @@ export default class Character{
 	}
 
 	// ITEM
-	item: Array<Item>;
+	item: Array<string>;
 	addItem(item:Item){
-		this.item.push(item)
+		this.item.push(item.id)
 	}
 	hasItem(item:Item):boolean{
-		return this.item.indexOf(item) >-1
+		return this.item.indexOf(item.id) >-1
 	}
 	removeItem(item:Item){
-		this.item.splice(this.item.indexOf(item), 1);
+		this.item.splice(this.item.indexOf(item.id), 1);
 	}
 	getItems():Array<Item>{
-		return this.item
+		return this.item.map(i => {
+			return state.item.getItem(i)
+		})
 	}
 
 	setStatus(status:string){

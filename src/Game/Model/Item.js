@@ -23,6 +23,9 @@ export default class ItemModel {
     getItems() :Array<Item>{
         return values(this.state)
     }
+    getItem(id:string):?Item{
+        return this.state[id];
+    }
 
     save():Object{
         return this.state

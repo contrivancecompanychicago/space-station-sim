@@ -16,7 +16,6 @@ export type CharacterState = {
 export default class CharacterModel {
 	state: CharacterState
 	constructor() {
-		
 		this.state = {};
 	}
 
@@ -86,31 +85,17 @@ export default class CharacterModel {
 		}
 	}
 
-	// spawnUpdate(){
-	//     //spawn;
-	//     let objectManager = state.object;
-	//     let spawnPoints = objectManager.getObjectsWithAbility(Ability.SPAWN)
-	//     spawnPoints.forEach((sp) => {
-	//         if (Math.random() < 0.0004) {
-	//             let char:Character = new Character({ position: sp.block.center, type: 'CUSTOMER' })
-	//             this.addChar(char);
-	//         }
-	//     })
-
-	// }
-
-
 	getChar(id:string):Character{
 		return this.state[id];
 	}
 
-	_hireableChars: Array < Character >
-		getHireableChars():Array < Character > {
-			if(!this._hireableChars){
-		this.generateHireableChars();
-	}
-	return this._hireableChars
+	_hireableChars: Array < Character >;
+	getHireableChars():Array < Character > {
+		if(!this._hireableChars){
+			this.generateHireableChars();
 		}
+		return this._hireableChars
+	}
 	generateHireableChars(){
 		this._hireableChars = []
 		for (let i = 0; i < 3; i++) {
