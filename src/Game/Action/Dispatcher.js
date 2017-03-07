@@ -25,16 +25,16 @@ import actions from 'Game/Manager/Character/Action/index'
 import Proposer from 'Game/Action/Proposer';
 const proposer = new Proposer();
 
+const LEFTMOUSE = 0;
+const RIGHTMOUSE = 2
+
 export class Dispatcher{
 
 	userAction(selection:Selection){
-
 		let sel = selection.rect.blockRect();
-
 		switch(state.ui.state.mode){
 			case Mode.SELECT:
-
-				if(selection.button === 0){
+				if(selection.button === LEFTMOUSE){
 					//CHANGE SELECTION
 					let mouse = state.view.getMousePoint();
 					let char = state.character.getClosestCharacterToPoint(mouse, 32)
@@ -50,8 +50,7 @@ export class Dispatcher{
 						}
 					}
 				}
-				
-				if(selection.button === 2){
+				if(selection.button === RIGHTMOUSE){
 					//ASSIGN TASKS
 					//TODO REFACTOR
 					state.ui.getSelected().forEach(s => {
@@ -63,25 +62,19 @@ export class Dispatcher{
 									s.action = actions.useCoffeeAbility(s, obj)
 								}
 							}
-							
 						}
-						
 					})
-					
 				}
-
 				break;
-
 			case Mode.GRID:
-				if(selection.button == 0){
+				if(selection.button == LEFTMOUSE){
 					state.grid.addNodes(selection.rect, new Grid({type:state.ui.state.grid, rotation:state.ui.state.rotation}));
-				}else if(selection.button == 2){
+				}else if(selection.button == RIGHTMOUSE){
 					state.grid.removeNodes(selection.rect);
 				}
 				break;
-
 			case Mode.OBJECT:
-				if(selection.button === 2){
+				if(selection.button === RIGHTMOUSE){
 					//DELETE MODE
 					let obj = state.object.getObjectAtBlock(selection.end.block);
 					if(obj){
@@ -91,37 +84,24 @@ export class Dispatcher{
 					let proposal = proposer.propose(state);
 					state.object.mergeState(proposal.object.state)
 				}
-
-
 				break;
 			case Mode.ITEM:
-				let itemManager = state.item
-				// let item = ItemFactory.create({
 				let item = new Item({
 					position: new Point({x: selection.end.x, y: selection.end.y}),
 					type:state.ui.state.item});
-
 				state.item.addItem(item);
 				break;
 			case Mode.CHAR:
-				// sel.rect.blocks.forEach(pos => {
-
-				// })
-				for(let y = sel.t; y <= sel.b; y++){
-					for(let x = sel.l; x <= sel.r; x++){
-						let pos = new Block({x:x, y:y}).center;
-						state.character.addChar(new Character({position: pos, type: state.ui.state.character}));
-					}
-				}
+				selection.rect.blocks.forEach(block => {
+					let pos = block.center
+					state.character.addChar(new Character({position: pos, type: state.ui.state.character}));
+				})
 				break;
 			case Mode.TASK:
-				for(let y = sel.t; y <= sel.b; y++){
-					for(let x = sel.l; x <= sel.r; x++){
-						let pos = new Block({x:x, y:y});
-						let task = new Task({block:pos, grid:state.ui.state.grid, type: Tasks.BUILD})
-						state.task.addTask(task)
-					}
-				}
+				selection.rect.blocks.forEach(block => {
+					let task = new Task({block:block, grid:state.ui.state.grid, type: Tasks.BUILD})
+					state.task.addTask(task)
+				})
 				break;
 		}
 	}
