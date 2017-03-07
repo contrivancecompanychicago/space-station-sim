@@ -387,11 +387,6 @@ describe('functional end to end', () => {
 
 	})
 
-	it('should wait open', (done) => {
-		setTimeout(() => {
-			done();
-		}, 1000)
-	})
 
 	describe('save and load', () => {
 		beforeAll(()=>{
@@ -404,13 +399,22 @@ describe('functional end to end', () => {
 			// game.state.clear();
 		})
 		it('should save', (done) => {
-
+			let saveinput = sizzle('.save.panel input')[0];
+			saveinput.value = 'functional';
+			ReactTestUtils.Simulate.change(saveinput);//unnecessary?
+			expect(clickSelector('.save.panel button#save')).toBe(true)
+			expect(localStorage['save_functional']).toBeDefined();
 			setTimeout(done, 1000);
 		})
 		it('should load stock', (done) => {
 			clickSelector('button#load-large');
 			setTimeout(done, 1000);
 		})
+		it('should load functional', (done) => {
+			clickSelector('button#load-functional');
+			setTimeout(done, 2000);
+		})
+
 	})
 
 
@@ -457,14 +461,11 @@ function* canvasDragRect(from:{x:number, y:number}, to:{x:number, y:number}):Gen
 		x: toBlock.center.x-fromBlock.center.x, 
 		y: toBlock.center.y-fromBlock.center.y
 	}
-	// console.log(diff)
 	for(let i = 0; i<1; i+=0.2){ //percentages
-
 		let pos = {
 			x: fromBlock.center.x + (diff.x*i),
 			y: fromBlock.center.y + (diff.y*i)
 		}
-		
 		mouseEvent(canvas, 'mousemove', {button:0, pageX:pos.x, pageY:pos.y});	
 		yield sleep(gap)
 	}
