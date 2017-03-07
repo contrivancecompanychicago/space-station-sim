@@ -119,8 +119,6 @@ export default class Renderer{
 							renderBlockObject(block, ob, state, layer);
 					}
 				}
-
-
 			
 		})
 		// grid(state, layer);

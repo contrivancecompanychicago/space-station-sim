@@ -28,7 +28,8 @@ export default function renderObject(state:State, layer:Layer){
 export function renderBlockObject(block:Block, object:Obj, state:State, layer:Layer){
 
   let t = Types.get(object.type);
-  let o = block.rect.renderParams;
+  // let o = block.rect.renderParams;
+  let o = object.block.rect.renderParams
 
   let i = t.image;
   let center = {x: o.x+(o.w/2), y: o.y+ (o.h/2)}
