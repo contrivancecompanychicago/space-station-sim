@@ -6,10 +6,10 @@ import Obj from 'Game/Type/Object'
 import Character from 'Game/Type/Character'
 import {keys} from 'lodash'
 
-import engine from 'Game/engine';
-
 import config from 'Game/config'
 import state from 'Game/state'
+
+import clear from './clear'
 
 import dispatcher from 'Game/Action/Dispatcher'
 
@@ -31,14 +31,7 @@ export default function loadGame(savename:string){
   let grid = data.grid
   let object = data.object;
 
-  state.item.clear();
-  state.character.clear();
-  state.object.clear();
-  state.grid.clear();
-  state.order.clear();
-  state.player.clear();
-  state.task.clear();
-  state.time.clear();
+  clear();
 
   state.grid.load(grid)
   state.object.load(object)

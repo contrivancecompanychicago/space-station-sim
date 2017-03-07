@@ -18,12 +18,12 @@ class Panel extends React.Component {
     // });
     return <div className="panels panel">
       <h3>Info Panels</h3>
-      <Button type="panel" selected={false} data={{label:'Logs'}} click={()=>this.props.click('TOGGLE_LOG_PANEL')} />
-      <Button type="panel" selected={false} data={{label:'Hiring'}} click={()=>this.props.click('TOGGLE_HIRING_PANEL')} />
-      <Button type="panel" selected={false} data={{label:'Staff'}} click={()=>this.props.click('TOGGLE_STAFF_PANEL')} />
-      <Button type="panel" selected={false} data={{label:'Orders'}} click={()=>this.props.click('TOGGLE_ORDERS_PANEL')} />
-      <Button type="panel" selected={false} data={{label:'Talents'}} click={()=>this.props.click('TOGGLE_TALENT_PANEL')} />
-      <Button type="panel" selected={false} data={{label:'Save/Load'}} click={()=>this.props.click('TOGGLE_SAVE_PANEL')} />
+      <Button type="panel" id="logs" selected={false} data={{label:'Logs'}} click={()=>this.props.click('TOGGLE_LOG_PANEL')} />
+      <Button type="panel" id="hiring" selected={false} data={{label:'Hiring'}} click={()=>this.props.click('TOGGLE_HIRING_PANEL')} />
+      <Button type="panel" id="staff" selected={false} data={{label:'Staff'}} click={()=>this.props.click('TOGGLE_STAFF_PANEL')} />
+      <Button type="panel" id="orders" selected={false} data={{label:'Orders'}} click={()=>this.props.click('TOGGLE_ORDERS_PANEL')} />
+      <Button type="panel" id="talents" selected={false} data={{label:'Talents'}} click={()=>this.props.click('TOGGLE_TALENT_PANEL')} />
+      <Button type="panel" id="save" selected={false} data={{label:'Save/Load'}} click={()=>this.props.click('TOGGLE_SAVE_PANEL')} />
     </div>;
   }
 }

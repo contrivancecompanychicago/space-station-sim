@@ -33,7 +33,7 @@ class SavePanel extends React.Component {
 
     let saves = listSaves();
     saves = saves.map(s => {
-      return <button key={s} onClick={() => {this.load(s)}}>{s}</button>
+      return <button id={'load-'+s} key={s} onClick={() => {this.load(s)}}>{s}</button>
     })
     return <div className="save panel">
       <Header text='Save Panel' close={this.props.close} />
@@ -44,7 +44,7 @@ class SavePanel extends React.Component {
       <input type="text" value={this.state.savename} onChange={(e)=>{
         this.setState({savename: e.target.value});
       }} />
-      <button onClick={() => {this.save(this.state.savename)}}>save</button>
+      <button id="save" onClick={() => {this.save(this.state.savename)}}>save</button>
     </div>
   }
 }

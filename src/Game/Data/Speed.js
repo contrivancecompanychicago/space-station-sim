@@ -16,7 +16,7 @@ const Speed:{[id:SpeedType]:SpeedDataType} = {
   'STOP': {label: 'stop', speed:0},
   'SLOW': {label: 'slow', speed:0.5},
   'NORMAL': {label: 'normal', speed: 1},
-  'FAST': {label: 'fast', speed: 4},
+  'FAST': {label: 'fast', speed: 8},
 };
 
 export default Speed;

@@ -274,7 +274,7 @@ describe('functional end to end', () => {
 		yield sleep(gap);
 		expect(clickSelector('.button-mode-panels')).toBe(true)
 		yield sleep(gap);
-		expect(clickSelector('.button-panel-Hiring')).toBe(true)
+		expect(clickSelector('.button-panel-hiring')).toBe(true)
 	}));
 
 	let char;
@@ -386,6 +386,33 @@ describe('functional end to end', () => {
 		clickSelector('.tutorial button')
 
 	})
+
+	it('should wait open', (done) => {
+		setTimeout(() => {
+			done();
+		}, 1000)
+	})
+
+	describe('save and load', () => {
+		beforeAll(()=>{
+			clickSelector('.button-speed-normal')
+			clickSelector('.button-mode-panels')
+			clickSelector('.button-panel-save')
+
+		})
+		afterAll(() => {
+			// game.state.clear();
+		})
+		it('should save', (done) => {
+
+			setTimeout(done, 1000);
+		})
+		it('should load stock', (done) => {
+			clickSelector('button#load-large');
+			setTimeout(done, 1000);
+		})
+	})
+
 
 
 	it('should wait open', (done) => {

@@ -13,6 +13,8 @@ import TutorialModel from 'Game/Model/Tutorial';
 import UIModel from 'Game/Model/UI';
 import ViewModel from 'Game/Model/View';
 
+import clear from 'Game/State/clear'
+
 export class State {
   character: CharacterModel
   grid: GridModel
@@ -28,6 +30,9 @@ export class State {
   view: ViewModel
 
   constructor() {
+  }
+  clear(){
+    clear();
   }
 
   init() {

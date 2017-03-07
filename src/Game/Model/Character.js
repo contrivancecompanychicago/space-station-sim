@@ -109,12 +109,13 @@ export default class CharacterModel {
 	}
 
 	save():Object{
-		let out = {}
-		keys(this.state).forEach((k) => {
-			let char = this.state[k]
-			out[k] = { x: char.position.x, y: char.position.y, type: char.type }
-		})
-		return out 
+		// let out = {}
+		// keys(this.state).forEach((k) => {
+		// 	let char = this.state[k]
+		// 	out[k] = { x: char.position.x, y: char.position.y, type: char.type }
+		// })
+		// return out 
+		return this.state;
 	}
 	
 	clear(){
@@ -123,8 +124,14 @@ export default class CharacterModel {
 	
 	load(obj:Object){
 		values(obj).forEach((c)=> {
-			let pos = new Point(c);
-			this.addChar(new Character({position: pos, type: c.type}));
+			// console.log(c)
+			// let pos = new Point(c);
+			c.position = new Point(c.position);
+			c.path = c.path.map(b=>new Block(b));
+			delete c.action;
+			
+			// this.addChar(new Character({position: pos, type: c.type}));
+			this.addChar(new Character(c));
 		})
 	}
 
