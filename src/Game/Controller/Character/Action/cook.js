@@ -14,7 +14,7 @@ import type Order from 'Game/Type/Order'
 
 export default function* cook(char: Character): Generator<*,*,*>{
 
-	let orders = state.order.state.filter((o:Order) => {
+	let orders = state.order.getOrders().filter((o:Order) => {
 		return o.worker == undefined
 			&& o.status === 'MADE'
 	});
@@ -47,34 +47,5 @@ export default function* cook(char: Character): Generator<*,*,*>{
 		order.removeWorker(char)
 
 	}
-
-
-	// //FIND ORDER
-	// let orders = state.order.state.filter((o:Order)=>{
-	// 	if(o.worker) return false;
-	// 	if(o.item) return false;
-	// 	if(o.type === 'PIZZA') return true;
-	// })
-	// if(orders.length==0){
-	// 	if(Math.random()<0.01)
-	// 		yield *actions.wandertoAdjacentTile(char);
-	// 	return;
-	// }
-	// let order = orders[0];
-
-	// state.log.addLog({
-	// 	message:char.toString()+' cooking '+order.type+' for '+order.customer.toString(),
-	// 	type:'EVENT'})
-
-	// char.setStatus('cooking food')
-	// yield *actions.cookPizza(char, order)
-
-	// state.log.addLog({
-	// 	message:char.toString()+' finished cooking '+order.type+' for '+order.customer.toString(),
-	// 	type:'EVENT'})
-
-
-	// char.setStatus('waiting for orders')
-
 
 }

@@ -95,12 +95,12 @@ export default class Proposer {
 */
 function blockHasObject(state: State, block: Block) {
   let key = makeKey(block.x, block.y);
-  if (state.object.state[key]) return true;
+  if (state.object.getObjectAtBlock(block)) return true;
   //check neighbours
   for (let x = 0; x < 3; x++) {
     for (let y = 0; y < 3; y++) {
       key = makeKey(block.x - x, block.y - y);
-      let obj = state.object.state[key];
+      let obj = state.object.getObjectWithKey(key);
       if (obj) {
         let type = ObjectData.get(obj.type);
         if (type.width >= x + 1 && type.height >= y + 1)

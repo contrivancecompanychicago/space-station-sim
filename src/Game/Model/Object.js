@@ -48,7 +48,7 @@ export default class ObjectModel {
 		//check overlapping
 		let grid = state.grid.getNode(block.x, block.y)
 		if(grid) {
-			if (grid.object) {
+			if (grid.object) { //todo not access directly on object
 				return this.state[grid.object];
 			}
 		}

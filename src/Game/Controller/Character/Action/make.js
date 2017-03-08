@@ -11,7 +11,7 @@ import type Order from 'Game/Type/Order'
 import type Character from 'Game/Type/Character'
 
 export default function* make(char: Character): Generator<*,*,*>{
-	let orders = state.order.state.filter((o:Order)=>{
+	let orders = state.order.getOrders().filter((o:Order)=>{
 		if(o.worker) return false;
 		if(o.item) return false;
 		if(o.type === 'PIZZA') return true;

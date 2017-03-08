@@ -47,7 +47,7 @@ export default function* serveOrder(char: Character, order: Order): Generator<*,
     //finish order
 
     order.status = 'FULFILLED'
-    state.order.state.splice(state.order.state.indexOf(order), 1);
+    state.order.deleteOrder(order)
     yield * actions.wandertoAdjacentTile(char);
 
   }

@@ -5,7 +5,7 @@ import { Tasks } from 'Game/Data/Task'
 export default function* serveDrink(char: Character): Generator<*,*,*>{
 
     //LOOK FOR COFFEE ORDERS
-    let coffeeOrders = state.order.state.filter((o) => {
+    let coffeeOrders = state.order.getOrders().filter((o) => {
         return o.type === 'COFFEE'
             && o.status === 'ORDERED'
             && o.worker === undefined

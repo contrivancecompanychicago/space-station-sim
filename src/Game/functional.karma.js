@@ -415,8 +415,9 @@ describe('functional end to end', () => {
 			setTimeout(done, 2000);
 		})
 		it('shuld have the same character with a responsibility', (done) => {
-			console.log(game.state.character.getChar(char.id))
-			console.log(char);
+			let c1 = (game.state.character.getChar(char.id))
+			let c2 = (char);
+			expect(c1.id).toBe(c2.id)
 			
 			setTimeout(done, 2000);
 		})

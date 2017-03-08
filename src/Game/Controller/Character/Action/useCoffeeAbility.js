@@ -7,7 +7,7 @@ export default function* useCoffeeAbility(char: Character, object:Obj): Generato
 
 	char.setObject(object);
     //LOOK FOR COFFEE ORDERS
-    let coffeeOrders = state.order.state.filter((o) => {
+    let coffeeOrders = state.order.getOrders().filter((o) => {
         return o.type === 'COFFEE'
             && o.status === 'ORDERED'
             && o.worker === undefined

@@ -24,7 +24,7 @@ class OrderPanel extends React.Component {
 
     let orders = []
     if(state.order){
-      state.order.state.forEach((o, i) => {
+      state.order.getOrders().forEach((o, i) => {
         orders.push(
           <div className='order' key={'order'+i}>
 

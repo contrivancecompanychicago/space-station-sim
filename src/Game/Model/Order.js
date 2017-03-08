@@ -14,6 +14,9 @@ export default class OrderModel{
   getOrders():Array<Order>{
     return this.state;
   }
+  deleteOrder(order:Order){
+    this.state.splice(this.state.indexOf(order), 1);
+  }
   save(){
     return this.state;
   }

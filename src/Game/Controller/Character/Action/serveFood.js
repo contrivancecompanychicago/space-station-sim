@@ -5,7 +5,7 @@ import { Tasks } from 'Game/Data/Task'
 export default function* serveFood(char: Character): Generator<*,*,*>{
 
 	//LOOK FOR COOKED PIZZAS
-	let orders = state.order.state.filter((o) => {
+	let orders = state.order.getOrders().filter((o) => {
 		// if(o.worker) return false;
 		// if(o.item && o.type === 'PIZZA') return true;
 		return o.worker == undefined
