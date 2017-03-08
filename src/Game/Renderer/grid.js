@@ -33,11 +33,6 @@ function renderGrid(state:State, layer:Layer){
       if(node){
         renderBlock(pos, node, state, layer);
       }
-      // let key = makeKey(x, y);
-      // if(state.grid.state[key]){
-      //   renderBlock(pos, state.grid.state[key], state, layer);
-      //   // let block = {x, y};
-      // }
     }
   }
 

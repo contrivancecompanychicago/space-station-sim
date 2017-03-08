@@ -24,7 +24,7 @@ class LogPanel extends React.Component {
 
     let logs = []
     if(state.log){
-      state.log.log.forEach((o, i) => {
+      state.log.getLogs().forEach((o, i) => {
         logs.push(
           <div className='log' key={'log'+i}>
             <div className='message'>{o.message}</div>
