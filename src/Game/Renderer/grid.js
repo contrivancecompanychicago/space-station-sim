@@ -29,11 +29,15 @@ function renderGrid(state:State, layer:Layer){
   for(let x = tl.x; x<=br.x; x++){
     for(let y = tl.y; y<=br.y; y++){
       let pos = new Block({x, y});
-      let key = makeKey(x, y);
-      if(state.grid.state[key]){
-        renderBlock(pos, state.grid.state[key], state, layer);
-        // let block = {x, y};
+      let node = state.grid.getNode(x, y);
+      if(node){
+        renderBlock(pos, node, state, layer);
       }
+      // let key = makeKey(x, y);
+      // if(state.grid.state[key]){
+      //   renderBlock(pos, state.grid.state[key], state, layer);
+      //   // let block = {x, y};
+      // }
     }
   }
 
