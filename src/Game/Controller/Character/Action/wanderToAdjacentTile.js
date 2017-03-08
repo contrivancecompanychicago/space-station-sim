@@ -3,19 +3,12 @@
 import engine from 'Game/engine'
 import actions from './index'
 import type Character from 'Game/Type/Character'
-// import type CharacterManager from 'Game/Manager/Character';
 import Block from 'Game/Block'
 
 import state from 'Game/state'
 
 export default function* wanderToAdjacentTile(char:Character):Generator<*,*,*>{
   //most of the time do nothing
-
-  // let gridManager:GridManager = engine.getComponent('gridManager');
-  // let objectManager:ObjectManager = engine.getComponent('objectManager');
-
-  let gridManager = state.grid
-  let objectManager = state.object
 
   let here = char.position.block;
   let adjacent = [
@@ -26,12 +19,12 @@ export default function* wanderToAdjacentTile(char:Character):Generator<*,*,*>{
   ]
   let grids = adjacent.map(function (a){
     let block = new Block({x:here.x+a.x, y: here.y+a.y})
-    let node = gridManager.getNode(block.x, block.y);
+    let node = state.grid.getNode(block.x, block.y);
     if(node){
       let data = node.getData()
       if(data.weight != 1) return;
       //check objects
-      let obj = objectManager.getObjectAtBlock(block)
+      let obj = state.object.getObjectAtBlock(block)
       if(obj) return;
 
       return block

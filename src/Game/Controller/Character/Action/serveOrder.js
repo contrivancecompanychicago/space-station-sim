@@ -10,17 +10,12 @@ import type Block from 'Game/Block'
 import state from 'Game/state'
 
 export default function* serveOrder(char: Character, order: Order): Generator<*,*,*>{
-  // let objectManager:ObjectManager = engine.getComponent('objectManager');
-  // let orderManager:OrderManager = engine.getComponent('orderManager');
-  let objectManager = state.object
-  let orderManager = state.order
-  let logManager = state.log
   order.worker = char
   if(order.item != undefined) {
     let item = order.item;
     if (!char.hasItem(item)) {
       let block = item.position.block
-      let obj = objectManager.getObjectAtBlock(block);
+      let obj = state.object.getObjectAtBlock(block);
       if (obj) {
         obj.setCharacter(char)
         // let shortestPathLength = Infinity;
@@ -52,7 +47,7 @@ export default function* serveOrder(char: Character, order: Order): Generator<*,
     //finish order
 
     order.status = 'FULFILLED'
-    orderManager.state.splice(orderManager.state.indexOf(order), 1);
+    state.order.state.splice(state.order.state.indexOf(order), 1);
     yield * actions.wandertoAdjacentTile(char);
 
   }

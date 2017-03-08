@@ -65,17 +65,15 @@ function* reqAbility(ability:AbilityType):Generator<*,*,*>{
 }
 
 function* nextText(text:string):Generator<*,*,*>{
-    let uiManager = state.ui
     let next = false;
     
-    uiManager.dispatch({type: 'SHOW_TUTORIAL', text: text, next:()=>{next = true}})
+    state.ui.dispatch({type: 'SHOW_TUTORIAL', text: text, next:()=>{next = true}})
     while(!next) yield;
 }
 function* reqStaff(type:string):Generator<*,*,*>{
-    let characterManager = state.character
     let cooks = []
     do{
-        cooks = characterManager.getChars().filter((c) => {
+        cooks = state.character.getChars().filter((c) => {
             return (c.type == type)
         });
         yield;
@@ -84,6 +82,5 @@ function* reqStaff(type:string):Generator<*,*,*>{
 }
 
 function highlight(elements:Array<string> = []){
-    let uiManager = state.ui
-    uiManager.dispatch({'type': 'HIGHLIGHT', elements:elements})
+    state.ui.dispatch({'type': 'HIGHLIGHT', elements:elements})
 }

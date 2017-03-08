@@ -14,11 +14,7 @@ import type Obj from 'Game/Type/Object'
 import Order from 'Game/Type/Order'
 export default function* customer(char: Character): Generator<*,*,*>{
 
-	let itemManager = state.item
-  let gridManager = state.grid
-  let objectManager = state.object
-  let orderManager = state.order
-  let charManager = state.character
+
   
   char.setStatus('Sitting down')
   let chair = yield * actions.pathToObjectWithAbility(char, Ability.CHAIR);
@@ -31,10 +27,10 @@ export default function* customer(char: Character): Generator<*,*,*>{
 
 		let pizza = new Order({ customer: char, type: 'PIZZA' })
 		orders.push(pizza)
-		orderManager.addOrder(pizza);
+		state.order.addOrder(pizza);
 		let coffee = new Order({ customer: char, type: 'COFFEE' })
 		orders.push(coffee)
-		orderManager.addOrder(coffee);
+		state.order.addOrder(coffee);
 
 
 		//check for table;
@@ -50,7 +46,7 @@ export default function* customer(char: Character): Generator<*,*,*>{
 			check.x += c.x
 			check.y += c.y
 			if (!table) {
-				table = objectManager.getObjectAtBlock(check);
+				table = state.object.getObjectAtBlock(check);
 				if (table) {
 					if (!table.hasAbility('DINE_TABLE')) {
 						table = null;
@@ -77,9 +73,11 @@ export default function* customer(char: Character): Generator<*,*,*>{
 		char.setStatus('Eating')
 		yield * actions.idle(char, 5);
 		state.player.addMoney(20)
-		while (char.item.length > 0) {
-			let item = char.item[0];
-			itemManager.removeItem(item);
+		
+		
+		while (char.getItems().length > 0) {
+			let item = char.getItems()[0];
+			state.item.removeItem(item);
 			char.removeItem(item);
 		}
 		char.setStatus('Leaving')
@@ -96,7 +94,7 @@ export default function* customer(char: Character): Generator<*,*,*>{
 
 	char.setStatus('Gone')
 
-	charManager.removeCharacter(char);
+	state.character.removeCharacter(char);
 
 
 

@@ -15,14 +15,12 @@ import {Tasks} from 'Game/Data/Task'
 
 export default function* cookPizza(char:Character, order:Order):Generator<*,*,*>{
 
-	// let itemManager:ItemManager = engine.getComponent('itemManager')
-	let itemManager = state.item
 	// order.worker = char
 	order.addWorker(char);
 	order.status = 'STARTED'
 	let obj = yield *actions.forceUseObjectWithAbility(char, Ability.FRIDGE)
 	let item:Item = new Item({position: obj.block.center, type:'BASE'})
-	itemManager.addItem(item);
+	state.item.addItem(item);
 	order.item = item;
 	char.addItem(item)
 	yield *actions.forceUseObjectWithAbility(char, Ability.PREP_TABLE)

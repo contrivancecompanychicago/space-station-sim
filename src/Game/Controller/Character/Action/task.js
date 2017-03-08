@@ -8,8 +8,6 @@ import type Character from 'Game/Type/Character';
 
 import state from 'Game/state'
 
-// import type TaskManager from 'Game/Manager/Task';
-
 import Grid from 'Game/Type/Grid'
 
 export default function* task(char:Character):Generator<*,*,*>{

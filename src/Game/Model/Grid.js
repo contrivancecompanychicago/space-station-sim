@@ -72,8 +72,6 @@ export default class GridModel {
 
 	getPath(start: Block, end: Block): Array<Block> {
 
-		let objectManager = state.object
-
 		//determine graph size
 		let minx: number = Infinity;
 		let miny: number = Infinity;
@@ -111,8 +109,8 @@ export default class GridModel {
 			arr[loc.x - minx][loc.y - miny] = weight;
 
 		});
-		if (objectManager) {
-			objectManager.getObjects().forEach((o) => {
+		if (state.object) {
+			state.object.getObjects().forEach((o) => {
 				o.getBlocks().forEach((b) => {
 					let targ = o.block.add(b);
 					let weight = arr[targ.x - minx][targ.y - miny]

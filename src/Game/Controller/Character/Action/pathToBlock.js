@@ -8,13 +8,7 @@ import type Block from 'Game/Block'
 import state from 'Game/state'
 
 export default function* pathToBlock(char:Character, block:Block):Generator<*,*,*>{
-  // let gridManager = engine.getComponent('gridManager');
-  let gridManager = state.grid
   let current = char.position.block;
-  let path = gridManager.getPath(current, block);
-  // while(path.length>0){
-  //   let target = path.shift();
-  //   yield *actions.moveToBlockCenter(char, target);
-  // }
+  let path = state.grid.getPath(current, block);
   yield *actions.followPath(char, path);
 }

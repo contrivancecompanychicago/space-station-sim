@@ -11,11 +11,6 @@ import type Character from 'Game/Type/Character'
 import Item from 'Game/Type/Item'
 import type Obj from 'Game/Type/Object'
 import type Order from 'Game/Type/Order'
-// import {ItemType} from 'Game/Data/Item'
-
-// import
-
-// import {getLogManager, getGridManager, getObjectManager, getItemManager, getOrderManager} from 'Game/engine'
 
 export default function* cook(char: Character): Generator<*,*,*>{
 
@@ -54,14 +49,8 @@ export default function* cook(char: Character): Generator<*,*,*>{
 	}
 
 
-	// let gridManager = state.grid
-	// let objectManager = state.object
-	// let itemManager = state.item
-	// let orderManager = state.order
-	// let logManager = state.log
-
 	// //FIND ORDER
-	// let orders = orderManager.state.filter((o:Order)=>{
+	// let orders = state.order.state.filter((o:Order)=>{
 	// 	if(o.worker) return false;
 	// 	if(o.item) return false;
 	// 	if(o.type === 'PIZZA') return true;
@@ -73,14 +62,14 @@ export default function* cook(char: Character): Generator<*,*,*>{
 	// }
 	// let order = orders[0];
 
-	// logManager.addLog({
+	// state.log.addLog({
 	// 	message:char.toString()+' cooking '+order.type+' for '+order.customer.toString(),
 	// 	type:'EVENT'})
 
 	// char.setStatus('cooking food')
 	// yield *actions.cookPizza(char, order)
 
-	// logManager.addLog({
+	// state.log.addLog({
 	// 	message:char.toString()+' finished cooking '+order.type+' for '+order.customer.toString(),
 	// 	type:'EVENT'})
 

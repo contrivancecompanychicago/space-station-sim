@@ -1,4 +1,4 @@
-import actions from 'Game/Manager/Character/Action';
+import actions from 'Game/Controller/Character/Action';
 
 describe('actions', () => {
   it('shuld be an obj', () => {

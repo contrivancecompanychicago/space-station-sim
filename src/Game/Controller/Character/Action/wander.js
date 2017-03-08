@@ -7,8 +7,6 @@ import type Character from 'Game/Type/Character'
 import state from 'Game/state'
 
 export default function* wander(char:Character):Generator<*,*,*>{
-  // let gridManager = engine.getComponent('gridManager');
-  let gridManager = state.grid
-  let block = gridManager.randomNode();
+  let block = state.grid.randomNode();
   yield *actions.pathToBlock(char, block);
 }

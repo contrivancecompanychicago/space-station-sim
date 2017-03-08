@@ -2,29 +2,29 @@ import UIModel from 'Game/Model/UI';
 
 import {keys} from 'lodash';
 
-let uiManager;
+let uiModel;
 
 describe('Game/Model/UI', () => {
   beforeEach(()=>{
-    uiManager = new UIModel();
+    uiModel = new UIModel();
   });
   it('should be defined', () => {
-    expect(uiManager).toBeDefined();
+    expect(uiModel).toBeDefined();
   })
   // describe('start', () => {
   //   it('should render something into the container', () => {
-  //     uiManager.start();
+  //     uiModel.start();
   //     expect(container.childNodes.length>0).toBe(true);
   //   });
   // });
 
   // it('should respect its state object', () => {
-  //   uiManager.start();
-  //   expect(state).toBe(uiManager.state);
+  //   uiModel.start();
+  //   expect(state).toBe(uiModel.state);
   //   expect(keys(state).length>4).toBe(true);
-  //   uiManager.store.dispatch({type: 'CHANGE_GRID', id: 'test'});
-  //   let out = uiManager.store.getState();
-  //   expect(state).toBe(uiManager.state);
+  //   uiModel.store.dispatch({type: 'CHANGE_GRID', id: 'test'});
+  //   let out = uiModel.store.getState();
+  //   expect(state).toBe(uiModel.state);
   // });
 
 

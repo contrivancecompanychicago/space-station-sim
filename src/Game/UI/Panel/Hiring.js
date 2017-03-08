@@ -27,16 +27,16 @@ class HiringPanel extends React.Component {
     const charManager = state.character
 
     let chars = []
-    if(charManager){
-      charManager.getHireableChars().forEach((c) => {
+    if(state.character){
+      state.character.getHireableChars().forEach((c) => {
         let hire = (e) => {
           c.type = 'WORKER'
-          charManager.hireCharacter(c)
+          state.character.hireCharacter(c)
           this.forceUpdate()
         }
         // let hireCook = (e) => {
         //   c.type = 'COOK'
-        //   charManager.hireCharacter(c)
+        //   state.character.hireCharacter(c)
         //   this.forceUpdate()
         // }
         let row = <div className="hireable" key={c.id}>

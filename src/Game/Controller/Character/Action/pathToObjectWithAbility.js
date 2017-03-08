@@ -11,9 +11,7 @@ import type Obj from 'Game/Type/Object'
 import state from 'Game/state'
 
 export default function* pathToObjectWithAbility(char:Character, ability:AbilityType):Generator<*,Obj|null,*>{
-  let gridManager = state.grid
-  let objectManager = state.object
-  let objs = objectManager.getObjectsWithAbility(ability)
+  let objs = state.object.getObjectsWithAbility(ability)
     .filter((o)=>{if(!o.getCharacter()) return true});
   if(objs.length > 0){
     let i = Math.floor(Math.random()*objs.length);
@@ -21,7 +19,6 @@ export default function* pathToObjectWithAbility(char:Character, ability:Ability
     obj.setCharacter(char);
     yield *actions.pathToBlock(char, obj.getAccessBlock());
     obj.removeCharacter();
-    // yield *moveToBlockCenter(char, obj.block);
     return obj;
   }
   return null;

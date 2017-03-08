@@ -11,9 +11,7 @@ import actions from './index'
 import Ability from 'Game/Data/Object/Ability'
 import type {AbilityType} from 'Game/Data/Object/Ability'
 export default function* placeItemOnEmptyTable(char:Character, ability:AbilityType):Generator<*,*,*>{
-  // let ability = Ability.SERVE_TABLE;
-  let objectManager = state.object
-  let objs = objectManager.getObjectsWithAbility(ability);
+  let objs = state.object.getObjectsWithAbility(ability);
   objs = objs.filter((obj:Obj) => {
     if(obj.character) return false;
     if(obj.item) return false;

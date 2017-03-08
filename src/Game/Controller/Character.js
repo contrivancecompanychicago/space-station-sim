@@ -26,8 +26,7 @@ export default class CharacterController{
     }
     spawnUpdate(){
         //spawn;
-        let objectManager = state.object;
-        let spawnPoints = objectManager.getObjectsWithAbility(Ability.SPAWN)
+        let spawnPoints = state.object.getObjectsWithAbility(Ability.SPAWN)
         spawnPoints.forEach((sp) => {
             if (Math.random() < 0.0004) {
                 let char = new Character({ position: sp.block.center, type: 'CUSTOMER' })
