@@ -23,7 +23,8 @@ export default class ItemModel {
     getItems() :Array<Item>{
         return values(this.state)
     }
-    getItem(id:string):?Item{
+    getItem(id:string):Item{
+        if(!this.state[id])throw new Error('Item does not exist')
         return this.state[id];
     }
 

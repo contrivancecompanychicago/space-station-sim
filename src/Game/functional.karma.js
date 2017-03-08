@@ -12,6 +12,7 @@ const tg:(Generator<*,*,*>)=>null = testGen
 
 import Block from 'Game/Block'
 import type Grid from 'Game/Type/Grid'
+import type Character from 'Game/Type/Character'
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -277,7 +278,7 @@ describe('functional end to end', () => {
 		expect(clickSelector('.button-panel-hiring')).toBe(true)
 	}));
 
-	let char;
+	let char:Character;
 
 	it('should hire staff',  testGen(function *() {
 		yield sleep(gap);
