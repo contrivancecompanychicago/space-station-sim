@@ -50,6 +50,7 @@ export default class UIController {
         'F6': 117
       }
       if (key === (keys.H)) {
+        // localStorage.setItem('hot', !localStorage.getItem('hot'))
         localStorage.hot = !localStorage.hot
       }
       if (key === (keys.F6)) {
