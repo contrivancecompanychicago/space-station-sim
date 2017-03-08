@@ -11,8 +11,6 @@ export default class CharacterController{
 
     update(){
         state.character.getChars().forEach( char => {
-        // keys(state.character.state).forEach((key) => {
-        //     let char = state.character.state[key];
             if (!char.action) {
                 this.newAction(char);
             }
