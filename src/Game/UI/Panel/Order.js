@@ -21,11 +21,10 @@ class OrderPanel extends React.Component {
     clearInterval(this.interval)
   }
   render() {
-    const orderManager = state.order
 
     let orders = []
-    if(orderManager){
-      orderManager.state.forEach((o, i) => {
+    if(state.order){
+      state.order.state.forEach((o, i) => {
         orders.push(
           <div className='order' key={'order'+i}>
 

@@ -20,17 +20,5 @@ xdescribe('Game', () => {
     expect(game.engine).toBeDefined();
   });
 
-  xdescribe('managers', () => {
-
-    it('should make the manager object', () => {
-      expect(game.engine.getComponent('manager')).toBeDefined();
-    });
-    it('should spawn uiManager', () => {
-      expect(game.engine.getComponent('uiManager')).toBeDefined();
-    });
-    it('should spawn gridManager', () => {
-      expect(game.engine.getComponent('gridManager')).toBeDefined();
-    });
-  });
 
 });

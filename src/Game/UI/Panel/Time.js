@@ -21,9 +21,7 @@ class TimePanel extends React.Component {
     clearInterval(this.interval)
   }
   render() {
-    const timeManager = state.time
-    const playerManager = state.player
-    if(!timeManager) return <div />
+    if(!state.time) return <div />
 
     let date = new Date('1 January 2000');
     date.setHours(9);
@@ -53,7 +51,7 @@ class TimePanel extends React.Component {
     let time = hours+":"+minutes+", "+day+" "+daymonth+"/"+month+"/"+year
 
     let money = '-';
-    if(playerManager) money = playerManager.state.money
+    if(state.player) money = state.player.state.money
     return <div className="time panel">
       ${money}
       <br />

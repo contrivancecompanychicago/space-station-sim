@@ -1,7 +1,7 @@
 // @flow
 
 /*
-UI Manager
+UI Model
 
 UI is a react redux application
 

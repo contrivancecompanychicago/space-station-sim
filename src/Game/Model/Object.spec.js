@@ -1,4 +1,4 @@
-import ObjectManager from 'Game/Model/Object';
+import ObjectModel from 'Game/Model/Object';
 import {values, keys} from 'lodash';
 import types from 'Game/Data/Object';
 
@@ -9,7 +9,7 @@ import Block from 'Game/Block'
 
 
 let state = {};
-let objectManager = new ObjectManager(state);
+let objectModel = new ObjectModel(state);
 
 let dummy = {
   block: new Block({x:1, y:1}),
@@ -20,12 +20,12 @@ let dummy = {
 describe('Game/Model/Object', () => {
   beforeEach(() => {
     state = {};
-    objectManager = new ObjectManager(state);
+    objectModel = new ObjectModel(state);
   });
 
   describe('addObject', () => {
     it('should add to state', () => {
-      objectManager.addObject(dummy);
+      objectModel.addObject(dummy);
       expect(values(state).indexOf(dummy) > -1).toBe(true);
 
     });
@@ -33,9 +33,9 @@ describe('Game/Model/Object', () => {
 
   describe('getObjectsWithAbility', () => {
     it('should find objects with types with ability', () => {
-      objectManager.addObject(new Obj({block:new Block({x:10,y:10}), type:'OVEN'}))
-      objectManager.addObject(new Obj({block:new Block({x:0,y:0}), type:'FRIDGE'}))
-      let objs = objectManager.getObjectsWithAbility('FRIDGE')
+      objectModel.addObject(new Obj({block:new Block({x:10,y:10}), type:'OVEN'}))
+      objectModel.addObject(new Obj({block:new Block({x:0,y:0}), type:'FRIDGE'}))
+      let objs = objectModel.getObjectsWithAbility('FRIDGE')
       expect(objs.length).toBe(1)
     })
 
@@ -47,9 +47,9 @@ describe('Game/Model/Object', () => {
       let obj2 = new Obj({block:new Block({x:15,y:15}), type: 'TABLE'})
       let item = new Item({position:{x:0,y:0}, type:'TEST'})
       obj2.item = item;
-      objectManager.addObject(obj1)
-      objectManager.addObject(obj2)
-      let objs = objectManager.getObjectsWithItemType('TEST');
+      objectModel.addObject(obj1)
+      objectModel.addObject(obj2)
+      let objs = objectModel.getObjectsWithItemType('TEST');
       expect(objs.length).toBe(1)
 
     })

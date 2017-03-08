@@ -24,11 +24,10 @@ class StaffPanel extends React.Component {
     clearInterval(this.interval)
   }
   render() {
-    const characterManager = state.character
 
     let staff = []
-    if(characterManager){
-      values(characterManager.state).forEach((o:Character, i) => {
+    if(state.character){
+      values(state.character.state).forEach((o:Character, i) => {
         if(o.type !== 'CUSTOMER'){
           staff.push(
             <div className='order' key={'order'+i}>

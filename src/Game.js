@@ -32,7 +32,6 @@ export default class Game{
 	container:HTMLElement
 	engine:any;
 	state: State;
-	manager:Object;
 	constructor(container:HTMLElement){
 
 		window.game = this; //bind to window for debug

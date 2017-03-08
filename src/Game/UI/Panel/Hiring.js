@@ -24,7 +24,7 @@ class HiringPanel extends React.Component {
   }
 
   render() {
-    const charManager = state.character
+    
 
     let chars = []
     if(state.character){

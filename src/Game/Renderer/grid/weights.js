@@ -16,7 +16,6 @@ export default function renderGridWeights(state:State, layer:Layer){
   // let tl = pointToBlock(screenToWorld({x:0, y:0}, state));
   // let br = pointToBlock(screenToWorld({x:window.innerWidth, y:window.innerHeight}, state));
 
-  let gridManager = state.grid
   // renderWalls(state, layer);
 
   for(let x = tl.x; x<br.x; x++){
@@ -24,7 +23,7 @@ export default function renderGridWeights(state:State, layer:Layer){
       let pos:Block = new Block({x, y});
       // let key = makeKey(x, y);
       if(state.grid.getNode(x, y)){
-        let cache = gridManager.pathCache
+        let cache = state.grid.pathCache
         if(cache){
           let weight = cache.grid[x-cache.minx][y-cache.miny]
           layer.fillText(weight, pos.center.screen.x, pos.center.screen.y)

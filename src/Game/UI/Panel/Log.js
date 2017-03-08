@@ -21,11 +21,10 @@ class LogPanel extends React.Component {
     clearInterval(this.interval)
   }
   render() {
-    const logManager = state.log
 
     let logs = []
-    if(logManager){
-      logManager.log.forEach((o, i) => {
+    if(state.log){
+      state.log.log.forEach((o, i) => {
         logs.push(
           <div className='log' key={'log'+i}>
             <div className='message'>{o.message}</div>

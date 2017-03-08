@@ -45,15 +45,3 @@ describe('makeKey', () => {
   });
 
 });
-//
-// describe('parseKey', () => {
-//
-//   it('should turn string from makekey into its orig values', () => {
-//     let orig = {x:-12, y:34};
-//     let key = gridManager.makeKey(orig.x, orig.y);
-//     let parsed = gridManager.parseKey(key);
-//     expect(orig.x).toBe(parsed.x);
-//     expect(orig.y).toBe(parsed.y);
-//   });
-//
-// });

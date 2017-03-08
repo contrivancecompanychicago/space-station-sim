@@ -1,12 +1,12 @@
 
-import TaskManager from 'Game/Model/Task';
+import TaskModel from 'Game/Model/Task';
 import {defaults} from 'lodash';
 import Types from 'Game/Data/Task';
 import Task from 'Game/Type/Task';
 
 
 let state = {};
-let taskManager = new TaskManager();
+let taskModel = new TaskModel();
 
 const baseTask = {
   block: {x:0, y:0},
@@ -20,43 +20,43 @@ function testTask(task){
 describe('Game/Model/Task', () => {
   beforeEach(() => {
     state = {};
-    taskManager = new TaskManager(state);
+    taskModel = new TaskModel(state);
   });
   it('should have state', () => {
-    expect(taskManager.state).toBe(state);
+    expect(taskModel.state).toBe(state);
   });
 
   describe('getTask', () => {
     it('should return a task by id', () => {
       state = {'mytask': {id:'mytask'}};
-      taskManager = new TaskManager(state);
-      expect(taskManager.getTask('mytask')).toBeDefined();
+      taskModel = new TaskModel(state);
+      expect(taskModel.getTask('mytask')).toBeDefined();
     });
 
     it('should return oldest task if not given an id', () => {
       let first = testTask({type:'first'});
       let second = testTask({type:'second'});
       let third = testTask({type:'third'});
-      taskManager.addTask(first);
-      taskManager.addTask(second);
-      taskManager.addTask(third);
-      let out = taskManager.getTask();
+      taskModel.addTask(first);
+      taskModel.addTask(second);
+      taskModel.addTask(third);
+      let out = taskModel.getTask();
       expect(out).toBe(first);
     });
   });
   describe('addTask', () => {
     it('should add by id', () => {
-      taskManager.addTask(testTask({id: 'test'}));
-      expect(taskManager.getTask('test')).toBeDefined();
+      taskModel.addTask(testTask({id: 'test'}));
+      expect(taskModel.getTask('test')).toBeDefined();
     });
     it('should return the task', () => {
       let task = testTask({id:'mytest'});
-      let output = taskManager.addTask(task);
+      let output = taskModel.addTask(task);
       expect(task).toBe(output);
     });
     it('should add in an ID if missing', () => {
       let task = testTask({id:'mytest'});
-      let output = taskManager.addTask(task);
+      let output = taskModel.addTask(task);
       expect(task.id).toBeDefined();
     });
   });
@@ -66,36 +66,36 @@ describe('Game/Model/Task', () => {
       let first = testTask({type:'first'});
       let second = testTask({type:'second'});
       let third = testTask({type:'third'});
-      taskManager.addTask(first);
-      taskManager.addTask(second);
-      taskManager.addTask(third);
-      expect(taskManager.getNextTask(first.id)).toBe(second);
-      expect(taskManager.getNextTask(second.id)).toBe(third);
+      taskModel.addTask(first);
+      taskModel.addTask(second);
+      taskModel.addTask(third);
+      expect(taskModel.getNextTask(first.id)).toBe(second);
+      expect(taskModel.getNextTask(second.id)).toBe(third);
     });
   });
 
 
   describe('assignTask', () => {
     it('should set worker on a task', function(){
-      taskManager.state = {dummy:{}};
-      taskManager.assignTask('dummy', 'joe');
-      expect(taskManager.getTask('dummy').worker).toBe('joe');
+      taskModel.state = {dummy:{}};
+      taskModel.assignTask('dummy', 'joe');
+      expect(taskModel.getTask('dummy').worker).toBe('joe');
     });
   });
 
   describe('unassignTask', () => {
     it('should remove a worker', () => {
-      taskManager.addTask(testTask({id: 'dummy', worker: 'joe'}));
-      taskManager.unassignTask('dummy');
-      expect(taskManager.getTask('dummy').worker).not.toBeDefined();
+      taskModel.addTask(testTask({id: 'dummy', worker: 'joe'}));
+      taskModel.unassignTask('dummy');
+      expect(taskModel.getTask('dummy').worker).not.toBeDefined();
     });
   });
 
   describe('unassignTaskWorker', () => {
     it('should remove a worker', () => {
-      taskManager.addTask(testTask({id: 'dummy', worker: 'joe'}));
-      taskManager.unassignTaskWorker('joe');
-      expect(taskManager.getTask('dummy').worker).not.toBeDefined();
+      taskModel.addTask(testTask({id: 'dummy', worker: 'joe'}));
+      taskModel.unassignTaskWorker('joe');
+      expect(taskModel.getTask('dummy').worker).not.toBeDefined();
     });
   });
 
