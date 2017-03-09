@@ -23,6 +23,9 @@ import Chair from './Object/Chair';
 import Chair2 from './Object/Chair2';
 import CashRegister from './Object/CashRegister';
 import StoneOven from './Object/StoneOven'
+import FridgeTall from './Object/FridgeTall'
+import TableTall from './Object/TableTall'
+import ChairTall from './Object/ChairTall'
 
 export type ObjectType =
 'BED'|
@@ -38,13 +41,18 @@ export type ObjectType =
 'TABLE5'|
 'CHAIR'|
 'CHAIR2'|
-'CASHREGISTER'
+'CASHREGISTER'|
+'FRIDGETALL'|
+'TABLETALL'|
+'CHAIRTALL'
 
 export type ObjectBlocksType = 'ACCESS'|'BLOCK'
 export const ObjectBlocks:{[id:ObjectBlocksType]: ObjectBlocksType} = {
   'ACCESS':'ACCESS',
   'BLOCK':'BLOCK',
 }
+
+export type rotationType = 'IMAGESET'|'ROTATE';
 
 export type ObjectBlocksDataType = {
   x:number, y:number, type: ObjectBlocksType, weight:number
@@ -77,6 +85,9 @@ Objs[Table5.id] = Table5;
 Objs[Chair2.id] = Chair2;
 Objs[CashRegister.id] = CashRegister;
 Objs[StoneOven.id] = StoneOven;
+Objs[FridgeTall.id] = FridgeTall;
+Objs[TableTall.id] = TableTall;
+Objs[ChairTall.id] = ChairTall;
 
 // export default Objs;
 
