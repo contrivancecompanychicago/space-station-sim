@@ -99,7 +99,7 @@ describe('functional end to end', () => {
 
 	}))
 	it('should draw some walls', testGen(function *() {
-		expect(clickSelector('.button-grid-GREYWALL')).toBe(true)
+		expect(clickSelector('.button-grid-WALLTEST')).toBe(true)
 		yield *canvasDragRect({x:2, y:2}, {x:2, y:10});
 		yield *canvasDragRect({x:2, y:2}, {x:10, y:2});
 		yield *canvasDragRect({x:10, y:2}, {x:10, y:10});
@@ -206,7 +206,7 @@ describe('functional end to end', () => {
 	}));
 
 	it('should make tables', testGen(function *() {
-		expect(clickSelector('.button-object-TABLE5')).toBe(true)
+		expect(clickSelector('.button-object-TABLETALL')).toBe(true)
 		expect(clickSelector('button.rotate')).toBe(true)
 		yield sleep(gap);
 		expect(clickSelector('button.rotate')).toBe(true)
