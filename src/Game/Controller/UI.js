@@ -50,7 +50,12 @@ export default class UIController {
         'F6': 117
       }
       if (key === (keys.H)) {
-        localStorage.hot = !localStorage.hot
+        if(localStorage.getItem('hot')==='true'){
+          localStorage.setItem('hot', 'false')
+        }else{
+          localStorage.setItem('hot', 'true')
+        }
+        // localStorage.hot = !localStorage.hot
       }
       if (key === (keys.F6)) {
         save('quicksave')
@@ -76,7 +81,16 @@ export default class UIController {
       }
     }
   }
+  roller:number;
   update() {
+    if(!this.roller) this.roller = 1;
+    this.roller++;
+    if(this.roller > 100){
+      this.roller = 1;
+      if(localStorage.getItem('hot')==='true'){
+        save('autosave')
+      }
+    }
   }
 
 }

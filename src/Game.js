@@ -57,6 +57,9 @@ export default class Game{
 		
 		//LOADGAME hacky
 		// load('quicksave')
+		if(localStorage.getItem('hot')==='true'){
+			load('autosave')
+		}
 
 	}
 
