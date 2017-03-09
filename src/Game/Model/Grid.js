@@ -63,6 +63,9 @@ export default class GridModel {
 	getNode(x: number, y: number): Grid {
 		return this.state[makeKey(x, y)];
 	}
+	getNodeAtBlock(block:Block): Grid {
+		return this.state[makeKey(block.x, block.y)];
+	}
 	randomNode(): Block {
 		let k = keys(this.state);
 		let r = Math.floor(Math.random() * k.length);

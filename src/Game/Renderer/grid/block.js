@@ -24,6 +24,29 @@ export default function renderBlock(block:Block, grid:Grid, state:State, layer:O
     let w = br.x - tl.x
     let h = br.y - tl.y
     layer.drawImage(i, 0, 0, i.width, i.height, tl.x, tl.y, w, h);
+    if(type.link){
+      //copypasta-ish
+      let neighbour = state.grid.getNodeAtBlock( block.add({x:0, y:1}) )
+      if(neighbour && neighbour.type == grid.type){
+        layer.drawImage(type.link.below, 0, 0, i.width, i.height, tl.x, tl.y, w, h);
+      }
+      
+      neighbour = state.grid.getNodeAtBlock( block.add({x:0, y:-1}) )
+      if(neighbour && neighbour.type == grid.type){
+        layer.drawImage(type.link.above, 0, 0, i.width, i.height, tl.x, tl.y, w, h);
+      }
+
+      neighbour = state.grid.getNodeAtBlock( block.add({x:1, y:0}) )
+      if(neighbour && neighbour.type == grid.type){
+        layer.drawImage(type.link.right, 0, 0, i.width, i.height, tl.x, tl.y, w, h);
+      }
+      
+      neighbour = state.grid.getNodeAtBlock( block.add({x:-1, y:0}) )
+      if(neighbour && neighbour.type == grid.type){
+        layer.drawImage(type.link.left, 0, 0, i.width, i.height, tl.x, tl.y, w, h);
+      }
+      
+    }
   }else{
 
     const offset = block.point.screen

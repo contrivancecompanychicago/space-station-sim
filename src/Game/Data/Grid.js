@@ -64,7 +64,13 @@ const Gridz:{[id:GridType]:GridDataType} = {
   'GREYWALLCORNER2': {label: 'Wall', weight:0, image:require('./Grid/greywallcorner2.png')},
   'REDWALL': {label: 'Wall', weight:0, image:require('./Grid/redwall1.png')},
   'REDWALL2': {label: 'Wall', weight:0, image:require('./Grid/redwall2.png')},
-  'WALLTEST': {label: 'WallTest', weight:0, image:require('./Grid/walltest.png')},
+  'WALLTEST': {label: 'WallTest', weight:0, image:require('./Grid/walltest.png'),
+    link:{
+      above: require('./Grid/walltest_above.png'),
+      below: require('./Grid/walltest_below.png'),
+      left: require('./Grid/walltest_left.png'),
+      right: require('./Grid/walltest_right.png'),
+    }},
   'WALLTESTCORNER': {label: 'WallTest', weight:0, image:require('./Grid/walltestcorner.png')},
   'WALLTESTVERT': {label: 'WallTest', weight:0, image:require('./Grid/walltestvert.png')},
 };
