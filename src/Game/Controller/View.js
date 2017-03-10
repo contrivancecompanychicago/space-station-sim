@@ -84,6 +84,8 @@ export default class ViewController{
 	}
 
 	onMouseWheel(e:Object){
+		console.log(e);
+		
 		let d = e.wheelDelta;
 		if(!d) d = -e.detail;
 		state.view.zoom(d>0, e);

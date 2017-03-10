@@ -288,6 +288,26 @@ describe('functional end to end', () => {
 		expect(char).toBeDefined();
 	}));
 
+	it('should slow time', () => {
+		expect(clickSelector('.button-speed-normal')).toBe(true)
+	})
+	it('should zoom', testGen(function *() {
+		
+		yield sleep(gap);
+		mouseEvent(canvas, 'mousewheel', {wheelDelta: 10, x: 300, y:300})
+		yield sleep(gap);
+		mouseEvent(canvas, 'mousewheel', {wheelDelta: 10, x: 300, y:300})
+		yield sleep(gap);
+		mouseEvent(canvas, 'mousewheel', {wheelDelta: 10, x: 300, y:300})
+		yield sleep(gap);
+		mouseEvent(canvas, 'mousewheel', {wheelDelta: 10, x: 300, y:300})
+
+	}));
+	
+	it('should speed time', () => {
+		expect(clickSelector('.button-speed-fast')).toBe(true)
+	})
+
 	it('should give him a new path', testGen(function *() {
 		expect(clickSelector('.button-mode-select')).toBe(true)
 		//right click somewhere
