@@ -72,9 +72,10 @@ export default class ViewModel{
 		this.down = {};
 	}
 	centerOnPoint(point:Point){
-		//HACK TODO window.innerWidth
-		this.state.offset.x = 400-point.x
-		this.state.offset.y = 400-point.y
+		let current = Point.fromScreen(window.innerWidth/2, window.innerHeight/2)
+		let diff = current.subtract(point);
+		this.state.offset.x += diff.x;
+		this.state.offset.y += diff.y;
 	}
 
 	followCharacter(char:Character){

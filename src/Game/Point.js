@@ -36,6 +36,19 @@ export default class Point{
     this.y = pos.y;
   }
 
+  add(diff:{x:number, y:number}){
+    return new Point({
+      x: this.x + diff.x,
+      y: this.y + diff.y,
+    })
+  }
+  subtract(diff:{x:number, y:number}){
+    return new Point({
+      x: this.x - diff.x,
+      y: this.y - diff.y,
+    })
+  }
+
   get screen():{x:number, y:number}{
     if(!state) throw new Error('Point state not registered')
     return worldToScreen({x:this.x, y:this.y}, state);
