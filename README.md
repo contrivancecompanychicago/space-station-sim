@@ -42,13 +42,12 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
  - rewrite renderer
     - move all context manipulation into layer class
  - use shadowblur for highlighting character (better)
- - use code to upsize images to like 64 or something
 
  - datamap
    - all the things (object abilities, character skills)
    - go through codebase and fix all refs to datamaps
 
- - add timewarp 
+ - add timewarp for tests
 
  - ui button log those without keys and add keys to all for css selectability
 
