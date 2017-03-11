@@ -6,6 +6,8 @@ import type {ItemType} from 'Game/Data/Item'
 
 import ItemData from 'Game/Data/Item';
 
+import state from 'Game/state'
+
 import {keys, defaults} from 'lodash';
 import type Character from 'Game/Type/Character'
 import type Item from 'Game/Type/Item'
@@ -30,16 +32,18 @@ export default class Order{
 	}
 
 
-	worker: ?Character;
+	worker: ?string;
 	addWorker(char:Character){
 		if(this.worker) throw new Error('order already has worker')
-		this.worker = char;
+		this.worker = char.id;
 	}
 	removeWorker(char:?Character){
-		if(char && char !== this.worker) throw new Error('removing worker who wasnt assigned');
+		if(char && char.id !== this.worker) throw new Error('removing worker who wasnt assigned');
 		this.worker = null;
 	}
 	getWorker():?Character{
-		return this.worker
+		if(this.worker)
+			return state.character.getChar(this.worker)
+		// return this.worker
 	}
 }
