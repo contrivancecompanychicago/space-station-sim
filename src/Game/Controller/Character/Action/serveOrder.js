@@ -12,7 +12,7 @@ import state from 'Game/state'
 export default function* serveOrder(char: Character, order: Order): Generator<*,*,*>{
   order.addWorker(char)
   if(order.item != undefined) {
-    let item = order.item;
+    let item = order.getItem();
     if (!char.hasItem(item)) {
       let block = item.position.block
       let obj = state.object.getObjectAtBlock(block);

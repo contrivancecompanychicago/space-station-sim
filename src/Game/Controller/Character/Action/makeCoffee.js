@@ -18,7 +18,7 @@ export default function* makeCoffee(char:Character, order:Order):Generator<*,*,*
   let obj = yield *actions.forceUseObjectWithAbility(char, Ability.MAKE_COFFEE)
   let item = new Item({position: obj.block.center, type:'COFFEE'})
   state.item.addItem(item);
-  order.item = item;
+  order.setItem(item);
   char.addItem(item)
   yield *actions.idle(char, 2);
 

@@ -35,7 +35,7 @@ export default function renderLines(state:State, layer:Layer){
 
     if(order.item){
       const offset = order.customer.position.screen;
-      const charoffset = order.item.position.screen;
+      const charoffset = order.getItem().position.screen;
       layer.drawLine(offset, charoffset)
     }
   })

@@ -23,9 +23,11 @@ export default class OrderModel{
 	clear(){
 		this.state = [];
 	}
-	load(obj:Array<Object>){
-		this.state = obj.map(o => {
-			return o;
-		})
+	load(obj:?Array<Object>){
+		if(obj){
+			this.state = obj.map(o => {
+				return new Order(o);
+			})
+		}
 	}
 }

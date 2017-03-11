@@ -23,7 +23,7 @@ export default function* cook(char: Character): Generator<*,*,*>{
 		let order = orders[0];
 		char.setStatus('cooking order')
 		order.addWorker(char);
-		let item = order.item
+		let item = order.getItem();
 		let obj = state.object.getObjectAtBlock(item.position.block)
 		if(obj){
 			obj.setCharacter(char)

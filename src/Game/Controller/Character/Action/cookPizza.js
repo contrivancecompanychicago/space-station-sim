@@ -20,7 +20,7 @@ export default function* cookPizza(char:Character, order:Order):Generator<*,*,*>
 	let obj = yield *actions.forceUseObjectWithAbility(char, Ability.FRIDGE)
 	let item:Item = new Item({position: obj.block.center, type:'BASE'})
 	state.item.addItem(item);
-	order.item = item;
+	order.setItem(item);
 	char.addItem(item)
 	yield *actions.forceUseObjectWithAbility(char, Ability.PREP_TABLE)
 	yield *actions.idle(char, 1);
