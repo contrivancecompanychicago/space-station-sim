@@ -12,7 +12,7 @@ import {keys, defaults} from 'lodash';
 import type Character from 'Game/Type/Character'
 import type Item from 'Game/Type/Item'
 export default class Order{
-	item: ?Item;
+	item: ?string;
 	status: OrderStatusType;
 	type: ItemType;
 	constructor(params:{customer:Character, type:ItemType}){
@@ -28,7 +28,12 @@ export default class Order{
 	}
 
 	setItem(item:Item){
-		this.item = item;
+		this.item = item.id;
+	}
+	getItem():?Item{
+		if(this.item)
+			return state.item.getItem(this.item)
+		// return this.item;
 	}
 
 

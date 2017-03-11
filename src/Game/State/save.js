@@ -10,7 +10,8 @@ export default function save(savename:string){
         grid: state.grid.save(),
         object: state.object.save(),
         character: state.character.save(),
-        item: state.item.save()
+        item: state.item.save(),
+        order: state.order.save()
     }
 
     localStorage[config.save.prefix+savename] = JSON.stringify(out)

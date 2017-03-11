@@ -37,5 +37,6 @@ export default function loadGame(savename:string){
   state.object.load(object)
   state.item.load(data.item);
   state.character.load(data.character)
+  state.order.load(data.order)
 
 }
