@@ -8,6 +8,9 @@ import Rect from 'Game/Rect';
 import Grid from 'Game/Type/Grid'
 
 import Obj from 'Game/Type/Object'
+import Character from 'Game/Type/Character'
+import Order from 'Game/Type/Order'
+import Item from 'Game/Type/Item'
 
 describe('Game/state integration', () => {
 	beforeEach(() => {
@@ -39,6 +42,28 @@ describe('Game/state integration', () => {
 			let node = state.grid.getNode(0,0);
 			expect(node.getObject()).toBe(obj);
 
+		})
+	})
+
+	describe('order character integration', () =>{
+		it('should get and set workers', () => {
+			let char = new Character({});
+			state.character.addChar(char);
+			let order = new Order({});
+			state.order.addOrder(order);
+			order.addWorker(char);
+			expect(order.getWorker()).toBe(char);
+		})
+	})
+
+	describe('order item integration', () => {
+		it('should get and set items', () => {
+			let order = new Order({});
+			state.order.addOrder(order);
+			let item = new Item();
+			state.item.addItem(item);
+			order.setItem(item)
+			expect(order.getItem()).toBe(item);
 		})
 	})
 
