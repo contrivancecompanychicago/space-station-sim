@@ -25,10 +25,10 @@ export default function* customer(char: Character): Generator<*,*,*>{
 		//PLACE ORDER!
 		let orders: Array<Order> = []
 
-		let pizza = new Order({ customer: char, type: 'PIZZA' })
+		let pizza = new Order({ customer: char.id, type: 'PIZZA' })
 		orders.push(pizza)
 		state.order.addOrder(pizza);
-		let coffee = new Order({ customer: char, type: 'COFFEE' })
+		let coffee = new Order({ customer: char.id, type: 'COFFEE' })
 		orders.push(coffee)
 		state.order.addOrder(coffee);
 

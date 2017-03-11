@@ -22,9 +22,17 @@ export default class Order{
 	getData(){
 		return ItemData.get(this.type)
 	}
-	customer: Character;
+
+
+	customer: ?string;
+	setCustomer(customer: Character) {
+		this.customer = customer.id
+	}
 	getCustomer(){
-		return this.customer;
+		if(this.customer)
+			return state.character.getChar(this.customer)
+
+		// return this.customer;
 	}
 
 	setItem(item:Item){

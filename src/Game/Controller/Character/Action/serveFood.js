@@ -16,7 +16,7 @@ export default function* serveFood(char: Character): Generator<*,*,*>{
 
 		char.setStatus('serving order')
 	  state.log.addLog({
-			message: char.toString() + ' serving to ' + order.customer.toString(),
+			message: char.toString() + ' serving to ' + order.getCustomer().toString(),
 			type: 'EVENT'
 		})
 	  yield *actions.serveOrder(char, order);

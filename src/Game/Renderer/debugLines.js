@@ -28,13 +28,13 @@ export default function renderLines(state:State, layer:Layer){
   layer.strokeStyle('#00ff00');
   state.order.getOrders().forEach(order => {
     if(order.worker){
-      const offset = order.customer.position.screen;
+      const offset = order.getCustomer().position.screen;
       const charoffset = order.getWorker().position.screen;
       layer.drawLine(offset, charoffset)
     }
 
     if(order.item){
-      const offset = order.customer.position.screen;
+      const offset = order.getCustomer().position.screen;
       const charoffset = order.getItem().position.screen;
       layer.drawLine(offset, charoffset)
     }

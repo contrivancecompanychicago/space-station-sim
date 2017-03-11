@@ -13,7 +13,7 @@ export default function* serveDrink(char: Character): Generator<*,*,*>{
     if(coffeeOrders.length > 0) {
 
         state.log.addLog({
-            message: char.toString() + ' making coffee for ' + coffeeOrders[0].customer.toString(),
+            message: char.toString() + ' making coffee for ' + coffeeOrders[0].getCustomer().toString(),
             type: 'EVENT'
         })
         char.setStatus('making coffee')

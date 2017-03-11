@@ -69,6 +69,9 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
    - worker recipe data - exp levels
 
  - serialize character save
+ -serialize order save
+
+ - bring character into renderer - organise by tile Y and render behing close objects
 
  make generators savegame friendly - pathtoobj with ability chek if im there
 
