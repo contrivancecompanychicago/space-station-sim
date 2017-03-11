@@ -293,15 +293,10 @@ describe('functional end to end', () => {
 	})
 	it('should zoom', testGen(function *() {
 		
-		yield sleep(gap);
-		mouseEvent(canvas, 'mousewheel', {wheelDelta: 10, x: 300, y:300})
-		yield sleep(gap);
-		mouseEvent(canvas, 'mousewheel', {wheelDelta: 10, x: 300, y:300})
-		yield sleep(gap);
-		mouseEvent(canvas, 'mousewheel', {wheelDelta: 10, x: 300, y:300})
-		yield sleep(gap);
-		mouseEvent(canvas, 'mousewheel', {wheelDelta: 10, x: 300, y:300})
-
+		for(let i = 0; i<10; i++){
+			yield sleep(gap);
+			mouseEvent(canvas, 'mousewheel', {wheelDelta: 10, x: window.innerWidth/2, y:window.innerHeight/2})
+		}
 	}));
 	
 	it('should speed time', () => {

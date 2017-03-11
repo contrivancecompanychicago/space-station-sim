@@ -15,9 +15,9 @@ import Order from 'Game/Type/Order'
 export default function* customer(char: Character): Generator<*,*,*>{
 
 
-  
-  char.setStatus('Sitting down')
-  let chair = yield * actions.pathToObjectWithAbility(char, Ability.CHAIR);
+
+	char.setStatus('Sitting down')
+	let chair = yield * actions.pathToObjectWithAbility(char, Ability.CHAIR);
 	if(chair) {
 		chair.setCharacter(char)
 		yield * actions.moveToBlockCenter(char, chair.block)

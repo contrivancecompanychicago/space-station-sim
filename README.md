@@ -70,6 +70,8 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
 
  - serialize character save
 
+ make generators savegame friendly - pathtoobj with ability chek if im there
+
 
 ### TECH DEBT
 

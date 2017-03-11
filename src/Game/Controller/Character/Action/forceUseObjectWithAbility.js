@@ -17,13 +17,15 @@ export default function* forceUseObjectWithAbility(char:Character, ability:Abili
 
   
 
+  let obj = char.getObject(); //OVERRIDE
+
   let objs = yield *actions.findObjects((o:Obj) => {
+    if(o.getCharacter()==char) obj = o;
     if(o.character) return false;
     if(o.item) return false;
     return o.hasAbility(ability)
   })
 
-  let obj = char.getObject(); //OVERRIDE
   if(obj){
     objs = [obj]
   }
