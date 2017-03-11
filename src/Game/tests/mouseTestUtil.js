@@ -77,6 +77,7 @@ function* canvasDragRect(from:{x:number, y:number}, to:{x:number, y:number}):Gen
 }
 
 const mouse = {
+	mouseEvent,
 	clickSelector,
 	clickCheckbox,
 	canvasMouseMove,

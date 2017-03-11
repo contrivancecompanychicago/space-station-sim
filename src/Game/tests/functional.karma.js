@@ -26,11 +26,9 @@ let canvas
 
 let gap = 10
 
-describe('functional end to end', () => {
+xdescribe('functional end to end', () => {
 
 	beforeAll(function() {
-		if(container)
-			document.body.removeChild(container)
 
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = 999999;
 		//jasmine.getEnv().defaultTimeoutInterval = 60*1000;
@@ -41,6 +39,7 @@ describe('functional end to end', () => {
 		game = new Game(container);
 	});
 	afterAll(function(){
+		document.body.removeChild(container)
 	})
 	it('should wait to start', (done) => {
 		setTimeout(() => {
@@ -71,8 +70,8 @@ describe('functional end to end', () => {
 	})
 	it('should insta-draw some tiles', () => {
 		expect(canvas).toBeDefined();
-		mouseEvent(canvas, 'mousedown', {button:0, pageX:1, pageY:1});
-		mouseEvent(canvas, 'mouseup', {button:0, pageX:config.grid.width * 10, pageY:config.grid.height * 10});
+		mouse.mouseEvent(canvas, 'mousedown', {button:0, pageX:1, pageY:1});
+		mouse.mouseEvent(canvas, 'mouseup', {button:0, pageX:config.grid.width * 10, pageY:config.grid.height * 10});
 		
 	});
 	it('should draw some floor', testGen(function *() {
@@ -155,7 +154,7 @@ describe('functional end to end', () => {
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		yield sleep(gap);
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
-		yield *canvasDragRect({x:9, y:5}, {x:6, y:5})
+		yield *mouse.canvasDragRect({x:9, y:5}, {x:6, y:5})
 
 	}))
 	it('should make another oven', testGen(function *() {
@@ -283,7 +282,7 @@ describe('functional end to end', () => {
 		
 		for(let i = 0; i<10; i++){
 			yield sleep(gap);
-			mouseEvent(canvas, 'mousewheel', {wheelDelta: 10, x: window.innerWidth/2, y:window.innerHeight/2})
+			mouse.mouseEvent(canvas, 'mousewheel', {wheelDelta: 10, x: window.innerWidth/2, y:window.innerHeight/2})
 		}
 	}));
 	

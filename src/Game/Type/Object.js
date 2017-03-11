@@ -79,6 +79,7 @@ export default class Obj{
 			maxx = Math.max(b.x, maxx)
 			maxy = Math.max(b.y, maxy)
 		})
+		if(maxx == -Infinity) return this.block;
 		return new Block({x:maxx, y:maxy});
 
 	}
