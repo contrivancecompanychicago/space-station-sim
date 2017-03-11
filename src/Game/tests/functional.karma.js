@@ -26,7 +26,7 @@ let canvas
 
 let gap = 10
 
-fdescribe('functional end to end', () => {
+describe('functional end to end', () => {
 
 	beforeAll(function() {
 

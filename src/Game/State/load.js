@@ -15,28 +15,22 @@ import dispatcher from 'Game/Action/Dispatcher'
 
 export default function loadGame(savename:string){
 
+	let save = localStorage[config.save.prefix+savename];
+	if(!save) return;
+	let data:{grid:Object, object:Object, character:Object, item:Object, order:Object} = JSON.parse(save);
 
-  let save = localStorage[config.save.prefix+savename];
-  if(!save) return;
-  let data:{grid:Object, object:Object, character:Object, item:Object} = JSON.parse(save);
-  
-  
+	let parseKey = require('Util/parseKey').default;
+	let Block = require('Game/Block').default;
 
+	let grid = data.grid
+	let object = data.object;
 
-  let parseKey = require('Util/parseKey').default;
-  let Block = require('Game/Block').default;
+	clear();
 
-  
-
-  let grid = data.grid
-  let object = data.object;
-
-  clear();
-
-  state.grid.load(grid)
-  state.object.load(object)
-  state.item.load(data.item);
-  state.character.load(data.character)
-  state.order.load(data.order)
+	state.grid.load(grid)
+	state.object.load(object)
+	state.item.load(data.item);
+	state.character.load(data.character)
+	state.order.load(data.order)
 
 }

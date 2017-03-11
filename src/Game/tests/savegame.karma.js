@@ -15,7 +15,7 @@ function sleep(ms) {
 let container:HTMLDivElement
 let canvas;
 let game:Game
-describe('saving and loading game', () => {
+fdescribe('saving and loading game', () => {
 	beforeAll(function(){
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = 999999;
 		container = document.createElement('div');
@@ -74,9 +74,10 @@ describe('saving and loading game', () => {
 	}))
 	let order
 	describe('making drink saving state', () => {
+		let orders 
 		it('should wait for order to turn into STARTED', testGen(function *() {
-
-			order = game.state.order.getOrders().filter((o)=>{
+			orders = game.state.order.getOrders()
+			order = orders.filter((o)=>{
 				return o.type == 'COFFEE'
 			})[0]
 			expect(order).toBeDefined();
@@ -92,9 +93,24 @@ describe('saving and loading game', () => {
 			setTimeout(done, 1000);
 		});
 		it('should continue the order', testGen(function *() {
-			while(order.status != 'COOKED'){
-				yield sleep(gap);
-			}
+			let old = order;
+			let oldOrders = orders;
+
+			orders = game.state.order.getOrders()
+			// expect(orders.length).toBe(oldOrders.length)
+			// console.log(orders);
+			// debugger;
+
+			order = orders.filter(o=>{
+				o.id = old.id
+			})[0]
+			
+			expect(order).toBeDefined();
+			
+			// order = game.state.order.get
+			// while(order.status != 'COOKED'){
+			// 	yield sleep(gap);
+			// }
 		}))
 	})
 

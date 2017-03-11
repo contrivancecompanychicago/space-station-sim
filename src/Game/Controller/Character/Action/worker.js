@@ -4,6 +4,14 @@ import state from 'Game/state'
 import { Tasks } from 'Game/Data/Task'
 export default function* worker(char: Character): Generator<*,*,*>{
 
+	//PICK UP FROM LOAD
+	state.order.getOrders().filter(o => {
+		if(o.getWorker() == char){
+			console.log('I need to do this order', o);
+		}
+	})
+
+
 	if(char.hasTaskType(Tasks.MAKE)) {
 		yield * actions.make(char);
 	}
