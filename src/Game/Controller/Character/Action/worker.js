@@ -5,25 +5,29 @@ import { Tasks } from 'Game/Data/Task'
 export default function* worker(char: Character): Generator<*,*,*>{
 
 	//PICK UP FROM LOAD
+	let order;
+	console.log('orders', state.order.getOrders());
+	
 	state.order.getOrders().filter(o => {
+
 		if(o.getWorker() == char){
-			console.log('I need to do this order', o);
+			order = o;
 		}
 	})
 
 
 	if(char.hasTaskType(Tasks.MAKE)) {
-		yield * actions.make(char);
+		yield * actions.make(char, order);
 	}
 	if(char.hasTaskType(Tasks.COOK)) {
-		yield * actions.cook(char);
+		yield * actions.cook(char, order);
 	}
 	if(char.hasTaskType(Tasks.SERVEDRINK)) {
-		yield * actions.serveDrink(char);
+		yield * actions.serveDrink(char, order);
 	}
 
 	if(char.hasTaskType(Tasks.SERVEFOOD)) {
-		yield * actions.serveFood(char);
+		yield * actions.serveFood(char, order);
 	}
 	
 	char.setStatus('waiting for something to do')

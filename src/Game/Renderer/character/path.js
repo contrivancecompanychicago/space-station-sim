@@ -5,7 +5,6 @@ import type Layer from 'Game/Renderer/Layer';
 import type Character from 'Game/Type/Character';
 
 export default function renderCharacterPath(state:State, layer:Layer, char:Character){
-    // console.log(char);
     let path = char.getPath();
     let last = char.position.screen;
     path.forEach(b => {

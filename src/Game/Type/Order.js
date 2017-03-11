@@ -47,7 +47,11 @@ export default class Order{
 
 	worker: ?string;
 	addWorker(char:Character){
-		if(this.worker) throw new Error('order already has worker')
+		if(this.worker){
+			if(this.worker !== char.id){
+				throw new Error('order already has worker')
+			}
+		}
 		this.worker = char.id;
 	}
 	removeWorker(char:?Character){

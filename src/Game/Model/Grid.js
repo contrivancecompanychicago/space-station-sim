@@ -156,7 +156,6 @@ export default class GridModel {
 			//TOWORLD
 			return obj.block.add(b);
 		}).forEach((b) => {
-			// console.log(b);
 			let node = this.getNode(b.x, b.y);
 			if(node){
 				node.setObject(obj);

@@ -123,13 +123,9 @@ export default class CharacterModel {
 	
 	load(obj:Object){
 		values(obj).forEach((c)=> {
-			// console.log(c)
-			// let pos = new Point(c);
 			c.position = new Point(c.position);
 			c.path = c.path.map(b=>new Block(b));
 			delete c.action;
-			
-			// this.addChar(new Character({position: pos, type: c.type}));
 			this.addChar(new Character(c));
 		})
 	}

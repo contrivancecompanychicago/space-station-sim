@@ -34,7 +34,6 @@ import ObjectData from 'Game/Data/Object';
 import { State } from 'Game/state'
 import Obj from 'Game/Type/Object'
 
-// console.log(state);
 
 
 let proposal: State;
