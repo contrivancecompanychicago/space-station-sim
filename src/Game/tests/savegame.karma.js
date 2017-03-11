@@ -15,7 +15,7 @@ function sleep(ms) {
 let container:HTMLDivElement
 let canvas;
 let game:Game
-describe('saving and loading game', () => {
+xdescribe('saving and loading game', () => {
 	beforeAll(function(){
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = 999999;
 		container = document.createElement('div');
@@ -102,6 +102,6 @@ describe('saving and loading game', () => {
 	it('should wait open', (done) => {
 		setTimeout(() => {
 			done();
-		}, 10000)
+		}, 1000)
 	})
 })

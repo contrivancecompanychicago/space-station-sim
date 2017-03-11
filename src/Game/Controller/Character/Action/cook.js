@@ -15,7 +15,7 @@ import type Order from 'Game/Type/Order'
 export default function* cook(char: Character): Generator<*,*,*>{
 
 	let orders = state.order.getOrders().filter((o:Order) => {
-		return o.worker == undefined
+		return o.getWorker() == undefined
 			&& o.status === 'MADE'
 	});
 	

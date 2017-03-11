@@ -15,7 +15,6 @@ import {Tasks} from 'Game/Data/Task'
 
 export default function* cookPizza(char:Character, order:Order):Generator<*,*,*>{
 
-	// order.worker = char
 	order.addWorker(char);
 	order.status = 'STARTED'
 	let obj = yield *actions.forceUseObjectWithAbility(char, Ability.FRIDGE)

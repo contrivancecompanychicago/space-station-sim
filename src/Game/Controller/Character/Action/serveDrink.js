@@ -8,7 +8,7 @@ export default function* serveDrink(char: Character): Generator<*,*,*>{
     let coffeeOrders = state.order.getOrders().filter((o) => {
         return o.type === 'COFFEE'
             && o.status === 'ORDERED'
-            && o.worker === undefined
+            && o.getWorker() === undefined
     })
     if(coffeeOrders.length > 0) {
 

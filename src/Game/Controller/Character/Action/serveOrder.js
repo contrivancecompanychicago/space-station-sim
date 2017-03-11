@@ -10,7 +10,7 @@ import type Block from 'Game/Block'
 import state from 'Game/state'
 
 export default function* serveOrder(char: Character, order: Order): Generator<*,*,*>{
-  order.worker = char
+  order.addWorker(char)
   if(order.item != undefined) {
     let item = order.item;
     if (!char.hasItem(item)) {

@@ -29,7 +29,7 @@ export default function renderLines(state:State, layer:Layer){
   state.order.getOrders().forEach(order => {
     if(order.worker){
       const offset = order.customer.position.screen;
-      const charoffset = order.worker.position.screen;
+      const charoffset = order.getWorker().position.screen;
       layer.drawLine(offset, charoffset)
     }
 

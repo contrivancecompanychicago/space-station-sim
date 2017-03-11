@@ -13,7 +13,7 @@ import state from 'Game/state'
 
 export default function* makeCoffee(char:Character, order:Order):Generator<*,*,*>{
 
-  order.worker = char
+  order.addWorker(char)
   order.status = 'STARTED'
   let obj = yield *actions.forceUseObjectWithAbility(char, Ability.MAKE_COFFEE)
   let item = new Item({position: obj.block.center, type:'COFFEE'})
@@ -23,6 +23,6 @@ export default function* makeCoffee(char:Character, order:Order):Generator<*,*,*
   yield *actions.idle(char, 2);
 
   order.status = "COOKED"
-  order.worker = null;
+  order.removeWorker();
 
 }
