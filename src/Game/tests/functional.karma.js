@@ -2,35 +2,22 @@
 import { extend, keys, assign } from 'lodash';
 import Game from 'Game';
 import config from 'Game/config';
-import ReactTestUtils from 'react-addons-test-utils';
 
 import sizzle from 'sizzle'
 
 import testGen from 'jasmine-es6-generator'
+import ReactTestUtils from 'react-addons-test-utils';
 
-const tg:(Generator<*,*,*>)=>null = testGen
 
 import Block from 'Game/Block'
 import type Grid from 'Game/Type/Grid'
 import type Character from 'Game/Type/Character'
 
+import mouse from './mouseTestUtil'
+
+const tg:(Generator<*,*,*>)=>null = testGen
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
-}
-let mouseEvent = function(target, eventName, params){
-  var event = document.createEvent('Event');
-  extend(event, params);
-  event.initEvent(eventName, true, true);
-  target.dispatchEvent(event); //was document
-};
-
-let clickSelector = function(selector:string):boolean{
-	let elements = sizzle(selector);
-	if(elements.length>0){
-		ReactTestUtils.Simulate.click(elements[0])
-		return true;
-	}
-	return false;
 }
 
 let container:HTMLDivElement
@@ -58,12 +45,13 @@ describe('functional end to end', () => {
 	it('should wait to start', (done) => {
 		setTimeout(() => {
 			canvas = container.getElementsByTagName('canvas')[0];
+			mouse.setCanvas(canvas);
 			done();
 		}, 1000)
 	})
 
 	it('should close the savepanel', () => {
-		clickSelector('.save.panel .close')
+		mouse.clickSelector('.save.panel .close')
 	})
 
 	it('should click next on the tutorial a few times', (done) => {
@@ -78,8 +66,8 @@ describe('functional end to end', () => {
 		}, gap)
 	})
 	it('should open grid panel', () => {
-		clickSelector('.button-mode-grid')
-		expect(clickSelector('.button-grid-TILES1')).toBe(true)
+		mouse.clickSelector('.button-mode-grid')
+		expect(mouse.clickSelector('.button-grid-TILES1')).toBe(true)
 	})
 	it('should insta-draw some tiles', () => {
 		expect(canvas).toBeDefined();
@@ -88,8 +76,8 @@ describe('functional end to end', () => {
 		
 	});
 	it('should draw some floor', testGen(function *() {
-		expect(clickSelector('.button-grid-FLOOR')).toBe(true)
-		yield *canvasDragRect({x:0, y:0}, {x:16, y:16});
+		expect(mouse.clickSelector('.button-grid-FLOOR')).toBe(true)
+		yield *mouse.canvasDragRect({x:0, y:0}, {x:16, y:16});
 		let node:Grid = game.state.grid.getNode(0,0);
 		expect(node).toBeDefined();
 		expect(node.type).toBe('FLOOR')
@@ -99,20 +87,20 @@ describe('functional end to end', () => {
 
 	}))
 	it('should draw some walls', testGen(function *() {
-		expect(clickSelector('.button-grid-WALLTEST')).toBe(true)
-		yield *canvasDragRect({x:2, y:2}, {x:2, y:10});
-		yield *canvasDragRect({x:2, y:2}, {x:10, y:2});
-		yield *canvasDragRect({x:10, y:2}, {x:10, y:10});
+		expect(mouse.clickSelector('.button-grid-WALLTEST')).toBe(true)
+		yield *mouse.canvasDragRect({x:2, y:2}, {x:2, y:10});
+		yield *mouse.canvasDragRect({x:2, y:2}, {x:10, y:2});
+		yield *mouse.canvasDragRect({x:10, y:2}, {x:10, y:10});
 	}))
 
 	it('should make some stone oven', testGen(function *() {
-		expect(clickSelector('.button-mode-object')).toBe(true)
+		expect(mouse.clickSelector('.button-mode-object')).toBe(true)
 		yield sleep(gap);
-		expect(clickSelector('.button-object-STONEOVEN')).toBe(true)
+		expect(mouse.clickSelector('.button-object-STONEOVEN')).toBe(true)
 		yield sleep(gap);
-		canvasMouseMove(new Block({x:3, y: 3}).center);
+		mouse.canvasMouseMove(new Block({x:3, y: 3}).center);
 		yield sleep(gap);
-		canvasClickBlock(new Block({x:3, y: 3}))
+		mouse.canvasClickBlock(new Block({x:3, y: 3}))
 	}))
 
 	it('should click next on the tutorial a few times', (done) => {
@@ -128,26 +116,26 @@ describe('functional end to end', () => {
 	})
 	it('should make fridge', testGen(function *() {
 		yield sleep(gap);
-		expect(clickSelector('.button-object-FRIDGE')).toBe(true)
+		expect(mouse.clickSelector('.button-object-FRIDGE')).toBe(true)
 		yield sleep(gap);
-		canvasMouseMove(new Block({x:6, y: 3}).center);
+		mouse.canvasMouseMove(new Block({x:6, y: 3}).center);
 		yield sleep(gap);
-		expect(clickSelector('button.rotate')).toBe(true)
+		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		yield sleep(gap);
-		expect(clickSelector('button.rotate')).toBe(true)
+		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		yield sleep(gap);
-		canvasClickBlock(new Block({x:6, y: 3}))
+		mouse.canvasClickBlock(new Block({x:6, y: 3}))
 	}))
 	it('should make another fridge', testGen(function *() {
-		canvasMouseMove(new Block({x:8, y: 3}).center);
+		mouse.canvasMouseMove(new Block({x:8, y: 3}).center);
 		yield sleep(gap);
-		canvasClickBlock(new Block({x:8, y: 3}))
+		mouse.canvasClickBlock(new Block({x:8, y: 3}))
 	}))
 	
 	it('should make a prep table', testGen(function *() {
 		yield sleep(gap);
-		expect(clickSelector('.button-object-TABLE3')).toBe(true)
-		canvasClickBlock(new Block({x:9, y: 3}))
+		expect(mouse.clickSelector('.button-object-TABLE3')).toBe(true)
+		mouse.canvasClickBlock(new Block({x:9, y: 3}))
 		
 	}))
 	it('should click next on the tutorial a few times', (done) => {
@@ -162,79 +150,79 @@ describe('functional end to end', () => {
 		}, gap)
 	})
 	it('should make a line of prep table', testGen(function *() {
-		canvasMouseMove(new Block({x:9, y: 5}).center);
+		mouse.canvasMouseMove(new Block({x:9, y: 5}).center);
 		yield sleep(gap);
-		expect(clickSelector('button.rotate')).toBe(true)
+		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		yield sleep(gap);
-		expect(clickSelector('button.rotate')).toBe(true)
+		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		yield *canvasDragRect({x:9, y:5}, {x:6, y:5})
 
 	}))
 	it('should make another oven', testGen(function *() {
-		expect(clickSelector('.button-object-STONEOVEN')).toBe(true)
-		canvasMouseMove(new Block({x:4, y: 7}).center);
+		expect(mouse.clickSelector('.button-object-STONEOVEN')).toBe(true)
+		mouse.canvasMouseMove(new Block({x:4, y: 7}).center);
 		yield sleep(gap);
-		expect(clickSelector('button.rotate')).toBe(true)
+		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		yield sleep(gap);
-		expect(clickSelector('button.rotate')).toBe(true)
-		canvasClickBlock(new Block({x:4, y: 7}))
+		expect(mouse.clickSelector('button.rotate')).toBe(true)
+		mouse.canvasClickBlock(new Block({x:4, y: 7}))
 	}))
 	it('should make some serve tables', testGen(function *() {
-		expect(clickSelector('.button-object-TABLE4')).toBe(true)
-		canvasMouseMove(new Block({x:6, y: 7}).center);
+		expect(mouse.clickSelector('.button-object-TABLE4')).toBe(true)
+		mouse.canvasMouseMove(new Block({x:6, y: 7}).center);
 		
-		yield *canvasDragRect({x:6, y:7}, {x:9, y:7})
+		yield *mouse.canvasDragRect({x:6, y:7}, {x:9, y:7})
 	}))
 	
 	it('should make some chairs', testGen(function *() {
-		expect(clickSelector('.button-object-CHAIR2')).toBe(true)
+		expect(mouse.clickSelector('.button-object-CHAIR2')).toBe(true)
 		
-		canvasMouseMove(new Block({x:5, y: 9}).center);
+		mouse.canvasMouseMove(new Block({x:5, y: 9}).center);
 		yield sleep(gap);
-		expect(clickSelector('button.rotate')).toBe(true)
+		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		yield sleep(gap);
-		expect(clickSelector('button.rotate')).toBe(true)
-		yield *canvasDragRect({x:5, y:9}, {x:8, y:9})
+		expect(mouse.clickSelector('button.rotate')).toBe(true)
+		yield *mouse.canvasDragRect({x:5, y:9}, {x:8, y:9})
 		//COPYPASTA
-		canvasMouseMove(new Block({x:5, y: 12}).center);
+		mouse.canvasMouseMove(new Block({x:5, y: 12}).center);
 		yield sleep(gap);
-		expect(clickSelector('button.rotate')).toBe(true)
+		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		yield sleep(gap);
-		expect(clickSelector('button.rotate')).toBe(true)
-		yield *canvasDragRect({x:5, y:12}, {x:8, y:12})
+		expect(mouse.clickSelector('button.rotate')).toBe(true)
+		yield *mouse.canvasDragRect({x:5, y:12}, {x:8, y:12})
 
 	}));
 
 	it('should make tables', testGen(function *() {
-		expect(clickSelector('.button-object-TABLETALL')).toBe(true)
-		expect(clickSelector('button.rotate')).toBe(true)
+		expect(mouse.clickSelector('.button-object-TABLETALL')).toBe(true)
+		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		yield sleep(gap);
-		expect(clickSelector('button.rotate')).toBe(true)
-		yield *canvasDragRect({x:5, y:10}, {x:8, y:11})
+		expect(mouse.clickSelector('button.rotate')).toBe(true)
+		yield *mouse.canvasDragRect({x:5, y:10}, {x:8, y:11})
 
 	}));
 	it('should make drink things', testGen(function *() {
-		expect(clickSelector('.button-object-DRAWERS')).toBe(true)
-		expect(clickSelector('button.rotate')).toBe(true)
+		expect(mouse.clickSelector('.button-object-DRAWERS')).toBe(true)
+		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		yield sleep(gap);
-		expect(clickSelector('button.rotate')).toBe(true)
+		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		yield sleep(gap);
-		expect(clickSelector('button.rotate')).toBe(true)
-		yield *canvasDragRect({x:3, y:8}, {x:3, y:10})
+		expect(mouse.clickSelector('button.rotate')).toBe(true)
+		yield *mouse.canvasDragRect({x:3, y:8}, {x:3, y:10})
 
 	}));
 
 
 	it('should make some spawn point', testGen(function *() {
-		expect(clickSelector('.button-object-TEST')).toBe(true)
-		canvasMouseMove(new Block({x:0, y: 3}).center);
+		expect(mouse.clickSelector('.button-object-TEST')).toBe(true)
+		mouse.canvasMouseMove(new Block({x:0, y: 3}).center);
 		
-		yield *canvasDragRect({x:0, y:14}, {x:5, y:16})
+		yield *mouse.canvasDragRect({x:0, y:14}, {x:5, y:16})
 	}))
 	
 	it('should wait for a character to spawn', testGen(function *() {
 		
-		expect(clickSelector('.button-mode-select')).toBe(true)
+		expect(mouse.clickSelector('.button-mode-select')).toBe(true)
 
 		game.state.character.spawnCustomer();
 
@@ -243,17 +231,17 @@ describe('functional end to end', () => {
 		}
 		let char = game.state.character.getChars()[0];
 		
-		canvasMouseMove(char.position.screen);
+		mouse.canvasMouseMove(char.position.screen);
 		//select
-		canvasClick(char.position.screen)
+		mouse.canvasClick(char.position.screen)
 		//follow
-		expect(clickSelector('.follow')).toBe(true)
+		expect(mouse.clickSelector('.follow')).toBe(true)
 		yield sleep(gap);
 	}));
 	
 	
 	it('should speed up time', testGen(function *() {
-		expect(clickSelector('.button-speed-fast')).toBe(true)
+		expect(mouse.clickSelector('.button-speed-fast')).toBe(true)
 		expect(game.state.ui.state.speed).toBe('FAST')
 	}));
 	
@@ -271,25 +259,25 @@ describe('functional end to end', () => {
 	
 		gap = 100
 		yield sleep(gap);
-		expect(clickSelector('.selected .close')).toBe(true)
+		expect(mouse.clickSelector('.selected .close')).toBe(true)
 		yield sleep(gap);
-		expect(clickSelector('.button-mode-panels')).toBe(true)
+		expect(mouse.clickSelector('.button-mode-panels')).toBe(true)
 		yield sleep(gap);
-		expect(clickSelector('.button-panel-hiring')).toBe(true)
+		expect(mouse.clickSelector('.button-panel-hiring')).toBe(true)
 	}));
 
 	let char:Character;
 
 	it('should hire staff',  testGen(function *() {
 		yield sleep(gap);
-		expect(clickSelector('.hireable button')).toBe(true)
+		expect(mouse.clickSelector('.hireable button')).toBe(true)
 		yield sleep(gap);
 		char = game.state.ui.state.selected[0];
 		expect(char).toBeDefined();
 	}));
 
 	it('should slow time', () => {
-		expect(clickSelector('.button-speed-normal')).toBe(true)
+		expect(mouse.clickSelector('.button-speed-normal')).toBe(true)
 	})
 	it('should zoom', testGen(function *() {
 		
@@ -300,13 +288,13 @@ describe('functional end to end', () => {
 	}));
 	
 	it('should speed time', () => {
-		expect(clickSelector('.button-speed-fast')).toBe(true)
+		expect(mouse.clickSelector('.button-speed-fast')).toBe(true)
 	})
 
 	it('should give him a new path', testGen(function *() {
-		expect(clickSelector('.button-mode-select')).toBe(true)
+		expect(mouse.clickSelector('.button-mode-select')).toBe(true)
 		//right click somewhere
-		canvasClick(new Block({x:12, y:12}).center.screen, {button:2});
+		mouse.canvasClick(new Block({x:12, y:12}).center.screen, {button:2});
 		yield sleep(gap);
 		let lastblock = char.path[char.path.length-1]
 		expect(lastblock.x).toBe(12);
@@ -327,7 +315,7 @@ describe('functional end to end', () => {
 
 
 	it('should assign make tasks',  testGen(function *() {
-		clickCheckbox('label.task-MAKE input')
+		mouse.clickCheckbox('label.task-MAKE input')
 	}));
 
 	it('should make the order',  testGen(function *() {
@@ -339,12 +327,12 @@ describe('functional end to end', () => {
 
 	it('should hire cook staff',  testGen(function *() {
 		yield sleep(gap);
-		expect(clickSelector('.hireable button')).toBe(true)
+		expect(mouse.clickSelector('.hireable button')).toBe(true)
 		yield sleep(gap);
 	}));
 	
 	it('should cook the order',  testGen(function *() {
-		clickCheckbox('label.task-COOK input')
+		mouse.clickCheckbox('label.task-COOK input')
 		while(order.status !== 'COOKED'){
 			yield sleep(gap);
 		}
@@ -354,9 +342,9 @@ describe('functional end to end', () => {
 
 	it('should hire serve staff',  testGen(function *() {
 		yield sleep(gap);
-		expect(clickSelector('.hireable button')).toBe(true)
+		expect(mouse.clickSelector('.hireable button')).toBe(true)
 		yield sleep(gap);
-		clickCheckbox('label.task-SERVEFOOD input')
+		mouse.clickCheckbox('label.task-SERVEFOOD input')
 	}));
 
 	it('should serve the order',  testGen(function *() {
@@ -374,13 +362,13 @@ describe('functional end to end', () => {
 	it('should hire drink staff', testGen(function *() {
 
 		yield sleep(gap);
-		expect(clickSelector('.hireable button')).toBe(true)
+		expect(mouse.clickSelector('.hireable button')).toBe(true)
 		yield sleep(gap);
 		char = game.state.ui.state.selected[0];
 	}));
 
 	it('should manually assign drink task', testGen(function *() {
-		canvasClick(new Block({x:3, y:8}).center.screen, {button:2});
+		mouse.canvasClick(new Block({x:3, y:8}).center.screen, {button:2});
 		yield sleep(gap);
 		let lastblock = char.path[char.path.length-1]
 		expect(lastblock.y).toBe(8);
@@ -393,22 +381,22 @@ describe('functional end to end', () => {
 		
 	}));
 	it('should autoserve drinks', () => {
-		clickCheckbox('label.task-SERVEDRINK input')
+		mouse.clickCheckbox('label.task-SERVEDRINK input')
 	})
 
 	it('clean up panels', () => {
-		clickSelector('.hiring.panel .close')
-		expect(clickSelector('.selected .close')).toBe(true)
-		clickSelector('.tutorial button')
+		mouse.clickSelector('.hiring.panel .close')
+		expect(mouse.clickSelector('.selected .close')).toBe(true)
+		mouse.clickSelector('.tutorial button')
 
 	})
 
 
 	describe('save and load', () => {
 		beforeAll(()=>{
-			clickSelector('.button-speed-normal')
-			clickSelector('.button-mode-panels')
-			clickSelector('.button-panel-save')
+			mouse.clickSelector('.button-speed-normal')
+			mouse.clickSelector('.button-mode-panels')
+			mouse.clickSelector('.button-panel-save')
 
 		})
 		afterAll(() => {
@@ -418,16 +406,16 @@ describe('functional end to end', () => {
 			let saveinput = sizzle('.save.panel input')[0];
 			saveinput.value = 'functional';
 			ReactTestUtils.Simulate.change(saveinput);//unnecessary?
-			expect(clickSelector('.save.panel button#save')).toBe(true)
+			expect(mouse.clickSelector('.save.panel button#save')).toBe(true)
 			expect(localStorage['save_functional']).toBeDefined();
 			setTimeout(done, 1000);
 		})
 		it('should load stock', (done) => {
-			clickSelector('button#load-large');
+			mouse.clickSelector('button#load-large');
 			setTimeout(done, 1000);
 		})
 		it('should load functionalagain', (done) => {
-			clickSelector('button#load-functional');
+			mouse.clickSelector('button#load-functional');
 			setTimeout(done, 2000);
 		})
 		it('shuld have the same character with a responsibility', (done) => {
@@ -449,48 +437,3 @@ describe('functional end to end', () => {
 	})
 
 })
-
-function clickCheckbox(selector:string){
-	let el = sizzle(selector)[0]
-	ReactTestUtils.Simulate.change(el, {"target": el})
-}
-
-function canvasMouseMove(pos:{x:number, y:number}){
-	mouseEvent(canvas, 'mousemove', {button:0, pageX:pos.x, pageY:pos.y});	
-}
-
-function canvasClickBlock(block:Block){
-	// mouseEvent(canvas, 'mousemove', {button:0, pageX:block.center.x, pageY:block.center.y});	
-	mouseEvent(canvas, 'mousedown', {button:0, pageX:block.center.x, pageY:block.center.y});	
-	mouseEvent(canvas, 'mouseup', {button:0, pageX:block.center.x, pageY:block.center.y});
-}
-function canvasClick(pos:{x:number, y:number}, param){
-	// debugger;
-	// mouseEvent(canvas, 'mousemove', {button:0, pageX:block.center.x, pageY:block.center.y});	
-	
-	let params = assign({button:0, pageX:pos.x, pageY:pos.y}, param)
-	
-	mouseEvent(canvas, 'mousedown', params);	
-	mouseEvent(canvas, 'mouseup', params);
-}
-
-//TODO REFACTOR
-function* canvasDragRect(from:{x:number, y:number}, to:{x:number, y:number}):Generator<*,*,*>{
-	let fromBlock = new Block(from)
-	let toBlock = new Block(to)
-	mouseEvent(canvas, 'mousemove', {button:0, pageX:fromBlock.center.x, pageY:fromBlock.center.y});	
-	mouseEvent(canvas, 'mousedown', {button:0, pageX:fromBlock.center.x, pageY:fromBlock.center.y});	
-	let diff = {
-		x: toBlock.center.x-fromBlock.center.x, 
-		y: toBlock.center.y-fromBlock.center.y
-	}
-	for(let i = 0; i<1; i+=0.2){ //percentages
-		let pos = {
-			x: fromBlock.center.x + (diff.x*i),
-			y: fromBlock.center.y + (diff.y*i)
-		}
-		mouseEvent(canvas, 'mousemove', {button:0, pageX:pos.x, pageY:pos.y});	
-		yield sleep(gap)
-	}
-	mouseEvent(canvas, 'mouseup', {button:0, pageX:toBlock.center.x, pageY:toBlock.center.y});
-}
