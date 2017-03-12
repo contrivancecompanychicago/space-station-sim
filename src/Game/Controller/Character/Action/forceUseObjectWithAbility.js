@@ -20,7 +20,10 @@ export default function* forceUseObjectWithAbility(char:Character, ability:Abili
   let obj = char.getObject(); //OVERRIDE
 
   let objs = yield *actions.findObjects((o:Obj) => {
-    if(o.getCharacter()==char) obj = o;
+    if(o.getCharacter()==char) {
+      obj = o
+      return true; //to break eternal loop in findobject //refactor
+    };
     if(o.character) return false;
     if(o.item) return false;
     return o.hasAbility(ability)

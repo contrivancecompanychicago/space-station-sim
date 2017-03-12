@@ -6,15 +6,20 @@ export default function* worker(char: Character): Generator<*,*,*>{
 
 	//PICK UP FROM LOAD
 	let order;
-	console.log('orders', state.order.getOrders());
-	
-	state.order.getOrders().filter(o => {
+	// console.log('orders', state.order.getOrders());
 
-		if(o.getWorker() == char){
+	state.order.getOrders().filter(o => {
+		if (o.getWorker() == char) {
 			order = o;
+			// console.log('found worker order', o)
 		}
 	})
 
+	if(order) {
+		if (order.type == 'COFFEE') {
+			yield * actions.serveDrink(char, order);
+		}
+	}
 
 	if(char.hasTaskType(Tasks.MAKE)) {
 		yield * actions.make(char, order);

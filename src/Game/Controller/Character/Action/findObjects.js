@@ -10,8 +10,9 @@ export default function* findObjects(filter:(obj:Obj)=>boolean):Generator<*,Arra
   let objs:Array<Obj>  = []
   
   while(objs.length == 0){
-    yield;
+    // yield;
     objs = state.object.getObjects().filter(filter);
+    if(objs.length == 0) yield;
   }
   return objs
 }
