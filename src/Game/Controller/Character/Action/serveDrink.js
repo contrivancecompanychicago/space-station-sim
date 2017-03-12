@@ -23,8 +23,14 @@ export default function* serveDrink(char: Character, order:?Order): Generator<*,
 			message: char.toString() + ' making coffee for ' + order.getCustomer().toString(),
 			type: 'EVENT'
 		})
-		char.setStatus('making coffee')
-		yield * actions.makeCoffee(char, order)
+		if(!order.item){
+			char.setStatus('making coffee')
+			yield * actions.makeCoffee(char, order)
+
+		}else{
+			//if there is an item and the char doesnt have it
+			if( !char.hasItem(order.getItem())) throw new Error('char doesnt have order item')
+		}
 
 		char.setStatus('serving coffee')
 		yield * actions.serveOrder(char, order);

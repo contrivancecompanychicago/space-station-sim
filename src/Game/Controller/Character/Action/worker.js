@@ -22,17 +22,17 @@ export default function* worker(char: Character): Generator<*,*,*>{
 	}
 
 	if(char.hasTaskType(Tasks.MAKE)) {
-		yield * actions.make(char, order);
+		yield * actions.make(char);
 	}
 	if(char.hasTaskType(Tasks.COOK)) {
-		yield * actions.cook(char, order);
+		yield * actions.cook(char);
 	}
 	if(char.hasTaskType(Tasks.SERVEDRINK)) {
-		yield * actions.serveDrink(char, order);
+		yield * actions.serveDrink(char);
 	}
 
 	if(char.hasTaskType(Tasks.SERVEFOOD)) {
-		yield * actions.serveFood(char, order);
+		yield * actions.serveFood(char);
 	}
 	
 	char.setStatus('waiting for something to do')
