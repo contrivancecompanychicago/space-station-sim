@@ -42,8 +42,9 @@ function canvasMouseMove(pos:{x:number, y:number}){
 
 function canvasClickBlock(block:Block){
 	// mouseEvent(canvas, 'mousemove', {button:0, pageX:block.center.x, pageY:block.center.y});	
-	mouseEvent(canvas, 'mousedown', {button:0, pageX:block.center.x, pageY:block.center.y});	
-	mouseEvent(canvas, 'mouseup', {button:0, pageX:block.center.x, pageY:block.center.y});
+	let point = block.center.screen;
+	mouseEvent(canvas, 'mousedown', {button:0, pageX:point.x, pageY:point.y});	
+	mouseEvent(canvas, 'mouseup', {button:0, pageX:point.x, pageY:point.y});
 }
 function canvasClick(pos:{x:number, y:number}, param){
 	// debugger;
@@ -59,8 +60,8 @@ function canvasClick(pos:{x:number, y:number}, param){
 function* canvasDragRect(from:{x:number, y:number}, to:{x:number, y:number}):Generator<*,*,*>{
 	let fromBlock = new Block(from)
 	let toBlock = new Block(to)
-	mouseEvent(canvas, 'mousemove', {button:0, pageX:fromBlock.center.x, pageY:fromBlock.center.y});	
-	mouseEvent(canvas, 'mousedown', {button:0, pageX:fromBlock.center.x, pageY:fromBlock.center.y});	
+	mouseEvent(canvas, 'mousemove', {button:0, pageX:fromBlock.center.screen.x, pageY:fromBlock.center.screen.y});	
+	mouseEvent(canvas, 'mousedown', {button:0, pageX:fromBlock.center.screen.x, pageY:fromBlock.center.screen.y});	
 	let diff = {
 		x: toBlock.center.x-fromBlock.center.x, 
 		y: toBlock.center.y-fromBlock.center.y
@@ -73,7 +74,7 @@ function* canvasDragRect(from:{x:number, y:number}, to:{x:number, y:number}):Gen
 		mouseEvent(canvas, 'mousemove', {button:0, pageX:pos.x, pageY:pos.y});	
 		yield sleep(gap)
 	}
-	mouseEvent(canvas, 'mouseup', {button:0, pageX:toBlock.center.x, pageY:toBlock.center.y});
+	mouseEvent(canvas, 'mouseup', {button:0, pageX:toBlock.center.screen.x, pageY:toBlock.center.screen.y});
 }
 
 const mouse = {

@@ -2,7 +2,7 @@
 
 var webpackConf = require('./webpack.config.js');
 delete webpackConf.entry;
-webpackConf.module.loaders[0].loader = 'isparta'; //instrument
+// webpackConf.module.loaders[0].loader = 'isparta'; //instrument
 webpackConf.plugins = [];
 
 module.exports = function(config) {
