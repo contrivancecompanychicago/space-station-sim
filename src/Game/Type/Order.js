@@ -11,13 +11,18 @@ import state from 'Game/state'
 import {keys, defaults} from 'lodash';
 import type Character from 'Game/Type/Character'
 import type Item from 'Game/Type/Item'
+
+import uniqid from 'Util/uniqid'
+
 export default class Order{
 	item: ?string;
 	status: OrderStatusType;
 	type: ItemType;
+	id: string;
 	constructor(params:{customer:Character, type:ItemType}){
 		defaults(this, params);
 		if(!this.status) this.status = 'ORDERED'
+		if(!this.id) this.id = uniqid();
 	}
 	getData(){
 		return ItemData.get(this.type)
