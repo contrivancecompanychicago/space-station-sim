@@ -2,7 +2,7 @@
 
 import type Character from 'Game/Type/Character'
 import type Order from 'Game/Type/Order'
-import type Item from 'Game/Type/Item'
+import Item from 'Game/Type/Item'
 
 import state from 'Game/state'
 
@@ -39,12 +39,14 @@ export default function* makeOrder(char:Character, order:Order):Generator<*,*,*>
         }
     }
     yield *actions.idle(char, 2);
-    
+
     item.type = making;
     char.removeItem(item);
 
 	order.removeWorker(char);
     // debugger;
+
+    return item; //always have an item at the end of this or else error
 
 }
 

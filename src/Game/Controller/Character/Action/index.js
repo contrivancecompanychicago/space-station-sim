@@ -27,10 +27,12 @@ import followPath from './followPath';
 import worker from './worker';
 import shortestPathToObject from './shortestPathToObject';
 import useCoffeeAbility from './useCoffeeAbility';
+import makeOrder from './makeOrder';
 
 
 
 export default {
+  makeOrder,
   useCoffeeAbility,
   make,
   cook,
