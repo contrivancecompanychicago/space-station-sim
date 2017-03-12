@@ -55,7 +55,32 @@ fdescribe('saving and loading game', () => {
 		}
 		expect(mouse.clickSelector('.button-speed-normal')).toBe(true)
 		// order = game.state.order.getOrders()[0];
-	}))
+	}));
+	describe('save and reload', () => {
+		it('open panel menu', () => {
+			expect(mouse.clickSelector('.button-mode-panels')).toBe(true)
+		})
+		it('open save panel', () => {
+			expect(mouse.clickSelector('.button-panel-save')).toBe(true)
+		})
+		it('press save', () => {
+			expect(mouse.clickSelector('.save.panel button#save')).toBe(true)
+		})
+		it('press load', () => {
+			expect(mouse.clickSelector('button#load-savename')).toBe(true)
+		})
+		it('wait', (done) => {
+			setTimeout(done, 1000);
+			mouse.clickSelector('.save.panel .close')
+		})
+	});
+
+	it('character should not reorder', () => {
+		expect(game.state.order.getOrders().length).toBe(2);
+	})
+
+
+
 	let worker
 	it('should hire a worker', testGen(function* () {
 		expect(mouse.clickSelector('.button-mode-panels')).toBe(true)
@@ -100,7 +125,6 @@ fdescribe('saving and loading game', () => {
 				expect(mouse.clickSelector('button#load-savename')).toBe(true)
 			})
 			it('wait', (done) => {
-
 				setTimeout(done, 1000);
 				mouse.clickSelector('.save.panel .close')
 			})
@@ -149,7 +173,7 @@ fdescribe('saving and loading game', () => {
 			})
 		})
 		it('should continue the order', testGen(function* () {
-			
+
 			orders = game.state.order.getOrders()
 			order = orders.filter(o => {
 				return o.id == order.id
