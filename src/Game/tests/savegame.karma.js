@@ -7,7 +7,7 @@ import mouse from './mouseTestUtil'
 import testGen from 'jasmine-es6-generator'
 import Block from 'Game/Block'
 
-let gap = 200;
+let gap = 20;
 function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -53,7 +53,7 @@ fdescribe('saving and loading game', () => {
 		while (game.state.order.getOrders().length == 0) {
 			yield sleep(gap);
 		}
-		expect(mouse.clickSelector('.button-speed-normal')).toBe(true)
+		// expect(mouse.clickSelector('.button-speed-normal')).toBe(true)
 		// order = game.state.order.getOrders()[0];
 	}));
 	describe('save and reload', () => {
@@ -70,7 +70,7 @@ fdescribe('saving and loading game', () => {
 			expect(mouse.clickSelector('button#load-savename')).toBe(true)
 		})
 		it('wait', (done) => {
-			setTimeout(done, 1000);
+			setTimeout(done, 100);
 			mouse.clickSelector('.save.panel .close')
 		})
 	});
@@ -121,11 +121,14 @@ fdescribe('saving and loading game', () => {
 			it('press save', () => {
 				expect(mouse.clickSelector('.save.panel button#save')).toBe(true)
 			})
+			it('wait', (done) => {
+				setTimeout(done, 200);
+			})
 			it('press load', () => {
 				expect(mouse.clickSelector('button#load-savename')).toBe(true)
 			})
 			it('wait', (done) => {
-				setTimeout(done, 1000);
+				setTimeout(done, 100);
 				mouse.clickSelector('.save.panel .close')
 			})
 		})
@@ -164,11 +167,14 @@ fdescribe('saving and loading game', () => {
 			it('press save', () => {
 				expect(mouse.clickSelector('.save.panel button#save')).toBe(true)
 			})
+			it('wait', (done) => {
+				setTimeout(done, 500);
+			})
 			it('press load', () => {
 				expect(mouse.clickSelector('button#load-savename')).toBe(true)
 			})
 			it('wait', (done) => {
-				setTimeout(done, 1000);
+				setTimeout(done, 100);
 				mouse.clickSelector('.save.panel .close')
 			})
 		})
@@ -198,10 +204,48 @@ fdescribe('saving and loading game', () => {
 		expect(mouse.clickSelector('.button-object-TABLETALL')).toBe(true)
 		mouse.canvasClickBlock(new Block({ x: 9, y: 9 }))
 	}))
-	it('should set worker to make food', () => {
+	it('should slow down', () => {
+		expect(mouse.clickSelector('.button-speed-normal')).toBe(true)
+	})
+	it('should select worker', () => {
 		worker = game.state.character.getChar(worker.id);
 		expect(worker).toBeDefined();
+		expect(mouse.clickSelector('.button-mode-select')).toBe(true)
+
+		let point = worker.position.screen;
+		mouse.canvasMouseMove(point);
+		mouse.canvasClick(point);
+		expect(game.state.ui.state.selected[0]).toBe(worker)
+	})
+	it('should set worker to make food', () => {
+		
+		mouse.clickCheckbox('label.task-SERVEDRINK input')
+		mouse.clickCheckbox('label.task-MAKE input')
 	});
+	describe('making food', () => {
+		it('should have an order', () => {
+			orders = game.state.order.getOrders();
+			expect(orders.length).toBe(1);
+			order = orders[0];
+			expect(order.type).toBe('PIZZA');
+			expect(order.getWorker()).not.toBeDefined();
+		})
+		it('should wait for the worker to pick up the order', testGen(function* () {
+			while(!order.getWorker()){
+				yield sleep(gap)
+			}
+			expect(order.getWorker()).toBe(worker);
+		}));
+		it('save and reload', testGen(function* () {
+				expect(mouse.clickSelector('.button-mode-panels')).toBe(true)
+				expect(mouse.clickSelector('.button-panel-save')).toBe(true)
+				expect(mouse.clickSelector('.save.panel button#save')).toBe(true)
+				yield sleep(200);
+				expect(mouse.clickSelector('button#load-savename')).toBe(true)
+				yield sleep(100);
+				mouse.clickSelector('.save.panel .close')
+		}));
+	})
 
 
 	it('should wait open', (done) => {
