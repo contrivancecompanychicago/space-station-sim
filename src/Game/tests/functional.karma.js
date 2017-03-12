@@ -407,22 +407,22 @@ describe('functional end to end', () => {
 			ReactTestUtils.Simulate.change(saveinput);//unnecessary?
 			expect(mouse.clickSelector('.save.panel button#save')).toBe(true)
 			expect(localStorage['save_functional']).toBeDefined();
-			setTimeout(done, 1000);
+			setTimeout(done, 100);
 		})
 		it('should load stock', (done) => {
 			mouse.clickSelector('button#load-large');
-			setTimeout(done, 1000);
+			setTimeout(done, 100);
 		})
 		it('should load functionalagain', (done) => {
 			mouse.clickSelector('button#load-functional');
-			setTimeout(done, 2000);
+			setTimeout(done, 200);
 		})
 		it('shuld have the same character with a responsibility', (done) => {
 			let c1 = (game.state.character.getChar(char.id))
 			let c2 = (char);
 			expect(c1.id).toBe(c2.id)
 			
-			setTimeout(done, 2000);
+			setTimeout(done, 200);
 		})
 
 	})

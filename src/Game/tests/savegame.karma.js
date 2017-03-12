@@ -236,21 +236,85 @@ fdescribe('saving and loading game', () => {
 			}
 			expect(order.getWorker()).toBe(worker);
 		}));
-		it('save and reload', testGen(function* () {
-				expect(mouse.clickSelector('.button-mode-panels')).toBe(true)
-				expect(mouse.clickSelector('.button-panel-save')).toBe(true)
-				expect(mouse.clickSelector('.save.panel button#save')).toBe(true)
-				yield sleep(200);
-				expect(mouse.clickSelector('button#load-savename')).toBe(true)
-				yield sleep(100);
-				mouse.clickSelector('.save.panel .close')
-		}));
+		it('save and reload', testGen(saveAndReload));
+		it('should make the pizza', testGen(function* () {
+			orders = game.state.order.getOrders();
+			order = orders[0];
+			while(!order.getItem()){
+				yield sleep(gap)
+			}
+		}))
+		it('save and reload', testGen(saveAndReload));
+		it('should prep the pizza', testGen(function* () {
+			orders = game.state.order.getOrders();
+			order = orders[0];
+			while(order.status == 'STARTED'){
+				yield sleep(gap)
+			}
+		}))
+		it('save and reload', testGen(saveAndReload));
+		it('should cook it', testGen(function* () {
+			orders = game.state.order.getOrders();
+			order = orders[0];
+			worker = game.state.character.getChar(worker.id);
+			
+			let point = worker.position.screen;
+			mouse.canvasMouseMove(point);
+			mouse.canvasClick(point);
+
+			mouse.clickCheckbox('label.task-COOK input')
+			expect(order.getWorker()).not.toBeDefined();
+			while(!order.getWorker()){
+				yield sleep(gap)
+			}
+
+		}))
+		it('worker should only have one item', () => {
+			expect(worker.getItems().length).toBe(1);
+		})
+		it('save and reload', testGen(saveAndReload));
+			
+		it('should cook it', testGen(function* () {
+			
+			expect(mouse.clickSelector('.button-speed-fast')).toBe(true)
+			orders = game.state.order.getOrders();
+			order = orders[0];
+			while(order.getItem().type !== 'PIZZA'){
+				yield sleep(gap)
+			}
+		}))
+		it('should serve it', testGen(function* () {
+			orders = game.state.order.getOrders();
+			order = orders[0];
+			worker = game.state.character.getChar(worker.id);
+			
+			let point = worker.position.screen;
+			mouse.canvasMouseMove(point);
+			mouse.canvasClick(point);
+
+			mouse.clickCheckbox('label.task-SERVEFOOD input')
+			while(order.status !== 'FULFILLED'){
+				yield sleep(gap)
+			}
+
+		}))
 	})
 
 
 	it('should wait open', (done) => {
 		setTimeout(() => {
 			done();
-		}, 1000)
+		}, 2000)
 	})
 })
+
+function* saveAndReload () {
+	mouse.clickSelector('.selected .close')
+	expect(mouse.clickSelector('.button-mode-panels')).toBe(true)
+	expect(mouse.clickSelector('.button-panel-save')).toBe(true)
+	expect(mouse.clickSelector('.save.panel button#save')).toBe(true)
+	yield sleep(200);
+	expect(mouse.clickSelector('button#load-savename')).toBe(true)
+	yield sleep(gap);
+	mouse.clickSelector('.save.panel .close')
+}
