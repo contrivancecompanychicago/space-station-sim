@@ -56,13 +56,13 @@ fdescribe('saving and loading game', () => {
 		expect(mouse.clickSelector('.button-speed-normal')).toBe(true)
 		// order = game.state.order.getOrders()[0];
 	}))
-	let char
+	let worker
 	it('should hire a worker', testGen(function* () {
 		expect(mouse.clickSelector('.button-mode-panels')).toBe(true)
 		expect(mouse.clickSelector('.button-panel-hiring')).toBe(true)
 		expect(mouse.clickSelector('.hireable button')).toBe(true)
 		mouse.clickCheckbox('label.task-SERVEDRINK input')
-		char = game.state.ui.state.selected[0];
+		worker = game.state.ui.state.selected[0];
 
 		yield sleep(gap);
 		mouse.clickSelector('.hiring.panel .close')
@@ -70,11 +70,11 @@ fdescribe('saving and loading game', () => {
 		expect(mouse.clickSelector('.button-mode-panels')).toBe(true)
 		expect(mouse.clickSelector('.button-panel-orders')).toBe(true)
 
-		expect(char).toBeDefined();
+		expect(worker).toBeDefined();
 	}))
 	let order
+	let orders
 	describe('making drink saving state', () => {
-		let orders
 		it('should wait for order to turn into STARTED', testGen(function* () {
 			orders = game.state.order.getOrders()
 			order = orders.filter((o) => {
@@ -85,13 +85,27 @@ fdescribe('saving and loading game', () => {
 				yield sleep(gap);
 			}
 		}))
-		it('should save and reload', (done) => {
-			mouse.clickSelector('.button-mode-panels')
-			mouse.clickSelector('.button-panel-save')
-			expect(mouse.clickSelector('.save.panel button#save')).toBe(true)
-			mouse.clickSelector('button#load-savename');
-			setTimeout(done, 1000);
-		});
+
+		describe('save and reload', () => {
+			it('open panel menu', () => {
+				expect(mouse.clickSelector('.button-mode-panels')).toBe(true)
+			})
+			it('open save panel', () => {
+				expect(mouse.clickSelector('.button-panel-save')).toBe(true)
+			})
+			it('press save', () => {
+				expect(mouse.clickSelector('.save.panel button#save')).toBe(true)
+			})
+			it('press load', () => {
+				expect(mouse.clickSelector('button#load-savename')).toBe(true)
+			})
+			it('wait', (done) => {
+
+				setTimeout(done, 1000);
+				mouse.clickSelector('.save.panel .close')
+			})
+		})
+
 		it('should continue the order', testGen(function* () {
 			let old = order;
 			let oldOrders = orders;
@@ -111,14 +125,36 @@ fdescribe('saving and loading game', () => {
 	})
 	describe('serving drink saving state', () => {
 
-		it('should save and reload', (done) => {
-			mouse.clickSelector('.button-mode-panels')
-			mouse.clickSelector('.button-panel-save')
-			expect(mouse.clickSelector('.save.panel button#save')).toBe(true)
-			mouse.clickSelector('button#load-savename');
-			setTimeout(done, 1000);
-		});
+		describe('save and reload', () => {
+			it('open panel menu', () => {
+
+				expect(mouse.clickSelector('.button-mode-panels')).toBe(true)
+				expect(game.state.ui.state.mode).toBe('PANEL')
+			})
+			it('wait', (done) => { setTimeout(done, gap); })
+			it('open save panel', () => {
+				expect(mouse.clickSelector('.button-panel-save')).toBe(true)
+				expect(game.state.ui.state.panel.save.show).toBe(true)
+			})
+			it('wait', (done) => { setTimeout(done, gap); })
+			it('press save', () => {
+				expect(mouse.clickSelector('.save.panel button#save')).toBe(true)
+			})
+			it('press load', () => {
+				expect(mouse.clickSelector('button#load-savename')).toBe(true)
+			})
+			it('wait', (done) => {
+				setTimeout(done, 1000);
+				mouse.clickSelector('.save.panel .close')
+			})
+		})
 		it('should continue the order', testGen(function* () {
+			
+			orders = game.state.order.getOrders()
+			order = orders.filter(o => {
+				return o.id == order.id
+			})[0]
+
 			while (order.status != 'FULFILLED') {
 				yield sleep(gap);
 			}
@@ -131,7 +167,17 @@ fdescribe('saving and loading game', () => {
 		expect(mouse.clickSelector('.button-object-FRIDGETALL')).toBe(true)
 		yield sleep(gap);
 		mouse.canvasClickBlock(new Block({ x: 7, y: 3 }))
+		yield sleep(gap);
+		expect(mouse.clickSelector('.button-object-STONEOVEN')).toBe(true)
+		mouse.canvasClickBlock(new Block({ x: 4, y: 3 }))
+		yield sleep(gap);
+		expect(mouse.clickSelector('.button-object-TABLETALL')).toBe(true)
+		mouse.canvasClickBlock(new Block({ x: 9, y: 9 }))
 	}))
+	it('should set worker to make food', () => {
+		worker = game.state.character.getChar(worker.id);
+		expect(worker).toBeDefined();
+	});
 
 
 	it('should wait open', (done) => {
