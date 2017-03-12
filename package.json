@@ -5,6 +5,7 @@
   "main": "server/server.js",
   "scripts": {
     "test": "jest",
+    "unit": "jest -o --watch",
     "dev": "webpack-dev-server --hot --inline",
     "build": "gulp build",
     "functional": "./node_modules/.bin/karma start",
