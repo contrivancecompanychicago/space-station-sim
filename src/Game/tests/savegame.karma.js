@@ -15,7 +15,7 @@ function sleep(ms) {
 let container: HTMLDivElement;
 let canvas;
 let game: Game
-fdescribe('saving and loading game', () => {
+describe('saving and loading game', () => {
 	beforeAll(function () {
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = 999999;
 		container = document.createElement('div');
@@ -205,7 +205,7 @@ fdescribe('saving and loading game', () => {
 		mouse.canvasClickBlock(new Block({ x: 9, y: 9 }))
 	}))
 	it('should slow down', () => {
-		expect(mouse.clickSelector('.button-speed-normal')).toBe(true)
+		// expect(mouse.clickSelector('.button-speed-normal')).toBe(true)
 	})
 	it('should select worker', () => {
 		worker = game.state.character.getChar(worker.id);
@@ -283,6 +283,8 @@ fdescribe('saving and loading game', () => {
 				yield sleep(gap)
 			}
 		}))
+		
+		it('save and reload', testGen(saveAndReload));
 		it('should serve it', testGen(function* () {
 			orders = game.state.order.getOrders();
 			order = orders[0];
