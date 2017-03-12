@@ -75,7 +75,7 @@ fdescribe('saving and loading game', () => {
 		})
 	});
 
-	it('character should not reorder', () => {
+	it('character should not reorder after load', () => {
 		expect(game.state.order.getOrders().length).toBe(2);
 	})
 
