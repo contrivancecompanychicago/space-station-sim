@@ -12,7 +12,7 @@ import actions from './index'
 
 /** takes one step in order manufacture */
 export default function* makeOrder(char:Character, order:Order):Generator<*,*,*>{
-
+    
     order.addWorker(char)
     let item:?Item = order.getItem();
     let making = nextStep(order);
