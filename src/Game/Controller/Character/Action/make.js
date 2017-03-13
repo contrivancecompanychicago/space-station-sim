@@ -31,8 +31,9 @@ export default function* make(char: Character, order:?Order): Generator<*,*,*>{
 	// let item:Item = new Item({position: obj.block.center, type:'BASE'})
 	// state.item.addItem(item);
 	// order.setItem(item);
-	let item = yield *actions.makeOrder(char, order);
-	item = order.getItem();
+	yield *actions.makeOrder(char, order);
+	// yield *actions.makeOrder(char, order);
+	let item = order.getItem();
 	order.addWorker(char);
 	char.addItem(item)
 	let table = yield *actions.forceUseObjectWithAbility(char, Ability.PREP_TABLE)

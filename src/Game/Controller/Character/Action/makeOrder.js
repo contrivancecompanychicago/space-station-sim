@@ -25,7 +25,13 @@ export default function* makeOrder(char:Character, order:Order):Generator<*,*,*>
         
         if(!char.hasItem(item)){
             // TODO go pick up item
-            char.addItem(item)
+            let obj = state.object.getObjectAtBlock(item.position.block)
+			obj.setCharacter(char)
+            yield *actions.shortestPathToObject(char, obj);
+			obj.removeCharacter()
+            
+            obj.removeItem();
+            char.addItem(item);
         }
     }
     if(data.requires.objectAbility){
@@ -37,6 +43,11 @@ export default function* makeOrder(char:Character, order:Order):Generator<*,*,*>
             order.setItem(item);
             char.addItem(item)
         }
+    }
+    
+    if(data.requires.leaveAtObjectAbility){
+        let obj = yield *actions.forceUseObjectWithAbility(char, data.requires.leaveAtObjectAbility)
+        obj.addItem(item);
     }
     yield *actions.idle(char, 2);
 

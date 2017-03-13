@@ -10,7 +10,8 @@ import type {AbilityType} from 'Game/Data/Object/Ability'
 export type ItemType = 'TEST'|'BASE'|'PIZZAUNCOOKED'|'PIZZA'|'PIZZADONE'|'COFFEE'|'COFFEEDONE'
 
 export type ItemRequires = {
-  objectAbility?: AbilityType, //todo more specific
+  objectAbility?: AbilityType,
+  leaveAtObjectAbility?: AbilityType,
   itemType?: ItemType,
   characterTaskType?: TaskType
 }
