@@ -93,7 +93,7 @@ class SelectedCharacterPanel extends React.Component{
 				}
 
 				workerData = <div>
-							<Header text="Responsibilities" close={this.toggleTasks.bind(this)} />
+							<Header text="Tasks" close={this.toggleTasks.bind(this)} />
 							<div className="tasks">
 							{tasks}
 							</div>
