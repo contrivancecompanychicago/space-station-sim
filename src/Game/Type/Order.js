@@ -1,6 +1,6 @@
 // @flow
 
-export type OrderStatusType = 'ORDERED'|'STARTED'|'COOKED'|'FULFILLED'
+export type OrderStatusType = 'ORDERED'|'STARTED'|'COOKED'|'FULFILLED'|'MADE'
 
 import type {ItemType} from 'Game/Data/Item'
 
@@ -29,15 +29,12 @@ export default class Order{
 	}
 
 
-	customer: ?string;
+	customer: string;
 	setCustomer(customer: Character) {
 		this.customer = customer.id
 	}
-	getCustomer(){
-		if(this.customer)
-			return state.character.getChar(this.customer)
-
-		// return this.customer;
+	getCustomer():Character{
+		return state.character.getChar(this.customer)
 	}
 
 	setItem(item:Item){

@@ -13,6 +13,10 @@ export default function* serveOrder(char: Character, order: Order): Generator<*,
 	order.addWorker(char)
 	if(order.item != undefined) {
 		let item = order.getItem();
+		if(!item){
+			throw new Error('serving but order doesnt have an item')
+			return;
+		}
 		if (!char.hasItem(item)) {
 			let block = item.position.block
 			let obj = state.object.getObjectAtBlock(block);
@@ -22,6 +26,8 @@ export default function* serveOrder(char: Character, order: Order): Generator<*,
 				
 				obj.removeCharacter()
 				obj.removeItem();
+			}else{
+				
 			}
 			char.addItem(item)
 		}

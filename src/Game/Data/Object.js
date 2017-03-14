@@ -44,7 +44,8 @@ export type ObjectType =
 'CASHREGISTER'|
 'FRIDGETALL'|
 'TABLETALL'|
-'CHAIRTALL'
+'CHAIRTALL'|
+'STONEOVEN'
 
 export type ObjectBlocksType = 'ACCESS'|'BLOCK'
 export const ObjectBlocks:{[id:ObjectBlocksType]: ObjectBlocksType} = {
