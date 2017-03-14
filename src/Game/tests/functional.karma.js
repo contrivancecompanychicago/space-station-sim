@@ -11,6 +11,7 @@ import ReactTestUtils from 'react-addons-test-utils';
 
 import Block from 'Game/Block'
 import type Grid from 'Game/Type/Grid'
+import type Obj from 'Game/Type/Obj'
 import type Character from 'Game/Type/Character'
 
 import mouse from './mouseTestUtil'
@@ -26,7 +27,7 @@ let canvas
 
 let gap = 10
 
-describe('functional end to end', () => {
+fdescribe('functional end to end', () => {
 
 	beforeAll(function () {
 
@@ -265,14 +266,15 @@ describe('functional end to end', () => {
 		expect(mouse.clickSelector('.button-panel-hiring')).toBe(true)
 	}));
 
+	let worker: Character;
 	let char: Character;
 
 	it('should hire staff', testGen(function* () {
 		yield sleep(gap);
 		expect(mouse.clickSelector('.hireable button')).toBe(true)
 		yield sleep(gap);
-		char = game.state.ui.getSelected()[0];
-		expect(char).toBeDefined();
+		worker = game.state.ui.getSelected()[0];
+		expect(worker).toBeDefined();
 	}));
 
 	it('should slow time', () => {
@@ -295,7 +297,7 @@ describe('functional end to end', () => {
 		//right click somewhere
 		mouse.canvasClick(new Block({ x: 12, y: 12 }).center.screen, { button: 2 });
 		yield sleep(gap);
-		let lastblock = char.path[char.path.length - 1]
+		let lastblock = worker.path[worker.path.length - 1]
 		expect(lastblock.x).toBe(12);
 		expect(lastblock.y).toBe(12);
 	}));
@@ -343,6 +345,10 @@ describe('functional end to end', () => {
 		it('should be a base', () => {
 			expect(item.type).toBe('BASE')
 		});
+
+	})
+	describe('making pizzauncooked', () => {
+		
 		it('should wait until its pizzauncooked', testGen(function* () {
 			while(item.type !== 'PIZZAUNCOOKED'){
 				yield sleep(gap);
@@ -355,36 +361,53 @@ describe('functional end to end', () => {
 			let obj = game.state.object.getObjectAtBlock(item.position.block)
 			expect(obj).toBeDefined();
 		})
-
 	});
+	describe('making pizza', () => {
 
-
-
-	let worker: Character;
-	it('should hire cook staff', testGen(function* () {
-		yield sleep(gap);
-		expect(mouse.clickSelector('.hireable button')).toBe(true)
-		worker = game.state.ui.getSelected()[0];
-		expect(worker).toBeDefined();
-		yield sleep(gap);
-	}));
-	it('should assign cook task to new staff', () => {
-		mouse.clickCheckbox('label.task-COOK input')
-	});
-	it('order should not have a worker', () => {
-		expect(order.getWorker()).not.toBeDefined();
-	});
-	it('should get a worker assigned to order', testGen(function* () {
-		while (!order.getWorker()) { yield sleep(gap) }
-		expect(order.getWorker()).toBe(worker);
-	}))
-
-	it('should move the order ', testGen(function* () {
-		while (order.status !== 'COOKED') {
+		it('should hire cook staff', testGen(function* () {
 			yield sleep(gap);
-		}
-		expect(order.status).toBe('COOKED');
-	}));
+			expect(mouse.clickSelector('.hireable button')).toBe(true)
+			worker = game.state.ui.getSelected()[0];
+			expect(worker).toBeDefined();
+			yield sleep(gap);
+		}));
+		it('should assign cook task to new staff', () => {
+			mouse.clickCheckbox('label.task-COOK input')
+		});
+		it('order should not have a worker', () => {
+			expect(order.getWorker()).not.toBeDefined();
+		});
+		it('should get a worker assigned to order', testGen(function* () {
+			while (!order.getWorker()) { yield sleep(gap) }
+			expect(order.getWorker()).toBe(worker);
+		}));
+		it('should turn item into a pizza', testGen(function*(){
+			while(item.type !== 'PIZZA'){
+				yield sleep(gap)
+			}
+		}));
+		it('should put it onto a table to wait for serving', testGen(function*(){
+			while(order.getWorker()){
+				yield sleep(gap)
+			}
+			let obj:Obj = item.getObject();
+			expect(obj.hasAbility('SERVE_TABLE')).toBe(true);
+			
+
+			
+		}))
+
+	})
+
+
+	// it('should move the order ', testGen(function* () {
+	// 	while (order.status !== 'COOKED') {
+	// 		yield sleep(gap);
+	// 	}
+	// 	expect(order.status).toBe('COOKED');
+	// }));
+
+
 
 
 	it('should hire serve staff', testGen(function* () {
@@ -411,13 +434,13 @@ describe('functional end to end', () => {
 		yield sleep(gap);
 		expect(mouse.clickSelector('.hireable button')).toBe(true)
 		yield sleep(gap);
-		char = game.state.ui.getSelected()[0];
+		worker = game.state.ui.getSelected()[0];
 	}));
 
 	it('should manually assign drink task', testGen(function* () {
 		mouse.canvasClick(new Block({ x: 3, y: 8 }).center.screen, { button: 2 });
 		yield sleep(gap);
-		let lastblock = char.path[char.path.length - 1]
+		let lastblock = worker.path[worker.path.length - 1]
 		expect(lastblock.y).toBe(8);
 	}));
 	it('should serve the drink', testGen(function* () {
@@ -466,8 +489,8 @@ describe('functional end to end', () => {
 			setTimeout(done, 200);
 		})
 		it('shuld have the same character with a responsibility', (done) => {
-			let c1 = (game.state.character.getChar(char.id))
-			let c2 = (char);
+			let c1 = (game.state.character.getChar(worker.id))
+			let c2 = (worker);
 			expect(c1.id).toBe(c2.id)
 
 			setTimeout(done, 200);

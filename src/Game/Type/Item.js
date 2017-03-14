@@ -10,6 +10,8 @@ import ItemData from 'Game/Data/Item'
 import type Obj from 'Game/Type/Object';
 import type Character from 'Game/Type/Character'
 
+import state from 'Game/state'
+
 export default class Item{
   position:Point;
   type: ItemType;
@@ -49,5 +51,8 @@ export default class Item{
   }
   getOwner(){
     return this.owner
+  }
+  getObject():?Obj{
+    return state.object.getObjectAtBlock(this.position.block)
   }
 }

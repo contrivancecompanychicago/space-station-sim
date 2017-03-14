@@ -54,6 +54,7 @@ export default function* worker(char: Character): Generator<*,*,*>{
 
 	orders = state.order.getOrders().filter(o => {
 		return !o.getWorker()
+			&& char.hasTaskType('SERVE_FOOD')
 			&& o.isServable();
 	})
 	
