@@ -16,12 +16,19 @@ export default function* worker(char: Character): Generator<*,*,*>{
 	})
 
 	if(order) {
-		if (order.type == 'COFFEE') {
-			yield * actions.serveDrink(char, order);
+		// debugger;
+		//check if the order is servable
+		let item = order.getItem();
+		if(item && item.type == order.type){
+			yield * actions.serveOrder(char, order);
+		}else{
+			yield * actions.makeOrder(char, order);
 		}
-		if(order.type=='PIZZA' ){
-			yield * actions.make(char, order);
-		}
+		// if (order.type == 'COFFEE') {
+		// 	yield * actions.serveDrink(char, order);
+		// }
+		// if(order.type=='PIZZA' ){
+		// }
 	}
 
 	if(char.hasTaskType(Tasks.MAKE)) {

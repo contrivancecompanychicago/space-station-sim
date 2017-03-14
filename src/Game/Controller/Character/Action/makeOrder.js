@@ -18,6 +18,7 @@ export default function* makeOrder(char: Character, order: Order): Generator<*,*
     let item:?Item = order.getItem();
     let making:?ItemType = nextStep(order);
     if(making) {
+        // if(making == 'COFFEE') debugger;
         let data = ItemData.get(making);
         if (data.requires.itemType) {
             //get our required item types

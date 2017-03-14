@@ -60,14 +60,18 @@ const Items:{[id:ItemType]:ItemDataType} = {
   // },
   'COFFEE': {
     label: 'ingredients', 
-    requires:{},
+    requires:{
+      objectAbility: 'MAKE_COFFEE',
+      characterTaskType: 'SERVE_DRINK'
+    },
     image: require('./Item/coffee.png')
   },
-  'COFFEEDONE': {
-    label: 'ingredients', 
-    requires:{},
-    image: require('./Item/coffee_empty.png')
-  },
+  // 'COFFEEDONE': {
+  //   label: 'ingredients', 
+  //   requires:{
+  //   },
+  //   image: require('./Item/coffee_empty.png')
+  // },
 };
 
 // export default Items;

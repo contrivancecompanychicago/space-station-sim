@@ -15,7 +15,7 @@ function sleep(ms) {
 let container: HTMLDivElement;
 let canvas;
 let game: Game
-describe('saving and loading game', () => {
+fdescribe('saving and loading game', () => {
 	beforeAll(function () {
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = 999999;
 		container = document.createElement('div');
@@ -100,13 +100,15 @@ describe('saving and loading game', () => {
 	let order
 	let orders
 	describe('making drink saving state', () => {
-		it('should wait for order to turn into STARTED', testGen(function* () {
+		it('should wait for order to get a worker', testGen(function* () {
 			orders = game.state.order.getOrders()
 			order = orders.filter((o) => {
 				return o.type == 'COFFEE'
 			})[0]
 			expect(order).toBeDefined();
-			while (order.status != 'STARTED') {
+			expect(order.getWorker()).toBeDefined();
+			// while (order.status != 'STARTED') {
+			while (!order.getWorker()){
 				yield sleep(gap);
 			}
 		}))
@@ -145,7 +147,7 @@ describe('saving and loading game', () => {
 			expect(order).toBeDefined();
 
 			// order = game.state.order.get
-			while (order.status != 'COOKED') {
+			while (!order.getItem()) {
 				yield sleep(gap);
 			}
 		}))
@@ -191,7 +193,7 @@ describe('saving and loading game', () => {
 		}))
 	})
 
-	it('should make pizza shit', testGen(function* () {
+	it('should make pizza objects', testGen(function* () {
 		mouse.clickSelector('.button-mode-object')
 		yield sleep(gap);
 		expect(mouse.clickSelector('.button-object-FRIDGETALL')).toBe(true)
@@ -222,12 +224,14 @@ describe('saving and loading game', () => {
 		mouse.clickCheckbox('label.task-SERVEDRINK input')
 		mouse.clickCheckbox('label.task-MAKE input')
 	});
-	describe('making food', () => {
+	describe('making a pizza', () => {
 		it('should have an order', () => {
 			orders = game.state.order.getOrders();
 			expect(orders.length).toBe(1);
 			order = orders[0];
 			expect(order.type).toBe('PIZZA');
+		})
+		it('shouldnt have a worker now', () => {
 			expect(order.getWorker()).not.toBeDefined();
 		})
 		it('should wait for the worker to pick up the order', testGen(function* () {
@@ -237,18 +241,26 @@ describe('saving and loading game', () => {
 			expect(order.getWorker()).toBe(worker);
 		}));
 		it('save and reload', testGen(saveAndReload));
-		it('should make the pizza', testGen(function* () {
+		it('shouldnt have an item yet', () => {
 			orders = game.state.order.getOrders();
 			order = orders[0];
+			expect(order.getItem()).not.toBeDefined();
+		})
+		it('should wait until the pizza order has an item', testGen(function* () {
 			while(!order.getItem()){
 				yield sleep(gap)
 			}
+			expect(order.getItem().type).toBe('BASE')
 		}))
 		it('save and reload', testGen(saveAndReload));
-		it('should prep the pizza', testGen(function* () {
+		it('order should have an item', () => {
 			orders = game.state.order.getOrders();
 			order = orders[0];
-			while(order.status == 'STARTED'){
+			expect(order.getItem()).toBeDefined();
+		})
+		it('should turn the order item into pizzauncooked', testGen(function* () {
+			let item = order.getItem();
+			while(item.type !== 'PIZZAUNCOOKED'){
 				yield sleep(gap)
 			}
 		}))
@@ -261,8 +273,9 @@ describe('saving and loading game', () => {
 			let point = worker.position.screen;
 			mouse.canvasMouseMove(point);
 			mouse.canvasClick(point);
-
+			
 			mouse.clickCheckbox('label.task-COOK input')
+
 			expect(order.getWorker()).not.toBeDefined();
 			while(!order.getWorker()){
 				yield sleep(gap)
