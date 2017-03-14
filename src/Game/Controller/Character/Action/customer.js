@@ -11,10 +11,10 @@ import Ability from 'Game/Data/Object/Ability'
 import type Character from 'Game/Type/Character'
 import type Obj from 'Game/Type/Object'
 
+import type {RecipeType} from 'Game/Data/Recipe'
+
 import Order from 'Game/Type/Order'
 export default function* customer(char: Character): Generator<*,*,*>{
-
-
 
 	char.setStatus('Sitting down')
 	let chair = yield * actions.pathToObjectWithAbility(char, Ability.CHAIR);
@@ -29,10 +29,10 @@ export default function* customer(char: Character): Generator<*,*,*>{
 			return o.getCustomer() == char;
 		});
 		if(orders.length == 0){
-			let pizza = new Order({ customer: char.id, type: 'PIZZA' })
+			let pizza = new Order({ customer: char.id, type: 'PIZZA', recipe: 'MARGHERITA' })
 			orders.push(pizza)
 			state.order.addOrder(pizza);
-			let coffee = new Order({ customer: char.id, type: 'COFFEE' })
+			let coffee = new Order({ customer: char.id, type: 'COFFEE', recipe:'' })
 			orders.push(coffee)
 			state.order.addOrder(coffee);
 		}

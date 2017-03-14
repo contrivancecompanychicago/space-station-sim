@@ -232,9 +232,9 @@ describe('saving and loading game', () => {
 			order = orders[0];
 			expect(order.type).toBe('PIZZA');
 		})
-		it('shouldnt have a worker now', () => {
-			expect(order.getWorker()).not.toBeDefined();
-		})
+		// it('shouldnt have a worker now', () => {
+		// 	expect(order.getWorker()).not.toBeDefined();
+		// })
 		it('should wait for the worker to pick up the order', testGen(function* () {
 			while(!order.getWorker()){
 				yield sleep(gap)

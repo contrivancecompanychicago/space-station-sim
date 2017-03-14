@@ -12,6 +12,9 @@ import {keys, defaults} from 'lodash';
 import type Character from 'Game/Type/Character'
 import type Item from 'Game/Type/Item'
 
+import type {RecipeType, RecipeDataType} from 'Game/Data/Recipe'
+import RecipeData from 'Game/Data/Recipe'
+
 import uniqid from 'Util/uniqid'
 
 export default class Order{
@@ -19,6 +22,7 @@ export default class Order{
 	status: OrderStatusType;
 	type: ItemType;
 	id: string;
+	recipe: RecipeType;
 	constructor(params:{customer:string, type:ItemType}){
 		defaults(this, params);
 		if(!this.status) this.status = 'ORDERED'
@@ -26,6 +30,13 @@ export default class Order{
 	}
 	getData(){
 		return ItemData.get(this.type)
+	}
+
+	getRecipe():RecipeType{
+		return this.recipe;
+	}
+	getRecipeData() :RecipeDataType{
+		return RecipeData.get(this.recipe);
 	}
 
 
