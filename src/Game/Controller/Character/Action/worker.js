@@ -39,11 +39,18 @@ export default function* worker(char: Character): Generator<*,*,*>{
 		}
 	});
 	let orders = state.order.getOrders().filter(o => {
+		if(o.getWorker()) return false;
+
 		let item = o.getItem();
 		let itemType;
 		if(item) itemType = item.type
-		return !o.getWorker() //is not worked on by another worker
-			&& thingsImLookingFor.indexOf(itemType) > -1 //and im looking for it
+		let nextStep = o.nextStep()
+		if(!nextStep) return false; //item already made
+		let data = ItemData.get(nextStep)
+		if(char.hasTaskType(data.requires.characterTaskType)){
+			//this is a doubleup refactor it
+			return thingsImLookingFor.indexOf(itemType) > -1 //and im looking for it
+		}
 
 	})
 	if(orders.length > 0){
@@ -54,7 +61,7 @@ export default function* worker(char: Character): Generator<*,*,*>{
 
 	orders = state.order.getOrders().filter(o => {
 		return !o.getWorker()
-			&& char.hasTaskType('SERVE_FOOD')
+			&& char.hasTaskType('SERVEFOOD')
 			&& o.isServable();
 	})
 	

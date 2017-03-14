@@ -27,7 +27,7 @@ let canvas
 
 let gap = 10
 
-fdescribe('functional end to end', () => {
+describe('functional end to end', () => {
 
 	beforeAll(function () {
 
@@ -393,26 +393,29 @@ fdescribe('functional end to end', () => {
 			let obj:Obj = item.getObject();
 			expect(obj.hasAbility('SERVE_TABLE')).toBe(true);
 			
-
-			
 		}))
 
 	})
 
-
-	it('should hire serve staff', testGen(function* () {
-		yield sleep(gap);
-		expect(mouse.clickSelector('.hireable button')).toBe(true)
-		yield sleep(gap);
-		mouse.clickCheckbox('label.task-SERVEFOOD input')
-	}));
-
-	it('should serve the order', testGen(function* () {
-		while (order.status !== 'FULFILLED') {
+	describe('serving', () => {
+		it('should hire serve staff', testGen(function* () {
 			yield sleep(gap);
-		}
-		expect(order.status).toBe('FULFILLED');
-	}));
+			expect(mouse.clickSelector('.hireable button')).toBe(true)
+			worker = game.state.ui.getSelected()[0];
+			yield sleep(gap);
+			mouse.clickCheckbox('label.task-SERVEFOOD input')
+		}));
+
+
+		it('should serve the order', testGen(function* () {
+			while (order.status !== 'FULFILLED') {
+				yield sleep(gap);
+			}
+			expect(order.status).toBe('FULFILLED');
+		}));
+	})
+
+
 
 	it('should have a drink order somewhere', () => {
 		order = game.state.order.state[0];
