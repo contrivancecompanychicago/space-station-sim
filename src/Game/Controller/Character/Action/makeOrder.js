@@ -54,7 +54,7 @@ export default function* makeOrder(char: Character, order: Order): Generator<*,*
             item.type = making;
 
             //ADD EXP $$$$$$$$
-            console.log(order.recipe);
+            // console.log(order.recipe);
             char.addRecipeExperience(order.recipe, 20)
             
             

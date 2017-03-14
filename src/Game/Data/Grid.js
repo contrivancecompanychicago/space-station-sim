@@ -30,7 +30,16 @@ export type GridType =
   'REDWALL2'|
   'WALLTEST'|
   'WALLTESTCORNER'|
-  'WALLTESTVERT'
+  'WALLTESTVERT'|
+  'FOODTRUCKTR'|
+  'FOODTRUCKTM'|
+  'FOODTRUCKTL'|
+  'FOODTRUCKMR'|
+  'FOODTRUCKML'|
+  'FOODTRUCKBR'|
+  'FOODTRUCKBM'|
+  'FOODTRUCKBL'
+
 
 export type GridDataType = {
   label:string,
@@ -73,6 +82,14 @@ const Gridz:{[id:GridType]:GridDataType} = {
     }},
   'WALLTESTCORNER': {label: 'WallTest', weight:0, image:require('./Grid/walltestcorner.png')},
   'WALLTESTVERT': {label: 'WallTest', weight:0, image:require('./Grid/walltestvert.png')},
+  'FOODTRUCKTR': {label: 'Food Truck tr', weight: 0, image:require('./Grid/foodtruck/tr.png')},
+  'FOODTRUCKTM': {label: 'Food Truck tm', weight: 0, image:require('./Grid/foodtruck/tm.png')},
+  'FOODTRUCKTL': {label: 'Food Truck tl', weight: 0, image:require('./Grid/foodtruck/tl.png')},
+  'FOODTRUCKMR': {label: 'Food Truck mr', weight: 0, image:require('./Grid/foodtruck/mr.png')},
+  'FOODTRUCKML': {label: 'Food Truck ml', weight: 0, image:require('./Grid/foodtruck/ml.png')},
+  'FOODTRUCKBR': {label: 'Food Truck br', weight: 0, image:require('./Grid/foodtruck/br.png')},
+  'FOODTRUCKBM': {label: 'Food Truck bm', weight: 0, image:require('./Grid/foodtruck/bm.png')},
+  'FOODTRUCKBL': {label: 'Food Truck bl', weight: 0, image:require('./Grid/foodtruck/bl.png')},
 };
 
 // export default Gridz;
