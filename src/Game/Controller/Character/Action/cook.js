@@ -30,20 +30,18 @@ export default function* cook(char: Character): Generator<*,*,*>{
 			yield *actions.shortestPathToObject(char, obj);
 			obj.removeCharacter()
 			obj.removeItem();
-			char.addItem(item);
-			
-			yield *actions.forceUseObjectWithAbility(char, Ability.OVEN)
-			yield *actions.idle(char, 2);
-			item.type = 'PIZZA'
-			obj = yield *actions.forceUseObjectWithAbility(char, Ability.SERVE_TABLE)
-			obj.addItem(item);
-			// char.item = null;
-			char.removeItem(item);
-			order.status = "COOKED"
-
-		}else{
-			throw new Error('cant find object to pick item up from')
 		}
+		char.addItem(item);
+		
+		yield *actions.forceUseObjectWithAbility(char, Ability.OVEN)
+		yield *actions.idle(char, 2);
+		item.type = 'PIZZA'
+		obj = yield *actions.forceUseObjectWithAbility(char, Ability.SERVE_TABLE)
+		obj.addItem(item);
+		// char.item = null;
+		char.removeItem(item);
+		order.status = "COOKED"
+
 		order.removeWorker(char)
 
 	}

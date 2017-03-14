@@ -34,6 +34,8 @@ export default function* make(char: Character, order:?Order): Generator<*,*,*>{
 	yield *actions.makeOrder(char, order);
 	// yield *actions.makeOrder(char, order);
 	let item = order.getItem();
+	if(item){
+
 	order.addWorker(char);
 	char.addItem(item)
 	let table = yield *actions.forceUseObjectWithAbility(char, Ability.PREP_TABLE)
@@ -43,4 +45,7 @@ export default function* make(char: Character, order:?Order): Generator<*,*,*>{
 	item.type = 'PIZZAUNCOOKED'
 	order.removeWorker(char);
 	order.status = 'MADE'
+	}else{
+		throw new Error('no item in make')
+	}
 }

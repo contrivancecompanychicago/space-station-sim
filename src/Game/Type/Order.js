@@ -19,7 +19,7 @@ export default class Order{
 	status: OrderStatusType;
 	type: ItemType;
 	id: string;
-	constructor(params:{customer:Character, type:ItemType}){
+	constructor(params:{customer:string, type:ItemType}){
 		defaults(this, params);
 		if(!this.status) this.status = 'ORDERED'
 		if(!this.id) this.id = uniqid();
