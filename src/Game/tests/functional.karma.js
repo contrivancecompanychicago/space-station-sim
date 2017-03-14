@@ -400,16 +400,6 @@ fdescribe('functional end to end', () => {
 	})
 
 
-	// it('should move the order ', testGen(function* () {
-	// 	while (order.status !== 'COOKED') {
-	// 		yield sleep(gap);
-	// 	}
-	// 	expect(order.status).toBe('COOKED');
-	// }));
-
-
-
-
 	it('should hire serve staff', testGen(function* () {
 		yield sleep(gap);
 		expect(mouse.clickSelector('.hireable button')).toBe(true)

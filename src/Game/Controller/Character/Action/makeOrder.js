@@ -7,7 +7,7 @@ import Item from 'Game/Type/Item'
 import state from 'Game/state'
 
 import ItemData from 'Game/Data/Item'
-import type {ItemType, ItemDataType} from 'Game/Data/Item'
+import type {ItemType, ItemDataType } from 'Game/Data/Item'
 
 import actions from './index'
 
@@ -47,17 +47,19 @@ export default function* makeOrder(char: Character, order: Order): Generator<*,*
                 char.addItem(item)
             }
         }
-
+        // console.log(item, data.requires);
+        yield * actions.idle(char, 2);
+        
         if (item) {
-            if (data.requires.leaveAtObjectAbility) {
-                    let obj = yield * actions.forceUseObjectWithAbility(char, data.requires.leaveAtObjectAbility)
-                    obj.addItem(item);
-            }
-            yield * actions.idle(char, 2);
-
             item.type = making;
+            
+            if (data.requires.leaveAtObjectAbility) {
+                let obj = yield * actions.forceUseObjectWithAbility(char, data.requires.leaveAtObjectAbility)
+                obj.addItem(item);
+            }
+
             char.removeItem(item);
-        }else{
+        } else {
             throw new Error('makeorder leave at object no item')
         }
 
