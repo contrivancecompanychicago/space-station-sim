@@ -14,10 +14,10 @@ import actions from './index'
 /** takes one step in order manufacture */
 export default function* makeOrder(char: Character, order: Order): Generator<*,*,*>{
 
-    order.addWorker(char)
     let item:?Item = order.getItem();
-    let making:?ItemType = nextStep(order);
+    let making:?ItemType = order.nextStep();
     if(making) {
+        order.addWorker(char)
         // if(making == 'COFFEE') debugger;
         let data = ItemData.get(making);
         if (data.requires.itemType) {
@@ -68,43 +68,43 @@ export default function* makeOrder(char: Character, order: Order): Generator<*,*
 
 }
 
-export function nextStep(order: Order): ?ItemType {
+// export function nextStep(order: Order): ?ItemType {
 
-    //todo: refactor into a loop or whatever.
+//     //todo: refactor into a loop or whatever.
 
-    let item:?Item = order.getItem();
-    let wanted: ItemType = order.type;
-    // debugger;
-    // let wanted = ItemData.get(order.type);
-    //find what step we are at
-    if (item && item.type == wanted) {
-        return //its already made nothing to do
-    }
-    let data:ItemDataType = ItemData.get(wanted);
-    let reqd:?ItemType = data.requires.itemType;
-    if (item && item.type == reqd) {
-        //at the right step
-        return wanted
-    }
-    if (!reqd) {
-        return wanted;
-    }
-    wanted = reqd;
+//     let item:?Item = order.getItem();
+//     let wanted: ItemType = order.type;
+//     // debugger;
+//     // let wanted = ItemData.get(order.type);
+//     //find what step we are at
+//     if (item && item.type == wanted) {
+//         return //its already made nothing to do
+//     }
+//     let data:ItemDataType = ItemData.get(wanted);
+//     let reqd:?ItemType = data.requires.itemType;
+//     if (item && item.type == reqd) {
+//         //at the right step
+//         return wanted
+//     }
+//     if (!reqd) {
+//         return wanted;
+//     }
+//     wanted = reqd;
 
-    data = ItemData.get(wanted)
-    reqd = data.requires.itemType
-    if (item && item.type == reqd) {
-        //at the right step
-        return wanted
-    }
-    if (!reqd) {
-        return wanted;
-    }
-    wanted = reqd;
+//     data = ItemData.get(wanted)
+//     reqd = data.requires.itemType
+//     if (item && item.type == reqd) {
+//         //at the right step
+//         return wanted
+//     }
+//     if (!reqd) {
+//         return wanted;
+//     }
+//     wanted = reqd;
 
-    data = ItemData.get(wanted)
-    reqd = data.requires.itemType
-    if (!reqd) {
-        return wanted;
-    }
-}
+//     data = ItemData.get(wanted)
+//     reqd = data.requires.itemType
+//     if (!reqd) {
+//         return wanted;
+//     }
+// }

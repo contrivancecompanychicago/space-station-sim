@@ -65,4 +65,45 @@ export default class Order{
 			return state.character.getChar(this.worker)
 		// return this.worker
 	}
+
+	nextStep(): ?ItemType {
+
+		//todo: refactor into a loop or whatever.
+
+		let item:?Item = this.getItem();
+		let wanted: ItemType = this.type;
+		// debugger;
+		// let wanted = ItemData.get(order.type);
+		//find what step we are at
+		if (item && item.type == wanted) {
+			return //its already made nothing to do
+		}
+		let data:ItemDataType = ItemData.get(wanted);
+		let reqd:?ItemType = data.requires.itemType;
+		if (item && item.type == reqd) {
+			//at the right step
+			return wanted
+		}
+		if (!reqd) {
+			return wanted;
+		}
+		wanted = reqd;
+
+		data = ItemData.get(wanted)
+		reqd = data.requires.itemType
+		if (item && item.type == reqd) {
+			//at the right step
+			return wanted
+		}
+		if (!reqd) {
+			return wanted;
+		}
+		wanted = reqd;
+
+		data = ItemData.get(wanted)
+		reqd = data.requires.itemType
+		if (!reqd) {
+			return wanted;
+		}
+	}
 }
