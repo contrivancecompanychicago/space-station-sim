@@ -10,6 +10,7 @@ import state from 'Game/state'
 
 export default function* serveOrder(char: Character, order: Order): Generator<*,*,*>{
 	let item = order.getItem();
+	// debugger;
 	if(item) {
 		order.addWorker(char)
 		yield * actions.pickUpItem(char, item);

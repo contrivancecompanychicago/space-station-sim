@@ -2,6 +2,9 @@
 import actions from './index'
 import state from 'Game/state'
 import { Tasks } from 'Game/Data/Task'
+
+import ItemData from 'Game/Data/Item'
+
 export default function* worker(char: Character): Generator<*,*,*>{
 
 	//PICK UP FROM LOAD
@@ -24,26 +27,57 @@ export default function* worker(char: Character): Generator<*,*,*>{
 		}else{
 			yield * actions.makeOrder(char, order);
 		}
-		// if (order.type == 'COFFEE') {
-		// 	yield * actions.serveDrink(char, order);
-		// }
-		// if(order.type=='PIZZA' ){
-		// }
 	}
 
-	if(char.hasTaskType(Tasks.MAKE)) {
-		yield * actions.make(char);
+	// FIND ORDERS TO MAKE
+	let thingsICanMake = [];
+	let thingsImLookingFor = []
+	ItemData.each((k, v) => {
+		if(char.hasTaskType(v.requires.characterTaskType)){
+			thingsICanMake.push(k);
+			thingsImLookingFor.push(v.requires.itemType);
+		}
+	});
+	let orders = state.order.getOrders().filter(o => {
+		let item = o.getItem();
+		let itemType;
+		if(item) itemType = item.type
+		return !o.getWorker() //is not worked on by another worker
+			&& thingsImLookingFor.indexOf(itemType) > -1 //and im looking for it
+
+	})
+	if(orders.length > 0){
+		order = orders[0];
+		yield * actions.makeOrder(char, order);
 	}
-	if(char.hasTaskType(Tasks.COOK)) {
-		yield * actions.cook(char);
-	}
-	if(char.hasTaskType(Tasks.SERVEDRINK)) {
-		yield * actions.serveDrink(char);
+	//FIND ORDERS TO SERVE
+
+	orders = state.order.getOrders().filter(o => {
+		return !o.getWorker()
+			&& o.isServable();
+	})
+	
+	if(orders.length > 0){
+		order = orders[0];
+		yield * actions.serveOrder(char, order);
 	}
 
-	if(char.hasTaskType(Tasks.SERVEFOOD)) {
-		yield * actions.serveFood(char);
-	}
+
+	
+
+	// if(char.hasTaskType(Tasks.MAKE)) {
+	// 	yield * actions.make(char);
+	// }
+	// if(char.hasTaskType(Tasks.COOK)) {
+	// 	yield * actions.cook(char);
+	// }
+	// if(char.hasTaskType(Tasks.SERVEDRINK)) {
+	// 	yield * actions.serveDrink(char);
+	// }
+
+	// if(char.hasTaskType(Tasks.SERVEFOOD)) {
+	// 	yield * actions.serveFood(char);
+	// }
 	
 	char.setStatus('waiting for something to do')
 	if(Math.random()< 0.01)

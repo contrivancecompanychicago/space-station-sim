@@ -106,4 +106,12 @@ export default class Order{
 			return wanted;
 		}
 	}
+	isServable():boolean{
+		if(this.item){
+			if(this.getItem().type == this.type){
+				return true;
+			}
+		}
+		return false
+	}
 }

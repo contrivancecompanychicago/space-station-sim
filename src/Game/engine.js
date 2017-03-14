@@ -2,7 +2,7 @@
 
 import time from 'Game/time'
 
-class Engine{
+export class Engine{
     updateId: number;
     lastTime: number;
     deltaTime: number;
@@ -23,6 +23,10 @@ class Engine{
     }
     register(obj:Object){
         this.objects.push(obj);
+    }
+    fastForward(deltaTime){ //for testing
+        this.deltaTime = deltaTime;
+        this.updateObjects();
     }
     updateObjects(){
         // let times = {}

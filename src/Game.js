@@ -8,7 +8,7 @@ require('Game/style.styl');
 import Renderer from 'Game/Renderer';
 import ActionDispatcher from 'Game/Action/Dispatcher';
 
-import engine from 'Game/engine';
+import engine, {Engine} from 'Game/engine'
 import state from 'Game/state';
 
 import { keys } from 'lodash';
@@ -30,7 +30,7 @@ import Point from 'Game/Point'
 
 export default class Game{
 	container:HTMLElement
-	engine:any;
+	engine: Engine;
 	state: State;
 	constructor(container:HTMLElement){
 

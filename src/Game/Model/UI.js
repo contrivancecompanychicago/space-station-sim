@@ -22,7 +22,6 @@ import { keys, assign } from 'lodash';
 
 import save from 'Game/State/save'
 
-import engine from 'Game/engine'
 
 import Component from 'Imagine/Component'
 
@@ -92,8 +91,8 @@ export default class UIModel{
   clearSelected(){
     this.store.dispatch({type:'CLEAR_SELECTED'})
   }
-  getSelected(){
-    return this.state.selected
+  getSelected():Array<Character|Obj>{
+    return this.state.selected;
   }
 
 

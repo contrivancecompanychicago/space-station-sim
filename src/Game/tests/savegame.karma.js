@@ -15,9 +15,9 @@ function sleep(ms) {
 let container: HTMLDivElement;
 let canvas;
 let game: Game
-fdescribe('saving and loading game', () => {
+describe('saving and loading game', () => {
 	beforeAll(function () {
-		jasmine.DEFAULT_TIMEOUT_INTERVAL = 999999;
+		jasmine.DEFAULT_TIMEOUT_INTERVAL = 10*1000;
 		container = document.createElement('div');
 		container.style = 'position:absolute; left: 0px; top: 0px; display:block; width: 100%; height: 100%';
 		document.body.appendChild(container)
