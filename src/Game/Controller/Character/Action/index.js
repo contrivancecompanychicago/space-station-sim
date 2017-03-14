@@ -28,10 +28,12 @@ import worker from './worker';
 import shortestPathToObject from './shortestPathToObject';
 import useCoffeeAbility from './useCoffeeAbility';
 import makeOrder from './makeOrder';
+import pickUpItem from './pickUpItem';
 
 
 
 export default {
+  pickUpItem,
   makeOrder,
   useCoffeeAbility,
   make,

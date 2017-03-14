@@ -1,5 +1,4 @@
 //@flow
-import engine from 'Game/engine';
 
 import actions from './index'
 import type Character from 'Game/Type/Character'
@@ -17,20 +16,21 @@ export default function* serveOrder(char: Character, order: Order): Generator<*,
 			throw new Error('serving but order doesnt have an item')
 			return;
 		}
-		if (!char.hasItem(item)) {
-			let block = item.position.block
-			let obj = state.object.getObjectAtBlock(block);
-			if (obj) {
-				obj.setCharacter(char)
-				yield *actions.shortestPathToObject(char, obj);
+		// if (!char.hasItem(item)) {
+		// 	let block = item.position.block
+		// 	let obj = state.object.getObjectAtBlock(block);
+		// 	if (obj) {
+		// 		obj.setCharacter(char)
+		// 		yield *actions.shortestPathToObject(char, obj);
 				
-				obj.removeCharacter()
-				obj.removeItem();
-			}else{
-				
-			}
-			char.addItem(item)
-		}
+		// 		obj.removeCharacter()
+		// 		obj.removeItem();
+		// 	}else{
+
+		// 	}
+		// 	char.addItem(item)
+		// }
+		yield * actions.pickUpItem(char, item);
 
 		yield * actions.pathToBlock(char, order.getCustomer().position.block);
 		//give to customer
