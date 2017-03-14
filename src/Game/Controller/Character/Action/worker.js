@@ -38,6 +38,7 @@ export default function* worker(char: Character): Generator<*,*,*>{
 			thingsImLookingFor.push(v.requires.itemType);
 		}
 	});
+	// debugger;
 	let orders = state.order.getOrders().filter(o => {
 		if(o.getWorker()) return false;
 

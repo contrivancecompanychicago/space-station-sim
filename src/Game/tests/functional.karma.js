@@ -18,7 +18,10 @@ import mouse from './mouseTestUtil'
 
 const tg: (Generator<*,*,*>)=>null = testGen
 function sleep(ms) {
+	// game.engine.fastForward(ms)
+	// return Promise.resolve()
 	return new Promise(resolve => setTimeout(resolve, ms));
+
 }
 
 let container: HTMLDivElement

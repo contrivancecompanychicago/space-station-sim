@@ -63,7 +63,7 @@ const Items:{[id:ItemType]:ItemDataType} = {
     label: 'ingredients', 
     requires:{
       objectAbility: 'MAKE_COFFEE',
-      characterTaskType: 'SERVE_DRINK'
+      characterTaskType: 'SERVEDRINK'
     },
     image: require('./Item/coffee.png')
   },

@@ -85,11 +85,11 @@ describe('saving and loading game', () => {
 	it('should hire a worker', testGen(function* () {
 		expect(mouse.clickSelector('.button-mode-panels')).toBe(true)
 		expect(mouse.clickSelector('.button-panel-hiring')).toBe(true)
+		yield sleep(gap);
 		expect(mouse.clickSelector('.hireable button')).toBe(true)
 		mouse.clickCheckbox('label.task-SERVEDRINK input')
 		worker = game.state.ui.state.selected[0];
 
-		yield sleep(gap);
 		mouse.clickSelector('.hiring.panel .close')
 		expect(mouse.clickSelector('.selected .close')).toBe(true)
 		expect(mouse.clickSelector('.button-mode-panels')).toBe(true)
@@ -106,7 +106,8 @@ describe('saving and loading game', () => {
 				return o.type == 'COFFEE'
 			})[0]
 			expect(order).toBeDefined();
-			expect(order.getWorker()).toBeDefined();
+			
+			expect(order.getWorker()).not.toBeDefined();
 			// while (order.status != 'STARTED') {
 			while (!order.getWorker()){
 				yield sleep(gap);
