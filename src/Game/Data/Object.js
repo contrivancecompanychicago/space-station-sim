@@ -26,6 +26,7 @@ import StoneOven from './Object/StoneOven'
 import FridgeTall from './Object/FridgeTall'
 import TableTall from './Object/TableTall'
 import ChairTall from './Object/ChairTall'
+import FoodTruck from './Object/FoodTruck'
 
 export type ObjectType =
 'BED'|
@@ -45,7 +46,8 @@ export type ObjectType =
 'FRIDGETALL'|
 'TABLETALL'|
 'CHAIRTALL'|
-'STONEOVEN'
+'STONEOVEN'|
+'FOODTRUCK'
 
 export type ObjectBlocksType = 'ACCESS'|'BLOCK'
 export const ObjectBlocks:{[id:ObjectBlocksType]: ObjectBlocksType} = {
@@ -89,6 +91,7 @@ Objs[StoneOven.id] = StoneOven;
 Objs[FridgeTall.id] = FridgeTall;
 Objs[TableTall.id] = TableTall;
 Objs[ChairTall.id] = ChairTall;
+Objs[FoodTruck.id] = FoodTruck;
 
 // export default Objs;
 
