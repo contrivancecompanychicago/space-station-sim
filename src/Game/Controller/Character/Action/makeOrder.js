@@ -52,6 +52,11 @@ export default function* makeOrder(char: Character, order: Order): Generator<*,*
         
         if (item) {
             item.type = making;
+
+            //ADD EXP $$$$$$$$
+            console.log(order.recipe);
+            char.addRecipeExperience(order.recipe, 20)
+            
             
             if (data.requires.leaveAtObjectAbility) {
                 let obj = yield * actions.forceUseObjectWithAbility(char, data.requires.leaveAtObjectAbility)

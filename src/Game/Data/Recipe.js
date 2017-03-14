@@ -24,6 +24,9 @@ recipeData.put('MARGHERITA', {label:'margherita', ingredients:[
     Ingredient.MOZZARELLA,
     Ingredient.OREGANO,
 ]})
+recipeData.put('COFFEE', {label:'coffee', ingredients:[
+   
+]})
 
 
 // recipes:{

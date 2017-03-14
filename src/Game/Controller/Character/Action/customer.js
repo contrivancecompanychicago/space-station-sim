@@ -32,7 +32,7 @@ export default function* customer(char: Character): Generator<*,*,*>{
 			let pizza = new Order({ customer: char.id, type: 'PIZZA', recipe: 'MARGHERITA' })
 			orders.push(pizza)
 			state.order.addOrder(pizza);
-			let coffee = new Order({ customer: char.id, type: 'COFFEE', recipe:'' })
+			let coffee = new Order({ customer: char.id, type: 'COFFEE', recipe:'COFFEE' })
 			orders.push(coffee)
 			state.order.addOrder(coffee);
 		}

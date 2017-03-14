@@ -56,6 +56,7 @@ export default class Character{
 				this.recipes[key] = {level:0, experience:0}
 			})
 			this.addRecipe('MARGHERITA')
+			this.addRecipe('COFFEE')
 		}
 
 		//HACK dummy Data
