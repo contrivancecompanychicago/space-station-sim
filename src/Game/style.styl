@@ -152,6 +152,26 @@ canvas {
 }
 .selected.panel{
   width: 230px;
+  .tasks{
+    display: flex;
+    flex-wrap: wrap;
+    .tasktype{
+      border: 1px solid border-colour;
+      width: 110px;
+      display: inline-block;
+      position: relative;
+      label{
+        font-family: SmallFont;
+        width: 90px;
+        display:block;
+      }
+      input{
+        position: absolute;
+        right: 0px;
+        top: 0px;
+      }
+    }
+  }
 }
 
 // TIME panel

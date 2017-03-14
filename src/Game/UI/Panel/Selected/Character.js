@@ -71,7 +71,7 @@ class SelectedCharacterPanel extends React.Component{
 					TaskData.each((key:TaskType, val:TaskDataType, index:number) => {
 						let has = this.props.target.hasTaskType(key);
 						
-						tasks.push(<div key={index}>
+						tasks.push(<div className='tasktype' key={index}>
 							<label className={'task-'+key}>
 								{val.label}
 								<input type="checkbox" name={key} checked={has} onChange={this.toggleTask.bind(this)} />
@@ -94,7 +94,9 @@ class SelectedCharacterPanel extends React.Component{
 
 				workerData = <div>
 							<Header text="Responsibilities" close={this.toggleTasks.bind(this)} />
+							<div className="tasks">
 							{tasks}
+							</div>
 							<Header text="Recipes" close={this.toggleRecipes.bind(this)} />
 							{recipes}
 						</div>
