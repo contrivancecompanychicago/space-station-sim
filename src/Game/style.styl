@@ -1,27 +1,27 @@
 // to force webpack to extract. Remove later after deciding.
 .dummy{
-  src: url(fonts/ALBA____.TTF)
-  src: url(fonts/ALBAM___.TTF)
-  src: url(fonts/ALBAS___.TTF)
-  src: url(fonts/bunny$mambo.ttf);
-  src: url(fonts/ArcadeClassic.ttf);
-  src: url(fonts/Freshman.ttf);
-  src: url(fonts/RealTrap.ttf);
-  src: url(fonts/3Dventure.ttf);
-  src: url(fonts/8bitOperatorPlus-Regular.ttf);
+	src: url(fonts/ALBA____.TTF)
+	src: url(fonts/ALBAM___.TTF)
+	src: url(fonts/ALBAS___.TTF)
+	src: url(fonts/bunny$mambo.ttf);
+	src: url(fonts/ArcadeClassic.ttf);
+	src: url(fonts/Freshman.ttf);
+	src: url(fonts/RealTrap.ttf);
+	src: url(fonts/3Dventure.ttf);
+	src: url(fonts/8bitOperatorPlus-Regular.ttf);
 }
 
 @font-face {
-    src: url(fonts/Vacaciones-font-ffp-defharo.ttf);
-    font-family: HeadingFont;
+		src: url(fonts/Vacaciones-font-ffp-defharo.ttf);
+		font-family: HeadingFont;
 }
 @font-face {
-    font-family: SmallFont;
-    src: url(fonts/visitor1.ttf);
+		font-family: SmallFont;
+		src: url(fonts/visitor1.ttf);
 }
 @font-face {
-    font-family: LogFont;
-    src: url(fonts/visitor2.ttf);
+		font-family: LogFont;
+		src: url(fonts/visitor2.ttf);
 }
 
 border-colour = #DD9877
@@ -29,203 +29,211 @@ background-colour = #876655
 colour = #EECCA9
 
 body, html {
-  margin: 0;
-  padding: 0;
-  background: #111;
-  font-family: SmallFont;
+	margin: 0;
+	padding: 0;
+	background: #111;
+	font-family: SmallFont;
 }
 
 canvas {
-  position: absolute;
-  z-index: 0;
+	position: absolute;
+	z-index: 0;
 }
 
 
 .ui {
-  .menu{
-    position: absolute;
-    top: 4px;
-    right: 4px;
-    z-index: 1;
-    .time{
-      //font-family: HeadingFont;
+	.menu{
+		position: absolute;
+		top: 4px;
+		right: 4px;
+		z-index: 1;
+		.time{
+			//font-family: HeadingFont;
 
-    }
-    .panel: {
-      float:right;
-    }
-    .mode.panel{
-      width: 250px;
-    }
-  }
-  .panel{
-    font-family: LogFont
-    border: 2px solid border-colour;
-    background-color: background-colour;
-    color: colour
-    padding: 4px;
-    text-align: right;
-    width: 200px;
-    border-radius: 4px;
-    margin-bottom: 4px
-    //ORDER PANEL
-    .order div{
-      display:inline;
-      font-size: 12px;
-    }
-  }
-  .panels .panel{
-    display: inline-block
-    position: absolute
-  }
+		}
+		.panel: {
+			float:right;
+		}
+		.mode.panel{
+			width: 250px;
+		}
+	}
+	.panel{
+		font-family: LogFont
+		border: 2px solid border-colour;
+		background-color: background-colour;
+		color: colour
+		padding: 4px;
+		text-align: right;
+		width: 200px;
+		border-radius: 4px;
+		margin-bottom: 4px
+		//ORDER PANEL
+		.order div{
+			display:inline;
+			font-size: 12px;
+		}
+	}
+	.panels .panel{
+		display: inline-block
+		position: absolute
+	}
 
-  h3{
-    font-family: HeadingFont
-    margin: 3px;
-    font-weight: normal;
-    border-radius: 4px;
-    border: 1px solid border-colour
-    color: background-colour
-    background-color: colour
-    padding: 2px 8px
-    font-size: 16px
-    text-align: left
-  }
+	h3{
+		font-family: HeadingFont
+		margin: 3px;
+		font-weight: normal;
+		border-radius: 4px;
+		border: 1px solid border-colour
+		color: background-colour
+		background-color: colour
+		padding: 2px 8px
+		font-size: 16px
+		text-align: left
+	}
 
-  button{
-    /*padding-top: 0;*/
-    width: 50px;
-    height: 50px;
-    padding: 0px 0px;
-    border: 1px solid border-colour
-    color: background-colour
-    background-color: colour
-    //font-family: LogFont
-    font-size: 10px;
-  }
-  .grid button{
+	button{
+		/*padding-top: 0;*/
+		width: 50px;
+		height: 50px;
+		padding: 0px 0px;
+		border: 1px solid border-colour
+		color: background-colour
+		background-color: colour
+		//font-family: LogFont
+		font-size: 10px;
+	}
+	.grid button{
 
-  }
-  button.selected{
-    background-color: yellow;
-  }
-  button .inner{
-    display:block;
-    width: 50px;
-    height: 50px;
-  }
-  button img{
-    width: 20px;
-    height: 20px;
-    margin-top: 6px;
-    transition: width .4s, height .2s, margin-top .2s;
-    transition-timing-function: cubic-bezier(.29,-0.73,.6,2)
+	}
+	button.selected{
+		background-color: yellow;
+	}
+	button .inner{
+		display:block;
+		width: 50px;
+		height: 50px;
+	}
+	button img{
+		width: 20px;
+		height: 20px;
+		margin-top: 6px;
+		transition: width .4s, height .2s, margin-top .2s;
+		transition-timing-function: cubic-bezier(.29,-0.73,.6,2)
 
-  }
-  button:hover img{
-    margin-top: 0px;
-    width: 32px;
-    height: 32px;
-  }
-  button.selected img{
-    margin-top: 0px;
-    width: 32px;
-    height: 32px;
-  }
-  // LOG PANEL
-  .log.panel{
-    position: absolute;
-    width: 300px
-    height: 200px
-    .logs{
-      margin-top: 4px
-      border:1px solid border-colour
-      height: 170px
-      overflow-x: hidden
-      overflow-y: scroll
-    }
-  }
-  .panel .log .message{
-    font-size: 10px;
-  }
+	}
+	button:hover img{
+		margin-top: 0px;
+		width: 32px;
+		height: 32px;
+	}
+	button.selected img{
+		margin-top: 0px;
+		width: 32px;
+		height: 32px;
+	}
+	// LOG PANEL
+	.log.panel{
+		position: absolute;
+		width: 300px
+		height: 200px
+		.logs{
+			margin-top: 4px
+			border:1px solid border-colour
+			height: 170px
+			overflow-x: hidden
+			overflow-y: scroll
+		}
+	}
+	.panel .log .message{
+		font-size: 10px;
+	}
 
 }
 .selected.panel{
-  width: 230px;
-  .tasks{
-    display: flex;
-    flex-wrap: wrap;
-    .tasktype{
-      border: 1px solid border-colour;
-      width: 110px;
-      display: inline-block;
-      position: relative;
-      label{
-        font-family: SmallFont;
-        width: 90px;
-        display:block;
-      }
-      input{
-        position: absolute;
-        right: 0px;
-        top: 0px;
-      }
-    }
-  }
+	width: 230px;
+	.tasks{
+		display: flex;
+		flex-wrap: wrap;
+		.tasktype{
+			border: 1px solid border-colour;
+			width: 110px;
+			display: inline-block;
+			position: relative;
+			label{
+				font-family: SmallFont;
+				width: 90px;
+				display:block;
+			}
+			input{
+				position: absolute;
+				right: 0px;
+				top: 0px;
+			}
+		}
+	}
+	.recipes{
+		.recipe{
+			
+			font-family: SmallFont;
+			border: 1px solid border-colour;
+
+		}
+	}
 }
 
 // TIME panel
 .time.panel{
-  .speed{
-    button{
-      height: 20px
-    }
-  }
+	.speed{
+		button{
+			height: 20px
+		}
+	}
 }
 
 .hiring.panel{
-  width:320px;
-  .hireable{
-    border: 1px solid border-colour;
-    padding: 4px;
-    .name{
-      font-family: HeadingFont
-      font-size: 16px;
-      text-align: left;
-    }
-    button{
-      height: 20px;
-    }
-  }
+	width:320px;
+	.hireable{
+		border: 1px solid border-colour;
+		padding: 4px;
+		.name{
+			font-family: HeadingFont
+			font-size: 16px;
+			text-align: left;
+		}
+		button{
+			height: 20px;
+		}
+	}
 }
 
 
 .bar.component{
-  border:1px solid black;
-  height: 14px;
-  width: 110px;
-  position: relative;
-  display: inline-block
-  .inner{
-    background-color: green;
-    position: absolute;
-    top: 0;
-    height: 100%;
-  }
-  .text{
-    font-family: SmallFont;
-    position: absolute
-  }
+	border:1px solid black;
+	height: 14px;
+	width: 110px;
+	position: relative;
+	display: inline-block
+	.inner{
+		background-color: green;
+		position: absolute;
+		top: 0;
+		height: 100%;
+	}
+	.text{
+		font-family: SmallFont;
+		position: absolute
+	}
 }
 
 .close{
-  float:right;
-  cursor: pointer
+	float:right;
+	cursor: pointer
 }
 
 
 .ui .tutorial.panel{
-  right: 10px;
-  bottom: 10px;
-  width: 250px;
+	right: 10px;
+	bottom: 10px;
+	width: 250px;
 }

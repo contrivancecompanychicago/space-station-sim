@@ -83,7 +83,7 @@ class SelectedCharacterPanel extends React.Component{
 					RecipeData.each((key:RecipeType, val:RecipeDataType, index:number) => {
 						if(this.props.target.hasRecipe(key)){
 							let r = this.props.target.getRecipe(key);
-							recipes.push(<div key={index}>
+							recipes.push(<div className="recipe" key={index}>
 								{val.label}
 								level:{r.level}
 								exp:{r.experience}
@@ -98,7 +98,9 @@ class SelectedCharacterPanel extends React.Component{
 							{tasks}
 							</div>
 							<Header text="Recipes" close={this.toggleRecipes.bind(this)} />
+							<div className="recipes">
 							{recipes}
+							</div>
 						</div>
 			}
 
