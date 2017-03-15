@@ -53,17 +53,18 @@ export default class Renderer{
 		this.layer.drawDemo();
 	}
 	renderGrid(){
-		if(this.cache.objects !== keys(this.state.object.state).length ||
-			this.cache.grids !== JSON.stringify(this.state.grid.state) ||
-			this.cache.view !== JSON.stringify(this.state.view.state.offset)+this.state.view.state.scale
-		){
-			this.cache = {
-				objects: keys(this.state.object.state).length,
-				grids: JSON.stringify(this.state.grid.state),
-				view: JSON.stringify(this.state.view.state.offset)+this.state.view.state.scale
-			}
-			this.gridLayer.clear();
-		}
+		// if(this.cache.objects !== keys(this.state.object.state).length ||
+		// 	this.cache.grids !== JSON.stringify(this.state.grid.state) ||
+		// 	this.cache.view !== JSON.stringify(this.state.view.state.offset)+this.state.view.state.scale
+		// ){
+		// 	this.cache = {
+		// 		objects: keys(this.state.object.state).length,
+		// 		grids: JSON.stringify(this.state.grid.state),
+		// 		view: JSON.stringify(this.state.view.state.offset)+this.state.view.state.scale
+		// 	}
+		// 	this.gridLayer.clear();
+		// }
+		this.gridLayer.clear();
 		this.renderGridAndObjects(this.state, this.gridLayer);
 		this.layer.drawImage(this.gridLayer.canvas, 0, 0);
 	}
@@ -107,20 +108,31 @@ export default class Renderer{
 
 		// renderWalls(state, layer);
 
-		Rect.screenRect().blocks.forEach((block) => { //for each block on screen
+		//reorder characters into y order
+		let chars = state.character.getChars().sort((a,b) => {
+			return a.position.y - b.position.y
+		})
+
+		// Rect.screenRect().blocks.forEach((block) => { //for each block on screen
+		let sel = Rect.screenRect().blockRect();
+		for(let y = sel.t; y <= sel.b; y++){
+			for(let x = sel.l; x <= sel.r; x++){
+				let block = new Block({x,y})
 				let node = state.grid.getNode(block.x, block.y)
 				if(node){
 					renderBlock(block, node, state, layer);
 					let ob = node.getObject()
 					if(ob){
 						//only render if I have selected the bottomright block;
-						// if(ob.type == 'CHAIR2') debugger;
 						if(ob.getBottomRightBlock().is(block))
 							renderBlockObject(block, ob, state, layer);
 					}
 				}
-			
-		})
+			}
+			//paste characters over the top;
+
+		}
+		// })
 		// grid(state, layer);
 		// object(state, layer);
 	}
