@@ -1,5 +1,7 @@
 
-import {selection} from 'Game/Model/View';
+// import {selection} from 'Game/Model/View';
+
+import selection from 'Game/selection'
 import Proposer from 'Game/Action/Proposer';
 import {keys} from 'lodash';
 import Point from 'Game/Point';

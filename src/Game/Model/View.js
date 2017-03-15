@@ -16,6 +16,8 @@ import type Character from 'Game/Type/Character'
 
 import state from 'Game/state'
 
+import selection from 'Game/selection'
+
 type Event = {
 	wheelDelta:number,
 	pageX:number,
@@ -186,17 +188,17 @@ export default class ViewModel{
 
 
 
-export function selection(start:Object, end:Object, button:number):Selection{
-	return {
-		start: start,
-		end: end,
-		button: button,
-		// rect: new Rect({
-		//   t: Math.min(end.y, start.y),
-		//   r: Math.max(end.x, start.x),
-		//   b: Math.max(end.y, start.y),
-		//   l: Math.min(end.x, start.x),
-		// })
-		rect: new Rect(start, end)
-	}
-}
+// export function selection(start:Object, end:Object, button:number):Selection{
+// 	return {
+// 		start: start,
+// 		end: end,
+// 		button: button,
+// 		// rect: new Rect({
+// 		//   t: Math.min(end.y, start.y),
+// 		//   r: Math.max(end.x, start.x),
+// 		//   b: Math.max(end.y, start.y),
+// 		//   l: Math.min(end.x, start.x),
+// 		// })
+// 		rect: new Rect(start, end)
+// 	}
+// }
