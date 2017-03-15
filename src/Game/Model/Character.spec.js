@@ -1,4 +1,4 @@
-import Imagine from 'imagine-engine';
+
 import CharacterModel from 'Game/Model/Character';
 import Character from 'Game/Type/Character';
 

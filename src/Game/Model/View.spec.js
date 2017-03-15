@@ -1,5 +1,5 @@
 import ViewModel from 'Game/Model/View';
-import Imagine from 'imagine-engine';
+
 import { extend } from 'lodash';
 import Point from 'Game/Point'
 

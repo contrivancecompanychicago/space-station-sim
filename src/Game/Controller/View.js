@@ -95,18 +95,22 @@ export default class ViewController{
 
 	addListeners() {
 		state.view.subscribe(this.onSelection.bind(this));
-		this.container.addEventListener('mousedown', this, false);
-		this.container.addEventListener('mouseup', this, false);
-		this.container.addEventListener('mousemove', this, false);
-		this.container.addEventListener('mousewheel', this, false);
-		this.container.addEventListener('DOMMouseScroll', this, false);
+		if(this.container){
+			this.container.addEventListener('mousedown', this, false);
+			this.container.addEventListener('mouseup', this, false);
+			this.container.addEventListener('mousemove', this, false);
+			this.container.addEventListener('mousewheel', this, false);
+			this.container.addEventListener('DOMMouseScroll', this, false);
+		}
 	}
 	removeListeners() {
-		this.container.removeEventListener('mousedown', this, false);
-		this.container.removeEventListener('mouseup', this, false);
-		this.container.removeEventListener('mousemove', this, false);
-		this.container.removeEventListener('mousewheel', this, false);
-		this.container.removeEventListener('DOMMouseScroll', this, false);
+		if(this.container){
+			this.container.removeEventListener('mousedown', this, false);
+			this.container.removeEventListener('mouseup', this, false);
+			this.container.removeEventListener('mousemove', this, false);
+			this.container.removeEventListener('mousewheel', this, false);
+			this.container.removeEventListener('DOMMouseScroll', this, false);
+		}
 	}
 
 

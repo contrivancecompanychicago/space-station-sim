@@ -53,7 +53,6 @@ export default class Game{
 		engine.register(new UIController(container))
 
 		engine.start();
-
 		
 		//LOADGAME hacky
 		// load('quicksave')
@@ -63,8 +62,5 @@ export default class Game{
 
 	}
 
-	// destroy(){ //mainly for tests
-	//   this.engine.notify('destroy');
-	// }
 
 }

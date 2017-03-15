@@ -1,6 +1,5 @@
 import ViewModel from 'Game/Model/View';
 import ViewController from 'Game/Controller/View';
-import Imagine from 'imagine-engine';
 import { extend } from 'lodash';
 
 import state from 'Game/state';

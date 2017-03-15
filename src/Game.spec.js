@@ -1,6 +1,8 @@
 import Game from 'Game';
 
-xdescribe('Game', () => {
+
+jest.mock('./Game/Renderer/Layer')
+describe('Game', () => {
   let div;
   let game;
   beforeEach(() => {
