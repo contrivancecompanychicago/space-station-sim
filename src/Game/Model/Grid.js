@@ -1,6 +1,6 @@
 // @flow
 
-import { keys } from 'lodash';
+import { keys, values } from 'lodash';
 import { Graph, astar } from 'javascript-astar';
 import Grid from 'Game/Type/Grid'
 import MouseButtons from 'Util/MouseButtons';
@@ -49,6 +49,9 @@ export default class GridModel {
 				this.removeNode(x, y);
 			}
 		}
+	}
+	getNodes():Array<Grid>{
+		return values(this.state);
 	}
 
 
