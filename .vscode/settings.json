@@ -11,5 +11,10 @@
     "**/.vscode/chrome/**/*": true
   },
     "javascript.validate.enable": false,
-    "vsicons.presets.angular": false
+    "vsicons.presets.angular": false,
+    "lcov.path": "coverage/lcov.info",
+    "lcov.watch": [{
+        "pattern": "**/*.js",
+        "command": "npm run test"
+    }]
 }

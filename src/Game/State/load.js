@@ -11,7 +11,6 @@ import state from 'Game/state'
 
 import clear from './clear'
 
-import dispatcher from 'Game/Action/Dispatcher'
 
 export default function loadGame(savename:string){
 

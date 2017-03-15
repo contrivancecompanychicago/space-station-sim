@@ -14,6 +14,7 @@ import UIModel from 'Game/Model/UI';
 import ViewModel from 'Game/Model/View';
 
 import clear from 'Game/State/clear'
+import load from 'Game/State/load';
 
 export class State {
   character: CharacterModel
@@ -33,6 +34,9 @@ export class State {
   }
   clear(){
     clear();
+  }
+  load(){
+    load();
   }
 
   init() {

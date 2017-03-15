@@ -1,5 +1,6 @@
 import Game from 'Game';
 
+import {State} from 'Game/state'
 
 jest.mock('./Game/Renderer/Layer')
 describe('Game', () => {
@@ -20,6 +21,12 @@ describe('Game', () => {
 
   it('should spawn the engine', () => {
     expect(game.engine).toBeDefined();
+  });
+  it('hot mode', () => {
+    spyOn(State.prototype, 'load');
+    new Game(div);
+    expect(State.prototype.load).toHaveBeenCalled();
+    
   });
 
 

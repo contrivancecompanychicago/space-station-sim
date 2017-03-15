@@ -28,7 +28,9 @@ export default class ViewController{
 
 	container:Object
 	constructor(container:HTMLElement){
-		this.container = container.getElementsByTagName('canvas')[0];
+		if(container){ //for jest
+			this.container = container.getElementsByTagName('canvas')[0];
+		}
 		this.start();
 	}
 

@@ -44,7 +44,6 @@ export default class Game{
 		state.init();
 
 		Point.registerState(state);
-
 		engine.register(new CharacterController())
 		engine.register(new TimeController())
 		engine.register(new TutorialController())
@@ -57,7 +56,7 @@ export default class Game{
 		//LOADGAME hacky
 		// load('quicksave')
 		if(localStorage.getItem('hot')==='true'){
-			load('autosave')
+			state.load('autosave')
 		}
 
 	}
