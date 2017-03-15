@@ -90,6 +90,9 @@ const Gridz:{[id:GridType]:GridDataType} = {
   'FOODTRUCKBR': {label: 'Food Truck br', weight: 0, image:require('./Grid/foodtruck/br.png')},
   'FOODTRUCKBM': {label: 'Food Truck bm', weight: 0, image:require('./Grid/foodtruck/bm.png')},
   'FOODTRUCKBL': {label: 'Food Truck bl', weight: 0, image:require('./Grid/foodtruck/bl.png')},
+  'FOODTRUCKTR2': {label: 'Food Truck tr2', weight: 0, image:require('./Grid/foodtruck/tr2.png')},
+  'FOODTRUCKMR2': {label: 'Food Truck mr2', weight: 0, image:require('./Grid/foodtruck/mr2.png')},
+  'FOODTRUCKBR2': {label: 'Food Truck br2', weight: 0, image:require('./Grid/foodtruck/br2.png')},
 };
 
 // export default Gridz;
