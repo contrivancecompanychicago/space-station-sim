@@ -12,7 +12,8 @@
     "electron": "./node_modules/.bin/electron dist/",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "flow:watch": "flow-watch",
-    "postinstall": "gulp build"
+    "postinstall": "gulp build",
+    "coverage": "jest --coverage --watch"
   },
   "bin": {
     "grunt": "./node_modules/grunt-cli/bin/grunt",
