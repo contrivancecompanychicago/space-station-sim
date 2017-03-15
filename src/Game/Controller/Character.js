@@ -13,10 +13,12 @@ export default class CharacterController{
 		state.character.getChars().forEach( char => {
 			if (!char.action) {
 				this.newAction(char);
-			}
-			// FLOWHACK action is set in previous if
-			if (char.action.next().done) { ///CALLS NEXT HERE
-				this.newAction(char);
+			}else{
+				// FLOWHACK action is set in previous if
+				if (char.action.next().done) { ///CALLS NEXT HERE
+					this.newAction(char);
+				}
+
 			}
 		});
 		this.spawnUpdate()
