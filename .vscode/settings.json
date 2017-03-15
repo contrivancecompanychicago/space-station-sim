@@ -14,7 +14,7 @@
     "vsicons.presets.angular": false,
     "lcov.path": "coverage/lcov.info",
     "lcov.watch": [{
-        "pattern": "**/*.js",
+        "pattern": "src/**/*.js",
         "command": "npm run test"
     }]
 }
