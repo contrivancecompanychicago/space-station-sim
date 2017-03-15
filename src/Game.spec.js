@@ -1,8 +1,10 @@
+jest.mock('./Game/Renderer/Layer')
+
 import Game from 'Game';
 
 import {State} from 'Game/state'
 
-jest.mock('./Game/Renderer/Layer')
+
 describe('Game', () => {
   let div;
   let game;
