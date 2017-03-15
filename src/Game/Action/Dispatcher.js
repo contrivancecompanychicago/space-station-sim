@@ -97,12 +97,12 @@ export class Dispatcher{
 					state.character.addChar(new Character({position: pos, type: state.ui.state.character}));
 				})
 				break;
-			case Mode.TASK:
-				selection.rect.blocks.forEach(block => {
-					let task = new Task({block:block, grid:state.ui.state.grid, type: Tasks.BUILD})
-					state.task.addTask(task)
-				})
-				break;
+			// case Mode.TASK:
+			// 	selection.rect.blocks.forEach(block => {
+			// 		let task = new Task({block:block, grid:state.ui.state.grid, type: Tasks.BUILD})
+			// 		state.task.addTask(task)
+			// 	})
+			// 	break;
 		}
 	}
 }

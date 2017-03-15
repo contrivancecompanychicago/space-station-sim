@@ -65,6 +65,27 @@ describe('Game/Action/Dispatcher', () => {
 				expect(state.object.deleteObject).toHaveBeenCalled();
 			})
 		})
+		describe('item', () => {
+			beforeEach(() => {
+				state.ui.state.mode = Mode.ITEM
+			})
+			it('should call addItem', () => {
+				state.item.addItem = jest.fn();
+				dispatcher.userAction(testSelection);
+				expect(state.item.addItem).toHaveBeenCalled();
+			})
+		})
+		describe('char', () => {
+			beforeEach(() => {
+				state.ui.state.mode = Mode.CHAR
+			})
+			it('should call addChar', () => {
+				state.character.addChar = jest.fn();
+				dispatcher.userAction(testSelection);
+				expect(state.character.addChar).toHaveBeenCalled();
+			})
+		})
+
 
 	})
 
