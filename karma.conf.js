@@ -2,7 +2,7 @@
 
 var webpackConf = require('./webpack.config.js');
 delete webpackConf.entry;
-// webpackConf.module.loaders[0].loader = 'isparta'; //instrument
+webpackConf.module.loaders[0].loader = 'isparta'; //instrument
 webpackConf.plugins = [];
 
 module.exports = function(config) {
@@ -36,14 +36,18 @@ module.exports = function(config) {
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     // reporters: ['coverage', 'progress', 'kjhtml'], // 'nyan',
-    reporters: ['spec'],
+    reporters: ['spec', 'coverage'],
 
     coverageReporter: {
       reporters:[
         // {type: 'text'},
         {
+          type: 'lcov',
+          dir: 'coverage/functional/'
+        },
+        {
           type : 'html',
-          dir : 'coverage/'
+          dir : 'coverage/html/'
         }
       ]
     },
