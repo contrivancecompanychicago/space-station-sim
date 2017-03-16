@@ -12,9 +12,12 @@
   },
     "javascript.validate.enable": false,
     "vsicons.presets.angular": false,
-    "lcov.path": "coverage/lcov.info",
+    "lcov.path": ["coverage/lcov2.info"],
     "lcov.watch": [{
         "pattern": "src/**/*.js",
         "command": "npm run test"
-    }]
+    }],
+  "explorer.autoReveal": false,
+    "editor.renderWhitespace":true,
+    "editor.insertSpaces": false
 }
