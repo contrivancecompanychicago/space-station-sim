@@ -15,7 +15,7 @@ type Props = {
 export default class ContextMenu extends React.Component{
     props: Props;
     render() {
-        return <div className="contextmenu">contextMenu</div>
+        return <div className="contextMenu">contextMenu</div>
     }
 }
 
