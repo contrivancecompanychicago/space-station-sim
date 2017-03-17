@@ -1,10 +1,13 @@
 // @flow
 import React from 'react';
 
-type Props = {}
-class ContextMenuItem extends React.Component{
+type Props = {
+    text:string,
+    fn:Function
+}
+export default class ContextMenuItem extends React.Component{
     props:Props;
     render() {
-        return <div>menuitem</div>
+        return <div className=".contextMenuItem" onClick={this.props.fn}>{this.props.text}</div>
     }
 }
