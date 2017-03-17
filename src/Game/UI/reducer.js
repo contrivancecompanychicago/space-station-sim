@@ -12,6 +12,7 @@ import panel from './reducer/panel';
 import selected from './reducer/selected';
 import tutorial from './reducer/tutorial';
 import highlight from './reducer/highlight';
+import contextMenu from './reducer/contextMenu';
 
 
 import type {UIState} from 'Game/Model/UI'
@@ -33,4 +34,5 @@ export default combineReducers({
   selected,
   tutorial,
   highlight,
+  contextMenu,
 });

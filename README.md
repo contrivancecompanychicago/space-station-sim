@@ -18,7 +18,6 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
  - food ordering
  - food delivery
  - types of food
- - move rotation drawing into layer
  - rating food
  - track order time
  - space pause time
@@ -33,7 +32,6 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
 
  - lights 
  - air con/heaters
- - give orders direct to selected
  - add containers
 
  - start in food truck
@@ -53,27 +51,16 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
 
  - fat gloved chef hand cursor with point press and thumbsup
 
- - menu panel once recipes are done
-
  - autosave/hot dev mode
-
- - when assigning tasks clean up current task;
 
  - add load action that is assigned when game is loaded to pick up where left off
     - workers and customers
 
 ### PRIORITISED:
- - chef recipe learning system
-   - recipes datamap
-   - workers have recipes
-   - worker recipe data - exp levels
-
- - serialize character save
- -serialize order save
-
+ - contextMenu
+ - when assigning tasks clean up current task;
+ - give orders direct to selected
  - bring character into renderer - organise by tile Y and render behing close objects
-
- make generators savegame friendly - pathtoobj with ability chek if im there
 
 
 ### TECH DEBT
