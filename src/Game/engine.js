@@ -29,10 +29,9 @@ export class Engine{
         this.updateObjects();
     }
     updateObjects(){
+        //COMMENTED CODE IS FOR OPTIONAL TIMING BENCHMARKING USES
         // let times = {}
         this.objects.forEach(o => {
-            // console.log(o.constructor.name)
-            // debugger;
             // let start = new Date().getTime();
             o.update({deltaTime:this.deltaTime});
             // times[o.constructor.name] = new Date().getTime() - start;

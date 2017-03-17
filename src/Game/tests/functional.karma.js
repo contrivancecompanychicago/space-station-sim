@@ -28,7 +28,7 @@ let container: HTMLDivElement
 let game: Game
 let canvas
 
-let gap = 10
+let gap = 1
 
 describe('functional end to end', () => {
 
@@ -118,20 +118,14 @@ describe('functional end to end', () => {
 		}, gap)
 	})
 	it('should make fridge', testGen(function* () {
-		yield sleep(gap);
 		expect(mouse.clickSelector('.button-object-FRIDGE')).toBe(true)
-		yield sleep(gap);
 		mouse.canvasMouseMove(new Block({ x: 6, y: 3 }).center);
-		yield sleep(gap);
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
-		yield sleep(gap);
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
-		yield sleep(gap);
 		mouse.canvasClickBlock(new Block({ x: 6, y: 3 }))
 	}))
 	it('should make another fridge', testGen(function* () {
 		mouse.canvasMouseMove(new Block({ x: 8, y: 3 }).center);
-		yield sleep(gap);
 		mouse.canvasClickBlock(new Block({ x: 8, y: 3 }))
 	}))
 
@@ -154,9 +148,7 @@ describe('functional end to end', () => {
 	})
 	it('should make a line of prep table', testGen(function* () {
 		mouse.canvasMouseMove(new Block({ x: 9, y: 5 }).center);
-		yield sleep(gap);
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
-		yield sleep(gap);
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		yield* mouse.canvasDragRect({ x: 9, y: 5 }, { x: 6, y: 5 })
 
@@ -181,16 +173,12 @@ describe('functional end to end', () => {
 		expect(mouse.clickSelector('.button-object-CHAIR2')).toBe(true)
 
 		mouse.canvasMouseMove(new Block({ x: 5, y: 9 }).center);
-		yield sleep(gap);
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
-		yield sleep(gap);
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		yield* mouse.canvasDragRect({ x: 5, y: 9 }, { x: 8, y: 9 })
 		//COPYPASTA
 		mouse.canvasMouseMove(new Block({ x: 5, y: 12 }).center);
-		yield sleep(gap);
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
-		yield sleep(gap);
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		yield* mouse.canvasDragRect({ x: 5, y: 12 }, { x: 8, y: 12 })
 
@@ -199,7 +187,6 @@ describe('functional end to end', () => {
 	it('should make tables', testGen(function* () {
 		expect(mouse.clickSelector('.button-object-TABLETALL')).toBe(true)
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
-		yield sleep(gap);
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		yield* mouse.canvasDragRect({ x: 5, y: 10 }, { x: 8, y: 11 })
 
@@ -207,9 +194,7 @@ describe('functional end to end', () => {
 	it('should make drink things', testGen(function* () {
 		expect(mouse.clickSelector('.button-object-DRAWERS')).toBe(true)
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
-		yield sleep(gap);
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
-		yield sleep(gap);
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		yield* mouse.canvasDragRect({ x: 3, y: 8 }, { x: 3, y: 10 })
 
@@ -219,7 +204,6 @@ describe('functional end to end', () => {
 	it('should make some spawn point', testGen(function* () {
 		expect(mouse.clickSelector('.button-object-TEST')).toBe(true)
 		mouse.canvasMouseMove(new Block({ x: 0, y: 3 }).center);
-
 		yield* mouse.canvasDragRect({ x: 0, y: 14 }, { x: 5, y: 16 })
 	}))
 
@@ -261,11 +245,8 @@ describe('functional end to end', () => {
 	it('should open hiring panel', testGen(function* () {
 
 		gap = 100
-		yield sleep(gap);
 		expect(mouse.clickSelector('.selected .close')).toBe(true)
-		yield sleep(gap);
 		expect(mouse.clickSelector('.button-mode-panels')).toBe(true)
-		yield sleep(gap);
 		expect(mouse.clickSelector('.button-panel-hiring')).toBe(true)
 	}));
 
@@ -273,9 +254,7 @@ describe('functional end to end', () => {
 	let char: Character;
 
 	it('should hire staff', testGen(function* () {
-		yield sleep(gap);
 		expect(mouse.clickSelector('.hireable button')).toBe(true)
-		yield sleep(gap);
 		worker = game.state.ui.getSelected()[0];
 		expect(worker).toBeDefined();
 	}));
@@ -342,6 +321,7 @@ describe('functional end to end', () => {
 		})
 		it('wait to assign a worker', testGen(function* () {
 			while (!order.getWorker()) {
+
 				// game.engine.fastForward(gap);
 				yield sleep(gap);
 			}
@@ -382,7 +362,6 @@ describe('functional end to end', () => {
 			expect(mouse.clickSelector('.hireable button')).toBe(true)
 			worker = game.state.ui.getSelected()[0];
 			expect(worker).toBeDefined();
-			yield sleep(gap);
 		}));
 		it('should assign cook task to new staff', () => {
 			mouse.clickCheckbox('label.task-COOK input')
