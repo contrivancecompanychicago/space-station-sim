@@ -52,11 +52,17 @@ export class Dispatcher{
 				}
 				if(selection.button === RIGHTMOUSE){
 					//ASSIGN TASKS
+					let obj = state.object.getObjectAtBlock(selection.end.block);
+					state.ui.dispatch({
+						type:'SHOW_CONTEXT_MENU', 
+						character: state.ui.getSelected()[0],
+						object: obj,
+						position: selection.end.screen
+					});
 					//TODO REFACTOR
 					state.ui.getSelected().forEach(s => {
 						if(s.constructor.name=='Character'){
 							s.action = actions.pathToBlock(s, selection.end.block)
-							let obj = state.object.getObjectAtBlock(selection.end.block)
 							if(obj){
 								if(obj.hasAbility('MAKE_COFFEE')){
 									s.action = actions.useCoffeeAbility(s, obj)

@@ -20,6 +20,8 @@ import SavePanel from './UI/Panel/Save';
 import Panel from './UI/Panel';
 import SelectedPanel from './UI/Panel/Selected'
 
+import ContextMenu from './UI/ContextMenu'
+
 import StaffPanel from './UI/Panel/Staff';
 
 import Tutorial from './UI/Tutorial'
@@ -56,6 +58,12 @@ class UI extends React.Component {
     if(this.props.panel.talent.show) panels.push(<TalentPanel key='Talent' />)
     if(this.props.panel.save.show) panels.push(<SavePanel key='Save' />)
 
+    if(this.props.contextMenu.show) panels.push(<ContextMenu key='ctx' 
+    character={this.props.contextMenu.character} 
+    object={this.props.contextMenu.object}
+    position={this.props.contextMenu.position}
+     />)
+
     this.props.selected.forEach((s, i) => {
       panels.push(<SelectedPanel key={s.toString()} target={s} />)
     })
@@ -87,6 +95,7 @@ function mapStateToProps(state:Object, props:Object):{} {
   return {
     mode: state.mode,
     panel: state.panel,
+    contextMenu: state.contextMenu,
     selected: state.selected,
     highlight: state.highlight,
   };
