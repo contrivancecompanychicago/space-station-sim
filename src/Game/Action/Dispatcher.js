@@ -56,7 +56,8 @@ export class Dispatcher{
 					state.ui.dispatch({
 						type:'SHOW_CONTEXT_MENU', 
 						character: state.ui.getSelected()[0],
-						object: obj
+						object: obj,
+						position: selection.end.screen
 					});
 					//TODO REFACTOR
 					state.ui.getSelected().forEach(s => {

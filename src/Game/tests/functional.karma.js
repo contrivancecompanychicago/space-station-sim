@@ -305,17 +305,22 @@ describe('functional end to end', () => {
 		expect(lastblock.y).toBe(12);
 	}));
 
-	// it('should select an object',  testGen(function *() {
+	it('should right click an object',  testGen(function *() {
 
-	// 	let tablepos = new Block({x:5, y:10});
-	// 	let obj = game.state.object.getObjectAtBlock(tablepos);
-	// 	expect(obj).toBeDefined();
-	// 	let point = tablepos.center.screen
-	// 	// debugger;
-	// 	canvasClick(point);
-	// 	// canvasClickBlock(tablepos)
-	// 	expect(game.state.ui.state.selected).toBe('whatevs')
-	// }));
+		let tablepos = new Block({x:5, y:10});
+		let obj = game.state.object.getObjectAtBlock(tablepos);
+		expect(obj).toBeDefined();
+		let point = tablepos.center.screen;
+		// debugger;
+		mouse.canvasClick(point, {button: 2});
+		// canvasClickBlock(tablepos)
+		expect(game.state.ui.state.contextMenu.show).toBe(true);
+		expect(game.state.ui.state.contextMenu.character).toBe(worker);
+		expect(game.state.ui.state.contextMenu.object).toBe(obj);
+		expect(game.state.ui.state.contextMenu.position.x).toBe(point.x);
+		expect(game.state.ui.state.contextMenu.position.y).toBe(point.y);
+
+	}));
 
 	let item;
 	describe('making base', () => {

@@ -7,7 +7,8 @@ export default function contextMenuReducer(state:Object, action:Object):Object{
         state = {
             show:true,
             character: action.character,
-            object: action.object
+            object: action.object,
+            position: action.position
         }
     }
     return state;
