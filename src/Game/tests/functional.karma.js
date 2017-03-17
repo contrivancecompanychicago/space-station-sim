@@ -321,6 +321,11 @@ describe('functional end to end', () => {
 		expect(game.state.ui.state.contextMenu.position.y).toBe(point.y);
 
 	}));
+	it('should mouseout and close the menu', () => {
+		let el = sizzle('.contextMenu')[0]
+		ReactTestUtils.Simulate.mouseOut(el)
+		expect(game.state.ui.state.contextMenu.show).toBe(false);
+	})
 
 	let item;
 	describe('making base', () => {

@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import { connect } from 'react-redux';
 
 import ContextMenuItem from './ContextMenuItem';
 
@@ -12,10 +13,31 @@ type Props = {
     position: {x:number, y:number}
 }
 
-export default class ContextMenu extends React.Component{
+class ContextMenu extends React.Component{
     props: Props;
     render() {
-        return <div className="contextMenu">contextMenu</div>
+        // function mouseOut(){
+        //     alert('zombie');
+        // }
+        let style = {
+            left:this.props.position.x - 10,
+            top:this.props.position.y - 10
+        }
+        return <div style={style} onMouseOut={this.props.mouseout} className="contextMenu">contextMenu</div>
     }
 }
 
+function mapStateToProps(state, props) {
+  return {
+  };
+}
+
+function mapDispatchToProps(dispatch, props) {
+  return {
+    mouseout: (id) => {
+      dispatch({type:'CLOSE_CONTEXT_MENU'});
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContextMenu);
