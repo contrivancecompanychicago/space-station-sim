@@ -98,11 +98,8 @@ describe('functional end to end', () => {
 
 	it('should make some stone oven', testGen(function* () {
 		expect(mouse.clickSelector('.button-mode-object')).toBe(true)
-		yield sleep(gap);
 		expect(mouse.clickSelector('.button-object-STONEOVEN')).toBe(true)
-		yield sleep(gap);
 		mouse.canvasMouseMove(new Block({ x: 3, y: 3 }).center);
-		yield sleep(gap);
 		mouse.canvasClickBlock(new Block({ x: 3, y: 3 }))
 	}))
 
@@ -130,7 +127,6 @@ describe('functional end to end', () => {
 	}))
 
 	it('should make a prep table', testGen(function* () {
-		yield sleep(gap);
 		expect(mouse.clickSelector('.button-object-TABLE3')).toBe(true)
 		mouse.canvasClickBlock(new Block({ x: 9, y: 3 }))
 
@@ -156,9 +152,7 @@ describe('functional end to end', () => {
 	it('should make another oven', testGen(function* () {
 		expect(mouse.clickSelector('.button-object-STONEOVEN')).toBe(true)
 		mouse.canvasMouseMove(new Block({ x: 4, y: 7 }).center);
-		yield sleep(gap);
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
-		yield sleep(gap);
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		mouse.canvasClickBlock(new Block({ x: 4, y: 7 }))
 	}))
@@ -223,7 +217,6 @@ describe('functional end to end', () => {
 		mouse.canvasClick(char.position.screen)
 		//follow
 		expect(mouse.clickSelector('.follow')).toBe(true)
-		yield sleep(gap);
 	}));
 
 
@@ -244,7 +237,6 @@ describe('functional end to end', () => {
 
 	it('should open hiring panel', testGen(function* () {
 
-		gap = 100
 		expect(mouse.clickSelector('.selected .close')).toBe(true)
 		expect(mouse.clickSelector('.button-mode-panels')).toBe(true)
 		expect(mouse.clickSelector('.button-panel-hiring')).toBe(true)
@@ -265,7 +257,6 @@ describe('functional end to end', () => {
 	it('should zoom', testGen(function* () {
 
 		for (let i = 0; i < 10; i++) {
-			yield sleep(gap);
 			mouse.mouseEvent(canvas, 'mousewheel', { wheelDelta: 10, x: window.innerWidth / 2, y: window.innerHeight / 2 })
 		}
 	}));

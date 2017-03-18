@@ -15,7 +15,7 @@ function sleep(ms) {
 let container: HTMLDivElement;
 let canvas;
 let game: Game
-fdescribe('saving and loading game', () => {
+describe('saving and loading game', () => {
 	beforeAll(function () {
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = 10*1000;
 		container = document.createElement('div');
@@ -33,7 +33,7 @@ fdescribe('saving and loading game', () => {
 	it('should set up', testGen(function* () {
 		mouse.clickSelector('.save.panel .close')
 		//grid
-		gap = 1000
+		// gap = 1000
 		expect(mouse.clickSelector('.button-mode-grid')).toBe(true)
 		expect(mouse.clickSelector('.button-grid-FLOOR')).toBe(true)
 		yield* mouse.canvasDragRect({ x: 0, y: 0 }, { x: 16, y: 16 });
