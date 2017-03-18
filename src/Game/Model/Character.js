@@ -74,6 +74,7 @@ export default class CharacterModel {
 	}
 
 	spawnCustomer(){ //USED BY TESTS
+		// debugger;
 		let spawnPoints = state.object.getObjectsWithAbility(Ability.SPAWN);
 		if(spawnPoints.length>0){
 			let sp = spawnPoints[0]

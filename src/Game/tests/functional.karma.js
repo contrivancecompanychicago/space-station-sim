@@ -50,7 +50,7 @@ describe('functional end to end', () => {
 			canvas = container.getElementsByTagName('canvas')[0];
 			mouse.setCanvas(canvas);
 			done();
-		}, 1000)
+		}, 100)
 	})
 
 	it('should close the savepanel', () => {
