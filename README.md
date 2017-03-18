@@ -61,7 +61,7 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
  - when assigning tasks clean up current task;
  - give orders direct to selected
  - bring character into renderer - organise by tile Y and render behing close objects
-
+ - make tests much faster with engine.fastForward
 
 ### TECH DEBT
 
