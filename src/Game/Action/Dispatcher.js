@@ -61,17 +61,17 @@ export class Dispatcher{
 							position: selection.end.screen
 						});
 					}else{//walk to the place
-						state.ui.getSelected().forEach(s => {
-							if(s.constructor.name=='Character'){
-								s.action = actions.pathToBlock(s, selection.end.block)
-								if(obj){
-									if(obj.hasAbility('MAKE_COFFEE')){
-										s.action = actions.useCoffeeAbility(s, obj)
-									}
+					}
+					state.ui.getSelected().forEach(s => {
+						if(s.constructor.name=='Character'){
+							s.action = actions.pathToBlock(s, selection.end.block)
+							if(obj){
+								if(obj.hasAbility('MAKE_COFFEE')){
+									s.action = actions.useCoffeeAbility(s, obj)
 								}
 							}
-						})
-					}
+						}
+					})
 					//TODO REFACTOR
 				}
 				break;

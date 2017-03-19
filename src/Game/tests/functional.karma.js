@@ -416,7 +416,8 @@ describe('functional end to end', () => {
 
 	it('should manually assign drink task', testGen(function* () {
 		mouse.canvasClick(new Block({ x: 3, y: 8 }).center.screen, { button: 2 });
-		yield sleep(gap);
+		// yield sleep(gap);
+		game.engine.fastForward(gap);
 		let lastblock = worker.path[worker.path.length - 1]
 		expect(lastblock.y).toBe(8);
 	}));
