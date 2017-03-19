@@ -11,7 +11,9 @@ import dispatcher from 'Game/Action/Dispatcher';
 
 let gap = 20;
 function sleep(ms) {
-	return new Promise(resolve => setTimeout(resolve, ms));
+	game.engine.fastForward(gap)
+	return Promise.resolve()
+	// return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 let container: HTMLDivElement;
@@ -39,13 +41,6 @@ fdescribe('saving and loading game', () => {
 		})
 		
 	})
-	// it('should wait to start', (done) => {
-	// 	setTimeout(() => {
-	// 		canvas = container.getElementsByTagName('canvas')[0];
-	// 		mouse.setCanvas(canvas);
-	// 		done();
-	// 	}, 100)
-	// })
 	describe('setup', () => {
 		it('close save panel', () => {
 			mouse.clickSelector('.save.panel .close')
@@ -56,7 +51,7 @@ fdescribe('saving and loading game', () => {
 		it('select grid > FLOOR', () => {
 			expect(mouse.clickSelector('.button-grid-FLOOR')).toBe(true);
 		});
-		it('wait', done => {setTimeout(done, 100)});
+		// it('wait', done => {setTimeout(done, 100)});
 		it('draw blocks', () => {
 			let fromBlock = new Block({x:0, y:0})
 			let toBlock = new Block({x:16, y:16})
@@ -162,13 +157,13 @@ fdescribe('saving and loading game', () => {
 				expect(mouse.clickSelector('.save.panel button#save')).toBe(true)
 			})
 			it('wait', (done) => {
-				setTimeout(done, 200);
+				setTimeout(done, 20);
 			})
 			it('press load', () => {
 				expect(mouse.clickSelector('button#load-savename')).toBe(true)
 			})
 			it('wait', (done) => {
-				setTimeout(done, 100);
+				setTimeout(done, 10);
 				mouse.clickSelector('.save.panel .close')
 			})
 		})
@@ -208,13 +203,13 @@ fdescribe('saving and loading game', () => {
 				expect(mouse.clickSelector('.save.panel button#save')).toBe(true)
 			})
 			it('wait', (done) => {
-				setTimeout(done, 500);
+				setTimeout(done, 50);
 			})
 			it('press load', () => {
 				expect(mouse.clickSelector('button#load-savename')).toBe(true)
 			})
 			it('wait', (done) => {
-				setTimeout(done, 100);
+				setTimeout(done, 10);
 				mouse.clickSelector('.save.panel .close')
 			})
 		})
@@ -357,7 +352,7 @@ fdescribe('saving and loading game', () => {
 	it('should wait open', (done) => {
 		setTimeout(() => {
 			done();
-		}, 1000)
+		}, 100)
 	})
 })
 
@@ -366,7 +361,7 @@ function* saveAndReload () {
 	expect(mouse.clickSelector('.button-mode-panels')).toBe(true)
 	expect(mouse.clickSelector('.button-panel-save')).toBe(true)
 	expect(mouse.clickSelector('.save.panel button#save')).toBe(true)
-	yield sleep(200);
+	yield sleep(20);
 	expect(mouse.clickSelector('button#load-savename')).toBe(true)
 	yield sleep(gap);
 	mouse.clickSelector('.save.panel .close')
