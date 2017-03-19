@@ -23,6 +23,10 @@ describe('saving and loading game', () => {
 		document.body.appendChild(container)
 		game = new Game(container);
 	})
+	afterAll(function () {
+		game.destroy();
+		document.body.removeChild(container)
+	})
 	it('should wait to start', (done) => {
 		setTimeout(() => {
 			canvas = container.getElementsByTagName('canvas')[0];

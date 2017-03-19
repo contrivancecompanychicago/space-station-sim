@@ -61,5 +61,9 @@ export default class Game{
 
 	}
 
+	destroy(){
+		this.engine.stop();
+	}
+
 
 }

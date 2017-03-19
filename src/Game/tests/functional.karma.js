@@ -33,16 +33,14 @@ let gap = 1
 describe('functional end to end', () => {
 
 	beforeAll(function () {
-
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = 10*1000;
-		//jasmine.getEnv().defaultTimeoutInterval = 60*1000;
-
 		container = document.createElement('div');
 		container.style = 'position:absolute; left: 0px; top: 0px; display:block; width: 100%; height: 100%';
 		document.body.appendChild(container)
 		game = new Game(container);
 	});
 	afterAll(function () {
+		game.destroy();
 		document.body.removeChild(container)
 	})
 	it('should wait to start', (done) => {
