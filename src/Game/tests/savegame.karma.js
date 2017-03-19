@@ -7,6 +7,8 @@ import mouse from './mouseTestUtil'
 import testGen from 'jasmine-es6-generator'
 import Block from 'Game/Block'
 
+import dispatcher from 'Game/Action/Dispatcher';
+
 let gap = 20;
 function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
@@ -15,9 +17,10 @@ function sleep(ms) {
 let container: HTMLDivElement;
 let canvas;
 let game: Game
-describe('saving and loading game', () => {
+fdescribe('saving and loading game', () => {
 	beforeAll(function () {
-		jasmine.DEFAULT_TIMEOUT_INTERVAL = 10*1000;
+		
+		jasmine.DEFAULT_TIMEOUT_INTERVAL = 2*1000;
 		container = document.createElement('div');
 		container.style = 'position:absolute; left: 0px; top: 0px; display:block; width: 100%; height: 100%';
 		document.body.appendChild(container)
@@ -27,38 +30,68 @@ describe('saving and loading game', () => {
 		game.destroy();
 		document.body.removeChild(container)
 	})
-	it('should wait to start', (done) => {
-		setTimeout(() => {
-			canvas = container.getElementsByTagName('canvas')[0];
-			mouse.setCanvas(canvas);
-			done();
-		}, 100)
-	})
-	it('should set up', testGen(function* () {
-		mouse.clickSelector('.save.panel .close')
-		//grid
-		// gap = 1000
-		expect(mouse.clickSelector('.button-mode-grid')).toBe(true)
-		expect(mouse.clickSelector('.button-grid-FLOOR')).toBe(true)
-		yield* mouse.canvasDragRect({ x: 0, y: 0 }, { x: 16, y: 16 });
-		//objects
-		expect(mouse.clickSelector('.button-mode-object')).toBe(true)
-		expect(mouse.clickSelector('.button-object-DRAWERS')).toBe(true)
-		mouse.canvasClickBlock(new Block({ x: 6, y: 3 }))
-		expect(mouse.clickSelector('.button-object-CHAIR2')).toBe(true)
-		mouse.canvasClickBlock(new Block({ x: 6, y: 9 }))
-		expect(mouse.clickSelector('.button-object-TEST')).toBe(true)
-		mouse.canvasClickBlock(new Block({ x: 12, y: 3 }));
 
-	}))
-	it('should spawn customer and get order', testGen(function* () {
+	describe('initialized', () => { //TODO: move this to functional
+		it('should have a canvas', ()=> {
+			canvas = container.getElementsByTagName('canvas')[0];
+			expect(canvas).toBeDefined();
+			mouse.setCanvas(canvas);
+		})
+		
+	})
+	// it('should wait to start', (done) => {
+	// 	setTimeout(() => {
+	// 		canvas = container.getElementsByTagName('canvas')[0];
+	// 		mouse.setCanvas(canvas);
+	// 		done();
+	// 	}, 100)
+	// })
+	describe('setup', () => {
+		it('close save panel', () => {
+			mouse.clickSelector('.save.panel .close')
+		});
+		it('select grid', () => {
+			expect(mouse.clickSelector('.button-mode-grid')).toBe(true);
+		});
+		it('select grid > FLOOR', () => {
+			expect(mouse.clickSelector('.button-grid-FLOOR')).toBe(true);
+		});
+		it('wait', done => {setTimeout(done, 100)});
+		it('draw blocks', () => {
+			let fromBlock = new Block({x:0, y:0})
+			let toBlock = new Block({x:16, y:16})
+			spyOn(dispatcher, 'userAction').and.callThrough();
+			mouse.canvasMouseDown(fromBlock.center.screen)
+			mouse.canvasMouseUp(toBlock.center.screen)
+			expect(dispatcher.userAction).toHaveBeenCalled();
+		});
+		it('should make drawers', () => {
+			expect(mouse.clickSelector('.button-mode-object')).toBe(true)
+			expect(mouse.clickSelector('.button-object-DRAWERS')).toBe(true)
+			mouse.canvasClickBlock(new Block({ x: 6, y: 3 }))
+		});
+		it('should make chair', () => {
+			expect(mouse.clickSelector('.button-object-CHAIR2')).toBe(true)
+			mouse.canvasClickBlock(new Block({ x: 6, y: 9 }))
+		})
+		it('should make spawn', () => {
+			expect(mouse.clickSelector('.button-object-TEST')).toBe(true)
+			mouse.canvasClickBlock(new Block({ x: 12, y: 3 }));
+		})
+	})
+	// it('wait', done => {setTimeout(done, 100)});
+	it('should spawn customer', () => {
 		game.state.character.spawnCustomer();
+	})
+	it('should speed up game', () => {
 		expect(mouse.clickSelector('.button-speed-fast')).toBe(true)
+	})
+	it('should spawn customer and get order', testGen(function* () {
 		while (game.state.order.getOrders().length == 0) {
-			yield sleep(gap);
+			// debugger;
+			// game.engine.fastForward(gap)
+			yield sleep(gap)
 		}
-		// expect(mouse.clickSelector('.button-speed-normal')).toBe(true)
-		// order = game.state.order.getOrders()[0];
 	}));
 	describe('save and reload', () => {
 		it('open panel menu', () => {
@@ -324,7 +357,7 @@ describe('saving and loading game', () => {
 	it('should wait open', (done) => {
 		setTimeout(() => {
 			done();
-		}, 2000)
+		}, 1000)
 	})
 })
 

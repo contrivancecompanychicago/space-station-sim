@@ -24,9 +24,9 @@ function sleep(ms) {
 
 }
 
-let container: HTMLDivElement
-let game: Game
-let canvas
+let container: HTMLDivElement;
+let game: Game;
+let canvas;
 
 let gap = 1
 
@@ -477,10 +477,10 @@ describe('functional end to end', () => {
 
 
 
-	it('should wait open', (done) => {
-		setTimeout(() => {
-			done();
-		}, 1000)
-	})
+	// it('should wait open', (done) => {
+	// 	setTimeout(() => {
+	// 		done();
+	// 	}, 1000)
+	// })
 
 })

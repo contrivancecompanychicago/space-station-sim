@@ -10,7 +10,6 @@ export class Engine{
 	constructor(){
 		// FLOWHACK
 		this.update = this.update.bind(this)
-		this.lastTime = new Date().getTime();
 		this.objects = []
 	}
 	update() {
@@ -24,8 +23,8 @@ export class Engine{
 	register(obj:Object){
 		this.objects.push(obj);
 	}
-	fastForward(deltaTime){ //for testing
-		this.deltaTime = deltaTime;
+	fastForward(deltaTime:number){ //for testing
+		this.deltaTime = deltaTime/1000;
 		this.updateObjects();
 	}
 	updateObjects(){
@@ -40,8 +39,11 @@ export class Engine{
 		
 	}
 	start(){
-		if(!this.updateId)
-			this.updateId = requestAnimationFrame(this.update);
+		if(!this.updateId){
+			this.lastTime = new Date().getTime();
+			// this.updateId = requestAnimationFrame(this.update);
+			this.update();
+		}
 	}
 
 	stop(){
