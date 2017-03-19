@@ -28,6 +28,7 @@ export default function* placeItemOnBlock(char:Character, block:Block):Generator
 
 			yield;
 		}
+		item.position = target;
 
 	}
 }

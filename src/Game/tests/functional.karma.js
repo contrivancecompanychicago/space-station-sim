@@ -24,25 +24,23 @@ function sleep(ms) {
 
 }
 
-let container: HTMLDivElement
-let game: Game
-let canvas
+let container: HTMLDivElement;
+let game: Game;
+let canvas;
 
 let gap = 1
 
 describe('functional end to end', () => {
 
 	beforeAll(function () {
-
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = 10*1000;
-		//jasmine.getEnv().defaultTimeoutInterval = 60*1000;
-
 		container = document.createElement('div');
 		container.style = 'position:absolute; left: 0px; top: 0px; display:block; width: 100%; height: 100%';
 		document.body.appendChild(container)
 		game = new Game(container);
 	});
 	afterAll(function () {
+		game.destroy();
 		document.body.removeChild(container)
 	})
 	it('should wait to start', (done) => {
@@ -98,11 +96,8 @@ describe('functional end to end', () => {
 
 	it('should make some stone oven', testGen(function* () {
 		expect(mouse.clickSelector('.button-mode-object')).toBe(true)
-		yield sleep(gap);
 		expect(mouse.clickSelector('.button-object-STONEOVEN')).toBe(true)
-		yield sleep(gap);
 		mouse.canvasMouseMove(new Block({ x: 3, y: 3 }).center);
-		yield sleep(gap);
 		mouse.canvasClickBlock(new Block({ x: 3, y: 3 }))
 	}))
 
@@ -130,7 +125,6 @@ describe('functional end to end', () => {
 	}))
 
 	it('should make a prep table', testGen(function* () {
-		yield sleep(gap);
 		expect(mouse.clickSelector('.button-object-TABLE3')).toBe(true)
 		mouse.canvasClickBlock(new Block({ x: 9, y: 3 }))
 
@@ -156,9 +150,7 @@ describe('functional end to end', () => {
 	it('should make another oven', testGen(function* () {
 		expect(mouse.clickSelector('.button-object-STONEOVEN')).toBe(true)
 		mouse.canvasMouseMove(new Block({ x: 4, y: 7 }).center);
-		yield sleep(gap);
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
-		yield sleep(gap);
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		mouse.canvasClickBlock(new Block({ x: 4, y: 7 }))
 	}))
@@ -223,7 +215,6 @@ describe('functional end to end', () => {
 		mouse.canvasClick(char.position.screen)
 		//follow
 		expect(mouse.clickSelector('.follow')).toBe(true)
-		yield sleep(gap);
 	}));
 
 
@@ -237,6 +228,7 @@ describe('functional end to end', () => {
 
 	it('should wait for order', testGen(function* () {
 		while (game.state.order.getOrders().length == 0) {
+			// game.engine.fastForward(gap)
 			yield sleep(gap);
 		}
 		order = game.state.order.getOrders()[0];
@@ -244,7 +236,6 @@ describe('functional end to end', () => {
 
 	it('should open hiring panel', testGen(function* () {
 
-		gap = 100
 		expect(mouse.clickSelector('.selected .close')).toBe(true)
 		expect(mouse.clickSelector('.button-mode-panels')).toBe(true)
 		expect(mouse.clickSelector('.button-panel-hiring')).toBe(true)
@@ -265,7 +256,6 @@ describe('functional end to end', () => {
 	it('should zoom', testGen(function* () {
 
 		for (let i = 0; i < 10; i++) {
-			yield sleep(gap);
 			mouse.mouseEvent(canvas, 'mousewheel', { wheelDelta: 10, x: window.innerWidth / 2, y: window.innerHeight / 2 })
 		}
 	}));
@@ -330,6 +320,7 @@ describe('functional end to end', () => {
 		it('should make an item', testGen(function* () {
 
 			while (!order.getItem()) {
+				// game.engine.fastForward(gap)
 				yield sleep(gap);
 			}
 			item = order.getItem();
@@ -344,7 +335,8 @@ describe('functional end to end', () => {
 		
 		it('should wait until its pizzauncooked', testGen(function* () {
 			while(item.type !== 'PIZZAUNCOOKED'){
-				yield sleep(gap);
+				game.engine.fastForward(gap)
+				// yield sleep(gap);
 			}
 		}))
 		it('order shound not have worker', () => {
@@ -375,12 +367,14 @@ describe('functional end to end', () => {
 		}));
 		it('should turn item into a pizza', testGen(function*(){
 			while(item.type !== 'PIZZA'){
-				yield sleep(gap)
+				game.engine.fastForward(gap)
+				// yield sleep(gap)
 			}
 		}));
 		it('should put it onto a table to wait for serving', testGen(function*(){
 			while(order.getWorker()){
-				yield sleep(gap)
+				game.engine.fastForward(gap)
+				// yield sleep(gap)
 			}
 			let obj:Obj = item.getObject();
 			expect(obj.hasAbility('SERVE_TABLE')).toBe(true);
@@ -394,7 +388,6 @@ describe('functional end to end', () => {
 			yield sleep(gap);
 			expect(mouse.clickSelector('.hireable button')).toBe(true)
 			worker = game.state.ui.getSelected()[0];
-			yield sleep(gap);
 			mouse.clickCheckbox('label.task-SERVEFOOD input')
 		}));
 
@@ -416,7 +409,6 @@ describe('functional end to end', () => {
 
 	it('should hire drink staff', testGen(function* () {
 
-		yield sleep(gap);
 		expect(mouse.clickSelector('.hireable button')).toBe(true)
 		yield sleep(gap);
 		worker = game.state.ui.getSelected()[0];
@@ -485,10 +477,10 @@ describe('functional end to end', () => {
 
 
 
-	it('should wait open', (done) => {
-		setTimeout(() => {
-			done();
-		}, 1000)
-	})
+	// it('should wait open', (done) => {
+	// 	setTimeout(() => {
+	// 		done();
+	// 	}, 1000)
+	// })
 
 })

@@ -75,3 +75,7 @@ write tests
 
 some art from opengameart.com:
 http://opengameart.org/content/dawnlike-16x16-universal-rogue-like-tileset-v181
+
+
+when you grand launch you get (formula)~ 40 people 
+3 of which if > 50% item quality become lifetime customers

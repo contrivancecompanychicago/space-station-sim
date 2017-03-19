@@ -55,6 +55,15 @@ function canvasClick(pos:{x:number, y:number}, param){
 	mouseEvent(canvas, 'mousedown', params);	
 	mouseEvent(canvas, 'mouseup', params);
 }
+function canvasMouseDown(pos:{x:number, y:number}, param){
+	let params = assign({button:0, pageX:pos.x, pageY:pos.y}, param)
+	mouseEvent(canvas, 'mousedown', params);
+}
+function canvasMouseUp(pos:{x:number, y:number}, param){
+	let params = assign({button:0, pageX:pos.x, pageY:pos.y}, param)
+	mouseEvent(canvas, 'mouseup', params);
+}
+
 
 //TODO REFACTOR
 function* canvasDragRect(from:{x:number, y:number}, to:{x:number, y:number}):Generator<*,*,*>{
@@ -85,7 +94,9 @@ const mouse = {
 	canvasClickBlock,
 	canvasClick,
 	canvasDragRect,
-	setCanvas
+	setCanvas,
+	canvasMouseDown,
+	canvasMouseUp
 }
 
 export default mouse

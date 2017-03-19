@@ -44,10 +44,11 @@ export default class Game{
 		state.init();
 
 		Point.registerState(state);
+		//THIS IS THE ORDER OF EXECUTION
+		engine.register(new TimeController()) //TIME FIRST
 		engine.register(new CharacterController())
-		engine.register(new TimeController())
 		engine.register(new TutorialController())
-		engine.register(new Renderer(this.state, this.container)); // renderer
+		engine.register(new Renderer(this.state, this.container)); // HAS TO BE ABOVE VIEW AND UI
 		engine.register(new ViewController(container))
 		engine.register(new UIController(container))
 
@@ -59,6 +60,10 @@ export default class Game{
 			state.load('autosave')
 		}
 
+	}
+
+	destroy(){
+		this.engine.stop();
 	}
 
 
