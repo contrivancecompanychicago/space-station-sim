@@ -228,8 +228,8 @@ describe('functional end to end', () => {
 
 	it('should wait for order', testGen(function* () {
 		while (game.state.order.getOrders().length == 0) {
-			game.engine.fastForward(gap)
-			// yield sleep(gap);
+			// game.engine.fastForward(gap)
+			yield sleep(gap);
 		}
 		order = game.state.order.getOrders()[0];
 	}));
@@ -312,16 +312,16 @@ describe('functional end to end', () => {
 		it('wait to assign a worker', testGen(function* () {
 			while (!order.getWorker()) {
 
-				game.engine.fastForward(gap);
-				// yield sleep(gap);
+				// game.engine.fastForward(gap);
+				yield sleep(gap);
 			}
 		}))
 
 		it('should make an item', testGen(function* () {
 
 			while (!order.getItem()) {
-				game.engine.fastForward(gap)
-				// yield sleep(gap);
+				// game.engine.fastForward(gap)
+				yield sleep(gap);
 			}
 			item = order.getItem();
 			expect(item).toBeDefined();
