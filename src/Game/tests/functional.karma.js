@@ -369,14 +369,14 @@ describe('functional end to end', () => {
 		}));
 		it('should turn item into a pizza', testGen(function*(){
 			while(item.type !== 'PIZZA'){
-				// game.engine.fastForward(gap)
-				yield sleep(gap)
+				game.engine.fastForward(gap)
+				// yield sleep(gap)
 			}
 		}));
 		it('should put it onto a table to wait for serving', testGen(function*(){
 			while(order.getWorker()){
-				// game.engine.fastForward(gap)
-				yield sleep(gap)
+				game.engine.fastForward(gap)
+				// yield sleep(gap)
 			}
 			let obj:Obj = item.getObject();
 			expect(obj.hasAbility('SERVE_TABLE')).toBe(true);
@@ -390,7 +390,6 @@ describe('functional end to end', () => {
 			yield sleep(gap);
 			expect(mouse.clickSelector('.hireable button')).toBe(true)
 			worker = game.state.ui.getSelected()[0];
-			yield sleep(gap);
 			mouse.clickCheckbox('label.task-SERVEFOOD input')
 		}));
 
@@ -412,7 +411,6 @@ describe('functional end to end', () => {
 
 	it('should hire drink staff', testGen(function* () {
 
-		yield sleep(gap);
 		expect(mouse.clickSelector('.hireable button')).toBe(true)
 		yield sleep(gap);
 		worker = game.state.ui.getSelected()[0];
