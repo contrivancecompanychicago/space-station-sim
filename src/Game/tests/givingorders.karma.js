@@ -17,7 +17,7 @@ let container: HTMLDivElement;
 let canvas;
 let game: Game
 
-fdescribe('giving Orders', () => {
+describe('giving Orders', () => {
 	beforeAll(function () {
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = 10*1000;
 		container = document.createElement('div');
