@@ -8,91 +8,96 @@ import type Character from 'Game/Type/Character'
 
 
 export type TaskState = {
-  [id:string]: Task
+	[id:string]: Task
 }
 
 export default class TaskModel{
 
-  state: TaskState;
-  constructor(state:TaskState = {}){
-    this.state = state;
-  }
-  getTasks():Array<Task>{
-    return values(this.state);
-  }
+	state: TaskState;
 
-  getTask(id:string):Task{
-    if(!id) id = head(keys(this.state));
-    return this.state[id];
-  }
-  getUnassignedTask():Task|void{
-    let tasks = keys(this.state);
-    for(let i = 0; i < tasks.length; i++){
-      let task = this.state[tasks[i]];
-      if(!task.worker) return task;
-    }
-  }
+	constructor(state:TaskState = {}){
+		this.state = state;
+	}
 
-  getNextTask(id:string){
-    if(!id) throw new Error('wtf');
-    let tasks = keys(this.state);
-    id = tasks[tasks.indexOf(id.toString())+1];
-    return this.getTask(id);
-  }
+	getTasks():Array<Task>{
+		return values(this.state);
+	}
 
-  addTask(task:Task){
-    this.state[task.id] = task;
-    return task;
-  }
+	getTask(id:string):Task{
+		if(!id) id = head(keys(this.state));
+		return this.state[id];
+	}
 
-  assignTask(id:string, worker:string){
-    if(this.state[id]){
-      this.state[id].worker = worker;
-    }
-  }
+	getUnassignedTask():Task|void{
+		let tasks = keys(this.state);
+		for(let i = 0; i < tasks.length; i++){
+			let task = this.state[tasks[i]];
+			if(!task.worker) return task;
+		}
+	}
 
-  unassignTask(id:string){
-    if(this.state[id]){
-      delete this.state[id].worker;
-    }
-  }
+	getNextTask(id:string){
+		if(!id) throw new Error('wtf');
+		let tasks = keys(this.state);
+		id = tasks[tasks.indexOf(id.toString())+1];
+		return this.getTask(id);
+	}
 
-  unassignTaskWorker(worker:Character){
-    map(this.state, (val) =>{
-      if(val.worker && val.worker === worker) delete val.worker;
-      return val;
-    });
-  }
+	addTask(task:Task){
+		this.state[task.id] = task;
+		return task;
+	}
 
-  finishTask(id:string){
-    delete this.state[id];
-  }
+	assignTask(id:string, worker:string){
+		if(this.state[id]){
+			this.state[id].worker = worker;
+		}
+	}
 
-  update(){
-    this.clean();
-  }
-  clean() {
-    // keys(this.state).forEach(key => {
-    //   let task = this.state[key];
-    this.getTasks().forEach(task => {
-      if(task.worker){
-        let char = state.character.getChar(task.worker);
-        if(char && char.task != task.id){
-          delete task.worker;
-        }
-      }
-    });
-  }
+	unassignTask(id:string){
+		if(this.state[id]){
+			delete this.state[id].worker;
+		}
+	}
 
-  save(){
-    return this.state
-  }
-  clear() {
-    this.state = {}
-  }
-  load(obj:Object){
-    this.state = obj
-  }
+	unassignTaskWorker(worker:Character){
+		map(this.state, (val) =>{
+			if(val.worker && val.worker === worker) delete val.worker;
+			return val;
+		});
+	}
 
+	finishTask(id:string){
+		delete this.state[id];
+	}
+
+	update(){
+		this.clean();
+	}
+
+	clean() {
+		// keys(this.state).forEach(key => {
+		//   let task = this.state[key];
+		this.getTasks().forEach(task => {
+			if(task.worker){
+				let char = state.character.getChar(task.worker);
+				if(char && char.task != task.id){
+					delete task.worker;
+				}
+			}
+		});
+	}
+
+	save(){
+		return this.state
+	}
+
+	clear() {
+		this.state = {}
+	}
+
+	load(obj:Object){
+		this.state = obj
+	}
 
 }

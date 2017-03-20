@@ -26,22 +26,15 @@ export default class GridModel {
 		this.state = s;
 	}
 
-	//refactor to rect instead of select, add removeNodes
 	addNodes(rect: Rect, grid: Grid) {
 		let sel = rect.blockRect();
 		for (let y = sel.t; y <= sel.b; y++) {
 			for (let x = sel.l; x <= sel.r; x++) {
-				// switch (selection.button) {
-				//     case MouseButtons.LEFT:
-						this.addNode(x, y, new Grid(grid));
-				//         break;
-				//     case MouseButtons.RIGHT:
-				//         this.removeNode(x, y);
-				//         break;
-				// }
+				this.addNode(x, y, new Grid(grid));
 			}
 		}
 	}
+
 	removeNodes(rect:Rect){
 		let sel = rect.blockRect();
 		for (let y = sel.t; y <= sel.b; y++) {
@@ -50,10 +43,10 @@ export default class GridModel {
 			}
 		}
 	}
+
 	getNodes():Array<Grid>{
 		return values(this.state);
 	}
-
 
 	addNode(x: number, y: number, node: Grid) {
 		this.state[makeKey(x, y)] = node;
@@ -66,15 +59,16 @@ export default class GridModel {
 	getNode(x: number, y: number): Grid {
 		return this.state[makeKey(x, y)];
 	}
+
 	getNodeAtBlock(block:Block): Grid {
 		return this.state[makeKey(block.x, block.y)];
 	}
+
 	randomNode(): Block {
 		let k = keys(this.state);
 		let r = Math.floor(Math.random() * k.length);
 		return new Block(parseKey(k[r]));
 	}
-
 
 	getPath(start: Block, end: Block): Array<Block> {
 
@@ -169,9 +163,11 @@ export default class GridModel {
 	save(): Object {
 		return this.state;
 	}
+
 	clear() {
 		this.state = {}
 	}
+
 	load(grid: Object) {
 		Object.keys(grid).forEach((key) => {
 			let block = parseKey(key);

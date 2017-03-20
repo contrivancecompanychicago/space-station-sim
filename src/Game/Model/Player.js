@@ -5,31 +5,36 @@ export type PlayerState = {
 }
 
 export default class PlayerModel{
-    type:string
-    state: PlayerState
-    constructor(){
-        this.state = {money:10000};
-    }
 
-    spendMoney(amount:number):boolean{
-        if(this.state.money>amount){
-            this.state.money -= amount
-            return true;
-        }
-        return false;
-    }
-    addMoney(amount:number){
-        this.state.money += amount
-    }
+	type:string
+	state: PlayerState
 
-    save(){
-        return this.state
-    }
-    clear(){
-        this.state = {money:10001}
-    }
-    load(obj:Object){
-        this.state = obj
-    }
+	constructor(){
+		this.state = {money:10000};
+	}
+
+	spendMoney(amount:number):boolean{
+		if(this.state.money>amount){
+			this.state.money -= amount
+			return true;
+		}
+		return false;
+	}
+
+	addMoney(amount:number){
+		this.state.money += amount
+	}
+
+	save(){
+		return this.state
+	}
+
+	clear(){
+		this.state = {money:10001}
+	}
+	
+	load(obj:Object){
+		this.state = obj
+	}
 
 }

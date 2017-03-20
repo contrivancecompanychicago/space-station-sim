@@ -108,12 +108,6 @@ export default class CharacterModel {
 	}
 
 	save():Object{
-		// let out = {}
-		// keys(this.state).forEach((k) => {
-		// 	let char = this.state[k]
-		// 	out[k] = { x: char.position.x, y: char.position.y, type: char.type }
-		// })
-		// return out 
 		return this.state;
 	}
 	

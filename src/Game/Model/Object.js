@@ -18,33 +18,35 @@ export type ObjectState = {
 }
 
 export default class ObjectModel {
+
 	state: ObjectState;
+
 	constructor(s: ObjectState = {}) {
 		this.state = s;
 	}
+
 	addObject(obj: Obj) {
 		//todo: check overlaps
-		//todo: valid/verify/factory
-		// obj = Factory.create(obj);
 		this.state[obj.getKey()] = obj;
-
 		//state grid not there in test env
 		if(state.grid)	state.grid.cacheObject(obj);
-
 	}
+
 	deleteObject(obj: Obj) {
 		delete this.state[obj.getKey()];
 	}
+
 	getObject(key: string) {
 		return this.state[key]
 	}
+
 	getObjectWithKey(key: string) {
 		return this.state[key]
 	}
+
 	getObjectAtBlock(block: Block):?Obj{
 		if(this.state[block.key])
 			return this.state[block.key];
-
 		//check overlapping
 		let grid = state.grid.getNode(block.x, block.y)
 		if(grid) {
@@ -52,14 +54,16 @@ export default class ObjectModel {
 				return this.state[grid.object];
 			}
 		}
-
 	}
+
 	getObjects(): Array<Obj> {
 		return values(this.state);
 	}
+
 	getObjectsOfType(type: string): Array<Obj> {
 		return values(this.state).filter((o) => { return o.type === type })
 	}
+
 	getObjectsWithAbility(ability: AbilityType): Array<Obj> {
 		return values(this.state).filter((o) => {
 			let type = ObjectData.get(o.type)
@@ -79,6 +83,7 @@ export default class ObjectModel {
 		extend(state.object.state, objects)
 		this.cacheObjects(objects);
 	}
+
 	cacheObjects(objects: ObjectState){
 		keys(objects).forEach((key) => {
 			let obj = objects[key];
@@ -86,9 +91,9 @@ export default class ObjectModel {
 			state.grid.cacheObject(obj)
 		})
 	}
+
 	cacheObject(obj:Obj){
 		let type = ObjectData.get(obj.type)
-
 		// let coord = parseKey(key)
 		let coord = obj.block;
 		let key = makeKey(coord.x, coord.y)
@@ -99,7 +104,6 @@ export default class ObjectModel {
 					state.grid.state[gridkey].object = key;
 			}
 		}
-
 	}
 	
 	save(): Object {
