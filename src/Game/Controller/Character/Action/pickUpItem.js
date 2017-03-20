@@ -1,5 +1,4 @@
 
-import actions from './index'
 
 import type Character from 'Game/Type/Character'
 import type Item from 'Game/Type/Item'

@@ -1,7 +1,6 @@
 //@flow
 import engine from 'Game/engine';
 
-import actions from './index'
 
 import type {AbilityType } from 'Game/Data/Object/Ability'
 import type Character from 'Game/Type/Character'
@@ -9,6 +8,8 @@ import type Character from 'Game/Type/Character'
 import type Obj from 'Game/Type/Object'
 
 import state from 'Game/state'
+
+import pathToBlock from './pathToBlock'
 
 export default function* pathToObjectWithAbility(char: Character, ability: AbilityType): Generator<*,Obj | null,*>{
 
@@ -27,7 +28,7 @@ export default function* pathToObjectWithAbility(char: Character, ability: Abili
     let i = Math.floor(Math.random() * objs.length);
     let obj = objs[i]
     obj.setCharacter(char);
-    yield * actions.pathToBlock(char, obj.getAccessBlock());
+    yield * pathToBlock(char, obj.getAccessBlock());
     obj.removeCharacter();
     return obj;
   }

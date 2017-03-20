@@ -70,8 +70,8 @@ module.exports = function(config) {
 
     singleRun: false,
 
-    browserNoActivityTimeout: 20*1000,
-    browserDisconnectTimeout: 20*1000,
+    browserNoActivityTimeout: 10*1000,
+    browserDisconnectTimeout: 10*1000,
 
   });
 };

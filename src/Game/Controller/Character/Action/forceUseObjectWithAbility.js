@@ -3,7 +3,6 @@
 import type Character from 'Game/Type/Character'
 import type {AbilityType } from 'Game/Data/Object/Ability'
 import type Obj from 'Game/Type/Object'
-import actions from './index'
 import state from 'Game/state'
 import type Block from 'Game/Block'
 
