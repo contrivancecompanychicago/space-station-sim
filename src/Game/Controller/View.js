@@ -38,6 +38,7 @@ export default class ViewController{
 		this.addListeners();
 	}
 
+	//EVENTS
 	handleEvent(e:Event) {
 		switch(e.type){
 			case 'mousedown':
@@ -57,8 +58,7 @@ export default class ViewController{
 				break;
 		}
 	}
-
-
+	
 	onMouseDown(e:Event){
 		state.view.down[e.button] = true;
 		if(e.button === 1){
@@ -77,10 +77,6 @@ export default class ViewController{
 		}
 	}
 
-	isMouseDown(button:number):boolean{
-		return state.view.down[button];
-	}
-
 	onMouseMove(e:Event) {
 		state.view.mouseMove(e);
 	}
@@ -90,8 +86,12 @@ export default class ViewController{
 		if(!d) d = -e.detail;
 		state.view.zoom(d>0, e);
 	}
+	
+	isMouseDown(button:number):boolean{
+		return state.view.down[button];
+	}
 
-	onSelection(selection:Selection){
+	onSelection(selection:Selection){ //links the model up with the dispatcher
 		dispatcher.userAction(selection)
 	}
 
@@ -105,6 +105,7 @@ export default class ViewController{
 			this.container.addEventListener('DOMMouseScroll', this, false);
 		}
 	}
+
 	removeListeners() {
 		if(this.container){
 			this.container.removeEventListener('mousedown', this, false);
@@ -115,11 +116,7 @@ export default class ViewController{
 		}
 	}
 
-
-
 	update(){
-		//calculate whats under mousey
-		// let char = state.character.getClosestCharacterToPoint(this.state.mousePosition);
 		if(state.view.follow){
 			state.view.centerOnPoint(state.view.follow.position.rounded);
 		}
