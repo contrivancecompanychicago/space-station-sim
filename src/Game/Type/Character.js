@@ -134,8 +134,10 @@ export default class Character{
 		this.item.push(item.id)
 	}
 	hasItem(item:?Item):boolean{
-		if(item)
+		if(item){
 			return this.item.indexOf(item.id) >-1
+		}
+		return false;
 	}
 	removeItem(item:Item){
 		this.item.splice(this.item.indexOf(item.id), 1);

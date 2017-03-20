@@ -16,7 +16,7 @@ export default function loadGame(savename:string){
 
 	let save = localStorage[config.save.prefix+savename];
 	if(!save) return;
-	let data:{grid:Object, object:Object, character:Object, item:Object, order:Object} = JSON.parse(save);
+	let data:{grid:any, object:any, character:any, item:any, order:any} = JSON.parse(save);
 
 	let parseKey = require('Util/parseKey').default;
 	let Block = require('Game/Block').default;

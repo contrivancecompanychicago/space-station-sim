@@ -91,8 +91,8 @@ export default class Renderer{
 
 		renderCharacterHighlight(this.state, this.layer)
 
-		if(this.state.ui.state.selected.length>0){
-			let char = this.state.ui.state.selected[0]
+		if(this.state.ui.getSelectedCharacters().length>0){
+			let char = this.state.ui.getSelectedCharacters()[0]
 			renderCharacterPath(this.state, this.layer, char);
 		}
 		//debug

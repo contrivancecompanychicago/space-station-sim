@@ -35,8 +35,8 @@ export class State {
   clear(){
     clear();
   }
-  load(){
-    load();
+  load(savename:string){
+    load(savename);
   }
 
   init() {

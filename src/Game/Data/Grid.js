@@ -2,49 +2,55 @@
 import {keys} from 'lodash';
 
 import DataMap from 'Game/Data/Map'
-export type GridType =
+export type GridType = string;
   // 'BASIC'|
-  'FLOOR'|
-  'TILES1'|
-  'TILES2'|
-  'SHOP'|
-  'BAR'|
-  'WALL'|
-  'DOCK'|
-  'BRICKS'|
-  'ROAD'|
-  'ROAD_LINE'|
-  'CARPET'|
-  'CARPETH'|
-  'GREYFLOOR'|
-  'GREYFLOOR2'|
-  'REDFLOOR'|
-  'REDFLOOR2'|
-  'WOODANGLE'|
-  'WOOD'|
-  'GREYWALL'|
-  'GREYWALL2'|
-  'GREYWALLCORNER'|
-  'GREYWALLCORNER2'|
-  'REDWALL'|
-  'REDWALL2'|
-  'WALLTEST'|
-  'WALLTESTCORNER'|
-  'WALLTESTVERT'|
-  'FOODTRUCKTR'|
-  'FOODTRUCKTM'|
-  'FOODTRUCKTL'|
-  'FOODTRUCKMR'|
-  'FOODTRUCKML'|
-  'FOODTRUCKBR'|
-  'FOODTRUCKBM'|
-  'FOODTRUCKBL'
+  // 'FLOOR'|
+  // 'TILES1'|
+  // 'TILES2'|
+  // 'SHOP'|
+  // 'BAR'|
+  // 'WALL'|
+  // 'DOCK'|
+  // 'BRICKS'|
+  // 'ROAD'|
+  // 'ROAD_LINE'|
+  // 'CARPET'|
+  // 'CARPETH'|
+  // 'GREYFLOOR'|
+  // 'GREYFLOOR2'|
+  // 'REDFLOOR'|
+  // 'REDFLOOR2'|
+  // 'WOODANGLE'|
+  // 'WOOD'|
+  // 'GREYWALL'|
+  // 'GREYWALL2'|
+  // 'GREYWALLCORNER'|
+  // 'GREYWALLCORNER2'|
+  // 'REDWALL'|
+  // 'REDWALL2'|
+  // 'WALLTEST'|
+  // 'WALLTESTCORNER'|
+  // 'WALLTESTVERT'|
+  // 'FOODTRUCKTR'|
+  // 'FOODTRUCKTM'|
+  // 'FOODTRUCKTL'|
+  // 'FOODTRUCKMR'|
+  // 'FOODTRUCKML'|
+  // 'FOODTRUCKBR'|
+  // 'FOODTRUCKBM'|
+  // 'FOODTRUCKBL'
 
 
 export type GridDataType = {
   label:string,
   weight:number,
   image:any,
+  link?:{ //if walls link to nearby walls
+    above:any,
+    below:any,
+    left:any,
+    right:any,
+  }
 }
 
 const Gridz:{[id:GridType]:GridDataType} = {

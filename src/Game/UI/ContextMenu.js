@@ -10,7 +10,8 @@ import type Obj from 'Game/Type/Object'
 type Props = {
 		character: Character,
 		object: Obj,
-		position: {x:number, y:number}
+		position: {x:number, y:number},
+		mouseout: Function,
 }
 
 class ContextMenu extends React.Component{
@@ -34,12 +35,12 @@ class ContextMenu extends React.Component{
 		}
 }
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state:Object, props:Object):Object {
 	return {
 	};
 }
 
-function mapDispatchToProps(dispatch, props) {
+function mapDispatchToProps(dispatch:Function, props:Object):Object {
 	return {
 		mouseout: (id) => {
 			dispatch({type:'CLOSE_CONTEXT_MENU'});

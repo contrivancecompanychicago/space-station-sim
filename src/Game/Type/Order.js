@@ -89,7 +89,7 @@ export default class Order{
 		if (item && item.type == wanted) {
 			return //its already made nothing to do
 		}
-		let data:ItemDataType = ItemData.get(wanted);
+		let data = ItemData.get(wanted);
 		let reqd:?ItemType = data.requires.itemType;
 		if (item && item.type == reqd) {
 			//at the right step
@@ -118,11 +118,14 @@ export default class Order{
 		}
 	}
 	isServable():boolean{
-		if(this.item){
-			if(this.getItem().type == this.type){
-				return true;
-			}
-		}
+		let item = this.getItem();
+
+		if(item && item.type == this.type) return true;
+		// if(this.item){
+		// 	if(this.getItem().type == this.type){
+		// 		return true;
+		// 	}
+		// }
 		return false
 	}
 }
