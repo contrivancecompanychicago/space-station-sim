@@ -1,11 +1,13 @@
 //@flow
 
 import engine from 'Game/engine'
-import actions from './index'
+// import actions from './index'
 import type Character from 'Game/Type/Character'
 import Block from 'Game/Block'
 
 import state from 'Game/state'
+
+import moveToBlockCenter from './moveToBlockCenter'
 
 export default function* wanderToAdjacentTile(char:Character):Generator<*,*,*>{
   //most of the time do nothing
@@ -35,9 +37,8 @@ export default function* wanderToAdjacentTile(char:Character):Generator<*,*,*>{
   if(grids.length>0){
     let i = Math.floor(Math.random()*grids.length);
     let grid:Block = (grids[i]:any);
-    yield *actions.pathToBlock(char, grid)
-    yield *actions.moveToBlockCenter(char, grid)
-    // yield *actions.idle(char, 2)
+    // yield *actions.pathToBlock(char, grid)
+    yield *moveToBlockCenter(char, grid)
   }
 
 }

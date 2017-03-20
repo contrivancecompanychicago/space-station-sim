@@ -2,8 +2,9 @@
 import type Character from 'Game/Type/Character'
 import type Obj from 'Game/Type/Object'
 import state from 'Game/state'
-import actions from './index'
 import type Block from 'Game/Block'
+
+import followPath from './followPath'
 
 export default function* shortestPathToObject(char: Character, obj: Obj): Generator<*,*,*>{
 	let shortestPathLength = Infinity;
@@ -16,7 +17,7 @@ export default function* shortestPathToObject(char: Character, obj: Obj): Genera
 		}
 	})
 	if(shortestPath) {
-		yield * actions.followPath(char, shortestPath)
+		yield * followPath(char, shortestPath)
 	}else{
 		throw new Error('path not found serveOrder')
 	}

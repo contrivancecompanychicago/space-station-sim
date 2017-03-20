@@ -60,7 +60,7 @@ export class Dispatcher{
 							object: obj,
 							position: selection.end.screen
 						});
-					}else{//walk to the place
+					}else {//walk to the place
 					}
 					state.ui.getSelected().forEach(s => {
 						if(s.constructor.name=='Character'){
@@ -89,7 +89,7 @@ export class Dispatcher{
 					if(obj){
 						state.object.deleteObject(obj)
 					}
-				}else{
+				}else if(selection.button == LEFTMOUSE){
 					let proposal = proposer.propose(state);
 					state.object.mergeState(proposal.object.state)
 				}
