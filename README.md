@@ -25,10 +25,10 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
  - achievement system
  - shift click to select multiple
  - rewrite probably whole character shit to 
-    - always have a task
-    - be able to render task details
-      - path
-    - be able to give orders
+		- always have a task
+		- be able to render task details
+			- path
+		- be able to give orders
 
  - lights 
  - air con/heaters
@@ -38,12 +38,12 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
  - space for 1 oven, fridge and prep table
  - save meta (screenshot, save date, time played etc)
  - rewrite renderer
-    - move all context manipulation into layer class
+		- move all context manipulation into layer class
  - use shadowblur for highlighting character (better)
 
  - datamap
-   - all the things (object abilities, character skills)
-   - go through codebase and fix all refs to datamaps
+	 - all the things (object abilities, character skills)
+	 - go through codebase and fix all refs to datamaps
 
  - add timewarp for tests
 
@@ -54,7 +54,16 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
  - autosave/hot dev mode
 
  - add load action that is assigned when game is loaded to pick up where left off
-    - workers and customers
+		- workers and customers
+
+- fridge options:
+		- store 
+			- restaurant goods
+			- customer drinks
+			- desserts
+		- accessible by
+			- customers
+			- staff (default?)
 
 ### PRIORITISED:
  - contextMenu
@@ -68,7 +77,7 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
 write tests
 
  add all getters and setters into manager and types
-  - so state is entirely stringifyable
+	- so state is entirely stringifyable
 
 
 ### credits

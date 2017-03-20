@@ -16,6 +16,9 @@ type Props = {
 
 class ContextMenu extends React.Component{
 		props: Props;
+		moveHere(){
+			console.log('movehere')
+		}
 		render() {
 			// function mouseOut(){
 			//     alert('zombie');
@@ -28,7 +31,7 @@ class ContextMenu extends React.Component{
 			return <div style={style} onMouseOut={this.props.mouseout} className="contextMenu">
 				contextMenu
 				<div className="items">
-					<ContextMenuItem text="move here" fn={()=>{}} />
+					<ContextMenuItem text="move here" fn={this.moveHere} />
 					<ContextMenuItem text="cancel" fn={()=>{}} />
 				</div>
 			</div>
