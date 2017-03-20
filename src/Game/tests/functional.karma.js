@@ -414,13 +414,16 @@ describe('functional end to end', () => {
 		worker = game.state.ui.getSelected()[0];
 	}));
 
-	it('should manually assign drink task', testGen(function* () {
-		mouse.canvasClick(new Block({ x: 3, y: 8 }).center.screen, { button: 2 });
-		// yield sleep(gap);
-		game.engine.fastForward(gap);
-		let lastblock = worker.path[worker.path.length - 1]
-		expect(lastblock.y).toBe(8);
-	}));
+	// it('should manually assign drink task', testGen(function* () {
+	// 	mouse.canvasClick(new Block({ x: 3, y: 8 }).center.screen, { button: 2 });
+	// 	// yield sleep(gap);
+	// 	game.engine.fastForward(gap);
+	// 	let lastblock = worker.path[worker.path.length - 1]
+	// 	expect(lastblock.y).toBe(8);
+	// }));
+	it('should autoserve drinks', () => {
+		mouse.clickCheckbox('label.task-SERVEDRINK input')
+	})
 	it('should serve the drink', testGen(function* () {
 		while (order.status !== 'FULFILLED') {
 			yield sleep(gap);
@@ -428,9 +431,6 @@ describe('functional end to end', () => {
 		expect(order.status).toBe('FULFILLED');
 
 	}));
-	it('should autoserve drinks', () => {
-		mouse.clickCheckbox('label.task-SERVEDRINK input')
-	})
 
 	it('clean up panels', () => {
 		mouse.clickSelector('.hiring.panel .close')

@@ -3,9 +3,7 @@ import * as engine from 'Game/engine';
 
 import state from 'Game/state'
 
-import actions from './index'
 
-// import {Obj} from 'Game/Data/Object';
 import Ability from 'Game/Data/Object/Ability'
 
 import type Character from 'Game/Type/Character'
@@ -14,13 +12,20 @@ import type Obj from 'Game/Type/Object'
 import type {RecipeType} from 'Game/Data/Recipe'
 
 import Order from 'Game/Type/Order'
+
+import pathToObjectWithAbility from './pathToObjectWithAbility'
+import moveToBlockCenter from './moveToBlockCenter'
+import placeItemOnBlock from './placeItemOnBlock'
+import idle from './idle'
+
+
 export default function* customer(char: Character): Generator<*,*,*>{
 
 	char.setStatus('Sitting down')
-	let chair = yield * actions.pathToObjectWithAbility(char, Ability.CHAIR);
+	let chair = yield * pathToObjectWithAbility(char, Ability.CHAIR);
 	if(chair) {
 		chair.setCharacter(char)
-		yield * actions.moveToBlockCenter(char, chair.block)
+		yield * moveToBlockCenter(char, chair.block)
 
 		//PLACE ORDER!
 		let orders: Array<Order> = []
@@ -70,13 +75,13 @@ export default function* customer(char: Character): Generator<*,*,*>{
 			})
 			yield; //wait til I get my shit.
 			if (table) {
-				yield * actions.placeItemOnBlock(char, table.block)
+				yield * placeItemOnBlock(char, table.block)
 			}
 
 		}
 		chair.removeCharacter();
 		char.setStatus('Eating')
-		yield * actions.idle(char, 5);
+		yield * idle(char, 5);
 		state.player.addMoney(20)
 		
 		
@@ -86,22 +91,15 @@ export default function* customer(char: Character): Generator<*,*,*>{
 			char.removeItem(item);
 		}
 		char.setStatus('Leaving')
-		yield * actions.pathToObjectWithAbility(char, Ability.SPAWN)
+		yield * pathToObjectWithAbility(char, Ability.SPAWN)
 
 	}else{
 		char.setStatus('Nowhere to sit')
-		yield *actions.pathToObjectWithAbility(char, Ability.SPAWN)
+		yield *pathToObjectWithAbility(char, Ability.SPAWN)
 	}
-  // yield *actions.wander(char);
-
-  //WIPE CLEAN - hacky
-
 
 	char.setStatus('Gone')
 
 	state.character.removeCharacter(char);
-
-
-
 
 }

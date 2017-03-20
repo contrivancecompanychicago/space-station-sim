@@ -5,7 +5,8 @@ import {keys} from 'lodash';
 import Ability from 'Game/Data/Object/Ability'
 
 import Character from 'Game/Type/Character'
-import actions from 'Game/Controller/Character/Action'
+import customer from 'Game/Controller/Character/Action/customer'
+import worker from 'Game/Controller/Character/Action/worker'
 
 export default class CharacterController{
 
@@ -46,17 +47,11 @@ export default class CharacterController{
 		}
 
 		switch (char.type) {
-			case 'COOK':
-				char.action = actions.cook(char);
-				break;
-			case 'WAITER':
-				char.action = actions.waiter(char);
-				break;
 			case 'CUSTOMER':
-				char.action = actions.customer(char);
+				char.action = customer(char);
 				break;
 			default:
-				char.action = actions.worker(char);
+				char.action = worker(char);
 		}
 	}
 

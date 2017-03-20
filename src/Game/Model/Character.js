@@ -4,7 +4,6 @@
 import Character from 'Game/Type/Character';
 import { keys, defaults, values } from 'lodash';
 import state from 'Game/state'
-import actions from 'Game/Controller/Character/Action';
 import Point from 'Game/Point'
 import Ability from 'Game/Data/Object/Ability'
 import Block from 'Game/Block'

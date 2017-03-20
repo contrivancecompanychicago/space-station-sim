@@ -20,7 +20,8 @@ import Task from 'Game/Type/Task';
 import type {Selection} from 'Game/Type/Selection'
 import type {ObjectState} from 'Game/Model/Object'
 
-import actions from 'Game/Controller/Character/Action/index'
+// import actions from 'Game/Controller/Character/Action/index'
+import pathToBlock from 'Game/Controller/Character/Action/pathToBlock';
 
 import Proposer from 'Game/Action/Proposer';
 const proposer = new Proposer();
@@ -61,17 +62,17 @@ export class Dispatcher{
 							position: selection.end.screen
 						});
 					}else {//walk to the place
-					}
-					state.ui.getSelected().forEach(s => {
-						if(s.constructor.name=='Character'){
-							s.action = actions.pathToBlock(s, selection.end.block)
-							if(obj){
-								if(obj.hasAbility('MAKE_COFFEE')){
-									s.action = actions.useCoffeeAbility(s, obj)
-								}
+						state.ui.getSelected().forEach(s => {
+							if(s.constructor.name=='Character'){
+								s.action = pathToBlock(s, selection.end.block)
+								// if(obj){
+								// 	if(obj.hasAbility('MAKE_COFFEE')){
+								// 		s.action = actions.useCoffeeAbility(s, obj)
+								// 	}
+								// }
 							}
-						}
-					})
+						})
+					}
 					//TODO REFACTOR
 				}
 				break;
