@@ -11,24 +11,30 @@ type Props = {
 		character: Character,
 		object: Obj,
 		position: {x:number, y:number},
-		mouseout: Function,
+		close: Function,
 }
 
 class ContextMenu extends React.Component{
 		props: Props;
+		constructor(props) {
+			super(props);
+			this.moveHere = this.moveHere.bind(this)
+		}
 		moveHere(){
-			console.log('movehere')
+			console.log('movehere', this.props.character, this.props.object)
+		}
+		execAction(actionType){
+			//state.character.execAction(actionType, char, object);
 		}
 		render() {
-			// function mouseOut(){
-			//     alert('zombie');
-			// }
-			// if()
+			/*
+			let letActionTypes = state.character.getPossibleActions(char, obj);
+			 */
 			let style = {
 					left:this.props.position.x - 10,
 					top:this.props.position.y - 10
 			}
-			return <div style={style} onMouseOut={this.props.mouseout} className="contextMenu">
+			return <div style={style} onMouseLeave={this.props.close} className="contextMenu">
 				contextMenu
 				<div className="items">
 					<ContextMenuItem text="move here" fn={this.moveHere} />
@@ -45,7 +51,7 @@ function mapStateToProps(state:Object, props:Object):Object {
 
 function mapDispatchToProps(dispatch:Function, props:Object):Object {
 	return {
-		mouseout: (id) => {
+		close: (id) => {
 			dispatch({type:'CLOSE_CONTEXT_MENU'});
 		}
 	};
