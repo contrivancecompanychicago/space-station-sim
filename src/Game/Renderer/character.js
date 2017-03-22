@@ -4,12 +4,19 @@
 import type {State} from 'Game/state'
 import type Layer from 'Game/Renderer/Layer'
 
+import type Character from 'Game/Type/Character'
+
 import CharData from 'Game/Data/Character';
 
 // let i:any = require('../Data/Character/char1.png')
 
 export default function renderCharacter(state:State, layer:Layer) {
 	state.character.getChars().forEach((char) => {
+		renderSingleCharacter(char, state, layer);
+	});
+}
+
+export function renderSingleCharacter(char:Character, state:State, layer:Layer){
 		
 		const o = char.position.screen
 
@@ -28,5 +35,4 @@ export default function renderCharacter(state:State, layer:Layer) {
 		layer.drawImage(i, 0, 0, i.width, i.height, x, y, w, h)
 		layer.shadowBlur(0);
 
-	});
 }

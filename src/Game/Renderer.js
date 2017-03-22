@@ -6,7 +6,7 @@ import Proposer from 'Game/Action/Proposer';
 import Layer from './Renderer/Layer';
 
 import grid from './Renderer/grid';
-import character from './Renderer/character';
+import character, {renderSingleCharacter} from './Renderer/character';
 import item from './Renderer/item';
 import object from './Renderer/object';
 
@@ -76,7 +76,7 @@ export default class Renderer{
 
 		this.renderGrid()
 
-		character(this.state, this.layer);
+		// character(this.state, this.layer);
 		item(this.state, this.layer);
 
 		renderSelection(this.state, this.layer)
@@ -130,7 +130,12 @@ export default class Renderer{
 				}
 			}
 			//paste characters over the top;
-
+			let maxy = new Block({x:0, y: y}).center.y
+			//while the next char in array is on this row
+			while(chars.length>0 && chars[0].position.y <= maxy){
+				let char = chars.shift();
+				renderSingleCharacter(char, state, layer);
+			}
 		}
 		// })
 		// grid(state, layer);
