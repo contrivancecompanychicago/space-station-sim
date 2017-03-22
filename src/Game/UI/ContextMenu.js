@@ -27,18 +27,24 @@ class ContextMenu extends React.Component{
 			//state.character.execAction(actionType, char, object);
 		}
 		render() {
-			/*
-			let letActionTypes = state.character.getPossibleActions(char, obj);
-			 */
+			
+			let actionTypes = this.props.character.getObjectContextActions(this.props.object);
+			
+			let menuItems = actionTypes.map(a => {
+				return <ContextMenuItem text={a} fn={()=>{}} />
+			})
+
 			let style = {
 					left:this.props.position.x - 10,
 					top:this.props.position.y - 10
 			}
+			
 			return <div style={style} onMouseLeave={this.props.close} className="contextMenu">
-				contextMenu
+				{this.props.object.getData().label}
 				<div className="items">
-					<ContextMenuItem text="move here" fn={this.moveHere} />
 					<ContextMenuItem text="cancel" fn={()=>{}} />
+					<ContextMenuItem text="move here" fn={this.moveHere} />
+					{menuItems}
 				</div>
 			</div>
 		}

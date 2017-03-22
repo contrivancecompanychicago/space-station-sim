@@ -198,4 +198,8 @@ export default class Character{
 		return this.firstname + ' ' + this.lastname
 	}
 
+	getObjectContextActions(obj:Obj):Array<string>{
+		return obj.getData().abilities
+	}
+
 }
