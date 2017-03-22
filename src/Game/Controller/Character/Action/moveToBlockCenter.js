@@ -15,6 +15,21 @@ export default function* moveToBlockCenter(char:Character, block:Block):Generato
 		
 		let dir = Math.atan2(target.y - char.position.y, target.x - char.position.x);
 		
+		let deg = 180/Math.PI*dir
+
+		//right is 0
+		//down is 90
+		//up is -90
+		// left is 180
+
+		switch(deg){
+			case 0: char.setFacing(0);break;
+			case 90: char.setFacing(1);break;
+			case -90: char.setFacing(2);break;
+			case 180: char.setFacing(3);break;
+		}
+		
+
 		let distsq = Math.pow(target.y - char.position.y, 2)+Math.pow(target.x - char.position.x, 2)
 		let amountsq = Math.pow(amount, 2)
 		if(amountsq > distsq){

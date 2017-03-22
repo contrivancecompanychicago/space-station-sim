@@ -19,10 +19,22 @@ export default function renderCharacter(state:State, layer:Layer) {
 export function renderSingleCharacter(char:Character, state:State, layer:Layer){
 		
 		const o = char.position.screen
-
 		let type = CharData.get(char.type);
+
+		let anim;
+		switch(char.getFacing()){
+			case 0: anim = type.walk.right; break;
+			case 1: anim = type.walk.down; break;
+			case 2: anim = type.walk.up; break;
+			case 3: anim = type.walk.left; break;
+		}
+		
+
 		// FLOWHACK fix image flow
 		let i = type.image;
+
+		if(anim) i = anim.currentImage();
+
 		let w = 32*state.view.state.scale
 		let h = 32*state.view.state.scale
 		let x = o.x - w/2;

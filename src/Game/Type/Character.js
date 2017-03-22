@@ -58,6 +58,7 @@ export default class Character{
 			this.addRecipe('MARGHERITA')
 			this.addRecipe('COFFEE')
 		}
+		this.facing = 0;
 
 		//HACK dummy Data
 		// this.assignTaskType('PREP')
@@ -82,6 +83,14 @@ export default class Character{
 		keys(Skills).forEach((s:Skill) => {
 			this.skills[s] = Math.floor(Math.random()*config.character.skill.max);
 		})
+	}
+
+	facing:number;
+	setFacing(facing:number){
+		this.facing = facing
+	}
+	getFacing():number{
+		return this.facing;
 	}
 
 	recipes: {[id:RecipeType]: {level:number, experience: number}}
