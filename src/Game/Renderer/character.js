@@ -38,7 +38,7 @@ export function renderSingleCharacter(char:Character, state:State, layer:Layer){
 		let w = 32*state.view.state.scale
 		let h = 32*state.view.state.scale
 		let x = o.x - w/2;
-		let y = o.y - h/2;
+		let y = o.y - h//2;
 		if(state.ui.state.selected.indexOf(char) >-1){
 			// 	//hack clean this up it goes somewhere else im sure
 			layer.shadowColor('yellow')
