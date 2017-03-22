@@ -63,7 +63,7 @@ export default class Character{
 		// this.assignTaskType('PREP')
 		// this.assignTaskType('COOK')
 		// this.assignTaskType('SERVEFOOD')
-		// this.assignTaskType('SERVEDRINK')
+		// this.assignTaskType('MAKEDRINK')
 	}
 	setPath(path:Array<Block>){
 		this.path = path;

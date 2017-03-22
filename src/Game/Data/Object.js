@@ -28,27 +28,28 @@ import FridgeTall from './Object/FridgeTall'
 import TableTall from './Object/TableTall'
 import ChairTall from './Object/ChairTall'
 import FoodTruck from './Object/FoodTruck'
+import CoffeeMachine from './Object/CoffeeMachine'
 
-export type ObjectType =
-'BED'|
-'DOCK'|
-'DRAWERS'|
-'TEST'|
-'OVEN'|
-'FRIDGE'|
-'TABLE'|
-'TABLE2'|
-'TABLE3'|
-'TABLE4'|
-'TABLE5'|
-'CHAIR'|
-'CHAIR2'|
-'CASHREGISTER'|
-'FRIDGETALL'|
-'TABLETALL'|
-'CHAIRTALL'|
-'STONEOVEN'|
-'FOODTRUCK'
+export type ObjectType = string
+// 'BED'|
+// 'DOCK'|
+// 'DRAWERS'|
+// 'TEST'|
+// 'OVEN'|
+// 'FRIDGE'|
+// 'TABLE'|
+// 'TABLE2'|
+// 'TABLE3'|
+// 'TABLE4'|
+// 'TABLE5'|
+// 'CHAIR'|
+// 'CHAIR2'|
+// 'CASHREGISTER'|
+// 'FRIDGETALL'|
+// 'TABLETALL'|
+// 'CHAIRTALL'|
+// 'STONEOVEN'|
+// 'FOODTRUCK'
 
 export type ObjectBlocksType = 'ACCESS'|'BLOCK'
 export const ObjectBlocks:{[id:ObjectBlocksType]: ObjectBlocksType} = {
@@ -93,6 +94,7 @@ Objs[FridgeTall.id] = FridgeTall;
 Objs[TableTall.id] = TableTall;
 Objs[ChairTall.id] = ChairTall;
 Objs[FoodTruck.id] = FoodTruck;
+Objs[CoffeeMachine.id] = CoffeeMachine
 
 // export default Objs;
 function foodtruck(type:string){

@@ -422,7 +422,7 @@ describe('functional end to end', () => {
 	// 	expect(lastblock.y).toBe(8);
 	// }));
 	it('should autoserve drinks', () => {
-		mouse.clickCheckbox('label.task-SERVEDRINK input')
+		mouse.clickCheckbox('label.task-MAKEDRINK input')
 	})
 	it('should serve the drink', testGen(function* () {
 		while (order.status !== 'FULFILLED') {

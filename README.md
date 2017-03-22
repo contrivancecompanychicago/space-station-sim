@@ -37,21 +37,11 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
  - start in food truck
  - space for 1 oven, fridge and prep table
  - save meta (screenshot, save date, time played etc)
- - rewrite renderer
-		- move all context manipulation into layer class
  - use shadowblur for highlighting character (better)
-
- - datamap
-	 - all the things (object abilities, character skills)
-	 - go through codebase and fix all refs to datamaps
-
- - add timewarp for tests
 
  - ui button log those without keys and add keys to all for css selectability
 
  - fat gloved chef hand cursor with point press and thumbsup
-
- - autosave/hot dev mode
 
  - add load action that is assigned when game is loaded to pick up where left off
 		- workers and customers
@@ -64,21 +54,16 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
 		- accessible by
 			- customers
 			- staff (default?)
-
-### PRIORITISED:
  - contextMenu
  - when assigning tasks clean up current task;
  - give orders direct to selected
- - bring character into renderer - organise by tile Y and render behing close objects
- - make tests much faster with engine.fastForward
+
+### PRIORITISED:
+ 
 
 ### TECH DEBT
 
-write tests
-
- add all getters and setters into manager and types
-	- so state is entirely stringifyable
-
+ - make tests much faster with engine.fastForward
 
 ### credits
 

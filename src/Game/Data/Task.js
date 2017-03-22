@@ -5,7 +5,7 @@ import DataMap from 'Game/Data/Map'
 export type TaskType = 'BUILD'
   |'GREET'
   |'TAKEORDER'
-  |'SERVEDRINK'
+  |'MAKEDRINK'
   |'MAKE'
   |'PREP'
   |'COOK'
@@ -20,7 +20,7 @@ const tasks:{[id:TaskType]:TaskDataType} = {
   'COOK': {label: 'cook'},
   'PREP': {label: 'prep food'},
   'SERVEFOOD': {label: 'serve food'},
-  'SERVEDRINK': {label: 'serve drink'},
+  'MAKEDRINK': {label: 'serve drink'},
   'TAKEORDER': {label: 'take orders'},
   'GREET': {label: 'greet and seat'}
 };
@@ -34,7 +34,7 @@ export let Tasks:{[id:TaskType]:TaskType} = {
   COOK:'COOK',
   PREP:'PREP',
   SERVEFOOD:'SERVEFOOD',
-  SERVEDRINK:'SERVEDRINK',
+  MAKEDRINK:'MAKEDRINK',
   TAKEORDER:'TAKEORDER',
   GREET:'GREET',
 };

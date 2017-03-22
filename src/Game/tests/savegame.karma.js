@@ -119,7 +119,7 @@ describe('savegame.karma.js', () => {
 		expect(mouse.clickSelector('.button-panel-hiring')).toBe(true)
 		yield sleep(gap);
 		expect(mouse.clickSelector('.hireable button')).toBe(true)
-		mouse.clickCheckbox('label.task-SERVEDRINK input')
+		mouse.clickCheckbox('label.task-MAKEDRINK input')
 		worker = game.state.ui.state.selected[0];
 
 		mouse.clickSelector('.hiring.panel .close')
@@ -254,7 +254,7 @@ describe('savegame.karma.js', () => {
 	})
 	it('should set worker to make food', () => {
 		
-		mouse.clickCheckbox('label.task-SERVEDRINK input')
+		mouse.clickCheckbox('label.task-MAKEDRINK input')
 		mouse.clickCheckbox('label.task-MAKE input')
 	});
 	describe('making a pizza', () => {
