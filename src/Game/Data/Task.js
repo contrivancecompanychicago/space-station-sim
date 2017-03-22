@@ -18,11 +18,11 @@ const tasks:{[id:TaskType]:TaskDataType} = {
   // 'BUILD': {label: 'build'},
   'MAKE': {label: 'make food'},
   'COOK': {label: 'cook'},
-  'PREP': {label: 'prep food'},
+  // 'PREP': {label: 'prep food'},
   'SERVEFOOD': {label: 'serve food'},
   'MAKEDRINK': {label: 'make drink'},
-  'TAKEORDER': {label: 'take orders'},
-  'GREET': {label: 'greet and seat'}
+  // 'TAKEORDER': {label: 'take orders'},
+  // 'GREET': {label: 'greet and seat'}
 };
 
 
