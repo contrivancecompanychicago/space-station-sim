@@ -19,6 +19,7 @@ class ContextMenu extends React.Component{
 		constructor(props) {
 			super(props);
 			this.moveHere = this.moveHere.bind(this)
+			this.execAction = this.execAction.bind(this)
 		}
 		moveHere(){
 			console.log('movehere', this.props.character, this.props.object)
@@ -36,7 +37,6 @@ class ContextMenu extends React.Component{
 						case 'ASSIGN': 
 							this.props.character.assignTaskType(a.taskType);
 					}
-
 					}} />
 			})
 

@@ -20,7 +20,7 @@ const tasks:{[id:TaskType]:TaskDataType} = {
   'COOK': {label: 'cook'},
   'PREP': {label: 'prep food'},
   'SERVEFOOD': {label: 'serve food'},
-  'MAKEDRINK': {label: 'serve drink'},
+  'MAKEDRINK': {label: 'make drink'},
   'TAKEORDER': {label: 'take orders'},
   'GREET': {label: 'greet and seat'}
 };
