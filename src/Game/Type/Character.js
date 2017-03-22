@@ -11,6 +11,8 @@ import type {Skill} from 'Game/Data/Character/Skill'
 import type Obj from 'Game/Type/Object'
 import Skills from 'Game/Data/Character/Skill'
 
+import ItemData from 'Game/Data/Item'
+
 import state from 'Game/state'
 
 import CharacterData from 'Game/Data/Character'
@@ -27,6 +29,12 @@ import type Block from 'Game/Block'
 import type {RecipeType} from 'Game/Data/Recipe'
 
 import RecipeData from 'Game/Data/Recipe';
+
+
+export type ObjectContextAction = {
+	type: 'ASSIGN'|'SERVE',
+	taskType: TaskType
+}
 
 export default class Character{
 	id: string;
@@ -198,8 +206,18 @@ export default class Character{
 		return this.firstname + ' ' + this.lastname
 	}
 
-	getObjectContextActions(obj:Obj):Array<string>{
-		return obj.getData().abilities
+	getObjectContextActions(obj:Obj):Array<ObjectContextAction>{
+		let abilities = obj.getData().abilities;
+		let actions = [];
+		ItemData.each((k, v) => {
+			if(abilities.indexOf(v.requires.objectAbility)>-1){
+				actions.push({
+					type: 'ASSIGN',
+					taskType: v.requires.characterTaskType
+				});
+			}
+		})
+		return actions;
 	}
 
 }

@@ -57,6 +57,7 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
  - contextMenu
  - when assigning tasks clean up current task;
  - give orders direct to selected
+ - make it so that selected character notifies ui when it changes to trigger rerender
 
 ### PRIORITISED:
  

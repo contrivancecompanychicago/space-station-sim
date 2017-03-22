@@ -31,7 +31,13 @@ class ContextMenu extends React.Component{
 			let actionTypes = this.props.character.getObjectContextActions(this.props.object);
 			
 			let menuItems = actionTypes.map(a => {
-				return <ContextMenuItem text={a} fn={()=>{}} />
+				return <ContextMenuItem text={a.type+' '+a.taskType} fn={()=>{
+					switch(a.type){
+						case 'ASSIGN': 
+							this.props.character.assignTaskType(a.taskType);
+					}
+
+					}} />
 			})
 
 			let style = {
