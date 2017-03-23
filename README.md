@@ -60,7 +60,10 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
  - make it so that selected character notifies ui when it changes to trigger rerender
 
 ### PRIORITISED:
- 
+ character 
+ pick up serve food
+ contextmenu gets items
+ items selectable like objects
 
 ### TECH DEBT
 
