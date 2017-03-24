@@ -19,6 +19,9 @@ export default class CharacterController{
 	}
 	update(){
 		state.character.getChars().forEach( char => {
+			//detect if it moved
+			let orig = {x:char.position.x, y:char.position.y};
+
 			if (!char.action) {
 				this.newAction(char);
 			}else{
@@ -26,6 +29,8 @@ export default class CharacterController{
 					this.newAction(char);
 				}
 			}
+			char.movedThisFrame = !((orig.x==char.position.x)&&(orig.y==char.position.y))
+
 		});
 		this.spawnUpdate()
 		

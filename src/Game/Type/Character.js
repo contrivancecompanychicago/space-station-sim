@@ -37,6 +37,7 @@ export type ObjectContextAction = {
 }
 
 export default class Character{
+	movedThisFrame:boolean;
 	id: string;
 	type:CharacterType;
 	position: Point;

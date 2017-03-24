@@ -21,12 +21,20 @@ export function renderSingleCharacter(char:Character, state:State, layer:Layer){
 		const o = char.position.screen
 		let type = CharData.get(char.type);
 
+		
+		let animType;
+		if(char.movedThisFrame){
+			animType = type.walk
+		}else{
+			animType = type.stand
+		}
 		let anim;
+
 		switch(char.getFacing()){
-			case 0: anim = type.walk.right; break;
-			case 1: anim = type.walk.down; break;
-			case 2: anim = type.walk.up; break;
-			case 3: anim = type.walk.left; break;
+			case 0: anim = animType.right; break;
+			case 1: anim = animType.down; break;
+			case 2: anim = animType.up; break;
+			case 3: anim = animType.left; break;
 		}
 		
 
