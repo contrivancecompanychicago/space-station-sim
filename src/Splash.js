@@ -10,6 +10,8 @@ export default class Splash{
 	container: HTMLElement
 	constructor(container:HTMLElement){
 		this.container = container
+		//freeplay mode
+		//mission mode
 	}
 	startGame(){
 		this.container.innerHTML = ''
