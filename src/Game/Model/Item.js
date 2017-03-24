@@ -1,6 +1,6 @@
 // @flow
 
-import {values} from 'lodash'
+import { values } from 'lodash'
 import Item from 'Game/Type/Item'
 import Point from 'Game/Point'
 
@@ -22,24 +22,30 @@ export default class ItemModel {
 		delete this.state[item.id];
 	}
 
-	getItems() :Array<Item>{
+	getItems(): Array<Item> {
 		return values(this.state)
 	}
 
-	getItem(id:string):Item{
-		if(!this.state[id])throw new Error('Item does not exist')
+	getItem(id: string): Item {
+		if (!this.state[id]) throw new Error('Item does not exist')
 		return this.state[id];
 	}
 
-	save():Object{
+	save(): Object {
 		return this.state
 	}
 
-	clear(){
+	clear() {
 		this.state = {}
 	}
-	
-	load(obj:Object){
+
+	getItemsAtBlock(block:Block): Array<Item> {
+		return this.getItems().filter(i => {
+			return i.position.block.is(block)
+		})
+	}
+
+	load(obj: Object) {
 		values(obj).forEach(i => {
 			i.position = new Point(i.position);
 			this.addItem(new Item(i));

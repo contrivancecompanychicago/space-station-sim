@@ -218,7 +218,9 @@ export default class Character{
 			}
 		})
 		//look for items to pick up
-		let items = obj.getItems();
+		// let items = obj.getItems();
+		// if(!obj)debugger;
+		let items = state.item.getItemsAtBlock(obj.block)
 		if(items.length >0 ){
 			actions.push({
 				type: 'ASSIGN',
