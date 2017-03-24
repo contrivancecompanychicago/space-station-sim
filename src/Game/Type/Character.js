@@ -217,6 +217,14 @@ export default class Character{
 				});
 			}
 		})
+		//look for items to pick up
+		let items = obj.getItems();
+		if(items.length >0 ){
+			actions.push({
+				type: 'ASSIGN',
+				taskType: 'SERVEFOOD'
+			});
+		}
 		return actions;
 	}
 
