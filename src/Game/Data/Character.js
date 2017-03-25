@@ -35,14 +35,14 @@ let walk = {
 		require('./Character/walk/left/sprite_1.png'),
 		require('./Character/walk/left/sprite_2.png'),
 		require('./Character/walk/left/sprite_3.png'),
-		require('./Character/walk/left/sprite_4.png'),
+		// require('./Character/walk/left/sprite_4.png'),
 	]),
 	right: new Animation([
 		require('./Character/walk/right/right_0.png'),
 		require('./Character/walk/right/right_1.png'),
 		require('./Character/walk/right/right_2.png'),
 		require('./Character/walk/right/right_3.png'),
-		require('./Character/walk/right/right_4.png'),
+		// require('./Character/walk/right/right_4.png'),
 	]),
 	up: new Animation([
 		require('./Character/walk/up/up_0.png'),

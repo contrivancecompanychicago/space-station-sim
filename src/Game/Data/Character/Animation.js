@@ -6,7 +6,7 @@ type Image = {src:string}
 
 //global framerate todo make per character
 let frameRoller = 0;
-setInterval(() => {frameRoller++}, 500)
+setInterval(() => {frameRoller++}, 100)
 
 export default class Animation{
 	frames: Array<Image>
