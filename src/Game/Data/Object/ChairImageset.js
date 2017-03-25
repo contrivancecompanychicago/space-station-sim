@@ -10,17 +10,17 @@ import Ability from 'Game/Data/Object/Ability'
 import Weight from 'Game/Data/Grid/Weight'
 
 const obj:ObjectDataType = {
-  id: 'COFFEEMACHINE',
-  label: 'Coffee Machine',
-  image: require('./coffeemachine.png'),
+  id: 'CHAIRIMAGESET',
+  label: 'chair',
+  image: require('./ChairSide.png'),
   width: 1,
   height: 1,
   rotation: 'IMAGESET',
   imageSet: [
-    require('./CoffeeBack.png'),
-    require('./CoffeeSide.png'),
-    require('./CoffeeFront.png'),
-    require('./CoffeeSide.png'),
+    require('./ChairBack.png'),
+    require('./ChairSide.png'),
+    require('./ChairFront.png'),
+    require('./ChairSide.png'),
   ],
   blocks: [
     {type: a, weight:Weight.ACCESS , x:0, y:1},

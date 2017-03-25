@@ -26,9 +26,11 @@ import CashRegister from './Object/CashRegister';
 import StoneOven from './Object/StoneOven'
 import FridgeTall from './Object/FridgeTall'
 import TableTall from './Object/TableTall'
+import TableRound from './Object/TableRound'
 import ChairTall from './Object/ChairTall'
 import FoodTruck from './Object/FoodTruck'
 import CoffeeMachine from './Object/CoffeeMachine'
+import ChairImageset from './Object/ChairImageset'
 
 export type ObjectType = string
 // 'BED'|
@@ -95,6 +97,10 @@ Objs[TableTall.id] = TableTall;
 Objs[ChairTall.id] = ChairTall;
 Objs[FoodTruck.id] = FoodTruck;
 Objs[CoffeeMachine.id] = CoffeeMachine
+Objs[TableRound.id] = TableRound
+Objs[ChairImageset.id] = ChairImageset
+
+
 
 // export default Objs;
 function foodtruck(type:string){

@@ -34,6 +34,10 @@ export function renderBlockObject(block:Block, object:Obj, state:State, layer:La
 
   if(t.rotation && t.rotation == 'IMAGESET'){
 
+    if(t.imageSet){
+      i = t.imageSet[object.rotation];
+    }
+
     let tl = block.add({x:0, y:-1}).point.screen;
     let br = block.add({x:1, y:1}).point.screen;
     let w = br.x - tl.x
