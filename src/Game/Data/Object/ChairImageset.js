@@ -19,8 +19,8 @@ const obj:ObjectDataType = {
   imageSet: [
     require('./ChairBack.png'),
     require('./ChairSide.png'),
-    require('./ChairFront.png'),
-    require('./ChairSide.png'),
+    require('./ChairFrontv2.png'),
+    require('./ChairFrontv3.png'),
   ],
   blocks: [
     {type: a, weight:Weight.ACCESS , x:0, y:1},
