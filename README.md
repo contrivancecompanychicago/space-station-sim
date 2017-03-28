@@ -59,6 +59,12 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
  - give orders direct to selected
  - make it so that selected character notifies ui when it changes to trigger rerender
  - splash screen/load game
+
+ - mechanic skill
+ 	- ability to repair broken stuff
+	 - call for mechanic - mechanic never fails
+	 - if character fails, shit blows up or something
+
 ### PRIORITISED:
  character 
  pick up serve food
