@@ -17,7 +17,7 @@ const obj:ObjectDataType = {
   height: 1,
   rotation: 'IMAGESET',
   imageSet: [
-    require('./ChairBack.png'),
+    require('./ChairBackv3.png'),
     require('./ChairSide.png'),
     require('./ChairFrontv2.png'),
     require('./ChairFrontv3.png'),

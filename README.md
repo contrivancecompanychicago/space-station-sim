@@ -67,6 +67,8 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
 
  - radial menu
 
+ - city builder
+
 ### PRIORITISED:
  character 
  pick up serve food

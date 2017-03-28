@@ -17,10 +17,10 @@ const obj:ObjectDataType = {
   height: 1,
   rotation: 'IMAGESET',
   imageSet: [
-    require('./CoffeeBack.png'),
-    require('./CoffeeSide.png'),
-    require('./CoffeeFront.png'),
-    require('./CoffeeSide.png'),
+    require('./CoffeeBackv2.png'),
+    require('./CoffeeSidev2.png'),
+    require('./CoffeeFrontv2.png'),
+    require('./CoffeeSidev2.png'),
   ],
   blocks: [
     {type: a, weight:Weight.ACCESS , x:0, y:1},

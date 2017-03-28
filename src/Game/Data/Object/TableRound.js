@@ -11,7 +11,7 @@ import Weight from 'Game/Data/Grid/Weight'
 const obj:ObjectDataType = {
   id: 'TABLEROUND',
   label: 'table',
-  image: require('./TableRound.png'),
+  image: require('./Table_v2.png'),
   width: 1,
   height: 1,
   rotation: 'IMAGESET',
