@@ -65,6 +65,8 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
 	 - call for mechanic - mechanic never fails
 	 - if character fails, shit blows up or something
 
+ - radial menu
+
 ### PRIORITISED:
  character 
  pick up serve food
