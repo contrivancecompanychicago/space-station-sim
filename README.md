@@ -76,6 +76,15 @@ multiple pizzas in oven
 
 save load view state
 
+customer wait timer
+ - customers get annoyed
+ -  customers leave
+
+speech bubble shit
+ - show annoyed
+ - show happy
+ - show timer
+
 ### PRIORITISED:
  character 
  pick up serve food
