@@ -162,7 +162,7 @@ describe('functional end to end', () => {
 	}))
 
 	it('should make some chairs', testGen(function* () {
-		expect(mouse.clickSelector('.button-object-CHAIR2')).toBe(true)
+		expect(mouse.clickSelector('.button-object-CHAIRIMAGESET')).toBe(true)
 
 		mouse.canvasMouseMove(new Block({ x: 5, y: 9 }).center);
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
@@ -177,7 +177,7 @@ describe('functional end to end', () => {
 	}));
 
 	it('should make tables', testGen(function* () {
-		expect(mouse.clickSelector('.button-object-TABLETALL')).toBe(true)
+		expect(mouse.clickSelector('.button-object-TABLEROUND')).toBe(true)
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		yield* mouse.canvasDragRect({ x: 5, y: 10 }, { x: 8, y: 11 })
