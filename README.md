@@ -65,6 +65,13 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
 	 - call for mechanic - mechanic never fails
 	 - if character fails, shit blows up or something
 
+
+object subobjects - like coffeemachine
+ - require an object of type PLATFORM/PLATFORMSMALL etc to be placed
+ object.getAbilities needs to include subobject ability
+
+save load view state
+
 ### PRIORITISED:
  character 
  pick up serve food
