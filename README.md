@@ -70,6 +70,10 @@ object subobjects - like coffeemachine
  - require an object of type PLATFORM/PLATFORMSMALL etc to be placed
  object.getAbilities needs to include subobject ability
 
+multiple pizzas in oven
+ - remove from oven action
+ - add to oven action
+
 save load view state
 
 ### PRIORITISED:

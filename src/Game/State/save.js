@@ -23,7 +23,7 @@ export default function save(savename:string){
 	if(fs){
 		// let path = require('path')
 		// let filename = path.join(__dirname, config.save.prefix+savename+'.js')
-		let filename = 'saves/'+savename+'.js'
+		let filename = 'src/Game/State/saves/'+savename+'.js'
 		console.log('wrote', filename);
 		// console.log(__dirname, config.save, filename)
 		fs.writeFileSync(
