@@ -12,6 +12,7 @@ const obj:ObjectDataType = {
   image: require('./table5.png'),
   width: 1,
   height: 1,
+  rotation: 'IMAGESET',
   blocks: [
     {type: b, weight: Weight.BLOCK, x:0,y:0},
   ],

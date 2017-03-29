@@ -113,7 +113,7 @@ describe('functional end to end', () => {
 		}, gap)
 	})
 	it('should make fridge', testGen(function* () {
-		expect(mouse.clickSelector('.button-object-FRIDGE')).toBe(true)
+		expect(mouse.clickSelector('.button-object-FRIDGETALL')).toBe(true)
 		mouse.canvasMouseMove(new Block({ x: 6, y: 3 }).center);
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
@@ -184,7 +184,7 @@ describe('functional end to end', () => {
 
 	}));
 	it('should make drink things', testGen(function* () {
-		expect(mouse.clickSelector('.button-object-DRAWERS')).toBe(true)
+		expect(mouse.clickSelector('.button-object-COFFEEMACHINE')).toBe(true)
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
 		expect(mouse.clickSelector('button.rotate')).toBe(true)
@@ -458,7 +458,7 @@ describe('functional end to end', () => {
 			expect(localStorage['save_functional']).toBeDefined();
 			setTimeout(done, 100);
 		})
-		it('should load stock', (done) => {
+		xit('should load stock', (done) => {
 			mouse.clickSelector('button#load-large');
 			setTimeout(done, 100);
 		})

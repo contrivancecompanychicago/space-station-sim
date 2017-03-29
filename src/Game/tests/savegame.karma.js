@@ -60,9 +60,9 @@ describe('savegame.karma.js', () => {
 			mouse.canvasMouseUp(toBlock.center.screen)
 			expect(dispatcher.userAction).toHaveBeenCalled();
 		});
-		it('should make drawers', () => {
+		it('should make coffeemachine', () => {
 			expect(mouse.clickSelector('.button-mode-object')).toBe(true)
-			expect(mouse.clickSelector('.button-object-DRAWERS')).toBe(true)
+			expect(mouse.clickSelector('.button-object-COFFEEMACHINE')).toBe(true)
 			mouse.canvasClickBlock(new Block({ x: 6, y: 3 }))
 		});
 		it('should make chair', () => {

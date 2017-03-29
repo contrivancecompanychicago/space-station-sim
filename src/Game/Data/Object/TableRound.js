@@ -17,7 +17,6 @@ const obj:ObjectDataType = {
   rotation: 'IMAGESET',
   blocks: [
     {type: b, weight: Weight.BLOCK, x:0,y:0},
-    
     {type: a, weight:Weight.ACCESS, x:0,y:-1},
     {type: a, weight:Weight.ACCESS, x:0,y:1},
     {type: a, weight:Weight.ACCESS, x:-1,y:0},
