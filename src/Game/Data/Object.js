@@ -71,7 +71,8 @@ export type ObjectDataType = {
   width: number,
   height: number,
   blocks: Array<ObjectBlocksDataType>,
-  abilities: Array<AbilityType>
+  abilities: Array<AbilityType>,
+  depth?: number, //number of pixels to push stuff up to look like its on top of the object
 }
 
 //:{[id:ObjectType]:ObjectDataType}

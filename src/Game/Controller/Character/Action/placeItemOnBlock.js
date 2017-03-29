@@ -5,6 +5,8 @@ import time from 'Game/time';
 import type Character from 'Game/Type/Character';
 import type Block from 'Game/Block'
 
+import state from 'Game/state'
+
 export default function* placeItemOnBlock(char:Character, block:Block):Generator<*,*,*>{
 
 	let items = char.getItems()
@@ -12,6 +14,17 @@ export default function* placeItemOnBlock(char:Character, block:Block):Generator
 
 		let item = items[i]
 		let target = block.center;
+
+		//raise height due to block perspective
+		let obj = state.object.getObjectAtBlock(block);
+		if(obj){
+			let type = obj.getData();
+			let depth = type.depth
+			if(depth){
+				target.y -= depth;
+			}
+		}
+
 		if(item.type == 'COFFEE'){
 			target.x += 10;
 		}
