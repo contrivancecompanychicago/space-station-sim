@@ -102,36 +102,36 @@ Objs[ChairImageset.id] = ChairImageset
 
 
 
-// export default Objs;
-function foodtruck(type:string){
-  let obj = {
-    id: 'FOODTRUCK'+type,
-    label: 'Food Truck',
-    image: require('./Grid/foodtruck/'+type+'.png'),
-    width: 1,
-    height: 1,
-    // rotation: 'IMAGESET',
-    blocks: [
-      {type: 'BLOCK', weight: Weight.BLOCK, x:0, y:0},
-    ],
-    requirements: {},
-    abilities: []
-  }
-  Objs[obj.id] = obj;
-}
+// // export default Objs;
+// function foodtruck(type:string){
+//   let obj = {
+//     id: 'FOODTRUCK'+type,
+//     label: 'Food Truck',
+//     image: require('./Grid/foodtruck/'+type+'.png'),
+//     width: 1,
+//     height: 1,
+//     // rotation: 'IMAGESET',
+//     blocks: [
+//       {type: 'BLOCK', weight: Weight.BLOCK, x:0, y:0},
+//     ],
+//     requirements: {},
+//     abilities: []
+//   }
+//   Objs[obj.id] = obj;
+// }
 
-foodtruck('tr');
-foodtruck('tm');
-foodtruck('tl');
-foodtruck('mr');
-foodtruck('ml');
-foodtruck('br');
-foodtruck('bm');
-foodtruck('bl');
-foodtruck('tr2');
-foodtruck('mr2');
-foodtruck('br2');
-Objs['FOODTRUCKbm'].rotation = 'IMAGESET'
+// foodtruck('tr');
+// foodtruck('tm');
+// foodtruck('tl');
+// foodtruck('mr');
+// foodtruck('ml');
+// foodtruck('br');
+// foodtruck('bm');
+// foodtruck('bl');
+// foodtruck('tr2');
+// foodtruck('mr2');
+// foodtruck('br2');
+// Objs['FOODTRUCKbm'].rotation = 'IMAGESET'
 
 const ObjMap:DataMap<ObjectType, ObjectDataType> = new DataMap();
 
