@@ -86,6 +86,7 @@ const Gridz:{[id:GridType]:GridDataType} = {
       left: require('./Grid/walltest_left.png'),
       right: require('./Grid/walltest_right.png'),
     }},
+  'FLATROOF': {label: 'Roof', weight:0, image:require('./Grid/flatroof.png')},
   // 'WALLTESTCORNER': {label: 'WallTest', weight:0, image:require('./Grid/walltestcorner.png')},
   // 'WALLTESTVERT': {label: 'WallTest', weight:0, image:require('./Grid/walltestvert.png')},
   // 'FOODTRUCKTR': {label: 'Food Truck tr', weight: 0, image:require('./Grid/foodtruck/tr.png')},

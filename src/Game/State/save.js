@@ -28,7 +28,7 @@ export default function save(savename:string){
 		// console.log(__dirname, config.save, filename)
 		fs.writeFileSync(
 			filename,
-			JSON.stringify(out)
+			"module.exports = "+JSON.stringify(out, null, 2)
 			);
 	}
 
