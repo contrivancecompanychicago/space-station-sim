@@ -71,7 +71,8 @@ export type ObjectDataType = {
   width: number,
   height: number,
   blocks: Array<ObjectBlocksDataType>,
-  abilities: Array<AbilityType>
+  abilities: Array<AbilityType>,
+  depth?: number, //number of pixels to push stuff up to look like its on top of the object
 }
 
 //:{[id:ObjectType]:ObjectDataType}
@@ -79,59 +80,59 @@ const Objs:{[id:ObjectType]:ObjectDataType} = {};
 
 // Objs[Bed.id] = Bed;
 // Objs[Dock.id] = Dock;
-Objs[Drawers.id] = Drawers;
+// Objs[Drawers.id] = Drawers;
 Objs[Test.id] = Test;
-Objs[Oven.id] = Oven;
-Objs[Fridge.id] = Fridge;
+// Objs[Oven.id] = Oven;
+// Objs[Fridge.id] = Fridge;
 // Objs[Table.id] = Table;
 // Objs[Table2.id] = Table2;
 Objs[Table3.id] = Table3;
 Objs[Table4.id] = Table4;
 Objs[Table5.id] = Table5;
 // Objs[Chair.id] = Chair;
-Objs[Chair2.id] = Chair2;
+// Objs[Chair2.id] = Chair2;
 Objs[CashRegister.id] = CashRegister;
 Objs[StoneOven.id] = StoneOven;
 Objs[FridgeTall.id] = FridgeTall;
-Objs[TableTall.id] = TableTall;
-Objs[ChairTall.id] = ChairTall;
-Objs[FoodTruck.id] = FoodTruck;
+// Objs[TableTall.id] = TableTall;
+// Objs[ChairTall.id] = ChairTall;
+// Objs[FoodTruck.id] = FoodTruck;
 Objs[CoffeeMachine.id] = CoffeeMachine
 Objs[TableRound.id] = TableRound
 Objs[ChairImageset.id] = ChairImageset
 
 
 
-// export default Objs;
-function foodtruck(type:string){
-  let obj = {
-    id: 'FOODTRUCK'+type,
-    label: 'Food Truck',
-    image: require('./Grid/foodtruck/'+type+'.png'),
-    width: 1,
-    height: 1,
-    // rotation: 'IMAGESET',
-    blocks: [
-      {type: 'BLOCK', weight: Weight.BLOCK, x:0, y:0},
-    ],
-    requirements: {},
-    abilities: []
-  }
-  Objs[obj.id] = obj;
-}
+// // export default Objs;
+// function foodtruck(type:string){
+//   let obj = {
+//     id: 'FOODTRUCK'+type,
+//     label: 'Food Truck',
+//     image: require('./Grid/foodtruck/'+type+'.png'),
+//     width: 1,
+//     height: 1,
+//     // rotation: 'IMAGESET',
+//     blocks: [
+//       {type: 'BLOCK', weight: Weight.BLOCK, x:0, y:0},
+//     ],
+//     requirements: {},
+//     abilities: []
+//   }
+//   Objs[obj.id] = obj;
+// }
 
-foodtruck('tr');
-foodtruck('tm');
-foodtruck('tl');
-foodtruck('mr');
-foodtruck('ml');
-foodtruck('br');
-foodtruck('bm');
-foodtruck('bl');
-foodtruck('tr2');
-foodtruck('mr2');
-foodtruck('br2');
-Objs['FOODTRUCKbm'].rotation = 'IMAGESET'
+// foodtruck('tr');
+// foodtruck('tm');
+// foodtruck('tl');
+// foodtruck('mr');
+// foodtruck('ml');
+// foodtruck('br');
+// foodtruck('bm');
+// foodtruck('bl');
+// foodtruck('tr2');
+// foodtruck('mr2');
+// foodtruck('br2');
+// Objs['FOODTRUCKbm'].rotation = 'IMAGESET'
 
 const ObjMap:DataMap<ObjectType, ObjectDataType> = new DataMap();
 

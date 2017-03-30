@@ -12,15 +12,15 @@ import Weight from 'Game/Data/Grid/Weight'
 const obj:ObjectDataType = {
   id: 'COFFEEMACHINE',
   label: 'Coffee Machine',
-  image: require('./coffeemachine.png'),
+  image: require('./CoffeeFrontv3.png'),
   width: 1,
   height: 1,
   rotation: 'IMAGESET',
   imageSet: [
-    require('./CoffeeBackv2.png'),
-    require('./CoffeeSidev2.png'),
-    require('./CoffeeFrontv2.png'),
-    require('./CoffeeSidev2.png'),
+    require('./CoffeeFrontv3.png'),
+    require('./CoffeeSidev3.png'),
+    require('./CoffeeBackv3.png'),
+    require('./CoffeeSidev3.png'),
   ],
   blocks: [
     {type: a, weight:Weight.ACCESS , x:0, y:1},

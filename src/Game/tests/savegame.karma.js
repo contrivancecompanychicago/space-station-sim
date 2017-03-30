@@ -60,13 +60,13 @@ describe('savegame.karma.js', () => {
 			mouse.canvasMouseUp(toBlock.center.screen)
 			expect(dispatcher.userAction).toHaveBeenCalled();
 		});
-		it('should make drawers', () => {
+		it('should make coffeemachine', () => {
 			expect(mouse.clickSelector('.button-mode-object')).toBe(true)
-			expect(mouse.clickSelector('.button-object-DRAWERS')).toBe(true)
+			expect(mouse.clickSelector('.button-object-COFFEEMACHINE')).toBe(true)
 			mouse.canvasClickBlock(new Block({ x: 6, y: 3 }))
 		});
 		it('should make chair', () => {
-			expect(mouse.clickSelector('.button-object-CHAIR2')).toBe(true)
+			expect(mouse.clickSelector('.button-object-CHAIRIMAGESET')).toBe(true)
 			mouse.canvasClickBlock(new Block({ x: 6, y: 9 }))
 		})
 		it('should make spawn', () => {
@@ -236,7 +236,7 @@ describe('savegame.karma.js', () => {
 		expect(mouse.clickSelector('.button-object-STONEOVEN')).toBe(true)
 		mouse.canvasClickBlock(new Block({ x: 4, y: 3 }))
 		yield sleep(gap);
-		expect(mouse.clickSelector('.button-object-TABLETALL')).toBe(true)
+		expect(mouse.clickSelector('.button-object-TABLEROUND')).toBe(true)
 		mouse.canvasClickBlock(new Block({ x: 9, y: 9 }))
 	}))
 	it('should slow down', () => {

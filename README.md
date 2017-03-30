@@ -69,6 +69,27 @@ and goto [localhost:8080/dist](http://localhost:8080/dist)
 
  - city builder
 
+object subobjects - like coffeemachine
+ - require an object of type PLATFORM/PLATFORMSMALL etc to be placed
+ object.getAbilities needs to include subobject ability
+
+ make object depths not pixel based
+
+multiple pizzas in oven
+ - remove from oven action
+ - add to oven action
+
+save load view state
+
+customer wait timer
+ - customers get annoyed
+ -  customers leave
+
+speech bubble shit
+ - show annoyed
+ - show happy
+ - show timer
+
 ### PRIORITISED:
  character 
  pick up serve food

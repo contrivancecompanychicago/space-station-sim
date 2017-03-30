@@ -11,13 +11,13 @@ import Weight from 'Game/Data/Grid/Weight'
 const obj:ObjectDataType = {
   id: 'TABLEROUND',
   label: 'table',
-  image: require('./Table_v2.png'),
+  image: require('./Table_v3.png'),
   width: 1,
   height: 1,
+  depth: 8,
   rotation: 'IMAGESET',
   blocks: [
     {type: b, weight: Weight.BLOCK, x:0,y:0},
-    
     {type: a, weight:Weight.ACCESS, x:0,y:-1},
     {type: a, weight:Weight.ACCESS, x:0,y:1},
     {type: a, weight:Weight.ACCESS, x:-1,y:0},

@@ -17,18 +17,18 @@ const obj:ObjectDataType = {
   height: 1,
   rotation: 'IMAGESET',
   imageSet: [
-    require('./ChairBackv3.png'),
-    require('./ChairSide.png'),
-    require('./ChairFrontv2.png'),
     require('./ChairFrontv3.png'),
+    require('./ChairSidev3.png'),
+    require('./ChairBackv3.png'),
+    require('./ChairSidev3.png'),
   ],
   blocks: [
     {type: a, weight:Weight.ACCESS , x:0, y:1},
-    {type: b, weight:Weight.BLOCK , x:0,y:0},
+    {type: b, weight:Weight.CHAIR , x:0,y:0},
   ],
   requirements: {
   },
-  abilities: [Ability.MAKE_COFFEE],
+  abilities: [Ability.CHAIR],
 }
 
 export default obj
