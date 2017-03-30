@@ -33,10 +33,12 @@ class ContextMenu extends React.Component{
 			
 			let menuItems = actionTypes.map(a => {
 				return <ContextMenuItem key={a.type+a.taskType} text={a.type+' '+a.taskType} fn={()=>{
+					//todo: refactor pull out into function
 					switch(a.type){
 						case 'ASSIGN': 
 							this.props.character.assignTaskType(a.taskType);
 					}
+					this.props.close();
 					}} />
 			})
 
@@ -63,7 +65,7 @@ function mapStateToProps(state:Object, props:Object):Object {
 
 function mapDispatchToProps(dispatch:Function, props:Object):Object {
 	return {
-		close: (id) => {
+		close: () => {
 			dispatch({type:'CLOSE_CONTEXT_MENU'});
 		}
 	};
