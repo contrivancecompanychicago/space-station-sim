@@ -9,6 +9,7 @@ export type TaskType = 'BUILD'
   |'MAKE'
   |'PREP'
   |'COOK'
+  |'EXTRACTOVEN'
   |'SERVEFOOD'
 export type TaskDataType = {
   label:string
@@ -16,8 +17,9 @@ export type TaskDataType = {
 
 const tasks:{[id:TaskType]:TaskDataType} = {
   // 'BUILD': {label: 'build'},
-  'MAKE': {label: 'make food'},
-  'COOK': {label: 'cook'},
+  'MAKE': {label: 'make uncooked food'},
+  'COOK': {label: 'put food into oven'},
+  'EXTRACTOVEN': {label: 'take food from oven'},
   // 'PREP': {label: 'prep food'},
   'SERVEFOOD': {label: 'serve food'},
   'MAKEDRINK': {label: 'make drink'},

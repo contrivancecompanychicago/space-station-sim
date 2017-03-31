@@ -89,33 +89,49 @@ export default class Order{
 		if (item && item.type == wanted) {
 			return //its already made nothing to do
 		}
-		let data = ItemData.get(wanted);
-		let reqd:?ItemType = data.requires.itemType;
-		if (item && item.type == reqd) {
-			//at the right step
-			return wanted
-		}
-		if (!reqd) {
-			return wanted;
-		}
-		wanted = reqd;
 
-		data = ItemData.get(wanted)
-		reqd = data.requires.itemType
-		if (item && item.type == reqd) {
-			//at the right step
-			return wanted
-		}
-		if (!reqd) {
-			return wanted;
-		}
-		wanted = reqd;
+		let data 
+		let reqd:?ItemType
 
-		data = ItemData.get(wanted)
-		reqd = data.requires.itemType
-		if (!reqd) {
-			return wanted;
+		for(let i = 0; i<10; i++){
+
+			data = ItemData.get(wanted);
+			reqd = data.requires.itemType;
+			if (item && item.type == reqd) {
+				//at the right step
+				return wanted
+			}
+			if (!reqd) {
+				return wanted;
+			}
+			wanted = reqd;
 		}
+
+		throw new Error('10 iterations and cant find order next step')
+
+
+
+
+		// data = ItemData.get(wanted)
+		// reqd = data.requires.itemType
+		// if (item && item.type == reqd) {
+		// 	//at the right step
+		// 	return wanted
+		// }
+		// if (!reqd) {
+		// 	return wanted;
+		// }
+		// wanted = reqd;
+
+
+
+		// data = ItemData.get(wanted)
+		// reqd = data.requires.itemType
+		// if (!reqd) {
+		// 	return wanted;
+		// }
+
+
 	}
 	isServable():boolean{
 		let item = this.getItem();

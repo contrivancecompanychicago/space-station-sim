@@ -37,7 +37,6 @@ describe('Type/Order', () => {
             expect(order.nextStep()).toBe('PIZZA')
         })
         it('should return undefined if the pizza is already made', () => {
-            
             item = new Item({type:'PIZZA'});
             state.item.addItem(item);
             order.setItem(item);

@@ -7,7 +7,7 @@ import {keys} from 'lodash';
 import type {TaskType} from 'Game/Data/Task'
 import type {AbilityType} from 'Game/Data/Object/Ability'
 
-export type ItemType = 'TEST'|'BASE'|'PIZZAUNCOOKED'|'PIZZA'|'PIZZADONE'|'COFFEE'|'COFFEEDONE'
+export type ItemType = 'TEST'|'BASE'|'PIZZAUNCOOKED'|'PIZZACOOKED'|'PIZZA'|'PIZZADONE'|'COFFEE'|'COFFEEDONE'
 
 export type ItemRequires = {
   objectAbility?: AbilityType,
@@ -44,10 +44,20 @@ const Items:{[id:ItemType]:ItemDataType} = {
     },
     image: require('./Item/pizzauncooked.png')
   },
+  'PIZZACOOKED': {
+    label: 'cooked pizza',
+    requires: {
+      itemType: 'PIZZAUNCOOKED',
+      objectAbility: 'OVEN',
+      leaveAtObjectAbility: 'OVEN',
+      characterTaskType: 'COOK'
+    },
+    image: require('./Object/test.png')
+  },
   'PIZZA': {
     label: 'ingredients', 
     requires:{
-      itemType: 'PIZZAUNCOOKED',
+      itemType: 'PIZZACOOKED',
       objectAbility: 'OVEN',
       leaveAtObjectAbility: 'SERVE_TABLE',
       characterTaskType: 'COOK'
