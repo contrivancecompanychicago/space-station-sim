@@ -44,6 +44,16 @@ const Items:{[id:ItemType]:ItemDataType} = {
     },
     image: require('./Item/pizzauncooked.png')
   },
+  'PIZZACOOKED': {
+    label: 'cooked pizza',
+    requires: {
+      itemType: 'PIZZAUNCOOKED',
+      objectAbility: 'OVEN',
+      leaveAtObjectAbility: 'OVEN',
+      characterTaskType: 'COOK'
+    },
+    image: require('./Object/test.png')
+  },
   'PIZZA': {
     label: 'ingredients', 
     requires:{
