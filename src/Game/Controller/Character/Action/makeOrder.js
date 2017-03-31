@@ -50,7 +50,9 @@ export default function* makeOrder(char: Character, order: Order): Generator<*,*
 			}
 		}
 		// console.log(item, data.requires);
-		yield * idle(char, 2);
+		if(data.requires.time){
+			yield * idle(char, data.requires.time);
+		}
 		
 		if (item) {
 			item.type = making;

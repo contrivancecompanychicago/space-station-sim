@@ -16,6 +16,7 @@ import config from 'Game/config'
 export default function listSaves(){
 
 	localStorage['save_livios'] = JSON.stringify(require('./saves/livios'))
+	localStorage['save_blank'] = JSON.stringify(require('./saves/blank'))
 
 	// let keys = ctx.keys();
 	// keys.forEach((k) => {
