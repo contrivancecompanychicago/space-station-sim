@@ -22,7 +22,8 @@ class ContextMenu extends React.Component{
 			this.execAction = this.execAction.bind(this)
 		}
 		moveHere(){
-			console.log('movehere', this.props.character, this.props.object)
+			// console.log('movehere', this.props.character, this.props.object)
+			this.props.character.moveToObject(this.props.object);
 		}
 		execAction(actionType){
 			//state.character.execAction(actionType, char, object);
@@ -48,7 +49,6 @@ class ContextMenu extends React.Component{
 			return <div style={style} onMouseLeave={this.props.close} className="contextMenu">
 				{this.props.object.getData().label}
 				<div className="items">
-					<ContextMenuItem text="cancel" fn={()=>{}} />
 					<ContextMenuItem text="move here" fn={this.moveHere} />
 					{menuItems}
 				</div>

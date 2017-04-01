@@ -13,8 +13,8 @@ import placeItemOnBlock from './placeItemOnBlock';
 
 export default function* forceUseObjectWithAbility(char: Character, ability: AbilityType): Generator<*,Obj,*>{
 	let shortestPathLength = Infinity
-	let shortestPath:Array<Block>
-	let shortestPathObject:Obj
+	let shortestPath:Array<Block>;
+	let shortestPathObject:Obj;
 
 	let obj = char.getObject(); //OVERRIDE
 
