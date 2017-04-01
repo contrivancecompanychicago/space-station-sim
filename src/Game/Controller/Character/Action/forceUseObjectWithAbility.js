@@ -9,7 +9,7 @@ import type Block from 'Game/Block'
 import findObjects from './findObjects';
 import followPath from './followPath';
 import placeItemOnBlock from './placeItemOnBlock';
-
+import moveToPoint from './moveToPoint'
 
 export default function* forceUseObjectWithAbility(char: Character, ability: AbilityType): Generator<*,Obj,*>{
 	let shortestPathLength = Infinity
@@ -45,6 +45,12 @@ export default function* forceUseObjectWithAbility(char: Character, ability: Abi
 	if(shortestPathObject&&shortestPath) {
 		shortestPathObject.setCharacter(char);
 		yield * followPath(char, shortestPath);
+
+		let edge = shortestPathObject.block.center
+			.add(char.position.subtract(shortestPathObject.block.center).multiply(.7))
+
+		yield * moveToPoint(char, edge)
+
 		yield * placeItemOnBlock(char, shortestPathObject.block)
 		shortestPathObject.removeCharacter();
 		return shortestPathObject
