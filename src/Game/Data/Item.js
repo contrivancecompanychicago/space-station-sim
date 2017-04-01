@@ -13,7 +13,8 @@ export type ItemRequires = {
   objectAbility?: AbilityType,
   leaveAtObjectAbility?: AbilityType,
   itemType?: ItemType,
-  characterTaskType?: TaskType
+  characterTaskType?: TaskType,
+  time?:number
 }
 export type ItemDataType = {
   label:string,
@@ -49,7 +50,7 @@ const Items:{[id:ItemType]:ItemDataType} = {
     requires: {
       itemType: 'PIZZAUNCOOKED',
       objectAbility: 'OVEN',
-      leaveAtObjectAbility: 'OVEN',
+      // leaveAtObjectAbility: 'OVEN',
       characterTaskType: 'COOK'
     },
     image: require('./Object/test.png')
@@ -58,9 +59,9 @@ const Items:{[id:ItemType]:ItemDataType} = {
     label: 'ingredients', 
     requires:{
       itemType: 'PIZZACOOKED',
-      objectAbility: 'OVEN',
+      // objectAbility: 'OVEN',
       leaveAtObjectAbility: 'SERVE_TABLE',
-      characterTaskType: 'COOK'
+      characterTaskType: 'EXTRACTOVEN'
     },
     image: require('./Item/pizza.png')
   },
