@@ -48,6 +48,13 @@ export default class Point{
       y: this.y - diff.y,
     })
   }
+  multiply(num:number){
+    
+    return new Point({
+      x: this.x * num,
+      y: this.y * num,
+    })
+  }
 
   get screen():{x:number, y:number}{
     if(!state) throw new Error('Point state not registered')

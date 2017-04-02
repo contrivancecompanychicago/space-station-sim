@@ -38,6 +38,7 @@ export let Tasks:{[id:TaskType]:TaskType} = {
   SERVEFOOD:'SERVEFOOD',
   MAKEDRINK:'MAKEDRINK',
   TAKEORDER:'TAKEORDER',
+  EXTRACTOVEN:'EXTRACTOVEN',
   GREET:'GREET',
 };
 keys(tasks).forEach((key:TaskType) => {

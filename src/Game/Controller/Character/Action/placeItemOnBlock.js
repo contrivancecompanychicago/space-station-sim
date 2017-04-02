@@ -7,6 +7,8 @@ import type Block from 'Game/Block'
 
 import state from 'Game/state'
 
+import moveToPoint from './moveToPoint'
+
 export default function* placeItemOnBlock(char:Character, block:Block):Generator<*,*,*>{
 
 	let items = char.getItems()

@@ -42,6 +42,7 @@ export default function* makeOrder(char: Character, order: Order): Generator<*,*
 		if (data.requires.objectAbility) {
 			//path to the appropriate object
 			let obj = yield * forceUseObjectWithAbility(char, data.requires.objectAbility)
+			
 			if (!item) {
 				item = new Item({ position: obj.block.center, type: making })
 				state.item.addItem(item);

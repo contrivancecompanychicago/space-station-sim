@@ -1,34 +1,25 @@
 // @flow
 
-import type Point from 'Game/Point';
 import {defaults, keys} from 'lodash';
-import uniqid from 'Util/uniqid';
-import namegen from 'Util/namegen'
-
-
-import type {CharacterType} from 'Game/Data/Character'
-import type {Skill} from 'Game/Data/Character/Skill'
-import type Obj from 'Game/Type/Object'
-import Skills from 'Game/Data/Character/Skill'
-
-import ItemData from 'Game/Data/Item'
-
-import state from 'Game/state'
-
 import CharacterData from 'Game/Data/Character'
-
-import type Task from 'Game/Type/Task'
-import type Item from 'Game/Type/Item'
-
-import type {TaskType} from 'Game/Data/Task'
-
 import config from 'Game/config'
-
-import type Block from 'Game/Block'
-
-import type {RecipeType} from 'Game/Data/Recipe'
-
+import ItemData from 'Game/Data/Item'
+import namegen from 'Util/namegen'
 import RecipeData from 'Game/Data/Recipe';
+import Skills from 'Game/Data/Character/Skill'
+import state from 'Game/state'
+import type {CharacterType} from 'Game/Data/Character'
+import type {RecipeType} from 'Game/Data/Recipe'
+import type {Skill} from 'Game/Data/Character/Skill'
+import type {TaskType} from 'Game/Data/Task'
+import type Block from 'Game/Block'
+import type Item from 'Game/Type/Item'
+import type Obj from 'Game/Type/Object'
+import type Point from 'Game/Point';
+import type Task from 'Game/Type/Task'
+import uniqid from 'Util/uniqid';
+
+import shortestPathToObject from 'Game/Controller/Character/Action/shortestPathToObject';
 
 
 export type ObjectContextAction = {
@@ -68,12 +59,17 @@ export default class Character{
 			this.addRecipe('COFFEE')
 		}
 		this.facing = 0;
-
 		//HACK dummy Data
 		// this.assignTaskType('PREP')
 		// this.assignTaskType('COOK')
 		// this.assignTaskType('SERVEFOOD')
 		// this.assignTaskType('MAKEDRINK')
+	}
+	moveToObject(obj:Obj){
+		this.setAction(shortestPathToObject(this, obj));
+	}
+	setAction(action:Generator<*,*,*>){
+		this.action = action;
 	}
 	setPath(path:Array<Block>){
 		this.path = path;
