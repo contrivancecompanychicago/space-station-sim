@@ -23,11 +23,11 @@ export default function* moveToPoint(char:Character, point:Point):Generator<*,*,
 		//up is -90
 		// left is 180
 
-		switch(deg){
+		switch(Math.round(deg/90)){
 			case 0: char.setFacing(0);break;
-			case 90: char.setFacing(1);break;
-			case -90: char.setFacing(2);break;
-			case 180: char.setFacing(3);break;
+			case 1: char.setFacing(1);break;
+			case -1: char.setFacing(2);break;
+			case 2: char.setFacing(3);break;
 		}
 		
 
