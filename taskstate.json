@@ -1,0 +1,47 @@
+{
+  "item": [
+    {
+      "type": "state",
+      "name": "prioritised",
+      "id": "PRIORITY"
+    },
+    {
+      "type": "state",
+      "name": "in dev",
+      "id": "DEV"
+    },
+    {
+      "type": "state",
+      "name": "done",
+      "id": "DONE"
+    },
+    {
+      "type": "task",
+      "name": "Test",
+      "description": "testing",
+      "state": "PRIORITY",
+      "id": "1491305549092"
+    }
+  ],
+  "type": [
+    {
+      "name": "state",
+      "dataFields": {
+        "name": "string"
+      },
+      "id": "state",
+      "attributeFields": {}
+    },
+    {
+      "name": "task",
+      "dataFields": {
+        "name": "string",
+        "description": "string"
+      },
+      "attributeFields": {
+        "state": {}
+      },
+      "id": "task"
+    }
+  ]
+}
