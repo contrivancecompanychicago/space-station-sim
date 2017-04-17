@@ -124,4 +124,10 @@ export default class CharacterModel {
 		})
 	}
 
+	getCharactersAtBlock(block:Block):Array<Character>{
+		return this.getChars().filter(c => {
+			return block.is(c.position.block);
+		})
+	}
+
 }

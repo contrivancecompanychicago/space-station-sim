@@ -52,13 +52,23 @@ export class Dispatcher{
 					}
 				}
 				if(selection.button === RIGHTMOUSE){
-					//ASSIGN TASKS
-					let obj = state.object.getObjectAtBlock(selection.end.block);
+					
+					//CACHE ALL THIS SHIT NOW
+					// dont figure this out in render 
+					// because game state is changing constantly
+					let block = selection.end.block
+					let obj = state.object.getObjectAtBlock(block);
+					let items = state.item.getItemsAtBlock(block);
+					let characters = state.character.getCharactersAtBlock(block);
+
 					if(obj){//show menu
 						state.ui.dispatch({
 							type:'SHOW_CONTEXT_MENU', 
 							character: state.ui.getSelected()[0],
+							block: block,
 							object: obj,
+							items: items,
+							characters: characters,
 							position: selection.end.screen
 						});
 					}else {//walk to the place

@@ -203,6 +203,10 @@ export default class Character{
 		return this.firstname + ' ' + this.lastname
 	}
 
+	getItemContextActions(){
+		
+	}
+
 	getObjectContextActions(obj:Obj):Array<ObjectContextAction>{
 		let abilities = obj.getData().abilities;
 		let actions = [];

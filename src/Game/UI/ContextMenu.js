@@ -30,28 +30,46 @@ class ContextMenu extends React.Component{
 		}
 		render() {
 			
-			let actionTypes = this.props.character.getObjectContextActions(this.props.object);
+			// let actionTypes = this.props.character.getObjectContextActions(this.props.object);
 			
-			let menuItems = actionTypes.map(a => {
-				return <ContextMenuItem key={a.type+a.taskType} text={a.type+' '+a.taskType} fn={()=>{
-					switch(a.type){
-						case 'ASSIGN': 
-							this.props.character.assignTaskType(a.taskType);
-					}
-					}} />
-			})
+			// //OBJECT
+			// let objectActions = actionTypes.map(a => {
+			// 	return <ContextMenuItem key={a.type+a.taskType} text={a.type+' '+a.taskType} fn={()=>{
+			// 		switch(a.type){
+			// 			case 'ASSIGN': 
+			// 				this.props.character.assignTaskType(a.taskType);
+			// 		}
+			// 		}} />
+			// })
 
 			let style = {
 					left:this.props.position.x - 10,
 					top:this.props.position.y - 10
 			}
-			
+
 			return <div style={style} onMouseLeave={this.props.close} className="contextMenu">
+				block {this.props.block.x}-{this.props.block.y}
+				<div className="block">
+					<ContextMenuItem text="move here" fn={this.moveHere} />
+				</div>
 				{this.props.object.getData().label}
 				<div className="items">
-					<ContextMenuItem text="move here" fn={this.moveHere} />
-					{menuItems}
+					{this.props.character.getObjectContextActions(this.props.object).map(a => {
+						return <ContextMenuItem key={a.type+a.taskType} text={a.type+' '+a.taskType} fn={()=>{
+							switch(a.type){
+								case 'ASSIGN': 
+									this.props.character.assignTaskType(a.taskType);
+							}
+							}} />
+					})}
 				</div>
+				{this.props.items.map((i:Item) => {
+					return <div>
+						{i.getData().label}
+						<ContextMenuItem text="pick up" fn={()=>{console.log('i', i);
+						}} />
+					</div>
+				})}
 			</div>
 		}
 }

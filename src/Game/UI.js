@@ -62,6 +62,9 @@ class UI extends React.Component {
     character={this.props.contextMenu.character} 
     object={this.props.contextMenu.object}
     position={this.props.contextMenu.position}
+    block={this.props.contextMenu.block}
+    items={this.props.contextMenu.items}
+    characters={this.props.contextMenu.characters}
      />)
 
     this.props.selected.forEach((s, i) => {
