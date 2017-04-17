@@ -14,7 +14,36 @@
       "id": "DONE",
       "type": "state",
       "name": "done"
+    },
+    {
+      "show": true,
+      "type": "epic",
+      "name": "context menu",
+      "id": "EPIC-1"
+    },
+    {
+      "show": true,
+      "type": "task",
+      "name": "list items context ment",
+      "id": "TASK-2",
+      "epic": "EPIC-1",
+      "state": "DEV"
+    },
+    {
+      "show": true,
+      "type": "task",
+      "name": "object context ment",
+      "id": "TASK-3",
+      "epic": "EPIC-1",
+      "state": "DEV"
+    },
+    {
+      "show": true,
+      "type": "task",
+      "name": "drop in new graphics",
+      "id": "TASK-4",
+      "state": "DEV"
     }
   ],
-  "counter": 1
+  "counter": 5
 }

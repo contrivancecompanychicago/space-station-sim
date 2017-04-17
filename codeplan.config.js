@@ -1,17 +1,25 @@
 var codeplanConfig = {
 	board: [
 		{
-			name: "Tasks Kanban",
+			name: "Tasks",
 			url: "tasks",
 			type: "task",
 			filter: (i) => {return !i.release},
 			column: {
 				type: 'state',
 			}
-
 		},
 		{
-			name: "Release Planning",
+			name: "Prioritisation",
+			url: "tasks",
+			type: "task",
+			filter: (i) => {return (!i.state)||(i.state == 'PRIORITY') },
+			column: {
+				type: 'state',
+			}
+		},
+		{
+			name: "Releases",
 			url: "releases",
 			type: "task",
 			filter: (i) => {return i.state == 'DONE'},
@@ -49,6 +57,16 @@ var codeplanConfig = {
 			
 		},
 		{
+			id: "epic",
+			name: "Epic",
+			"dataFields": {
+				"name": {
+					"type": "string"
+				}
+			},
+			
+		},
+		{
 			"id": "task",
 			"name": "Task",
 			"dataFields": {
@@ -76,6 +94,10 @@ var codeplanConfig = {
 					}
 				},
 				"release": {
+					"multiple": false,
+					"required": false
+				},
+				"epic": {
 					"multiple": false,
 					"required": false
 				}
