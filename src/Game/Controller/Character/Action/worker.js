@@ -70,6 +70,6 @@ export default function* worker(char: Character): Generator<*,*,*>{
 	
 	char.setStatus('waiting for something to do')
 	if(Math.random()< 0.01)
-		yield *wanderToAdjacentTile(char);
+		// yield *wanderToAdjacentTile(char);
 	return;
 }

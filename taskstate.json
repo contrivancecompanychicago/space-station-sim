@@ -24,10 +24,10 @@
     {
       "show": true,
       "type": "task",
-      "name": "list items context ment",
+      "name": "list items context menu",
       "id": "TASK-2",
       "epic": "EPIC-1",
-      "state": "DEV"
+      "state": "PRIORITY"
     },
     {
       "show": true,
@@ -42,8 +42,14 @@
       "type": "task",
       "name": "drop in new graphics",
       "id": "TASK-4",
-      "state": "DEV"
+      "state": "DONE"
+    },
+    {
+      "show": true,
+      "type": "task",
+      "name": "altering grid dont remove object",
+      "id": "TASK-5"
     }
   ],
-  "counter": 5
+  "counter": 6
 }
