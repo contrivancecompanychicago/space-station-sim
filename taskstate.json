@@ -49,7 +49,14 @@
       "type": "task",
       "name": "altering grid dont remove object",
       "id": "TASK-5"
+    },
+    {
+      "show": true,
+      "type": "task",
+      "name": "shoot",
+      "id": "TASK-6",
+      "state": "DEV"
     }
   ],
-  "counter": 6
+  "counter": 7
 }
