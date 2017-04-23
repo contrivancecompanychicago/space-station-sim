@@ -61,7 +61,7 @@ export class Dispatcher{
 					let items = state.item.getItemsAtBlock(block);
 					let characters = state.character.getCharactersAtBlock(block);
 
-					if(obj){//show menu
+					// if(obj){//show menu
 						state.ui.dispatch({
 							type:'SHOW_CONTEXT_MENU', 
 							character: state.ui.getSelected()[0],
@@ -71,16 +71,16 @@ export class Dispatcher{
 							characters: characters,
 							position: selection.end.screen
 						});
-					}else {//walk to the place
-						state.ui.getSelectedCharacters().forEach(s => {
-							s.action = pathToBlock(s, selection.end.block)
-							// if(obj){
-							// 	if(obj.hasAbility('MAKE_COFFEE')){
-							// 		s.action = actions.useCoffeeAbility(s, obj)
-							// 	}
-							// }
-						})
-					}
+					// }else {//walk to the place
+					// 	state.ui.getSelectedCharacters().forEach(s => {
+					// 		s.action = pathToBlock(s, selection.end.block)
+					// 		// if(obj){
+					// 		// 	if(obj.hasAbility('MAKE_COFFEE')){
+					// 		// 		s.action = actions.useCoffeeAbility(s, obj)
+					// 		// 	}
+					// 		// }
+					// 	})
+					// }
 					//TODO REFACTOR
 				}
 				break;

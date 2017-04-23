@@ -20,8 +20,9 @@ export default function* makeOrder(char: Character, order: Order): Generator<*,*
 	let making:?ItemType = order.nextStep();
 	if(making) {
 		order.addWorker(char)
-		// if(making == 'COFFEE') debugger;
 		let data = ItemData.get(making);
+		
+		//IF NEEDS AN ITEM TO START
 		if (data.requires.itemType) {
 			//get our required item types
 			if (!item) throw new Error('item doesnt exist nextStep failing')
@@ -39,6 +40,8 @@ export default function* makeOrder(char: Character, order: Order): Generator<*,*
 				char.addItem(item);
 			}
 		}
+
+		//IF REQUIRES AN OBJECT WITH ABILITY
 		if (data.requires.objectAbility) {
 			//path to the appropriate object
 			let obj = yield * forceUseObjectWithAbility(char, data.requires.objectAbility)
@@ -50,22 +53,21 @@ export default function* makeOrder(char: Character, order: Order): Generator<*,*
 				char.addItem(item)
 			}
 		}
-		// console.log(item, data.requires);
+
+		// OPTIONAL WAIT
 		if(data.requires.time){
 			yield * idle(char, data.requires.time);
 		}
 		
+		//FINISH UP ITEM
 		if (item) {
 			item.type = making;
-
 			//ADD EXP $$$$$$$$
 			char.addRecipeExperience(order.recipe, 20)
-			
 			if (data.requires.leaveAtObjectAbility) {
 				let obj = yield * forceUseObjectWithAbility(char, data.requires.leaveAtObjectAbility)
 				obj.addItem(item);
 			}
-
 			char.removeItem(item);
 		} else {
 			throw new Error('makeorder leave at object no item')

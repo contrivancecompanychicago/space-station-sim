@@ -14,6 +14,27 @@ type Props = {
 		close: Function,
 }
 
+class ContextMenuObject extends React.Component{
+	render() {
+		if(!this.props.object) return null
+
+		return <div>
+			{this.props.object.getData().label}
+			<div className="items">
+				{this.props.character.getObjectContextActions(this.props.object).map(a => {
+					return <ContextMenuItem key={a.type+a.taskType} text={a.type+' '+a.taskType} fn={()=>{
+						switch(a.type){
+							case 'ASSIGN': 
+								this.props.character.assignTaskType(a.taskType);
+						}
+						}} />
+				})}
+			</div>
+		</div>
+	}
+
+}
+
 class ContextMenu extends React.Component{
 		props: Props;
 		constructor(props) {
@@ -23,24 +44,12 @@ class ContextMenu extends React.Component{
 		}
 		moveHere(){
 			// console.log('movehere', this.props.character, this.props.object)
-			this.props.character.moveToObject(this.props.object);
+			this.props.character.moveToBlock(this.props.block);
 		}
 		execAction(actionType){
 			//state.character.execAction(actionType, char, object);
 		}
 		render() {
-			
-			// let actionTypes = this.props.character.getObjectContextActions(this.props.object);
-			
-			// //OBJECT
-			// let objectActions = actionTypes.map(a => {
-			// 	return <ContextMenuItem key={a.type+a.taskType} text={a.type+' '+a.taskType} fn={()=>{
-			// 		switch(a.type){
-			// 			case 'ASSIGN': 
-			// 				this.props.character.assignTaskType(a.taskType);
-			// 		}
-			// 		}} />
-			// })
 
 			let style = {
 					left:this.props.position.x - 10,
@@ -52,17 +61,7 @@ class ContextMenu extends React.Component{
 				<div className="block">
 					<ContextMenuItem text="move here" fn={this.moveHere} />
 				</div>
-				{this.props.object.getData().label}
-				<div className="items">
-					{this.props.character.getObjectContextActions(this.props.object).map(a => {
-						return <ContextMenuItem key={a.type+a.taskType} text={a.type+' '+a.taskType} fn={()=>{
-							switch(a.type){
-								case 'ASSIGN': 
-									this.props.character.assignTaskType(a.taskType);
-							}
-							}} />
-					})}
-				</div>
+				<ContextMenuObject character={this.props.character} object={this.props.object} />
 				{this.props.items.map((i:Item) => {
 					return <div>
 						{i.getData().label}
