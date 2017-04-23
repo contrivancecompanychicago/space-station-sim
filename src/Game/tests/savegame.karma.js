@@ -308,6 +308,7 @@ describe('savegame.karma.js', () => {
 			mouse.canvasClick(point);
 			
 			mouse.clickCheckbox('label.task-COOK input')
+			mouse.clickCheckbox('label.task-EXTRACTOVEN input')
 
 			expect(order.getWorker()).not.toBeDefined();
 			while(!order.getWorker()){

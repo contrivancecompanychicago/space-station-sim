@@ -55,8 +55,15 @@
       "type": "task",
       "name": "shoot",
       "id": "TASK-6",
-      "state": "DEV"
+      "state": "PRIORITY"
+    },
+    {
+      "show": true,
+      "type": "task",
+      "name": "split makeorder into makeitem",
+      "description": "it should be easy to amke makeorder into a much smaller function to let makeitem be used to start new orders from scratch",
+      "id": "TASK-7"
     }
   ],
-  "counter": 7
+  "counter": 8
 }

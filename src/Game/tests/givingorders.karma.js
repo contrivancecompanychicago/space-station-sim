@@ -65,6 +65,7 @@ describe('giving Orders', () => {
 		mouse.canvasClickBlock(spawnBlock);
 
 		game.engine.fastForward(gap);
+		
 	}))
 	let worker
 	it('should spawn worker', () => {

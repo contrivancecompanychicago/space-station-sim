@@ -17,7 +17,13 @@ type Props = {
 class ContextMenuObject extends React.Component{
 	render() {
 		if(!this.props.object) return null
+		let buttons = []
+		if(this.props.object.hasAbility('FRIDGE')){
+			buttons = <ContextMenuItem key={"fridge"} text="get food from fridge" fn={()=>{
 
+			}} />
+		}
+		
 		return <div>
 			{this.props.object.getData().label}
 			<div className="items">
@@ -29,10 +35,10 @@ class ContextMenuObject extends React.Component{
 						}
 						}} />
 				})}
+				{buttons}
 			</div>
 		</div>
 	}
-
 }
 
 class ContextMenu extends React.Component{
@@ -44,18 +50,21 @@ class ContextMenu extends React.Component{
 		}
 		moveHere(){
 			// console.log('movehere', this.props.character, this.props.object)
-			this.props.character.moveToBlock(this.props.block);
+			if(this.props.object){
+				this.props.character.moveToObject(this.props.object);
+			}else{
+				this.props.character.moveToBlock(this.props.block);
+			}
+			this.props.close();
 		}
 		execAction(actionType){
 			//state.character.execAction(actionType, char, object);
 		}
 		render() {
-
 			let style = {
 					left:this.props.position.x - 10,
 					top:this.props.position.y - 10
 			}
-
 			return <div style={style} onMouseLeave={this.props.close} className="contextMenu">
 				block {this.props.block.x}-{this.props.block.y}
 				<div className="block">

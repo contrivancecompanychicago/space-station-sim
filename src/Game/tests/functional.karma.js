@@ -335,8 +335,8 @@ describe('functional end to end', () => {
 		
 		it('should wait until its pizzauncooked', testGen(function* () {
 			while(item.type !== 'PIZZAUNCOOKED'){
-				game.engine.fastForward(gap)
-				// yield sleep(gap);
+				// game.engine.fastForward(gap)
+				yield sleep(gap);
 			}
 		}))
 		it('order shound not have worker', () => {
@@ -357,6 +357,7 @@ describe('functional end to end', () => {
 		}));
 		it('should assign cook task to new staff', () => {
 			mouse.clickCheckbox('label.task-COOK input')
+			mouse.clickCheckbox('label.task-EXTRACTOVEN input')
 		});
 		it('order should not have a worker', () => {
 			expect(order.getWorker()).not.toBeDefined();
@@ -367,14 +368,14 @@ describe('functional end to end', () => {
 		}));
 		it('should turn item into a pizza', testGen(function*(){
 			while(item.type !== 'PIZZA'){
-				game.engine.fastForward(gap)
-				// yield sleep(gap)
+				// game.engine.fastForward(gap)
+				yield sleep(gap)
 			}
 		}));
 		it('should put it onto a table to wait for serving', testGen(function*(){
 			while(order.getWorker()){
-				game.engine.fastForward(gap)
-				// yield sleep(gap)
+				// game.engine.fastForward(gap)
+				yield sleep(gap)
 			}
 			let obj:Obj = item.getObject();
 			expect(obj.hasAbility('SERVE_TABLE')).toBe(true);
