@@ -18,7 +18,7 @@ let container: HTMLDivElement;
 let canvas;
 let game: Game
 
-fdescribe('givingorders.karma.js', () => {
+describe('givingorders.karma.js', () => {
 	beforeAll(function () {
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = 10*1000;
 		container = document.createElement('div');
@@ -138,7 +138,15 @@ fdescribe('givingorders.karma.js', () => {
 	})
 	it('should click start cooking', () => {
 		expect(mouse.clickSelector('.contextMenuItem-STARTCOOK')).toBe(true)
-	})
+	});
+	
+	it('should have path set to fridge', () => {
+		game.engine.fastForward(gap)
+		let lastblock = worker.path[worker.path.length - 1]
+		expect(lastblock.x).toBe(fridgeBlock.x);
+		expect(lastblock.y).toBe(fridgeBlock.y+1);
+	});
+
 
 	// it('should wait open at the end', (done) => {
 	// 	setTimeout(done, 1000);

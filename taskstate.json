@@ -63,7 +63,15 @@
       "name": "split makeorder into makeitem",
       "description": "it should be easy to amke makeorder into a much smaller function to let makeitem be used to start new orders from scratch",
       "id": "TASK-7"
+    },
+    {
+      "show": true,
+      "type": "task",
+      "name": "context menu item - actions using item in inventory",
+      "epic": "EPIC-1",
+      "description": "when context menu is shown, the user should be able to see actions related to the item the focused character is holding",
+      "id": "TASK-8"
     }
   ],
-  "counter": 8
+  "counter": 9
 }
