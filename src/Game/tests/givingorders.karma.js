@@ -18,7 +18,7 @@ let container: HTMLDivElement;
 let canvas;
 let game: Game
 
-describe('givingorders.karma.js', () => {
+fdescribe('givingorders.karma.js', () => {
 	beforeAll(function () {
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = 10*1000;
 		container = document.createElement('div');
@@ -97,12 +97,26 @@ describe('givingorders.karma.js', () => {
 		// debugger;
 	})
 
-	xit('should walk there', () => {
+	it('should click walk', () => {
+		expect(mouse.clickSelector('.contextMenuItem-MOVEHERE')).toBe(true)
+	})
+
+	it('should have path set', () => { //removed when context menu added
 		game.engine.fastForward(gap)//give him a frame to figure it out
 		let lastblock = worker.path[worker.path.length - 1]
 		expect(lastblock.x).toBe(12);
 		expect(lastblock.y).toBe(12);
 	})
+
+	it('close hiring panel', () => {
+		mouse.clickSelector('.hiring.panel .close')
+	})
+
+	it('sohuld walk there', testGen(function* () {
+		while(worker.path.length>0){
+			yield sleep(gap)
+		}
+	}))
 
 	it('should right click and open context menu', () => {
 		expect(mouse.clickSelector('.button-mode-select')).toBe(true)

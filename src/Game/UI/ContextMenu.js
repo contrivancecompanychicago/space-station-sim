@@ -68,13 +68,13 @@ class ContextMenu extends React.Component{
 			return <div style={style} onMouseLeave={this.props.close} className="contextMenu">
 				block {this.props.block.x}-{this.props.block.y}
 				<div className="block">
-					<ContextMenuItem text="move here" fn={this.moveHere} />
+					<ContextMenuItem id="MOVEHERE" text="move here" fn={this.moveHere} />
 				</div>
 				<ContextMenuObject character={this.props.character} object={this.props.object} />
 				{this.props.items.map((i:Item) => {
 					return <div>
 						{i.getData().label}
-						<ContextMenuItem text="pick up" fn={()=>{console.log('i', i);
+						<ContextMenuItem id={"PICKUP"+i.getId()} text="pick up" fn={()=>{console.log('i', i);
 						}} />
 					</div>
 				})}
