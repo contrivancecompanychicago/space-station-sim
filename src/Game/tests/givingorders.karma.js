@@ -7,6 +7,7 @@ import mouse from './mouseTestUtil'
 import testGen from 'jasmine-es6-generator'
 import Block from 'Game/Block'
 import dispatcher from 'Game/Action/Dispatcher'
+import sizzle from 'sizzle'
 
 let gap = 20;
 function sleep(ms) {
@@ -17,7 +18,7 @@ let container: HTMLDivElement;
 let canvas;
 let game: Game
 
-describe('giving Orders', () => {
+describe('givingorders.karma.js', () => {
 	beforeAll(function () {
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = 10*1000;
 		container = document.createElement('div');
@@ -50,23 +51,36 @@ describe('giving Orders', () => {
 	let drawersBlock = new Block({ x: 6, y: 3 })
 	let chairBlock = new Block({ x: 6, y: 9 })
 	let spawnBlock = new Block({ x: 12, y: 3 })
-	it('should set up', testGen(function* () {
+	describe('setup', () => {
+		it('right mode', testGen(function* () {
 
-		mouse.clickSelector('.save.panel .close')
-		//grid
-		// yield* mouse.canvasDragRect({ x: 0, y: 0 }, { x: 16, y: 16 });
-		//objects
-		expect(mouse.clickSelector('.button-mode-object')).toBe(true)
-		expect(mouse.clickSelector('.button-object-DRAWERS')).toBe(true)
-		mouse.canvasClickBlock(drawersBlock)
-		expect(mouse.clickSelector('.button-object-CHAIR2')).toBe(true)
-		mouse.canvasClickBlock(chairBlock)
-		expect(mouse.clickSelector('.button-object-TEST')).toBe(true)
-		mouse.canvasClickBlock(spawnBlock);
+			mouse.clickSelector('.save.panel .close')
+			//grid
+			// yield* mouse.canvasDragRect({ x: 0, y: 0 }, { x: 16, y: 16 });
+			//objects
+			expect(mouse.clickSelector('.button-mode-object')).toBe(true)
+			
+		}))
+		it('click COFFEEMACHINE', () => {
+			expect(mouse.clickSelector('.button-object-COFFEEMACHINE')).toBe(true)
+			mouse.canvasClickBlock(drawersBlock)
+			
+		})
+		it('click chair', () => {
+			expect(mouse.clickSelector('.button-object-CHAIRIMAGESET')).toBe(true)
+			mouse.canvasClickBlock(chairBlock)
+			
+		})
+		it('click test', () => {
+			expect(mouse.clickSelector('.button-object-TEST')).toBe(true)
+			mouse.canvasClickBlock(spawnBlock);
 
-		game.engine.fastForward(gap);
+			game.engine.fastForward(gap);
+			
+		})
 		
-	}))
+
+	})
 	let worker
 	it('should spawn worker', () => {
 		expect(mouse.clickSelector('.button-mode-panels')).toBe(true)
@@ -76,9 +90,14 @@ describe('giving Orders', () => {
 		expect(worker).toBeDefined();
 	});
 
-	it('should right click on empty space and walk there', () => {
+	it('should right click on empty space and open context menu', () => {
 		expect(mouse.clickSelector('.button-mode-select')).toBe(true)
 		mouse.canvasClick(new Block({ x: 12, y: 12 }).center.screen, { button: 2 });
+		expect(sizzle('.contextMenu').length).toBe(1);
+		// debugger;
+	})
+
+	xit('should walk there', () => {
 		game.engine.fastForward(gap)//give him a frame to figure it out
 		let lastblock = worker.path[worker.path.length - 1]
 		expect(lastblock.x).toBe(12);

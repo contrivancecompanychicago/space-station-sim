@@ -315,9 +315,11 @@ describe('savegame.karma.js', () => {
 				yield sleep(gap)
 			}
 
+			yield sleep(gap) //again for next test
+
 		}))
-		it('worker should only have no item, pizza on table', () => {
-			expect(worker.getItems().length).toBe(0);
+		it('worker should only have one item, pizza on table', () => { //THIS TEST FLAKEY
+			expect(worker.getItems().length).toBe(1);
 		})
 		it('save and reload', testGen(saveAndReload));
 			
