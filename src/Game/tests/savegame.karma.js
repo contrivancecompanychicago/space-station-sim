@@ -11,9 +11,9 @@ import dispatcher from 'Game/Action/Dispatcher';
 
 let gap = 20;
 function sleep(ms) {
-	game.engine.fastForward(gap)
-	return Promise.resolve()
-	// return new Promise(resolve => setTimeout(resolve, ms));
+	// game.engine.fastForward(gap)
+	// return Promise.resolve()
+	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 let container: HTMLDivElement;
@@ -316,8 +316,8 @@ describe('savegame.karma.js', () => {
 			}
 
 		}))
-		it('worker should only have one item', () => {
-			expect(worker.getItems().length).toBe(1);
+		it('worker should only have no item, pizza on table', () => {
+			expect(worker.getItems().length).toBe(0);
 		})
 		it('save and reload', testGen(saveAndReload));
 			
