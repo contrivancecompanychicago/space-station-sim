@@ -19,7 +19,7 @@ class ContextMenuObject extends React.Component{
 		if(!this.props.object) return null
 		let buttons = []
 		if(this.props.object.hasAbility('FRIDGE')){
-			buttons = <ContextMenuItem key={"fridge"} text="get food from fridge" fn={()=>{
+			buttons = <ContextMenuItem id="STARTCOOK" key={"fridge"} text="start pizza" fn={()=>{
 
 			}} />
 		}

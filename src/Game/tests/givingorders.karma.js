@@ -48,7 +48,8 @@ fdescribe('givingorders.karma.js', () => {
 		mouse.canvasMouseUp(toBlock.center.screen)
 		expect(dispatcher.userAction).toHaveBeenCalled();
 	});
-	let drawersBlock = new Block({ x: 6, y: 3 })
+	let coffeemachineBlock = new Block({ x: 6, y: 3 })
+	let fridgeBlock = new Block({ x: 6, y: 6 })
 	let chairBlock = new Block({ x: 6, y: 9 })
 	let spawnBlock = new Block({ x: 12, y: 3 })
 	describe('setup', () => {
@@ -61,10 +62,14 @@ fdescribe('givingorders.karma.js', () => {
 			expect(mouse.clickSelector('.button-mode-object')).toBe(true)
 			
 		}))
+		
+		it('click FRIDGETALL', () => {
+			expect(mouse.clickSelector('.button-object-FRIDGETALL')).toBe(true)
+			mouse.canvasClickBlock(fridgeBlock)
+		})
 		it('click COFFEEMACHINE', () => {
 			expect(mouse.clickSelector('.button-object-COFFEEMACHINE')).toBe(true)
-			mouse.canvasClickBlock(drawersBlock)
-			
+			mouse.canvasClickBlock(coffeemachineBlock)
 		})
 		it('click chair', () => {
 			expect(mouse.clickSelector('.button-object-CHAIRIMAGESET')).toBe(true)
@@ -121,8 +126,18 @@ fdescribe('givingorders.karma.js', () => {
 	it('should right click and open context menu', () => {
 		expect(mouse.clickSelector('.button-mode-select')).toBe(true)
 		//right click somewhere
-		mouse.canvasClick(new Block(drawersBlock).center.screen, { button: 2 });
+		mouse.canvasClick(new Block(coffeemachineBlock).center.screen, { button: 2 });
 		expect(game.state.ui.state.contextMenu.show).toBe(true);
+		expect(sizzle('.contextMenu').length).toBe(1);
+	})
+
+	it('should click fridge', () => {
+		mouse.canvasClick(new Block(fridgeBlock).center.screen, { button: 2 });
+		expect(sizzle('.contextMenu').length).toBe(1);
+
+	})
+	it('should click start cooking', () => {
+		expect(mouse.clickSelector('.contextMenuItem-STARTCOOK')).toBe(true)
 	})
 
 	// it('should wait open at the end', (done) => {
