@@ -161,9 +161,38 @@ fdescribe('givingorders.karma.js', () => {
 		}
 		// yield(sleep(4000))
 	}))
+	let item
+	it('should get an item', testGen(function* () {
+		while(worker.getItems().length==0){
+			yield sleep(gap)
+		}
+		item = worker.getItems()[0];
+	}))
+	it('should have an item', () => {
+		expect(item.type).toBe('BASE')
+	})
+	it('should turn it into pizzauncooked', testGen(function* () {
+		while(item.type !== 'PIZZAUNCOOKED'){
+			yield sleep(gap)
+		}
+	}))
+
+	describe('walk away again', () => {
+		it('context menu', testGen(function* () {
+			mouse.canvasClick(new Block({ x: 8, y: 6 }).center.screen, { button: 2 });
+			expect(sizzle('.contextMenu').length).toBe(1);
+			
+			expect(mouse.clickSelector('.contextMenuItem-MOVEHERE')).toBe(true)
+			
+			while(worker.path.length>0){
+				yield sleep(gap)
+			}
+		}))
+
+	})
 
 
 	it('should wait open at the end', (done) => {
-		setTimeout(done, 10000);
+		setTimeout(done, 1000);
 	})
 })

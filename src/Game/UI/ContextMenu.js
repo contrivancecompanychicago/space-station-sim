@@ -21,6 +21,7 @@ class ContextMenuObject extends React.Component{
 		if(this.props.object.hasAbility('FRIDGE')){
 			buttons = <ContextMenuItem id="STARTCOOK" key={"fridge"} text="start pizza" fn={()=>{
 				this.props.character.startCooking(this.props.object);
+				this.props.close();
 			}} />
 		}
 		
@@ -70,7 +71,7 @@ class ContextMenu extends React.Component{
 				<div className="block">
 					<ContextMenuItem id="MOVEHERE" text="move here" fn={this.moveHere} />
 				</div>
-				<ContextMenuObject character={this.props.character} object={this.props.object} />
+				<ContextMenuObject close={this.props.close} character={this.props.character} object={this.props.object} />
 				{this.props.items.map((i:Item) => {
 					return <div>
 						{i.getData().label}
