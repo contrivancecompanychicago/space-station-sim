@@ -82,7 +82,7 @@ export default class Character {
 		this.setAction(pathToBlock(this, block));
 	}
 	startCooking(fridge: Obj) {
-		this.setAction(makeItem(this, 'BASE'))
+		this.setAction(makeItem(this, 'PIZZAUNCOOKED'))
 	}
 	setAction(action: DefaultGen): null {
 		this.action = action;

@@ -15,11 +15,18 @@ import forceUseObjectWithAbility from './forceUseObjectWithAbility'
 export default function* makeItem(char: Character, making:ItemType , item: ?Item, order: ?Order): Generator<*,*,*>{
 
 	let data = ItemData.get(making);
+
+	if(!data){
+		throw new Error('cant find item data. breaking to avoid possible recursive loop');
+	}
 	
 	//IF NEEDS AN ITEM TO START
 	if (data.requires.itemType) {
 		//get our required item types
-		if (!item) throw new Error('item doesnt exist nextStep failing')
+		if (!item){
+			//RECURSE
+			item = yield * makeItem(char, data.requires.itemType, item, order);
+		}
 
 		if (!char.hasItem(item)) {
 			// TODO go pick up item
@@ -40,7 +47,6 @@ export default function* makeItem(char: Character, making:ItemType , item: ?Item
 		//path to the appropriate object
 		let obj = yield * forceUseObjectWithAbility(char, data.requires.objectAbility)
 		
-		debugger;
 		if (!item) {
 			item = new Item({ position: obj.block.center, type: making })
 			if(order) order.setItem(item);
