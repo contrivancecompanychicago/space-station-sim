@@ -18,7 +18,7 @@ let container: HTMLDivElement;
 let canvas;
 let game: Game
 
-describe('givingorders.karma.js', () => {
+fdescribe('givingorders.karma.js', () => {
 	beforeAll(function () {
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = 10*1000;
 		container = document.createElement('div');
@@ -48,7 +48,8 @@ describe('givingorders.karma.js', () => {
 		mouse.canvasMouseUp(toBlock.center.screen)
 		expect(dispatcher.userAction).toHaveBeenCalled();
 	});
-	let coffeemachineBlock = new Block({ x: 6, y: 3 })
+	let coffeemachineBlock = new Block({ x: 8, y: 3 })
+	let tableBlock = new Block({ x: 6, y: 3 })
 	let fridgeBlock = new Block({ x: 6, y: 6 })
 	let chairBlock = new Block({ x: 6, y: 9 })
 	let spawnBlock = new Block({ x: 12, y: 3 })
@@ -70,6 +71,10 @@ describe('givingorders.karma.js', () => {
 		it('click COFFEEMACHINE', () => {
 			expect(mouse.clickSelector('.button-object-COFFEEMACHINE')).toBe(true)
 			mouse.canvasClickBlock(coffeemachineBlock)
+		})
+		it('click TABLEROUND', () => {
+			expect(mouse.clickSelector('.button-object-TABLEROUND')).toBe(true)
+			mouse.canvasClickBlock(tableBlock)
 		})
 		it('click chair', () => {
 			expect(mouse.clickSelector('.button-object-CHAIRIMAGESET')).toBe(true)
@@ -139,6 +144,9 @@ describe('givingorders.karma.js', () => {
 	it('should click start cooking', () => {
 		expect(mouse.clickSelector('.contextMenuItem-STARTCOOK')).toBe(true)
 	});
+	it('should hide context menu', () => {
+		expect(sizzle('.contextMenu').length).toBe(0);
+	})
 	
 	it('should have path set to fridge', () => {
 		game.engine.fastForward(gap)
@@ -146,9 +154,16 @@ describe('givingorders.karma.js', () => {
 		expect(lastblock.x).toBe(fridgeBlock.x);
 		expect(lastblock.y).toBe(fridgeBlock.y+1);
 	});
+	
+	it('sohuld walk there', testGen(function* () {
+		while(worker.path.length>0){
+			yield sleep(gap)
+		}
+		// yield(sleep(4000))
+	}))
 
 
-	// it('should wait open at the end', (done) => {
-	// 	setTimeout(done, 1000);
-	// })
+	it('should wait open at the end', (done) => {
+		setTimeout(done, 10000);
+	})
 })

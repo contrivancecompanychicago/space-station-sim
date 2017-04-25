@@ -40,6 +40,7 @@ export default function* makeItem(char: Character, making:ItemType , item: ?Item
 		//path to the appropriate object
 		let obj = yield * forceUseObjectWithAbility(char, data.requires.objectAbility)
 		
+		debugger;
 		if (!item) {
 			item = new Item({ position: obj.block.center, type: making })
 			if(order) order.setItem(item);

@@ -23,7 +23,7 @@ export default function* makeOrder(char: Character, order: Order): Generator<*,*
 	if(making) {
 		order.addWorker(char)
 
-		item = yield * makeItem(char, making, item);
+		item = yield * makeItem(char, making, item, order);
 
 		if(item){
 			order.setItem(item);
