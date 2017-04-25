@@ -22,6 +22,7 @@ import uniqid from 'Util/uniqid';
 import shortestPathToObject from 'Game/Controller/Character/Action/shortestPathToObject';
 import pathToBlock from 'Game/Controller/Character/Action/pathToBlock';
 import makeItem from 'Game/Controller/Character/Action/makeItem';
+import pickUpItem from 'Game/Controller/Character/Action/pickUpItem';
 
 
 export type ObjectContextAction = {
@@ -83,6 +84,9 @@ export default class Character {
 	}
 	startCooking(fridge: Obj) {
 		this.setAction(makeItem(this, 'PIZZAUNCOOKED'))
+	}
+	pickUpItem(item:Item){
+		this.setAction(pickUpItem(this, item));
 	}
 	setAction(action: DefaultGen): null {
 		this.action = action;

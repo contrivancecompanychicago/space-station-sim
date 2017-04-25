@@ -76,7 +76,10 @@ class ContextMenu extends React.Component{
 					// debugger;
 					return <div>
 						{i.getData().label}
-						<ContextMenuItem id={"PICKUP"+i.id} text="pick up" fn={()=>{console.log('i', i);
+						<ContextMenuItem id={"PICKUP"+i.id} text="pick up" fn={()=>{
+							// console.log('i', i);
+							this.props.character.pickUpItem(i);
+							this.props.close();
 						}} />
 					</div>
 				})}

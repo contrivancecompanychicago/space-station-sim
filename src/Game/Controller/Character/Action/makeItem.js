@@ -10,6 +10,7 @@ import type {ItemType, ItemDataType } from 'Game/Data/Item'
 import idle from './idle'
 import shortestPathToObject from './shortestPathToObject'
 import forceUseObjectWithAbility from './forceUseObjectWithAbility'
+import pickUpItem from './pickUpItem'
 
 
 export default function* makeItem(char: Character, making:ItemType , item: ?Item, order: ?Order): Generator<*,*,*>{
@@ -28,18 +29,19 @@ export default function* makeItem(char: Character, making:ItemType , item: ?Item
 			item = yield * makeItem(char, data.requires.itemType, item, order);
 		}
 
-		if (!char.hasItem(item)) {
-			// TODO go pick up item
-			let obj = state.object.getObjectAtBlock(item.position.block)
-			if (obj) {
-				obj.setCharacter(char)
-				yield * shortestPathToObject(char, obj);
-				obj.removeCharacter()
+		yield * pickUpItem(char, item);
+		// if (!char.hasItem(item)) {
+		// 	// TODO go pick up item
+		// 	let obj = state.object.getObjectAtBlock(item.position.block)
+		// 	if (obj) {
+		// 		obj.setCharacter(char)
+		// 		yield * shortestPathToObject(char, obj);
+		// 		obj.removeCharacter()
 
-				obj.removeItem();
-			}
-			char.addItem(item);
-		}
+		// 		obj.removeItem();
+		// 	}
+		// 	char.addItem(item);
+		// }
 	}
 
 	//IF REQUIRES AN OBJECT WITH ABILITY
