@@ -128,54 +128,58 @@ fdescribe('givingorders.karma.js', () => {
 		}
 	}))
 
-	it('should right click and open context menu', () => {
-		expect(mouse.clickSelector('.button-mode-select')).toBe(true)
-		//right click somewhere
-		mouse.canvasClick(new Block(coffeemachineBlock).center.screen, { button: 2 });
-		expect(game.state.ui.state.contextMenu.show).toBe(true);
-		expect(sizzle('.contextMenu').length).toBe(1);
-	})
-
-	it('should click fridge', () => {
-		mouse.canvasClick(new Block(fridgeBlock).center.screen, { button: 2 });
-		expect(sizzle('.contextMenu').length).toBe(1);
-
-	})
-	it('should click start cooking', () => {
-		expect(mouse.clickSelector('.contextMenuItem-STARTCOOK')).toBe(true)
-	});
-	it('should hide context menu', () => {
-		expect(sizzle('.contextMenu').length).toBe(0);
-	})
-	
-	it('should have path set to fridge', () => {
-		game.engine.fastForward(gap)
-		let lastblock = worker.path[worker.path.length - 1]
-		expect(lastblock.x).toBe(fridgeBlock.x);
-		expect(lastblock.y).toBe(fridgeBlock.y+1);
-	});
-	
-	it('sohuld walk there', testGen(function* () {
-		while(worker.path.length>0){
-			yield sleep(gap)
-		}
-		// yield(sleep(4000))
-	}))
 	let item
-	it('should get an item', testGen(function* () {
-		while(worker.getItems().length==0){
-			yield sleep(gap)
-		}
-		item = worker.getItems()[0];
-	}))
-	it('should have an item', () => {
-		expect(item.type).toBe('BASE')
+	describe('making item from nothing', () => {
+
+		it('should right click and open context menu', () => {
+			expect(mouse.clickSelector('.button-mode-select')).toBe(true)
+			//right click somewhere
+			mouse.canvasClick(new Block(coffeemachineBlock).center.screen, { button: 2 });
+			expect(game.state.ui.state.contextMenu.show).toBe(true);
+			expect(sizzle('.contextMenu').length).toBe(1);
+		})
+
+		it('should click fridge', () => {
+			mouse.canvasClick(new Block(fridgeBlock).center.screen, { button: 2 });
+			expect(sizzle('.contextMenu').length).toBe(1);
+
+		})
+		it('should click start cooking', () => {
+			expect(mouse.clickSelector('.contextMenuItem-STARTCOOK')).toBe(true)
+		});
+		it('should hide context menu', () => {
+			expect(sizzle('.contextMenu').length).toBe(0);
+		})
+		
+		it('should have path set to fridge', () => {
+			game.engine.fastForward(gap)
+			let lastblock = worker.path[worker.path.length - 1]
+			expect(lastblock.x).toBe(fridgeBlock.x);
+			expect(lastblock.y).toBe(fridgeBlock.y+1);
+		});
+		
+		it('sohuld walk there', testGen(function* () {
+			while(worker.path.length>0){
+				yield sleep(gap)
+			}
+			// yield(sleep(4000))
+		}))
+		it('should get an item', testGen(function* () {
+			while(worker.getItems().length==0){
+				yield sleep(gap)
+			}
+			item = worker.getItems()[0];
+		}))
+		it('should have an item', () => {
+			expect(item.type).toBe('BASE')
+		})
+		it('should turn it into pizzauncooked', testGen(function* () {
+			while(item.type !== 'PIZZAUNCOOKED'){
+				yield sleep(gap)
+			}
+		}))
 	})
-	it('should turn it into pizzauncooked', testGen(function* () {
-		while(item.type !== 'PIZZAUNCOOKED'){
-			yield sleep(gap)
-		}
-	}))
+
 
 	describe('walk away again', () => {
 		it('context menu', testGen(function* () {
@@ -183,11 +187,37 @@ fdescribe('givingorders.karma.js', () => {
 			expect(sizzle('.contextMenu').length).toBe(1);
 			
 			expect(mouse.clickSelector('.contextMenuItem-MOVEHERE')).toBe(true)
+			game.engine.fastForward(gap)//give him a frame to figure it out
 			
+		}))
+		it('should walk there', testGen(function* () {
 			while(worker.path.length>0){
 				yield sleep(gap)
 			}
 		}))
+	});
+
+	describe('clicking item', () => {
+		it('should right click on item to make context menu appear', () => {
+			mouse.canvasClick(item.position.screen, { button: 2 });
+		});
+		it('sohuld have the pickup option for items', () => {
+			expect(sizzle('.contextMenuItem-PICKUP'+item.id).length).toBe(1);
+		});
+		it('should click pick up item', () => {
+			expect(mouse.clickSelector('.contextMenuItem-PICKUP'+item.id)).toBe(true);
+		});
+		
+		it('should get item', testGen(function* () {
+			while(worker.getItems().length == 0){
+				yield sleep(gap)
+			}
+		}));
+
+		it('should be the right item', () => {
+			expect(worker.getItems()[0]).toBe(item);
+		})
+
 
 	})
 
