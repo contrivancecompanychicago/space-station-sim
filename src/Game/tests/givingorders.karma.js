@@ -50,6 +50,7 @@ fdescribe('givingorders.karma.js', () => {
 	});
 	let coffeemachineBlock = new Block({ x: 8, y: 3 })
 	let tableBlock = new Block({ x: 6, y: 3 })
+	let ovenBlock = new Block({ x: 3, y: 3 })
 	let fridgeBlock = new Block({ x: 6, y: 6 })
 	let chairBlock = new Block({ x: 6, y: 9 })
 	let spawnBlock = new Block({ x: 12, y: 3 })
@@ -64,6 +65,10 @@ fdescribe('givingorders.karma.js', () => {
 			
 		}))
 		
+		it('click STONEOVEN', () => {
+			expect(mouse.clickSelector('.button-object-STONEOVEN')).toBe(true)
+			mouse.canvasClickBlock(ovenBlock)
+		})
 		it('click FRIDGETALL', () => {
 			expect(mouse.clickSelector('.button-object-FRIDGETALL')).toBe(true)
 			mouse.canvasClickBlock(fridgeBlock)
@@ -221,6 +226,43 @@ fdescribe('givingorders.karma.js', () => {
 
 	})
 
+
+
+	describe('walk away again', () => {
+		it('context menu', testGen(function* () {
+			mouse.canvasClick(new Block({ x: 8, y: 6 }).center.screen, { button: 2 });
+			expect(sizzle('.contextMenu').length).toBe(1);
+			
+			expect(mouse.clickSelector('.contextMenuItem-MOVEHERE')).toBe(true)
+			game.engine.fastForward(gap)//give him a frame to figure it out
+			
+		}))
+		it('should walk there', testGen(function* () {
+			while(worker.path.length>0){
+				yield sleep(gap)
+			}
+		}))
+	});
+
+	describe('put into oven', () => {
+		it('click on oven', () => {
+			mouse.canvasClick(ovenBlock.center.screen, { button: 2 });
+		});
+		it('should have cook item option', () => {
+			// debugger;
+			expect(sizzle('.contextMenuItem-ITEMCOOK').length).toBe(1);
+		});
+		it('should click it', () => {
+			expect(mouse.clickSelector('.contextMenuItem-ITEMCOOK')).toBe(true);
+		});
+		it('should put pizza in oven',  testGen(function* () {
+			while(worker.getItems().length>0){
+				yield sleep(gap)
+			}
+		}))
+
+
+	})
 
 	it('should wait open at the end', (done) => {
 		setTimeout(done, 1000);

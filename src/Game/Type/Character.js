@@ -88,6 +88,9 @@ export default class Character {
 	pickUpItem(item:Item){
 		this.setAction(pickUpItem(this, item));
 	}
+	cookItem(item:Item, object:Obj){
+		this.setAction(makeItem(this, 'PIZZACOOKED', item))
+	}
 	setAction(action: DefaultGen): null {
 		this.action = action;
 	}
