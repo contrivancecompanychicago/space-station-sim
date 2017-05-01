@@ -23,6 +23,7 @@ import shortestPathToObject from 'Game/Controller/Character/Action/shortestPathT
 import pathToBlock from 'Game/Controller/Character/Action/pathToBlock';
 import makeItem from 'Game/Controller/Character/Action/makeItem';
 import pickUpItem from 'Game/Controller/Character/Action/pickUpItem';
+import putItemOnBlock from 'Game/Controller/Character/Action/placeItemOnBlock';
 
 
 export type ObjectContextAction = {
@@ -87,6 +88,9 @@ export default class Character {
 	}
 	pickUpItem(item:Item){
 		this.setAction(pickUpItem(this, item));
+	}
+	putItemOnBlock(block:Block){
+		this.setAction(putItemOnBlock(this, block));
 	}
 	cookItem(item:Item, object:Obj){
 		this.setAction(makeItem(this, 'PIZZACOOKED', item))

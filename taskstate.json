@@ -71,7 +71,14 @@
       "epic": "EPIC-1",
       "description": "when context menu is shown, the user should be able to see actions related to the item the focused character is holding",
       "id": "TASK-8"
+    },
+    {
+      "show": true,
+      "type": "task",
+      "name": "queue actions",
+      "description": "sims style queue of actions per character",
+      "id": "TASK-9"
     }
   ],
-  "counter": 9
+  "counter": 10
 }

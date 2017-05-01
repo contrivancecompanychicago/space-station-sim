@@ -32,6 +32,14 @@ class ContextMenuObject extends React.Component{
 				this.props.close();
 			}} />)
 		}
+		if(this.props.character.getItems().length > 0){
+			buttons.push(<ContextMenuItem id="PUTITEM" key={"put"} text="put item on object" fn={()=>{
+				// this.props.character.startCooking(this.props.object);
+				this.props.character.putItemOnBlock(this.props.object.block);
+				this.props.close();
+			}} />)
+		}
+		
 		if(this.props.object.hasAbility('OVEN')){
 			// debugger;
 
