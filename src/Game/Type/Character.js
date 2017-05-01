@@ -91,6 +91,10 @@ export default class Character {
 	cookItem(item:Item, object:Obj){
 		this.setAction(makeItem(this, 'PIZZACOOKED', item))
 	}
+	extractItem(item:Item){
+		// console.log('extract', item);
+		this.setAction(makeItem(this, 'PIZZA', item))
+	}
 	setAction(action: DefaultGen): null {
 		this.action = action;
 	}

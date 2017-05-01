@@ -42,7 +42,7 @@ class ContextMenuObject extends React.Component{
 				buttons.push(<ContextMenuItem id={'EXTRACT'+i.id} key={'ex'+i.id} 
 					text="extract pizza"
 					fn={()=>{
-						debugger;
+						this.props.character.extractItem(i)
 						this.props.close();
 					}}
 				/>)
