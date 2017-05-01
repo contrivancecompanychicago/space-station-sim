@@ -32,6 +32,22 @@ class ContextMenuObject extends React.Component{
 				this.props.close();
 			}} />)
 		}
+		if(this.props.object.hasAbility('OVEN')){
+			// debugger;
+
+			let items = this.props.object.getItems();
+			// console.log(items);
+			
+			items.forEach(i => {
+				buttons.push(<ContextMenuItem id={'EXTRACT'+i.id} key={'ex'+i.id} 
+					text="extract pizza"
+					fn={()=>{
+						debugger;
+						this.props.close();
+					}}
+				/>)
+			})
+		}
 		
 		return <div>
 			{this.props.object.getData().label}

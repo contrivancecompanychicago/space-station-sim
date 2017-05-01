@@ -104,4 +104,16 @@ export default class Obj{
 	removeItem(item:?Item){
 		this.item = null
 	}
+	getItems(): Array<Item> {
+		let blocks = this.getBlocks().map(b => {
+			return this.block.add(b)
+		})
+		return state.item.getItems().filter(item => {
+			for(let i = 0; i< blocks.length; i++){
+				//if item is in any of these blocks
+				let itemBlock = item.position.block
+				if(itemBlock.is(blocks[i])) return true;
+			}
+		})
+	}
 }

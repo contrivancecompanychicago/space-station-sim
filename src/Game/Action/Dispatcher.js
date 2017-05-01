@@ -58,7 +58,13 @@ export class Dispatcher{
 					// because game state is changing constantly
 					let block = selection.end.block
 					let obj = state.object.getObjectAtBlock(block);
+
 					let items = state.item.getItemsAtBlock(block);
+					// if(obj){
+					// 	//override items;
+					// 	items = obj.getItems();
+					// }
+
 					let characters = state.character.getCharactersAtBlock(block);
 
 					// if(obj){//show menu
