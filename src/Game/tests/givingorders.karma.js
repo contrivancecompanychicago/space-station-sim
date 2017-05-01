@@ -13,6 +13,7 @@ let gap = 20;
 function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
+let contextGap = 1000;
 
 let container: HTMLDivElement;
 let canvas;
@@ -112,6 +113,8 @@ fdescribe('givingorders.karma.js', () => {
 		// debugger;
 	})
 
+	it('should wait and show context menu', (done) => {setTimeout(done, contextGap)})
+
 	it('should click walk', () => {
 		expect(mouse.clickSelector('.contextMenuItem-MOVEHERE')).toBe(true)
 	})
@@ -143,12 +146,14 @@ fdescribe('givingorders.karma.js', () => {
 			expect(game.state.ui.state.contextMenu.show).toBe(true);
 			expect(sizzle('.contextMenu').length).toBe(1);
 		})
-
+		
 		it('should click fridge', () => {
 			mouse.canvasClick(new Block(fridgeBlock).center.screen, { button: 2 });
 			expect(sizzle('.contextMenu').length).toBe(1);
 
 		})
+		it('should wait and show context menu', (done) => {setTimeout(done, contextGap)})
+
 		it('should click start cooking', () => {
 			expect(mouse.clickSelector('.contextMenuItem-STARTCOOK')).toBe(true)
 		});
@@ -190,7 +195,7 @@ fdescribe('givingorders.karma.js', () => {
 		it('context menu', testGen(function* () {
 			mouse.canvasClick(new Block({ x: 8, y: 6 }).center.screen, { button: 2 });
 			expect(sizzle('.contextMenu').length).toBe(1);
-			
+			yield sleep(contextGap)
 			expect(mouse.clickSelector('.contextMenuItem-MOVEHERE')).toBe(true)
 			game.engine.fastForward(gap)//give him a frame to figure it out
 			
@@ -206,6 +211,7 @@ fdescribe('givingorders.karma.js', () => {
 		it('should right click on item to make context menu appear', () => {
 			mouse.canvasClick(item.position.screen, { button: 2 });
 		});
+		it('should wait and show context menu', (done) => {setTimeout(done, contextGap)})
 		it('sohuld have the pickup option for items', () => {
 			expect(sizzle('.contextMenuItem-PICKUP'+item.id).length).toBe(1);
 		});
@@ -244,6 +250,7 @@ fdescribe('givingorders.karma.js', () => {
 		it('click on oven', () => {
 			mouse.canvasClick(ovenBlock.center.screen, { button: 2 });
 		});
+		it('should wait and show context menu', (done) => {setTimeout(done, contextGap)})
 		it('should have cook item option', () => {
 			// debugger;
 			expect(sizzle('.contextMenuItem-ITEMCOOK').length).toBe(1);
@@ -280,6 +287,7 @@ fdescribe('givingorders.karma.js', () => {
 		it('click on oven', () => {
 			mouse.canvasClick(ovenBlock.center.screen, { button: 2 });
 		});
+		it('should wait and show context menu', (done) => {setTimeout(done, contextGap)})
 		it('should have an extract option', () => {
 			expect(sizzle('.contextMenuItem-EXTRACT'+item.id).length).toBe(1);
 		})

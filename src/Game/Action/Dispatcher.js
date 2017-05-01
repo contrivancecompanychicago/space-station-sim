@@ -66,7 +66,8 @@ export class Dispatcher{
 					// }
 
 					let characters = state.character.getCharactersAtBlock(block);
-
+					// console.log(selection.end.screen);
+					
 					// if(obj){//show menu
 						state.ui.dispatch({
 							type:'SHOW_CONTEXT_MENU', 
