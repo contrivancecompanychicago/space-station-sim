@@ -260,9 +260,27 @@ fdescribe('givingorders.karma.js', () => {
 				yield sleep(gap)
 			}
 		}))
-
-
 	})
+
+	describe('take out of oven', () => {
+		it('click on oven', () => {
+			mouse.canvasClick(ovenBlock.center.screen, { button: 2 });
+		});
+		it('should have an extract option', () => {
+			expect(sizzle('.contextMenuItem-EXTRACT'+item.id).length).toBe(1);
+		})
+		it('should click it', () => {
+			expect(mouse.clickSelector('.contextMenuItem-EXTRACT'+item.id)).toBe(true);
+		});
+		it('should pick up item',  testGen(function* () {
+			while(worker.getItems().length==0){
+				yield sleep(gap)
+			}
+		}))
+	})
+
+
+
 
 	it('should wait open at the end', (done) => {
 		setTimeout(done, 1000);
