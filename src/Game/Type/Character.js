@@ -23,7 +23,7 @@ import shortestPathToObject from 'Game/Controller/Character/Action/shortestPathT
 import pathToBlock from 'Game/Controller/Character/Action/pathToBlock';
 import makeItem from 'Game/Controller/Character/Action/makeItem';
 import pickUpItem from 'Game/Controller/Character/Action/pickUpItem';
-import putItemOnBlock from 'Game/Controller/Character/Action/placeItemOnBlock';
+import putItemOnBlock from 'Game/Controller/Character/Action/putItemOnBlock';
 
 
 export type ObjectContextAction = {

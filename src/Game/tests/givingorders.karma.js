@@ -13,7 +13,7 @@ let gap = 20;
 function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
-let contextGap = 1000;
+let contextGap = 500;
 
 let container: HTMLDivElement;
 let canvas;
