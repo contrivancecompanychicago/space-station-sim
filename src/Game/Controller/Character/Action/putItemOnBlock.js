@@ -19,6 +19,8 @@ export default function* putItemOnBlock(char:Character, block:Block):Generator<*
 		yield *pathToBlock(char, block);
 	}
 	yield *placeItemOnBlock(char, block);
+	char.removeItems()
+
 
 }
 

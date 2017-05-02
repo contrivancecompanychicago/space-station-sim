@@ -187,6 +187,9 @@ export default class Character {
 	removeItem(item: Item) {
 		this.item.splice(this.item.indexOf(item.id), 1);
 	}
+	removeItems(){
+		this.item = [];
+	}
 	getItems(): Array<Item> {
 		return this.item.map(i => {
 			return state.item.getItem(i)
