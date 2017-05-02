@@ -19,7 +19,7 @@ let container: HTMLDivElement;
 let canvas;
 let game: Game
 
-fdescribe('givingorders.karma.js', () => {
+describe('givingorders.karma.js', () => {
 	beforeAll(function () {
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = 10*1000;
 		container = document.createElement('div');
@@ -56,6 +56,13 @@ fdescribe('givingorders.karma.js', () => {
 	let chairBlock = new Block({ x: 6, y: 9 })
 	let spawnBlock = new Block({ x: 12, y: 3 })
 	describe('setup', () => {
+		
+
+		// it('should speed up time', testGen(function* () {
+		// 	expect(mouse.clickSelector('.button-speed-turbo')).toBe(true)
+		// 	expect(game.state.ui.state.speed).toBe('TURBO')
+		// }));
+
 		it('right mode', testGen(function* () {
 
 			mouse.clickSelector('.save.panel .close')

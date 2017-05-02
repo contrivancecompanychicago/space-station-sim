@@ -219,8 +219,8 @@ describe('functional.karma.js', () => {
 
 
 	it('should speed up time', testGen(function* () {
-		expect(mouse.clickSelector('.button-speed-fast')).toBe(true)
-		expect(game.state.ui.state.speed).toBe('FAST')
+		expect(mouse.clickSelector('.button-speed-turbo')).toBe(true)
+		expect(game.state.ui.state.speed).toBe('TURBO')
 	}));
 
 
@@ -261,7 +261,7 @@ describe('functional.karma.js', () => {
 	}));
 
 	it('should speed time', () => {
-		expect(mouse.clickSelector('.button-speed-fast')).toBe(true)
+		expect(mouse.clickSelector('.button-speed-turbo')).toBe(true)
 	})
 
 	xit('should give him a new path', testGen(function* () { //ADDED CONTEXT MENU
