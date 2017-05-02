@@ -241,7 +241,7 @@ describe('givingorders.karma.js', () => {
 		it('context menu', testGen(function* () {
 			mouse.canvasClick(new Block({ x: 8, y: 6 }).center.screen, { button: 2 });
 			expect(sizzle('.contextMenu').length).toBe(1);
-			
+			yield sleep(contextGap)
 			expect(mouse.clickSelector('.contextMenuItem-MOVEHERE')).toBe(true)
 			game.engine.fastForward(gap)//give him a frame to figure it out
 			
@@ -272,13 +272,13 @@ describe('givingorders.karma.js', () => {
 		}))
 	})
 
-	
+
 
 	describe('walk away again', () => {
 		it('context menu', testGen(function* () {
 			mouse.canvasClick(new Block({ x: 8, y: 6 }).center.screen, { button: 2 });
 			expect(sizzle('.contextMenu').length).toBe(1);
-			
+			yield sleep(contextGap)
 			expect(mouse.clickSelector('.contextMenuItem-MOVEHERE')).toBe(true)
 			game.engine.fastForward(gap)//give him a frame to figure it out
 			
@@ -289,7 +289,6 @@ describe('givingorders.karma.js', () => {
 			}
 		}))
 	});
-
 	describe('take out of oven', () => {
 		it('click on oven', () => {
 			mouse.canvasClick(ovenBlock.center.screen, { button: 2 });
@@ -314,11 +313,13 @@ describe('givingorders.karma.js', () => {
 	})
 
 
+
+
 	describe('walk away again', () => {
 		it('context menu', testGen(function* () {
 			mouse.canvasClick(new Block({ x: 8, y: 6 }).center.screen, { button: 2 });
 			expect(sizzle('.contextMenu').length).toBe(1);
-			
+			yield sleep(contextGap)
 			expect(mouse.clickSelector('.contextMenuItem-MOVEHERE')).toBe(true)
 			game.engine.fastForward(gap)//give him a frame to figure it out
 			
@@ -337,6 +338,7 @@ describe('givingorders.karma.js', () => {
 		it('sohuld have the pickup option for items', () => {
 			expect(sizzle('.contextMenuItem-PICKUP'+item.id).length).toBe(1);
 		});
+		it('should wait and show context menu', (done) => {setTimeout(done, contextGap)})
 		it('should click pick up item', () => {
 			expect(mouse.clickSelector('.contextMenuItem-PICKUP'+item.id)).toBe(true);
 		});
@@ -350,11 +352,47 @@ describe('givingorders.karma.js', () => {
 		})
 	})
 
+
+
 	describe('walk away again', () => {
 		it('context menu', testGen(function* () {
 			mouse.canvasClick(new Block({ x: 8, y: 6 }).center.screen, { button: 2 });
 			expect(sizzle('.contextMenu').length).toBe(1);
+			yield sleep(contextGap)
+			expect(mouse.clickSelector('.contextMenuItem-MOVEHERE')).toBe(true)
+			game.engine.fastForward(gap)//give him a frame to figure it out
 			
+		}))
+		it('should walk there', testGen(function* () {
+			while(worker.path.length>0){
+				yield sleep(gap)
+			}
+		}))
+	});
+	describe('put back on table', () => {
+		it('click on oven', () => {
+			mouse.canvasClick(tableBlock.center.screen, { button: 2 });
+		});
+		it('should have an extract option', () => {
+			expect(sizzle('.contextMenuItem-PUTITEM').length).toBe(1);
+		})
+		it('should wait and show context menu', (done) => {setTimeout(done, contextGap)})
+		it('should click it', () => {
+			expect(mouse.clickSelector('.contextMenuItem-PUTITEM')).toBe(true);
+		});
+		it('should put it down',  testGen(function* () {
+			while(worker.getItems().length>0){
+				yield sleep(gap)
+			}
+		}))
+	})
+
+
+	describe('walk away again', () => {
+		it('context menu', testGen(function* () {
+			mouse.canvasClick(tableBlock.center.screen, { button: 2 });
+			expect(sizzle('.contextMenu').length).toBe(1);
+			yield sleep(contextGap)
 			expect(mouse.clickSelector('.contextMenuItem-MOVEHERE')).toBe(true)
 			game.engine.fastForward(gap)//give him a frame to figure it out
 			
@@ -366,22 +404,22 @@ describe('givingorders.karma.js', () => {
 		}))
 	});
 
-	describe('put back on table', () => {
-		it('click on oven', () => {
-			mouse.canvasClick(tableBlock.center.screen, { button: 2 });
-		});
-		it('should have an extract option', () => {
-			expect(sizzle('.contextMenuItem-PUTITEM').length).toBe(1);
-		})
-		it('should click it', () => {
-			expect(mouse.clickSelector('.contextMenuItem-PUTITEM')).toBe(true);
-		});
-		it('should put it down',  testGen(function* () {
-			while(worker.getItems().length>0){
+	describe('serve the shit', () => {
+		it('context menu', testGen(function* () {
+			mouse.canvasClick(new Block({ x: 8, y: 6 }).center.screen, { button: 2 });
+			expect(sizzle('.contextMenu').length).toBe(1);
+			yield sleep(contextGap)
+			expect(mouse.clickSelector('.contextMenuItem-SERVE'+item.id)).toBe(true)
+			game.engine.fastForward(gap)//give him a frame to figure it out
+			
+		}))
+		it('should walk there', testGen(function* () {
+			while(worker.path.length>0){
 				yield sleep(gap)
 			}
 		}))
 	})
+
 
 	it('should wait open at the end', (done) => {
 		setTimeout(done, 1000);
