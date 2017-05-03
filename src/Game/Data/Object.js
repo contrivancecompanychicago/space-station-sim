@@ -23,6 +23,7 @@ import Table5 from './Object/Table5';
 import Chair from './Object/Chair';
 import Chair2 from './Object/Chair2';
 import CashRegister from './Object/CashRegister';
+import CashReg from './Object/CashReg';
 import StoneOven from './Object/StoneOven'
 import FridgeTall from './Object/FridgeTall'
 import TableTall from './Object/TableTall'
@@ -31,6 +32,7 @@ import ChairTall from './Object/ChairTall'
 import FoodTruck from './Object/FoodTruck'
 import CoffeeMachine from './Object/CoffeeMachine'
 import ChairImageset from './Object/ChairImageset'
+import MetalOven from './Object/MetalOven'
 
 export type ObjectType = string
 // 'BED'|
@@ -100,6 +102,9 @@ Objs[FridgeTall.id] = FridgeTall;
 Objs[CoffeeMachine.id] = CoffeeMachine
 Objs[TableRound.id] = TableRound
 Objs[ChairImageset.id] = ChairImageset
+
+Objs[CashReg.id] = CashReg
+Objs[MetalOven.id] = MetalOven
 
 
 

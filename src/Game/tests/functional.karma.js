@@ -3,18 +3,18 @@ import { extend, keys, assign } from 'lodash';
 import Game from 'Game';
 import config from 'Game/config';
 
-import sizzle from 'sizzle'
+import sizzle from 'sizzle';
 
-import testGen from 'jasmine-es6-generator'
+import testGen from 'jasmine-es6-generator';
 import ReactTestUtils from 'react-addons-test-utils';
 
 
-import Block from 'Game/Block'
-import type Grid from 'Game/Type/Grid'
-import type Obj from 'Game/Type/Obj'
-import type Character from 'Game/Type/Character'
+import Block from 'Game/Block';
+import type Grid from 'Game/Type/Grid';
+import type Obj from 'Game/Type/Obj';
+import type Character from 'Game/Type/Character';
 
-import mouse from './mouseTestUtil'
+import mouse from './mouseTestUtil';
 
 const tg: (Generator<*,*,*>)=>null = testGen
 function sleep(ms) {
@@ -30,7 +30,7 @@ let canvas;
 
 let gap = 1
 
-describe('functional end to end', () => {
+describe('functional.karma.js', () => {
 
 	beforeAll(function () {
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = 10*1000;
@@ -219,8 +219,8 @@ describe('functional end to end', () => {
 
 
 	it('should speed up time', testGen(function* () {
-		expect(mouse.clickSelector('.button-speed-fast')).toBe(true)
-		expect(game.state.ui.state.speed).toBe('FAST')
+		expect(mouse.clickSelector('.button-speed-turbo')).toBe(true)
+		expect(game.state.ui.state.speed).toBe('TURBO')
 	}));
 
 
@@ -261,10 +261,10 @@ describe('functional end to end', () => {
 	}));
 
 	it('should speed time', () => {
-		expect(mouse.clickSelector('.button-speed-fast')).toBe(true)
+		expect(mouse.clickSelector('.button-speed-turbo')).toBe(true)
 	})
 
-	it('should give him a new path', testGen(function* () {
+	xit('should give him a new path', testGen(function* () { //ADDED CONTEXT MENU
 		expect(mouse.clickSelector('.button-mode-select')).toBe(true)
 		//right click somewhere
 		mouse.canvasClick(new Block({ x: 12, y: 12 }).center.screen, { button: 2 });
@@ -335,8 +335,8 @@ describe('functional end to end', () => {
 		
 		it('should wait until its pizzauncooked', testGen(function* () {
 			while(item.type !== 'PIZZAUNCOOKED'){
-				game.engine.fastForward(gap)
-				// yield sleep(gap);
+				// game.engine.fastForward(gap)
+				yield sleep(gap);
 			}
 		}))
 		it('order shound not have worker', () => {
@@ -357,6 +357,7 @@ describe('functional end to end', () => {
 		}));
 		it('should assign cook task to new staff', () => {
 			mouse.clickCheckbox('label.task-COOK input')
+			mouse.clickCheckbox('label.task-EXTRACTOVEN input')
 		});
 		it('order should not have a worker', () => {
 			expect(order.getWorker()).not.toBeDefined();
@@ -367,14 +368,14 @@ describe('functional end to end', () => {
 		}));
 		it('should turn item into a pizza', testGen(function*(){
 			while(item.type !== 'PIZZA'){
-				game.engine.fastForward(gap)
-				// yield sleep(gap)
+				// game.engine.fastForward(gap)
+				yield sleep(gap)
 			}
 		}));
 		it('should put it onto a table to wait for serving', testGen(function*(){
 			while(order.getWorker()){
-				game.engine.fastForward(gap)
-				// yield sleep(gap)
+				// game.engine.fastForward(gap)
+				yield sleep(gap)
 			}
 			let obj:Obj = item.getObject();
 			expect(obj.hasAbility('SERVE_TABLE')).toBe(true);

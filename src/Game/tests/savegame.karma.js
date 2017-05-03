@@ -11,9 +11,9 @@ import dispatcher from 'Game/Action/Dispatcher';
 
 let gap = 20;
 function sleep(ms) {
-	game.engine.fastForward(gap)
-	return Promise.resolve()
-	// return new Promise(resolve => setTimeout(resolve, ms));
+	// game.engine.fastForward(gap)
+	// return Promise.resolve()
+	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 let container: HTMLDivElement;
@@ -308,14 +308,17 @@ describe('savegame.karma.js', () => {
 			mouse.canvasClick(point);
 			
 			mouse.clickCheckbox('label.task-COOK input')
+			mouse.clickCheckbox('label.task-EXTRACTOVEN input')
 
 			expect(order.getWorker()).not.toBeDefined();
 			while(!order.getWorker()){
 				yield sleep(gap)
 			}
 
+			yield sleep(gap) //again for next test
+
 		}))
-		it('worker should only have one item', () => {
+		it('worker should only have one item, pizza on table', () => { //THIS TEST FLAKEY
 			expect(worker.getItems().length).toBe(1);
 		})
 		it('save and reload', testGen(saveAndReload));

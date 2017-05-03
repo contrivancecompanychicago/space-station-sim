@@ -46,14 +46,6 @@ export default class CharacterController{
 				state.character.addChar(char);
 			}
 		}
-		// //spawn;
-		// let spawnPoints = state.object.getObjectsWithAbility(Ability.SPAWN)
-		// spawnPoints.forEach((sp) => {
-		// 	if (Math.random() < 0.0004) {
-		// 		let char = new Character({ position: sp.block.center, type: 'CUSTOMER' })
-		// 		state.character.addChar(char);
-		// 	}
-		// })
 	}
 	newAction(char:Character){
 

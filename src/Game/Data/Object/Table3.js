@@ -8,7 +8,7 @@ const a = 'ACCESS';
 const b = 'BLOCK';
 const obj:ObjectDataType = {
   id: 'TABLE3',
-  label: 'prep',
+  label: 'prep table',
   image: require('./table3.png'),
   width: 1,
   height: 1,

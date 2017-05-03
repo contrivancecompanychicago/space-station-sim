@@ -38,6 +38,11 @@ module.exports = function(config) {
     // reporters: ['coverage', 'progress', 'kjhtml'], // 'nyan',
     reporters: ['spec', 'coverage'],
 
+    specReporter: {
+      suppressSkipped: true,
+      showSpecTiming: true
+    },
+
     coverageReporter: {
       reporters:[
         // {type: 'text'},

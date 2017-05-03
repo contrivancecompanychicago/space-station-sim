@@ -1,0 +1,84 @@
+{
+  "item": [
+    {
+      "id": "PRIORITY",
+      "type": "state",
+      "name": "prioritised"
+    },
+    {
+      "id": "DEV",
+      "type": "state",
+      "name": "in dev"
+    },
+    {
+      "id": "DONE",
+      "type": "state",
+      "name": "done"
+    },
+    {
+      "show": true,
+      "type": "epic",
+      "name": "context menu",
+      "id": "EPIC-1"
+    },
+    {
+      "show": true,
+      "type": "task",
+      "name": "list items context menu",
+      "id": "TASK-2",
+      "epic": "EPIC-1",
+      "state": "PRIORITY"
+    },
+    {
+      "show": true,
+      "type": "task",
+      "name": "object context ment",
+      "id": "TASK-3",
+      "epic": "EPIC-1",
+      "state": "DEV"
+    },
+    {
+      "show": true,
+      "type": "task",
+      "name": "drop in new graphics",
+      "id": "TASK-4",
+      "state": "DONE"
+    },
+    {
+      "show": true,
+      "type": "task",
+      "name": "altering grid dont remove object",
+      "id": "TASK-5"
+    },
+    {
+      "show": true,
+      "type": "task",
+      "name": "shoot",
+      "id": "TASK-6",
+      "state": "PRIORITY"
+    },
+    {
+      "show": true,
+      "type": "task",
+      "name": "split makeorder into makeitem",
+      "description": "it should be easy to amke makeorder into a much smaller function to let makeitem be used to start new orders from scratch",
+      "id": "TASK-7"
+    },
+    {
+      "show": true,
+      "type": "task",
+      "name": "context menu item - actions using item in inventory",
+      "epic": "EPIC-1",
+      "description": "when context menu is shown, the user should be able to see actions related to the item the focused character is holding",
+      "id": "TASK-8"
+    },
+    {
+      "show": true,
+      "type": "task",
+      "name": "queue actions",
+      "description": "sims style queue of actions per character",
+      "id": "TASK-9"
+    }
+  ],
+  "counter": 10
+}

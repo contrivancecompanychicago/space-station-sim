@@ -8,7 +8,7 @@ import Weight from 'Game/Data/Grid/Weight'
 import Ability from 'Game/Data/Object/Ability'
 const obj:ObjectDataType = {
   id: 'TABLE4',
-  label: 'serve',
+  label: 'serving table',
   image: require('./table4.png'),
   width: 1,
   height: 1,

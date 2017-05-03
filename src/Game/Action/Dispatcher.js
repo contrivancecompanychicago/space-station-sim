@@ -52,25 +52,42 @@ export class Dispatcher{
 					}
 				}
 				if(selection.button === RIGHTMOUSE){
-					//ASSIGN TASKS
-					let obj = state.object.getObjectAtBlock(selection.end.block);
-					if(obj){//show menu
+					
+					//CACHE ALL THIS SHIT NOW
+					// dont figure this out in render 
+					// because game state is changing constantly
+					let block = selection.end.block
+					let obj = state.object.getObjectAtBlock(block);
+
+					let items = state.item.getItemsAtBlock(block);
+					// if(obj){
+					// 	//override items;
+					// 	items = obj.getItems();
+					// }
+
+					let characters = state.character.getCharactersAtBlock(block);
+					// console.log(selection.end.screen);
+					
+					// if(obj){//show menu
 						state.ui.dispatch({
 							type:'SHOW_CONTEXT_MENU', 
 							character: state.ui.getSelected()[0],
+							block: block,
 							object: obj,
+							items: items,
+							characters: characters,
 							position: selection.end.screen
 						});
-					}else {//walk to the place
-						state.ui.getSelectedCharacters().forEach(s => {
-							s.action = pathToBlock(s, selection.end.block)
-							// if(obj){
-							// 	if(obj.hasAbility('MAKE_COFFEE')){
-							// 		s.action = actions.useCoffeeAbility(s, obj)
-							// 	}
-							// }
-						})
-					}
+					// }else {//walk to the place
+					// 	state.ui.getSelectedCharacters().forEach(s => {
+					// 		s.action = pathToBlock(s, selection.end.block)
+					// 		// if(obj){
+					// 		// 	if(obj.hasAbility('MAKE_COFFEE')){
+					// 		// 		s.action = actions.useCoffeeAbility(s, obj)
+					// 		// 	}
+					// 		// }
+					// 	})
+					// }
 					//TODO REFACTOR
 				}
 				break;
