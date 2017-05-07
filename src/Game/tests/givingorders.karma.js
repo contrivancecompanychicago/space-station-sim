@@ -403,13 +403,40 @@ describe('givingorders.karma.js', () => {
 			}
 		}))
 	});
-
+	describe('pick it up again', () => {
+		it('should right click on item to make context menu appear', () => {
+			mouse.canvasClick(item.position.screen, { button: 2 });
+		});
+		it('sohuld have the pickup option for items', () => {
+			expect(sizzle('.contextMenuItem-PICKUP' + item.id).length).toBe(1);
+		});
+		it('should wait and show context menu', (done) => { setTimeout(done, contextGap) })
+		it('should click pick up item', () => {
+			expect(mouse.clickSelector('.contextMenuItem-PICKUP' + item.id)).toBe(true);
+		});
+		it('should get item', testGen(function* () {
+			while (worker.getItems().length == 0) {
+				yield sleep(gap)
+			}
+		}));
+		it('should be the right item', () => {
+			expect(worker.getItems()[0]).toBe(item);
+		})
+	})
+	let customer:Character
 	describe('serve the shit', () => {
+		it('should have a customer by now', () => {
+			let chars = game.state.character.getChars();
+			expect(chars.length > 1).toBe(true);
+			customer = chars[1];//the second spawn
+			expect(customer.id).not.toBe(worker.id)
+		})
 		it('context menu', testGen(function* () {
-			mouse.canvasClick(new Block({ x: 8, y: 6 }).center.screen, { button: 2 });
+
+			mouse.canvasClick(customer.position.screen, { button: 2 });
 			expect(sizzle('.contextMenu').length).toBe(1);
 			yield sleep(contextGap)
-			expect(mouse.clickSelector('.contextMenuItem-SERVE' + item.id)).toBe(true)
+			expect(mouse.clickSelector('.contextMenuItem-SERVE' + customer.id)).toBe(true)
 			game.engine.fastForward(gap)//give him a frame to figure it out
 
 		}))
@@ -420,6 +447,22 @@ describe('givingorders.karma.js', () => {
 		}))
 	})
 
+
+	describe('walk away again', () => {
+		it('context menu', testGen(function* () {
+			mouse.canvasClick(new Block({ x: 8, y: 6 }).center.screen, { button: 2 });
+			expect(sizzle('.contextMenu').length).toBe(1);
+			yield sleep(contextGap)
+			expect(mouse.clickSelector('.contextMenuItem-MOVEHERE')).toBe(true)
+			game.engine.fastForward(gap)//give him a frame to figure it out
+
+		}))
+		it('should walk there', testGen(function* () {
+			while (worker.path.length > 0) {
+				yield sleep(gap)
+			}
+		}))
+	});
 
 	it('should wait open at the end', (done) => {
 		setTimeout(done, 1000);
