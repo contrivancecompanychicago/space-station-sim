@@ -23,8 +23,9 @@ import shortestPathToObject from 'Game/Controller/Character/Action/shortestPathT
 import pathToBlock from 'Game/Controller/Character/Action/pathToBlock';
 import makeItem from 'Game/Controller/Character/Action/makeItem';
 import pickUpItem from 'Game/Controller/Character/Action/pickUpItem';
-import putItemOnBlock from 'Game/Controller/Character/Action/putItemOnBlock';
 
+import putItemOnBlock from 'Game/Controller/Character/Action/putItemOnBlock';
+import giveItem from 'Game/Controller/Character/Action/giveItem';
 
 export type ObjectContextAction = {
 	type: 'ASSIGN' | 'SERVE',
@@ -89,8 +90,8 @@ export default class Character {
 	pickUpItem(item:Item){
 		this.setAction(pickUpItem(this, item));
 	}
-	giveItem(item:Item, target:Character){
-		// this.setAction(serveItem(this, item));
+	giveItem(item:Item,target:Character){
+		this.setAction(giveItem(this, item, target));
 	}
 	putItemOnBlock(block:Block){
 		this.setAction(putItemOnBlock(this, block));

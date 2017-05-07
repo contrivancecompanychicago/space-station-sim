@@ -39,9 +39,11 @@ class ContextMenuObject extends React.Component{
 				this.props.close();
 			}} />)
 
-			this.props.characters.forEach(char => {
-				buttons.push(<ContextMenuItem id="SERVE" key={"serve"} text={"give item to "+char} fn={()=>{
-					this.props.character.giveItemTo(char);
+			let item = this.props.character.getItems()[0]
+			this.props.characters.forEach((char:Character) => {
+				
+				buttons.push(<ContextMenuItem id={"SERVE"+char.id} key={"serve"+char.id} text={"give item to "+char} fn={()=>{
+					this.props.character.giveItem(item, char);
 					this.props.close();
 				}} />)
 			})
