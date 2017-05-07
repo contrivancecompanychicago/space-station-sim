@@ -89,6 +89,9 @@ export default class Character {
 	pickUpItem(item:Item){
 		this.setAction(pickUpItem(this, item));
 	}
+	giveItem(item:Item, target:Character){
+		// this.setAction(serveItem(this, item));
+	}
 	putItemOnBlock(block:Block){
 		this.setAction(putItemOnBlock(this, block));
 	}

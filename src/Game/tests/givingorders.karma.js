@@ -21,7 +21,7 @@ let game: Game
 
 describe('givingorders.karma.js', () => {
 	beforeAll(function () {
-		jasmine.DEFAULT_TIMEOUT_INTERVAL = 10*1000;
+		jasmine.DEFAULT_TIMEOUT_INTERVAL = 10 * 1000;
 		container = document.createElement('div');
 		container.style = 'position:absolute; left: 0px; top: 0px; display:block; width: 100%; height: 100%';
 		document.body.appendChild(container)
@@ -33,17 +33,17 @@ describe('givingorders.karma.js', () => {
 	})
 	it('should wait to start', (done) => {
 		// setTimeout(() => {
-			canvas = container.getElementsByTagName('canvas')[0];
-			mouse.setCanvas(canvas);
-			done();
+		canvas = container.getElementsByTagName('canvas')[0];
+		mouse.setCanvas(canvas);
+		done();
 		// }, 100)
 	})
-	
+
 	it('draw blocks', () => {
 		expect(mouse.clickSelector('.button-mode-grid')).toBe(true)
 		expect(mouse.clickSelector('.button-grid-FLOOR')).toBe(true)
-		let fromBlock = new Block({x:0, y:0})
-		let toBlock = new Block({x:16, y:16})
+		let fromBlock = new Block({ x: 0, y: 0 })
+		let toBlock = new Block({ x: 16, y: 16 })
 		spyOn(dispatcher, 'userAction').and.callThrough();
 		mouse.canvasMouseDown(fromBlock.center.screen)
 		mouse.canvasMouseUp(toBlock.center.screen)
@@ -56,7 +56,7 @@ describe('givingorders.karma.js', () => {
 	let chairBlock = new Block({ x: 6, y: 9 })
 	let spawnBlock = new Block({ x: 12, y: 3 })
 	describe('setup', () => {
-		
+
 
 		// it('should speed up time', testGen(function* () {
 		// 	expect(mouse.clickSelector('.button-speed-turbo')).toBe(true)
@@ -70,9 +70,9 @@ describe('givingorders.karma.js', () => {
 			// yield* mouse.canvasDragRect({ x: 0, y: 0 }, { x: 16, y: 16 });
 			//objects
 			expect(mouse.clickSelector('.button-mode-object')).toBe(true)
-			
+
 		}))
-		
+
 		it('click STONEOVEN', () => {
 			expect(mouse.clickSelector('.button-object-STONEOVEN')).toBe(true)
 			mouse.canvasClickBlock(ovenBlock)
@@ -92,16 +92,16 @@ describe('givingorders.karma.js', () => {
 		it('click chair', () => {
 			expect(mouse.clickSelector('.button-object-CHAIRIMAGESET')).toBe(true)
 			mouse.canvasClickBlock(chairBlock)
-			
+
 		})
 		it('click test', () => {
 			expect(mouse.clickSelector('.button-object-TEST')).toBe(true)
 			mouse.canvasClickBlock(spawnBlock);
 
 			game.engine.fastForward(gap);
-			
+
 		})
-		
+
 
 	})
 	let worker
@@ -120,7 +120,7 @@ describe('givingorders.karma.js', () => {
 		// debugger;
 	})
 
-	it('should wait and show context menu', (done) => {setTimeout(done, contextGap)})
+	it('should wait and show context menu', (done) => { setTimeout(done, contextGap) })
 
 	it('should click walk', () => {
 		expect(mouse.clickSelector('.contextMenuItem-MOVEHERE')).toBe(true)
@@ -138,7 +138,7 @@ describe('givingorders.karma.js', () => {
 	})
 
 	it('sohuld walk there', testGen(function* () {
-		while(worker.path.length>0){
+		while (worker.path.length > 0) {
 			yield sleep(gap)
 		}
 	}))
@@ -153,13 +153,13 @@ describe('givingorders.karma.js', () => {
 			expect(game.state.ui.state.contextMenu.show).toBe(true);
 			expect(sizzle('.contextMenu').length).toBe(1);
 		})
-		
+
 		it('should click fridge', () => {
 			mouse.canvasClick(new Block(fridgeBlock).center.screen, { button: 2 });
 			expect(sizzle('.contextMenu').length).toBe(1);
 
 		})
-		it('should wait and show context menu', (done) => {setTimeout(done, contextGap)})
+		it('should wait and show context menu', (done) => { setTimeout(done, contextGap) })
 
 		it('should click start cooking', () => {
 			expect(mouse.clickSelector('.contextMenuItem-STARTCOOK')).toBe(true)
@@ -167,22 +167,22 @@ describe('givingorders.karma.js', () => {
 		it('should hide context menu', () => {
 			expect(sizzle('.contextMenu').length).toBe(0);
 		})
-		
+
 		it('should have path set to fridge', () => {
 			game.engine.fastForward(gap)
 			let lastblock = worker.path[worker.path.length - 1]
 			expect(lastblock.x).toBe(fridgeBlock.x);
-			expect(lastblock.y).toBe(fridgeBlock.y+1);
+			expect(lastblock.y).toBe(fridgeBlock.y + 1);
 		});
-		
+
 		it('sohuld walk there', testGen(function* () {
-			while(worker.path.length>0){
+			while (worker.path.length > 0) {
 				yield sleep(gap)
 			}
 			// yield(sleep(4000))
 		}))
 		it('should get an item', testGen(function* () {
-			while(worker.getItems().length==0){
+			while (worker.getItems().length == 0) {
 				yield sleep(gap)
 			}
 			item = worker.getItems()[0];
@@ -191,7 +191,7 @@ describe('givingorders.karma.js', () => {
 			expect(item.type).toBe('BASE')
 		})
 		it('should turn it into pizzauncooked', testGen(function* () {
-			while(item.type !== 'PIZZAUNCOOKED'){
+			while (item.type !== 'PIZZAUNCOOKED') {
 				yield sleep(gap)
 			}
 		}))
@@ -205,10 +205,10 @@ describe('givingorders.karma.js', () => {
 			yield sleep(contextGap)
 			expect(mouse.clickSelector('.contextMenuItem-MOVEHERE')).toBe(true)
 			game.engine.fastForward(gap)//give him a frame to figure it out
-			
+
 		}))
 		it('should walk there', testGen(function* () {
-			while(worker.path.length>0){
+			while (worker.path.length > 0) {
 				yield sleep(gap)
 			}
 		}))
@@ -218,15 +218,15 @@ describe('givingorders.karma.js', () => {
 		it('should right click on item to make context menu appear', () => {
 			mouse.canvasClick(item.position.screen, { button: 2 });
 		});
-		it('should wait and show context menu', (done) => {setTimeout(done, contextGap)})
+		it('should wait and show context menu', (done) => { setTimeout(done, contextGap) })
 		it('sohuld have the pickup option for items', () => {
-			expect(sizzle('.contextMenuItem-PICKUP'+item.id).length).toBe(1);
+			expect(sizzle('.contextMenuItem-PICKUP' + item.id).length).toBe(1);
 		});
 		it('should click pick up item', () => {
-			expect(mouse.clickSelector('.contextMenuItem-PICKUP'+item.id)).toBe(true);
+			expect(mouse.clickSelector('.contextMenuItem-PICKUP' + item.id)).toBe(true);
 		});
 		it('should get item', testGen(function* () {
-			while(worker.getItems().length == 0){
+			while (worker.getItems().length == 0) {
 				yield sleep(gap)
 			}
 		}));
@@ -244,10 +244,10 @@ describe('givingorders.karma.js', () => {
 			yield sleep(contextGap)
 			expect(mouse.clickSelector('.contextMenuItem-MOVEHERE')).toBe(true)
 			game.engine.fastForward(gap)//give him a frame to figure it out
-			
+
 		}))
 		it('should walk there', testGen(function* () {
-			while(worker.path.length>0){
+			while (worker.path.length > 0) {
 				yield sleep(gap)
 			}
 		}))
@@ -257,7 +257,7 @@ describe('givingorders.karma.js', () => {
 		it('click on oven', () => {
 			mouse.canvasClick(ovenBlock.center.screen, { button: 2 });
 		});
-		it('should wait and show context menu', (done) => {setTimeout(done, contextGap)})
+		it('should wait and show context menu', (done) => { setTimeout(done, contextGap) })
 		it('should have cook item option', () => {
 			// debugger;
 			expect(sizzle('.contextMenuItem-ITEMCOOK').length).toBe(1);
@@ -265,8 +265,8 @@ describe('givingorders.karma.js', () => {
 		it('should click it', () => {
 			expect(mouse.clickSelector('.contextMenuItem-ITEMCOOK')).toBe(true);
 		});
-		it('should put pizza in oven',  testGen(function* () {
-			while(worker.getItems().length>0){
+		it('should put pizza in oven', testGen(function* () {
+			while (worker.getItems().length > 0) {
 				yield sleep(gap)
 			}
 		}))
@@ -281,10 +281,10 @@ describe('givingorders.karma.js', () => {
 			yield sleep(contextGap)
 			expect(mouse.clickSelector('.contextMenuItem-MOVEHERE')).toBe(true)
 			game.engine.fastForward(gap)//give him a frame to figure it out
-			
+
 		}))
 		it('should walk there', testGen(function* () {
-			while(worker.path.length>0){
+			while (worker.path.length > 0) {
 				yield sleep(gap)
 			}
 		}))
@@ -293,20 +293,20 @@ describe('givingorders.karma.js', () => {
 		it('click on oven', () => {
 			mouse.canvasClick(ovenBlock.center.screen, { button: 2 });
 		});
-		it('should wait and show context menu', (done) => {setTimeout(done, contextGap)})
+		it('should wait and show context menu', (done) => { setTimeout(done, contextGap) })
 		it('should have an extract option', () => {
-			expect(sizzle('.contextMenuItem-EXTRACT'+item.id).length).toBe(1);
+			expect(sizzle('.contextMenuItem-EXTRACT' + item.id).length).toBe(1);
 		})
 		it('should click it', () => {
-			expect(mouse.clickSelector('.contextMenuItem-EXTRACT'+item.id)).toBe(true);
+			expect(mouse.clickSelector('.contextMenuItem-EXTRACT' + item.id)).toBe(true);
 		});
-		it('should pick up item',  testGen(function* () {
-			while(worker.getItems().length==0){
+		it('should pick up item', testGen(function* () {
+			while (worker.getItems().length == 0) {
 				yield sleep(gap)
 			}
 		}))
-		it('should put it down',  testGen(function* () {
-			while(worker.getItems().length>0){
+		it('should put it down', testGen(function* () {
+			while (worker.getItems().length > 0) {
 				yield sleep(gap)
 			}
 		}))
@@ -322,10 +322,10 @@ describe('givingorders.karma.js', () => {
 			yield sleep(contextGap)
 			expect(mouse.clickSelector('.contextMenuItem-MOVEHERE')).toBe(true)
 			game.engine.fastForward(gap)//give him a frame to figure it out
-			
+
 		}))
 		it('should walk there', testGen(function* () {
-			while(worker.path.length>0){
+			while (worker.path.length > 0) {
 				yield sleep(gap)
 			}
 		}))
@@ -336,14 +336,14 @@ describe('givingorders.karma.js', () => {
 			mouse.canvasClick(item.position.screen, { button: 2 });
 		});
 		it('sohuld have the pickup option for items', () => {
-			expect(sizzle('.contextMenuItem-PICKUP'+item.id).length).toBe(1);
+			expect(sizzle('.contextMenuItem-PICKUP' + item.id).length).toBe(1);
 		});
-		it('should wait and show context menu', (done) => {setTimeout(done, contextGap)})
+		it('should wait and show context menu', (done) => { setTimeout(done, contextGap) })
 		it('should click pick up item', () => {
-			expect(mouse.clickSelector('.contextMenuItem-PICKUP'+item.id)).toBe(true);
+			expect(mouse.clickSelector('.contextMenuItem-PICKUP' + item.id)).toBe(true);
 		});
 		it('should get item', testGen(function* () {
-			while(worker.getItems().length == 0){
+			while (worker.getItems().length == 0) {
 				yield sleep(gap)
 			}
 		}));
@@ -361,10 +361,10 @@ describe('givingorders.karma.js', () => {
 			yield sleep(contextGap)
 			expect(mouse.clickSelector('.contextMenuItem-MOVEHERE')).toBe(true)
 			game.engine.fastForward(gap)//give him a frame to figure it out
-			
+
 		}))
 		it('should walk there', testGen(function* () {
-			while(worker.path.length>0){
+			while (worker.path.length > 0) {
 				yield sleep(gap)
 			}
 		}))
@@ -376,12 +376,12 @@ describe('givingorders.karma.js', () => {
 		it('should have an extract option', () => {
 			expect(sizzle('.contextMenuItem-PUTITEM').length).toBe(1);
 		})
-		it('should wait and show context menu', (done) => {setTimeout(done, contextGap)})
+		it('should wait and show context menu', (done) => { setTimeout(done, contextGap) })
 		it('should click it', () => {
 			expect(mouse.clickSelector('.contextMenuItem-PUTITEM')).toBe(true);
 		});
-		it('should put it down',  testGen(function* () {
-			while(worker.getItems().length>0){
+		it('should put it down', testGen(function* () {
+			while (worker.getItems().length > 0) {
 				yield sleep(gap)
 			}
 		}))
@@ -395,10 +395,10 @@ describe('givingorders.karma.js', () => {
 			yield sleep(contextGap)
 			expect(mouse.clickSelector('.contextMenuItem-MOVEHERE')).toBe(true)
 			game.engine.fastForward(gap)//give him a frame to figure it out
-			
+
 		}))
 		it('should walk there', testGen(function* () {
-			while(worker.path.length>0){
+			while (worker.path.length > 0) {
 				yield sleep(gap)
 			}
 		}))
@@ -409,12 +409,12 @@ describe('givingorders.karma.js', () => {
 			mouse.canvasClick(new Block({ x: 8, y: 6 }).center.screen, { button: 2 });
 			expect(sizzle('.contextMenu').length).toBe(1);
 			yield sleep(contextGap)
-			expect(mouse.clickSelector('.contextMenuItem-SERVE'+item.id)).toBe(true)
+			expect(mouse.clickSelector('.contextMenuItem-SERVE' + item.id)).toBe(true)
 			game.engine.fastForward(gap)//give him a frame to figure it out
-			
+
 		}))
 		it('should walk there', testGen(function* () {
-			while(worker.path.length>0){
+			while (worker.path.length > 0) {
 				yield sleep(gap)
 			}
 		}))

@@ -38,7 +38,15 @@ class ContextMenuObject extends React.Component{
 				this.props.character.putItemOnBlock(this.props.object.block);
 				this.props.close();
 			}} />)
+
+			this.props.characters.forEach(char => {
+				buttons.push(<ContextMenuItem id="SERVE" key={"serve"} text={"give item to "+char} fn={()=>{
+					this.props.character.giveItemTo(char);
+					this.props.close();
+				}} />)
+			})
 		}
+
 		
 		if(this.props.object.hasAbility('OVEN')){
 			// debugger;
@@ -94,7 +102,6 @@ class ContextMenu extends React.Component{
 			//state.character.execAction(actionType, char, object);
 		}
 		render() {
-
 			let style = {
 					left:this.props.position.x - 10,
 					top:this.props.position.y - 10
@@ -104,7 +111,10 @@ class ContextMenu extends React.Component{
 				<div className="block">
 					<ContextMenuItem id="MOVEHERE" text="move here" fn={this.moveHere} />
 				</div>
-				<ContextMenuObject close={this.props.close} character={this.props.character} object={this.props.object} />
+				<ContextMenuObject close={this.props.close} 
+				character={this.props.character} 
+				characters={this.props.characters} 
+				object={this.props.object} />
 				{this.props.items.map((i:Item) => {
 					// debugger;
 					return <div>
@@ -127,7 +137,7 @@ function mapStateToProps(state:Object, props:Object):Object {
 
 function mapDispatchToProps(dispatch:Function, props:Object):Object {
 	return {
-		close: () => {
+		close: (id) => {
 			dispatch({type:'CLOSE_CONTEXT_MENU'});
 		}
 	};
