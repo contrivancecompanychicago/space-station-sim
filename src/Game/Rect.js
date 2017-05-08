@@ -61,7 +61,7 @@ export default class Rect{
     );
   }
 
-  add(rect:Rect):Rect{
+  add(rect:{t:number;r:number;b:number;l:number}):Rect{
     return new Rect(
       (this.t+rect.t),
       (this.r+rect.r),
