@@ -61,6 +61,15 @@ export default class Rect{
     );
   }
 
+  add(rect:Rect):Rect{
+    return new Rect(
+      (this.t+rect.t),
+      (this.r+rect.r),
+      (this.b+rect.b),
+      (this.l+rect.l)
+    );
+  }
+
   get units():Array<Block>{
     let list = [];
     let sel = this;
