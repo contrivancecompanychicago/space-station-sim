@@ -27,7 +27,7 @@
       "name": "list items context menu",
       "id": "TASK-2",
       "epic": "EPIC-1",
-      "state": "DEV"
+      "state": "DONE"
     },
     {
       "show": true,
@@ -78,7 +78,13 @@
       "name": "queue actions",
       "description": "sims style queue of actions per character",
       "id": "TASK-9"
+    },
+    {
+      "show": true,
+      "type": "task",
+      "name": "map gen",
+      "id": "TASK-10"
     }
   ],
-  "counter": 10
+  "counter": 11
 }
