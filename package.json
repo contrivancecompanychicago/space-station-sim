@@ -82,6 +82,7 @@
     "react-redux": "^4.4.5",
     "react-test-renderer": "^15.4.2",
     "redux": "^3.5.2",
+    "simplex-noise": "^2.3.0",
     "style-loader": "^0.13.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.4.0",

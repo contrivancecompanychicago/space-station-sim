@@ -28,6 +28,8 @@ import UIController from 'Game/Controller/UI'
 
 import Point from 'Game/Point'
 
+import genMap from 'Game/Map'
+
 export default class Game{
 	container:HTMLElement
 	engine: Engine;
@@ -53,6 +55,8 @@ export default class Game{
 		engine.register(new UIController(container))
 
 		engine.start();
+
+		genMap(state);
 		
 		//LOADGAME hacky
 		// load('quicksave')
