@@ -27,7 +27,7 @@
       "name": "list items context menu",
       "id": "TASK-2",
       "epic": "EPIC-1",
-      "state": "PRIORITY"
+      "state": "DEV"
     },
     {
       "show": true,
@@ -35,7 +35,7 @@
       "name": "object context ment",
       "id": "TASK-3",
       "epic": "EPIC-1",
-      "state": "DEV"
+      "state": "DONE"
     },
     {
       "show": true,

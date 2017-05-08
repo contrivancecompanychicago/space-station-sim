@@ -15,16 +15,11 @@
     "postinstall": "gulp build",
     "coverage": "jest --coverage --watch"
   },
-  "bin": {
-    "grunt": "./node_modules/grunt-cli/bin/grunt",
-    "bower": "./node_modules/bower/bin/bower"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/digijin/space-station-sim.git"
   },
   "keywords": [
-    "space",
     "game",
     "simulation"
   ],
