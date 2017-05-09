@@ -60,6 +60,9 @@ export default class Rect{
 			Math.floor(this.l/config.grid.height)
 		);
 	}
+	width():number{
+		return this.r - this.l
+	}
 
 	add(rect:{t:number;r:number;b:number;l:number}):Rect{
 		return new Rect(

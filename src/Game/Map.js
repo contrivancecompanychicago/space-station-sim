@@ -15,10 +15,22 @@ import Obj from 'Game/Type/Object'
 export default function genMap(state: State) {
 	let r = new Rect({ x: 1, y: 1 }, { x: 3, y: 100 })
 	fill(state, 'ROAD', r);
-	cityBlock(state, new Point({ x: 4, y: 4 }))
+	// cityBlockRandom(state, new Point({ x: 4, y: 4 }))
+	cityBlock(state, new Rect({t:0, r:20, b: 20, l: 4}))
 }
 
-function cityBlock(state: State, offset: Point) {
+function cityBlock(state:State, rect:Rect){
+	
+	let pad = 2;
+	fill(state, 'FLOOR', rect)
+	fill(state, 'WALLTEST', rect.add({t:pad, r: -pad, b: -pad, l: pad}));
+	fill(state, 'FLOOR', rect.add({t:pad+1, r: -1-pad, b: -1-pad, l: pad+1}))
+	let center = rect.l + Math.floor(rect.width()/2)
+	fill(state, 'WALLTEST', new Rect({t: rect.t+pad, b: rect.b-pad, l: center, r:center}))
+
+}
+
+function cityBlockRandom(state: State, offset: Point) {
 
 	let padding = 2;
 
@@ -28,8 +40,8 @@ function cityBlock(state: State, offset: Point) {
 	}
 	let height = lens.reduce((a,b) => {return a+b}, 0);
 
-	let mid = offset.x + 6 + Math.floor(Math.random() * 4)
-	let end = mid + 6 + Math.floor(Math.random() * 4)
+	let mid = offset.x + 6 //+ Math.floor(Math.random() * 4)
+	let end = mid + 6 //+ Math.floor(Math.random() * 4)
 	let dist = 0
 
 
