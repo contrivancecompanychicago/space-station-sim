@@ -18,6 +18,7 @@ export default function genMap(state: State) {
 	// cityBlockRandom(state, new Point({ x: 4, y: 4 }))
 	cityBlock(state, new Rect({t:0, r:22, b: 30, l: 4}))
 	cityBlock(state, new Rect({t:0, r:44, b: 30, l: 26}))
+	cityBlock(state, new Rect({t:0, r:66, b: 30, l: 48}))
 }
 
 function cityBlock(state:State, rect:Rect){
