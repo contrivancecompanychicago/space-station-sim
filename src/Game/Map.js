@@ -8,8 +8,10 @@ import type State from 'Game/state'
 
 import Rect from 'Game/Rect'
 import Point from 'Game/Point'
+import Block from 'Game/Block'
 
 import Grid from 'Game/Type/Grid'
+import Obj from 'Game/Type/Object'
 export default function genMap(state: State) {
 	let r = new Rect({ x: 1, y: 1 }, { x: 3, y: 100 })
 	fill(state, 'ROAD', r);
@@ -42,11 +44,24 @@ function cityBlock(state: State, offset: Point) {
 	offset.y += padding
 
 
-
 	lens.forEach(len => {
 
 		drawRoom(state, new Rect(offset.y, offset.x + mid, offset.y + len, offset.x));
 		drawRoom(state, new Rect(offset.y, offset.x + end, offset.y + len, offset.x + mid));
+
+		//make gaps for people to go in and out
+		
+		state.grid.addNode(offset.x, offset.y+1, new Grid({type:'WOODTILE'}))
+		state.grid.addNode(offset.x+end, offset.y+1, new Grid({type:'WOODTILE'}))
+
+		state.object.addObject(new Obj({
+			block: new Block({x: offset.x+1, y: offset.y+1}),
+			type: 'SPAWN'
+		}));
+		state.object.addObject(new Obj({
+			block: new Block({x: offset.x+end-1, y: offset.y+1}),
+			type: 'SPAWN'
+		}));
 
 		offset.y += len
 	})
