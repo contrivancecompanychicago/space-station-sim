@@ -10,7 +10,7 @@ import Character from 'Game/Type/Character'
 import customer from 'Game/Controller/Character/Action/customer'
 import worker from 'Game/Controller/Character/Action/worker'
 
-const spawnGap = 5;
+const spawnGap = 2;
 
 export default class CharacterController{
 	spawnTimer:number;

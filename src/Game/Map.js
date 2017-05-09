@@ -13,10 +13,11 @@ import Block from 'Game/Block'
 import Grid from 'Game/Type/Grid'
 import Obj from 'Game/Type/Object'
 export default function genMap(state: State) {
-	let r = new Rect({ x: 1, y: 1 }, { x: 3, y: 100 })
+	let r = new Rect({ x: 0, y: -2 }, { x: 100, y: 100 })
 	fill(state, 'ROAD', r);
 	// cityBlockRandom(state, new Point({ x: 4, y: 4 }))
-	cityBlock(state, new Rect({t:0, r:20, b: 20, l: 4}))
+	cityBlock(state, new Rect({t:0, r:22, b: 30, l: 4}))
+	cityBlock(state, new Rect({t:0, r:44, b: 30, l: 26}))
 }
 
 function cityBlock(state:State, rect:Rect){
@@ -27,6 +28,27 @@ function cityBlock(state:State, rect:Rect){
 	fill(state, 'FLOOR', rect.add({t:pad+1, r: -1-pad, b: -1-pad, l: pad+1}))
 	let center = rect.l + Math.floor(rect.width()/2)
 	fill(state, 'WALLTEST', new Rect({t: rect.t+pad, b: rect.b-pad, l: center, r:center}))
+
+	let minRoomSize = 3;
+	let avgRoomSize = 7
+
+	for(let i = pad; i< rect.b - pad - minRoomSize; i+= avgRoomSize){
+		// console.log(i);
+		let row = rect.t+i
+		fill(state, 'WALLTEST', new Rect({t: row, b:row, l: rect.l + pad, r:rect.r - pad}))
+		
+		state.grid.addNode(rect.l+pad, row+1, new Grid({type:'WOODTILE'}))
+		state.grid.addNode(rect.r-pad, row+1, new Grid({type:'WOODTILE'}))
+		
+		state.object.addObject(new Obj({
+			block: new Block({x: rect.l+pad+1, y: row+1}),
+			type: 'SPAWN'
+		}));
+		state.object.addObject(new Obj({
+			block: new Block({x: rect.r-pad-1, y: row+1}),
+			type: 'SPAWN'
+		}));
+	}
 
 }
 
