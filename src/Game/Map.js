@@ -43,7 +43,7 @@ function cityBlock(state:State, rect:Rect){
 	let center = rect.l + Math.floor(rect.width()/2)
 	fill(state, 'WALLTEST', new Rect({t: rect.t+pad, b: rect.b-pad, l: center, r:center}))
 
-	for(let i = pad; i< rect.b - pad - minRoomSize; i+= avgRoomSize){
+	for(let i = pad; i< (rect.b - rect.t) - pad - minRoomSize; i+= avgRoomSize){
 		// console.log(i);
 		let row = rect.t+i;
 		fill(state, 'WALLTEST', new Rect({t: row, b:row, l: rect.l + pad, r:rect.r - pad}));
