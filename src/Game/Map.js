@@ -27,19 +27,20 @@ function cityBlock(state:State, rect:Rect){
 	fill(state, 'FLOOR', rect)
 	fill(state, 'WALLTEST', rect.add({t:pad, r: -pad, b: -pad, l: pad}));
 	fill(state, 'FLOOR', rect.add({t:pad+1, r: -1-pad, b: -1-pad, l: pad+1}))
-	let center = rect.l + Math.floor(rect.width()/2)
-	fill(state, 'WALLTEST', new Rect({t: rect.t+pad, b: rect.b-pad, l: center, r:center}))
 
 	let minRoomSize = 3;
 	let avgRoomSize = 7
 
+	let center = rect.l + Math.floor(rect.width()/2)
+	fill(state, 'WALLTEST', new Rect({t: rect.t+pad, b: rect.b-pad, l: center, r:center}))
+
 	for(let i = pad; i< rect.b - pad - minRoomSize; i+= avgRoomSize){
 		// console.log(i);
-		let row = rect.t+i
-		fill(state, 'WALLTEST', new Rect({t: row, b:row, l: rect.l + pad, r:rect.r - pad}))
+		let row = rect.t+i;
+		fill(state, 'WALLTEST', new Rect({t: row, b:row, l: rect.l + pad, r:rect.r - pad}));
 		
-		state.grid.addNode(rect.l+pad, row+1, new Grid({type:'WOODTILE'}))
-		state.grid.addNode(rect.r-pad, row+1, new Grid({type:'WOODTILE'}))
+		state.grid.addNode(rect.l+pad, row+1, new Grid({type:'WOODTILE'}));
+		state.grid.addNode(rect.r-pad, row+1, new Grid({type:'WOODTILE'}));
 		
 		state.object.addObject(new Obj({
 			block: new Block({x: rect.l+pad+1, y: row+1}),
