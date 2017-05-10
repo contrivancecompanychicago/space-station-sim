@@ -31,7 +31,18 @@ export default class Rect{
 			this.b = arguments[2];
 			this.l = arguments[3];
 		}else if(arguments.length === 1){
-			extend(this, arguments[0]);
+			let a = arguments[0]
+			if(a.t !== undefined){
+				extend(this, a);
+			}else if(a.x !== undefined){
+				this.t = a.y;
+				this.l = a.x;
+				this.r = a.x+a.w;
+				this.b = a.y+a.h;
+			}else{
+				throw new Error('Rect constructor given garbage. '+arguments.toString());
+			}
+
 		}else if(arguments.length === 2){
 			let p1 = arguments[0];
 			let p2 = arguments[1];

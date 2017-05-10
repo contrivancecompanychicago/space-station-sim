@@ -16,9 +16,18 @@ export default function genMap(state: State) {
 	let r = new Rect({ x: 0, y: -2 }, { x: 100, y: 100 })
 	fill(state, 'ROAD', r);
 	// cityBlockRandom(state, new Point({ x: 4, y: 4 }))
-	cityBlock(state, new Rect({t:0, r:22, b: 30, l: 4}))
-	cityBlock(state, new Rect({t:0, r:44, b: 30, l: 26}))
-	cityBlock(state, new Rect({t:0, r:66, b: 30, l: 48}))
+	for(let x = 0; x < 4; x++){
+		for(let y = 0; y < 2; y++){
+			let w = 20
+			let h = 40
+			let road = 4
+			// cityBlock(state, new Rect({t:0, r:(w*x)+w, b: h, l: w*x}))
+			cityBlock(state, new Rect({x:w*x, y: h*y, w: w-road, h: h-road}))
+		}
+	}
+	// cityBlock(state, new Rect({t:0, r:22, b: 30, l: 4}))
+	// cityBlock(state, new Rect({t:0, r:44, b: 30, l: 26}))
+	// cityBlock(state, new Rect({t:0, r:66, b: 30, l: 48}))
 }
 
 function cityBlock(state:State, rect:Rect){
