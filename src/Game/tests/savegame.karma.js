@@ -42,6 +42,11 @@ describe('savegame.karma.js', () => {
 		
 	})
 	describe('setup', () => {
+		
+		it('should load blank', (done) => {
+			mouse.clickSelector('button#load-blank');
+			setTimeout(done, 100);
+		})
 		it('close save panel', () => {
 			mouse.clickSelector('.save.panel .close')
 		});

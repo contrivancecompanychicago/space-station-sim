@@ -51,6 +51,11 @@ describe('functional.karma.js', () => {
 		}, 100)
 	})
 
+
+	it('should load blank', (done) => {
+		mouse.clickSelector('button#load-blank');
+		setTimeout(done, 100);
+	})
 	it('should close the savepanel', () => {
 		mouse.clickSelector('.save.panel .close')
 	})

@@ -14,6 +14,10 @@ let mouseEvent = function(target, eventName, params){
   var event = document.createEvent('Event');
   extend(event, params);
   event.initEvent(eventName, true, true);
+  if(!target){
+	  debugger;
+	  throw new Error('no target')
+  }
   target.dispatchEvent(event); //was document
 };
 

@@ -34,9 +34,15 @@ describe('givingorders.karma.js', () => {
 	it('should wait to start', (done) => {
 		// setTimeout(() => {
 		canvas = container.getElementsByTagName('canvas')[0];
+		expect(canvas).toBeDefined();
 		mouse.setCanvas(canvas);
 		done();
 		// }, 100)
+	})
+	
+	it('should load blank', (done) => {
+		mouse.clickSelector('button#load-blank');
+		setTimeout(done, 100);
 	})
 
 	it('draw blocks', () => {
@@ -62,6 +68,7 @@ describe('givingorders.karma.js', () => {
 		// 	expect(mouse.clickSelector('.button-speed-turbo')).toBe(true)
 		// 	expect(game.state.ui.state.speed).toBe('TURBO')
 		// }));
+		
 
 		it('right mode', testGen(function* () {
 
