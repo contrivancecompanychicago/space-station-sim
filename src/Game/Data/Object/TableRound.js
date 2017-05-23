@@ -25,7 +25,10 @@ const obj:ObjectDataType = {
   ],
   requirements: {
   },
-  abilities: [Ability.PREP_TABLE, Ability.SERVE_TABLE, Ability.DINE_TABLE]
+  abilities: [
+    // Ability.PREP_TABLE, 
+    // Ability.SERVE_TABLE, 
+    Ability.DINE_TABLE]
 }
 
 export default obj
