@@ -17,6 +17,8 @@ import pathToObjectWithAbility from './pathToObjectWithAbility'
 import moveToBlockCenter from './moveToBlockCenter'
 import placeItemOnBlock from './placeItemOnBlock'
 import idle from './idle'
+import pathToBlock from './pathToBlock'
+
 
 
 export default function* customer(char: Character): Generator<*,*,*>{
@@ -91,15 +93,19 @@ export default function* customer(char: Character): Generator<*,*,*>{
 			char.removeItem(item);
 		}
 		char.setStatus('Leaving')
-		yield * pathToObjectWithAbility(char, Ability.SPAWN)
 
 	}else{
 		char.setStatus('Nowhere to sit')
-		yield *pathToObjectWithAbility(char, Ability.SPAWN)
 	}
 
-	char.setStatus('Gone')
+	//if I have an exit
+	let exit = yield * pathToObjectWithAbility(char, Ability.SPAWN)
 
-	state.character.removeCharacter(char);
-
+	if(exit){
+		char.setStatus('Gone')
+		state.character.removeCharacter(char);
+	}else{
+		yield * pathToBlock(char, state.grid.randomNode());
+	}
+	
 }
