@@ -56,6 +56,14 @@ export default class CharacterModel {
 	hireCharacter(char:Character){
 		state.player.spendMoney(char.salary)
 		this.spawnCharacter(char);
+
+		//assign tasks;
+		['MAKE','COOK','PREP','SERVEFOOD','MAKEDRINK','TAKEORDER','EXTRACTOVEN','GREET']
+		.forEach(t => {
+			char.assignTaskType(t)
+		})
+		
+
 		this.generateHireableChars();
 		state.view.followCharacter(char);
 		state.ui.dispatch({type:'SET_SELECTED', selected:char})
