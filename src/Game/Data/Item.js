@@ -53,7 +53,7 @@ const Items:{[id:ItemType]:ItemDataType} = {
       // leaveAtObjectAbility: 'OVEN',
       characterTaskType: 'COOK'
     },
-    image: require('./Object/test.png')
+    image: require('./Item/pizza.png')
   },
   'PIZZA': {
     label: 'ingredients', 

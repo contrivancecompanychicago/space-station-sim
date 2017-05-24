@@ -11,6 +11,7 @@ import idle from './idle'
 import shortestPathToObject from './shortestPathToObject'
 import forceUseObjectWithAbility from './forceUseObjectWithAbility'
 import pickUpItem from './pickUpItem'
+import serveOrder from './serveOrder'
 
 
 export default function* makeItem(char: Character, making:ItemType , item: ?Item, order: ?Order): Generator<*,*,*>{
@@ -67,11 +68,24 @@ export default function* makeItem(char: Character, making:ItemType , item: ?Item
 		item.type = making;
 		//ADD EXP $$$$$$$$
 		// char.addRecipeExperience(order.recipe, 20)
-		if (data.requires.leaveAtObjectAbility) {
-			let obj = yield * forceUseObjectWithAbility(char, data.requires.leaveAtObjectAbility)
-			obj.addItem(item);
+
+		//if the character can serve the food, 
+		//and the food is serveable, 
+		// console.log(char.hasTaskType('SERVEFOOD') , order.type, item.type)
+		if(order && char.hasTaskType('SERVEFOOD') && (order.type == item.type)){
+			//serve it instead of leaving it
+			yield * serveOrder(char, order);
+			order.addWorker(char) // because need to remove worker next level up
+		}else{
+			//else leave it somewhere
+			if (data.requires.leaveAtObjectAbility) {
+				let obj = yield * forceUseObjectWithAbility(char, data.requires.leaveAtObjectAbility)
+				obj.addItem(item);
+			}
+			char.removeItem(item);
 		}
-		char.removeItem(item);
+		
+
 	} else {
 		throw new Error('makeitem leave at object no item')
 	}
